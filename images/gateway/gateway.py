@@ -23,8 +23,11 @@ for the tokens-per-day and decode-speed figures on the card.
 Connections: at most GATEWAY_MAX_CONNECTIONS (default 64) are served at once;
 one more is closed at once. Each request, its headers and body, must arrive
 within GATEWAY_REQUEST_DEADLINE seconds (default 10) of the gateway starting
-to wait for it, idle keep-alive included, or its connection is closed. So a
-client without the key cannot hold the gateway's threads by sending slowly.
+to wait for it, idle keep-alive included, or its connection is closed. Every
+write to a client must finish within GATEWAY_WRITE_DEADLINE seconds (default
+30). An answer without the key (/health, 401) closes its connection, so
+pipelined requests are never answered. So a client without the key holds a
+thread no longer than one request's deadline, however it sends or reads.
 
 Standard library only. No configuration beyond the environment above.
 """
@@ -48,6 +51,7 @@ TIMEOUT = int(os.environ.get("UPSTREAM_TIMEOUT", "600"))
 USAGE_LOG = os.environ.get("GATEWAY_USAGE_LOG", "")
 USAGE_LOCK = threading.Lock()
 REQUEST_DEADLINE = float(os.environ.get("GATEWAY_REQUEST_DEADLINE", "10"))
+WRITE_DEADLINE = float(os.environ.get("GATEWAY_WRITE_DEADLINE", "30"))
 MAX_CONNECTIONS = int(os.environ.get("GATEWAY_MAX_CONNECTIONS", "64"))
 
 
@@ -505,6 +509,7 @@ def finish_text(event, text_item, output):
 class Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
     server_version = "omarchy-local-ai-gateway/1"
+    timeout = WRITE_DEADLINE  # each socket operation; a client that stops reading cannot block a write for longer
 
     def log_message(self, fmt, *args):  # quiet by default; errors go through log()
         pass
@@ -561,9 +566,9 @@ class Handler(BaseHTTPRequestHandler):
         return json.loads(raw) if raw else {}
 
     def do_GET(self):
-        self.deadline.cancel()
         path = urllib.parse.urlparse(self.path).path
         if path == "/health":
+            self.close_connection = True  # no key: one answer, then the connection is closed
             try:
                 up = Upstream("GET", "/v1/models")
                 up.raw()
@@ -573,6 +578,7 @@ class Handler(BaseHTTPRequestHandler):
             return
         if not self.authorized():
             return self.refuse()
+        self.deadline.cancel()
         if path in ("/v1/models", "/models"):
             return self.passthrough("GET", "/v1/models", None)
         self.send_json(404, {"error": {"type": "not_found", "message": path}})

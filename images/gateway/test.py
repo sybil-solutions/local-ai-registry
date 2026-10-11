@@ -279,6 +279,24 @@ def main():
         check("idle connections are dropped at the deadline and the gateway answers again", status == 200, str(status))
         for sock in idle:
             sock.close()
+        # Health requests pipelined on every slot, their answers never read: without the key a connection gets one
+        # answer and is closed, so the slots are free again within the deadline.
+        piped = []
+        for _ in range(SLOTS):
+            sock = socket.socket()
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, 4096)
+            sock.connect(("127.0.0.1", GATEWAY_PORT))
+            sock.settimeout(2)
+            try:
+                sock.sendall(b"GET /health HTTP/1.1\r\nHost: x\r\n\r\n" * 2000)
+            except OSError:
+                pass
+            piped.append(sock)
+        time.sleep(DEADLINE + 0.5)
+        status, body = call("/v1/models")
+        check("pipelined health requests with unread answers do not hold the slots", status == 200, str(status))
+        for sock in piped:
+            sock.close()
         print(f"# {passed} passed")
     finally:
         gateway.terminate()

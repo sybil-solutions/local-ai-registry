@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lab
 
 ROOT = lab.ROOT
-GATEWAY = "ghcr.io/sybil-solutions/gateway@sha256:1de222c4b58093444fd6ebf7d5ebf591176a33da91092ca87a10ae507c568d8f"
+GATEWAY = "ghcr.io/sybil-solutions/gateway@sha256:3377c098f3a75be68e2b701bab997df27df17b60388cb715b1750d20c43fc0f5"
 MIN_DRIVER = {"tabbyapi": "575.0", "sglang": "580.0", "vllm": "580.0", "llama.cpp": "535.0"}
 
 
