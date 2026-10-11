@@ -9,6 +9,7 @@ user message asks for one. Each test asserts the exact shapes Claude Code
 
 import json
 import os
+import socket
 import subprocess
 import sys
 import tempfile
@@ -21,6 +22,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE_PORT, GATEWAY_PORT = 18000, 18434
 KEY = "test-key-123"
+DEADLINE, SLOTS = 1.0, 4
 
 
 class FakeEngine(BaseHTTPRequestHandler):
@@ -127,7 +129,7 @@ def main():
     key_file.write(KEY + "\n"); key_file.close()
     usage_log = os.path.join(tempfile.mkdtemp(), "usage.jsonl")
     env = dict(os.environ, UPSTREAM=f"http://127.0.0.1:{ENGINE_PORT}", GATEWAY_PORT=str(GATEWAY_PORT), GATEWAY_KEY_FILE=key_file.name, MODEL="fake-model",
-               GATEWAY_USAGE_LOG=usage_log)
+               GATEWAY_USAGE_LOG=usage_log, GATEWAY_REQUEST_DEADLINE=str(DEADLINE), GATEWAY_MAX_CONNECTIONS=str(SLOTS))
     gateway = subprocess.Popen([sys.executable, os.path.join(HERE, "gateway.py")], env=env, stderr=subprocess.PIPE)
     try:
         for _ in range(50):
@@ -243,6 +245,40 @@ def main():
         check("usage log: every dialect is recorded", apis == {"chat", "messages", "responses"}, str(apis))
         check("usage log: engine usage is used verbatim, streamed chat included", all(row["completion"] == 4 and row["prompt"] == 10 and not row["estimated"] for row in rows), str([r for r in rows if r["estimated"] or r["prompt"] != 10][:3]))
         check("usage log: model, timing and time-to-first-token are present", all(row["model"] == "fake-model" and row["ms"] >= row["ttft_ms"] >= 0 for row in rows), str(rows[:1]))
+
+        # A client without the key cannot hold the gateway: a request trickled in byte by byte is cut at the deadline,
+        # and with every slot held an extra connection is closed, until the deadline frees the slots again.
+        slow = socket.create_connection(("127.0.0.1", GATEWAY_PORT))
+        slow.settimeout(DEADLINE + 3)
+        t0, closed = time.monotonic(), False
+        try:
+            for byte in b"GET /v1/models HTTP/1.1\r\nX-Slow: " + b"a" * 100:
+                slow.sendall(bytes([byte]))
+                time.sleep(0.05)
+        except OSError:
+            closed = True
+        if not closed:
+            try:
+                closed = slow.recv(1) == b""
+            except TimeoutError:
+                pass
+        slow.close()
+        check("a request trickled in is cut at the deadline", closed and time.monotonic() - t0 < DEADLINE + 1.5, f"{time.monotonic() - t0:.1f}s")
+        idle = [socket.create_connection(("127.0.0.1", GATEWAY_PORT)) for _ in range(SLOTS)]
+        time.sleep(0.2)
+        extra = socket.create_connection(("127.0.0.1", GATEWAY_PORT))
+        extra.settimeout(2)
+        try:
+            refused = extra.recv(1) == b""
+        except OSError:
+            refused = True
+        extra.close()
+        check("with every slot held, one more connection is closed", refused)
+        time.sleep(DEADLINE + 0.5)
+        status, body = call("/v1/models")
+        check("idle connections are dropped at the deadline and the gateway answers again", status == 200, str(status))
+        for sock in idle:
+            sock.close()
         print(f"# {passed} passed")
     finally:
         gateway.terminate()
