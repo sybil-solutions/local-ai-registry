@@ -94,4 +94,14 @@ assert py_steps == js_steps
 assert "pip install tokenizers==0.22.2" in py_steps[0]["code"]
 assert "shasum -a 256 -c" in py_steps[1]["code"] and "tar xzf" in py_steps[1]["code"]
 assert py_steps[2]["title"] == "Write the launcher"
+# Two weights in one Hugging Face cache mount it once (docker refuses a duplicate mount point).
+fixture = {"model": "hub-pair", "launch": {"image": "example.invalid/server:fixture", "backend": "cpu", "port": 8000, "args": [],
+    "weights": [{"repo": "fixture/model", "revision": "b" * 40, "at": "/root/.cache/huggingface", "layout": "hub"},
+                {"repo": "fixture/draft", "revision": "c" * 40, "at": "/root/.cache/huggingface", "layout": "hub"}]}}
+py_steps = L.steps(fixture)
+js_steps = json.loads(subprocess.run(["node", "--input-type=module", "-e",
+    'import {readFileSync} from "node:fs"; import {steps} from "./sdk/js/index.js"; console.log(JSON.stringify(steps(JSON.parse(readFileSync(0,"utf8")))));'],
+    input=json.dumps(fixture), capture_output=True, text=True, check=True).stdout)
+assert py_steps == js_steps
+assert py_steps[-1]["code"].count("/root/.cache/huggingface") == 1, py_steps[-1]["code"]
 PY

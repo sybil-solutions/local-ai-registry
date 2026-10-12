@@ -127,7 +127,8 @@ def steps(r):
         d = f"~/models/{w['repo'].split('/')[1]}-{w['revision'][:8]}"
         if w.get("layout") == "hub":
             dl.append(f"hf download {w['repo']}{_files(w)} \\\n  --revision {w['revision']}")
-            mounts.append("-v ~/.cache/huggingface:/root/.cache/huggingface")
+            if "-v ~/.cache/huggingface:/root/.cache/huggingface" not in mounts:  # several hub weights share one cache mount
+                mounts.append("-v ~/.cache/huggingface:/root/.cache/huggingface")
         else:
             dl.append(f"hf download {w['repo']}{_files(w)} \\\n  --revision {w['revision']} \\\n  --local-dir {d}")
             mounts.append(f"-v {d}:{w['at']}:ro")

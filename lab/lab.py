@@ -50,9 +50,14 @@ def config_text(p):
 
 
 def pin(p):
-    """What a recipe pins a profile to: its image digest, or for a host program the sha256 of everything it launches,
-    so a change to the command, packages, weights or launcher invalidates the recipes like a new image would."""
+    """What a recipe pins a profile to: its image digest, for an image built from a pinned commit (`build`, no image) that
+    commit, or for a host program the sha256 of everything it launches, so a change to the command, packages, weights or
+    launcher invalidates the recipes like a new image would."""
     if p.get("kind") != "host":
+        if not p.get("image"):
+            if not (p.get("build") or {}).get("commit"):
+                raise SystemExit(f"{p.get('id')}: a launch without an image needs build.commit to pin")
+            return p["build"]["commit"]
         return p["image"].split("@sha256:")[1]
     keys = ("command", "install", "pip", "env", "port", "weights", "ctx", "seqs", "vision", "wired_limit_reserve_mb")
     # several cards (or machines) count too, but one is the default and stays out, so every single-card pin is unchanged
@@ -70,7 +75,11 @@ def profile(ref):
     name, _, digest = ref.partition("@")
     p = json.loads(profile_file(f"{name}.json").read_text())
     if p.get("kind") == "host" or not p.get("image"):  # a host program, or an image built from a pinned commit
-        if p.get("kind") == "host" and digest and digest != "host" and not pin(p).startswith(digest):
+        if p.get("kind") == "host":
+            stale = digest and digest != "host" and not pin(p).startswith(digest)
+        else:  # a recipe frozen before build commits were pinned says `@build`; it stays valid
+            stale = digest and digest != "build" and not pin(p).startswith(digest)
+        if stale:
             raise SystemExit(f"{ref}: the profile now pins {pin(p)[:12]}; rerun the recipe")
         return p
     if digest and "@sha256:" in p["image"] and not p["image"].split("@sha256:")[1].startswith(digest):

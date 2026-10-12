@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "glm-5.3-flash",
+  "weights": "Mia-AiLab/GLM-5.3-Flash-EXL3-4bpw-TensorFold@078455ffe6472f9a52fbc1139f58b9db2881b25c",
+  "engine": "tensorfold-glm-5.3-flash-exl3-4bpw-1024k-4x@16a92c85d6c4",
+  "set": {},
+  "card": "dgx-spark-gb10-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "4x DGX Spark (GB10)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-12",
+  "on": "owner",
+  "gpu": "4x DGX Spark (GB10)",
+  "launch_sha256": "97b4616588a2514cd61e8ea75ad05087ff891a59acdf2d107b1671b5697bce72",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 109.7,
+  "prefill": 2094,
+  "served": "GLM-5.3-Flash-EXL3"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 83,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_96268bbc33914d3394aa0ad8",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "re's the current weather in Paris:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast (cloudy skies)\n\nIt's a mild but gray day in Paris right now. You might want a light jacket if you're heading out!",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 73
+  },
+  "context": {
+   "prompt_tokens": 751923,
+   "seconds": 359.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 4447,
+   "seconds_total": 36.7
+  }
+ },
+ "launch_config_sha256": null
+}

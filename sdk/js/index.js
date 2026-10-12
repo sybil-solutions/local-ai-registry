@@ -79,7 +79,7 @@ const files = (l.build.dockerfile ?? "Dockerfile").split(" + ");
   const mounts = [], dl = [];
   for (const w of weights(l)) {
     const dir = `~/models/${w.repo.split("/")[1]}-${w.revision.slice(0, 8)}`;
-    if (w.layout === "hub") { dl.push(`hf download ${w.repo}${files(w)} \\\n  --revision ${w.revision}`); mounts.push("-v ~/.cache/huggingface:/root/.cache/huggingface"); }
+    if (w.layout === "hub") { dl.push(`hf download ${w.repo}${files(w)} \\\n  --revision ${w.revision}`); if (!mounts.includes("-v ~/.cache/huggingface:/root/.cache/huggingface")) mounts.push("-v ~/.cache/huggingface:/root/.cache/huggingface"); }  // several hub weights share one cache mount
     else { dl.push(`hf download ${w.repo}${files(w)} \\\n  --revision ${w.revision} \\\n  --local-dir ${dir}`); mounts.push(`-v ${dir}:${w.at}:ro`); }
   }
   if (dl.length) out.push({ title: "Download the weights", code: dl.join("\n\n") });
