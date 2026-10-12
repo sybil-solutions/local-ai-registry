@@ -1,0 +1,93 @@
+{
+  "id": "llama.cpp-vulkan-qwen3.8-27b-iq4-xs-mtp-128k",
+  "engine": "llama.cpp",
+  "about": "Qwen3.8-27B (GGUF · IQ4_XS, MTP/NextN head in the same file, vision) on Vulkan (official llama.cpp image, b11176), Strix Halo iGPU sharing system memory",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:1086b8815273e566bc0f549bac1d6d2dc469e6409a952cca3f502e53d72877e7",
+  "backend": "amd-vulkan",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/Qwen3.8-27B-IQ4_XS.gguf",
+    "--mmproj",
+    "/models/mmproj-F16.gguf",
+    "--alias",
+    "Qwen3.8-27B-GGUF",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "131072",
+    "--n-gpu-layers",
+    "999",
+    "--parallel",
+    "1",
+    "--spec-type",
+    "draft-mtp",
+    "--spec-draft-n-max",
+    "2",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--reasoning-effort",
+    "medium",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--metrics"
+  ],
+  "env": {},
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "f975863083b62f54a5e6fac11671c750c2bbc59c",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Qwen3.8-27B-IQ4_XS.gguf,mmproj-F16.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "plugin": {
+    "name": "Qwen3.8-27B",
+    "family": "qwen",
+    "format": "GGUF · IQ4_XS + MTP",
+    "engine": "llama.cpp",
+    "servedName": "Qwen3.8-27B-GGUF",
+    "sizeGb": 16.63,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "video": false,
+      "vision": true
+    },
+    "serving": {
+      "ctxTokens": 131072,
+      "kvTokens": 0
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Qwen3.8-27B-IQ4_XS.gguf,mmproj-F16.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 16.63
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "radeon-8060s-128gb": "qwen38-27b-iq4xs-mtp-8060s-llamacpp-vulkan"
+  }
+}
