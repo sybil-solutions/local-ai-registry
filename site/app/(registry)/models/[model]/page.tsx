@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Logo from "@/components/Logo";
 import ModelCard from "@/components/ModelCard";
-import ConfigurationTable from "@/components/ConfigurationTable";
+import ConfigurationCards from "@/components/ConfigurationCards";
 import { configurationRows, modelDirectoryRows } from "@/lib/configurations";
 import { models, recipes, fmtDate } from "@/lib/registry";
 import s from "./model.module.css";
@@ -29,7 +29,7 @@ export default async function Model({ params }: P) {
     {m.about && <p className={s.intro}>{m.about}</p>}
     <div className="facts"><span><b>{new Set(rs.map((r) => r.card)).size}</b> hardware entries</span><span><b>{rows.length}</b> hardware configurations</span><span><b>{rs.length}</b> exact recipes</span></div>
     <nav className={s.links}><a href="#configurations">Hardware configurations</a><a href="#model-card">Hugging Face model card</a></nav>
-    <section id="configurations"><h2>Hardware configurations</h2><p className="dim">Each row is a hardware setup, including its card count, machine count and documented host requirements. The recipe dropdown updates measured speeds, context and the exact one-command launch together.</p><ConfigurationTable rows={rows} /></section>
+    <section id="configurations"><h2>Hardware configurations</h2><p className="dim">Each card is a hardware setup, including its card count, machine count and documented host requirements. The recipe dropdown updates measured speeds, context and the exact one-command launch together.</p><ConfigurationCards rows={rows} /></section>
     <section id="model-card"><h2>Hugging Face model card</h2><ModelCard modelId={id} /></section>
   </main>;
 }

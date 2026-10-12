@@ -1,0 +1,31 @@
+.area { margin-top:20px; }
+.toolbar { display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px; margin-bottom:20px; }
+.search { display:flex; flex-direction:column; gap:8px; flex:1 1 280px; max-width:520px; color:var(--dim); font-size:12px; }
+.search input { width:100%; min-width:0; padding:12px 14px; border:1px solid var(--line-2); border-radius:4px; background:transparent; color:var(--text); font:inherit; font-size:13px; }
+.count { margin-left:auto; color:var(--dim); font-size:12px; padding-bottom:12px; }
+.sortControl { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:12px; }
+.sortControl label { color:var(--dim); }
+.sortControl select, .sortControl button, .recipeField select { min-width:0; padding:10px 12px; border:1px solid var(--line-2); border-radius:4px; background:var(--bg); color:var(--text); font:inherit; font-size:12px; }
+.area input:focus-visible, .area select:focus-visible, .area button:focus-visible, .area a:focus-visible { outline:2px solid var(--crimson); outline-offset:2px; }
+.cards { margin:0; }
+.card { min-width:0; }
+.identity { min-width:0; }
+.identity > :first-child { flex-shrink:0; }
+.identity a { min-width:0; overflow-wrap:anywhere; }
+.card :global(.meta) { align-items:baseline; }
+.card :global(.meta) span { overflow-wrap:anywhere; }
+.metrics b { white-space:normal; overflow-wrap:anywhere; }
+.metrics span { display:block; }
+.needs { display:grid; gap:4px; margin:0; color:var(--dim); font-size:12px; }
+.needs div { display:grid; grid-template-columns:90px minmax(0,1fr); gap:8px; }
+.needs dt { color:var(--faint); }
+.needs dd { margin:0; overflow-wrap:anywhere; }
+.recipeField { display:flex; flex-direction:column; gap:8px; color:var(--dim); font-size:12px; }
+.recipeField select { width:100%; }
+.command { min-width:0; margin-top:4px; padding-top:16px; border-top:1px solid var(--line); }
+.commandHead { display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:12px; }
+.commandHead button { position:static; }
+.command p { color:var(--dim); font-family:var(--sans); font-size:13px; line-height:1.6; }
+.command pre { max-height:360px; margin-top:14px; }
+.note, .empty { color:var(--dim); font-family:var(--sans); font-size:12px; line-height:1.7; margin-top:16px; }
+@media (max-width:640px) { .search { flex-basis:100%; max-width:none; } .count { margin-left:0; padding-bottom:0; } .sortControl { width:100%; } .sortControl select { flex:1; } }
