@@ -83,7 +83,7 @@ export default function Landing() {
       {C.cText && (
         <section id="contribute" className={`${s.section} ${s.follow}`}>
           <p>{C.cText}</p>
-          <a href={REGISTRY} className={s.btn}>{C.cBtn} →</a>
+          <a href={C.cUrl ?? REGISTRY} className={s.btn}>{C.cBtn} →</a>
         </section>
       )}
 

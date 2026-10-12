@@ -58,7 +58,7 @@
  "s6t": "Fits big models on small machines",
  "s6d": "Mixture-of-experts models can keep their experts in RAM or on NVMe: GLM-5.3-Flash passed the lab on one RTX 3090 at 20 tok/s.",
  "cHead": "Help build it",
- "cText": "Open source. Test your card, send the result.",
+ "cText": "Open source. $50 for each recipe we're missing.",
  "c1t": "Test your card",
  "c1d": "Run a recipe on your GPU with the registry lab (lab.py try --on endpoint) and open a pull request with the result.",
  "c1l": "How to add a recipe →",
@@ -71,7 +71,7 @@
  "c3d": "Bugs, a card that shows Coming soon, a new agent to open: issues and pull requests are open.",
  "c3l": "Plugin issues →",
  "c3u": "https://github.com/sybil-solutions/omarchy-local-ai/issues",
- "cBtn": "The registry on GitHub",
+ "cBtn": "Open bounties",
  "w1t": "Your GPU",
  "w2t": "A tested model",
  "w3t": "Your agent",
@@ -83,5 +83,6 @@
  "fGpusAll": "All hardware",
  "fModels": "Models",
  "fModelsQ": "Search a model",
- "fModelsAll": "All models"
+ "fModelsAll": "All models",
+ "cUrl": "https://github.com/sybil-solutions/local-ai-registry/issues?q=is%3Aissue+is%3Aopen+label%3Abounty"
 }
