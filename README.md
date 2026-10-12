@@ -89,7 +89,8 @@ Every program runs one the same way:
 
 [Models](https://local.sybilsolutions.ai/models/) and
 [hardware](https://local.sybilsolutions.ai/hardware/) are full-text searchable;
-column headings sort the directories and configuration tables.
+column headings sort the directories, while the Sort control orders configuration
+tables by hardware, model, memory, recipe, context, decode, prefill or evidence.
 Each model has a `/models/<id>/` page with its rendered Hugging Face model card
 and every recorded hardware configuration. Hardware pages at `/gpu/<id>/`
 show original-source photos, specifications and the same table by model.
@@ -100,6 +101,9 @@ Configuration rows distinguish card count, machine count and documented
 host RAM, disk/NVMe and logical-CPU requirements. Selecting an exact recipe
 changes its decode, prefill, context, evidence and copyable command together.
 Unknown measurements stay unknown and sort after recorded measurements.
+The compact table shows Hardware, Recipe, Speed and Run (plus Model on hardware
+pages). Only setups with multiple recipes have dropdowns. Command expands
+the pinned launch, complete setup requirements and evidence.
 The command is one Bash invocation containing the existing SDK's pinned steps;
 engine prerequisites and source-specific setup still apply. Multi-machine
 recipes run on each machine with its documented rank and network settings.

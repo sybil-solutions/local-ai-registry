@@ -9,9 +9,21 @@
 .tableArea td { vertical-align:top; }
 .tableArea td small { display:block; color:var(--dim); font-size:11px; line-height:1.7; margin-top:5px; }
 .tableArea select { max-width:280px; width:100%; padding:8px; background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:3px; font:inherit; font-size:11px; }
-.configurations { min-width:1040px; }
-.configurations td:first-child { min-width:170px; }
-.configurations td:has(select) { min-width:200px; }
+.configurations { min-width:620px; }
+.configurations td:first-child { width:30%; min-width:160px; }
+.configurations td:has(select) { width:42%; min-width:220px; }
+.configurations td { padding:12px 14px; }
+.configurations select { max-width:none; }
+.recipeLabel { display:block; max-width:340px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:12px; }
+.configToolbar { gap:12px; flex-wrap:wrap; }
+.configToolbar > label { flex:1; width:auto; min-width:220px; }
+.sortControls { display:flex; align-items:center; gap:6px; }
+.sortControls select { width:140px; font-size:12px; }
+.sortControls button { padding:7px 10px; }
+.speed { white-space:nowrap; }
+.speed strong { font-size:16px; font-weight:500; }
+.host { max-width:250px; }
+.runLabel { color:var(--dim); }
 .directory { min-width:760px; }
 .directory td:first-child { min-width:220px; }
 .photoName { display:flex; align-items:center; gap:16px; }
