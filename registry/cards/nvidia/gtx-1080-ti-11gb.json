@@ -1,0 +1,17 @@
+{
+  "id": "gtx-1080-ti-11gb",
+  "name": "GeForce GTX 1080 Ti",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 11,
+  "bandwidth_gb_s": 484,
+  "match": {
+    "backend": "nvidia",
+    "name": "GeForce GTX 1080 Ti",
+    "names": [
+      "gtx1080ti",
+      "1080ti"
+    ],
+    "vramGb": 11
+  }
+}
