@@ -1,4 +1,4 @@
-/* The landing page: charcoal, hairlines, the dot hands, crimson only on the prompt sign, the step numbers and play buttons. */
+/* The landing page: charcoal, hairlines, the dot hands, crimson only on the prompt sign, the live dots and play buttons. */
 .page {
   --bg: #161616; --line: #2e2e2e; --text: #ecEAE6; --muted: #8c8a86; --faint: #5e5c59; --crimson: #dc143c;
   --sans: var(--font-sans), system-ui, sans-serif;
@@ -13,9 +13,9 @@
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 4px; color: var(--text); font-size: 13px; white-space: nowrap; }
 .xicon { flex: none; }
 
-.hero { padding: 112px 24px 0; text-align: center; }
-.hero h1 { font-size: clamp(32px, 9vw, 76px); font-weight: 500; letter-spacing: -0.045em; line-height: 1; }
-.hero p { font-family: var(--sans); font-size: 20px; line-height: 1.55; color: var(--muted); max-width: 640px; margin: 22px auto 0; }
+.hero { padding: 96px 24px 0; text-align: center; }
+.hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 500; letter-spacing: -0.045em; line-height: 1; }
+.hero p { font-family: var(--sans); font-size: 16px; line-height: 1.55; color: var(--muted); max-width: 520px; margin: 16px auto 0; }
 .cmd { display: inline-flex; align-items: center; gap: 16px; max-width: 100%; margin-top: 34px; padding: 10px 10px 10px 18px; border: 1px solid var(--line); border-radius: 4px; font-size: 14px; }
 .cmd code { font: inherit; white-space: nowrap; overflow-x: auto; min-width: 0; scrollbar-width: none; }
 .prompt { color: var(--crimson); }
@@ -39,90 +39,45 @@
 .thumb:hover .play { background: #1f1f1f; }
 
 .label { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--text); }
-.supported { max-width: 1440px; margin: 0 auto; padding: 72px 48px 0; }
-/* the label sits on a hairline, the three groups share one row split by short rules, as in the listing preview */
-.supHead { display: flex; align-items: center; gap: 18px; }
-.supHead::before, .supHead::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-.supHead .label { font-size: 12px; }
-.supBar { display: flex; align-items: center; justify-content: space-between; gap: 18px 0; padding: 22px 0 0; }
-.group { display: flex; align-items: center; gap: 16px; color: var(--muted); font-size: 13.5px; white-space: nowrap; }
-.group + .group { padding-left: 24px; margin-left: 24px; border-left: 1px solid var(--line); }
-.groupTitle { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
-a.groupTitle:hover { color: var(--text); }
-.logo { display: inline-flex; align-items: center; gap: .45em; }
-.logo svg { height: 1em; width: auto; display: block; }
-.logo span { font-family: var(--sans); font-weight: 600; font-size: .9em; letter-spacing: -0.01em; white-space: nowrap; }
-
 .section { max-width: 1280px; margin: 0 auto; padding: 96px 48px 0; }
 .head { display: flex; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 24px; }
 .more { margin-left: auto; font-size: 13px; color: var(--muted); }
 .videos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 24px; }
 
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 0; }
-.step { padding: 4px 28px 0; border-left: 1px solid var(--line); }
-.step:nth-child(3n+1) { padding-left: 0; border-left: 0; }
-.num { font-size: 13px; letter-spacing: .14em; color: var(--crimson); }
-.step h3 { font-size: 22px; font-weight: 500; margin: 14px 0 8px; }
-.step p { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--muted); }
 
 .lede { font-family: var(--sans); font-size: 17px; line-height: 1.55; color: var(--muted); max-width: 640px; margin: 0 0 28px !important; }
-.ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.way { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 4px; padding: 24px; }
-.way:hover { border-color: var(--muted); }
-.way h3 { font-size: 19px; font-weight: 500; margin-bottom: 10px !important; }
-.way p { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--muted); flex: 1; }
-.way span { margin-top: 18px; font-size: 13px; color: var(--text); }
 .follow { text-align: center; }
 .follow p { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--muted); margin: 14px 0 22px !important; }
 
 .foot { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 96px; padding: 28px 48px 40px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
 .foot a:first-child { margin-right: auto; }
 
-/* What it is: one plain sentence, then three dot pictures joined by a dotted wire, then the registry's numbers in dots */
-.big { font-family: var(--sans); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.35; letter-spacing: -0.01em; max-width: 880px; margin: 8px 0 56px !important; }
+/* What it is: three dot pictures joined by a dotted wire, two words under each */
 .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 64px; }
-.flowItem { position: relative; }
-.pic { height: 132px; display: flex; align-items: center; margin-bottom: 28px; }
-.flowItem h3, .step h3 { font-size: 22px; font-weight: 500; margin: 14px 0 8px; }
-.flowItem p { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--muted); max-width: 340px; }
-.wire { position: absolute; top: 66px; left: calc(100% + 8px); width: 48px; height: 0; border-top: 3px dotted var(--faint); }
+.flowItem { position: relative; text-align: center; }
+.pic { margin-bottom: 20px; }
+.flowItem h3 { font-size: 15px; font-weight: 500; }
+.flowItem p { font-size: 12px; color: var(--muted); margin-top: 6px !important; }
+.finds { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.wire { position: absolute; top: calc(50% - 30px); left: calc(100% + 8px); width: 48px; height: 0; border-top: 3px dotted var(--faint); }
 .wire i { position: absolute; top: -5px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--crimson); animation: travel 2.4s linear infinite; }
 @keyframes travel { from { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { left: calc(100% - 7px); opacity: 0; } }
-.numbers { display: flex; flex-wrap: wrap; gap: 32px 64px; margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--line); }
-.number { display: flex; flex-direction: column; gap: 14px; font-size: 13px; color: var(--muted); }
-.numbers:hover .number > span { color: var(--text); }
-
-.stepPic { height: 88px; display: flex; align-items: center; margin-bottom: 24px; }
-.stepPic svg { max-width: 220px; }
-.followBtns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .top { padding-top: 48px; }
 
 @media (prefers-reduced-motion: reduce) { .wire i { animation: none; left: calc(50% - 3px); } }
 
-/* too narrow for one row: each group gets its own row, still split by hairlines */
-@media (max-width: 1240px) {
-  .supBar { flex-direction: column; align-items: stretch; gap: 0; }
-  .group { flex-wrap: wrap; gap: 14px 18px; padding: 16px 0; white-space: normal; }
-  .group + .group { padding-left: 0; margin-left: 0; border-left: 0; border-top: 1px solid var(--line); }
-  .groupTitle { width: 104px; }
-}
 @media (max-width: 860px) {
   .nav { padding: 18px 16px; flex-wrap: wrap; }
   .nav nav { gap: 16px; flex-wrap: wrap; }
   .hero { padding: 64px 16px 0; }
   .hero p { font-size: 17px; }
   .cmd { font-size: 12px; gap: 10px; padding-left: 12px; }
-  .credit, .supported, .section { padding-left: 16px; padding-right: 16px; }
-  .groupTitle { width: 100%; }
-  .videos { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr; gap: 28px; }
-  .step, .step:nth-child(3n+1) { padding: 24px 0 0; border-left: 0; border-top: 1px solid var(--line); }
-  .step:first-child { padding-top: 0; border-top: 0; }
-  .ways { grid-template-columns: 1fr; }
-  .flow { grid-template-columns: 1fr; gap: 48px; }
+  .credit, .section { padding-left: 16px; padding-right: 16px; }
+    .videos { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr; gap: 40px; }
+  .finds { grid-template-columns: 1fr; gap: 48px; }
   .wire { display: none; }
-  .pic { height: auto; max-width: 360px; }
-  .foot { padding: 24px 16px 32px; }
+  .pic { max-width: 360px; margin: 0 auto 16px; }
   .head { flex-wrap: wrap; gap: 8px; }
   .foot { padding: 24px 16px 32px; }
 }

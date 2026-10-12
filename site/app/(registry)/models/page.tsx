@@ -13,7 +13,7 @@ export default function Models() {
         {used.map(([id, m]) => {
           const rs = recipes.filter((r) => r.model === id);
           return (
-            <div key={id} className="rc">
+            <div key={id} id={id} className="rc">
               <div className="head"><Logo family={m.logo ?? m.family} />{m.name}</div>
               <div className="meta"><span>released {fmtDate(m.released)}</span>{m.vision && <span>vision</span>}{m.reasoning && <span>thinks</span>}</div>
               {m.about && <p className="about">{m.about}</p>}

@@ -10,8 +10,6 @@
 @keyframes sweep { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 @keyframes blink { 0%, 55%, 100% { fill: var(--crimson); } 70%, 85% { fill: var(--dim); } }
 
-.num { width: auto; height: 64px; align-self: flex-start; }
-
 @media (prefers-reduced-motion: reduce) {
   .dots circle, .dots:global(.seen) circle, .dots:global(.seen) .hot { opacity: 1; animation: none; }
 }

@@ -1,0 +1,15 @@
+/* The searchable lists: hairline rows, the name on the left, the count on the right. */
+.find { --line: #2e2e2e; --text: #ecEAE6; --muted: #8c8a86; --faint: #5e5c59; display: flex; flex-direction: column; min-width: 0; }
+.top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+.title { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+.count { font-size: 12px; color: var(--faint); }
+.search { font: inherit; font-size: 13px; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; outline: none; }
+.search:focus { border-color: var(--muted); }
+.search::placeholder { color: var(--faint); }
+.list { list-style: none; margin: 8px 0 0; padding: 0; }
+.list li a { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.list li a span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.meta { color: var(--muted); white-space: nowrap; }
+.list li a:hover .meta { color: var(--text); }
+.none { padding: 9px 0; font-size: 13px; color: var(--muted); }
+.all { margin-top: 14px; font-size: 12px; color: var(--muted); }
