@@ -85,6 +85,34 @@ Every program runs one the same way:
 3. Start the image on a bridge network with the card passed through (`--gpus` on NVIDIA, the render node on AMD and Intel).
 4. Put the [gateway](https://github.com/sybil-solutions/local-ai-images) in front, which serves the OpenAI, Anthropic and Responses APIs.
 
+## Browsing models and hardware
+
+[Models](https://local.sybilsolutions.ai/models/) and
+[hardware](https://local.sybilsolutions.ai/hardware/) are full-text searchable;
+column headings sort the directories and configuration tables.
+Each model has a `/models/<id>/` page with its rendered Hugging Face model card
+and every recorded hardware configuration. Hardware pages at `/gpu/<id>/`
+show original-source photos, specifications and the same table by model.
+Photo captions link the original manufacturer page and explicitly label
+representative family or chassis images.
+
+Configuration rows distinguish card count, machine count and documented
+host RAM, disk/NVMe and logical-CPU requirements. Selecting an exact recipe
+changes its decode, prefill, context, evidence and copyable command together.
+Unknown measurements stay unknown and sort after recorded measurements.
+The command is one Bash invocation containing the existing SDK's pinned steps;
+engine prerequisites and source-specific setup still apply. Multi-machine
+recipes run on each machine with its documented rank and network settings.
+
+Model cards are public Hugging Face README snapshots pinned to their source
+commit, cached in `site/lib/model-cards.data.json` and sanitized during the
+static build. Missing catalog model links are resolved from verified upstream
+metadata or matching public repositories, with provenance shown on the page.
+`npm run build` fetches newly used cards; to refresh existing snapshots, run
+`node scripts/model-cards.mjs --refresh` from `site/`, then build.
+Hardware image provenance lives in `site/lib/hardware-photos.json`; add the
+original-source image and its attribution there when adding hardware.
+
 ## Adding or updating a recipe
 
 Recipes are never written by hand. Run one:

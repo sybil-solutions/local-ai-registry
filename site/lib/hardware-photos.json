@@ -1,0 +1,1242 @@
+{
+ "apple-m1-16gb": {
+  "src": "/hardware/apple-m1.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M1 16GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M1 chip photo (og:image of the M1 announcement)."
+ },
+ "apple-m1-8gb": {
+  "src": "/hardware/apple-m1.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M1 8GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M1 chip photo (og:image of the M1 announcement)."
+ },
+ "apple-m1-max-32gb": {
+  "src": "/hardware/apple-m1-max.jpg",
+  "width": 1100,
+  "height": 715,
+  "alt": "Apple M1 Max 32GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom carousel asset showing the M1 Max chip specifically."
+ },
+ "apple-m1-max-64gb": {
+  "src": "/hardware/apple-m1-max.jpg",
+  "width": 1100,
+  "height": 715,
+  "alt": "Apple M1 Max 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom carousel asset showing the M1 Max chip specifically."
+ },
+ "apple-m1-pro-16gb": {
+  "src": "/hardware/apple-m1-pro.jpg",
+  "width": 1100,
+  "height": 715,
+  "alt": "Apple M1 Pro 16GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom carousel asset showing the M1 Pro chip specifically (not the combined og image)."
+ },
+ "apple-m1-pro-32gb": {
+  "src": "/hardware/apple-m1-pro.jpg",
+  "width": 1100,
+  "height": 715,
+  "alt": "Apple M1 Pro 32GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2021/10/introducing-m1-pro-and-m1-max-the-most-powerful-chips-apple-has-ever-built/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom carousel asset showing the M1 Pro chip specifically (not the combined og image)."
+ },
+ "apple-m1-ultra-128gb": {
+  "src": "/hardware/apple-m1-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M1 Ultra 128GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2022/03/apple-unveils-m1-ultra-the-worlds-most-powerful-chip-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M1 Ultra hero chip photo (og:image)."
+ },
+ "apple-m1-ultra-64gb": {
+  "src": "/hardware/apple-m1-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M1 Ultra 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2022/03/apple-unveils-m1-ultra-the-worlds-most-powerful-chip-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M1 Ultra hero chip photo (og:image)."
+ },
+ "apple-m2-16gb": {
+  "src": "/hardware/apple-m2.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M2 16GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2022/06/apple-unveils-m2-with-breakthrough-performance-and-capabilities/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M2 chip hero photo (WWDC22 og:image)."
+ },
+ "apple-m2-24gb": {
+  "src": "/hardware/apple-m2.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M2 24GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2022/06/apple-unveils-m2-with-breakthrough-performance-and-capabilities/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M2 chip hero photo (WWDC22 og:image)."
+ },
+ "apple-m2-8gb": {
+  "src": "/hardware/apple-m2.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M2 8GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2022/06/apple-unveils-m2-with-breakthrough-performance-and-capabilities/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M2 chip hero photo (WWDC22 og:image)."
+ },
+ "apple-m2-max-32gb": {
+  "src": "/hardware/apple-m2-max.jpg",
+  "width": 1100,
+  "height": 618,
+  "alt": "Apple M2 Max 32GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/01/apple-unveils-m2-pro-and-m2-max-next-generation-chips-for-next-level-workflows/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom asset showing the M2 Max chip specifically."
+ },
+ "apple-m2-max-64gb": {
+  "src": "/hardware/apple-m2-max.jpg",
+  "width": 1100,
+  "height": 618,
+  "alt": "Apple M2 Max 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/01/apple-unveils-m2-pro-and-m2-max-next-generation-chips-for-next-level-workflows/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom asset showing the M2 Max chip specifically."
+ },
+ "apple-m2-max-96gb": {
+  "src": "/hardware/apple-m2-max.jpg",
+  "width": 1100,
+  "height": 618,
+  "alt": "Apple M2 Max 96GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/01/apple-unveils-m2-pro-and-m2-max-next-generation-chips-for-next-level-workflows/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom asset showing the M2 Max chip specifically."
+ },
+ "apple-m2-pro-16gb": {
+  "src": "/hardware/apple-m2-pro.jpg",
+  "width": 1100,
+  "height": 618,
+  "alt": "Apple M2 Pro 16GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/01/apple-unveils-m2-pro-and-m2-max-next-generation-chips-for-next-level-workflows/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom asset showing the M2 Pro chip specifically."
+ },
+ "apple-m2-pro-32gb": {
+  "src": "/hardware/apple-m2-pro.jpg",
+  "width": 1100,
+  "height": 618,
+  "alt": "Apple M2 Pro 32GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/01/apple-unveils-m2-pro-and-m2-max-next-generation-chips-for-next-level-workflows/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom asset showing the M2 Pro chip specifically."
+ },
+ "apple-m2-ultra-128gb": {
+  "src": "/hardware/apple-m2-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M2 Ultra 128GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/06/apple-introduces-m2-ultra/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M2 Ultra chip photo (WWDC23 og:image)."
+ },
+ "apple-m2-ultra-192gb": {
+  "src": "/hardware/apple-m2-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M2 Ultra 192GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/06/apple-introduces-m2-ultra/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M2 Ultra chip photo (WWDC23 og:image)."
+ },
+ "apple-m2-ultra-64gb": {
+  "src": "/hardware/apple-m2-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M2 Ultra 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/06/apple-introduces-m2-ultra/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M2 Ultra chip photo (WWDC23 og:image)."
+ },
+ "apple-m3-16gb": {
+  "src": "/hardware/apple-m3.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 16GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple's M3 announcement published a combined 'M3 chip series' hero (M3/M3 Pro/M3 Max together) as the only clean chip render; no isolated standalone M3-only die photo on the page, so representative."
+ },
+ "apple-m3-24gb": {
+  "src": "/hardware/apple-m3.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 24GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple's M3 announcement published a combined 'M3 chip series' hero (M3/M3 Pro/M3 Max together) as the only clean chip render; no isolated standalone M3-only die photo on the page, so representative."
+ },
+ "apple-m3-8gb": {
+  "src": "/hardware/apple-m3.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 8GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple's M3 announcement published a combined 'M3 chip series' hero (M3/M3 Pro/M3 Max together) as the only clean chip render; no isolated standalone M3-only die photo on the page, so representative."
+ },
+ "apple-m3-max-128gb": {
+  "src": "/hardware/apple-m3-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Max 128GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Combined official M3 chip-series render (includes M3 Max); page has no isolated M3 Max product photo."
+ },
+ "apple-m3-max-36gb": {
+  "src": "/hardware/apple-m3-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Max 36GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Combined official M3 chip-series render (includes M3 Max); page has no isolated M3 Max product photo."
+ },
+ "apple-m3-max-48gb": {
+  "src": "/hardware/apple-m3-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Max 48GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Combined official M3 chip-series render (includes M3 Max); page has no isolated M3 Max product photo."
+ },
+ "apple-m3-max-64gb": {
+  "src": "/hardware/apple-m3-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Max 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Combined official M3 chip-series render (includes M3 Max); page has no isolated M3 Max product photo."
+ },
+ "apple-m3-max-96gb": {
+  "src": "/hardware/apple-m3-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Max 96GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Combined official M3 chip-series render (includes M3 Max); page has no isolated M3 Max product photo."
+ },
+ "apple-m3-pro-18gb": {
+  "src": "/hardware/apple-m3-pro.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Pro 18GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Combined official M3 chip-series render (includes M3 Pro); page has no isolated M3 Pro product photo, only architecture diagrams."
+ },
+ "apple-m3-pro-36gb": {
+  "src": "/hardware/apple-m3-pro.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Pro 36GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Combined official M3 chip-series render (includes M3 Pro); page has no isolated M3 Pro product photo, only architecture diagrams."
+ },
+ "apple-m3-ultra-256gb": {
+  "src": "/hardware/apple-m3-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Ultra 256GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M3 Ultra hero chip photo (og:image)."
+ },
+ "apple-m3-ultra-512gb": {
+  "src": "/hardware/apple-m3-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Ultra 512GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M3 Ultra hero chip photo (og:image)."
+ },
+ "apple-m3-ultra-96gb": {
+  "src": "/hardware/apple-m3-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Ultra 96GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M3 Ultra hero chip photo (og:image)."
+ },
+ "apple-m3-ultra-96gb-60c": {
+  "src": "/hardware/apple-m3-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Ultra 96GB 60-core GPU",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M3 Ultra hero chip photo (og:image)."
+ },
+ "apple-m3-ultra-96gb-80c": {
+  "src": "/hardware/apple-m3-ultra.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M3 Ultra 96GB 80-core GPU",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M3 Ultra hero chip photo (og:image)."
+ },
+ "apple-m4-16gb": {
+  "src": "/hardware/apple-m4.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 16GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/05/apple-introduces-m4-chip/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M4 chip render/badge from the M4 announcement (og:image)."
+ },
+ "apple-m4-24gb": {
+  "src": "/hardware/apple-m4.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 24GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/05/apple-introduces-m4-chip/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M4 chip render/badge from the M4 announcement (og:image)."
+ },
+ "apple-m4-32gb": {
+  "src": "/hardware/apple-m4.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 32GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/05/apple-introduces-m4-chip/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M4 chip render/badge from the M4 announcement (og:image)."
+ },
+ "apple-m4-max-128gb": {
+  "src": "/hardware/apple-m4-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 Max 128GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Official M4 chip-series hero (includes M4 Max); no isolated M4 Max product photo on the page."
+ },
+ "apple-m4-max-36gb": {
+  "src": "/hardware/apple-m4-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 Max 36GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Official M4 chip-series hero (includes M4 Max); no isolated M4 Max product photo on the page."
+ },
+ "apple-m4-max-48gb": {
+  "src": "/hardware/apple-m4-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 Max 48GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Official M4 chip-series hero (includes M4 Max); no isolated M4 Max product photo on the page."
+ },
+ "apple-m4-max-64gb": {
+  "src": "/hardware/apple-m4-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 Max 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Official M4 chip-series hero (includes M4 Max); no isolated M4 Max product photo on the page."
+ },
+ "apple-m4-pro-24gb": {
+  "src": "/hardware/apple-m4-pro.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 Pro 24GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Official M4 chip-series hero (M4/M4 Pro/M4 Max); the M4 Pro/Max page provides only this combined render plus performance charts, no isolated M4 Pro die photo."
+ },
+ "apple-m4-pro-48gb": {
+  "src": "/hardware/apple-m4-pro.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 Pro 48GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Official M4 chip-series hero (M4/M4 Pro/M4 Max); the M4 Pro/Max page provides only this combined render plus performance charts, no isolated M4 Pro die photo."
+ },
+ "apple-m4-pro-64gb": {
+  "src": "/hardware/apple-m4-pro.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M4 Pro 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Official M4 chip-series hero (M4/M4 Pro/M4 Max); the M4 Pro/Max page provides only this combined render plus performance charts, no isolated M4 Pro die photo."
+ },
+ "apple-m5-16gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 16GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M5 hero chip photo (og:image, Oct 2025 announcement)."
+ },
+ "apple-m5-24gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 24GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M5 hero chip photo (og:image, Oct 2025 announcement)."
+ },
+ "apple-m5-32gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 32GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": false,
+  "caption": "Apple Newsroom official M5 hero chip photo (og:image, Oct 2025 announcement)."
+ },
+ "apple-m5-max-128gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 Max 128GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple M5 family chip — the M5 Pro/Max/Ultra dies are not pictured separately by Apple."
+ },
+ "apple-m5-max-36gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 Max 36GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple M5 family chip — the M5 Pro/Max/Ultra dies are not pictured separately by Apple."
+ },
+ "apple-m5-max-48gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 Max 48GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple M5 family chip — the M5 Pro/Max/Ultra dies are not pictured separately by Apple."
+ },
+ "apple-m5-max-64gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 Max 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple M5 family chip — the M5 Pro/Max/Ultra dies are not pictured separately by Apple."
+ },
+ "apple-m5-pro-24gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 Pro 24GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple M5 family chip — the M5 Pro/Max/Ultra dies are not pictured separately by Apple."
+ },
+ "apple-m5-pro-48gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 Pro 48GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple M5 family chip — the M5 Pro/Max/Ultra dies are not pictured separately by Apple."
+ },
+ "apple-m5-pro-64gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 Pro 64GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple M5 family chip — the M5 Pro/Max/Ultra dies are not pictured separately by Apple."
+ },
+ "apple-m5-ultra-256gb": {
+  "src": "/hardware/apple-m5.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple M5 Ultra 256GB",
+  "sourceUrl": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Apple M5 family chip — the M5 Pro/Max/Ultra dies are not pictured separately by Apple."
+ },
+ "apple-max-128gb": {
+  "src": "/hardware/apple-m4-max.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple Max 128GB, generation unspecified",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Representative Apple M4 Max-family chip; exact generation/device is unspecified in this registry entry."
+ },
+ "apple-pro-64gb": {
+  "src": "/hardware/apple-m4-pro.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "Apple Pro 64GB, generation unspecified",
+  "sourceUrl": "https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/",
+  "publisher": "Apple",
+  "representative": true,
+  "caption": "Representative Apple M4 Pro-family chip; exact generation/device is unspecified in this registry entry."
+ },
+ "b200-180gb": {
+  "src": "/hardware/b200.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA B200",
+  "sourceUrl": "https://www.nvidia.com/en-us/data-center/b200/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "B200 ships as SXM inside HGX; page og:image is the HGX B200 board (multiple GPUs), no standalone single-B200 render on nvidia.com. representative=true."
+ },
+ "cmp-170hx-64gb": {
+  "src": "/hardware/cmp-170hx.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "CMP 170HX 64GB (modified)",
+  "sourceUrl": "https://www.nvidia.com/en-us/cmp/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "NVIDIA CMP page has no 170HX-specific image; used official CMP HX family og:image as representative of the CMP HX card line. representative=true."
+ },
+ "dgx-spark-gb10-128gb": {
+  "src": "/hardware/dgx-spark-gb10.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA DGX Spark GB10",
+  "sourceUrl": "https://www.nvidia.com/en-us/products/workstations/dgx-spark/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official DGX Spark product-page og:image; DGX Spark (GB10) machine render."
+ },
+ "intel-arc-b390-64gb": {
+  "src": "/hardware/intel-arc-b390.jpg",
+  "width": 1100,
+  "height": 619,
+  "alt": "Intel Arc B390",
+  "sourceUrl": "https://www.intel.com/content/www/us/en/newsroom/press-hub/press-kit/client-computing/press-kit-intel-pro-day-2026.html",
+  "publisher": "Intel",
+  "representative": true,
+  "caption": "No isolated official render exists for an 'Arc B390'. Intel references an 'Intel Arc Pro B390' built-in GPU in the Pro Day 2026 press kit but publishes no standalone card photo. Using Intel's official Arc Pro B-Series (Battlemage) card lineup render from the Intel newsroom DAM (scene7)."
+ },
+ "intel-arc-pro-b60-24gb": {
+  "src": "/hardware/intel-arc-pro-b60.jpg",
+  "width": 1100,
+  "height": 619,
+  "alt": "Intel Arc Pro B60",
+  "sourceUrl": "https://www.intel.com/content/www/us/en/newsroom/press-hub/press-kit/corporate/intel-at-computex-2025.html",
+  "publisher": "Intel",
+  "representative": true,
+  "caption": "Official Intel render of Arc Pro graphics cards from the Computex 2025 press kit that announced the Arc Pro B60. Shows the Arc Pro B-series cards/logo rather than an isolated single-SKU B60, hence representative. Intel.com HTML 403s to curl; image served from intelcorp.scene7.com DAM."
+ },
+ "intel-arc-pro-b70-32gb": {
+  "src": "/hardware/intel-arc-pro-b70.jpg",
+  "width": 1100,
+  "height": 619,
+  "alt": "Intel Arc Pro B70",
+  "sourceUrl": "https://www.intel.com/content/www/us/en/products/sku/245797/intel-arc-pro-b70-graphics/specifications.html",
+  "publisher": "Intel",
+  "representative": true,
+  "caption": "B70 launched Mar 2026; the official B70 spec page and Pro Day 2026 press kit expose only the generic Arc graphics badge / booth photos, no isolated B70 card render. Using Intel's official Arc Pro GPU render (scene7 DAM). Intel.com spec page itself 403s to curl."
+ },
+ "l4-24gb": {
+  "src": "/hardware/l4.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA L4",
+  "sourceUrl": "https://www.nvidia.com/en-us/data-center/l4/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official L4 product-page og:image; NVIDIA L4 card render."
+ },
+ "mi300x-192gb": {
+  "src": "/hardware/mi300x.jpg",
+  "width": 1100,
+  "height": 619,
+  "alt": "AMD Instinct MI300X",
+  "sourceUrl": "https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "Official AMD Instinct MI300X product-page og:image, OAM module render."
+ },
+ "radeon-ai-pro-r9700-32gb": {
+  "src": "/hardware/radeon-ai-pro-r9700.jpg",
+  "width": 1100,
+  "height": 619,
+  "alt": "Radeon AI PRO R9700",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/workstations/radeon-ai-pro/ai-9000-series/amd-radeon-ai-pro-r9700.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "Official AMD Radeon AI PRO R9700 product-page og:image, reference render."
+ },
+ "radeon-pro-w7800-48gb": {
+  "src": "/hardware/radeon-pro-w7800.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "Radeon PRO W7800",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/workstations/radeon-pro/w7800.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "Official AMD Radeon PRO W7800 product-page og:image, reference render."
+ },
+ "rtx-2000-ada-16gb": {
+  "src": "/hardware/rtx-2000-ada.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA RTX 2000 Ada Generation",
+  "sourceUrl": "https://www.nvidia.com/en-us/design-visualization/rtx-2000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX 2000 Ada card render."
+ },
+ "rtx-3060-12gb": {
+  "src": "/hardware/rtx-3060.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3060",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3060-3060ti/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 3060 product render (og:image). RTX 3060 had no Founders Edition; this is NVIDIA's reference marketing render of the 3060."
+ },
+ "rtx-3060-ti-8gb": {
+  "src": "/hardware/rtx-3060-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3060 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3060-3060ti/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "NVIDIA 3060/3060 Ti family page og:image shows the RTX 3060 render; used as representative for the 3060 Ti (same chassis family)."
+ },
+ "rtx-3070-8gb": {
+  "src": "/hardware/rtx-3070.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3070",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3070-3070ti/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "3070/3070 Ti family og:image depicts the 3070 Ti Founders Edition; representative for the 3070 (same FE chassis)."
+ },
+ "rtx-3070-laptop-8gb": {
+  "src": "/hardware/rtx-3070-laptop.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA GeForce RTX 3070 Laptop GPU",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/laptops/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "Laptop GPU has no standalone card. 30-series laptop marketing pages are archived; using NVIDIA's current GeForce RTX laptops marketing image as representative."
+ },
+ "rtx-3070-ti-8gb": {
+  "src": "/hardware/rtx-3070-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3070 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3070-3070ti/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 3070 Ti Founders Edition render (og:image)."
+ },
+ "rtx-3080-10gb": {
+  "src": "/hardware/rtx-3080.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3080",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080-3080ti/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "3080/3080 Ti family og:image shows the 3080 Ti FE; representative for the 3080 (identical FE chassis)."
+ },
+ "rtx-3080-12gb": {
+  "src": "/hardware/rtx-3080.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3080",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080-3080ti/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "3080/3080 Ti family og:image shows the 3080 Ti FE; representative for the 3080 (identical FE chassis)."
+ },
+ "rtx-3080-ti-12gb": {
+  "src": "/hardware/rtx-3080-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3080 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080-3080ti/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 3080 Ti Founders Edition render (og:image)."
+ },
+ "rtx-3090-24gb": {
+  "src": "/hardware/rtx-3090.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3090",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3090-3090ti/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "3090/3090 Ti family og:image shows the 3090 Ti FE; representative for the 3090 (same large FE chassis)."
+ },
+ "rtx-3090-ti-24gb": {
+  "src": "/hardware/rtx-3090-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 3090 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3090-3090ti/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 3090 Ti Founders Edition render (og:image)."
+ },
+ "rtx-4000-ada-20gb": {
+  "src": "/hardware/rtx-4000-ada.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA RTX 4000 Ada Generation",
+  "sourceUrl": "https://www.nvidia.com/en-us/design-visualization/rtx-4000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX 4000 Ada card render."
+ },
+ "rtx-4060-8gb": {
+  "src": "/hardware/rtx-4060.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4060",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4060-4060ti/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "4060/4060 Ti family og:image shows the 4060 Ti FE; representative for the 4060 (same chassis family, no 4060 FE sold separately)."
+ },
+ "rtx-4060-laptop-8gb": {
+  "src": "/hardware/rtx-4060-laptop.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/laptops/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "Laptop GPU with no standalone card; NVIDIA GeForce RTX laptops marketing image used as representative."
+ },
+ "rtx-4060-ti-16gb": {
+  "src": "/hardware/rtx-4060-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4060 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4060-4060ti/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 4060 Ti Founders Edition render (og:image)."
+ },
+ "rtx-4060-ti-8gb": {
+  "src": "/hardware/rtx-4060-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4060 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4060-4060ti/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 4060 Ti Founders Edition render (og:image)."
+ },
+ "rtx-4070-12gb": {
+  "src": "/hardware/rtx-4070.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4070",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "4070-family og:image depicts the 4070 SUPER FE; representative for the 4070 (shares the same FE chassis)."
+ },
+ "rtx-4070-super-12gb": {
+  "src": "/hardware/rtx-4070-super.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4070 SUPER",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 4070 SUPER Founders Edition render (og:image)."
+ },
+ "rtx-4070-ti-12gb": {
+  "src": "/hardware/rtx-4070-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4070 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "4070-family og:image depicts the 4070 SUPER FE; used as representative for the 4070 Ti (no 4070 Ti FE existed; AIB-only card)."
+ },
+ "rtx-4070-ti-super-16gb": {
+  "src": "/hardware/rtx-4070-ti-super.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4070 Ti SUPER",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "4070-family og:image depicts the 4070 SUPER FE; representative for the 4070 Ti SUPER (no FE; AIB-only)."
+ },
+ "rtx-4080-16gb": {
+  "src": "/hardware/rtx-4080.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4080",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4080-family/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "4080-family og:image depicts the 4080 SUPER FE; representative for the original 4080 (same FE chassis)."
+ },
+ "rtx-4080-super-16gb": {
+  "src": "/hardware/rtx-4080-super.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4080 SUPER",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4080-family/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 4080 SUPER Founders Edition render (og:image)."
+ },
+ "rtx-4090-24gb": {
+  "src": "/hardware/rtx-4090.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 4090",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 4090 Founders Edition render (og:image)."
+ },
+ "rtx-5000-ada-32gb": {
+  "src": "/hardware/rtx-5000-ada.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "RTX 5000 Ada 32GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/design-visualization/rtx-5000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX 5000 Ada card render."
+ },
+ "rtx-5060-8gb": {
+  "src": "/hardware/rtx-5060.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 5060",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "5060-family og:image (RTX 5060 family render). No 5060 FE; representative NVIDIA family render."
+ },
+ "rtx-5060-ti-16gb": {
+  "src": "/hardware/rtx-5060-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 5060 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "5060-family og:image used as representative for the 5060 Ti (no FE; AIB-only)."
+ },
+ "rtx-5060-ti-8gb": {
+  "src": "/hardware/rtx-5060-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 5060 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "5060-family og:image used as representative for the 5060 Ti (no FE; AIB-only)."
+ },
+ "rtx-5070-12gb": {
+  "src": "/hardware/rtx-5070.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 5070",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5070-family/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "5070-family og:image depicts the 5070 Ti FE; representative for the 5070 (same Blackwell FE chassis family)."
+ },
+ "rtx-5070-ti-16gb": {
+  "src": "/hardware/rtx-5070-ti.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 5070 Ti",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5070-family/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 5070 Ti Founders Edition render (og:image)."
+ },
+ "rtx-5070-ti-laptop-12gb": {
+  "src": "/hardware/rtx-5070-ti-laptop.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/laptops/50-series/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "Laptop GPU with no standalone card; NVIDIA GeForce RTX 50-series laptops marketing image used as representative."
+ },
+ "rtx-5080-16gb": {
+  "src": "/hardware/rtx-5080.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 5080",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5080/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 5080 Founders Edition render (og:image)."
+ },
+ "rtx-5080-laptop-16gb": {
+  "src": "/hardware/rtx-5080-laptop.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA GeForce RTX 5080 Laptop GPU",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/laptops/50-series/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "Laptop GPU with no standalone card; NVIDIA GeForce RTX 50-series laptops marketing image used as representative."
+ },
+ "rtx-5090-32gb": {
+  "src": "/hardware/rtx-5090.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "GeForce RTX 5090",
+  "sourceUrl": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official NVIDIA RTX 5090 Founders Edition render (og:image)."
+ },
+ "rtx-6000-ada-48gb": {
+  "src": "/hardware/rtx-6000-ada.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "RTX 6000 Ada Generation",
+  "sourceUrl": "https://www.nvidia.com/en-us/design-visualization/rtx-6000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX 6000 Ada card render."
+ },
+ "rtx-a100-pcie-40gb": {
+  "src": "/hardware/a100-pcie.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "A100 PCIE 40GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/data-center/a100/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official A100 product-page og:image; A100 80GB render."
+ },
+ "rtx-a100-sxm4-40gb": {
+  "src": "/hardware/a100-sxm4.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "A100 SXM4 40GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/data-center/a100/",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "Same official A100 render as PCIe; NVIDIA has no separate standalone SXM4 module og image. representative=true."
+ },
+ "rtx-a4000-16gb": {
+  "src": "/hardware/rtx-a4000.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "RTX A4000 16GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/design-visualization/rtx-a4000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX A4000 card render."
+ },
+ "rtx-a5000-24gb": {
+  "src": "/hardware/rtx-a5000.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "RTX A5000 24GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/design-visualization/rtx-a5000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX A5000 card render."
+ },
+ "rtx-a6000-48gb": {
+  "src": "/hardware/rtx-a6000.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "RTX A6000",
+  "sourceUrl": "https://www.nvidia.com/en-us/design-visualization/rtx-a6000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX A6000 closeup render."
+ },
+ "rtx-h100-sxm-80gb": {
+  "src": "/hardware/h100-sxm.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "H100 SXM 80GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/data-center/h100/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official H100 product-page og:image; H100 Tensor Core module render."
+ },
+ "rtx-h200-141gb": {
+  "src": "/hardware/h200.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "H200 141GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/data-center/h200/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official H200 product-page og:image; H200 Tensor Core render."
+ },
+ "rtx-pro-4000-blackwell-24gb": {
+  "src": "/hardware/rtx-pro-4000-blackwell.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA RTX PRO 4000 Blackwell",
+  "sourceUrl": "https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-4000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX PRO 4000 Blackwell render."
+ },
+ "rtx-pro-4500-blackwell-32gb": {
+  "src": "/hardware/rtx-pro-4500-blackwell.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA RTX PRO 4500 Blackwell",
+  "sourceUrl": "https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-4500/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX PRO 4500 Blackwell render."
+ },
+ "rtx-pro-5000-blackwell-72gb": {
+  "src": "/hardware/rtx-pro-5000-blackwell.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "NVIDIA RTX PRO 5000 Blackwell 72GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-5000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX PRO 5000 Blackwell render."
+ },
+ "rtx-pro-6000-blackwell-96gb": {
+  "src": "/hardware/rtx-pro-6000-blackwell.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "RTX PRO 6000 Blackwell",
+  "sourceUrl": "https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "Official product-page og:image; RTX PRO 6000 Blackwell Workstation Edition render."
+ },
+ "rtx-v100-16gb": {
+  "src": "/hardware/v100.jpg",
+  "width": 625,
+  "height": 330,
+  "alt": "Tesla V100 16GB",
+  "sourceUrl": "https://www.nvidia.com/en-us/data-center/volta-gpu-architecture/",
+  "publisher": "NVIDIA",
+  "representative": false,
+  "caption": "en-us data-center/v100/ now redirects to DC home (generic og), so used the official Volta architecture page og:image, an NVIDIA Tesla V100 press photo."
+ },
+ "rx-6700-xt-12gb": {
+  "src": "/hardware/rx-6700-xt.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "AMD Radeon RX 6700 XT",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/desktops/radeon/6000-series/amd-radeon-rx-6700-xt.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "Official AMD product-page og:image, reference render."
+ },
+ "rx-6750-xt-12gb": {
+  "src": "/hardware/rx-6750-xt.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "AMD Radeon RX 6750 XT",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/desktops/radeon/6000-series/amd-radeon-rx-6750-xt.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "Official AMD product-page og:image, reference render."
+ },
+ "rx-6800-xt-16gb": {
+  "src": "/hardware/rx-6800-xt.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "AMD Radeon RX 6800 XT",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/desktops/radeon/6000-series/amd-radeon-rx-6800-xt.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "Official AMD product-page og:image, reference render."
+ },
+ "rx-7600-xt-16gb": {
+  "src": "/hardware/rx-7600-xt.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "AMD Radeon RX 7600 XT",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/desktops/radeon/7000-series/amd-radeon-rx-7600-xt.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "Official AMD product-page og:image, reference render."
+ },
+ "rx-7700-xt-12gb": {
+  "src": "/hardware/rx-7700-xt.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "AMD Radeon RX 7700 XT",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/desktops/radeon/7000-series/amd-radeon-rx-7700-xt.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "Official AMD product-page og:image, reference render."
+ },
+ "rx-7900-xt-20gb": {
+  "src": "/hardware/rx-7900-xt.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "AMD Radeon RX 7900 XT",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/desktops/radeon/7000-series/amd-radeon-rx-7900xt.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "URL uses '7900xt' (hyphenated variant 404s). Official AMD og:image, Founders/reference render."
+ },
+ "rx-7900-xtx-24gb": {
+  "src": "/hardware/rx-7900-xtx.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "Radeon RX 7900 XTX",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/desktops/radeon/7000-series/amd-radeon-rx-7900xtx.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "URL uses '7900xtx' (hyphenated variant 404s). Official AMD og:image, reference render."
+ },
+ "rx-9070-xt-16gb": {
+  "src": "/hardware/rx-9070-xt.jpg",
+  "width": 1100,
+  "height": 619,
+  "alt": "Radeon RX 9070 XT",
+  "sourceUrl": "https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9070xt.html",
+  "publisher": "AMD",
+  "representative": false,
+  "caption": "URL uses '9070xt' (hyphenated variant 404s). Official AMD og:image, MBA reference render."
+ },
+ "ryzen-ai-max-plus-395-128gb": {
+  "src": "/hardware/ryzen-ai-max-plus-395.jpg",
+  "width": 1100,
+  "height": 1100,
+  "alt": "Ryzen AI Max+ 395",
+  "sourceUrl": "https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html",
+  "publisher": "AMD",
+  "representative": true,
+  "caption": "Official AMD Ryzen AI Max+ 395 (Strix Halo APU) product-page og:image — Ryzen AI Max chip/package product render. Representative of the APU package, not a specific device chassis."
+ },
+ "x86-64-avx2-cpu": {
+  "src": "/hardware/x86-64-avx2.jpg",
+  "width": 1100,
+  "height": 619,
+  "alt": "x86-64 CPU (AVX2)",
+  "sourceUrl": "https://www.intel.com/content/www/us/en/newsroom/press-hub/press-kit/corporate/intel-at-computex-2025.html",
+  "publisher": "Intel",
+  "representative": true,
+  "caption": "No single product exists for 'x86-64 w/ AVX2'. Using an official Intel photo of x86 processor packages (four Intel CPUs on display, Computex 2025 press kit) as an honest representative category image."
+ },
+ "xdna2-krackan-16gb": {
+  "src": "/hardware/xdna2-krackan.jpg",
+  "width": 1100,
+  "height": 619,
+  "alt": "AMD NPU Krackan",
+  "sourceUrl": "https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-7-350.html",
+  "publisher": "AMD",
+  "representative": true,
+  "caption": "Krackan Point = Ryzen AI 7 350 (XDNA2 NPU). AMD product page uses a shared Ryzen AI 300-series chip/package render (same asset across Ryzen AI 7 350 / AI 5 340). Representative chip render, not Krackan-specific."
+ }
+}

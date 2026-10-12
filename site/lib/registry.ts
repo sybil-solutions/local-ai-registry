@@ -12,6 +12,7 @@ export type Launch = {
   weights: { repo: string; revision: string; at: string; layout?: string; files?: string | string[] | null } | { repo: string; revision: string; at: string; layout?: string; files?: string | string[] | null }[];
   config: { at: string; text: string } | null; ctx: number; seqs: number; vision: boolean; cards?: number; backend?: string | null;
   prepare?: { at: string; args: string[] }; kind?: string; machines?: number; build?: { repo: string; commit: string }; setup?: string; source?: string; install?: string;
+  needs?: { host_ram_gb?: number; disk_gb?: number; fast_storage?: string; cpus?: number };
 };
 export type Recipe = { key: string; slug: string; model: string; weights: string; engine: string; profile: string; card: string; proof: Proof[]; launch: Launch };
 export type Model = { family: string; name: string; released: string; reasoning: boolean; vision: boolean; about?: string; good_for?: string; logo?: string; hf?: string };

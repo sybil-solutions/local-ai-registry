@@ -1,0 +1,5 @@
+.title { display:flex; align-items:center; gap:14px; font-size:clamp(28px,4vw,40px); font-weight:500; letter-spacing:-.035em; line-height:1.15; margin:0 0 16px; }
+.metadata { display:flex; flex-wrap:wrap; gap:8px 18px; color:var(--dim); font-size:12px; }
+.intro { max-width:75ch; color:var(--dim); font-size:16px; line-height:1.65; margin:20px 0; }
+.links { display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:24px; font-size:12px; }
+.links a { border-bottom:1px solid var(--line); }

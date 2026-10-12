@@ -1,0 +1,112 @@
+/* The rendered Hugging Face model card: charcoal, hairlines, mono headings — the same dense
+   wiki look as the rest of the registry, scoped so the untrusted README cannot restyle the page. */
+
+.meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--dim);
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.meta a { color: var(--text); }
+.meta a:hover { color: #fff; }
+
+.unavailable {
+  border: 1px solid var(--line-2);
+  border-left: 2px solid var(--crimson);
+  border-radius: 4px;
+  padding: 16px 18px;
+  background: var(--panel);
+}
+.unavailable p { margin: 0; font-family: var(--sans); color: var(--warm); }
+.unavailable p + p { margin-top: 8px; font-size: 13px; }
+
+/* The card body. Keep sentences in sans, names and code in mono, like the landing. */
+.card { font-family: var(--sans); font-size: 14.5px; line-height: 1.65; color: var(--text); max-width: 72ch; }
+.card > :first-child { margin-top: 0; }
+
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 32px 0 12px;
+}
+.card h1 { font-size: 26px; }
+.card h2 { font-size: 21px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.card h3 { font-size: 17px; }
+.card h4, .card h5, .card h6 { font-size: 15px; color: var(--warm); }
+
+.card p { margin: 0 0 14px; }
+.card a { color: var(--crimson); text-decoration: none; }
+.card a:hover { text-decoration: underline; }
+
+.card ul, .card ol { margin: 0 0 14px; padding-left: 24px; }
+.card li { margin: 4px 0; }
+.card li::marker { color: var(--faint); }
+
+.card blockquote {
+  margin: 0 0 14px;
+  padding: 2px 16px;
+  border-left: 2px solid var(--line-2);
+  color: var(--dim);
+}
+
+.card hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+
+/* Inline code and fenced blocks. */
+.card code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+.card pre {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 0 0 16px;
+}
+.card pre code { background: none; border: 0; padding: 0; font-size: 12.5px; line-height: 1.55; }
+
+/* GFM tables: hairline grid, same as the spec sheets. */
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 18px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  display: block;
+  overflow-x: auto;
+}
+.card th, .card td { border: 1px solid var(--line); padding: 7px 11px; text-align: left; vertical-align: top; }
+.card th { background: var(--panel-2); font-weight: 500; }
+.card tr:nth-child(even) td { background: var(--panel); }
+
+/* Media: trusted images only; untrusted ones arrive as .mc-extimg links. */
+.card img { max-width: 100%; height: auto; border-radius: 4px; margin: 4px 0; }
+.card :global(.mc-extimg) {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--dim);
+  border: 1px dashed var(--line-2);
+  border-radius: 3px;
+  padding: 2px 8px;
+  margin: 2px 0;
+}
+.card :global(.mc-extimg):hover { color: var(--text); text-decoration: none; }
+
+.card details {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+  background: var(--panel);
+}
+.card summary { cursor: pointer; font-family: var(--mono); font-size: 13px; color: var(--warm); }

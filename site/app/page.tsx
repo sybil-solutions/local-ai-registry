@@ -37,7 +37,7 @@ function modelItems(): Item[] {
     .map(([id, m]) => ({ id, m, n: new Set(recipes.filter((r) => r.model === id).map((r) => r.card)).size }))
     .filter((x) => x.n)
     .sort((a, b) => b.n - a.n || a.m.name.localeCompare(b.m.name))
-    .map(({ id, m, n }) => ({ name: m.name, meta: count(n, "GPU"), href: `/models/#${id}`, terms: `${m.name} ${id} ${m.family}`.toLowerCase() }));
+    .map(({ id, m, n }) => ({ name: m.name, meta: count(n, "GPU"), href: `/models/${id}/`, terms: `${m.name} ${id} ${m.family}`.toLowerCase() }));
 }
 
 export default function Landing() {

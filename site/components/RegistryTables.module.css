@@ -1,0 +1,25 @@
+.toolbar { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin:20px 0; font-size:12px; }
+.toolbar label { display:flex; flex-direction:column; gap:8px; width:min(100%,560px); color:var(--dim); }
+.toolbar input { width:100%; box-sizing:border-box; padding:12px; border:1px solid var(--line); border-radius:3px; background:var(--panel); color:var(--text); font:inherit; }
+.toolbar input:focus-visible, .tableArea select:focus-visible, .tableArea button:focus-visible { outline:2px solid var(--crimson); outline-offset:3px; }
+.scroll { overflow-x:auto; border:1px solid var(--line); border-radius:3px; }
+.tableArea table { margin:0; }
+.tableArea th { white-space:nowrap; }
+.tableArea th button { cursor:pointer; border:0; padding:0; color:inherit; background:none; font:inherit; text-align:left; }
+.tableArea td { vertical-align:top; }
+.tableArea td small { display:block; color:var(--dim); font-size:11px; line-height:1.7; margin-top:5px; }
+.tableArea select { max-width:280px; width:100%; padding:8px; background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:3px; font:inherit; font-size:11px; }
+.configurations { min-width:1040px; }
+.configurations td:first-child { min-width:170px; }
+.configurations td:has(select) { min-width:200px; }
+.directory { min-width:760px; }
+.directory td:first-child { min-width:220px; }
+.photoName { display:flex; align-items:center; gap:16px; }
+.photoName > :first-child { flex-shrink:0; }
+.commandRow td { background:var(--panel); padding:20px !important; }
+.commandRow pre { max-height:480px; overflow:auto; margin-bottom:0; }
+.commandRow p { max-width:900px; font-size:12px; line-height:1.6; }
+.commandHead { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.commandHead button { position:static; }
+.note { color:var(--dim); font-size:11px; line-height:1.7; margin-top:14px; }
+@media(max-width:640px) { .toolbar { align-items:stretch; flex-direction:column; gap:12px; } .toolbar label { width:100%; } .commandRow td { padding:12px !important; } }
