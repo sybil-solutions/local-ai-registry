@@ -96,6 +96,10 @@ and every recorded hardware configuration. Hardware pages at `/gpu/<id>/`
 show original-source photos, specifications and configuration cards by model.
 Photo captions link the original manufacturer page and explicitly label
 representative family or chassis images.
+Hardware directory cards use self-hosted NVIDIA, AMD, Intel and Apple logos
+from [Simple Icons 16.0.0](https://github.com/simple-icons/simple-icons/tree/16.0.0/icons).
+Generic CPU hardware keeps a neutral CPU badge rather than inventing a manufacturer.
+Original product photos and their attribution remain on hardware detail pages.
 
 Configuration cards distinguish card count, machine count, total memory and
 documented host RAM, disk/NVMe and logical-CPU requirements. Each card shows

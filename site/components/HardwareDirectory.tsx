@@ -1,7 +1,7 @@
 "use client";
 import { useId, useMemo, useState } from "react";
 import Link from "next/link";
-import HardwarePhoto from "./HardwarePhoto";
+import VendorLogo from "./VendorLogo";
 import type { HardwareDirectoryRow } from "@/lib/configurations";
 import { SortControl, compareValues, type Column, type Sort } from "./cardSort";
 import s from "./RegistryCards.module.css";
@@ -35,7 +35,7 @@ export default function HardwareDirectory({ rows }: { rows: HardwareDirectoryRow
     </div>
     <div className={`grid cols-2 ${s.cards}`}>
       {visible.map((r) => <article key={r.id} data-hardware={r.id} className={`rc ${s.card}`}>
-        <div className={`head ${s.identity}`}><HardwarePhoto id={r.id} compact /><Link href={`/gpu/${r.id}/`}>{r.name}</Link></div>
+        <div className={`head ${s.identity}`}><VendorLogo vendor={r.vendor} /><Link href={`/gpu/${r.id}/`}>{r.name}</Link></div>
         <div className="meta"><span>{VENDORS[r.vendor] ?? r.vendor}</span><span>{r.models ? `${r.models} models · ${r.configurations} setups` : "Specifications only · no recorded recipe"}</span></div>
         <div className={`numbers ${s.metrics}`}>
           <div><b>{r.memory || "System RAM"}</b><span>memory GB</span></div>
@@ -46,6 +46,6 @@ export default function HardwareDirectory({ rows }: { rows: HardwareDirectoryRow
       </article>)}
     </div>
     {!visible.length && <p className={s.empty}>No hardware matches “{query}”.</p>}
-    <p className={s.note}>Maximum decode is the highest recorded recipe measurement for any model and topology on this hardware, not a like-for-like ranking. Open the hardware page to compare exact models, card counts, host requirements and evidence. Photos link to their original manufacturer source; representative images are labelled.</p>
+    <p className={s.note}>Maximum decode is the highest recorded recipe measurement for any model and topology on this hardware, not a like-for-like ranking. Open the hardware page to compare exact models, card counts, host requirements and evidence. Manufacturer logos identify the cards; original product photos and their source attribution remain on hardware detail pages.</p>
   </div>;
 }

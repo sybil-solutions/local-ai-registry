@@ -12,6 +12,7 @@
 .identity { min-width:0; }
 .identity > :first-child { flex-shrink:0; }
 .identity a { min-width:0; overflow-wrap:anywhere; }
+.vendorLogo { width:48px; height:32px; object-fit:contain; filter:invert(1); opacity:.9; }
 .card :global(.meta) { align-items:baseline; }
 .card :global(.meta) span { overflow-wrap:anywhere; }
 .metrics b { white-space:normal; overflow-wrap:anywhere; }
