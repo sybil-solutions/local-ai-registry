@@ -863,7 +863,7 @@ cmd_doctor() {
     fi
   fi
   jq -r '.[] | "\(.name)  \(.vramGb) GB  \(if .hw == "" then "no tested model yet" else .hw end)"' <<<"$g" | while IFS= read -r l; do line gpu "$l"; done
-  [[ -n $(jq -r '.[] | select(.hw != "") | .key' <<<"$g") ]] || line note "no card with a tested model; the supported list: https://github.com/0xSero/local-ai-registry/blob/main/supported/README.md"
+  [[ -n $(jq -r '.[] | select(.hw != "") | .key' <<<"$g") ]] || line note "no card with a tested model; the supported list: https://local.sybilsolutions.ai/hardware/"
   has xdg-terminal-exec || [[ -n ${TERMINAL:-} ]] || has x-terminal-emulator || line need "a terminal launcher for agents: xdg-terminal-exec, or set TERMINAL"
   ((ok))
 }

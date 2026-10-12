@@ -17,7 +17,6 @@ dist/           catalog.json: everything above, rendered, at most 3 picks per GP
 site/           local.sybilsolutions.ai and its API (static, on Cloudflare Pages)
 sdk/            js/ and python/: pick a recipe for a GPU, print the command
 app/            local-ai: run a recipe on any Linux, from a terminal or a status bar
-images/         the container images we build (gateway, tabbyapi-exl3, ...)
 plugin/         what the Omarchy Local AI plugin reads (paths are fixed)
 data/           everything the registry held before, as it was; nothing reads it
 docs/           design.md

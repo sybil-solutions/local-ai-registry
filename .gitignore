@@ -5,3 +5,4 @@ lab/runs/*
 !lab/runs/.gitkeep
 
 /site/node_modules
+*.tsbuildinfo

@@ -80,7 +80,7 @@ function health(g) {
   return [{ icon: "memory", text: m.mem }, m.temp ? { icon: "temp", text: m.temp } : null].filter(Boolean)
 }
 
-var SUPPORTED = "url|https://github.com/0xSero/local-ai-registry/blob/main/supported/README.md"
+var SUPPORTED = "url|https://local.sybilsolutions.ai/hardware/"
 
 // One GPU as a row: on the right its quick action (run its model, run again) or what it is doing; opened, a line
 // under it with its memory, what there is to know, and buttons for the rest, Config included for every card with

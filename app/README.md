@@ -2,7 +2,7 @@
 
 Run a model validated for your GPU, or one across several cards of a kind, and open a coding agent on it — on any Linux desktop. This is the distro-neutral core of [Local AI for Omarchy](https://github.com/0xSero/omarchy-local-ai): the same backend, recipes and view model, without Omarchy's shell or helper commands.
 
-- **Validated models.** `core/recipes.json` holds every recipe in [local-ai-registry](https://github.com/0xSero/local-ai-registry) for 36 cards (NVIDIA RTX 30/40/50, RTX Ada and Pro, Intel Arc Pro B70, AMD ROCm), the recommended one first. Each was accepted on its exact card, or cards: download, load, a correctness check and speed at several context lengths.
+- **Validated models.** `core/recipes.json` holds every recipe in [local-ai-registry](https://github.com/sybil-solutions/local-ai-registry) for 36 cards (NVIDIA RTX 30/40/50, RTX Ada and Pro, Intel Arc Pro B70, AMD ROCm), the recommended one first. Each was accepted on its exact card, or cards: download, load, a correctness check and speed at several context lengths.
 - **Checked weights.** Downloaded as you from a pinned revision; every file's size and sha256 is checked against the Hub.
 - **Containers.** The engine runs on a private network with `no-new-privileges`; a keyed gateway on `127.0.0.1` speaks the OpenAI, Anthropic and Responses APIs and logs one line per answer.
 - **Agents.** pi, Claude Code, Codex, OpenCode, omp, Crush, Grok, Copilot and Hermes open in your terminal, in the folder you pick, pointed at the gateway. Nothing in their own config is touched.
@@ -10,7 +10,7 @@ Run a model validated for your GPU, or one across several cards of a kind, and o
 ## Install
 
 ```bash
-git clone https://github.com/0xSero/local-ai-registry && cd local-ai-registry/app
+git clone https://github.com/sybil-solutions/local-ai-registry && cd local-ai-registry/app
 sudo make install          # /usr/local/bin/local-ai, /usr/local/share/local-ai, the polkit action
 local-ai doctor            # what this machine has and lacks, with the command that adds each piece
 ```
