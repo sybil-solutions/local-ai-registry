@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import RecipeCard, { ENGINE } from "@/components/RecipeCard";
 import HardwareSpecs from "@/components/HardwareSpecs";
+import PageHead from "@/components/PageHead";
+import { GPU } from "@/lib/landing/pictures";
 import { cards, card, picks, lead, more, model, format, engineKind, ctxLabel, status, VENDOR, short, setupName, Setup, specs, bare, memoryLabel } from "@/lib/registry";
 
 type P = { params: Promise<{ card: string }> };
@@ -25,8 +27,9 @@ export default async function Gpu({ params }: P) {
   if (!c) return (
     <main>
       <Link href="/hardware/#gpus" className="back">‹ all hardware</Link>
-      <h1 className="title">{short(h!.name)}</h1>
-      <div className="dim">{VENDOR[h!.vendor]} · {h!.vram_gb} GB{h!.bandwidth_gb_s ? ` · ${h!.bandwidth_gb_s} GB/s` : ""}</div>
+      <PageHead title={short(h!.name)} art={GPU}>
+        <div className="dim">{VENDOR[h!.vendor]} · {h!.vram_gb} GB{h!.bandwidth_gb_s ? ` · ${h!.bandwidth_gb_s} GB/s` : ""}</div>
+      </PageHead>
       <section>
         <span className="label">Recipes</span>
         <p className="dim">No recipe for this {h!.kind === "discrete" ? "card" : "chip"} yet. The lab adds one when it can rent the hardware or an owner runs the checks on theirs.</p>
@@ -38,13 +41,14 @@ export default async function Gpu({ params }: P) {
   return (
     <main>
       <Link href="/hardware/#gpus" className="back">‹ all hardware</Link>
-      <h1 className="title">{short(c.name)}</h1>
-      <div className="dim">{VENDOR[c.vendor]} · {memoryLabel(c)}{c.bandwidth_gb_s ? ` · ${c.bandwidth_gb_s} GB/s` : ""}</div>
-      {many && (
-        <nav className="dim" style={{ marginTop: 14 }}>
-          {c.setups.map((s, i) => <span key={i}>{i ? " · " : ""}<a href={`#${anchor(s)}`}>{setupName(short(c.name), s.cards, s.machines)}</a></span>)}
-        </nav>
-      )}
+      <PageHead title={short(c.name)} art={GPU}>
+        <div className="dim">{VENDOR[c.vendor]} · {memoryLabel(c)}{c.bandwidth_gb_s ? ` · ${c.bandwidth_gb_s} GB/s` : ""}</div>
+        {many && (
+          <nav className="dim">
+            {c.setups.map((s, i) => <span key={i}>{i ? " · " : ""}<a href={`#${anchor(s)}`}>{setupName(short(c.name), s.cards, s.machines)}</a></span>)}
+          </nav>
+        )}
+      </PageHead>
       {c.setups.map((s) => <SetupSection key={anchor(s)} s={s} name={short(c.name)} many={many} />)}
       {h && <HardwareSpecs h={h} />}
     </main>

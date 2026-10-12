@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Picker from "@/components/Picker";
 import Logo from "@/components/Logo";
+import PageHead from "@/components/PageHead";
+import { GPU } from "@/lib/landing/pictures";
 import { cards, picks, lead, model, format, ctxLabel, stats, VENDOR, short, setupTag, bare, memoryLabel } from "@/lib/registry";
 
 export const metadata = { title: "Hardware" };
@@ -9,21 +11,17 @@ export default function Hardware() {
   const vendors = ["nvidia", "amd", "intel", "apple", "cpu"].filter((v) => cards.some((c) => c.vendor === v) || bare.some((h) => h.vendor === v));
   return (
     <main>
-      <div className="hero">
-        <div className="label" style={{ marginBottom: 18 }}>Local AI registry</div>
-        <h1>The model to run on your GPU or CPU, and exactly how.</h1>
-        <p>Pick your hardware. You get the three best models it can run, how fast each one goes, and the command that starts it. A tested recipe was run on the card and passed six checks: it loads, answers, thinks, calls tools, holds its context window and keeps pace. Below the top three, each card lists every other recipe we know of, including ones published by others, marked as reported until our checks run.</p>
+      <PageHead title="Hardware" sub="Pick your card: the best models it runs, how fast, and the command." art={GPU}>
         <Picker options={[...cards, ...bare].map((c) => ({ id: c.id, name: short(c.name), vendor: c.vendor, vram: c.vram_gb }))} />
         <div className="facts">
-          <span><b>{stats.hardware}</b> GPUs and chips</span><span><b>{stats.gpus}</b> with recipes</span><span><b>{stats.recipes}</b> recipes</span>
-          <span><b>{stats.tested}</b> tested on the real card</span><span><b>{stats.reported}</b> reported</span>
+          <span><b>{stats.gpus}</b> with recipes</span><span><b>{stats.recipes}</b> recipes</span><span><b>{stats.tested}</b> tested on the card</span>
         </div>
-      </div>
+      </PageHead>
 
       <section id="gpus">
         {vendors.map((v) => (
           <div key={v} style={{ marginTop: v === "nvidia" ? 0 : 40 }}>
-            <span className="label" style={{ display: "block", marginBottom: 14 }}>{VENDOR[v]}</span>
+            <span className="label" style={{ display: "block", marginBottom: 4 }}>{VENDOR[v]}</span>
             <div className="gpus">
               {cards.filter((c) => c.vendor === v).map((c) => {
                 const top = picks(lead(c))[0];

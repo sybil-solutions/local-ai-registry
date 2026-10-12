@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import PageHead from "@/components/PageHead";
+import { NET } from "@/lib/landing/pictures";
 import { models, recipes, cardName, fmtDate } from "@/lib/registry";
 
 export const metadata = { title: "Models", description: "Every model in the registry, what it is good for, and the GPUs it runs on." };
@@ -8,10 +10,11 @@ export default function Models() {
   const used = Object.entries(models).filter(([id]) => recipes.some((r) => r.model === id));
   return (
     <main>
-      <div className="hero" style={{ paddingBottom: 0 }}><h1>Models</h1><p>Only models released in the last eight months, from Qwen, Gemma, DeepSeek, GLM, Step, Kimi and MiniMax, with thinking on.</p></div>
+      <PageHead title="Models" sub="Open models from the last eight months, thinking on, each with the GPUs it runs on." art={NET} />
       <section className="grid cols-2">
         {used.map(([id, m]) => {
-          const rs = recipes.filter((r) => r.model === id);
+          // one link per card: a card with several setups (1×, 2×, two machines) has a recipe for each
+          const rs = recipes.filter((r) => r.model === id).filter((r, i, all) => all.findIndex((x) => x.card === r.card) === i);
           return (
             <div key={id} id={id} className="rc">
               <div className="head"><Logo family={m.logo ?? m.family} />{m.name}</div>

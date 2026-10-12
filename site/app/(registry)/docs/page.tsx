@@ -1,3 +1,6 @@
+import PageHead from "@/components/PageHead";
+import { TERMINAL } from "@/lib/landing/pictures";
+
 const SITE = "https://local.sybilsolutions.ai";
 
 export const metadata = { title: "How it works", description: "How a recipe is made, checked and run; the file tree; the API and SDK." };
@@ -28,10 +31,7 @@ const RECIPE = `{"model":"qwen3.5-9b",
 export default function Docs() {
   return (
     <main>
-      <div className="hero" style={{ paddingBottom: 0 }}>
-        <h1>How it works</h1>
-        <p>A recipe is not written by hand. The lab rents the GPU, starts the model, runs six checks, and writes the recipe only if every check passes. The file is about 400 bytes; everything else is rendered from it.</p>
-      </div>
+      <PageHead title="How it works" sub="The lab rents the card, runs six checks, and writes the recipe only if all of them pass." art={TERMINAL} />
 
       <section><span className="label">A recipe</span><pre className="code">{RECIPE}</pre>
         <dl className="kv" style={{ marginTop: 18 }}>
