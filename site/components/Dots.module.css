@@ -1,0 +1,17 @@
+/* The dot pictures: text-colour dots, dim shading dots, crimson for what is happening. They sweep in once seen. */
+.dots { --text: #ecEAE6; --dim: #6a6865; --crimson: #dc143c; display: block; width: 100%; height: auto; overflow: visible; }
+.on { fill: var(--text); }
+.shade { fill: var(--dim); }
+.hot { fill: var(--crimson); }
+
+.dots circle { opacity: 0; }
+.dots:global(.seen) circle { animation: sweep .5s calc(var(--x) * 14ms) both; }
+.dots:global(.seen) .hot { animation: sweep .5s calc(var(--x) * 14ms) both, blink 3.2s calc(var(--x) * 14ms + .6s + var(--d)) infinite; }
+@keyframes sweep { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@keyframes blink { 0%, 55%, 100% { fill: var(--crimson); } 70%, 85% { fill: var(--dim); } }
+
+.num { width: auto; height: 64px; align-self: flex-start; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dots circle, .dots:global(.seen) circle, .dots:global(.seen) .hot { opacity: 1; animation: none; }
+}

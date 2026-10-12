@@ -1,7 +1,7 @@
 {
  "word": "Sybil AI",
  "credit": "art · @samdape",
- "sNav": "Videos, How it works, Models, Contribute, GitHub",
+ "sNav": "What it is, How it works, Models, Videos, Contribute, GitHub",
  "sFollow": "Follow",
  "sHead": "Run AI at home.",
  "sSub": "Pick a model tested on your GPU, start it with one click, and open Claude Code, Codex or pi on it. Your prompts never leave your machine.",
@@ -71,5 +71,18 @@
  "c3d": "Bugs, a card that shows Coming soon, a new agent to open: issues and pull requests are open.",
  "c3l": "Plugin issues →",
  "c3u": "https://github.com/sybil-solutions/omarchy-local-ai/issues",
- "cBtn": "The registry on GitHub"
+ "cBtn": "The registry on GitHub",
+ "wHead": "What it is",
+ "wLede": "Sybil AI turns the computer you already own into a private AI server. It knows which open models run well on your exact card, starts one for you, and points your coding agent at it.",
+ "w1t": "Your machine",
+ "w1d": "An NVIDIA, Intel Arc or AMD card, or just a CPU with enough RAM. It reads what you have.",
+ "w2t": "A model that fits",
+ "w2d": "Picked from recipes tested on that exact card, downloaded at a pinned commit and checked file by file.",
+ "w3t": "Your agent, on it",
+ "w3d": "Claude Code, Codex, pi or OpenCode talk to the model on 127.0.0.1. No account, no API bill, nothing sent out.",
+ "nGpus": "hardware types with recipes",
+ "nRecipes": "recipes",
+ "nTested": "passed six checks on the card",
+ "vHead": "Videos",
+ "vLede": "Models running on real cards in the lab: the hardware, the speed and the setup, recorded as they happen. New ones go up on X first."
 }

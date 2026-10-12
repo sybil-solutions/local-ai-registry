@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Copy from "@/components/Copy";
-import HowAnim from "@/components/HowAnim";
+import Dots, { DotNumber } from "@/components/Dots";
+import Seen from "@/components/Seen";
+import { PLUGIN, REGISTRY, SiteFoot, SiteNav, X, XIcon, list } from "@/components/SiteNav";
 import copy from "@/lib/landing/copy.json";
 import logos from "@/lib/landing/logos.json";
+import { GPU, STEPS, TERMINAL, WEIGHTS } from "@/lib/landing/pictures";
 import { stats } from "@/lib/registry";
 import s from "./landing.module.css";
 
 // The landing page. Every word comes from lib/landing/copy.json, the text written in the brand page's form;
-// the links are fixed here.
-const X = "https://x.com/0xSero";
-const PLUGIN = "https://github.com/sybil-solutions/omarchy-local-ai";
+// the links are fixed here. The pictures are dot art in the style of the hands (lib/landing/pictures.ts); the videos
+// have their own page at /videos/.
 const INSTALL = `omarchy plugin add ${PLUGIN} --enable`;
-const REGISTRY = "https://github.com/sybil-solutions/local-ai-registry";
-const NAV: Record<string, string> = { models: "/models/", hardware: "/hardware/", videos: "#videos", "how it works": "#how", contribute: "#contribute", github: PLUGIN, docs: "/docs/", api: "/docs/#api" };
 const GROUP_LINK: Record<string, string> = { gpuLogos: "/hardware/", modLogos: "/models/" };
 
 type Logo = { name: string; wordmark: boolean; body: string };
@@ -23,24 +23,6 @@ export const metadata: Metadata = {
   title: { absolute: `${copy.word}: ${copy.sHead}` },
   description: copy.sSub ?? undefined,
 };
-
-const list = (v: string | null) => String(v ?? "").split(",").map((x) => x.trim()).filter(Boolean);
-
-function XIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" className={s.xicon}>
-      <path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z" />
-    </svg>
-  );
-}
-
-function Play() {
-  return (
-    <span className={s.play} aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" /></svg>
-    </span>
-  );
-}
 
 function BrandLogo({ k }: { k: string }) {
   const L = LOGOS[k];
@@ -55,17 +37,9 @@ function BrandLogo({ k }: { k: string }) {
   );
 }
 
-function Thumb({ title, meta, href, img }: { title?: string | null; meta?: string | null; href: string; img?: string | null }) {
-  return (
-    <a href={href} className={s.thumb} target="_blank" rel="noreferrer">
-      <span className={s.frame}>
-        {img ? <img src={`/landing/videos/${img}.jpg`} alt="" className={s.poster} loading="lazy" /> : <img src="/landing/hands.svg" alt="" />}
-        <Play />
-        {meta && <span className={s.meta}>{meta}</span>}
-      </span>
-      {title && <span className={s.thumbTitle}>{title}</span>}
-    </a>
-  );
+/** The dotted line between two pictures, with a crimson dot travelling along it. */
+function Wire() {
+  return <span className={s.wire} aria-hidden="true"><i /></span>;
 }
 
 export default function Landing() {
@@ -74,21 +48,13 @@ export default function Landing() {
     .filter((g) => g.keys.length);
   const C = copy as Record<string, string | null>;
   const steps = [1, 2, 3, 4, 5, 6].map((i) => [C[`s${i}t`], C[`s${i}d`]]).filter(([t]) => t);
-  const videos = [1, 2, 3, 4, 5, 6].map((i) => ({ title: C[`v${i}t`], meta: C[`v${i}m`], href: C[`v${i}u`] ?? X, img: C[`v${i}i`] })).filter((v) => v.title);
   const ways = [1, 2, 3].map((i) => ({ t: C[`c${i}t`], d: C[`c${i}d`], l: C[`c${i}l`], u: C[`c${i}u`] })).filter((w) => w.t);
+  const what = [GPU, WEIGHTS, TERMINAL].map((art, i) => ({ art, t: C[`w${i + 1}t`], d: C[`w${i + 1}d`] }));
+  const numbers = [[stats.gpus, C.nGpus], [stats.recipes, C.nRecipes], [stats.tested, C.nTested]] as const;
 
   return (
     <div className={s.page}>
-      <header className={s.nav}>
-        <Link href="/" className={s.word}>{copy.word}</Link>
-        <nav>
-          {list(copy.sNav).map((label) => {
-            const href = NAV[label.toLowerCase()] ?? "#";
-            return href.startsWith("http") ? <a key={label} href={href}>{label}</a> : <Link key={label} href={href}>{label}</Link>;
-          })}
-          {copy.sFollow && <a href={X} className={s.btn}><XIcon />{copy.sFollow}</a>}
-        </nav>
-      </header>
+      <SiteNav />
 
       <section className={s.hero}>
         <h1>{copy.sHead}</h1>
@@ -105,6 +71,23 @@ export default function Landing() {
         {copy.credit && <span className={s.credit}>{copy.credit}</span>}
       </div>
 
+      <section id="what" className={s.section}>
+        <div className={s.head}><span className={s.label}>{C.wHead}</span></div>
+        {C.wLede && <p className={s.big}>{C.wLede}</p>}
+        <div className={s.flow}>
+          {what.map((w, i) => (
+            <div key={i} className={s.flowItem}>
+              <div className={s.pic}><Dots art={w.art} /></div>
+              {i < what.length - 1 && <Wire />}
+              <span className={s.num}>0{i + 1}</span><h3>{w.t}</h3><p>{w.d}</p>
+            </div>
+          ))}
+        </div>
+        <Link href="/hardware/" className={s.numbers}>
+          {numbers.map(([n, l]) => <span key={l} className={s.number}><DotNumber n={n} label={String(n)} /><span>{l}</span></span>)}
+        </Link>
+      </section>
+
       <section className={s.supported}>
         {copy.supLabel && <div className={s.supHead}><span className={s.label}>{copy.supLabel}</span></div>}
         <div className={s.supBar}>
@@ -117,17 +100,11 @@ export default function Landing() {
         </div>
       </section>
 
-      <section id="videos" className={s.section}>
-        <div className={s.head}><span className={s.label}>{copy.sWatch}</span><a href={X} className={s.more}>{copy.sWatchLink}</a></div>
-        <div className={s.videos}>{videos.map((v) => <Thumb key={v.href} {...v} />)}</div>
-      </section>
-
       <section id="how" className={s.section}>
-        <div className={s.head}><span className={s.label}>{copy.sHow}</span>
-          <Link href="/hardware/" className={s.more}>{stats.gpus} GPUs with recipes · {stats.recipes} recipes · {stats.tested} tested on the card</Link></div>
+        <div className={s.head}><span className={s.label}>{copy.sHow}</span><Link href="/docs/" className={s.more}>The details →</Link></div>
         <div className={s.steps}>
           {steps.map(([t, d], i) => (
-            <div key={i} className={s.step}><HowAnim step={i} /><span className={s.num}>0{i + 1}</span><h3>{t}</h3><p>{d}</p></div>
+            <div key={i} className={s.step}><div className={s.stepPic}><Dots art={STEPS[i]} /></div><span className={s.num}>0{i + 1}</span><h3>{t}</h3><p>{d}</p></div>
           ))}
         </div>
       </section>
@@ -147,10 +124,14 @@ export default function Landing() {
       <section className={`${s.section} ${s.follow}`}>
         <span className={s.label}>{copy.sXHead}</span>
         {copy.sXText && <p>{copy.sXText}</p>}
-        <a href={X} className={s.btn}><XIcon />{copy.sXBtn}</a>
+        <div className={s.followBtns}>
+          <a href={X} className={s.btn}><XIcon />{copy.sXBtn}</a>
+          <Link href="/videos/" className={s.btn}>{C.vHead} →</Link>
+        </div>
       </section>
 
-      <footer className={s.foot}><a href={X}>{copy.sFooter}</a></footer>
+      <SiteFoot />
+      <Seen />
     </div>
   );
 }

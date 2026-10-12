@@ -75,7 +75,29 @@ a.groupTitle:hover { color: var(--text); }
 .follow { text-align: center; }
 .follow p { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--muted); margin: 14px 0 22px !important; }
 
-.foot { margin-top: 96px; padding: 28px 48px 40px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.foot { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 96px; padding: 28px 48px 40px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.foot a:first-child { margin-right: auto; }
+
+/* What it is: one plain sentence, then three dot pictures joined by a dotted wire, then the registry's numbers in dots */
+.big { font-family: var(--sans); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.35; letter-spacing: -0.01em; max-width: 880px; margin: 8px 0 56px !important; }
+.flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 64px; }
+.flowItem { position: relative; }
+.pic { height: 132px; display: flex; align-items: center; margin-bottom: 28px; }
+.flowItem h3, .step h3 { font-size: 22px; font-weight: 500; margin: 14px 0 8px; }
+.flowItem p { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--muted); max-width: 340px; }
+.wire { position: absolute; top: 66px; left: calc(100% + 8px); width: 48px; height: 0; border-top: 3px dotted var(--faint); }
+.wire i { position: absolute; top: -5px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--crimson); animation: travel 2.4s linear infinite; }
+@keyframes travel { from { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { left: calc(100% - 7px); opacity: 0; } }
+.numbers { display: flex; flex-wrap: wrap; gap: 32px 64px; margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--line); }
+.number { display: flex; flex-direction: column; gap: 14px; font-size: 13px; color: var(--muted); }
+.numbers:hover .number > span { color: var(--text); }
+
+.stepPic { height: 88px; display: flex; align-items: center; margin-bottom: 24px; }
+.stepPic svg { max-width: 220px; }
+.followBtns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.top { padding-top: 48px; }
+
+@media (prefers-reduced-motion: reduce) { .wire i { animation: none; left: calc(50% - 3px); } }
 
 /* too narrow for one row: each group gets its own row, still split by hairlines */
 @media (max-width: 1240px) {
@@ -97,6 +119,10 @@ a.groupTitle:hover { color: var(--text); }
   .step, .step:nth-child(3n+1) { padding: 24px 0 0; border-left: 0; border-top: 1px solid var(--line); }
   .step:first-child { padding-top: 0; border-top: 0; }
   .ways { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr; gap: 48px; }
+  .wire { display: none; }
+  .pic { height: auto; max-width: 360px; }
+  .foot { padding: 24px 16px 32px; }
   .head { flex-wrap: wrap; gap: 8px; }
   .foot { padding: 24px 16px 32px; }
 }
