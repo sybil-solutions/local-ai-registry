@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "swift-1.5-qwen3.8-27b",
+  "weights": "ukisai/Swift-1.5-Qwen3.8-27B-GSQ-RCO-GGUF@d74895bbe5db4bec1e0024e7cc87d59c02d7631a",
+  "engine": "llama.cpp-swift-1.5-qwen3.8-27b-iq3-s-mtp-128k@1086b8815273",
+  "set": {},
+  "card": "rx-9070-xt-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "AMD Radeon RX 9070 XT 16GB (owner: CachyOS, RADV GFX1201)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-12",
+  "on": "owner",
+  "gpu": "AMD Radeon RX 9070 XT 16GB (owner: CachyOS, RADV GFX1201)",
+  "launch_sha256": "ed7677e0448c39bf09696da1d98e38a4239c772ca1fd6f2a04aad120df0a97b9",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 54.0,
+  "prefill": 432,
+  "served": "/models/Swift-1.5-Qwen3.8-27B-GSQ-RCO-IQ3_S-mtp.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 74,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "jMFVcSG6hatyM6o7fMy3W1faLcysRvYW"
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with **overcast** skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 202
+  },
+  "context": {
+   "prompt_tokens": 106294,
+   "seconds": 246.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 12455,
+   "seconds_total": 174.9
+  }
+ },
+ "launch_config_sha256": null
+}

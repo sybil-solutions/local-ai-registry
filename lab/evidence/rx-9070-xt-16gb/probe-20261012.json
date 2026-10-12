@@ -1,0 +1,37 @@
+{
+ "host": {
+  "kernel": "7.2.9-2-cachyos",
+  "cpu": "",
+  "cpus": 12,
+  "avx512": false
+ },
+ "ram": {
+  "total_gb": 33.59,
+  "available_gb": 26.7,
+  "swap_total_gb": 33.58,
+  "swap_used_gb": 0.0
+ },
+ "storage": {
+  "path": "/mnt/raid0/GGUF",
+  "free_gb": 124.98,
+  "total_gb": 502.67,
+  "device": "/dev/md127",
+  "fstype": "ext4",
+  "physical_disks": [
+   {
+    "disk": "sdc",
+    "nvme": false,
+    "rotational": false,
+    "model": "SATA3 256GB SSD"
+   },
+   {
+    "disk": "sdd",
+    "nvme": false,
+    "rotational": false,
+    "model": "TRS256GB"
+   }
+  ],
+  "all_nvme": false
+ },
+ "gpus": []
+}
