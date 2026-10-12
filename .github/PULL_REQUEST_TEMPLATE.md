@@ -10,4 +10,4 @@
 - [ ] I ran this on real hardware (for recipes and performance claims)
 - [ ] No secrets, no unpinned weights or images
 
-<!-- Claiming a bounty? Add "Closes #<issue>" and where to send the payment. -->
+<!-- Claiming a bounty? Add "Closes #<issue>". Send payment details by email after merge, never here. -->
