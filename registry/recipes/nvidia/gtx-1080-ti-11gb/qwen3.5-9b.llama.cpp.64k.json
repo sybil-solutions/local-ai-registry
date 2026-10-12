@@ -1,0 +1,19 @@
+{
+  "model": "qwen3.5-9b",
+  "weights": "unsloth/Qwen3.5-9B-GGUF@3885219b6810b007914f3a7950a8d1b469d598a5",
+  "engine": "llama.cpp-qwen3.5-9b-q4-k-m-64k@9e4536dfc7ec",
+  "set": {},
+  "card": "gtx-1080-ti-11gb",
+  "proof": [
+    {
+      "at": "2026-10-12",
+      "on": "gtx1080ti",
+      "gpu": "GTX 1080 Ti",
+      "gates": "load chat reasoning tools context speed",
+      "tps": 36.0,
+      "prefill": 420.0,
+      "served": "Qwen3.5-9B-Q4_K_M.gguf",
+      "log": "sha256:d3f88321ec477d6a"
+    }
+  ]
+}
