@@ -2,11 +2,11 @@ import Link from "next/link";
 import copy from "@/lib/landing/copy.json";
 import s from "@/app/landing.module.css";
 
-// The header and footer of the landing (/) and the videos page; the registry pages keep their own in (registry)/layout.tsx.
+// The header and footer of every page: the landing, the videos page and the registry pages (see (registry)/layout.tsx).
 export const X = "https://x.com/0xSero";
 export const PLUGIN = "https://github.com/sybil-solutions/omarchy-local-ai";
 export const REGISTRY = "https://github.com/sybil-solutions/local-ai-registry";
-const NAV: Record<string, string> = { "what it is": "/#what", models: "/models/", hardware: "/hardware/", videos: "/videos/", "how it works": "/#how", contribute: "/#contribute", github: PLUGIN, docs: "/docs/", api: "/docs/#api" };
+const NAV: Record<string, string> = { "what it is": "/#what", models: "/models/", hardware: "/hardware/", videos: "/videos/", "how it works": "/#how", contribute: "/#contribute", github: REGISTRY, docs: "/docs/", api: "/docs/#api" };
 
 export const list = (v: string | null | undefined) => String(v ?? "").split(",").map((x) => x.trim()).filter(Boolean);
 
