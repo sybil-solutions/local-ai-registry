@@ -1,0 +1,15 @@
+name: Recipe request
+description: A model you want on a card that already has recipes
+labels: [recipe]
+body:
+  - type: input
+    id: card
+    attributes: {label: Card}
+    validations: {required: true}
+  - type: input
+    id: model
+    attributes: {label: Model, description: "Hugging Face repo, and the quant if you have one in mind"}
+    validations: {required: true}
+  - type: textarea
+    id: why
+    attributes: {label: Why this model on this card}

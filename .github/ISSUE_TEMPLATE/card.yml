@@ -1,0 +1,16 @@
+name: Support my card
+description: A GPU, CPU or chip the registry has no recipe for
+labels: [card support]
+body:
+  - type: input
+    id: card
+    attributes: {label: Card, description: "Exact name and memory, e.g. GeForce GTX 1080 Ti 11 GB"}
+    validations: {required: true}
+  - type: textarea
+    id: probe
+    attributes: {label: probe.py output, description: "From the recipe kit: python3 tools/probe.py", render: text}
+  - type: checkboxes
+    id: run
+    attributes:
+      label: Can you run the checks yourself?
+      options: [{label: "Yes, I can run the recipe kit on this card"}]

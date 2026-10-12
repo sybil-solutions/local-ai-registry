@@ -1,0 +1,15 @@
+name: Bug
+description: A recipe that fails, a wrong number, or a broken page
+labels: [bug]
+body:
+  - type: input
+    id: recipe
+    attributes: {label: Recipe or page, description: "e.g. nvidia/rtx-3090-24gb/qwen3.8-27b.sglang.200k, or a URL"}
+    validations: {required: true}
+  - type: textarea
+    id: what
+    attributes: {label: What happened, description: "What you ran, what you expected, what you got."}
+    validations: {required: true}
+  - type: textarea
+    id: logs
+    attributes: {label: Logs, render: text}

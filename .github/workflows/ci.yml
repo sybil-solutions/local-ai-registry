@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read  # CI only reads; nothing on a pull request can write to the repo
+
 jobs:
   verify:  # the check branch protection on main requires
     runs-on: ubuntu-24.04

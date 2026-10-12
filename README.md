@@ -95,6 +95,12 @@ python3 lab/lab.py try <repo>@<commit> --model <id> --engine tabbyapi-exl3 --car
 
 `try` rents the card on Vast (or RunPod, or `--on endpoint --endpoint <url>` for your own machine), runs the six checks, writes the recipe only if all pass, and destroys the machine. `lab/campaign.py <plan>` runs many at once. `lab.py convert <card>` re-runs a `legacy` recipe the same way. Then `make` and open a pull request; CI runs `make check`.
 
+### Bounties
+
+Cards and models without a tested recipe carry a **$50 bounty**: [open bounties](https://github.com/sybil-solutions/local-ai-registry/issues?q=is%3Aissue+is%3Aopen+label%3Abounty).
+Claim one with `/attempt`, run it with the [recipe kit](https://github.com/sybil-solutions/local-ai-recipe-kit), and open one PR with the recipe `lab.py try --on endpoint` wrote.
+The rules are in [BOUNTIES.md](https://github.com/sybil-solutions/.github/blob/main/BOUNTIES.md); every PR follows [CONTRIBUTING](https://github.com/sybil-solutions/.github/blob/main/CONTRIBUTING.md).
+
 ## Using it
 
 - **Omarchy Local AI 6.10+** reads `plugin/v3/recipes.json`; older versions retain the independent v2 export and cache.

@@ -1,0 +1,7 @@
+# Every change needs a maintainer's review; these paths change what runs on people's machines.
+*                   @0xSero
+/registry/engines/  @0xSero
+/registry/launches/ @0xSero
+/images/            @0xSero
+/lab/               @0xSero
+/.github/           @0xSero
