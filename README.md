@@ -88,8 +88,11 @@ Every program runs one the same way:
 ## Browsing models and hardware
 
 [Models](https://local.sybilsolutions.ai/models/) and
-[hardware](https://local.sybilsolutions.ai/hardware/) are full-text searchable;
-column headings sort the directories and configuration tables.
+[hardware](https://local.sybilsolutions.ai/hardware/) are full-text searchable.
+On wide screens column headings sort the directories and configuration tables
+(numbers start largest-first; click again to reverse). Below 900px each row
+becomes a labelled block and a "Sort by" control with a direction toggle offers
+the same orderings.
 Each model has a `/models/<id>/` page with its rendered Hugging Face model card
 and every recorded hardware configuration. Hardware pages at `/gpu/<id>/`
 show original-source photos, specifications and the same table by model.
@@ -97,11 +100,16 @@ Photo captions link the original manufacturer page and explicitly label
 representative family or chassis images.
 
 Configuration rows distinguish card count, machine count and documented
-host RAM, disk/NVMe and logical-CPU requirements. Selecting an exact recipe
-changes its decode, prefill, context, evidence and copyable command together.
-Unknown measurements stay unknown and sort after recorded measurements.
-Headers and cells share consistent insets; memory, context and measured speeds
-are right-aligned for comparison.
+host RAM, disk/NVMe and logical-CPU requirements. Model pages list hardware
+with a total-memory column; hardware pages list models, with the setup and its
+total memory together (the Setup heading sorts by total memory).
+The recipe picker shows the selected recipe's engine and weight format; its
+options name engine, format and context. Selecting a recipe changes its decode,
+prefill, context, evidence and command together, and Command opens that exact
+command beneath the row with a copy button and a link to the full recipe.
+Unknown measurements show "—" and sort after recorded measurements.
+Configuration search also matches exact token counts, with or without thousands
+separators, as well as the short context labels shown in the picker.
 The command is one Bash invocation containing the existing SDK's pinned steps;
 engine prerequisites and source-specific setup still apply. Multi-machine
 recipes run on each machine with its documented rank and network settings.

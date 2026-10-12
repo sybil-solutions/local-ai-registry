@@ -1,15 +1,17 @@
 import { command as sdkCommand } from "../../sdk/js/index.js";
-import { cards, models, recipes, short, setupOf, format, engineKind, status, fmtDate, type Recipe } from "./registry";
+import { cards, models, recipes, short, setupOf, format, engineKind, status, fmtDate, ctxLabel, type Recipe } from "./registry";
 
 export type ConfigurationVariant = {
   key: string; label: string; href: string; engine: string; format: string;
   context: number; decode: number | null; prefill: number | null;
-  status: string; statusDetail: string; testedAt: string; command: string;
+  status: string; statusTone: string; statusDetail: string; testedAt: string; command: string;
   requirements: string; machines: number;
 };
+/** A documented host requirement, split for display: "Host RAM" / "≥ 59.1 GB free". */
+export type HostNeed = { label: string; value: string };
 export type ConfigurationRow = {
-  id: string; hardwareId: string; hardware: string; modelId: string; model: string;
-  memory: number; cards: number; machines: number; host: string; variants: ConfigurationVariant[];
+  id: string; hardwareId: string; hardware: string; cardName: string; modelId: string; model: string; family: string;
+  memory: number; cards: number; machines: number; host: string; needs: HostNeed[]; variants: ConfigurationVariant[];
 };
 
 /** A single shell invocation containing the SDK's exact, pinned launch steps. */
@@ -21,6 +23,17 @@ function oneCommand(r: Recipe): string {
 }
 
 const hardwareConfigId = (r: Recipe) => `${r.card}/${r.launch.cards ?? 1}/${r.launch.machines ?? 1}/${r.launch.needs?.host_ram_gb ?? ""}/${r.launch.needs?.disk_gb ?? ""}/${r.launch.needs?.fast_storage ?? ""}/${r.launch.needs?.cpus ?? ""}`;
+
+function hostNeeds(r: Recipe): HostNeed[] {
+  const needs = r.launch.needs;
+  if (!needs) return [];
+  const storage = needs.fast_storage === "nvme" ? "NVMe" : needs.fast_storage ?? "";
+  return [
+    needs.host_ram_gb != null ? { label: "Host RAM", value: `≥ ${needs.host_ram_gb} GB free` } : null,
+    needs.disk_gb != null ? { label: "Disk", value: `≥ ${needs.disk_gb} GB${storage ? ` ${storage}` : ""}` } : null,
+    needs.cpus != null ? { label: "CPUs", value: `≥ ${needs.cpus} logical` } : null,
+  ].filter((n): n is HostNeed => n != null);
+}
 
 function hostRequirements(r: Recipe): string {
   const needs = r.launch.needs;
@@ -41,20 +54,26 @@ export function configurationRows(selected: Recipe[]): ConfigurationRow[] {
     const id = `${r.model}/${hardwareConfigId(r)}`;
     let row = groups.get(id);
     if (!row) {
-      row = { id, hardwareId: r.card, hardware: setup.name, modelId: r.model,
-        model: models[r.model]?.name ?? r.model, memory: setup.vram_gb,
-        cards: setup.cards, machines: setup.machines, host: hostRequirements(r), variants: [] };
+      row = { id, hardwareId: r.card, hardware: setup.name, cardName: short(c.name), modelId: r.model,
+        model: models[r.model]?.name ?? r.model, family: models[r.model]?.family ?? "", memory: setup.vram_gb,
+        cards: setup.cards, machines: setup.machines, host: hostRequirements(r), needs: hostNeeds(r), variants: [] };
       groups.set(id, row);
     }
     const proof = r.proof[0];
     const evidence = status(r);
     const engine = engineKind(r);
     const quant = format(r);
-    row.variants.push({ key: r.key, label: `${engine} · ${quant || "format not recorded"} · ${r.launch.ctx.toLocaleString("en-US")} context · ${r.slug}`,
+    row.variants.push({ key: r.key, label: [engine, quant, `${ctxLabel(r.launch.ctx)} context`].filter(Boolean).join(" · "),
       href: `/gpu/${r.card}/${r.slug}/`, engine, format: quant, context: r.launch.ctx,
-      decode: proof.tps ?? null, prefill: proof.prefill ?? null, status: evidence.label,
+      decode: proof.tps ?? null, prefill: proof.prefill ?? null, status: evidence.label, statusTone: evidence.tone,
       statusDetail: evidence.detail, testedAt: fmtDate(proof.at), command: oneCommand(r),
       requirements: r.launch.setup ?? "", machines: setup.machines });
+  }
+  // Short labels can collide (same engine, format and rounded context); fall back to the recipe slug there.
+  for (const row of groups.values()) {
+    const seen = new Map<string, number>();
+    for (const v of row.variants) seen.set(v.label, (seen.get(v.label) ?? 0) + 1);
+    for (const v of row.variants) if (seen.get(v.label)! > 1) v.label += ` · ${v.key.slice(v.key.lastIndexOf("/") + 1)}`;
   }
   return [...groups.values()].sort((a, b) => a.hardware.localeCompare(b.hardware) || a.model.localeCompare(b.model));
 }
