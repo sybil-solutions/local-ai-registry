@@ -39,7 +39,7 @@ export default async function Gpu({ params }: P) {
       </div>
       <section id="configurations">
         <h2>Model configurations</h2>
-        {rs.length ? <><p className="dim">Choose a model recipe. Command opens its pinned launch and setup details.</p><ConfigurationTable rows={rows} showModel /></> : <p className="dim">No recorded recipe for this hardware yet. Specifications below are sourced separately; no speed or launch command is inferred.</p>}
+        {rs.length ? <><p className="dim">Each row is a model and hardware setup, including any documented host RAM, storage or CPU requirements. Select a recipe to update its speeds, context and exact command.</p><ConfigurationTable rows={rows} showModel /></> : <p className="dim">No recorded recipe for this hardware yet. Specifications below are sourced separately; no speed or launch command is inferred.</p>}
       </section>
       {h && <HardwareSpecs h={h} />}
     </main>

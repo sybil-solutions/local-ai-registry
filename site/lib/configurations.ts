@@ -1,5 +1,5 @@
 import { command as sdkCommand } from "../../sdk/js/index.js";
-import { cards, models, recipes, short, setupOf, format, engineKind, status, fmtDate, ctxLabel, type Recipe } from "./registry";
+import { cards, models, recipes, short, setupOf, format, engineKind, status, fmtDate, type Recipe } from "./registry";
 
 export type ConfigurationVariant = {
   key: string; label: string; href: string; engine: string; format: string;
@@ -11,8 +11,6 @@ export type ConfigurationRow = {
   id: string; hardwareId: string; hardware: string; modelId: string; model: string;
   memory: number; cards: number; machines: number; host: string; variants: ConfigurationVariant[];
 };
-
-const ENGINES: Record<string, string> = { vllm: "vLLM", sglang: "SGLang", tabbyapi: "TabbyAPI", exllamav3: "ExLlamaV3" };
 
 /** A single shell invocation containing the SDK's exact, pinned launch steps. */
 function oneCommand(r: Recipe): string {
@@ -28,9 +26,9 @@ function hostRequirements(r: Recipe): string {
   const needs = r.launch.needs;
   if (!needs) return "";
   return [
-    needs.host_ram_gb != null ? `RAM ≥ ${needs.host_ram_gb} GB` : "",
-    needs.disk_gb != null ? `${needs.fast_storage?.toUpperCase() ?? "Disk"} ≥ ${needs.disk_gb} GB` : "",
-    needs.cpus != null ? `≥ ${needs.cpus} CPUs` : "",
+    needs.host_ram_gb != null ? `≥ ${needs.host_ram_gb} GB free host RAM` : "",
+    needs.disk_gb != null ? `≥ ${needs.disk_gb} GB ${needs.fast_storage ?? ""} disk` : "",
+    needs.cpus != null ? `≥ ${needs.cpus} logical CPUs` : "",
   ].filter(Boolean).join(" · ");
 }
 
@@ -43,7 +41,7 @@ export function configurationRows(selected: Recipe[]): ConfigurationRow[] {
     const id = `${r.model}/${hardwareConfigId(r)}`;
     let row = groups.get(id);
     if (!row) {
-      row = { id, hardwareId: r.card, hardware: setup.name.replace(/ in one machine$/, ""), modelId: r.model,
+      row = { id, hardwareId: r.card, hardware: setup.name, modelId: r.model,
         model: models[r.model]?.name ?? r.model, memory: setup.vram_gb,
         cards: setup.cards, machines: setup.machines, host: hostRequirements(r), variants: [] };
       groups.set(id, row);
@@ -52,7 +50,7 @@ export function configurationRows(selected: Recipe[]): ConfigurationRow[] {
     const evidence = status(r);
     const engine = engineKind(r);
     const quant = format(r);
-    row.variants.push({ key: r.key, label: `${ENGINES[engine] ?? engine} · ${ctxLabel(r.launch.ctx)} ctx${quant ? ` · ${quant}` : ""}`,
+    row.variants.push({ key: r.key, label: `${engine} · ${quant || "format not recorded"} · ${r.launch.ctx.toLocaleString("en-US")} context · ${r.slug}`,
       href: `/gpu/${r.card}/${r.slug}/`, engine, format: quant, context: r.launch.ctx,
       decode: proof.tps ?? null, prefill: proof.prefill ?? null, status: evidence.label,
       statusDetail: evidence.detail, testedAt: fmtDate(proof.at), command: oneCommand(r),
