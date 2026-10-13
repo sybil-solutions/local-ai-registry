@@ -158,7 +158,7 @@ def launch_hash(launch):
 
 def check_execution(launch):
     """The typed container contract. Legacy manual prepare commands remain outside the plugin export."""
-    assert isinstance(launch.get("env", {}), dict) and all(isinstance(k, str) and re.fullmatch(r"[A-Z_][A-Z0-9_]*", k) and isinstance(v, str) and "\0" not in v for k, v in launch.get("env", {}).items()), "invalid environment"
+    assert isinstance(launch.get("env", {}), dict) and all(isinstance(k, str) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", k) and isinstance(v, str) and "\0" not in v for k, v in launch.get("env", {}).items()), "invalid environment"
     assert isinstance(launch.get("args", []), list) and all(isinstance(x, str) and "\0" not in x for x in launch.get("args", [])), "invalid arguments"
     resources = launch.get("resources", {})
     assert isinstance(resources, dict) and set(resources) <= {"memoryBytes", "memorySwapBytes", "memlockUnlimited", "ipcLock"}, "unknown resource"

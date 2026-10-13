@@ -51,7 +51,7 @@ A launch that keeps weights in system RAM or reads them from disk while serving 
 "needs": {"host_ram_gb": 75, "disk_gb": 85.14, "fast_storage": "nvme"}
 ```
 
-`host_ram_gb` is the free system RAM the server takes: how far MemAvailable falls from before the start to its lowest point while the lab gates run (not the weight file sizes; the plugin compares it with MemAvailable), `disk_gb` the space for the weights, and `fast_storage: "nvme"` means the weights directory must be on a local NVMe SSD. `lab.py check` validates it; `plugin/v2/recipes.json` carries it.
+`host_ram_gb` is the required free system RAM: the measured fall in MemAvailable from before the start to its lowest point while the lab gates run, rounded up with any documented safety headroom (not the weight file sizes; the plugin compares it with MemAvailable). `disk_gb` is the space for the weights, and `fast_storage: "nvme"` means the weights directory must be on a local NVMe SSD. `lab.py check` validates it; plugin exports carry it.
 
 ## Prepared weights and container resources
 
@@ -74,6 +74,26 @@ Changing the image, inputs, environment, resources or preparation requires new
 acceptance evidence. v2 excludes any recipe requiring preparation or typed resources
 rather than silently dropping those requirements. This contract adds no new qualified
 hardware recipes by itself; fidelity, exact-image lab gates and promotion remain separate.
+
+Environment names use case-sensitive identifiers (`[A-Za-z_][A-Za-z0-9_]*`),
+including Intel's mixed-case runtime guards. Values must be strings without NUL;
+this does not admit arbitrary Docker options.
+
+### Intel Arc Pro B70 host-RAM offload
+
+`intel/intel-arc-pro-b70-32gb/qwen3.8-flash-next.sglang.64k` runs
+Qwen3.8-Flash-Next EXL3 3.05 bpw on one 32 GB B70. Routed experts and the complete
+n-gram table stay in host USM RAM; the GPU uses an expert cache without dropping
+expert picks. It requires **128 GB available host RAM**, including conservative
+headroom, and **85.14 GB disk** for the pinned weights. NVMe is not required.
+
+The launch limits context to 65,536 tokens, uses a private 64 GiB shared-memory
+mount and a 128 GiB container memory limit with swap disabled. Intel driver-owned
+host allocations are not fully reflected in Docker's memory counter: eligibility
+uses host MemAvailable, not the container counter. It needs no host IPC,
+unconfined seccomp or privileged container. Vision is image-only; this pinned
+image has no video decoder. The exact launch, image and weights are bound to its
+lab proof; Omarchy Local AI's v3 catalog preserves the resource requirements.
 
 ## Running a recipe
 

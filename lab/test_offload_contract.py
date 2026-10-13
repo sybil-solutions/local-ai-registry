@@ -128,6 +128,20 @@ class OffloadContractTest(unittest.TestCase):
                 self.profile['env'] = {'NOTE': value}
                 self.build(3)
 
+    def test_intel_debug_environment_does_not_hide_validated_recipe(self):
+        self.profile.update(resources=self.resources, env={
+            'NEOReadDebugKeys': '1',
+            'TreatNonUsmForTransfersAsSharedSystem': '0',
+            'EnableSharedSystemUsmSupport': '0'})
+        self.assertIn('test', self.build(3)['hardware'])
+
+    def test_malformed_environment_names_cannot_be_exported(self):
+        self.profile['resources'] = self.resources
+        for key in ['1NOTE', 'NOTE --privileged', 'NOTE=other', 'NOTE\nother']:
+            with self.subTest(key=key), self.assertRaises(AssertionError):
+                self.profile['env'] = {key: '1'}
+                self.build(3)
+
     def test_export_cannot_truncate_input_mounts(self):
         self.profile['plugin']['weights'] = []
         with self.assertRaisesRegex(AssertionError, 'input mounts'):

@@ -1,0 +1,130 @@
+{
+  "id": "sglang-qwen3.8-flash-next-exl3-3.05bpw-ram-64k-intel-arc-pro-b70-32gb",
+  "engine": "sglang",
+  "about": "Qwen3.8-Flash-Next EXL3 on one Arc Pro B70: routed experts and the complete n-gram table in host RAM, 64K context, no NVMe expert masking",
+  "image": "ghcr.io/0xsero/sglang-exl3-xpu-flashnext@sha256:0657d234fcaa62e879324be2a0811f4498cee8a8ba20277d523702e5b2866b22",
+  "provenance": "https://github.com/0xSero/local-ai-images/actions/runs/36572535507",
+  "backend": "intel-xpu",
+  "port": 30250,
+  "entrypoint": "/opt/entrypoint.sh",
+  "args": [
+    "python3",
+    "-m",
+    "sglang.launch_server",
+    "--model-path",
+    "/models/turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+    "--quantization",
+    "exl3",
+    "--trust-remote-code",
+    "--device",
+    "xpu",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "30250",
+    "--served-model-name",
+    "flashnext",
+    "--disable-shared-experts-fusion",
+    "--kv-cache-dtype",
+    "fp8_e4m3",
+    "--context-length",
+    "65536",
+    "--mem-fraction-static",
+    "0.91",
+    "--chunked-prefill-size",
+    "4096",
+    "--max-running-requests",
+    "2",
+    "--dtype",
+    "bfloat16",
+    "--max-mamba-cache-size",
+    "8",
+    "--max-total-tokens",
+    "73728",
+    "--cuda-graph-backend-decode",
+    "full",
+    "--cuda-graph-bs-decode",
+    "1",
+    "2",
+    "--reasoning-parser",
+    "qwen3",
+    "--tool-call-parser",
+    "qwen3_coder"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "ZE_AFFINITY_MASK": "0",
+    "EXL3_MODEL_PATH": "/models/turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+    "EXL3_LIB": "/opt/trellis-serve/xpu/exl3xpu/_C_sgl.so",
+    "EXL3_MOE_LIB": "/opt/trellis-serve/xpu/exl3xpu/_moe_sgl.so",
+    "EXL3_MOE_SLOTS": "9000",
+    "EXL3_MOE_CACHE": "1",
+    "EXL3_NGRAM_TIER": "host",
+    "NEOReadDebugKeys": "1",
+    "TreatNonUsmForTransfersAsSharedSystem": "0",
+    "EnableSharedSystemUsmSupport": "0",
+    "EXL3_QSA_DENSE_BYTES": "134217728",
+    "EXL3_QSA_ROWS": "64",
+    "EXL3_TORCH_MEM_FRACTION": "0.95",
+    "TORCHINDUCTOR_COMPILE_THREADS": "1",
+    "EXL3_VISION": "1"
+  },
+  "shm": "64g",
+  "weights": [
+    {
+      "repo": "turboderp/Qwen3.8-Flash-Next-exl3",
+      "revision": "69e33439ae950f17bcbe95c98f117d80f759ab6d",
+      "at": "/models/turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": null,
+  "ctx": 65536,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 128,
+    "disk_gb": 85.14
+  },
+  "setup": "Requires one Intel Arc Pro B70 32 GB and 128 GB available host RAM. All routed experts and the full n-gram table remain in host USM RAM; no NVMe tier or approximate expert masking. Container memory and swap limits are both 128 GiB; a private 64 GiB shared-memory mount and ordinary bridge networking are used. Context is limited to 65,536 tokens. Vision support remains image-only on this pinned image (no video).",
+  "source": "https://github.com/sybil-solutions/trellis-serve/tree/72fd2d4ca8e8de3fce03ab09e3ed1692957c2f8c",
+  "plugin": {
+    "name": "Qwen3.8-Flash-Next",
+    "family": "qwen",
+    "format": "EXL3 · 3.05 bpw (experts and n-gram table in RAM)",
+    "engine": "sglang",
+    "servedName": "flashnext",
+    "sizeGb": 85.14,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": false,
+      "tools": false,
+      "vision": true
+    },
+    "serving": {
+      "ctxTokens": 65536,
+      "kvTokens": 73728
+    },
+    "weights": [
+      {
+        "dir": "turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+        "files": "",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 85.14
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "intel-arc-pro-b70-32gb": "qwen38flashnext-exl3-3.05bpw-ram-arcb70-sglang-tp1"
+  },
+  "resources": {
+    "memoryBytes": 137438953472,
+    "memorySwapBytes": 137438953472
+  }
+}
