@@ -23,6 +23,8 @@ MARKET = "omacom/omarchy-plugin-marketplace"
 PLUGIN_ID = "sero.local-ai"
 VERIFY_ISSUE, MIGRATION_PR = 11207, 11412
 CAP = 1000
+# maintainers and bots are never paid; a PR of theirs that mentions a bounty is not a submission
+STAFF = {"0xSero", "app/dependabot", "dependabot[bot]", "github-actions"}
 OUT = sys.argv[1] if len(sys.argv) > 1 else "."
 
 
@@ -58,11 +60,16 @@ def bounties(prs):
         for c in comments:
             if re.match(r"\s*/attempt\b", c["body"] or "") and all(x["by"] != c["user"]["login"] for x in claims):
                 claims.append({"by": c["user"]["login"], "at": c["created_at"]})
-        ref = re.compile(rf"(?<![\w/])#{n}\b|/issues/{n}\b")
+        num = rf"(?:#|issues/){n}\b"
+        in_title = re.compile(rf"(?<![\w/]){num}", re.I)
+        closes = re.compile(rf"\b(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s*:?\s+(?:https://github\.com/{REGISTRY}/)?{num}", re.I)
+        bounty = re.compile(rf"bounty[^\n]{{0,80}}(?<![\w/]){num}|(?<![\w/]){num}[^\n]{{0,80}}bounty", re.I)
+        ref = lambda p: p["author"]["login"] not in STAFF and (in_title.search(p["title"] or "") or closes.search(p["body"] or "")
+                                                               or bounty.search(p["body"] or ""))
         subs = sorted(({"pr": p["number"], "by": p["author"]["login"], "at": p["createdAt"],
                         "state": "merged" if p["mergedAt"] else p["state"].lower(), "mergedAt": p["mergedAt"],
                         "checks": checks(p["statusCheckRollup"])}
-                       for p in prs if ref.search((p["title"] or "") + "\n" + (p["body"] or ""))), key=lambda s: s["at"])
+                       for p in prs if ref(p)), key=lambda s: s["at"])
         won = next((s for s in subs if s["state"] == "merged"), None)
         out.append({"issue": n, "device": re.sub(r"^Bounty \$\d+: recipe for ", "", i["title"]).strip(),
                     "amount": amount, "state": i["state"].lower(), "claims": claims, "prs": subs,
