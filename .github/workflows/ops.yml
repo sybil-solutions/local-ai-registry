@@ -1,0 +1,44 @@
+name: ops
+# Every hour: the project's open work (bounties, PRs, issues, the marketplace listing) as ops.json on the `ops`
+# branch, which usage.sybilsolutions.ai reads, and the bounty ledger issue's table. Reads public data only and never
+# touches main: `ops` is the only branch written, and the ledger issue the only issue edited.
+on:
+  schedule: [{cron: "23 * * * *"}]
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency: {group: ops, cancel-in-progress: false}
+env:
+  LEDGER_ISSUE: "262"
+jobs:
+  ops:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: |
+            .github/ops
+            plugin/v3
+      - name: build
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/out"
+          python3 .github/ops/ops.py "$RUNNER_TEMP/out"
+      - name: ledger issue
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          set -euo pipefail
+          gh issue edit "$LEDGER_ISSUE" -R "$GITHUB_REPOSITORY" --body-file "$RUNNER_TEMP/out/ledger.md"
+      - name: publish
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/out"
+          git init -q -b ops
+          git config user.name ops-bot; git config user.email ops@users.noreply.github.com
+          git add ops.json ledger.md
+          git commit -qm "ops $(date -u +%FT%RZ)"
+          # one commit, replaced each hour: the dashboard needs only the latest
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" ops
