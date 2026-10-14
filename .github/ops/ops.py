@@ -54,8 +54,10 @@ def bounties(prs):
         labels = [l["name"] for l in i["labels"]]
         amount = next((int(m.group(1)) for l in labels if (m := re.match(r"bounty: \$(\d+)", l))), 50)
         comments = ghjson("api", f"repos/{REGISTRY}/issues/{n}/comments?per_page=100")
-        claims = [{"by": c["user"]["login"], "at": c["created_at"]} for c in comments
-                  if re.match(r"\s*/attempt\b", c["body"] or "")]
+        claims = []  # each person's first /attempt only
+        for c in comments:
+            if re.match(r"\s*/attempt\b", c["body"] or "") and all(x["by"] != c["user"]["login"] for x in claims):
+                claims.append({"by": c["user"]["login"], "at": c["created_at"]})
         ref = re.compile(rf"(?<![\w/])#{n}\b|/issues/{n}\b")
         subs = sorted(({"pr": p["number"], "by": p["author"]["login"], "at": p["createdAt"],
                         "state": "merged" if p["mergedAt"] else p["state"].lower(), "mergedAt": p["mergedAt"],
