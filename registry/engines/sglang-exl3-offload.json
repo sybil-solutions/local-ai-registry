@@ -78,7 +78,7 @@
     "kv": "fp8_e4m3",
     "chunk": 4096,
     "graphs": 4,
-    "mamba": 4,
+    "mamba": 8,
     "tools": "qwen3_coder",
     "think": "qwen3",
     "vision": false,

@@ -392,7 +392,7 @@ def rented(recipe, launch, args):
     ns = argparse.Namespace(vast_min_inet=args.min_inet, vast_min_cuda=args.min_cuda or launch.get("min_cuda") or 12.9, vast_max_price=args.max_price, cloud="COMMUNITY", disk=max(args.disk, int((needs.get("disk_gb") or 0) + 10)), vast_any_host=getattr(args, "any_host", False),
                             vast_min_ram=int(needs["host_ram_gb"] * 1.1 + 8) if needs.get("host_ram_gb") else 0,
                             vast_min_disk_bw=1500 if needs.get("fast_storage") == "nvme" else 0,
-                            vast_min_pcie=getattr(args, "min_pcie", 0) or 0)
+                            vast_min_pcie=getattr(args, "min_pcie", 0) or 0, vast_max_inet_cost=getattr(args, "max_inet_cost", 0.02))
     provider = vr.PROVIDERS[args.on](ns)
     if getattr(args, "machine", None):  # compare.py: the machine the other engine just ran on
         every = provider.offers
@@ -412,8 +412,8 @@ def rented(recipe, launch, args):
                 if not started and time.monotonic() - t0 > 900:
                     exclude.update({handle.get("offer"), handle.get("machine")})
                     raise vr.StartStalled(note)
-                if time.monotonic() - t0 > 3600:
-                    raise SystemExit("not ready within an hour")
+                if time.monotonic() - t0 > getattr(args, "ready_timeout", 5400):  # pull, download and load: about an hour for 70 GB at 300 Mbps
+                    raise SystemExit(f"not ready within {getattr(args, 'ready_timeout', 5400)}s")
                 time.sleep(10)
             log(f"ready after {int(time.monotonic() - t0)}s at {handle['endpoint']}")
             return handle["endpoint"], {"on": args.on, "gpu": handle.get("gpu"), "host": handle.get("host"), "cost_h": handle.get("cost"),
@@ -629,6 +629,8 @@ def main():
     t.add_argument("--disk", type=int, default=60)
     t.add_argument("--any-host", action="store_true", help="vast: also unverified hosts (the gates are the same; for cards verified hosts never offer)")
     t.add_argument("--min-pcie", type=float, default=0, help="vast: minimum host-to-device GB/s (offload recipes: experts cross PCIe every token)")
+    t.add_argument("--max-inet-cost", type=float, default=0.02, help="vast: maximum $ per GB downloaded (0: no limit)")
+    t.add_argument("--ready-timeout", type=int, default=5400, help="seconds from rent to a serving engine")
     t.add_argument("--dry-run", action="store_true")
     cv = sub.add_parser("convert")
     cv.add_argument("card")
