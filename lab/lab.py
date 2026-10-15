@@ -148,7 +148,10 @@ def render(recipe):
             "env": {k: sub(v) for k, v in (p.get("env") or {}).items()},
             "weights": {"repo": repo, "revision": rev, "at": sub(p["weights_at"])},
             "config": {"at": p["config_at"], "text": config, "sha256": hashlib.sha256(config.encode()).hexdigest()} if config else None,
-            "ctx": int(s["ctx"]), "seqs": int(s["seqs"]), "vision": bool(s.get("vision", False)), "backend": p["backend"], "min_cuda": p.get("min_cuda")}
+            "ctx": int(s["ctx"]), "seqs": int(s["seqs"]), "vision": bool(s.get("vision", False)), "backend": p["backend"], "min_cuda": p.get("min_cuda"),
+            # an offload profile states what the host must have, from its settings (experts in RAM, tables on NVMe)
+            **({"needs": {k: (v if not isinstance(v, str) or k == "fast_storage" else float(sub(v)))
+                          for k, v in p["needs"].items()}} if p.get("needs") else {})}
 
 
 # ----------------------------------------------------------------------------- the server under test
