@@ -1,0 +1,76 @@
+{
+ "recipe": {
+  "model": "qwen3.6-35b-a3b",
+  "weights": "yeasah/Qwen3.6-35B-A3B-exl3@73da68ef827084d72c59936b4c2088c6580f4e2b",
+  "engine": "sglang-exl3-offload@ce47df25cee7",
+  "set": {
+   "ctx": 131072,
+   "ram": 24,
+   "disk": 25
+  },
+  "card": "rtx-3060-ti-8gb"
+ },
+ "where": {
+  "on": "vast",
+  "gpu": "RTX 3060 Ti",
+  "host": "Massachusetts, US",
+  "cost_h": 0.14805555555555555
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-15",
+  "on": "vast",
+  "gpu": "RTX 3060 Ti",
+  "launch_sha256": "7a60676568fc6708c036154de4c98ab27e994a0b3f256c1e3507908372dfb015",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 27.0,
+  "prefill": 1325,
+  "served": "Qwen3.6-35B-A3B-exl3-73da68ef"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nRed, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 526,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_738d3e8f7a04492aba50c164",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nThe weather in Paris right now is 17°C with overcast skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 231
+  },
+  "context": {
+   "prompt_tokens": 106252,
+   "seconds": 80.2,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 3135,
+   "seconds_total": 118.1
+  }
+ },
+ "launch_config_sha256": null
+}
