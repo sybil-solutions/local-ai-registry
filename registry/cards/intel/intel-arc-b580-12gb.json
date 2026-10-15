@@ -1,0 +1,13 @@
+{
+  "name": "Intel Arc B580 12GB",
+  "vendor": "intel",
+  "match": [
+    "Intel Arc B580",
+    "B580",
+    "Arc B580"
+  ],
+  "memory": 12,
+  "type": "gpu",
+  "compute": "xmx",
+  "architecture": "xehp"
+}
