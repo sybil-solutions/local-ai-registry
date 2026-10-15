@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "muse-glimmer-30b",
+  "weights": "lmstudio-community/Muse-Glimmer-30B-GGUF@c34cb7372a72fd3bec29e3a21e6c8e04e337d5ae",
+  "engine": "llama.cpp-sycl-muse-glimmer-30b-q4-k-m-64k-arc-pro-b65@86b37d266ce8",
+  "set": {},
+  "card": "intel-arc-pro-b65-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B65 32 GB (ASRock Creator; owner: Ryzen 7 5700X, PCIe 4.0 x4)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-14",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B65 32 GB (ASRock Creator; owner: Ryzen 7 5700X, PCIe 4.0 x4)",
+  "launch_sha256": "3496f5dd506811f7430947bf045735f9bf517fded96a5b0b2d6cc8b557b26cc1",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 25.3,
+  "prefill": 204,
+  "served": "Muse-Glimmer-30B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 261,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "Jnh1oCaIx2g6kHY8bXL2TinhfoWr41Tc"
+    }
+   ],
+   "reply": "Paris is currently 17°C with overcast skies.\n",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 322
+  },
+  "context": {
+   "prompt_tokens": 43186,
+   "seconds": 212.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 3590,
+   "seconds_total": 146.0
+  }
+ },
+ "launch_config_sha256": null
+}

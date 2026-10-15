@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.8-27b",
+  "weights": "lmstudio-community/Qwen3.8-27B-GGUF@5a7da681f60570ab5b439a587e912d2e5eddb582",
+  "engine": "llama.cpp-sycl-qwen3.8-27b-q4-k-m-64k-arc-pro-b65@86b37d266ce8",
+  "set": {},
+  "card": "intel-arc-pro-b65-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B65 32 GB (ASRock Creator; owner: Ryzen 7 5700X, PCIe 4.0 x4)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-14",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B65 32 GB (ASRock Creator; owner: Ryzen 7 5700X, PCIe 4.0 x4)",
+  "launch_sha256": "5b91304038118cd1dd9a65dde025f3a9b3d663f2c705d213793ef2aec19f7ec6",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 23.6,
+  "prefill": 634,
+  "served": "Qwen3.8-27B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 84,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "WghezxkBuD4YeeWXCkzaCXSs625WFmiO"
+    }
+   ],
+   "reply": "It's currently **17°C and overcast** in Paris. 🌥️",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 283
+  },
+  "context": {
+   "prompt_tokens": 52625,
+   "seconds": 83.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 14179,
+   "seconds_total": 684.0
+  }
+ },
+ "launch_config_sha256": null
+}

@@ -619,6 +619,16 @@
   "representative": true,
   "caption": "Official Intel render of Arc Pro graphics cards from the Computex 2025 press kit that announced the Arc Pro B60. Shows the Arc Pro B-series cards/logo rather than an isolated single-SKU B60, hence representative. Intel.com HTML 403s to curl; image served from intelcorp.scene7.com DAM."
  },
+ "intel-arc-pro-b65-32gb": {
+  "src": "/hardware/intel-arc-pro-b65.jpg",
+  "width": 1100,
+  "height": 578,
+  "alt": "ASRock Intel Arc Pro B65 Creator 32GB",
+  "sourceUrl": "https://www.asrock.com/Graphics-Card/Intel/Intel%20Arc%20Pro%20B65%20Creator%2032GB/index.asp",
+  "publisher": "ASRock",
+  "representative": false,
+  "caption": "The Arc Pro B65 ships from board partners. ASRock's official product render of its Arc Pro B65 Creator 32GB, the card the B65 recipes were measured on (image served by asrock.com.tw; asrock.com blocks scripted downloads)."
+ },
  "intel-arc-pro-b70-32gb": {
   "src": "/hardware/intel-arc-pro-b70.jpg",
   "width": 1100,

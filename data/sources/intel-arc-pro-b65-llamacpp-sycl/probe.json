@@ -1,0 +1,50 @@
+{
+ "host": {
+  "kernel": "7.2.5-3-omarchy",
+  "cpu": "AMD Ryzen 7 5700X 8-Core Processor",
+  "cpus": 16,
+  "avx512": false
+ },
+ "ram": {
+  "total_gb": 50.41,
+  "available_gb": 39.88,
+  "swap_total_gb": 100.82,
+  "swap_used_gb": 14.74
+ },
+ "storage": {
+  "path": "~/.lmstudio/models",
+  "free_gb": 258.0,
+  "total_gb": 497.94,
+  "device": "/dev/mapper/root",
+  "fstype": "btrfs",
+  "physical_disks": [
+   {
+    "disk": "sdb",
+    "nvme": false,
+    "rotational": false,
+    "model": "Samsung SSD 860"
+   }
+  ],
+  "all_nvme": false
+ },
+ "gpus": [
+  {
+   "vendor": "nvidia",
+   "index": 0,
+   "name": "NVIDIA GeForce RTX 3080",
+   "vram_gb": 12,
+   "vram_mib": 12288,
+   "vram_used_mib": 746,
+   "pci": "00000000:0E:00.0",
+   "pcie_gen_max": "4",
+   "pcie_width_max": "16",
+   "driver": "610.57.04"
+  },
+  {
+   "vendor": "intel",
+   "card": "card0",
+   "name": "Intel Corporation Battlemage G31 [Arc Pro B65]",
+   "vram_gb": null
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "intel-arc-pro-b65-32gb",
+  "name": "Intel Arc Pro B65",
+  "vendor": "intel",
+  "backend": "intel-xpu",
+  "vram_gb": 32,
+  "bandwidth_gb_s": 608,
+  "match": {
+    "backend": "intel-xpu",
+    "name": "Intel Arc Pro B65",
+    "names": [
+      "arcprob65"
+    ],
+    "vramGb": 32
+  }
+}

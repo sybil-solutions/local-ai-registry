@@ -1,0 +1,89 @@
+{
+  "id": "llama.cpp-sycl-gemma-4-31b-qat-q4-0-32k-arc-pro-b65",
+  "engine": "llama.cpp",
+  "about": "Gemma 4 31B (GGUF · QAT Q4_0) on SYCL (official server-intel image, b11515), Intel Arc Pro B65 32 GB: flash attention on, batch and micro-batch 2048, all layers on the GPU",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:86b37d266ce85b485127adea68c9dc6d04d0ec9a64b0979844d5bbd8d66c53c5",
+  "backend": "intel-xpu",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/gemma-4-31B-it-QAT-Q4_0.gguf",
+    "--alias",
+    "gemma-4-31B-it-QAT-GGUF",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "32768",
+    "--n-gpu-layers",
+    "999",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "2048",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--no-mmproj",
+    "--metrics"
+  ],
+  "env": {
+    "ONEAPI_DEVICE_SELECTOR": "level_zero:0",
+    "UR_L0_ENABLE_RELAXED_ALLOCATION_LIMITS": "1"
+  },
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "lmstudio-community/gemma-4-31B-it-QAT-GGUF",
+      "revision": "12e5eae7a583b0a8bac91919fa99ae1fb27e6de4",
+      "at": "/models",
+      "layout": "dir",
+      "files": "gemma-4-31B-it-QAT-Q4_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 32768,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Gemma 4 31B",
+    "family": "gemma",
+    "format": "GGUF · QAT Q4_0",
+    "engine": "llama.cpp",
+    "servedName": "gemma-4-31B-it-QAT-GGUF",
+    "sizeGb": 17.65,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "video": false,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 32768,
+      "kvTokens": 0
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "gemma-4-31B-it-QAT-Q4_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 17.65
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "intel-arc-pro-b65-32gb": "gemma4-31b-qat-q40-arcprob65-llamacpp-sycl"
+  }
+}

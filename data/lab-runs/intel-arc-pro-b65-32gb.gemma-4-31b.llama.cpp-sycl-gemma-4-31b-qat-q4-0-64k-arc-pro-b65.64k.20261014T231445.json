@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "gemma-4-31b",
+  "weights": "lmstudio-community/gemma-4-31B-it-QAT-GGUF@12e5eae7a583b0a8bac91919fa99ae1fb27e6de4",
+  "engine": "llama.cpp-sycl-gemma-4-31b-qat-q4-0-64k-arc-pro-b65@86b37d266ce8",
+  "set": {},
+  "card": "intel-arc-pro-b65-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B65 32 GB (ASRock Creator; owner: Ryzen 7 5700X, PCIe 4.0 x4)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-14",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B65 32 GB (ASRock Creator; owner: Ryzen 7 5700X, PCIe 4.0 x4)",
+  "launch_sha256": "210476e9d26a655540f616fb2c93da10b9d0e0e75e44a13482e8294df287d6f8",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 21.4,
+  "prefill": 378,
+  "served": "gemma-4-31B-it-QAT-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 306,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "goxUNehT5Bk5JuB8DJ6pAfNwUgUX5PA9"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C and overcast.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 0
+  },
+  "context": {
+   "prompt_tokens": 52589,
+   "seconds": 139.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1403,
+   "seconds_total": 72.4
+  }
+ },
+ "launch_config_sha256": null
+}
