@@ -18,7 +18,7 @@ BUILDERS = {
 BUILDERS.update({f"ghcr.io/sybil-solutions/{name}":
     ("sybil-solutions/local-ai-images", "release-image.yml", "refs/heads/main")
     for name in ("deepseek-v4.1-flash-spark", "dsv41-flash-offload", "exl3xpu", "gateway",
-                 "glm53-b70-expert-server", "glm53-flash-offload", "llamacpp-bonsai", "sglang-exl3", "sglang-exl3-flashnext",
+                 "glm53-b70-expert-server", "glm53-flash-offload", "llamacpp-bonsai", "sglang-exl3", "sglang-exl3-flashnext", "sglang-exl3-flashnext-multiarch",
                  "sglang-exl3-xpu-flashnext", "tabbyapi-exl3")})
 PATHS = ["registry/engines", "registry/launches", "plugin/v2/recipes.json", "plugin/v3/recipes.json"]
 

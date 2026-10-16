@@ -1,0 +1,84 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "turboderp/Qwen3.8-Flash-Next-exl3@69e33439ae950f17bcbe95c98f117d80f759ab6d",
+  "engine": "sglang-exl3-offload-multiarch@fc147f4dd42b",
+  "set": {
+   "ctx": 262144,
+   "chunk": 8192,
+   "mem": "0.88",
+   "mamba": 5,
+   "graphs": 1,
+   "alloc": "expandable_segments:True",
+   "cpu_tier": 1,
+   "ngram_ram": 2,
+   "ram": 55,
+   "disk": 86,
+   "kv_bits": 5
+  },
+  "card": "rtx-4060-ti-16gb"
+ },
+ "where": {
+  "on": "vast",
+  "gpu": "RTX 4060 Ti",
+  "host": "Texas, US",
+  "cost_h": 0.2023148148148148
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "vast",
+  "gpu": "RTX 4060 Ti",
+  "launch_sha256": "1f8f15012031d8126b3736d795adb5c7f6859cf54c5c99fbbf4f67834d85b7f4",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 18.3,
+  "prefill": 1306,
+  "served": "Qwen3.8-Flash-Next-exl3-69e33439"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 113,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_6148705a57404077acaef9f1",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nThe weather in Paris right now is **overcast** with a temperature of **17°C** (~63°F).",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 173
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 163.5,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 9929,
+   "seconds_total": 572.9
+  }
+ },
+ "launch_config_sha256": null
+}

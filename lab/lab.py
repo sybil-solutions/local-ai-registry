@@ -434,7 +434,7 @@ def rented(recipe, launch, args):
     if getattr(args, "machine", None):  # compare.py: the machine the other engine just ran on
         every = provider.offers
         provider.offers = lambda spec, exclude: [o for o in every(spec, set()) if o.get("machine_id") == args.machine]
-    exclude = set()
+    exclude = set(getattr(args, "exclude_machine", None) or [])  # hosts known not to start the container
     for attempt in range(1, 3):
         handle = provider.create(spec, exclude)
         handle["port"] = spec.port
@@ -684,6 +684,7 @@ def main():
     t.add_argument("--ready-timeout", type=int, default=5400, help="seconds from rent to a serving engine")
     t.add_argument("--min-ram", type=int, help="vast: minimum host RAM GB (default needs.host_ram_gb x 1.1 + 8; the recipe's needs stay as measured)")
     t.add_argument("--min-disk-bw", type=int, help="vast: minimum disk MB/s (default 1500 when the recipe reads from NVMe)")
+    t.add_argument("--exclude-machine", type=int, action="append", help="vast: never rent this machine id (e.g. one whose runtime cannot start the container)")
     t.add_argument("--label", help="rented instance label (default local-ai-lab-<card>), e.g. to tell a campaign's boxes apart")
     t.add_argument("--dry-run", action="store_true")
     cv = sub.add_parser("convert")
