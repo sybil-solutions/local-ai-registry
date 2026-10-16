@@ -1,0 +1,83 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "turboderp/Qwen3.8-Flash-Next-exl3@65c895314393431c09050b2e04e250836b3a6eb4",
+  "engine": "sglang-exl3-offload@9d137b00a524",
+  "set": {
+   "cache": "1.85",
+   "parts": 16,
+   "mamba": 5,
+   "graphs": 1,
+   "chunk": 2048,
+   "hc_int8": "row",
+   "override": "{\"language_model_only\":true}",
+   "ram": 48,
+   "disk": 64,
+   "kv_bits": 5
+  },
+  "card": "rtx-3060-ti-8gb"
+ },
+ "where": {
+  "on": "vast",
+  "gpu": "RTX 3060 Ti",
+  "host": "Massachusetts, US",
+  "cost_h": 0.14805555555555555
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "vast",
+  "gpu": "RTX 3060 Ti",
+  "launch_sha256": "38fcbf304aff9e87184745bb629fc6ddd75593077adb75df6508da002fd264a6",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 25.4,
+  "prefill": 610,
+  "served": "Qwen3.8-Flash-Next-exl3-65c89531"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 116,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_0a65a3c350a24746919a3db1",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nThe current weather in Paris is:\n\n- **Temperature:** 17°C\n- **Sky conditions:** Overcast\n\nSo it's a cool, cloudy day in Paris right now.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 93
+  },
+  "context": {
+   "prompt_tokens": 52625,
+   "seconds": 86.3,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 17579,
+   "seconds_total": 715.2
+  }
+ },
+ "launch_config_sha256": null
+}

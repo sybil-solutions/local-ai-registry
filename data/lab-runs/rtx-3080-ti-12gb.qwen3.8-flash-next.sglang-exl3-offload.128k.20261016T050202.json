@@ -1,0 +1,88 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "turboderp/Qwen3.8-Flash-Next-exl3@69e33439ae950f17bcbe95c98f117d80f759ab6d",
+  "engine": "sglang-exl3-offload@9d137b00a524",
+  "set": {
+   "ctx": 131072,
+   "cache": "1.75",
+   "elastic": "4.0",
+   "chunk": 8192,
+   "subchunk": 2048,
+   "parts": 8,
+   "mem": "0.88",
+   "mamba": 5,
+   "graphs": 1,
+   "alloc": "expandable_segments:True",
+   "cpu_tier": 1,
+   "ngram_ram": 2,
+   "ram": 55,
+   "disk": 86,
+   "kv_bits": 5
+  },
+  "card": "rtx-3080-ti-12gb"
+ },
+ "where": {
+  "on": "vast",
+  "gpu": "RTX 3080 Ti",
+  "host": "Quebec, CA",
+  "cost_h": 0.17472222222222222
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "vast",
+  "gpu": "RTX 3080 Ti",
+  "launch_sha256": "6e015744814c260bbb3869f8176aaea2e469e1868324a0fc5247723077f2784a",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 33.2,
+  "prefill": 1532,
+  "served": "Qwen3.8-Flash-Next-exl3-69e33439"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 113,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_76c67f94ce94485ebc6670b6",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nIt's currently **17°C** in Paris with **overcast** skies. 🌥️",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 53
+  },
+  "context": {
+   "prompt_tokens": 106294,
+   "seconds": 69.4,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 11066,
+   "seconds_total": 369.0
+  }
+ },
+ "launch_config_sha256": null
+}
