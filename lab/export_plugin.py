@@ -59,7 +59,9 @@ def entry(key, r, meta):
                          "mountPath": L["weights"]["at"].rsplit("/", 1)[0], "dir": name, "files": ""}],
             "asset": {"name": f"{Path(key).name}.config.yml", "mountPath": L["config"]["at"], "text": L["config"]["text"]} if L["config"] else None,
             "scratch": None, "launch": {"entrypoint": L["entrypoint"], "arguments": L["args"], "environment": L["env"], "port": L["port"], "shm": L["shm"]},
-            "serving": {"ctxTokens": L["ctx"], "kvTokens": L["ctx"] * L["seqs"] + 1024 * L["seqs"]}, "capabilities": caps}
+            "serving": {"ctxTokens": L["ctx"], "kvTokens": L["ctx"] * L["seqs"] + 1024 * L["seqs"]}, "capabilities": caps,
+            # a template profile's host needs (RAM for offloaded experts, NVMe) reach the plugin like a frozen launch's
+            **({"needs": L["needs"]} if L.get("needs") else {})}
 
 
 def derived(key, r, meta, p, L, caps):
