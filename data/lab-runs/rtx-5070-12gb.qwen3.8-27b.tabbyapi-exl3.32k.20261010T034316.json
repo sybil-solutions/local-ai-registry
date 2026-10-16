@@ -1,0 +1,73 @@
+{
+ "recipe": {
+  "model": "qwen3.8-27b",
+  "weights": "turboderp/Qwen3.8-27B-exl3@25019f1663e0e0bcfc363609f1dbabd5604b04e4",
+  "engine": "tabbyapi-exl3@0f83e6198dc3",
+  "set": {
+   "draft": "mtp",
+   "vision": true
+  },
+  "card": "rtx-5070-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5070"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-10",
+  "on": "owner",
+  "gpu": "RTX 5070",
+  "launch_sha256": "c221ba2337e55d787cbb61afa05e87d75e5af853bc8a415df622bee1a7299f65",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 59.0,
+  "prefill": 1009,
+  "served": "Qwen3.8-27B-exl3-25019f16"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nRed, green, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 134,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_f43e8207f9db43b1ae5a9d4b",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ],
+   "reply": "\n\nThe weather in Paris right now is **overcast** with a temperature of **17°C**.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 169
+  },
+  "context": {
+   "prompt_tokens": 25731,
+   "seconds": 25.5,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 15605,
+   "seconds_total": 235.3
+  }
+ },
+ "launch_config_sha256": "bf39cdd46c478a78f4529b434e0e15a4d1d430f56808163342eafaf166a2839c"
+}

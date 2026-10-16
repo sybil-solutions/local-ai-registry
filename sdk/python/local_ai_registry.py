@@ -36,7 +36,8 @@ def detect(cat, gpu, vram=None):
     n = _norm(gpu)
     hits = [(i, c) for i, c in cat["cards"].items()
             if any(x and x in n for x in _names(i, c)) and (not vram or abs(c["vram_gb"] - vram) <= 2)]
-    hits.sort(key=lambda x: -max(len(y) for y in _names(*x) if y and y in n))
+    hits.sort(key=lambda x: (-max(len(y) for y in _names(*x) if y and y in n),
+                             abs(x[1]["vram_gb"] - vram) if vram else 0))
     return hits[0][0] if hits else None
 
 

@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "gemma-4-12b-it-awq-int4",
+  "weights": "cyankiwi/gemma-4-12B-it-AWQ-INT4@ad2d7e521f3eaee492973ab130025e610b216d2c",
+  "engine": "vllm@8a69ffad015f",
+  "set": {
+   "ctx": 131072,
+   "mem": "0.7",
+   "seqs": 4,
+   "kv": "fp8",
+   "vision": true,
+   "tools": "gemma4",
+   "think": "gemma4",
+   "extra": "--max-num-batched-tokens 8192 --enable-prefix-caching --default-chat-template-kwargs '{\"enable_thinking\":true}' --speculative-config '{\"method\":\"mtp\",\"model\":\"google/gemma-4-12B-it-assistant\",\"revision\":\"46d4c6f13f0ac0ad827b915669b8df9b81c64c51\",\"num_speculative_tokens\":3}' --safetensors-load-strategy eager"
+  },
+  "card": "rtx-spark-n1x-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX Spark N1X"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-15",
+  "on": "owner",
+  "gpu": "NVIDIA RTX Spark N1X",
+  "launch_sha256": "2d090d42d08a6c80f0a01aaf410ebf3a41d6d85391c0188e545dc00503efd0f3",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 47.7,
+  "prefill": 546,
+  "served": "gemma-4-12B-it-AWQ-INT4-ad2d7e52"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 320,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-b4a4bf2da924c2e5",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with overcast skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 0
+  },
+  "context": {
+   "prompt_tokens": 106258,
+   "seconds": 194.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1657,
+   "seconds_total": 35.6
+  }
+ },
+ "launch_config_sha256": null
+}

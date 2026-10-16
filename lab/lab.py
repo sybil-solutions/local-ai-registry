@@ -148,7 +148,10 @@ def render(recipe):
             "env": {k: sub(v) for k, v in (p.get("env") or {}).items()},
             "weights": {"repo": repo, "revision": rev, "at": sub(p["weights_at"])},
             "config": {"at": p["config_at"], "text": config, "sha256": hashlib.sha256(config.encode()).hexdigest()} if config else None,
-            "ctx": int(s["ctx"]), "seqs": int(s["seqs"]), "vision": bool(s.get("vision", False)), "backend": p["backend"], "min_cuda": p.get("min_cuda")}
+            "ctx": int(s["ctx"]), "seqs": int(s["seqs"]), "vision": bool(s.get("vision", False)), "backend": p["backend"], "min_cuda": p.get("min_cuda"),
+            # an offload profile states what the host must have, from its settings (experts in RAM, tables on NVMe)
+            **({"needs": {k: (v if not isinstance(v, str) or k == "fast_storage" else float(sub(v)))
+                          for k, v in p["needs"].items()}} if p.get("needs") else {})}
 
 
 # ----------------------------------------------------------------------------- the server under test
@@ -359,7 +362,7 @@ def lab_spec(recipe, launch, args):
         def __init__(self):
             self.recipe, self.image, self.entrypoint = {"id": "lab"}, launch["image"], launch["entrypoint"]
             self.arguments, self.port, self.disk = list(launch["args"]), launch["port"], args.disk
-            self.name = f"local-ai-lab-{recipe['card']}"[:60]
+            self.name = (getattr(args, "label", None) or f"local-ai-lab-{recipe['card']}")[:60]
             tok = Path.home() / ".cache" / "huggingface" / "token"
             self.env = {**(launch.get("env") or {}), **({"HF_TOKEN": tok.read_text().strip()} if tok.exists() else {})}
             self.vram_gb = card(recipe["card"])["vram_gb"] or 0
@@ -384,7 +387,12 @@ def lab_spec(recipe, launch, args):
 def rented(recipe, launch, args):
     import rent as vr  # Vast and RunPod: offers, create, poll, destroy
     spec = lab_spec(recipe, launch, args)
-    ns = argparse.Namespace(vast_min_inet=args.min_inet, vast_min_cuda=args.min_cuda or launch.get("min_cuda") or 12.9, vast_max_price=args.max_price, cloud="COMMUNITY", disk=args.disk, vast_any_host=getattr(args, "any_host", False))
+    needs = launch.get("needs") or {}
+    # a host with the RAM the recipe states plus room for the OS and the container runtime, and an NVMe-class disk when it reads from one
+    ns = argparse.Namespace(vast_min_inet=args.min_inet, vast_min_cuda=args.min_cuda or launch.get("min_cuda") or 12.9, vast_max_price=args.max_price, cloud="COMMUNITY", disk=max(args.disk, int((needs.get("disk_gb") or 0) + 10)), vast_any_host=getattr(args, "any_host", False),
+                            vast_min_ram=getattr(args, "min_ram", None) or (int(needs["host_ram_gb"] * 1.1 + 8) if needs.get("host_ram_gb") else 0),
+                            vast_min_disk_bw=getattr(args, "min_disk_bw", None) or (1500 if needs.get("fast_storage") == "nvme" else 0),
+                            vast_min_pcie=getattr(args, "min_pcie", 0) or 0, vast_max_inet_cost=getattr(args, "max_inet_cost", 0.02))
     provider = vr.PROVIDERS[args.on](ns)
     if getattr(args, "machine", None):  # compare.py: the machine the other engine just ran on
         every = provider.offers
@@ -404,8 +412,8 @@ def rented(recipe, launch, args):
                 if not started and time.monotonic() - t0 > 900:
                     exclude.update({handle.get("offer"), handle.get("machine")})
                     raise vr.StartStalled(note)
-                if time.monotonic() - t0 > 3600:
-                    raise SystemExit("not ready within an hour")
+                if time.monotonic() - t0 > getattr(args, "ready_timeout", 5400):  # pull, download and load: about an hour for 70 GB at 300 Mbps
+                    raise SystemExit(f"not ready within {getattr(args, 'ready_timeout', 5400)}s")
                 time.sleep(10)
             log(f"ready after {int(time.monotonic() - t0)}s at {handle['endpoint']}")
             return handle["endpoint"], {"on": args.on, "gpu": handle.get("gpu"), "host": handle.get("host"), "cost_h": handle.get("cost"),
@@ -620,6 +628,12 @@ def main():
     t.add_argument("--max-price", type=float, default=1.5)
     t.add_argument("--disk", type=int, default=60)
     t.add_argument("--any-host", action="store_true", help="vast: also unverified hosts (the gates are the same; for cards verified hosts never offer)")
+    t.add_argument("--min-pcie", type=float, default=0, help="vast: minimum host-to-device GB/s (offload recipes: experts cross PCIe every token)")
+    t.add_argument("--max-inet-cost", type=float, default=0.02, help="vast: maximum $ per GB downloaded (0: no limit)")
+    t.add_argument("--ready-timeout", type=int, default=5400, help="seconds from rent to a serving engine")
+    t.add_argument("--min-ram", type=int, help="vast: minimum host RAM GB (default needs.host_ram_gb x 1.1 + 8; the recipe's needs stay as measured)")
+    t.add_argument("--min-disk-bw", type=int, help="vast: minimum disk MB/s (default 1500 when the recipe reads from NVMe)")
+    t.add_argument("--label", help="rented instance label (default local-ai-lab-<card>), e.g. to tell a campaign's boxes apart")
     t.add_argument("--dry-run", action="store_true")
     cv = sub.add_parser("convert")
     cv.add_argument("card")

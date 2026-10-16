@@ -1,0 +1,17 @@
+{
+  "id": "rtx-spark-n1x-128gb",
+  "name": "RTX Spark N1X",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 128,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "nvidia",
+    "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+    "names": [
+      "rtxsparkn1x6144coreblackwellrtxgpu"
+    ],
+    "vramGb": 128,
+    "unifiedMemory": true
+  }
+}

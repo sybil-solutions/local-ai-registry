@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "ornith-ai/Ornith-1.5-35B-A3B-GGUF@12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+  "engine": "llama.cpp-ornith-1.5-35b-a3b-q4-k-m-mtp-autofit-256k-rtx-5070-12gb@52192a23c7b2",
+  "set": {},
+  "card": "rtx-5070-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5070"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-08",
+  "on": "owner",
+  "gpu": "RTX 5070",
+  "launch_sha256": "73587a8bb3bd25dd4539c708d65fe21e3f1953478ea243dd6426627dadfd287a",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 32.3,
+  "prefill": 818,
+  "served": "/models/Ornith-1.5-35B-Q4_K_M.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, yellow, blue.",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 236,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "mAvCNFY5BwLwhYnDPIodeXPJMHYporz9"
+    }
+   ],
+   "reply": "The weather in Paris right now:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n\nIt's a mild but cloudy day in Paris. You might want to bring a light jacket!",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 59
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 261.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1100,
+   "seconds_total": 34.2
+  }
+ },
+ "launch_config_sha256": null
+}

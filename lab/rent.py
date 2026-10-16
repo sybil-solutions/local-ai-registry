@@ -266,6 +266,12 @@ class Vast:
         self.verified = "any" if getattr(args, "vast_any_host", False) else "true"  # unverified hosts: for cards verified hosts never offer
         self.min_cuda = args.vast_min_cuda
         self.max_price = args.vast_max_price
+        # an offload recipe keeps experts in host RAM and reads tables from NVMe: rent only a host that has them
+        self.min_ram = getattr(args, "vast_min_ram", 0) or 0
+        self.min_disk_bw = getattr(args, "vast_min_disk_bw", 0) or 0
+        self.min_pcie = getattr(args, "vast_min_pcie", 0) or 0
+        # hosts bill the download per GB; at $0.04/GB a 70 GB image and weights pull costs more than hours of compute
+        self.max_inet_cost = getattr(args, "vast_max_inet_cost", 0.02)
 
     @staticmethod
     def cli(*argv, timeout=120):
@@ -312,15 +318,22 @@ class Vast:
         query = (f"num_gpus=1 rentable=true verified={self.verified} gpu_name={name} gpu_ram>={lo} "  # the <= side is applied below: the server reads it in MB
                  f"inet_down>={self.min_inet} disk_space>={spec.disk + 5} reliability>0.9 cuda_max_good>={self.min_cuda} "
                  f"dph_total<={self.max_price} "  # the campaign ceiling; a card with no offer under it is reported, never rented above it
-                 f"geolocation notin [CN]")  # hosts that cannot reach Hugging Face never finish the weights download
+                 + (f"cpu_ram>={self.min_ram} " if self.min_ram else "")  # GB, like gpu_ram
+                 + (f"disk_bw>={self.min_disk_bw} " if self.min_disk_bw else "")  # MB/s
+                 + (f"pcie_bw>={self.min_pcie} " if self.min_pcie else "")  # GB/s host-to-device: offloaded experts cross it every token
+                 + (f"inet_down_cost<={self.max_inet_cost} " if self.max_inet_cost else "")  # $/GB downloaded
+                 + "geolocation notin [CN]")  # hosts that cannot reach Hugging Face never finish the weights download
         offers = self.cli("search", "offers", query, "-o", "dph_total")
         offers = [o for o in offers if o.get("id") not in exclude and o.get("machine_id") not in exclude
                   and (o.get("gpu_ram") or 0) <= hi * 1024]  # results report MB; keep the 8 GB variant off a 16 GB card and vice versa
         if not offers:
             raise SystemExit(f"no Vast offers for {query}")
-        # cheapest hosts are often the slowest pullers: within 1.5x of the best price, take the fastest downlink first
-        cap = (offers[0].get("dph_total") or 0) * 1.5
-        cheap = [o for o in offers if (o.get("dph_total") or 0) <= cap]
+        # a run's cost: about two hours of compute plus the pull (image and weights, at most the disk we ask for)
+        est = lambda o: 2 * (o.get("dph_total") or 0) + (o.get("inet_down_cost") or 0) * spec.disk
+        offers.sort(key=est)
+        # cheapest hosts are often the slowest pullers: within 1.5x of the best estimate, take the fastest downlink first
+        cap = est(offers[0]) * 1.5
+        cheap = [o for o in offers if est(o) <= cap]
         cheap.sort(key=lambda o: -(o.get("inet_down") or 0))
         return cheap + [o for o in offers if o not in cheap]
 

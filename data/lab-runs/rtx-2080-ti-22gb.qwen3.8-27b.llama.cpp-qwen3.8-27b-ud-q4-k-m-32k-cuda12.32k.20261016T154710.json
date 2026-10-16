@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.8-27b",
+  "weights": "unsloth/Qwen3.8-27B-GGUF@4ca720788d1e01f1bff70c033e0d0028fd02e502",
+  "engine": "llama.cpp-qwen3.8-27b-ud-q4-k-m-32k-cuda12@52192a23c7b2",
+  "set": {},
+  "card": "rtx-2080-ti-22gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 2080 Ti (22 GiB memory mod)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 2080 Ti (22 GiB memory mod)",
+  "launch_sha256": "7237b6f140b44ffe4c5d310f066ff48c5d3dc4d374da7c1c6ddb892106a87188",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 27.7,
+  "prefill": 501,
+  "served": "Qwen3.8-27B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 116,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "JlgVgXOg34GHd0hZ6vw8a52q228m8IdT"
+    }
+   ],
+   "reply": "Here's the current weather in **Paris**:\n\n- 🌡️ **Temperature:** 17°C\n- ☁️ **Sky:** Overcast\n\nA mild but cloudy day in Paris!",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 95
+  },
+  "context": {
+   "prompt_tokens": 25740,
+   "seconds": 51.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1104,
+   "seconds_total": 40.4
+  }
+ },
+ "launch_config_sha256": null
+}

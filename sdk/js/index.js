@@ -16,7 +16,8 @@ export function detect(cat, gpu, vram) {
   const n = norm(gpu);
   const hits = Object.entries(cat.cards).filter(([id, c]) => names(id, c).some((x) => x && n.includes(x)) && (!vram || Math.abs(c.vram_gb - vram) <= 2));
   const best = ([id, c]) => Math.max(...names(id, c).filter((x) => n.includes(x)).map((x) => x.length));
-  return hits.sort((a, b) => best(b) - best(a))[0]?.[0] ?? null;
+  return hits.sort((a, b) => best(b) - best(a) ||
+    (vram ? Math.abs(a[1].vram_gb - vram) - Math.abs(b[1].vram_gb - vram) : 0))[0]?.[0] ?? null;
 }
 
 /** The recommended recipe for a GPU (or null); `all: true` returns the card's top three. */

@@ -1,0 +1,95 @@
+{
+  "id": "llama.cpp-qwen3.8-27b-ud-q4-k-m-32k-cuda12",
+  "engine": "llama.cpp",
+  "about": "Qwen3.8-27B UD-Q4_K_M on one modified 22 GiB RTX 2080 Ti, 32K context and Q4 KV cache. All model layers on the selected GPU; no CPU offload or speculative decoder. Uses the model template's medium reasoning effort; generation and thinking are uncapped.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12-b11146@sha256:52192a23c7b258044463aebba78826cdff39a7393b713edc313324b343a7b836",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Qwen3.8-27B-UD-Q4_K_M.gguf",
+    "--alias",
+    "Qwen3.8-27B",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--n-gpu-layers",
+    "999",
+    "--split-mode",
+    "none",
+    "--ctx-size",
+    "32768",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--jinja",
+    "--metrics",
+    "--no-mmproj",
+    "--fit",
+    "off",
+    "--batch-size",
+    "512",
+    "--ubatch-size",
+    "128",
+    "--chat-template-kwargs",
+    "{\"reasoning_effort\":\"medium\"}"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Qwen3.8-27B-UD-Q4_K_M.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 32768,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Qwen3.8-27B",
+    "family": "qwen",
+    "format": "GGUF UD-Q4_K_M",
+    "engine": "llama.cpp",
+    "servedName": "Qwen3.8-27B",
+    "sizeGb": 16.464,
+    "minDriver": "570.124.06",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 32768,
+      "kvTokens": 32768
+    },
+    "asset": null,
+    "weights": [
+      {
+        "dir": "",
+        "files": "Qwen3.8-27B-UD-Q4_K_M.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 16.464
+      }
+    ]
+  },
+  "ids": {
+    "rtx-2080-ti-22gb": "qwen3.8-27b.llama.cpp.32k.rtx-2080-ti-22gb"
+  }
+}

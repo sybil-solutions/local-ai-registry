@@ -11,6 +11,7 @@
     "names": [
       "gb10"
     ],
-    "vramGb": 128
+    "vramGb": 128,
+    "unifiedMemory": true
   }
 }

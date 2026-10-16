@@ -1,0 +1,17 @@
+{
+  "id": "rtx-2080-ti-22gb",
+  "name": "GeForce RTX 2080 Ti",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 22,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "nvidia",
+    "name": "GeForce RTX 2080 Ti",
+    "names": [
+      "rtx2080ti"
+    ],
+    "vramGb": 22
+  },
+  "notes": "Owner-tested 22 GiB memory modification of the RTX 2080 Ti; does not match stock 11 GiB cards or a plain RTX 2080. Nominal memory bandwidth is not measured in this submission."
+}

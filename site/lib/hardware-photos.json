@@ -1248,5 +1248,16 @@
   "publisher": "AMD",
   "representative": true,
   "caption": "Krackan Point = Ryzen AI 7 350 (XDNA2 NPU). AMD product page uses a shared Ryzen AI 300-series chip/package render (same asset across Ryzen AI 7 350 / AI 5 340). Representative chip render, not Krackan-specific."
+ },
+ "rtx-2080-ti-22gb": {
+  "src": "/hardware/rtx-2080-ti.jpg",
+  "width": 2560,
+  "height": 2560,
+  "alt": "NVIDIA GeForce RTX 2080 Ti Founders Edition, representative image",
+  "sourceUrl": "https://www.nvidia.com/content/nvidiaGDC/zz/en_ZZ/geforce/graphics-cards/rtx-2080-ti.html",
+  "publisher": "NVIDIA",
+  "representative": true,
+  "caption": "Official NVIDIA RTX 2080 Ti gallery image, representative of the GPU family. This stock card image does not depict the owner's 22 GiB memory modification.",
+  "assetUrl": "https://images.nvidia.com/aem-dam/Solutions/geforce/geforce-rtx-turing/2080-ti/gallery/geforce-rtx-2080-ti-gallery-a.jpg"
  }
 }

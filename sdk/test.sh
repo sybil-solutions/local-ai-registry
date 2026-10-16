@@ -7,6 +7,25 @@ import json, os, shlex, subprocess, sys
 sys.path.insert(0, "sdk/python")
 import local_ai_registry as L
 cat = json.load(open("dist/catalog.json"))
+# Identical driver names need memory to distinguish 10 and 12 GB variants.
+variants = {"cards": {
+    "rtx-3080-10gb": {"name": "GeForce RTX 3080", "vram_gb": 10},
+    "rtx-3080-12gb": {"name": "GeForce RTX 3080", "vram_gb": 12},
+    "rtx-3080-ti-12gb": {"name": "GeForce RTX 3080 Ti", "vram_gb": 12}}}
+cases = [["NVIDIA GeForce RTX 3080", 10, "rtx-3080-10gb"],
+         ["NVIDIA GeForce RTX 3080", 12, "rtx-3080-12gb"],
+         ["NVIDIA GeForce RTX 3080", 11.8, "rtx-3080-12gb"],
+         ["NVIDIA GeForce RTX 3080 Ti", 12, "rtx-3080-ti-12gb"],
+         ["NVIDIA GeForce RTX 3080", None, "rtx-3080-10gb"]]
+for gpu, memory, expected in cases:
+    assert L.detect(variants, gpu, memory) == expected, (gpu, memory, expected)
+variant_js = subprocess.run(["node", "--input-type=module", "-e", '''
+import {readFileSync} from "node:fs"; import {detect} from "./sdk/js/index.js";
+const {variants, cases} = JSON.parse(readFileSync(0, "utf8"));
+for (const [gpu, memory, expected] of cases) {
+  if (detect(variants, gpu, memory) !== expected) throw new Error(`${gpu}: ${memory}`);
+}
+'''], input=json.dumps({"variants": variants, "cases": cases}), text=True, check=True)
 names = {i: c["name"] for i, c in cat["cards"].items()}
 for i, c in cat["cards"].items():
     got = L.detect(cat, "NVIDIA GeForce " + c["name"] if c["vendor"] == "nvidia" else c["name"], c["vram_gb"])

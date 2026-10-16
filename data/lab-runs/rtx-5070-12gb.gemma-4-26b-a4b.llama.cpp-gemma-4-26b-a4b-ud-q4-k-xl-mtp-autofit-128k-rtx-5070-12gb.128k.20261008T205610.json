@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "gemma-4-26b-a4b",
+  "weights": "unsloth/gemma-4-26B-A4B-it-GGUF@c099eb48e663fd284577b04978a94ffccb261841",
+  "engine": "llama.cpp-gemma-4-26b-a4b-ud-q4-k-xl-mtp-autofit-128k-rtx-5070-12gb@52192a23c7b2",
+  "set": {},
+  "card": "rtx-5070-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5070"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-08",
+  "on": "owner",
+  "gpu": "RTX 5070",
+  "launch_sha256": "31272474b5d666bf65fabf66398c399c04981d54bdc0ac2aa14525f90eceede0",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 35.0,
+  "prefill": 1460,
+  "served": "/models/gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 450,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "k03WpHY8y1snn1kVwjLQsqqpPpRMXr8X"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with overcast skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 0
+  },
+  "context": {
+   "prompt_tokens": 106258,
+   "seconds": 72.8,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1549,
+   "seconds_total": 46.3
+  }
+ },
+ "launch_config_sha256": null
+}

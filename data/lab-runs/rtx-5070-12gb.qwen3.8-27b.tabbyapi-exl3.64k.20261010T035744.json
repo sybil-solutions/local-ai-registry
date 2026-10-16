@@ -1,0 +1,73 @@
+{
+ "recipe": {
+  "model": "qwen3.8-27b",
+  "weights": "Mia-AiLab/Qwen3.8-27B-EXL3-2.0bpw@b4925724092da59826c02d25a7201fb272bf4f34",
+  "engine": "tabbyapi-exl3@0f83e6198dc3",
+  "set": {
+   "ctx": 65536,
+   "draft": "mtp"
+  },
+  "card": "rtx-5070-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5070"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-10",
+  "on": "owner",
+  "gpu": "RTX 5070",
+  "launch_sha256": "2289559a66553498444e00165c3cb23a438f50c7e301abb4a0592ce074cb52f5",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 57.1,
+  "prefill": 941,
+  "served": "Qwen3.8-27B-EXL3-2.0bpw-b4925724"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nRed, Blue, Yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 133,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_04ea9897967249e5859bac0d",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ],
+   "reply": "\n\nRight now in Paris, it's **17°C** and **overcast**.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 68
+  },
+  "context": {
+   "prompt_tokens": 52574,
+   "seconds": 55.9,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 9394,
+   "seconds_total": 143.7
+  }
+ },
+ "launch_config_sha256": "e350131e7c0b3f1c6fd34a50b97b10a0538240688860595ae459b163ca1d09fd"
+}
