@@ -1,0 +1,89 @@
+{
+  "id": "llama.cpp-sycl-welp-35b-a3b-gguf-256k-arc-pro-b70",
+  "engine": "llama.cpp",
+  "about": "Welp-35B-A3B (GGUF · mixed K-quants) on SYCL (official server-intel image, b11515), Intel Arc Pro B70 32 GB: flash attention on, batch and micro-batch 2048, all layers on the GPU",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:86b37d266ce85b485127adea68c9dc6d04d0ec9a64b0979844d5bbd8d66c53c5",
+  "backend": "intel-xpu",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/Welp-35B-A3B.gguf",
+    "--alias",
+    "Welp-35B-A3B-GGUF",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "262144",
+    "--n-gpu-layers",
+    "999",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "2048",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--no-mmproj",
+    "--metrics"
+  ],
+  "env": {
+    "ONEAPI_DEVICE_SELECTOR": "level_zero:0",
+    "UR_L0_ENABLE_RELAXED_ALLOCATION_LIMITS": "1"
+  },
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "quaedra/Welp-35B-A3B-GGUF",
+      "revision": "3e4a3adbda8df07d2889978170d9955c2e59fb7a",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Welp-35B-A3B.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Welp-35B-A3B",
+    "family": "qwen",
+    "format": "GGUF · mixed K-quants",
+    "engine": "llama.cpp",
+    "servedName": "Welp-35B-A3B-GGUF",
+    "sizeGb": 13.21,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "video": false,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 262144,
+      "kvTokens": 0
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Welp-35B-A3B.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 13.21
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "intel-arc-pro-b70-32gb": "welp-35b-a3b-256k-arcprob70-llamacpp-sycl"
+  }
+}

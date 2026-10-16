@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "welp-35b-a3b",
+  "weights": "quaedra/Welp-35B-A3B-GGUF@3e4a3adbda8df07d2889978170d9955c2e59fb7a",
+  "engine": "llama.cpp-sycl-welp-35b-a3b-gguf-256k-arc-pro-b70@86b37d266ce8",
+  "set": {},
+  "card": "intel-arc-pro-b70-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner: omarchy box, EPYC 7443P, card 0000:48:00.0)"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner: omarchy box, EPYC 7443P, card 0000:48:00.0)",
+  "launch_sha256": "6ec206451fb89f2a4f4569f706ec5478397b20fd642114f8d7c003c819603973",
+  "gates": "load chat reasoning context speed",
+  "tps": 82.6,
+  "prefill": 1209,
+  "served": "Welp-35B-A3B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": false,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 708,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "hc2mMBCQenY5SfTNYCuaNNzPsA8tWVrT"
+    }
+   ],
+   "reply": "",
+   "finish": "tool_calls",
+   "calls_again": 2,
+   "thinking_chars": 1458
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 176.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 2669,
+   "seconds_total": 33.3
+  }
+ },
+ "launch_config_sha256": null
+}

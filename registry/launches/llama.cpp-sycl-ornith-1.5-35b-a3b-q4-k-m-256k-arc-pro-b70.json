@@ -1,0 +1,89 @@
+{
+  "id": "llama.cpp-sycl-ornith-1.5-35b-a3b-q4-k-m-256k-arc-pro-b70",
+  "engine": "llama.cpp",
+  "about": "Ornith-1.5-35B-A3B (GGUF · Q4_K_M) on SYCL (official server-intel image, b11515), Intel Arc Pro B70 32 GB: flash attention on, batch and micro-batch 2048, all layers on the GPU",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:86b37d266ce85b485127adea68c9dc6d04d0ec9a64b0979844d5bbd8d66c53c5",
+  "backend": "intel-xpu",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/Ornith-1.5-35B-Q4_K_M.gguf",
+    "--alias",
+    "Ornith-1.5-35B-A3B-GGUF",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "262144",
+    "--n-gpu-layers",
+    "999",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "2048",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--no-mmproj",
+    "--metrics"
+  ],
+  "env": {
+    "ONEAPI_DEVICE_SELECTOR": "level_zero:0",
+    "UR_L0_ENABLE_RELAXED_ALLOCATION_LIMITS": "1"
+  },
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "ornith-ai/Ornith-1.5-35B-A3B-GGUF",
+      "revision": "12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Ornith-1.5-35B-Q4_K_M.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Ornith-1.5-35B-A3B",
+    "family": "ornith",
+    "format": "GGUF · Q4_K_M",
+    "engine": "llama.cpp",
+    "servedName": "Ornith-1.5-35B-A3B-GGUF",
+    "sizeGb": 21.71,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "video": false,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 262144,
+      "kvTokens": 0
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Ornith-1.5-35B-Q4_K_M.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 21.71
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "intel-arc-pro-b70-32gb": "ornith15-35b-a3b-q4km-256k-arcprob70-llamacpp-sycl"
+  }
+}

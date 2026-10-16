@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "muse-glimmer-30b",
+  "weights": "lmstudio-community/Muse-Glimmer-30B-GGUF@c34cb7372a72fd3bec29e3a21e6c8e04e337d5ae",
+  "engine": "llama.cpp-sycl-muse-glimmer-30b-q4-k-m-128k-arc-pro-b70@86b37d266ce8",
+  "set": {},
+  "card": "intel-arc-pro-b70-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner: omarchy box, EPYC 7443P, card 0000:48:00.0)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner: omarchy box, EPYC 7443P, card 0000:48:00.0)",
+  "launch_sha256": "8f3453d518efde4c71b8602558da62419740f6132148f0ed5f67ef89ab4518ef",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 29.6,
+  "prefill": 915,
+  "served": "Muse-Glimmer-30B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 295,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "IFsN7qkvrQ8v6F7EWKuXT5Os7Fy3qS1R"
+    }
+   ],
+   "reply": "Paris is currently 17°C with overcast skies.\n",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 191
+  },
+  "context": {
+   "prompt_tokens": 87285,
+   "seconds": 95.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1491,
+   "seconds_total": 51.5
+  }
+ },
+ "launch_config_sha256": null
+}

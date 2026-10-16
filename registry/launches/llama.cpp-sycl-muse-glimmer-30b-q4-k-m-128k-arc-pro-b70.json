@@ -1,0 +1,89 @@
+{
+  "id": "llama.cpp-sycl-muse-glimmer-30b-q4-k-m-128k-arc-pro-b70",
+  "engine": "llama.cpp",
+  "about": "Muse Glimmer 30B (GGUF · Q4_K_M) on SYCL (official server-intel image, b11515), Intel Arc Pro B70 32 GB: flash attention on, batch and micro-batch 2048, all layers on the GPU",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:86b37d266ce85b485127adea68c9dc6d04d0ec9a64b0979844d5bbd8d66c53c5",
+  "backend": "intel-xpu",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/Muse-Glimmer-30B-KQuant-17GB-Q4_K_M.gguf",
+    "--alias",
+    "Muse-Glimmer-30B-GGUF",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "131072",
+    "--n-gpu-layers",
+    "999",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "2048",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--no-mmproj",
+    "--metrics"
+  ],
+  "env": {
+    "ONEAPI_DEVICE_SELECTOR": "level_zero:0",
+    "UR_L0_ENABLE_RELAXED_ALLOCATION_LIMITS": "1"
+  },
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "lmstudio-community/Muse-Glimmer-30B-GGUF",
+      "revision": "c34cb7372a72fd3bec29e3a21e6c8e04e337d5ae",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Muse-Glimmer-30B-KQuant-17GB-Q4_K_M.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Muse Glimmer 30B",
+    "family": "muse",
+    "format": "GGUF · Q4_K_M",
+    "engine": "llama.cpp",
+    "servedName": "Muse-Glimmer-30B-GGUF",
+    "sizeGb": 16.76,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "video": false,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 131072,
+      "kvTokens": 0
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Muse-Glimmer-30B-KQuant-17GB-Q4_K_M.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 16.76
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "intel-arc-pro-b70-32gb": "muse-glimmer-30b-q4km-128k-arcprob70-llamacpp-sycl"
+  }
+}

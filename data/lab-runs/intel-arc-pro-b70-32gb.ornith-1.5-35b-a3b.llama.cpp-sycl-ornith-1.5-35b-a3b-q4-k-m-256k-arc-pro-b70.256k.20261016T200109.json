@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "ornith-ai/Ornith-1.5-35B-A3B-GGUF@12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+  "engine": "llama.cpp-sycl-ornith-1.5-35b-a3b-q4-k-m-256k-arc-pro-b70@86b37d266ce8",
+  "set": {},
+  "card": "intel-arc-pro-b70-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner: omarchy box, EPYC 7443P, card 0000:48:00.0)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner: omarchy box, EPYC 7443P, card 0000:48:00.0)",
+  "launch_sha256": "3d16d6a04d1785ba62e5f67ad6829b985d3e38734c5bcf5a4253265e8ff5f589",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 101.8,
+  "prefill": 1250,
+  "served": "Ornith-1.5-35B-A3B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 193,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "bp24SUC5n5NUgaTRBoxEMhysJfDSSdSI"
+    }
+   ],
+   "reply": " **Temperature:** 17°C\n- ☁️ **Conditions:** Overcast\n\nIt's a mild, cloudy day in Paris. If you're heading out, you might want a light jacket! Let me know if you'd like the forecast for any other city.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 90
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 170.8,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1144,
+   "seconds_total": 12.2
+  }
+ },
+ "launch_config_sha256": null
+}

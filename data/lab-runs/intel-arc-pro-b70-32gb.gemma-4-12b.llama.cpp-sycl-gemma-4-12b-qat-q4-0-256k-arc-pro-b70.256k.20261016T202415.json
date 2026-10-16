@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "gemma-4-12b",
+  "weights": "google/gemma-4-12B-it-qat-q4_0-gguf@29d097773436b69ff9feafd636ab4cf873786537",
+  "engine": "llama.cpp-sycl-gemma-4-12b-qat-q4-0-256k-arc-pro-b70@86b37d266ce8",
+  "set": {},
+  "card": "intel-arc-pro-b70-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner: omarchy box, EPYC 7443P, card 0000:48:00.0)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner: omarchy box, EPYC 7443P, card 0000:48:00.0)",
+  "launch_sha256": "7a7637e490395189886265be0a537c2d3c36648c134e1218eb8dfca7a02b94dc",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 48.1,
+  "prefill": 910,
+  "served": "gemma-4-12B-it-qat-q4_0-gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 360,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "DpqLqW7SWgFsQTNHrPyvDoxkhM3EId8s"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with overcast skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 0
+  },
+  "context": {
+   "prompt_tokens": 213576,
+   "seconds": 234.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1616,
+   "seconds_total": 35.4
+  }
+ },
+ "launch_config_sha256": null
+}
