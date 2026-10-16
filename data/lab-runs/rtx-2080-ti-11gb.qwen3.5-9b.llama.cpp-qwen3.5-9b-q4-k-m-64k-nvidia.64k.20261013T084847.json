@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.5-9b",
+  "weights": "unsloth/Qwen3.5-9B-GGUF@3885219b6810b007914f3a7950a8d1b469d598a5",
+  "engine": "llama.cpp-qwen3.5-9b-q4-k-m-64k-nvidia@52192a23c7b2",
+  "set": {},
+  "card": "rtx-2080-ti-11gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": null
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-13",
+  "on": "owner",
+  "gpu": null,
+  "launch_sha256": "ce608f15a5d186cb6c1757762d4844074e8d594c6cf39ceff513c4bb4a7830e9",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 20.0,
+  "prefill": 523,
+  "served": "/models/Qwen3.5-9B-Q4_K_M.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 890,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "sZMBizfAuHgjIPbNUKqYGGI7ITYUr6Ah"
+    }
+   ],
+   "reply": "The current weather in Paris is overcast with a temperature of 17°C.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 230
+  },
+  "context": {
+   "prompt_tokens": 52583,
+   "seconds": 100.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 2085,
+   "seconds_total": 110.2
+  }
+ },
+ "launch_config_sha256": null
+}
