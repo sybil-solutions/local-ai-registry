@@ -1,0 +1,143 @@
+{
+  "id": "sglang-qwen3.8-flash-next-exl3-3.05bpw-mtp-ram80-256k-intel-arc-pro-b70-32gb",
+  "engine": "sglang",
+  "about": "Qwen3.8-Flash-Next EXL3 3.05 bpw on one Arc Pro B70 with NEXTN MTP (3 steps, 4 draft tokens): routed experts in host RAM, n-gram (engram) table on NVMe with a 1 GB RAM row cache, full 262,144 context (270,336-token fp8 KV cache), vision; for hosts with about 80 GB RAM",
+  "image": "ghcr.io/sybil-solutions/qwen38-flash-next-b70-offload@sha256:4f654928e73a77ff30e12cba5a366e092d02e88ca64b1c2d03d98353e8d19c5c",
+  "provenance": "https://github.com/sybil-solutions/local-ai-images/actions/runs/38956685378",
+  "backend": "intel-xpu",
+  "port": 30250,
+  "entrypoint": "/opt/qwen-b70/serve/entrypoint.sh",
+  "args": [
+    "python3",
+    "-m",
+    "sglang.launch_server",
+    "--model-path",
+    "/models/turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+    "--quantization",
+    "exl3",
+    "--trust-remote-code",
+    "--device",
+    "xpu",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "30250",
+    "--served-model-name",
+    "flashnext",
+    "--disable-shared-experts-fusion",
+    "--kv-cache-dtype",
+    "fp8_e4m3",
+    "--context-length",
+    "262144",
+    "--mem-fraction-static",
+    "0.88",
+    "--chunked-prefill-size",
+    "4096",
+    "--max-running-requests",
+    "4",
+    "--dtype",
+    "bfloat16",
+    "--max-mamba-cache-size",
+    "8",
+    "--max-total-tokens",
+    "270336",
+    "--cuda-graph-backend-decode",
+    "full",
+    "--cuda-graph-bs-decode",
+    "1",
+    "2",
+    "4",
+    "--reasoning-parser",
+    "qwen3",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--speculative-algorithm",
+    "NEXTN",
+    "--speculative-num-steps",
+    "3",
+    "--speculative-eagle-topk",
+    "1",
+    "--speculative-num-draft-tokens",
+    "4"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "ZE_AFFINITY_MASK": "0",
+    "EXL3_MODEL_PATH": "/models/turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+    "EXL3_LIB": "/opt/trellis-serve/xpu/exl3xpu/_C_sgl.so",
+    "EXL3_MOE_LIB": "/opt/qwen-b70/kernels/moe-a8/_moe_a8.so",
+    "EXL3_MOE_SLOTS": "8000",
+    "EXL3_MOE_CACHE": "1",
+    "EXL3_NGRAM_TIER": "nvme",
+    "NEOReadDebugKeys": "1",
+    "TreatNonUsmForTransfersAsSharedSystem": "0",
+    "EnableSharedSystemUsmSupport": "0",
+    "EXL3_QSA_DENSE_BYTES": "134217728",
+    "EXL3_QSA_ROWS": "64",
+    "EXL3_TORCH_MEM_FRACTION": "0.95",
+    "TORCHINDUCTOR_COMPILE_THREADS": "1",
+    "EXL3_VISION": "1",
+    "EXL3_NVTIER": "0",
+    "QWEN_B70_MODE": "nvme32",
+    "SGLANG_EXL3_NGRAM_RAM_GB": "1"
+  },
+  "shm": "64g",
+  "weights": [
+    {
+      "repo": "turboderp/Qwen3.8-Flash-Next-exl3",
+      "revision": "69e33439ae950f17bcbe95c98f117d80f759ab6d",
+      "at": "/models/turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 63,
+    "disk_gb": 85.14,
+    "fast_storage": "nvme"
+  },
+  "setup": "Requires one Intel Arc Pro B70 32 GB, 63 GB of free host RAM and 85.14 GB for the weights on a local NVMe SSD. Measured on omarchy (EPYC 7443P, 8-channel DDR4, PCIe 4.0 x16, md RAID0 of 4x Samsung 9100 PRO, xfs): system-wide MemAvailable drop 62.2 GB at peak (kit memwatch) - the routed experts (46.7 GB) live in USM host memory, which the xe driver does not charge to the container cgroup (cgroup peak ~11 GB), so the RAM need is the MemAvailable drop, not the container limit. The n-gram (engram) table (32.6 GB) is read from NVMe with O_DIRECT through a 1 GB RAM row cache; no expert NVMe tier (EXL3_NVTIER=0), outputs exact. NEXTN MTP 3 steps / 4 draft tokens (accept length ~2.1-2.5). Context 262,144 tokens with a 270,336-token fp8 KV cache. Vision (images). Kit protocol (local-ai-recipe-kit sweep): prefill 8k 1,141 / 16k 1,152 / 32k 1,145 / 64k 1,134 tok/s; decode C1 41.0, C2 42.3, C3 41.9, C4 41.7 tok/s aggregate, C1 at 32k 43.9; reference panel top-1 0.9883, KL 0.00117.",
+  "source": "https://github.com/sybil-solutions/qwen-serve/tree/d163a2f0dc47ab41c299eb8dca06520ef077b098/qwen3.8-flash-next/b70-offload",
+  "plugin": {
+    "name": "Qwen3.8-Flash-Next",
+    "family": "qwen",
+    "format": "EXL3 · 3.05 bpw · MTP (experts in RAM, n-gram table on NVMe)",
+    "engine": "sglang",
+    "servedName": "flashnext",
+    "sizeGb": 85.14,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": true
+    },
+    "serving": {
+      "ctxTokens": 262144,
+      "kvTokens": 270336
+    },
+    "weights": [
+      {
+        "dir": "turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+        "files": "",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 85.14
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "intel-arc-pro-b70-32gb": "qwen38flashnext-exl3-mtp-ram80-256k-arcb70-sglang-tp1"
+  },
+  "resources": {
+    "memoryBytes": 85899345920,
+    "memorySwapBytes": 85899345920
+  }
+}
