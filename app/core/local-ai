@@ -149,6 +149,27 @@ intel() {
   echo "$out"
 }
 
+# kfd_nodes: the render node of every GPU in the kernel's KFD topology (what ROCm sets up), one per line
+kfd_nodes() {
+  local p m
+  for p in /sys/class/kfd/kfd/topology/nodes/*/properties; do
+    m=$(awk '$1 == "drm_render_minor" {print $2}' "$p" 2>/dev/null)
+    [[ $m =~ ^[0-9]+$ && $m -ge 128 && -e /dev/dri/renderD$m ]] && echo "/dev/dri/renderD$m"
+  done
+  return 0
+}
+
+# kfd_uuid <render minor>: the GPU's ROCm UUID (GPU-<unique_id, 16 hex digits>, as ROCR_VISIBLE_DEVICES takes it), or -
+kfd_uuid() {
+  local p u
+  for p in /sys/class/kfd/kfd/topology/nodes/*/properties; do
+    [[ $(awk '$1 == "drm_render_minor" {print $2}' "$p" 2>/dev/null) == "$1" ]] || continue
+    u=$(awk '$1 == "unique_id" {print $2}' "$p")
+    [[ $u =~ ^[0-9]+$ && $u != 0 ]] && { printf 'GPU-%016x\n' "$u"; return; }
+  done
+  echo -
+}
+
 # amd-smi comes with ROCm; without it AMD cards are not listed and the widget says Coming soon.
 amd() {
   jq -nc --argjson s "$(timeout 10 amd-smi static --json 2>/dev/null || echo '{}')" \
@@ -364,14 +385,24 @@ phase_start() {
       a+=(--device /dev/kfd --group-add video --group-add render)
     fi
     # oneCCL opens every by-path link it finds, so the engine sees only its own cards'
+    nodes=() uuids=()
     for k in "$@"; do
       v=$(readlink -f "$(jq -r --arg k "$k" '.[] | select(.key == $k) | .node' <<<"$g")")
       [[ $v =~ ^/dev/dri/renderD[0-9]+$ ]] || die "no render node for $k"
       for w in /dev/dri/by-path/*-render; do
         [[ $(readlink -f "$w") == "$v" ]] && ln -s "../${v##*/}" "$run/by-path/${w##*/}"
       done
-      a+=(--device "$v")
+      nodes+=("$v")
+      [[ $backend == "amd-rocm" ]] && uuids+=("$(kfd_uuid "${v#/dev/dri/renderD}")")
     done
+    # ROCm sets up every GPU in the kernel's KFD topology and finds none at all when one of them has no render node in
+    # the container (the integrated GPU of an AMD CPU, typically), so the engine gets every one, and ROCR_VISIBLE_DEVICES
+    # keeps it to its own cards. Without a UUID for each of them it gets only its own nodes, as before.
+    if [[ $backend == "amd-rocm" && ! " ${uuids[*]} " =~ " - " ]]; then
+      mapfile -t nodes < <(kfd_nodes)
+      a+=(--env "ROCR_VISIBLE_DEVICES=$(IFS=,; echo "${uuids[*]}")")
+    fi
+    for v in "${nodes[@]}"; do a+=(--device "$v"); done
     a+=(--volume "$run/by-path:/dev/dri/by-path:ro")
   fi
   while IFS='|' read -r _ _ _ _ v w _; do
