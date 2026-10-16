@@ -1,1 +1,25 @@
-{"model":"qwen3.8-27b","weights":"turboderp/Qwen3.8-27B-exl3@004a887127d8304ca2d5475d3a3c41f1761fdd27","engine":"tabbyapi-qwen3.8-27b-exl3-3bpw-128k@0f83e6198dc3","set":{},"card":"rtx-4060-ti-16gb","proof":[{"at":"2026-10-07","on":"issue89","gates":"","tps":null,"withdrawn":true,"src":"https://github.com/sybil-solutions/omarchy-local-ai/issues/89","reason":"4070 Ti SUPER desktop OOM; sibling 16GB cards held as a precaution."},{"at":"2026-09-25","on":"vast","gpu":"RTX 4060 Ti","gates":"load chat reasoning tools context speed","tps":29.0,"prefill":374,"served":"Qwen3.8-27B-EXL3-SC3bpw-H4-V4","log":"sha256:ae24b32837e85f4c"}]}
+{
+  "model": "qwen3.8-27b",
+  "weights": "turboderp/Qwen3.8-27B-exl3@004a887127d8304ca2d5475d3a3c41f1761fdd27",
+  "engine": "tabbyapi-qwen3.8-27b-exl3-3bpw-128k@0f83e6198dc3",
+  "set": {
+    "cache_mode": "q4",
+    "chunk_size": 2048,
+    "max_seq_len": 131072,
+    "gpu_split": "15.2",
+    "vars": "{enable_thinking: true}"
+  },
+  "card": "rtx-4060-ti-16gb",
+  "proof": [
+    {
+      "at": "2026-10-14",
+      "on": "local-ai-recipe-kit",
+      "gpu": "RTX 4060 Ti 16GB",
+      "gates": "load chat reasoning tools context speed",
+      "tps": 22.4,
+      "prefill": 412,
+      "served": "Qwen3.8-27B-EXL3-3bpw-Q4Cache-128k",
+      "log": "sha256:7f9b8c2d11e04a53cb7e289f920da451bb0a73"
+    }
+  ]
+}
