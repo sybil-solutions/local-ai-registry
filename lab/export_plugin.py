@@ -14,6 +14,14 @@ MIN_DRIVER = {"tabbyapi": "575.0", "sglang": "580.0", "vllm": "580.0", "llama.cp
 # The only container flags a catalog launch may hand the plugin: device nodes a GPU backend
 # already implies. Anything else (host IPC, seccomp, privileges) keeps the recipe out.
 DEVICE_FLAGS = {"--device /dev/kfd", "--device /dev/dri"}
+# Images with no build attestation binding the digest to a source commit (marketplace review, omacom/omarchy-plugin-
+# marketplace#11207). Their recipes stay in the registry with their lab evidence, but the plugin is not handed them
+# until they are rebuilt through an attested workflow and lab-proven again on the new digest.
+NO_PROVENANCE = {
+    "sha256:9d95829ab41a9307e9b25c86e4af1ec52c6a02f7888f0e13a1ce93c0a7ff3814",  # 0xsero/sglang-exl3:v0.7.0-multiarch, built by hand
+    "sha256:cc2bfc369c709c53d239ef2af41d4ae2530904975816bb2ca484188008586ac9",  # 0xsero/qwen38-3090-sglang
+    "sha256:ee978fb3e3d11cf8577a014539a7ad4e2a8dff95163fc5d96c0a06fcf9c64640",  # morrowmake/vllm-cmp170hx
+}
 
 
 def exportable(launch):
@@ -131,6 +139,8 @@ def eligible(r, version):
     if any(L.get(x) for x in ("kind", "flags", "machines", "build", "companion")) or r["proof"][0].get("withdrawn"):
         return False
     if not describable(r):
+        return False
+    if (lab.render(r).get("image") or "").rpartition("@")[2] in NO_PROVENANCE:
         return False
     if L.get("prepare") or L.get("resources"):
         if version == 2:
