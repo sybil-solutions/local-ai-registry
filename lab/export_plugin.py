@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lab
 
 ROOT = lab.ROOT
-GATEWAY = "ghcr.io/sybil-solutions/gateway@sha256:9ab834c2bbcb12d63de233e699902c29788afe7f14a44bc186457b8b15bd9bbd"
+GATEWAY = "ghcr.io/sybil-solutions/gateway@sha256:110e8b11dc147e245e7c4cc2b24c85bd77e723f225227e85e4f20cc8fe3b7dce"  # org-v6: one attested index over linux/amd64 + linux/arm64
 MIN_DRIVER = {"tabbyapi": "575.0", "sglang": "580.0", "vllm": "580.0", "llama.cpp": "535.0"}
 # The only container flags a catalog launch may hand the plugin: device nodes a GPU backend
 # already implies. Anything else (host IPC, seccomp, privileges) keeps the recipe out.
