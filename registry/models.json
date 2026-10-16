@@ -721,6 +721,17 @@
       "aa": {
         "of": "glm-5.3"
       }
+    },
+    "bonsai-2-9b": {
+      "family": "qwen",
+      "name": "Bonsai 2 9B",
+      "released": "2026-09-23",
+      "reasoning": true,
+      "vision": true,
+      "about": "Prism ML's ternary Bonsai 2 9B, based on Qwen3.5-9B, with thinking and tool calling. The Q2_0 packing requires upstream llama.cpp with Bonsai Hadamard support.",
+      "good_for": "Compact local chat and agent work on consumer GPUs",
+      "logo": "qwen",
+      "hf": "prism-ml/Ternary-Bonsai-2-9B-gguf"
     }
   },
   "builds": {
@@ -1162,6 +1173,10 @@
     "carloslfu/Qwen3.8-Flash-Next-MLX-4bit@e9d552f83de4665d243d5c9cf73201a1ca6c16d7": {
       "format": "MLX · 4-bit (g64), native MTP",
       "size_gb": 105.3
+    },
+    "prism-ml/Ternary-Bonsai-2-9B-gguf@5b2abb02362efbed46bbe204014b02837778b2c2": {
+      "format": "GGUF · Q2_0",
+      "size_gb": 2.556640128
     }
   }
 }

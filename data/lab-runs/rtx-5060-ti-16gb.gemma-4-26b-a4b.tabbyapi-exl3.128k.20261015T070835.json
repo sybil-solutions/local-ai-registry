@@ -1,0 +1,77 @@
+{
+ "recipe": {
+  "model": "gemma-4-26b-a4b",
+  "weights": "turboderp/gemma-4-26B-A4B-it-exl3@fcd233b05c0b89563035be29e26d681fbf2bcc1d",
+  "engine": "tabbyapi-exl3@0f83e6198dc3",
+  "set": {
+   "ctx": 131072,
+   "vision": true,
+   "tools": "null",
+   "vars": "{enable_thinking: true}"
+  },
+  "card": "rtx-5060-ti-16gb"
+ },
+ "where": {
+  "on": "vast",
+  "gpu": "RTX 5060 Ti",
+  "host": "Switzerland, CH",
+  "cost_h": 0.14805555555555555
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-15",
+  "on": "vast",
+  "gpu": "RTX 5060 Ti",
+  "launch_sha256": "77837f673fd3628b4473a0634919fa19c549ac36510f6e1ac09ca6e2369ba0f6",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 57.1,
+  "prefill": 1326,
+  "served": "gemma-4-26B-A4B-it-exl3-fcd233b0"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 627,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_1fe728b95bef4480aadb5b41",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ],
+   "reply": "The weather in Paris is currently 17°C with an overcast sky.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 292
+  },
+  "context": {
+   "prompt_tokens": 106243,
+   "seconds": 80.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1552,
+   "seconds_total": 27.6
+  }
+ },
+ "launch_config_sha256": "c7f6c1ad442e59f11028d28916017b124c699c7c9d9bd5d3d4498185440c9209"
+}

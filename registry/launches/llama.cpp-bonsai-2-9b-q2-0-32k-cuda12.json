@@ -1,0 +1,107 @@
+{
+  "id": "llama.cpp-bonsai-2-9b-q2-0-32k-cuda12",
+  "engine": "llama.cpp",
+  "about": "Official Bonsai 2 9B Q2_0 packing, one NVIDIA GPU, 32K context and F16 KV. Uses upstream llama.cpp b11681, including the required Bonsai Hadamard runtime. PQ2_0/PTQ1_0 packings are not supported by this launch. Generation and thinking are uncapped.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Ternary-Bonsai-2-9B-Q2_0.gguf",
+    "--alias",
+    "Bonsai-2-9B",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--n-gpu-layers",
+    "999",
+    "--split-mode",
+    "none",
+    "--ctx-size",
+    "32768",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--jinja",
+    "--metrics",
+    "--no-mmproj",
+    "--fit",
+    "off",
+    "--batch-size",
+    "512",
+    "--ubatch-size",
+    "128",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0",
+    "--presence-penalty",
+    "1.0",
+    "--repeat-penalty",
+    "1.0",
+    "--repeat-last-n",
+    "64"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "prism-ml/Ternary-Bonsai-2-9B-gguf",
+      "revision": "5b2abb02362efbed46bbe204014b02837778b2c2",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Ternary-Bonsai-2-9B-Q2_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 32768,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Bonsai-2-9B",
+    "family": "qwen",
+    "format": "GGUF Q2_0",
+    "engine": "llama.cpp",
+    "servedName": "Bonsai-2-9B",
+    "sizeGb": 2.556640128,
+    "minDriver": "570.124.06",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 32768,
+      "kvTokens": 32768
+    },
+    "asset": null,
+    "weights": [
+      {
+        "dir": "",
+        "files": "Ternary-Bonsai-2-9B-Q2_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 2.556640128
+      }
+    ]
+  },
+  "ids": {
+    "rtx-3080-12gb": "bonsai-2-9b.llama.cpp.32k.rtx-3080-12gb"
+  }
+}

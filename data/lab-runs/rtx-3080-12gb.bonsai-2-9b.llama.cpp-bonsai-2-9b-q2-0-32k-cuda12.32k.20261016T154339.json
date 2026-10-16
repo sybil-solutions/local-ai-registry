@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "bonsai-2-9b",
+  "weights": "prism-ml/Ternary-Bonsai-2-9B-gguf@5b2abb02362efbed46bbe204014b02837778b2c2",
+  "engine": "llama.cpp-bonsai-2-9b-q2-0-32k-cuda12@53bec65a6120",
+  "set": {},
+  "card": "rtx-3080-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3080 (12 GiB)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-16",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3080 (12 GiB)",
+  "launch_sha256": "170fcf639e4fa8368790342e135c3ddf4d3df9d5343eeb9fe924c438ba5c8ed7",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 155.0,
+  "prefill": 2654,
+  "served": "Bonsai-2-9B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 848,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "2XJ68T7KN7vNttt44r7j9PfO7xODYRRv"
+    }
+   ],
+   "reply": "The weather in Paris right now is **overcast** with a temperature of **17°C (63°F)**.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 252
+  },
+  "context": {
+   "prompt_tokens": 25740,
+   "seconds": 9.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 2067,
+   "seconds_total": 13.9
+  }
+ },
+ "launch_config_sha256": null
+}

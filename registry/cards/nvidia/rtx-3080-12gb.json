@@ -1,0 +1,16 @@
+{
+  "id": "rtx-3080-12gb",
+  "name": "GeForce RTX 3080",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 12,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "nvidia",
+    "name": "GeForce RTX 3080",
+    "names": [
+      "rtx3080"
+    ],
+    "vramGb": 12
+  }
+}

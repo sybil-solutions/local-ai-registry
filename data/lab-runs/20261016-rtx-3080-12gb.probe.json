@@ -1,0 +1,45 @@
+{
+ "host": {
+  "kernel": "7.2.5-3-omarchy",
+  "cpu": "AMD Ryzen 7 5800X 8-Core Processor",
+  "cpus": 16,
+  "avx512": false
+ },
+ "ram": {
+  "total_gb": 33.57,
+  "available_gb": 18.17,
+  "swap_total_gb": 67.13,
+  "swap_used_gb": 0.29
+ },
+ "storage": {
+  "path": "/models",
+  "free_gb": 535.0,
+  "total_gb": 998.04,
+  "device": "/dev/mapper/root",
+  "fstype": "btrfs",
+  "physical_disks": [
+   {
+    "disk": "nvme0n1",
+    "nvme": true,
+    "rotational": false,
+    "model": "Samsung SSD 980 PRO 1TB"
+   }
+  ],
+  "all_nvme": true
+ },
+ "gpus": [
+  {
+   "vendor": "nvidia",
+   "index": 1,
+   "name": "NVIDIA GeForce RTX 3080",
+   "vram_gb": 12,
+   "vram_mib": 12288,
+   "vram_used_mib": 1147,
+   "unified_memory": false,
+   "pci": "00000000:2B:00.0",
+   "pcie_gen_max": "4",
+   "pcie_width_max": "16",
+   "driver": "610.57.04"
+  }
+ ]
+}
