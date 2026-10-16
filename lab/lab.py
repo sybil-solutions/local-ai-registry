@@ -34,6 +34,13 @@ LAUNCHES = REG / "launches"  # launches frozen exactly as they were validated, o
 GATES = ["load", "chat", "reasoning", "tools", "context", "speed"]
 MIN_TPS = 15.0
 MAX_RECIPE_BYTES = 1024
+# The KV floor: a setup with more than KV_FLOOR_ABOVE_VRAM_GB of GPU memory (the card's vram_gb x cards x machines)
+# must hold at least KV_FLOOR_TOKENS (128k) of KV cache. `try` refuses a launch below it, `check` fails a new recipe
+# below it, and the plugin export leaves every recipe below it out. Recipes accepted before the floor are listed in
+# registry/KV_FLOOR_EXEMPT: they stay in the registry with their evidence, but never reach the plugin.
+KV_FLOOR_TOKENS = 131072
+KV_FLOOR_ABOVE_VRAM_GB = 8
+KV_FLOOR_EXEMPT = "kv-floor-exempt.json"  # next to recipes/
 
 
 def log(msg):
@@ -152,6 +159,36 @@ def render(recipe):
             # an offload profile states what the host must have, from its settings (experts in RAM, tables on NVMe)
             **({"needs": {k: (v if not isinstance(v, str) or k == "fast_storage" else float(sub(v)))
                           for k, v in p["needs"].items()}} if p.get("needs") else {})}
+
+
+def kv_tokens(recipe, launch=None):
+    """The KV cache a recipe holds, as the plugin is told it (serving.kvTokens): a launch's own plugin block, else
+    ctx x seqs + 1024 x seqs. A plugin block that reports kvTokens 0 (llama.cpp) counts its ctxTokens."""
+    p = profile(recipe["engine"])
+    if "plugin" in p:
+        s = p["plugin"]["serving"]
+        return int(s.get("kvTokens") or s.get("ctxTokens") or 0)
+    L = launch or render(recipe)
+    return int(L["ctx"]) * int(L["seqs"]) + 1024 * int(L["seqs"])
+
+
+def setup_vram_gb(recipe, launch=None, vram_gb=None):
+    """GPU memory of the whole setup the recipe runs on: the card's vram_gb (or the one given) x cards x machines."""
+    L = launch or render(recipe)
+    per_card = card(recipe["card"])["vram_gb"] if vram_gb is None else vram_gb
+    return (per_card or 0) * (L.get("cards") or 1) * (L.get("machines") or 1)
+
+
+def below_kv_floor(recipe, launch=None, vram_gb=None):
+    """True for a recipe on a setup with more than KV_FLOOR_ABOVE_VRAM_GB that holds less than KV_FLOOR_TOKENS of KV."""
+    L = launch or render(recipe)
+    return setup_vram_gb(recipe, L, vram_gb) > KV_FLOOR_ABOVE_VRAM_GB and kv_tokens(recipe, L) < KV_FLOOR_TOKENS
+
+
+def kv_floor_exempt():
+    """Recipe paths (relative to recipes/) accepted before the KV floor, kept as evidence and out of the plugin."""
+    f = RECIPES.parent / KV_FLOOR_EXEMPT
+    return set(json.loads(f.read_text())["recipes"]) if f.exists() else set()
 
 
 # ----------------------------------------------------------------------------- the server under test
@@ -447,6 +484,9 @@ def cmd_try(args):
     recipe = {"model": args.model, "weights": args.weights, "engine": f"{p['id']}@{pin(p)[:12]}",
               "set": sets, "card": args.card}
     launch = render(recipe)
+    if below_kv_floor(recipe, launch):
+        raise SystemExit(f"{kv_tokens(recipe, launch)} KV tokens on {setup_vram_gb(recipe, launch):g} GB: a setup over "
+                         f"{KV_FLOOR_ABOVE_VRAM_GB} GB needs at least {KV_FLOOR_TOKENS} (raise ctx or seqs)")
     if args.dry_run:
         print(json.dumps({"recipe": recipe, "launch": launch}, indent=2))
         return 0
@@ -570,6 +610,10 @@ def check_needs(n):
 
 def cmd_check(_):
     bad = []
+    exempt = kv_floor_exempt()
+    gone = sorted(x for x in exempt if not (RECIPES / x).exists())
+    if gone:
+        bad.append(f"registry/{KV_FLOOR_EXEMPT}: lists recipes that do not exist: {', '.join(gone)}")
     for f in sorted(RECIPES.rglob("*.json")):
         r = json.loads(f.read_text())
         name = f.relative_to(ROOT)
@@ -599,6 +643,13 @@ def cmd_check(_):
             assert not r["proof"][0].get("reported") or r["proof"][0].get("src"), "a reported proof names its source"
             assert need <= set(r["proof"][0]["gates"].split()), "latest proof lacks a gate"
             assert f.stat().st_size <= MAX_RECIPE_BYTES, f"{f.stat().st_size} bytes"
+            rel = str(f.relative_to(RECIPES))
+            low = not p.get("withdrawn") and below_kv_floor(r, launch)
+            if rel in exempt:
+                assert low, f"listed in {KV_FLOOR_EXEMPT} but not below the KV floor; remove it from the list"
+            else:
+                assert not low, (f"{kv_tokens(r, launch)} KV tokens on {setup_vram_gb(r, launch):g} GB: below the "
+                                 f"{KV_FLOOR_TOKENS}-token floor for setups over {KV_FLOOR_ABOVE_VRAM_GB} GB")
         except (AssertionError, KeyError, ValueError, SystemExit, FileNotFoundError) as e:
             bad.append(f"{name}: {e}")
     print("\n".join(bad) or f"recipes ok: {len(list(RECIPES.rglob('*.json')))}")
