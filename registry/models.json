@@ -914,6 +914,10 @@
       "format": "AWQ · INT4 W4A16",
       "size_gb": 20
     },
+    "RedHatAI/Qwen3.8-27B-INT4@bf08f3dbd9a324e53956920aad378a1f1b6dd24a": {
+      "format": "compressed-tensors · W4A16 INT4",
+      "size_gb": 19.47
+    },
     "turboderp/Qwen3.8-27B-exl3@6fe61ad620abfe97c5b49f9722c2bceeea4ccc28": {
       "format": "EXL3 · 3 bpw",
       "size_gb": 13.84
