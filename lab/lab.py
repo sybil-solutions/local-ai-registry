@@ -103,11 +103,16 @@ def card(card_id):
 
 
 def recipe_path(r, launch):
-    """recipes/<vendor>/<card>/<model>.<engine kind>.<context>k[.<n>x].json, n = every card in the setup"""
+    """recipes/<vendor>/<card>/<model>.<engine kind>.<context>k[.<n>x][.<variant>].json, n = every card in the setup;
+    variant = the launch's optional `variant` (a-z, 0-9, dashes), for several recipes of one model, engine kind and
+    context on one card that differ in what the host needs (e.g. ram28, ram58: experts in RAM vs read from NVMe)"""
     kind = profile(r["engine"]).get("engine", r["engine"].split("@")[0])
     n = launch.get("machines", 1) * launch.get("cards", 1)
     many = f".{n}x" if n > 1 else ""  # several cards, in one computer or across several
-    return RECIPES / card(r["card"])["vendor"] / r["card"] / f"{r['model']}.{kind}.{launch['ctx'] // 1024}k{many}.json"
+    var = launch.get("variant") or ""
+    assert not var or re.fullmatch(r"[a-z0-9][a-z0-9-]{0,23}", var), f"variant {var!r}"
+    var = f".{var}" if var else ""
+    return RECIPES / card(r["card"])["vendor"] / r["card"] / f"{r['model']}.{kind}.{launch['ctx'] // 1024}k{many}{var}.json"
 
 
 def dirname(weights):
@@ -124,7 +129,7 @@ def render(recipe):
             out = {"kind": "host", "command": p["command"], "install": p.get("install"), "port": p["port"], "image": None,
                    "weights": p.get("weights") or [], "config": None, "ctx": p["ctx"], "seqs": p.get("seqs", 1),
                    "vision": p.get("vision", False), "backend": p.get("backend"), "cards": p.get("cards", 1),
-                   "env": p.get("env") or {}, **{k: p[k] for k in ("setup", "source", "needs") if k in p},
+                   "env": p.get("env") or {}, **{k: p[k] for k in ("setup", "source", "needs", "variant") if k in p},
                    **({"machines": p["machines"]} if p.get("machines", 1) != 1 else {})}  # one machine is the default and stays out
             # MLX on Apple silicon: pinned packages, a launcher file, its environment, and a GPU wired-memory limit that
             # follows the card's unified memory
@@ -136,7 +141,7 @@ def render(recipe):
                 out["sysctl"] = {"iogpu.wired_limit_mb": card(recipe["card"])["vram_gb"] * 1024 - p["wired_limit_reserve_mb"]}
             return out
         return {"image": p["image"], "entrypoint": p.get("entrypoint"), "args": p["args"], "port": p["port"], "shm": p.get("shm"),
-                **{k: p[k] for k in ("flags", "machines", "build", "setup", "source", "needs", "prepare", "resources", "companion") if k in p},
+                **{k: p[k] for k in ("flags", "machines", "build", "setup", "source", "needs", "prepare", "resources", "companion", "variant") if k in p},
                 "env": p.get("env") or {}, "weights": p["weights"],
                 "config": {**cfg, "sha256": hashlib.sha256(cfg["text"].encode()).hexdigest()} if cfg else None,
                 "ctx": p["ctx"], "seqs": p.get("seqs", 1), "vision": p.get("vision", False), "backend": p.get("backend"), "cards": p.get("cards", 1)}

@@ -64,6 +64,15 @@ class HostTopologyTest(unittest.TestCase):
             self.assertEqual((L['cards'], L.get('machines')), (2, None))
             self.assertTrue(lab.recipe_path(recipe(), L).name.endswith('.128k.2x.json'))
 
+    def test_variant_names_the_recipe(self):
+        with patch.object(lab, 'profile', return_value={**HOST, 'cards': 1, 'variant': 'ram28'}):
+            L = lab.render(recipe())
+            self.assertEqual(L['variant'], 'ram28')
+            self.assertTrue(lab.recipe_path(recipe(), L).name.endswith('.128k.ram28.json'))
+        with patch.object(lab, 'profile', return_value={**HOST, 'cards': 1, 'variant': 'Bad/../x'}):
+            with self.assertRaises(AssertionError):
+                lab.recipe_path(recipe(), lab.render(recipe()))
+
     def test_check_rejects_host_on_several_machines(self):
         with tempfile.TemporaryDirectory() as d, patch.object(lab, 'ROOT', Path(d)), patch.object(lab, 'RECIPES', Path(d) / 'recipes'), \
                 patch.object(lab, 'profile', return_value={**HOST, 'machines': 2}):
