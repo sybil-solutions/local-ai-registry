@@ -20,6 +20,10 @@ BUILDERS.update({f"ghcr.io/sybil-solutions/{name}":
     for name in ("deepseek-v4.1-flash-spark", "dsv41-flash-offload", "exl3xpu", "gateway",
                  "glm53-b70-expert-server", "glm53-flash-offload", "llamacpp-bonsai", "sglang-exl3", "sglang-exl3-flashnext", "sglang-exl3-flashnext-multiarch",
                  "sglang-exl3-xpu-flashnext", "tabbyapi-exl3")})
+# The gateway also ships as a multi-arch index. multiarch-index.yml (main only) adds no layers: it checks that both
+# platform images carry a release-image.yml attestation, then points an index at those two digests.
+BUILDERS["ghcr.io/sybil-solutions/gateway"] = (
+    "sybil-solutions/local-ai-images", ("release-image.yml", "multiarch-index.yml"), "refs/heads/main")
 # Official Docker Hub images with no GitHub Actions provenance. vLLM pushes
 # vllm/vllm-openai-rocm from Buildkite, and gh attestation verify returns 404.
 # Approval is the image name. The tag is stripped before this check, and a
@@ -59,7 +63,8 @@ def verify(image, run=subprocess.run):
     if match[1] in OFFICIAL:
         return
     repo, workflow, ref = BUILDERS[match[1]]
-    identity = f"^https://github.com/{re.escape(repo)}/\\.github/workflows/{re.escape(workflow)}@{ref}$"
+    workflows = "|".join(map(re.escape, (workflow,) if isinstance(workflow, str) else workflow))
+    identity = f"^https://github.com/{re.escape(repo)}/\\.github/workflows/(?:{workflows})@{ref}$"
     run(["gh", "attestation", "verify", "oci://" + image, "--repo", repo,
          *(["--bundle-from-oci"] if match[1].startswith("ghcr.io/0xsero/") else []),
          "--cert-identity-regex", identity, "--deny-self-hosted-runners"],
