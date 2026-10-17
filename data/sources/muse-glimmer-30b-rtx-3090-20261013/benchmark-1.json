@@ -1,0 +1,56 @@
+{
+  "request": {
+    "model": "../models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Experiment 1: Write a detailed 1000-word explanation of how computers evolved from mechanical calculators to modern processors."
+      }
+    ],
+    "max_tokens": 512,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64,
+    "cache_prompt": false
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The evolution of computers from mechanical calculators to modern processors is not a single invention but a long chain of incremental ideas,",
+          "reasoning_content": "Experiment 1: Write a detailed 1000-word explanation of how computers evolved from mechanical calculators to modern processors.\n\nExperiment 1: Write a detailed 1000-word explanation...\n\nWe need to write a detailed 1000-word explanation. Probably ~1000 words. Not necessarily exactly 1000, but detailed. Probably around 900-1100 words.\n\nWe should comply. No issues. Just produce essay.\n\nPossibly need to be about 1000 words. Let's aim for about 1000 words. Maybe 950-1050.\n\nWe must ensure not too short. Let's produce ~1000 words.\n\nWe need to explain evolution from mechanical calculators to modern processors.\n\nStructure: introduction, mechanical calculators: Pascaline, Leibniz, Babbage Analytical Engine, Jacquard loom, Hollerith punch cards, electromechanical relays, ENIAC, transistor, integrated circuit, microprocessor, modern processors.\n\nProvide detailed explanation.\n\nShould be about 1000 words. Let's target ~1000 words. Let's count roughly. 1000 words is ~6-7 paragraphs of ~150 words each. Let's produce ~1000 words.\n\nWe can do ~1000 words. Let's aim for about 950-1100.\n\nLet's draft ~1000 words.\n\nWe need to ensure it's detailed.\n\nPotential outline:\n\nIntro 100 words\nMechanical era 150\nAnalytical engine 150\nElectromechanical 150\nElectronic vacuum tube 150\nTransistor & IC 150\nMicroprocessor & modern 150\nConclusion 100\n\nTotal ~1000.\n\nLet's write in clear prose.\n\nDon't use excessive formatting? Use paragraphs.\n\nProbably okay.\n\nNo constraints.\n\nMake sure not to mention policy. Just output.\n\nMaybe use headings.\n\nThe user said Experiment 1: Write a detailed 1000-word explanation... Might be for an assignment.\n\nProvide output.\n\nLet's produce ~1000 words. Let's approximate count.\n\nI'll write about 1000 words. Let's try ~ 1000.\n\nLet's produce ~ 980 words.\n\nStart.\n\nLet's draft.\n\nWord count estimate: Let's write ~ 1000.\n\nI'll write about 10 paragraphs of ~100 words each = 1000.\n\nLet's produce.\n\nNeed careful count. Rough estimate is okay.\n\nI'll generate about 1000 words.\n\nLet's start writing.\n\nPotential final answer ~ 950-1100.\n\nOk.\n\nLet's produce final."
+        }
+      }
+    ],
+    "created": 1791925387,
+    "model": "../models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf",
+    "system_fingerprint": "b11429-d81235049",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 512,
+      "prompt_tokens": 79,
+      "total_tokens": 591,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-77O7dR8TK8BRFJ1ydpFOhnt3iTvJyRSS",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 79,
+      "prompt_ms": 127.403,
+      "prompt_per_token_ms": 1.6126962025316456,
+      "prompt_per_second": 620.0795899625597,
+      "predicted_n": 512,
+      "predicted_ms": 6407.04,
+      "predicted_per_token_ms": 12.538238747553816,
+      "predicted_per_second": 79.75601837978223,
+      "draft_n": 2285,
+      "draft_n_accepted": 356
+    }
+  },
+  "seconds": 6.546308493008837
+}

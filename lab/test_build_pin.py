@@ -13,6 +13,8 @@ COMMIT = 'c' * 40
 BUILD = {'id': 'fixture-4x', 'engine': 'fixture', 'image': None, 'backend': 'nvidia', 'port': 8888, 'entrypoint': ['serve'], 'args': [],
          'weights': [{'repo': 'test/raw', 'revision': 'b' * 40, 'at': '/models/raw', 'layout': 'dir'}], 'ctx': 1048576, 'seqs': 16,
          'machines': 4, 'build': {'repo': 'test/src', 'commit': COMMIT, 'dockerfile': 'Dockerfile'}}
+HOST = {'id': 'fixture-host', 'kind': 'host', 'command': ['llama-server', '-c', '262144'], 'port': 8080, 'ctx': 262144,
+        'install': 'https://example.invalid/engine.tar.gz#sha256=' + 'a' * 64, 'build': {'repo': 'test/src', 'commit': COMMIT}}
 
 
 class BuildPinTest(unittest.TestCase):
@@ -40,11 +42,26 @@ class BuildPinTest(unittest.TestCase):
     def test_image_pins_are_unchanged(self):
         self.assertEqual(lab.pin({**BUILD, 'image': 'ghcr.io/test/engine@sha256:' + 'a' * 64}), 'a' * 64)
 
-    def test_every_build_launch_in_the_registry_pins_and_keeps_its_recipes(self):
+    def test_host_build_metadata_keeps_the_launch_pin(self):
+        digest = lab.pin(HOST)
+        self.assertEqual(digest, lab.pin({k: v for k, v in HOST.items() if k != 'build'}))
+        self.assertRegex(digest, r'^[0-9a-f]{64}$')
+        self.assertEqual(self.profile('fixture-host@' + digest[:12], HOST), HOST)
+        with self.assertRaisesRegex(SystemExit, 'rerun the recipe'):
+            self.profile('fixture-host@' + COMMIT[:12], HOST)
+
+    def test_changed_host_launch_must_be_rerun_even_with_the_same_build_commit(self):
+        ref = 'fixture-host@' + lab.pin(HOST)[:12]
+        for change in ({'command': ['llama-server', '-c', '131072']},
+                       {'install': 'https://example.invalid/engine.tar.gz#sha256=' + 'b' * 64}):
+            with self.subTest(change=change), self.assertRaisesRegex(SystemExit, 'rerun the recipe'):
+                self.profile(ref, {**HOST, **change})
+
+    def test_every_launch_with_build_metadata_pins_by_kind(self):
         launches = [p for p in (json.loads(f.read_text()) for f in sorted(lab.LAUNCHES.glob('*.json'))) if p.get('build') and not p.get('image')]
         self.assertTrue(launches)
         for p in launches:
-            self.assertRegex(lab.pin(p), r'^[0-9a-f]{40}$', p['id'])
+            self.assertRegex(lab.pin(p), r'^[0-9a-f]{64}$' if p.get('kind') == 'host' else r'^[0-9a-f]{40}$', p['id'])
 
     def test_try_writes_a_recipe_for_a_build_launch(self):
         with tempfile.TemporaryDirectory() as d:
