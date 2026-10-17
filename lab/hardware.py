@@ -82,14 +82,14 @@ def record(h):
 
 
 def build():
-    return {"schema": 1, "hardware": {f.stem: record(json.loads(f.read_text())) for f in sorted(SRC.glob("*.json"))}}
+    return {"schema": 1, "hardware": {f.stem: record(json.loads(f.read_text(encoding="utf-8"))) for f in sorted(SRC.glob("*.json"))}}
 
 
 if __name__ == "__main__":
     text = json.dumps(build(), indent=1, ensure_ascii=False) + "\n"
     if "--check" in sys.argv:
-        if not OUT.exists() or OUT.read_text() != text:
+        if not OUT.exists() or OUT.read_text(encoding="utf-8") != text:
             sys.exit("dist/hardware.json is stale: run python3 lab/hardware.py")
     else:
-        OUT.write_text(text)
+        OUT.write_text(text, encoding="utf-8")
         print(f"{OUT.relative_to(ROOT)}: {len(json.loads(text)['hardware'])} records")

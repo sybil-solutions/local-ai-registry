@@ -126,7 +126,7 @@ def describable(r):
     p = lab.profile(r["engine"])
     if "defaults" in p or "plugin" in p:
         return True
-    meta = json.loads((ROOT / "registry" / "models.json").read_text())
+    meta = json.loads((ROOT / "registry" / "models.json").read_text(encoding="utf-8"))
     return (r.get("model") in meta["models"] and r.get("weights") in meta["builds"] and "@sha256:" in (p.get("image") or "")
             and bool(lab.render(r)["weights"]))
 
@@ -156,8 +156,8 @@ def eligible(r, version, vram_gb=None):  # vram_gb: one card's memory, None read
 
 
 def build(version=2):
-    cat = json.loads((ROOT / "dist" / "catalog.json").read_text())
-    meta = json.loads((ROOT / "registry" / "models.json").read_text())
+    cat = json.loads((ROOT / "dist" / "catalog.json").read_text(encoding="utf-8"))
+    meta = json.loads((ROOT / "registry" / "models.json").read_text(encoding="utf-8"))
     hw = {}
     for card, c in sorted(cat["cards"].items()):
         vram = c.get("vram_gb") or 0  # one card's memory, for the KV floor (times the launch's cards)
@@ -214,12 +214,12 @@ if __name__ == "__main__":
         out = ROOT / "plugin" / f"v{version}" / "recipes.json"
         text = build(version)
         if "--check" in sys.argv:
-            current = out.exists() and out.read_text() == text
+            current = out.exists() and out.read_text(encoding="utf-8") == text
             print(f"{out.relative_to(ROOT)} is " + ("current" if current else "stale: run lab/export_plugin.py"))
             ok = ok and current
         else:
             out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_text(text)
+            out.write_text(text, encoding="utf-8")
             json.loads(text)
             print(f"wrote {out.relative_to(ROOT)}: {len(text)} bytes")
     sys.exit(0 if ok else 1)

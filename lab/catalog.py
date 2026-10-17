@@ -86,5 +86,5 @@ if __name__ == "__main__":
         print("dist/catalog.json is current" if ok else "dist/catalog.json is stale: run lab/catalog.py")
         sys.exit(0 if ok else 1)
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(text)
+    OUT.write_text(text, encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}: {len(text)} bytes")

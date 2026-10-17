@@ -35,7 +35,7 @@ PATHS = ["registry/engines", "registry/launches", "plugin/v2/recipes.json", "plu
 
 
 def git(*args):
-    return subprocess.check_output(["git", *args], text=True)
+    return subprocess.check_output(["git", *args], text=True, encoding="utf-8")
 
 
 def images(ref):
