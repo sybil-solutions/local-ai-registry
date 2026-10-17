@@ -1,0 +1,18 @@
+{
+  "id": "radeon-890m-48gb",
+  "name": "AMD Radeon 890M",
+  "vendor": "amd",
+  "backend": "amd-rocm",
+  "vram_gb": 48,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "amd-rocm",
+    "name": "AMD Radeon 890M",
+    "names": [
+      "890m",
+      "890mgraphics"
+    ],
+    "vramGb": 48,
+    "unifiedMemory": true
+  }
+}
