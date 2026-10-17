@@ -1,0 +1,83 @@
+{
+  "id": "llama.cpp-qwen3.5-9b-q4-k-m-128k-q8kv",
+  "engine": "llama.cpp",
+  "about": "Qwen3.5-9B (GGUF · Q4_K_M) on the official llama.cpp b10481 CUDA image, one 128K text request with a q8_0 KV cache (128K of f16 KV does not fit 11 GB)",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12-b10481@sha256:b2497f8834f5ecb4e38530f6bf2734b8e0be107ff48e4720145911c86930f2ce",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Qwen3.5-9B-Q4_K_M.gguf",
+    "--alias",
+    "qwen3.5-9b",
+    "--ctx-size",
+    "131072",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "999",
+    "--flash-attn",
+    "auto",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080"
+  ],
+  "env": {},
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "unsloth/Qwen3.5-9B-GGUF",
+      "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Qwen3.5-9B-Q4_K_M.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Qwen3.5-9B",
+    "family": "qwen",
+    "format": "GGUF · Q4_K_M",
+    "engine": "llama.cpp",
+    "servedName": "qwen3.5-9b",
+    "sizeGb": 5.680522464,
+    "minDriver": "550.127.05",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 131072,
+      "kvTokens": 0
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Qwen3.5-9B-Q4_K_M.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 5.680522464
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "rtx-2080-ti-11gb": "qwen3.5-9b.llama.cpp.128k.rtx-2080-ti-11gb"
+  }
+}
