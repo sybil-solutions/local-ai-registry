@@ -1,0 +1,70 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "turboderp/Qwen3.8-Flash-Next-exl3@69e33439ae950f17bcbe95c98f117d80f759ab6d",
+  "engine": "sglang-qwen3.8-flash-next-exl3-3.05bpw-mtp-nvme28-256k-intel-arc-pro-b70-32gb@e9104c18e2b6",
+  "set": {},
+  "card": "intel-arc-pro-b70-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32GB"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-17",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32GB",
+  "launch_sha256": "eab306893ea28be64a969204f83893285dccd197595f0c809b01c107a0bfa48a",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 29.6,
+  "prefill": 1025,
+  "served": "flashnext"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 133,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_957ff55f5fc5427cb5c9d031",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nThe current weather in Paris is **17°C** with **overcast** skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 59
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 208.5,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 5909,
+   "seconds_total": 158.0
+  }
+ },
+ "launch_config_sha256": null
+}
