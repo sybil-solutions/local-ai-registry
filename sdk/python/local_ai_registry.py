@@ -113,7 +113,8 @@ def steps(r):
     """The steps to run a recipe by hand: download the weights, write the config, start the container."""
     l = r["launch"]
     name = (r.get("key") or r["model"]).split("/")[-1]
-    out = [{"title": "Set up first", "code": f"# {l['setup']}\n# Full instructions: {l.get('source')}"}] if l.get("setup") else []
+    src = f"\n# Full instructions: {l['source']}" if l.get("source") else ""
+    out = [{"title": "Set up first", "code": f"# {l['setup']}{src}"}] if l.get("setup") else []
     if l.get("kind") == "host":
         return out + _host_steps(l)
     image = l.get("image")

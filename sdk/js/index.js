@@ -67,7 +67,8 @@ function hostSteps(l) {
 /** The steps to run a recipe by hand: download the weights, write the config, start the container. */
 export function steps(r) {
   const l = r.launch, name = (r.key ?? r.model).split("/").pop();
-  const out = l.setup ? [{ title: "Set up first", code: `# ${l.setup}\n# Full instructions: ${l.source}` }] : [];
+  const src = l.source ? `\n# Full instructions: ${l.source}` : "";
+  const out = l.setup ? [{ title: "Set up first", code: `# ${l.setup}${src}` }] : [];
   if (l.kind === "host") return [...out, ...hostSteps(l)];
   let image = l.image;
   if (l.build) {  // an image built from the source's Dockerfile at a pinned commit

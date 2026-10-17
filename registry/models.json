@@ -732,6 +732,17 @@
       "good_for": "Compact local chat and agent work on consumer GPUs",
       "logo": "qwen",
       "hf": "prism-ml/Ternary-Bonsai-2-9B-gguf"
+    },
+    "nemotron-3.5-bolt-74b-a9b": {
+      "family": "nemotron",
+      "name": "Nemotron 3.5 Bolt 74B-A9B",
+      "released": "2026-10-15",
+      "reasoning": true,
+      "vision": true,
+      "about": "NVIDIA's hybrid Mamba-Transformer MoE (74B total, about 9B active), compressed from Nemotron 3.5 Super VL and quantization-aware distilled to a 24 GB checkpoint (IQ2_XXS experts, NVFP4 Mamba layers, Q8_0 attention), with an image projector.",
+      "good_for": "Local agents, chat, reasoning, tool calls and images on one 32 GB GPU",
+      "logo": "hf",
+      "hf": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF"
     }
   },
   "builds": {
@@ -1165,6 +1176,10 @@
     "prism-ml/Ternary-Bonsai-2-9B-gguf@5b2abb02362efbed46bbe204014b02837778b2c2": {
       "format": "GGUF · Q2_0",
       "size_gb": 2.556640128
+    },
+    "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF@e0fecb69cb3e5e4c5e8a056fa2aec98c78e91246": {
+      "format": "GGUF · IQ2_XXS / NVFP4 / Q8_0 (NVIDIA 24 GB)",
+      "size_gb": 23.75
     }
   }
 }

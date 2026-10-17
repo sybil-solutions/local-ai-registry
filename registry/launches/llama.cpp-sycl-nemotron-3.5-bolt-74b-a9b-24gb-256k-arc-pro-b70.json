@@ -1,0 +1,94 @@
+{
+    "id": "llama.cpp-sycl-nemotron-3.5-bolt-74b-a9b-24gb-256k-arc-pro-b70",
+    "engine": "llama.cpp",
+    "about": "Nemotron 3.5 Bolt 74B-A9B (NVIDIA 24 GB GGUF: IQ2_XXS experts, NVFP4 Mamba, Q8_0 attention) on SYCL (official server-intel image, build 11681 / 5e03a1ff, the first with Bolt support), Intel Arc Pro B70 32 GB: all layers and the image projector on the GPU, flash attention on, batch and micro-batch 2048, 262,144 context, one slot",
+    "image": "ghcr.io/ggml-org/llama.cpp@sha256:b815baa10b515c60fb7400ebcd7e3b39ba7ae860df9ded0f6f7f4e52fee517fc",
+    "backend": "intel-xpu",
+    "port": 8080,
+    "entrypoint": null,
+    "args": [
+        "-m",
+        "/models/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+        "--mmproj",
+        "/models/mmproj-NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+        "--alias",
+        "nemotron-3.5-bolt",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8080",
+        "--ctx-size",
+        "262144",
+        "--n-gpu-layers",
+        "999",
+        "--parallel",
+        "1",
+        "--flash-attn",
+        "on",
+        "--batch-size",
+        "2048",
+        "--ubatch-size",
+        "2048",
+        "--jinja",
+        "--reasoning-format",
+        "deepseek",
+        "--metrics"
+    ],
+    "env": {
+        "ONEAPI_DEVICE_SELECTOR": "level_zero:0",
+        "UR_L0_ENABLE_RELAXED_ALLOCATION_LIMITS": "1"
+    },
+    "shm": "8g",
+    "weights": [
+        {
+            "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+            "revision": "e0fecb69cb3e5e4c5e8a056fa2aec98c78e91246",
+            "at": "/models",
+            "layout": "dir",
+            "files": [
+                "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+                "mmproj-NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf"
+            ]
+        }
+    ],
+    "config": null,
+    "ctx": 262144,
+    "seqs": 1,
+    "vision": true,
+    "cards": 1,
+    "plugin": {
+        "name": "Nemotron 3.5 Bolt 74B-A9B",
+        "family": "nemotron",
+        "format": "GGUF · NVIDIA 24 GB (IQ2_XXS / NVFP4 / Q8_0)",
+        "engine": "llama.cpp",
+        "servedName": "nemotron-3.5-bolt",
+        "sizeGb": 23.75,
+        "minDriver": "",
+        "scratch": null,
+        "capabilities": {
+            "chat": true,
+            "reasoning": true,
+            "tools": true,
+            "video": false,
+            "vision": true
+        },
+        "serving": {
+            "ctxTokens": 262144,
+            "kvTokens": 0
+        },
+        "weights": [
+            {
+                "dir": "",
+                "files": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf,mmproj-NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+                "layout": "dir",
+                "mountPath": "/models",
+                "sizeGb": 23.75
+            }
+        ],
+        "asset": null
+    },
+    "ids": {
+        "intel-arc-pro-b70-32gb": "nemotron35-bolt-74b-a9b-24gb-256k-arcprob70-llamacpp-sycl"
+    },
+    "setup": "Requires one Intel Arc Pro B70 32 GB and 25 GB of disk for the GGUF and its image projector; the whole model sits in VRAM, so host RAM barely matters (the GGUF is memory-mapped). Upstream llama.cpp server-intel image build 11681 (commit 5e03a1ff), the first SYCL build with Nemotron 3.5 Bolt support (llama.cpp cd0a5b6a). Context 262,144 tokens in one slot (--parallel 1: more slots split the context). The LiLiCorr speculative drafter is not supported by llama.cpp (0 of 2,877 drafts accepted as a draft-simple model) and n-gram speculation gave no gain on the protocol's prompts, so neither is used. Measured on omarchy (EPYC 7443P, PCIe 4.0 x16) with the local-ai-recipe-kit sweep (--api llamacpp): prefill 731 / 736 / 728 / 707 tok/s at 8K / 16K / 32K / 64K; decode 26.2 / 26.1 / 26.1 / 26.1 tok/s at 1-4 users (one slot), C1 at 32K 24.6; needle 242,176 tokens at depth 0.8 pass. Vision: images through the NVIDIA mmproj."
+}
