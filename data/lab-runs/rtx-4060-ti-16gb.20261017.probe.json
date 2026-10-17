@@ -1,0 +1,45 @@
+{
+ "host": {
+  "kernel": "10",
+  "cpu": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+  "cpus": 16,
+  "avx512": false
+ },
+ "ram": {
+  "total_gb": 68.57,
+  "available_gb": 59.03,
+  "swap_total_gb": 10.2,
+  "swap_used_gb": 3.89
+ },
+ "storage": {
+  "path": "~\\models",
+  "free_gb": 108.21,
+  "total_gb": 424.97,
+  "device": "C:\\",
+  "fstype": "NTFS",
+  "physical_disks": [
+   {
+    "disk": "PhysicalDisk2",
+    "nvme": true,
+    "rotational": false,
+    "model": "NVMe Samsung SSD 970"
+   }
+  ],
+  "all_nvme": true
+ },
+ "gpus": [
+  {
+   "vendor": "nvidia",
+   "index": 0,
+   "name": "NVIDIA GeForce RTX 4060 Ti",
+   "vram_gb": 16,
+   "vram_mib": 16380,
+   "vram_used_mib": 514,
+   "unified_memory": false,
+   "pci": "00000000:01:00.0",
+   "pcie_gen_max": "3",
+   "pcie_width_max": "8",
+   "driver": "617.14"
+  }
+ ]
+}

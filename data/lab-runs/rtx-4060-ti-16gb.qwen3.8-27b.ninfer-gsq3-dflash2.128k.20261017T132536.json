@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.8-27b",
+  "weights": "roofkid/Qwen3.8-27B-GSQ3-NInfer@2359d374b0f6ed3cd400815e5114d32ce03b5899",
+  "engine": "ninfer-gsq3-dflash2@6f6e777d8420",
+  "set": {},
+  "card": "rtx-4060-ti-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 4060 Ti 16GB"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-17",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 4060 Ti 16GB",
+  "launch_sha256": "9d006f03b92eee964bc2ba54713926063c70d0f491b23566a4ab3ed83fe0723f",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 54.6,
+  "prefill": 657,
+  "served": "qwen3.8-27b"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 140,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "function": {
+      "arguments": "{\"city\":\"Paris\"}",
+      "name": "get_weather"
+     },
+     "id": "call_0011e00b6a8e1772",
+     "type": "function"
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C (63°F)** with an overcast sky. 🌥️",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 89
+  },
+  "context": {
+   "prompt_tokens": 106294,
+   "seconds": 161.9,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 6562,
+   "seconds_total": 107.2
+  }
+ },
+ "launch_config_sha256": null
+}

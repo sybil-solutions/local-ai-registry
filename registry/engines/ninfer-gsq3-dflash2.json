@@ -1,0 +1,55 @@
+{
+  "id": "ninfer-gsq3-dflash2",
+  "kind": "host",
+  "engine": "ninfer",
+  "about": "roofkid/ninfer-4080 (rtx4080-port) serving the GSQ3 .ninfer artifact with the DFlash2 K=7 speculative profile at 131,072 context on rk2v4-e8 KV (the 16 GB card cannot hold 131,072 on rk4v4-e8: planner budget exceeded by 18 MB; rk2v4-e8 halves KV bytes and passes the registry's 128k floor). Host program, no container. Windows needs the 8-file MSVC portability patch from the recipe-kit PR.",
+  "command": [
+    "build/apps/ninfer-serve",
+    "models/qwen3_8_27b_gsq3.ninfer",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080",
+    "--max-context",
+    "131072",
+    "--kv-capacity",
+    "131072",
+    "--kv-dtype",
+    "rk2v4-e8",
+    "--max-concurrency",
+    "1",
+    "--max-pending-requests",
+    "16",
+    "--pending-timeout-ms",
+    "1200000",
+    "--prefill-chunk",
+    "1024",
+    "--host-kv-mib",
+    "4096",
+    "--spec",
+    "dflash2",
+    "--draft-tokens",
+    "7",
+    "--lm-head-draft",
+    "--preserve-thinking"
+  ],
+  "env": {
+    "PATH_PREPEND_WINDOWS": "build/vcpkg_installed/x64-windows/bin"
+  },
+  "install": "https://github.com/roofkid/ninfer-4080/tree/2469b5752672ad597055af61fe28e8e7ced20056",
+  "source": "Windows/MSVC portability patch: local-ai-recipe-kit ninfer-rtx4080 branch, measurements/rtx-4060-ti-16gb/ninfer-windows-msvc.patch",
+  "port": 8080,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "min_cuda": 13.1,
+  "weights": [
+    "roofkid/Qwen3.8-27B-GSQ3-NInfer@2359d374b0f6ed3cd400815e5114d32ce03b5899"
+  ],
+  "needs": {
+    "host_ram_gb": 42,
+    "disk_gb": 14,
+    "fast_storage": "nvme"
+  }
+}
