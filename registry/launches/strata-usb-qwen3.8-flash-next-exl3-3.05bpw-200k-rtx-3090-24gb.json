@@ -1,0 +1,24 @@
+{
+  "id": "strata-usb-qwen3.8-flash-next-exl3-3.05bpw-200k-rtx-3090-24gb",
+  "kind": "host",
+  "engine": "strata-usb",
+  "about": "Qwen3.8-Flash-Next (turboderp EXL3 3.05 bpw: all 512 routed experts of all 48 layers, exact, nothing pruned) on one RTX 3090 24 GB in a USB dock (ASM2464, USB 3.2 10 Gb/s, PCIe Gen3 x2) attached to a Mac mini M4 (16 GiB), config F of the recipe repo: Strata v0.1.41 (github.com/Niko1221/Strata) plus its patches 0001-0023, running on macOS through the tgcu CUDA-runtime shim on tinygrad's NV backend. The 3090 holds the attention, the dense part and the hottest experts; the mini computes every other expert on its Metal GPU from a 6,400-slot RAM LRU backed by NVMe. Elastic k8v4 KV up to 204,800 tokens, image input (mmproj on the mini's GPU), MTP speculative decoding (4 drafts), OpenAI and Anthropic APIs, one request at a time.",
+  "command": [
+    "./run.sh"
+  ],
+  "install": "https://github.com/sybil-solutions/qwen38-flash-next-3090-usb-offload/tree/6778e6149c85ce3ff476be8e60e7d232dcb3a75e",
+  "env": {},
+  "port": 8080,
+  "weights": [],
+  "ctx": 204800,
+  "seqs": 1,
+  "vision": true,
+  "backend": "nvidia",
+  "source": "https://github.com/sybil-solutions/qwen38-flash-next-3090-usb-offload/tree/6778e6149c85ce3ff476be8e60e7d232dcb3a75e",
+  "needs": {
+    "host_ram_gb": 14.0,
+    "disk_gb": 140.2,
+    "fast_storage": "nvme"
+  },
+  "setup": "NEEDS: a Mac mini M4 with 16 GiB (macOS 26.6, Command Line Tools; some Mac with Xcode's Metal toolchain builds two Metal binaries: ./run.sh --build-metal) and one RTX 3090 24 GB in an ASM2464 USB dock with its own power supply; about 140 GB on a local NVMe SSD (measured on the mini: 45.8 GB expert pack + 83.6 GB dense GGUF shards + 0.9 GB mmproj + 6.5 GB MTP draft + 2.8 GB packs). The 6,400-slot expert LRU locks 12 GB of the mini's RAM: the whole 16 GiB machine is the requirement (the running engine's footprint is 13 GB, wired limit 14,336 MB). This is not a container launch and no Linux host can run it: the card is driven from macOS (libusb + the tgcu shim); the registry records the card that computes (RTX 3090), the Mac is its host. BEFORE STARTING (once per boot): sudo sysctl iogpu.wired_limit_mb=14336 vm.global_user_wire_limit=15032385536 vm.user_wire_limit=15032385536 and caffeinate -dimsu (an idle-sleeping mini froze the engine). STEPS in the checkout: docker compose run --rm build (any machine with Docker, linux/arm64: the pinned CUDA 13.4 build of the patched engine and shim into ./out); docker compose --profile fetch run --rm fetch all (about 130 GB: the expert pack range-fetched from turboderp/Qwen3.8-Flash-Next-exl3 at 69e33439ae95 and sha256-checked per layer against results/pack/exl3_pack.json; the IQ3_S dense GGUF shards and BF16 mmproj of ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF at ed59f92082b1, sha256-checked against docker/models.sha256; the MTP draft is cut from Qwen/Qwen3.8-Flash-Next at de4b8e4d43b9); then ./run.sh installs the bundle, builds the macOS libraries and the engine, renders configs/strata-exl3-full512-f.json.tmpl (config F), makes an API key in ~/.config/strata/flashnext.key and starts the server on 127.0.0.1:8080 (about 125-200 s to ready). Fallback configs: ./run.sh --config e, d or c. KV: elastic k8v4, grows with the context, 200K window; one request at a time (others queue)."
+}
