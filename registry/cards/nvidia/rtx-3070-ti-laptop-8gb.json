@@ -1,0 +1,16 @@
+{
+  "id": "rtx-3070-ti-laptop-8gb",
+  "name": "GeForce RTX 3070 Ti Laptop",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 8,
+  "bandwidth_gb_s": 448,
+  "match": {
+    "backend": "nvidia",
+    "name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "names": [
+      "rtx3070tilaptopgpu"
+    ],
+    "vramGb": 8
+  }
+}
