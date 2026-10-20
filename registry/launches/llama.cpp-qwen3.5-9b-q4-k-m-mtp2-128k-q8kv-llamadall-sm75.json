@@ -1,0 +1,72 @@
+{
+  "id": "llama.cpp-qwen3.5-9b-q4-k-m-mtp2-128k-q8kv-llamadall-sm75",
+  "engine": "llama.cpp",
+  "about": "Qwen3.5-9B (GGUF · Q4_K_M) on an 11 GB RTX 2080 Ti: llamADALL v1-27 (llama.cpp b11243 fork) sm_75 build, 128K context, q8_0 KV, MTP draft 2",
+  "image": null,
+  "build": {
+    "repo": "dalisoft/local-ai-recipe-kit",
+    "commit": "6bb85eba87be2baccbb98ff54d73a1a67f4fcf78",
+    "dockerfile": "llamadall/Dockerfile"
+  },
+  "source": "https://github.com/dalisoft/local-ai-recipe-kit/tree/6bb85eba87be2baccbb98ff54d73a1a67f4fcf78/llamadall",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Qwen_Qwen3.5-9B-Q4_K_M.gguf",
+    "--alias",
+    "qwen3.5-9b",
+    "--jinja",
+    "--n-gpu-layers",
+    "99",
+    "--fit",
+    "off",
+    "--ctx-size",
+    "131072",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--threads",
+    "12",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "512",
+    "--split-mode",
+    "none",
+    "--spec-type",
+    "draft-mtp",
+    "--spec-draft-n-max",
+    "2",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080"
+  ],
+  "env": {
+    "LD_LIBRARY_PATH": "/app"
+  },
+  "shm": null,
+  "weights": [
+    {
+      "repo": "bartowski/Qwen_Qwen3.5-9B-GGUF",
+      "revision": "182be2fd6c7bc44887d88a91cb03ff009cc9f549",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "Qwen_Qwen3.5-9B-Q4_K_M.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1
+}

@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.5-9b",
+  "weights": "bartowski/Qwen_Qwen3.5-9B-GGUF@182be2fd6c7bc44887d88a91cb03ff009cc9f549",
+  "engine": "llama.cpp-qwen3.5-9b-q4-k-m-mtp2-128k-q8kv-llamadall-sm75@6bb85eba87be",
+  "set": {},
+  "card": "rtx-2080-ti-11gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "GeForce RTX 2080 Ti"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-18",
+  "on": "owner",
+  "gpu": "GeForce RTX 2080 Ti",
+  "launch_sha256": "8e04e16fa0e8829e407bf0867187db7969763d402ea8a9e73adaad0934470188",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 157.9,
+  "prefill": 1132,
+  "served": "qwen3.5-9b"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 914,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "4nkUIIb5ESoNZtpvyqI5GL7uScTBI8LU"
+    }
+   ],
+   "reply": "The current weather in Paris is:\n- **Temperature:** 17°C\n- **Sky Condition:** Overcast",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 207
+  },
+  "context": {
+   "prompt_tokens": 106252,
+   "seconds": 93.9,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 5035,
+   "seconds_total": 32.2
+  }
+ },
+ "launch_config_sha256": null
+}
