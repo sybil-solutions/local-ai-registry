@@ -1,0 +1,18 @@
+{
+  "id": "radeon-8060s-64gb",
+  "name": "AMD Radeon 8060S",
+  "vendor": "amd",
+  "backend": "amd-vulkan",
+  "vram_gb": 64,
+  "bandwidth_gb_s": 256,
+  "match": {
+    "backend": "amd-vulkan",
+    "name": "AMD Radeon 8060S Graphics",
+    "names": [
+      "8060s",
+      "8060sgraphics"
+    ],
+    "vramGb": 64,
+    "unifiedMemory": true
+  }
+}
