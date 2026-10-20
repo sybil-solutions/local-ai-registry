@@ -1,0 +1,36 @@
+=== MTP3 + lm-head-draft + ngram chain (registered profile) — publisher methodology ===
+  gpu:        NVIDIA GeForce RTX 4060 Ti (device 0)
+  cuda:       runtime 13.4, driver 13.4
+  artifact:   C:/Users/user/models/qwen3_8_27b_gsq3.ninfer (13330776576 bytes)
+  load:       6.31519 s, upload 3.8934 s, read 10.92 GiB, H2D 10.91 GiB, staging peak 256.0 MiB
+  memory:     weights 10.91 GiB, sequence 1.32 GiB, workspace 152.6 MiB, Vision handoff disabled (within workspace), graph allowance 172.0 MiB, KV payload 1.13 GiB
+  corpus:     bench/fixtures/bench_corpus.ids (65536 tokens)
+  config:     max_context=65670 prefill_chunk=1024 kv_cache=rk4v4-e8 spec=mtp draft_tokens=3 proposal_head=optimized ngram=chain decode_path=mtp_cuda_graph graph_prime=9 outputs repetitions=3 warmup=1
+
+test           n_prompt  n_gen      prefill t/s  decode out t/s  decode eng t/s      spec acc  spec round/fb  work peak
+pp8192+tg128       8192    128  1196.01 ± 1.89  174.68 ± 0.07  174.68 ± 0.07  0.9593495935           27/3  152.6 MiB
+pp32768+tg128     32768    128  1077.77 ± 0.97  183.41 ± 0.70  183.41 ± 0.70             1           24/0  152.6 MiB
+pp65536+tg128     65536    128   953.41 ± 0.10  164.70 ± 0.81  164.70 ± 0.81             1           24/0  152.6 MiB
+=== DFlash2 K=7 (chat winner) ===
+  gpu:        NVIDIA GeForce RTX 4060 Ti (device 0)
+  cuda:       runtime 13.4, driver 13.4
+  artifact:   C:/Users/user/models/qwen3_8_27b_gsq3.ninfer (13330776576 bytes)
+  load:       6.65488 s, upload 4.20611 s, read 11.72 GiB, H2D 11.71 GiB, staging peak 256.0 MiB
+  memory:     weights 11.71 GiB, sequence 1.32 GiB, workspace 152.6 MiB, Vision handoff disabled (within workspace), graph allowance 480.0 MiB, KV payload 1.06 GiB
+  corpus:     bench/fixtures/bench_corpus.ids (65536 tokens)
+  config:     max_context=65664 prefill_chunk=1024 kv_cache=rk4v4-e8 spec=dflash2 draft_tokens=7 proposal_head=optimized ngram=off decode_path=dflash2_cuda_graph graph_prime=17 outputs repetitions=3 warmup=1
+
+test           n_prompt  n_gen      prefill t/s  decode out t/s  decode eng t/s      spec acc  spec round/fb  work peak
+pp8192+tg128       8192    128  1185.62 ± 1.48   80.07 ± 0.14   80.07 ± 0.14  0.5401069519           81/0  152.6 MiB
+pp32768+tg128     32768    128  1067.32 ± 0.25  125.66 ± 0.41  125.66 ± 0.41             1           48/0  152.6 MiB
+pp65536+tg128     65536    128   945.73 ± 0.28  117.43 ± 0.36  117.43 ± 0.36             1           48/0  152.6 MiB
+=== control: MTP3 ngram off ===
+  artifact:   C:/Users/user/models/qwen3_8_27b_gsq3.ninfer (13330776576 bytes)
+  load:       5.96566 s, upload 3.87061 s, read 10.92 GiB, H2D 10.91 GiB, staging peak 256.0 MiB
+  memory:     weights 10.91 GiB, sequence 315.5 MiB, workspace 152.6 MiB, Vision handoff disabled (within workspace), graph allowance 86.0 MiB, KV payload 148.0 MiB
+  corpus:     bench/fixtures/bench_corpus.ids (65536 tokens)
+  config:     max_context=8326 prefill_chunk=1024 kv_cache=rk4v4-e8 spec=mtp draft_tokens=3 proposal_head=optimized ngram=off decode_path=mtp_cuda_graph graph_prime=9 outputs repetitions=3 warmup=1
+
+test          n_prompt  n_gen      prefill t/s  decode out t/s  decode eng t/s  spec acc  spec round/fb  work peak
+pp8192+tg128      8192    128  1194.97 ± 1.41   67.90 ± 0.17   67.90 ± 0.17         1           96/0  152.6 MiB
+DONE

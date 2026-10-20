@@ -1,0 +1,8 @@
+# probe.py --backend openai --url http://127.0.0.1:8080 (registered 131,072/rk2v4-e8 DFlash2 K=7 serve)
+  rep 1: prefill8k 896.7 | C1 47.8 | 32k 44.3 (TTFT 30.0s)
+  rep 2: prefill8k 899.9 | C1 47.8 | 32k 41.0 (TTFT 30.0s)
+  rep 3: prefill8k 904.3 | C1 47.1 | 32k 47.7 (TTFT 29.1s)
+=== MEDIANS (n=3) ===
+  prefill8k: median 899.9  (all [896.7, 899.9, 904.3])
+  decode_c1: median 47.8  (all [47.8, 47.8, 47.1])
+  c1_32k: median 44.3  (all [44.3, 41.0, 47.7])

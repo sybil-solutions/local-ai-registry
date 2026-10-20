@@ -1,0 +1,8 @@
+=== ninfer DFlash2 100K profile: 64K + 98K depths ===
+{"label": "ninfer DFlash2 @64K", "prompt_tokens": 50474, "gen_tokens": 125, "prefill_tps": 993.9, "decode_at_depth_tps": 55.7, "ttft_s": 50.8, "vram_ready_mib": 14987, "vram_peak_mib": 15064, "error": null}
+{"label": "ninfer DFlash2 @98K", "prompt_tokens": 77241, "gen_tokens": 137, "prefill_tps": 913.1, "decode_at_depth_tps": 52.0, "ttft_s": 84.7, "vram_ready_mib": 14982, "vram_peak_mib": 14982, "error": null}
+=== ninfer DFlash2 @129,800 cap (16 GB ceiling class) ===
+{"label": "ninfer DFlash2 @129.8K cap", "error": "server not ready"}
+=== baseline (b11696 + v2.1, spec off) @131K redo ===
+{"label": "baseline @131K (cap 196608)", "prompt_tokens": 131000, "gen_tokens": 256, "prefill_tps": 370.2, "decode_at_depth_tps": 12.9, "ttft_s": 0, "vram_ready_mib": 14975, "vram_peak_mib": 15089, "error": null}
+=== FINISHER DONE ===

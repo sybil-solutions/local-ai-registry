@@ -1,0 +1,15 @@
+ninfer_bench product throughput report
+  target:     qwen3_8_27b
+  weights:    gsq3
+  gpu:        NVIDIA GeForce RTX 4060 Ti (device 0)
+  cuda:       runtime 13.4, driver 13.4
+  artifact:   C:/Users/user/models/qwen3_8_27b_gsq3.ninfer (13330776576 bytes)
+  load:       7.98903 s, upload 4.31209 s, read 11.72 GiB, H2D 11.71 GiB, staging peak 256.0 MiB
+  memory:     weights 11.71 GiB, sequence 1.88 GiB, workspace 152.6 MiB, Vision handoff disabled (within workspace), graph allowance 480.0 MiB, KV payload 1.62 GiB
+  corpus:     bench/fixtures/bench_corpus.ids (65536 tokens)
+  config:     max_context=131072 prefill_chunk=1024 kv_cache=rk2v4-e8 spec=dflash2 draft_tokens=7 proposal_head=optimized ngram=off decode_path=dflash2_cuda_graph graph_prime=17 outputs repetitions=3 warmup=1
+
+test           n_prompt  n_gen     prefill t/s  decode out t/s  decode eng t/s      spec acc  spec round/fb  work peak
+pp8192+tg128       8192    128  928.22 ± 2.96   56.96 ± 0.05   56.96 ± 0.05  0.4925373134           87/0  152.6 MiB
+pp32768+tg128     32768    128  787.40 ± 0.87   95.31 ± 1.59   95.31 ± 1.59             1           48/0  152.6 MiB
+pp65536+tg128     65536    128  658.74 ± 0.59   86.83 ± 0.06   86.83 ± 0.06             1           48/0  152.6 MiB
