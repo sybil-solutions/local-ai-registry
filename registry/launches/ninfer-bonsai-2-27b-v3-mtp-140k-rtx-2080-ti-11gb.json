@@ -1,0 +1,58 @@
+{
+  "id": "ninfer-bonsai-2-27b-v3-mtp-140k-rtx-2080-ti-11gb",
+  "engine": "ninfer",
+  "about": "Ternary Bonsai 2 27B (NInfer v3) on an 11 GB RTX 2080 Ti: ninfer-all sm_75 build, 140K context, rk4v4 KV, MTP draft 3",
+  "image": null,
+  "build": {
+    "repo": "iamwavecut/ninfer-all",
+    "commit": "d1a0e070414414af3f1e4b2c60cc2ff74a4ddb9b",
+    "dockerfile": "Dockerfile"
+  },
+  "source": "https://github.com/iamwavecut/ninfer-all/tree/d1a0e070414414af3f1e4b2c60cc2ff74a4ddb9b",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/opt/ninfer/sm75/ninfer-serve",
+  "args": [
+    "/models/Ternary-Bonsai-2-27B-ninfer-v3.ninfer",
+    "--model-id",
+    "bonsai2-27b",
+    "--max-context",
+    "143360",
+    "--kv-capacity",
+    "143360",
+    "--kv-dtype",
+    "rk4v4",
+    "--gdn-state-fp16",
+    "--host-kv-mib",
+    "2048",
+    "--host-state-slots",
+    "8",
+    "--spec",
+    "mtp",
+    "--draft-tokens",
+    "3",
+    "--lm-head-draft",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080"
+  ],
+  "env": {},
+  "shm": null,
+  "weights": [
+    {
+      "repo": "WaveCut/Ternary-Bonsai-2-27B-NInfer-v3",
+      "revision": "841f7812793972b5de6dc48910bdd1e2722ae48b",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "Ternary-Bonsai-2-27B-ninfer-v3.ninfer"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 143360,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1
+}
