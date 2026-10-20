@@ -1180,6 +1180,10 @@
     "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF@e0fecb69cb3e5e4c5e8a056fa2aec98c78e91246": {
       "format": "GGUF · IQ2_XXS / NVFP4 / Q8_0 (NVIDIA 24 GB)",
       "size_gb": 23.75
+    },
+    "RedHatAI/Qwen3.8-27B-INT4@bf08f3dbd9a324e53956920aad378a1f1b6dd24a": {
+      "format": "compressed-tensors · W4A16 INT4",
+      "size_gb": 19.47
     }
   }
 }
