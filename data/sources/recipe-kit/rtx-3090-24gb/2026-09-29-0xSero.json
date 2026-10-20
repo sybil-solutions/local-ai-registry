@@ -1,0 +1,340 @@
+{
+ "schema": "local-ai-recipe-kit/submission/v1",
+ "submitted": "2026-09-29",
+ "handle": "0xSero",
+ "target": "qwen3.8-flash-next-offload",
+ "launch": {
+  "image": "ghcr.io/0xsero/sglang-exl3-flashnext@sha256:95b1a85d53812ea73e58638d545a9b8d2a5c46d2494bf6cd4baf97f3b6440dda",
+  "args": [
+   "python3",
+   "-m",
+   "sglang.launch_server",
+   "--model-path",
+   "/models/turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+   "--quantization",
+   "exl3",
+   "--trust-remote-code",
+   "--host",
+   "0.0.0.0",
+   "--port",
+   "30100",
+   "--served-model-name",
+   "flashnext",
+   "--disable-shared-experts-fusion",
+   "--kv-cache-dtype",
+   "fp8_e4m3",
+   "--context-length",
+   "204800",
+   "--mem-fraction-static",
+   "0.88",
+   "--chunked-prefill-size",
+   "8192",
+   "--max-running-requests",
+   "4",
+   "--cuda-graph-max-bs-decode",
+   "8",
+   "--cuda-graph-backend-prefill",
+   "disabled",
+   "--max-mamba-cache-size",
+   "16",
+   "--max-total-tokens",
+   "210000",
+   "--reasoning-parser",
+   "qwen3",
+   "--tool-call-parser",
+   "qwen3_coder"
+  ],
+  "env": {
+   "HF_HUB_OFFLINE": "1",
+   "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+   "SGLANG_EXL3_MODEL_PATH": "/models/turboderp-Qwen3.8-Flash-Next-exl3-3.05bpw_h5_ng5",
+   "SGLANG_EXL3_MOE_OFFLOAD": "gpu_cache",
+   "EXL3_MOE_CPU_THREADS": "24",
+   "SGLANG_EXL3_EXPERT_CACHE_GB": "auto",
+   "SGLANG_EXL3_EMBED_HOST": "1",
+   "SGLANG_EXL3_OFFLOAD_STAGING_PARTS": "4",
+   "SGLANG_EXL3_OFFLOAD_FUSED": "1",
+   "SGLANG_EXL3_OFFLOAD_COMPACT_PARTS": "1",
+   "SGLANG_EXL3_MOE_PREFILL_FP16_ACC": "1",
+   "SGLANG_EXL3_NGRAM_TIER": "nvme"
+  },
+  "shm": "64g",
+  "gpu": "1x RTX 3090 24 GB",
+  "network": "bridge",
+  "mounts": [
+   "<models dir>:/models:ro"
+  ]
+ },
+ "probe": {
+  "host": {
+   "kernel": "7.1.8-arch1-3",
+   "cpu": "AMD EPYC 7443P 24-Core Processor",
+   "cpus": 48,
+   "avx512": false
+  },
+  "ram": {
+   "total_gb": 540.67,
+   "available_gb": 338.87,
+   "swap_total_gb": 1081.34,
+   "swap_used_gb": 91.29
+  },
+  "storage": {
+   "path": "~/models",
+   "free_gb": 57.67,
+   "total_gb": 3998.62,
+   "device": "/dev/mapper/root",
+   "fstype": "btrfs",
+   "physical_disks": [
+    {
+     "disk": "nvme0n1",
+     "nvme": true,
+     "rotational": false,
+     "model": "Samsung SSD 990 PRO 4TB"
+    }
+   ],
+   "all_nvme": true
+  },
+  "gpus": [
+   {
+    "vendor": "nvidia",
+    "index": 0,
+    "name": "NVIDIA GeForce RTX 3090",
+    "vram_gb": 24,
+    "vram_used_mib": 2226,
+    "pci": "00000000:81:00.0",
+    "pcie_gen_max": "4",
+    "pcie_width_max": "16",
+    "driver": "610.57.04",
+    "vram_mib": 24576
+   },
+   {
+    "vendor": "nvidia",
+    "index": 1,
+    "name": "NVIDIA GeForce RTX 3090",
+    "vram_gb": 24,
+    "vram_used_mib": 3,
+    "pci": "00000000:C5:00.0",
+    "pcie_gen_max": "4",
+    "pcie_width_max": "16",
+    "driver": "610.57.04",
+    "vram_mib": 24576
+   },
+   {
+    "vendor": "intel",
+    "card": "card5",
+    "name": "Intel Corporation Battlemage G31 [Arc Pro B70]",
+    "vram_gb": null
+   },
+   {
+    "vendor": "intel",
+    "card": "card6",
+    "name": "Intel Corporation Battlemage G31 [Arc Pro B70]",
+    "vram_gb": null
+   }
+  ]
+ },
+ "quality": {
+  "panel": {
+   "top1_agreement": 0.9913362212595801,
+   "mean_kl_top20": 0.0009220050540230312,
+   "positions": 3001
+  },
+  "needle": null
+ },
+ "speed": {
+  "status": "DONE",
+  "config": "ft-integration@61846cb serve_flashnext_3090.sh defaults (gpu_cache auto 10.48GB, staging4, fused, compact, fp16acc, nvme ngram pread32/8GB, embed host, ctx 204800, KV 210k e4m3, chunk 8k, mamba 16, maxreq 3)",
+  "prefill": {
+   "8192": {
+    "median": 2619.2,
+    "min": 1853.0,
+    "max": 2628.9,
+    "n": 3,
+    "all": [
+     1853.0,
+     2628.9,
+     2619.2
+    ]
+   },
+   "16384": {
+    "median": 2782.5,
+    "min": 2513.7,
+    "max": 2801.1,
+    "n": 3,
+    "all": [
+     2513.7,
+     2782.5,
+     2801.1
+    ]
+   },
+   "32768": {
+    "median": 2836.9,
+    "min": 2833.8,
+    "max": 2837.7,
+    "n": 3,
+    "all": [
+     2837.7,
+     2836.9,
+     2833.8
+    ]
+   },
+   "65536": {
+    "median": 2807.3,
+    "min": 2806.4,
+    "max": 2826.5,
+    "n": 3,
+    "all": [
+     2826.5,
+     2806.4,
+     2807.3
+    ]
+   }
+  },
+  "decode": {
+   "C1": {
+    "aggregate": {
+     "median": 62.980000000000004,
+     "min": 62.52,
+     "max": 63.44,
+     "n": 2,
+     "all": [
+      63.44,
+      62.52
+     ]
+    },
+    "per_stream_mean": {
+     "median": 62.945,
+     "min": 62.49,
+     "max": 63.4,
+     "n": 2,
+     "all": [
+      63.4,
+      62.49
+     ]
+    }
+   },
+   "C2": {
+    "aggregate": {
+     "median": 79.47,
+     "min": 77.88,
+     "max": 81.06,
+     "n": 2,
+     "all": [
+      81.06,
+      77.88
+     ]
+    },
+    "per_stream_mean": {
+     "median": 40.120000000000005,
+     "min": 39.56,
+     "max": 40.68,
+     "n": 2,
+     "all": [
+      40.68,
+      39.56
+     ]
+    }
+   },
+   "C3": {
+    "aggregate": {
+     "median": 85.495,
+     "min": 84.14,
+     "max": 86.85,
+     "n": 2,
+     "all": [
+      86.85,
+      84.14
+     ]
+    },
+    "per_stream_mean": {
+     "median": 30.905,
+     "min": 30.53,
+     "max": 31.28,
+     "n": 2,
+     "all": [
+      31.28,
+      30.53
+     ]
+    }
+   },
+   "C4": {
+    "aggregate": {
+     "median": 78.905,
+     "min": 78.26,
+     "max": 79.55,
+     "n": 2,
+     "all": [
+      79.55,
+      78.26
+     ]
+    },
+    "per_stream_mean": {
+     "median": 35.295,
+     "min": 35.18,
+     "max": 35.41,
+     "n": 2,
+     "all": [
+      35.18,
+      35.41
+     ]
+    }
+   },
+   "C1@32k": {
+    "aggregate": {
+     "median": 61.95,
+     "min": 61.41,
+     "max": 62.49,
+     "n": 2,
+     "all": [
+      61.41,
+      62.49
+     ]
+    },
+    "per_stream_mean": null
+   }
+  },
+  "server_args": {
+   "max_running_requests": 4,
+   "max_total_num_tokens": 209984,
+   "chunked_prefill_size": 8192,
+   "kv_cache_dtype": "fp8_e4m3",
+   "context_length": 204800,
+   "mem_fraction_static": 0.88,
+   "max_mamba_cache_size": 16
+  },
+  "gates": {
+   "prefill_8192": {
+    "value": 2619.2,
+    "best_known": null,
+    "pass": true
+   },
+   "prefill_16384": {
+    "value": 2782.5,
+    "best_known": null,
+    "pass": true
+   },
+   "prefill_32768": {
+    "value": 2836.9,
+    "best_known": 2848,
+    "pass": true
+   },
+   "prefill_65536": {
+    "value": 2807.3,
+    "best_known": null,
+    "pass": true
+   },
+   "decode_C1": {
+    "value": 62.98,
+    "best_known": 63.7,
+    "pass": true
+   },
+   "decode_C4": {
+    "value": 78.91,
+    "best_known": null,
+    "pass": true
+   }
+  }
+ },
+ "needs_measured": null,
+ "notes": "Reference submission from the maintainers. panel = the published image (digest in launch) run exactly as launched (runs SMOKE-3090-image, top-1 0.9913). speed = protocol sweep INT046 of the same trellis-serve commit 61846cb launched by its serve script (same args minus --reasoning-parser/--tool-call-parser, host IPC). Memory measured separately (INT044): VRAM 21,562 MiB ready / 23,664 after load; MemAvailable drop 75.0 GB at ready; 55.0 GB page-locked. Probe free disk 57.7 GB is after the model was already downloaded to ~/models."
+}
