@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "muse-glimmer-30b",
+  "weights": "unsloth/Muse-Glimmer-30B-GGUF@faa5b025c584459c13febfa5c59883516710ae39",
+  "engine": "llamacpp-muse-glimmer-30b-ud-q4-k-xl-dflash-262k-rtx-3090-24gb@8a6cd6d43abf",
+  "set": {},
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-17",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "launch_sha256": "99626c4b2d1f5d5265506afa70186c867266fe3ae227323c87daddf3c7e262fc",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 108.4,
+  "prefill": 906,
+  "served": "muse-glimmer-30b"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 282,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "4H9Pr3VKuHNUlVZwTG8FKrN1rsbPJghV"
+    }
+   ],
+   "reply": "Paris is currently 17°C and overcast.\n",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 269
+  },
+  "context": {
+   "prompt_tokens": 175483,
+   "seconds": 193.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 3626,
+   "seconds_total": 31.7
+  }
+ },
+ "launch_config_sha256": null
+}

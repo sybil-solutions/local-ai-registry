@@ -1,0 +1,116 @@
+{
+  "id": "llamacpp-muse-glimmer-30b-ud-q4-k-xl-dflash-262k-rtx-3090-24gb",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "single RTX 3090: UD-Q4_K_XL, DFlash draft 15, kquant projector, F16 KV, configured context 262144; official lab.py try acceptance passed.",
+  "command": [
+    "llama-b11429/llama-server",
+    "--model",
+    "../models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf",
+    "--mmproj",
+    "../models/mmproj-kquant.gguf",
+    "--spec-draft-model",
+    "../models/dflash-kquant.gguf",
+    "--spec-draft-ngl",
+    "999",
+    "--spec-draft-n-max",
+    "15",
+    "--spec-type",
+    "draft-dflash",
+    "-c",
+    "262144",
+    "--override-kv",
+    "muse-glimmer.context_length=int:262144,dflash.context_length=int:262144",
+    "-ngl",
+    "999",
+    "-fit",
+    "off",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--no-warmup",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "64",
+    "--reasoning-preserve",
+    "--jinja",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "30000",
+    "--alias",
+    "muse-glimmer-30b"
+  ],
+  "env": {
+    "LD_LIBRARY_PATH": "cudart-llama-b11429-bin-ubuntu-cuda-12.8-x64"
+  },
+  "port": 30000,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": true,
+  "backend": "nvidia",
+  "weights": [
+    {
+      "repo": "unsloth/Muse-Glimmer-30B-GGUF",
+      "revision": "faa5b025c584459c13febfa5c59883516710ae39",
+      "at": "../models",
+      "layout": "dir",
+      "files": [
+        "Muse-Glimmer-30B-UD-Q4_K_XL.gguf",
+        "dflash-kquant.gguf",
+        "mmproj-kquant.gguf"
+      ]
+    }
+  ],
+  "source": "https://www.reddit.com/r/LocalLLaMA/comments/1vkm42m/",
+  "provenance": {
+    "captured_at": "2026-10-13T20:53:20Z",
+    "sources": [
+      {
+        "kind": "community-report",
+        "url": "https://www.reddit.com/r/LocalLLaMA/comments/1vkm42m/",
+        "captured_at": "2026-10-13T20:53:20Z"
+      },
+      {
+        "kind": "huggingface-api",
+        "url": "https://huggingface.co/api/models/unsloth/Muse-Glimmer-30B-GGUF/revision/faa5b025c584459c13febfa5c59883516710ae39?blobs=true",
+        "captured_at": "2026-10-13T20:53:20Z"
+      },
+      {
+        "kind": "github-release",
+        "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b11429",
+        "captured_at": "2026-10-13T21:04:09Z"
+      },
+      {
+        "kind": "acceptance-run",
+        "url": "http://127.0.0.1:8080/v1",
+        "captured_at": "2026-10-13T21:07:13.727784+00:00"
+      }
+    ]
+  },
+  "validation": {
+    "status": "candidate",
+    "engine_commit": "d81235049384534c167caea52b85a694f6103d14",
+    "vision": true,
+    "tools": true,
+    "reason": "all six official lab.py try gates passed on mrq6; retrieval tested at 175483 tokens, not the full configured limit. supplementary synthetic vision evidence retained under data/sources/.",
+    "evidence": "data/lab-runs/rtx-3090-24gb.muse-glimmer-30b.llamacpp-muse-glimmer-30b-ud-q4-k-xl-dflash-262k-rtx-3090-24gb.256k.20261017T002641.json",
+    "captured_at": "2026-10-17T00:26:41Z"
+  },
+  "setup": "extract the pinned engine archive and CUDA runtime archive into the working directory. CUDA runtime: https://github.com/ggml-org/llama.cpp/releases/download/b11429/cudart-llama-b11429-bin-ubuntu-cuda-12.8-x64.tar.gz#sha256=f4ab593e31507320b121f2cb21791f4c72420a2483d3df8bf2ca1a97d04e6845. download the three pinned weights into ../models. draft 15, no ngram hybrid. tested with llama.cpp b11429 on one RTX 3090. all six lab gates and a synthetic vision test passed; retrieval tested at 175483 tokens. the CUDA runtime archive must also be installed as described above.",
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b11429/llama-b11429-bin-ubuntu-cuda-12.8-x64.tar.gz#sha256=b13c64b9224d3c89d9993945d70cc21177ad00178c21b8d34237e3bc139834f1",
+  "build": {
+    "repo": "ggml-org/llama.cpp",
+    "commit": "d81235049384534c167caea52b85a694f6103d14",
+    "version": "b11429",
+    "cuda": "12.8"
+  }
+}

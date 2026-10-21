@@ -1,0 +1,105 @@
+{
+  "facts": {
+    "revision": {
+      "provenance": {
+        "captured_at": "2026-10-13T20:53:20Z",
+        "sources": [
+          {
+            "captured_at": "2026-10-13T20:53:20Z",
+            "kind": "huggingface-api",
+            "url": "https://huggingface.co/api/models/unsloth/Muse-Glimmer-30B-GGUF/revision/faa5b025c584459c13febfa5c59883516710ae39?blobs=true"
+          }
+        ]
+      },
+      "reason": "huggingface-repository-revision",
+      "state": "known"
+    },
+    "weights.precision": {
+      "provenance": {
+        "captured_at": "2026-10-13T20:53:20Z",
+        "sources": [
+          {
+            "captured_at": "2026-10-13T20:53:20Z",
+            "kind": "huggingface-api",
+            "url": "https://huggingface.co/api/models/unsloth/Muse-Glimmer-30B-GGUF/revision/faa5b025c584459c13febfa5c59883516710ae39?blobs=true"
+          }
+        ]
+      },
+      "reason": "kquant filename does not specify the tensor quantization mix",
+      "state": "unknown"
+    },
+    "weights.sha256": {
+      "provenance": {
+        "captured_at": "2026-10-13T20:53:20Z",
+        "sources": [
+          {
+            "captured_at": "2026-10-13T20:53:20Z",
+            "kind": "huggingface-api",
+            "url": "https://huggingface.co/api/models/unsloth/Muse-Glimmer-30B-GGUF/revision/faa5b025c584459c13febfa5c59883516710ae39?blobs=true"
+          }
+        ]
+      },
+      "reason": "huggingface-lfs-sha256",
+      "state": "known"
+    },
+    "weights.size_gb": {
+      "provenance": {
+        "captured_at": "2026-10-13T20:53:20Z",
+        "sources": [
+          {
+            "captured_at": "2026-10-13T20:53:20Z",
+            "kind": "huggingface-api",
+            "url": "https://huggingface.co/api/models/unsloth/Muse-Glimmer-30B-GGUF/revision/faa5b025c584459c13febfa5c59883516710ae39?blobs=true"
+          }
+        ]
+      },
+      "reason": "huggingface-artifact-blob-size",
+      "state": "known"
+    }
+  },
+  "huggingface": {
+    "link_type": "repository",
+    "provenance": {
+      "captured_at": "2026-10-13T20:53:20Z",
+      "sources": [
+        {
+          "captured_at": "2026-10-13T20:53:20Z",
+          "kind": "huggingface-api",
+          "url": "https://huggingface.co/api/models/unsloth/Muse-Glimmer-30B-GGUF/revision/faa5b025c584459c13febfa5c59883516710ae39?blobs=true"
+        }
+      ]
+    },
+    "reason": "hf-api-confirmed-public",
+    "repository": "unsloth/Muse-Glimmer-30B-GGUF",
+    "status": "known",
+    "url": "https://huggingface.co/unsloth/Muse-Glimmer-30B-GGUF"
+  },
+  "id": "unsloth-muse-glimmer-30b-gguf--dflash-kquant",
+  "kind": "quant",
+  "model_id": "muse-glimmer-30b",
+  "provenance": {
+    "captured_at": "2026-10-13T20:53:20Z",
+    "sources": [
+      {
+        "captured_at": "2026-10-13T20:53:20Z",
+        "kind": "huggingface-api",
+        "url": "https://huggingface.co/api/models/unsloth/Muse-Glimmer-30B-GGUF/revision/faa5b025c584459c13febfa5c59883516710ae39?blobs=true"
+      }
+    ]
+  },
+  "repository": "unsloth/Muse-Glimmer-30B-GGUF",
+  "revision": "faa5b025c584459c13febfa5c59883516710ae39",
+  "schema_version": "local-ai-registry/v1",
+  "served_name": "dflash-kquant.gguf",
+  "url": "https://huggingface.co/unsloth/Muse-Glimmer-30B-GGUF",
+  "weights": {
+    "files": [
+      "dflash-kquant.gguf"
+    ],
+    "format": "GGUF",
+    "precision": null,
+    "role": "speculative-draft",
+    "sha256": "27d9a805fa29b943cfb6ad4843367cd4eaaaf06bd452d8cc3e00a2cd18a677bc",
+    "size_gb": 1.631205312
+  }
+}
