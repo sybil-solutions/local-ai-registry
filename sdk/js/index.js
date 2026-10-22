@@ -3,10 +3,16 @@
 //   console.log(command(r));
 export const URL = "https://local.sybilsolutions.ai/api/v2/catalog.json";
 
-let cached;
+// One fetch per URL, shared while it is in flight; a failed fetch is dropped and retried on the next call. The Python SDK
+// keeps loaded catalogs per URL the same way.
+const cached = new Map();
 /** The whole catalog: cards (with their picks), recipes (with rendered launches), models. */
 export async function catalog(url = URL) {
-  return (cached ??= fetch(url).then((r) => { if (!r.ok) throw new Error(`catalog: ${r.status}`); return r.json(); }));
+  if (!cached.has(url)) {
+    cached.set(url, fetch(url).then((r) => { if (!r.ok) throw new Error(`catalog: ${r.status}`); return r.json(); })
+      .catch((e) => { cached.delete(url); throw e; }));
+  }
+  return cached.get(url);
 }
 
 const norm = (s) => s.toLowerCase().replace(/\((r|tm)\)/g, "").replace(/geforce|nvidia|amd|radeon|intel|graphics|[^a-z0-9]/g, "");
