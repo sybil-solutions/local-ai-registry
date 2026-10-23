@@ -660,9 +660,11 @@ def cmd_check(_):
             p = r["proof"][0]
             if launch.get("resources") or "verifyArgs" in (launch.get("prepare") or {}):
                 check_execution(launch)
-                # a reported proof is its publisher's run, not an acceptance: there is no lab hash to bind
-                if not p.get("withdrawn") and not p.get("reported"):
-                    assert p.get("launch_sha256") == launch_hash(launch), "typed launch changed since acceptance; rerun the recipe"
+            # Bind launch_sha256 and minimum decode speed for accepted lab proofs (#334)
+            if not p.get("withdrawn") and not p.get("reported") and not p.get("legacy"):
+                if "launch_sha256" in p:
+                    assert p.get("launch_sha256") == launch_hash(launch), "recipe launch changed since acceptance; rerun the recipe"
+                assert (p.get("tps") or 0) >= MIN_TPS, f"proof tps {p.get('tps')} is below MIN_TPS ({MIN_TPS})"
             if "withdrawn" in p:
                 assert p["withdrawn"] is True and p.get("src") and p.get("reason"), "withdrawal needs source and reason"
             need = set() if p.get("reported") or p.get("withdrawn") else {"load", "chat"} if p.get("legacy") else set(GATES)
