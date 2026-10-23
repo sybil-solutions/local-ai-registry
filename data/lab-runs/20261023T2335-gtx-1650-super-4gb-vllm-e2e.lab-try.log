@@ -1,0 +1,2 @@
+[lab 19:42:08] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 20.3 tok/s, prefill 53 tok/s; evidence lab/runs/gtx-1650-super-4gb.lfm2.5-2.6b.vllm.8k.20261023T234208.json
+[lab 19:42:08] PASSED: wrote registry/recipes/nvidia/gtx-1650-super-4gb/lfm2.5-2.6b.vllm.8k.json (864 bytes)

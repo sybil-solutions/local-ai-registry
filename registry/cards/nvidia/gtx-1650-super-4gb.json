@@ -1,0 +1,16 @@
+{
+  "id": "gtx-1650-super-4gb",
+  "name": "NVIDIA GeForce GTX 1650 SUPER",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 4,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "nvidia",
+    "name": "NVIDIA GeForce GTX 1650 SUPER",
+    "names": [
+      "gtx1650super"
+    ],
+    "vramGb": 4
+  }
+}
