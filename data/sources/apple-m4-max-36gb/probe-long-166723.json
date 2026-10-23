@@ -1,0 +1,20 @@
+{
+  "endpoint": "http://127.0.0.1:8080",
+  "model": "models/Qwen3.8-27B-4bit-10c35caa",
+  "gates": {
+    "long": {
+      "pass": true,
+      "wall_s": 2203.36,
+      "prompt_tokens": 166723,
+      "completion_tokens": 96,
+      "prefill_tok_s": 76.12447269599512,
+      "decode_tok_s": 9.12194578342716,
+      "peak_memory_gb": 22.32997843,
+      "draft_kind": "mtp",
+      "draft_n": 52,
+      "draft_n_accepted": 44,
+      "answer": "24CS93V8",
+      "tool_calls": null
+    }
+  }
+}

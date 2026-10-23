@@ -1,0 +1,2 @@
+[lab 21:32:36] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 25.5 tok/s, prefill 87 tok/s; evidence lab/runs/apple-m4-max-36gb.qwen3.8-27b.mlx-vlm-qwen3.8-27b-4bit-mtp-200k.200k.20261017T043236.json
+[lab 21:32:36] PASSED: wrote registry/recipes/apple/apple-m4-max-36gb/qwen3.8-27b.mlx-vlm.200k.json (499 bytes)
