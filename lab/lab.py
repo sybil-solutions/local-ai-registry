@@ -525,6 +525,12 @@ def cmd_try(args):
         endpoint, where, stop = rented(recipe, launch, args)
     try:
         passed, proof, evidence = gates(endpoint, launch)
+        if args.on == "endpoint" and args.weights != "baked-into-image":
+            weight_repo = args.weights.partition("@")[0].lower()
+            served_id = str(proof.get("served") or "").lower()
+            model_id = str(args.model or "").lower()
+            if served_id and weight_repo not in served_id and model_id not in served_id and served_id not in weight_repo:
+                raise SystemExit(f"endpoint served '{proof.get('served')}', which does not match requested weights '{args.weights}' or model '{args.model}'")
     finally:
         stop()
     at = dt.datetime.now(dt.timezone.utc)
