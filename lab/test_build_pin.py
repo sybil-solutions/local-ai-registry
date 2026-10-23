@@ -66,3 +66,8 @@ class BuildPinTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+    def test_served_matches_launch_rejects_unrelated_endpoint_model(self):
+        self.assertTrue(lab.served_matches_launch('raw-' + 'b' * 8, BUILD))
+        self.assertTrue(lab.served_matches_launch('/models/raw', BUILD))
+        self.assertFalse(lab.served_matches_launch('gpt-4o-mini', BUILD))

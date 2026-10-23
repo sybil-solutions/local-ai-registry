@@ -325,12 +325,36 @@ def stream_rate(endpoint, model, prompt, window=30.0):
     return (n / span if span else 0), total, time.monotonic() - t0
 
 
+def served_matches_launch(served, launch):
+    """Verify that an endpoint's served model id is consistent with the launch's pinned weights."""
+    if not served or not isinstance(served, str):
+        return False
+    s = served.lower()
+    expected = set()
+    args = launch.get("args") or []
+    for i, a in enumerate(args[:-1]):
+        if a in ("--served-model-name", "--model-alias", "-m", "--model"):
+            expected.add(str(args[i + 1]).lower())
+    for w in launch.get("weights") or []:
+        repo = (w.get("repo") or "").split("/")[-1].lower()
+        rev = (w.get("revision") or "")[:8].lower()
+        if repo:
+            expected.add(repo)
+        if rev:
+            expected.add(rev)
+        if w.get("at"):
+            expected.add(str(w["at"]).lower())
+    if not expected:
+        return True
+    return any(tok in s or s in tok for tok in expected if tok)
+
+
 def gates(endpoint, launch):
     """Run every gate; returns (passed, proof, evidence)."""
     ev, ok = {}, {}
     models, _ = call(endpoint, "/v1/models", timeout=30)
     served = models["data"][0]["id"]
-    ok["load"] = True
+    ok["load"] = served_matches_launch(served, launch)
     # chat: an answer that ends by itself
     c, u, _ = chat(endpoint, served, [{"role": "user", "content": "Name three primary colors, comma separated."}])
     ok["chat"] = bool((c["message"].get("content") or "").strip()) and c.get("finish_reason") == "stop"
