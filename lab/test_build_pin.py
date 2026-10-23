@@ -66,3 +66,27 @@ class BuildPinTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+    def test_context_gate_places_code_early_and_records_counted_mode(self):
+        prompts = []
+        def fake_call(endpoint, path, body=None, timeout=1800):
+            if path == '/v1/models':
+                return {'data': [{'id': 'raw-' + 'b' * 8}]}, 0.01
+            if path == '/v1/token/encode':
+                return {'length': max(1, len((body or {}).get('text', '')) // 4)}, 0.01
+            msgs = (body or {}).get('messages') or []
+            text = '\n'.join(m.get('content') or '' for m in msgs)
+            if 'vault' in text:
+                prompts.append(text)
+                kept = text[-512 * 4:]  # simulate a 512-token front-truncating server
+                ans = '58213' if '58213' in kept else 'unknown'
+                return {'choices': [{'message': {'content': ans, 'reasoning_content': 'ok'}, 'finish_reason': 'stop'}]}, 0.1
+            return {'choices': [{'message': {'content': '391 17', 'reasoning_content': 'ok'}, 'finish_reason': 'stop'}]}, 0.01
+
+        with patch.object(lab, 'call', side_effect=fake_call), \
+                patch.object(lab, 'stream_rate', return_value=(30.0, 600, 20.0)):
+            passed, proof, ev = lab.gates('http://fixture.invalid', {**BUILD, 'ctx': 32768})
+        self.assertFalse(passed)
+        self.assertFalse(ev['ok']['context'])
+        self.assertEqual(ev['context'].get('counted'), 'tokenizer')
+        self.assertLess(prompts[0].index('58213'), len(prompts[0]) // 3)

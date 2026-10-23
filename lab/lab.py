@@ -363,10 +363,11 @@ def gates(endpoint, launch):
                   "thinking_chars": len(c2["message"].get("reasoning_content") or c2["message"].get("reasoning") or "")}
     ok["tools"] = first and "17" in reply
     ev["tools"] = {"call": calls[:1], "reply": reply[-200:], **second}
-    # context: a code planted near the end of a prompt that fills ~85% of the window
+    # context: a code planted in the first fifth of a prompt that fills ~85% of the window so front-truncation loses it
     target = int(launch["ctx"] * 0.85)
-    filler = " ".join(f"Line {i}: the archive notes that shipment {i * 7 % 997} left dock {i % 13} on schedule." for i in range(target // 24))  # ~23.6 tokens a line (measured: 32,834 tokens from 1,473 lines)
-    prompt = filler + " The access code for the vault is 58213. " + "Anything else is routine."
+    lines = [f"Line {i}: the archive notes that shipment {i * 7 % 997} left dock {i % 13} on schedule." for i in range(target // 24)]  # ~23.6 tokens a line (measured: 32,834 tokens from 1,473 lines)
+    split = max(1, len(lines) // 5)
+    prompt = " ".join(lines[:split]) + " The access code for the vault is 58213. " + " ".join(lines[split:]) + " Anything else is routine."
     dropped = []  # seconds each dropped attempt ran before its connection dropped
     for attempt in range(3):  # a rented host's port mapping can silently drop a connection that stays idle for
         started = time.monotonic()
@@ -384,8 +385,10 @@ def gates(endpoint, launch):
     else:  # unreachable: the last attempt raises
         raise SystemExit("context gate: the connection dropped three times")
     got = u.get("prompt_tokens") or 0
-    ok["context"] = "58213" in (c["message"].get("content") or "") and got >= launch["ctx"] * 0.6
+    ok["context"] = "58213" in (c["message"].get("content") or "") and got >= launch["ctx"] * 0.6 and u.get("counted") != "estimate"
     ev["context"] = {"prompt_tokens": got, "seconds": round(secs, 1), "content": (c["message"].get("content") or "")[-80:]}
+    if u.get("counted"):
+        ev["context"]["counted"] = u["counted"]
     if dropped:  # the number came from a retry: say which attempt answered and how long the dropped attempt ran
         ev["context"]["retried"] = attempt
         ev["context"]["dropped_s"] = dropped
