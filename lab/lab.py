@@ -155,6 +155,9 @@ def render(recipe):
     args = []
     for a in p["args"]:  # an argument that is one whole ${setting} may hold several words, or none
         args += shlex.split(sub(a)) if re.fullmatch(r"\$\{\w+\}", a) else [sub(a)]
+    if p.get("engine") == "vllm" and p.get("backend") == "nvidia" and (card(recipe["card"]).get("match") or {}).get("unifiedMemory"):
+        if not any(x == "--safetensors-load-strategy" or x.startswith("--safetensors-load-strategy=") for x in args):
+            args += ["--safetensors-load-strategy", "eager"]
     config = "\n".join(sub(line) for line in p["config"]) + "\n" if p.get("config") else None
     repo, rev = recipe["weights"].split("@")
     return {"image": p["image"], "entrypoint": p["entrypoint"], "args": args, "port": p["port"], "shm": p["shm"],
