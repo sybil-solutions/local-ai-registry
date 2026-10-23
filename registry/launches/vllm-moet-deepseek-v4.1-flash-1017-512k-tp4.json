@@ -2,7 +2,7 @@
   "id": "vllm-moet-deepseek-v4.1-flash-1017-512k-tp4",
   "engine": "vllm",
   "about": "DeepSeek-V4.1-Flash-1017 (official MXFP4/MXFP8 checkpoint) on 4x RTX PRO 6000 Blackwell, TP4, 512K, 8 sequences: kacper-daftcode/vLLM-Moet r13 (vLLM nightly df3bd094 + sm_120 steps 1-28: MXFP8 GEMV, FP4 KV record + MXFP4 indexer, b12x MoE with the fused decode kernel, sparse-MLA gather loads, MXFP8 lm_heads, PCIe P2P all-reduce in NCCL's order), DSpark k=7, KV offload to 32 GiB host RAM + an in-container disk tier, and the engram_disk layer (Engram tables read from the checkpoint on NVMe instead of ~330 GB of host shm). Image: sybil-solutions/local-ai-images vllm-moet-dsv41.",
-  "image": "ghcr.io/sybil-solutions/vllm-moet-dsv41@sha256:PENDING",
+  "image": "ghcr.io/sybil-solutions/vllm-moet-dsv41@sha256:08f61e680ddab3f1f1b50f92020133c382630f9798ab0ff5729f8931a604f82d",
   "provenance": "https://github.com/sybil-solutions/local-ai-images/actions/runs/40005217711",
   "backend": "nvidia",
   "port": 8000,
