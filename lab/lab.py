@@ -279,8 +279,36 @@ def count(endpoint, text):
     return len(text) // 4, "estimate"
 
 
+DIFFUSION_UNSUPPORTED_SAMPLING = ("temperature", "min_p", "seed", "min_tokens", "logit_bias", "bad_words", "allowed_token_ids")
+
+
+def is_diffusion_model(model):
+    """True when the served model id or registry model record is a discrete-diffusion model that rejects sampling params."""
+    if not model:
+        return False
+    m_str = str(model).lower()
+    if "diffusion" in m_str:
+        return True
+    try:
+        models = json.loads((REG / "models.json").read_text(encoding="utf-8")).get("models", {})
+        if (models.get(model) or {}).get("diffusion"):
+            return True
+    except Exception:
+        pass
+    return False
+
+
+def strip_diffusion_sampling(payload, model=None):
+    """Remove sampling parameters rejected by vLLM/diffusion engines when targeting a diffusion model."""
+    target = model if model is not None else payload.get("model")
+    if not is_diffusion_model(target):
+        return dict(payload)
+    return {k: v for k, v in payload.items() if k not in DIFFUSION_UNSUPPORTED_SAMPLING}
+
+
 def chat(endpoint, model, messages, **kw):
-    out, secs = call(endpoint, "/v1/chat/completions", {"model": model, "messages": messages, "temperature": 0.6, **kw})
+    req_body = strip_diffusion_sampling({"model": model, "messages": messages, "temperature": 0.6, **kw}, model)
+    out, secs = call(endpoint, "/v1/chat/completions", req_body)
     c, u = out["choices"][0], dict(out.get("usage") or {})
     if (out.get("timings") or {}).get("peak_memory"):  # mlx-vlm: the allocator's peak for this request, decimal GB
         u["peak_memory_gb"] = out["timings"]["peak_memory"]
@@ -294,7 +322,7 @@ def chat(endpoint, model, messages, **kw):
 
 def stream_rate(endpoint, model, prompt, window=30.0):
     """Tokens per second over the first `window` seconds after the first token, from a streamed answer."""
-    body = {"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0.8, "stream": True}
+    body = strip_diffusion_sampling({"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0.8, "stream": True}, model)
     headers = {"Content-Type": "application/json"}
     if os.environ.get("LAB_API_KEY"):
         headers["Authorization"] = f"Bearer {os.environ['LAB_API_KEY']}"

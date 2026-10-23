@@ -566,7 +566,8 @@
         "slug": "diffusiongemma-26b-a4b",
         "estimated": true,
         "at": "2026-10-05"
-      }
+      },
+      "diffusion": true
     },
     "gemma-4-26b-a4b-it-awq-4bit": {
       "family": "gemma",
@@ -650,7 +651,8 @@
       "hf": "cyankiwi/diffusiongemma-26B-A4B-it-AWQ-INT4",
       "aa": {
         "of": "diffusiongemma-26b-a4b"
-      }
+      },
+      "diffusion": true
     },
     "qwen3.8-27b-awq-bf16-int4": {
       "family": "qwen",
