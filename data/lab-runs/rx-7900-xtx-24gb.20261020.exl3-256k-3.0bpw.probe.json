@@ -1,0 +1,63 @@
+{
+ "host": {
+  "kernel": "7.2.11-200.nobara.fc44.x86_64",
+  "cpu": "AMD Ryzen 7 7800X3D 8-Core Processor",
+  "cpus": 16,
+  "avx512": true
+ },
+ "ram": {
+  "total_gb": 32.45,
+  "available_gb": 28.33,
+  "swap_total_gb": 36.07,
+  "swap_used_gb": 7.66
+ },
+ "storage": {
+  "path": "~/models",
+  "free_gb": 102.61,
+  "total_gb": 1962.62,
+  "device": "/dev/nvme0n1p3",
+  "fstype": "btrfs",
+  "physical_disks": [
+   {
+    "disk": "nvme0n1",
+    "nvme": true,
+    "rotational": false,
+    "model": "KINGSTON SFYRD2000G"
+   }
+  ],
+  "all_nvme": true
+ },
+ "gpus": [
+  {
+   "vendor": "amd",
+   "rocm_smi": {
+    "card0": {
+     "VRAM Total Memory (B)": "25753026560",
+     "VRAM Total Used Memory (B)": "564244480",
+     "Card Series": "AMD Radeon RX 7900 XTX",
+     "Card Model": "0x744c",
+     "Card Vendor": "Advanced Micro Devices, Inc. [AMD/ATI]",
+     "Card SKU": "D702BS0",
+     "Subsystem ID": "0x0506",
+     "Device Rev": "0xc8",
+     "Node ID": "1",
+     "GUID": "57376",
+     "GFX Version": "gfx1100"
+    },
+    "card1": {
+     "VRAM Total Memory (B)": "536870912",
+     "VRAM Total Used Memory (B)": "16687104",
+     "Card Series": "AMD Ryzen 7 7800X3D 8-Core Processor",
+     "Card Model": "0x164e",
+     "Card Vendor": "Advanced Micro Devices, Inc. [AMD/ATI]",
+     "Card SKU": "RAPHAEL",
+     "Subsystem ID": "0x7d75",
+     "Device Rev": "0xcb",
+     "Node ID": "2",
+     "GUID": "26211",
+     "GFX Version": "gfx1036"
+    }
+   }
+  }
+ ]
+}
