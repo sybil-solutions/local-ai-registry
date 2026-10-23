@@ -66,3 +66,27 @@ class BuildPinTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+    def test_check_rejects_inflated_ctx_low_tps_or_missing_log(self):
+        base = json.loads((lab.RECIPES / 'nvidia/rtx-3080-10gb/qwen3.6-35b-a3b.sglang.256k.json').read_text(encoding='utf-8'))
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            out = root / 'recipes/nvidia/rtx-3080-10gb/qwen3.6-35b-a3b.sglang.128k.json'
+            out.parent.mkdir(parents=True, exist_ok=True)
+            inflated = {**base, 'set': {'ctx': 131072}}
+            out.write_text(json.dumps(inflated), encoding='utf-8')
+            with patch.object(lab, 'ROOT', root), patch.object(lab, 'RECIPES', root / 'recipes'), \
+                    patch.object(lab, 'kv_floor_exempt', return_value=set()), contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(lab.cmd_check(None), 1)
+            out.unlink()
+            out256 = root / 'recipes/nvidia/rtx-3080-10gb/qwen3.6-35b-a3b.sglang.256k.json'
+            low_tps = {**base, 'proof': [{**base['proof'][0], 'tps': 1.0}]}
+            out256.write_text(json.dumps(low_tps), encoding='utf-8')
+            with patch.object(lab, 'ROOT', root), patch.object(lab, 'RECIPES', root / 'recipes'), \
+                    patch.object(lab, 'kv_floor_exempt', return_value=set()), contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(lab.cmd_check(None), 1)
+            no_log = {**base, 'proof': [{k: v for k, v in base['proof'][0].items() if k != 'log'}]}
+            out256.write_text(json.dumps(no_log), encoding='utf-8')
+            with patch.object(lab, 'ROOT', root), patch.object(lab, 'RECIPES', root / 'recipes'), \
+                    patch.object(lab, 'kv_floor_exempt', return_value=set()), contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(lab.cmd_check(None), 1)

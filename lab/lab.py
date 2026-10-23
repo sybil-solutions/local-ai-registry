@@ -663,11 +663,16 @@ def cmd_check(_):
                 # a reported proof is its publisher's run, not an acceptance: there is no lab hash to bind
                 if not p.get("withdrawn") and not p.get("reported"):
                     assert p.get("launch_sha256") == launch_hash(launch), "typed launch changed since acceptance; rerun the recipe"
+            if not p.get("withdrawn") and not p.get("reported") and p.get("launch_sha256"):
+                assert p.get("launch_sha256") == launch_hash(launch), "launch changed since acceptance; rerun the recipe"
             if "withdrawn" in p:
                 assert p["withdrawn"] is True and p.get("src") and p.get("reason"), "withdrawal needs source and reason"
             need = set() if p.get("reported") or p.get("withdrawn") else {"load", "chat"} if p.get("legacy") else set(GATES)
             assert not r["proof"][0].get("reported") or r["proof"][0].get("src"), "a reported proof names its source"
             assert need <= set(r["proof"][0]["gates"].split()), "latest proof lacks a gate"
+            if not p.get("withdrawn") and not p.get("reported") and not p.get("legacy"):
+                assert (p.get("tps") or 0) >= MIN_TPS, f"latest proof tps {p.get('tps')} is below MIN_TPS ({MIN_TPS})"
+                assert re.fullmatch(r"sha256:[0-9a-f]{16,64}", str(p.get("log") or "")), "latest proof lacks a run evidence log hash"
             assert f.stat().st_size <= MAX_RECIPE_BYTES, f"{f.stat().st_size} bytes"
             rel = str(f.relative_to(RECIPES))
             low = not p.get("withdrawn") and below_kv_floor(r, launch)
