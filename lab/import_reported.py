@@ -75,7 +75,7 @@ def freeze(v, source):
 def main(files):
     best = {}  # one recipe per file name: the variant with the best reported speed, the source's default on a tie
     for f in files:
-        for v in json.loads(Path(f).read_text()):
+        for v in json.loads(Path(f).read_text(encoding="utf-8")):
             made = freeze(v, Path(f).parent.name)
             if made and (made[0] not in best or (made[2]["proof"][0]["tps"] or 0) > (best[made[0]][2]["proof"][0]["tps"] or 0)):
                 best[made[0]] = made
@@ -84,13 +84,13 @@ def main(files):
         if ids.setdefault(prof["id"], prof) != prof:
             raise SystemExit(f"profile {prof['id']} names two different launches; nothing written")
     for out, prof, recipe in best.values():
-        if out.exists() and not json.loads(out.read_text())["proof"][0].get("reported"):
+        if out.exists() and not json.loads(out.read_text(encoding="utf-8"))["proof"][0].get("reported"):
             print(f"skip {out.relative_to(lab.ROOT)}: a checked recipe is there")
             continue
-        (lab.LAUNCHES / f"{prof['id']}.json").write_text(json.dumps(prof, indent=2) + "\n")
+        (lab.LAUNCHES / f"{prof['id']}.json").write_text(json.dumps(prof, indent=2) + "\n", encoding="utf-8")
         assert lab.recipe_path(recipe, lab.render(recipe)) == out, out
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(recipe, separators=(",", ":")) + "\n")
+        out.write_text(json.dumps(recipe, separators=(",", ":")) + "\n", encoding="utf-8")
         print(f"{out.relative_to(lab.ROOT)} ({out.stat().st_size} bytes, profile {prof['id']})")
 
 

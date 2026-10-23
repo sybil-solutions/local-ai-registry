@@ -115,12 +115,12 @@ class Spec:
         self.env = dict(contract.get("environment") or {})
         token_file = Path.home() / ".cache" / "huggingface" / "token"
         if "HF_TOKEN" not in self.env and token_file.exists():
-            self.env["HF_TOKEN"] = token_file.read_text().strip()
-        hw = json.loads((REG / "hardware" / f"{recipe['hardware_id']}.json").read_text())
+            self.env["HF_TOKEN"] = token_file.read_text(encoding="utf-8").strip()
+        hw = json.loads((REG / "hardware" / f"{recipe['hardware_id']}.json").read_text(encoding="utf-8"))
         self.vram_gb = (hw.get("memory") or {}).get("vram_gb") or 0
         self.gpu_override = args.gpu
         self.hardware_id = recipe["hardware_id"]
-        self.instance = json.loads((REG / "model-instance" / f"{recipe['model_instance_id']}.json").read_text())
+        self.instance = json.loads((REG / "model-instance" / f"{recipe['model_instance_id']}.json").read_text(encoding="utf-8"))
         self.provision = self.materialize_plan()
 
     def materialize_plan(self):
@@ -136,7 +136,7 @@ class Spec:
         for mount in self.contract.get("mounts") or []:
             source = mount.get("source") or ""
             if source.startswith("asset/"):
-                text = (REG / source).read_text()
+                text = (REG / source).read_text(encoding="utf-8")
                 match = re.search(r"^\s*model_name:\s*(\S+)", text, re.MULTILINE)
                 if match:
                     subdir = match.group(1).strip("\"'")
@@ -216,7 +216,7 @@ class RunPod:
             return key
         cfg = Path.home() / ".runpod" / "config.toml"
         if cfg.exists():
-            match = re.search(r'apikey\s*=\s*"([^"]+)"', cfg.read_text(), re.IGNORECASE)
+            match = re.search(r'apikey\s*=\s*"([^"]+)"', cfg.read_text(encoding="utf-8"), re.IGNORECASE)
             if match:
                 return match.group(1)
         raise SystemExit("no RunPod API key: set RUNPOD_API_KEY or run `runpodctl config`")
@@ -431,7 +431,7 @@ def load_recipe(recipe_id, revalidate=False):
     path = REG / "recipe" / f"{recipe_id}.json"
     if not path.exists():
         raise SystemExit(f"no recipe {recipe_id}")
-    recipe = json.loads(path.read_text())
+    recipe = json.loads(path.read_text(encoding="utf-8"))
     if recipe.get("status") != "candidate" and not revalidate:
         raise SystemExit(f"only candidates can be validated; {recipe_id} is {recipe.get('status')} (pass --revalidate)")
     launch = recipe.get("launch") or {}
@@ -452,7 +452,7 @@ def strip_host_ipc(path, recipe):
             del block["ipc"]
             changed = True
     if changed:
-        path.write_text(json.dumps(recipe, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
+        path.write_text(json.dumps(recipe, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
         log("dropped ipc=host from the contract: validated without it")
 
 
@@ -519,9 +519,9 @@ def run_once(provider, spec, path, recipe, args, attempt, exclude):
         if result.returncode != 0:
             raise SystemExit("acceptance failed; recipe stays candidate")
         if args.recommend:
-            promoted = json.loads(path.read_text())
+            promoted = json.loads(path.read_text(encoding="utf-8"))
             promoted["recommended"] = True
-            path.write_text(json.dumps(promoted, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
+            path.write_text(json.dumps(promoted, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
         log(f"PROMOTED {recipe['id']} (validated on {provider.name} {handle.get('gpu')}){' and flagged recommended' if args.recommend else ''}")
         return 0
     finally:

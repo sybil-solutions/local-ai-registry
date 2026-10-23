@@ -180,7 +180,7 @@ def site():
     status, live = fetch(f"{SITE}/api/v2/catalog.json")
     if status != 200 or not isinstance(live, dict):
         return lines + [f"- /api/v2/catalog.json: {flag(f'HTTP {status}')}"]
-    main = json.loads((ROOT / "dist" / "catalog.json").read_text())
+    main = json.loads((ROOT / "dist" / "catalog.json").read_text(encoding="utf-8"))
     counts = f"{len(live['cards'])} cards, {len(live['recipes'])} recipes"
     if live.get("sha256") == main.get("sha256"):
         return lines + [f"- /api/v2/catalog.json: {counts}, same as main's dist/catalog.json"]
@@ -193,7 +193,7 @@ def pins():
     """Every historical or org GHCR image digest in registry/ and the plugin export, and every Hugging Face weights pin in registry/."""
     images, weights = set(), set()
     for f in sorted([*(ROOT / "registry").rglob("*.json"), ROOT / "plugin" / "v2" / "recipes.json"]):
-        text = f.read_text()
+        text = f.read_text(encoding="utf-8")
         images |= set(re.findall(r"ghcr\.io/((?:0xsero|sybil-solutions)/[\w.-]+?)(?::[\w.-]+)?@sha256:([0-9a-f]{64})", text))
         if f.parts[-2] == "v2":
             continue

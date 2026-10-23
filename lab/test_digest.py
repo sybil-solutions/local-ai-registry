@@ -11,10 +11,10 @@ class DigestTest(unittest.TestCase):
             root = Path(directory)
             (root / "registry").mkdir()
             (root / "plugin/v2").mkdir(parents=True)
-            (root / "plugin/v2/recipes.json").write_text("{}")
+            (root / "plugin/v2/recipes.json").write_text("{}", encoding="utf-8")
             (root / "registry/test.json").write_text(json.dumps({"images": [
                 "ghcr.io/0xsero/gateway@sha256:" + "a" * 64,
-                "ghcr.io/sybil-solutions/gateway:new@sha256:" + "b" * 64]}))
+                "ghcr.io/sybil-solutions/gateway:new@sha256:" + "b" * 64]}), encoding="utf-8")
             with patch.object(digest, "ROOT", root):
                 images, weights = digest.pins()
             self.assertEqual(images, {("0xsero/gateway", "a" * 64), ("sybil-solutions/gateway", "b" * 64)})

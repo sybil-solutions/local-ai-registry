@@ -17,14 +17,14 @@ ap.add_argument("--disk", default="90")
 ap.add_argument("--any-host", action="store_true", help="vast: also unverified hosts")
 a = ap.parse_args()
 todo = []
-for line in Path(a.plan).read_text().splitlines():
+for line in Path(a.plan).read_text(encoding="utf-8").splitlines():
     if not line.strip() or line.startswith("#"):
         continue
     card, weights, model, *sets = shlex.split(line)
     r = {"model": model, "weights": weights, "engine": f"{a.engine}@{lab.profile(a.engine)['image'].split('@sha256:')[1][:12]}", "card": card,
          "set": {k: v for k, v in (s.split("=", 1) for s in sets)}}
     path = lab.recipe_path(r, lab.render({**r, "set": {k: int(v) if v.isdigit() else v for k, v in r["set"].items()}}))
-    if path.exists() and json.loads(path.read_text())["engine"].split("@")[0] == a.engine:  # another engine's recipe there is no reason to skip
+    if path.exists() and json.loads(path.read_text(encoding="utf-8"))["engine"].split("@")[0] == a.engine:  # another engine's recipe there is no reason to skip
         print(f"skip {card} {model}: recipe exists"); continue
     todo.append((card, model, ["python3", str(lab.ROOT / "lab" / "lab.py"), "try", weights, "--model", model, "--engine", a.engine, "--card", card,
                                "--max-price", a.max_price, "--min-cuda", a.min_cuda, "--min-inet", a.min_inet, "--disk", a.disk] + (["--any-host"] if a.any_host else []) + [x for s in sets for x in ("--set", s)]))

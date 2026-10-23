@@ -25,12 +25,12 @@ def label(hw, n, machines):
 
 def build(today=None):
     today = today or dt.date.today()
-    meta = json.loads((ROOT / "registry" / "models.json").read_text())
+    meta = json.loads((ROOT / "registry" / "models.json").read_text(encoding="utf-8"))
     fam = {f: i for i, f in enumerate(meta["families"])}
-    prefer = json.loads((lab.REG / "prefer.json").read_text()) if (lab.REG / "prefer.json").exists() else {}
+    prefer = json.loads((lab.REG / "prefer.json").read_text(encoding="utf-8")) if (lab.REG / "prefer.json").exists() else {}
     cards, recipes = {}, {}
     for f in sorted(lab.RECIPES.rglob("*.json")):
-        r = json.loads(f.read_text())
+        r = json.loads(f.read_text(encoding="utf-8"))
         if r["proof"][0].get("withdrawn"):
             continue  # retain historical proofs in source, but do not offer a withdrawn launch
         m = meta["models"].get(r["model"])
@@ -82,7 +82,7 @@ def build(today=None):
 if __name__ == "__main__":
     text = build()
     if "--check" in sys.argv:
-        ok = OUT.exists() and OUT.read_text() == text
+        ok = OUT.exists() and OUT.read_text(encoding="utf-8") == text
         print("dist/catalog.json is current" if ok else "dist/catalog.json is stale: run lab/catalog.py")
         sys.exit(0 if ok else 1)
     OUT.parent.mkdir(exist_ok=True)

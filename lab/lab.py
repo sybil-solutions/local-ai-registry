@@ -54,7 +54,7 @@ def config_text(p):
     cfg = p.get("config")
     if not cfg:
         return None
-    return cfg["text"] if "text" in cfg else profile_file(cfg["file"]).read_text()
+    return cfg["text"] if "text" in cfg else profile_file(cfg["file"]).read_text(encoding="utf-8")
 
 
 def pin(p):
@@ -81,7 +81,7 @@ def profile_file(name):
 def profile(ref):
     """`tabbyapi-exl3@0f83e6198dc3` -> the profile, checked against the digest prefix."""
     name, _, digest = ref.partition("@")
-    p = json.loads(profile_file(f"{name}.json").read_text())
+    p = json.loads(profile_file(f"{name}.json").read_text(encoding="utf-8"))
     if p.get("kind") == "host" or not p.get("image"):  # a host program, or an image built from a pinned commit
         if p.get("kind") == "host":
             stale = digest and digest != "host" and not pin(p).startswith(digest)
@@ -100,7 +100,7 @@ def card(card_id):
     found = list(CARDS.glob(f"*/{card_id}.json"))
     if not found:
         raise SystemExit(f"unknown card {card_id}")
-    return json.loads(found[0].read_text())
+    return json.loads(found[0].read_text(encoding="utf-8"))
 
 
 def recipe_path(r, launch):
@@ -194,7 +194,7 @@ def below_kv_floor(recipe, launch=None, vram_gb=None):
 def kv_floor_exempt():
     """Recipe paths (relative to recipes/) accepted before the KV floor, kept as evidence and out of the plugin."""
     f = RECIPES.parent / KV_FLOOR_EXEMPT
-    return set(json.loads(f.read_text())["recipes"]) if f.exists() else set()
+    return set(json.loads(f.read_text(encoding="utf-8"))["recipes"]) if f.exists() else set()
 
 
 # ----------------------------------------------------------------------------- the server under test
@@ -410,7 +410,7 @@ def save_logs(handle, recipe):
     try:
         out = subprocess.run(["vastai", "logs", str(handle["id"]), "--tail", "400"], capture_output=True, text=True, timeout=90).stdout
         RUNS.mkdir(parents=True, exist_ok=True)
-        (RUNS / f"{recipe['card']}.{dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S')}.container.log").write_text(out)
+        (RUNS / f"{recipe['card']}.{dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S')}.container.log").write_text(out, encoding="utf-8")
     except Exception as e:
         log(f"could not save the container log: {e}")
 
@@ -427,7 +427,7 @@ def lab_spec(recipe, launch, args):
             self.arguments, self.port, self.disk = list(launch["args"]), launch["port"], args.disk
             self.name = (getattr(args, "label", None) or f"local-ai-lab-{recipe['card']}")[:60]
             tok = Path.home() / ".cache" / "huggingface" / "token"
-            self.env = {**(launch.get("env") or {}), **({"HF_TOKEN": tok.read_text().strip()} if tok.exists() else {})}
+            self.env = {**(launch.get("env") or {}), **({"HF_TOKEN": tok.read_text(encoding="utf-8").strip()} if tok.exists() else {})}
             self.vram_gb = card(recipe["card"])["vram_gb"] or 0
             self.gpu_override, self.hardware_id = args.proxy_gpu or args.gpu, recipe["card"]
             if args.proxy_gpu:  # a twin card with more memory: search by its own size
@@ -546,7 +546,7 @@ def cmd_try(args):
     run = {"recipe": recipe, "where": {k: v for k, v in where.items() if k not in ("handle", "provider")}, "passed": passed, "proof": proof, "evidence": evidence, "launch_config_sha256": (launch["config"] or {}).get("sha256")}
     text = json.dumps(run, indent=1, ensure_ascii=False)
     run_path = RUNS / f"{args.card}.{slug}.{at.strftime('%Y%m%dT%H%M%S')}.json"
-    run_path.write_text(text + "\n")
+    run_path.write_text(text + "\n", encoding="utf-8")
     proof["log"] = "sha256:" + hashlib.sha256(text.encode()).hexdigest()[:16]
     log(f"gates: {evidence['ok']}  decode {proof['tps']} tok/s, prefill {proof['prefill']} tok/s; evidence {run_path.relative_to(ROOT)}")
     if not passed:
@@ -554,20 +554,20 @@ def cmd_try(args):
         return 1
     out = recipe_path(recipe, launch)
     out.parent.mkdir(parents=True, exist_ok=True)
-    old = json.loads(out.read_text()) if out.exists() else None
+    old = json.loads(out.read_text(encoding="utf-8")) if out.exists() else None
     proofs = [proof] + ([q for q in old["proof"] if old.get("weights") == recipe["weights"] and old.get("engine") == recipe["engine"] and old.get("set") == sets][:2] if old else [])
-    out.write_text(json.dumps({**recipe, "proof": proofs}, separators=(",", ":")) + "\n")
+    out.write_text(json.dumps({**recipe, "proof": proofs}, separators=(",", ":")) + "\n", encoding="utf-8")
     log(f"PASSED: wrote {out.relative_to(ROOT)} ({out.stat().st_size} bytes)")
     return 0
 
 
 def cmd_convert(args):
-    files = [f for f in sorted(RECIPES.glob(f"*/{args.card}/*.json")) if json.loads(f.read_text())["proof"][0].get("legacy")
+    files = [f for f in sorted(RECIPES.glob(f"*/{args.card}/*.json")) if json.loads(f.read_text(encoding="utf-8"))["proof"][0].get("legacy")
              and (not args.recipe or f.stem == args.recipe)]
     if not files:
         raise SystemExit(f"{args.card} has no legacy recipe" + (f" {args.recipe}" if args.recipe else ""))
     f = files[0]
-    recipe = json.loads(f.read_text())
+    recipe = json.loads(f.read_text(encoding="utf-8"))
     launch = render(recipe)
     stop = lambda: None
     if args.on == "endpoint":
@@ -582,14 +582,14 @@ def cmd_convert(args):
     proof = {"at": at.strftime("%Y-%m-%d"), "on": where["on"], "gpu": where.get("gpu"), "launch_sha256": launch_hash(launch), **proof}
     RUNS.mkdir(parents=True, exist_ok=True)
     text = json.dumps({"recipe": recipe, "where": {k: v for k, v in where.items() if k not in ("handle", "provider")}, "passed": passed, "proof": proof, "evidence": evidence}, indent=1, ensure_ascii=False)
-    (RUNS / f"{args.card}.{f.stem}.{at.strftime('%Y%m%dT%H%M%S')}.json").write_text(text + "\n")
+    (RUNS / f"{args.card}.{f.stem}.{at.strftime('%Y%m%dT%H%M%S')}.json").write_text(text + "\n", encoding="utf-8")
     proof["log"] = "sha256:" + hashlib.sha256(text.encode()).hexdigest()[:16]
     log(f"gates: {evidence['ok']}  decode {proof['tps']} tok/s, prefill {proof['prefill']} tok/s")
     if not passed:
         log("FAILED: the legacy recipe stays legacy")
         return 1
     recipe["proof"] = [proof]
-    f.write_text(json.dumps(recipe, separators=(",", ":")) + "\n")
+    f.write_text(json.dumps(recipe, separators=(",", ":")) + "\n", encoding="utf-8")
     log(f"PASSED: {f.relative_to(ROOT)} is now a full recipe")
     return 0
 
@@ -598,23 +598,23 @@ def cmd_proxy(args):
     """A card nobody rents takes its sibling's passing lab recipes, each proof marked proxy (same chip family, same memory)."""
     made = 0
     for f in sorted(RECIPES.glob(f"*/{args.sibling}/*.json")):
-        r = json.loads(f.read_text())
+        r = json.loads(f.read_text(encoding="utf-8"))
         p = r["proof"][0]
         if p.get("legacy") or p.get("proxy") or p.get("reported"):  # only our own lab runs carry over
             continue
         r = {**r, "card": args.card, "proof": [{**p, "proxy": args.sibling}]}
         out = recipe_path(r, render(r))
-        if out.exists() and not json.loads(out.read_text())["proof"][0].get("proxy"):
+        if out.exists() and not json.loads(out.read_text(encoding="utf-8"))["proof"][0].get("proxy"):
             continue  # a real run on the card wins
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(r, separators=(",", ":")) + "\n")
+        out.write_text(json.dumps(r, separators=(",", ":")) + "\n", encoding="utf-8")
         made += 1
     log(f"{args.card}: {made} recipe(s) from {args.sibling}, marked proxy")
     return 0
 
 
 def cmd_render(args):
-    print(json.dumps(render(json.loads(Path(args.recipe).read_text())), indent=2))
+    print(json.dumps(render(json.loads(Path(args.recipe).read_text(encoding="utf-8"))), indent=2))
     return 0
 
 
@@ -641,7 +641,7 @@ def cmd_check(_):
     if gone:
         bad.append(f"registry/{KV_FLOOR_EXEMPT}: lists recipes that do not exist: {', '.join(gone)}")
     for f in sorted(RECIPES.rglob("*.json")):
-        r = json.loads(f.read_text())
+        r = json.loads(f.read_text(encoding="utf-8"))
         name = f.relative_to(ROOT)
         try:
             assert set(r) == {"model", "weights", "engine", "set", "card", "proof"}, f"fields {sorted(r)}"
