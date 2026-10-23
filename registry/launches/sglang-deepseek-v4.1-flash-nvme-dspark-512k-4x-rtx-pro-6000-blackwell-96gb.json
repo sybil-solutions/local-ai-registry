@@ -1,0 +1,50 @@
+{
+  "id": "sglang-deepseek-v4.1-flash-nvme-dspark-512k-4x-rtx-pro-6000-blackwell-96gb",
+  "engine": "sglang",
+  "about": "DeepSeek-V4.1-Flash on 4x RTX PRO 6000 Blackwell 96 GB with native FP8 Engram rows cached in 64 GiB DDR5 + local NVMe O_DIRECT and DSpark block 5 (524,288 context, 4.2M KV tokens)",
+  "image": null,
+  "backend": "nvidia",
+  "port": 8010,
+  "entrypoint": [
+    "python3",
+    "/app/boot.py"
+  ],
+  "args": [],
+  "env": {
+    "OFFLOAD_MODE": "nvme",
+    "DSV41_CACHE_GIB": "64",
+    "CONTEXT_LENGTH": "524288",
+    "MEMORY_FRACTION": "0.95",
+    "MAX_RUNNING_REQUESTS": "8",
+    "MAX_TOTAL_TOKENS": "4200000",
+    "MODEL_PATH": "/models/DeepSeek-V4.1-Flash",
+    "STATE_PATH": "/state",
+    "PORT": "8010"
+  },
+  "shm": "64g",
+  "weights": [
+    {
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "revision": "1bae0e1088993b9b82de08f59de5be5a34e42170",
+      "at": "/models/DeepSeek-V4.1-Flash",
+      "layout": "dir"
+    }
+  ],
+  "config": null,
+  "ctx": 524288,
+  "seqs": 8,
+  "vision": true,
+  "cards": 4,
+  "build": {
+    "repo": "sybil-solutions/deepseek-v4.1-flash-4x-rtx-pro-6000",
+    "commit": "ce69105cb5812638e5fdba7ffecfb23945e11948",
+    "dockerfile": "Dockerfile"
+  },
+  "needs": {
+    "host_ram_gb": 128,
+    "disk_gb": 510,
+    "fast_storage": "nvme"
+  },
+  "setup": "Requires four 96 GB RTX PRO 6000 Blackwell GPUs, 128 GB DDR5 host RAM (64 GiB bounded Engram row cache), and ~510 GB on a local NVMe SSD supporting O_DIRECT. Runs SGLang TP4/EP4 with DSpark block 5, 524,288-token context, and 4,200,000 allocated KV tokens (4,063,744 populated KV tokens verified across 8 simultaneous 500k requests). Reproduce with `docker compose -f compose.yaml -f compose.measured.yaml up --build -d`.",
+  "source": "https://github.com/sybil-solutions/deepseek-v4.1-flash-4x-rtx-pro-6000/tree/ce69105cb5812638e5fdba7ffecfb23945e11948"
+}

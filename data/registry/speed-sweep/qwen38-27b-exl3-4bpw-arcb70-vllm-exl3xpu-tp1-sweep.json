@@ -392,6 +392,6 @@
       "models/qwen3.8-27b-exl3-4.00bpw/model.yaml",
       "models/qwen3.8-27b-exl3-4.00bpw/recipe.json"
     ],
-    "repository": "https://github.com/0xSero/exl3xpu"
+    "repository": "https://github.com/sybil-solutions/trellis-serve/tree/main/xpu"
   }
 }

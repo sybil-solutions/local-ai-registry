@@ -1,0 +1,1 @@
+{"model":"qwen3.8-27b","weights":"ggml-org/Qwen3.8-27B-GGUF@0669b98607d47046c7c2b3f801011d54a08cfccf","engine":"llama-cpp-qwen3.8-27b-q4-k-m-256k@6ce7771eaa15","set":{},"card":"intel-arc-pro-b70-32gb","proof":[{"at":"2026-09-16","on":"legacy","gates":"load chat reasoning tools","tps":51.1,"legacy":true}]}

@@ -1,6 +1,6 @@
 {
   "id": "llama-cpp-qwen3.8-27b-q4-k-m-256k",
-  "engine": "llama-cpp",
+  "engine": "llama.cpp",
   "about": "/models/Qwen3.8-27B-Q4_K_M.gguf as validated in qwen38-q4km-arcb70-llamacpp-tp2",
   "image": "ghcr.io/0xsero/qwen38-b70-attested@sha256:6ce7771eaa155e31916ac3144bd3aa34bed6584b9a43052a8f6b583b9c8f5db1",
   "backend": "intel-xpu",
@@ -34,5 +34,6 @@
   "cards": 2,
   "frozen_from": [
     "qwen38-q4km-arcb70-llamacpp-tp2"
-  ]
+  ],
+  "source": "https://github.com/sybil-solutions/qwen-serve/tree/730d8101d0ff7d53d7d6a3b980c3bae0c3b84181/qwen3.8/b70"
 }

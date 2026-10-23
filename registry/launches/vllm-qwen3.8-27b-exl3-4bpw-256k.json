@@ -73,5 +73,6 @@
   },
   "ids": {
     "intel-arc-pro-b70-32gb": "qwen38-27b-exl3-4bpw-arcb70-vllm-exl3xpu-tp1"
-  }
+  },
+  "source": "https://github.com/sybil-solutions/trellis-serve/tree/a1f72be2ff6319b9b2ea9bf6768c99664b1ca892/xpu"
 }

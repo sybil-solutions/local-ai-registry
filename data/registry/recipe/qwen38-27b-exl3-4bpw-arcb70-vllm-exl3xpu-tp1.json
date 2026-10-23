@@ -72,9 +72,9 @@
     "network_mode": "bridge",
     "provenance": {
       "attestation": "gh attestation verify oci://ghcr.io/0xsero/exl3xpu@sha256:21412bdd7535e9c653eeb3d099dce3bc79a83d440def2cd9556111c79c870fa8 -o 0xSero",
-      "dockerfile": "https://github.com/0xSero/exl3xpu/blob/2de46a88249235de75a4d90a59a026eea33291a8/docker/Dockerfile",
+      "dockerfile": "https://github.com/sybil-solutions/trellis-serve/blob/a1f72be2ff6319b9b2ea9bf6768c99664b1ca892/xpu/docker/Dockerfile",
       "kind": "self-built-attested",
-      "source": "https://github.com/0xSero/exl3xpu",
+      "source": "https://github.com/sybil-solutions/trellis-serve/tree/a1f72be2ff6319b9b2ea9bf6768c99664b1ca892/xpu",
       "workflow": "https://github.com/0xSero/exl3xpu/actions/runs/36165316941"
     },
     "shm_size": "32g"
@@ -108,7 +108,7 @@
       "host": "omarchy test box, Intel Arc Pro B70 (intel-xpu:0)",
       "result": "claude, codex, opencode, pi, omp, crush, grok and copilot each answered a one-shot prompt through the keyed gateway; without these flags every agent got 400 (auto tool choice needs --enable-auto-tool-choice and --tool-call-parser)"
     },
-    "tuned": "ladder climbed; log in https://github.com/0xSero/exl3xpu/blob/main/docs/PROGRESS.md",
+    "tuned": "ladder climbed; log in https://github.com/sybil-solutions/trellis-serve/blob/main/xpu/docs/PROGRESS.md",
     "tuning_delta": "2026-09-25: +int8 prefill and +oneDNN fused attention: cold prefill 4K 1654->2421, 32K 1434->2259, 128K 928->1415, 254K 650->911 tok/s; omp replay TTFT p50 4.65->3.78 s (int8); NLL +0.17% (docs/PROGRESS.md in exl3xpu)"
   },
   "model_instance_id": "turboderp-qwen3-8-27b-exl3--4-bpw",
@@ -118,7 +118,7 @@
       {
         "captured_at": "2026-09-23T11:30:00Z",
         "kind": "normalized-recipe",
-        "url": "https://github.com/0xSero/exl3xpu"
+        "url": "https://github.com/sybil-solutions/trellis-serve/tree/main/xpu"
       }
     ]
   },

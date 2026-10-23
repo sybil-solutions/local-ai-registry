@@ -1,0 +1,41 @@
+{
+  "id": "sglang-glm-5.3-flash-exl3-3.05bpw-ftx-256k-intel-arc-pro-b70-32gb",
+  "engine": "sglang",
+  "about": "GLM-5.3-Flash EXL3 3.05 bpw on one Intel Arc Pro B70 32 GB with routed experts in USM host RAM and the FTX AVX2 CPU expert tier (262,144 context, 270,336 fp8 KV cache)",
+  "image": "ghcr.io/sybil-solutions/qwen38-flash-next-b70-offload@sha256:e9104c18e2b6f639db4612d0327d96ba3a6ecf2d4a7aa8736823d7d13662c3a5",
+  "backend": "intel-xpu",
+  "port": 30000,
+  "entrypoint": "/opt/glm-b70/serve/entrypoint.sh",
+  "args": [],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "ZE_AFFINITY_MASK": "0",
+    "EXL3_MODEL_PATH": "/models/turboderp-GLM-5.3-Flash-exl3-3.05bpw",
+    "EXL3_MOE_SLOTS": "800",
+    "EXL3_MOE_CACHE": "1",
+    "EXL3_NVTIER": "0",
+    "GLM_MOE_PREFILL_MIN_M": "256"
+  },
+  "shm": "64g",
+  "weights": [
+    {
+      "repo": "turboderp/GLM-5.3-Flash-exl3",
+      "revision": "332ab457b709b7ba30dd9a448be5de03b80a7ac9",
+      "at": "/models/turboderp-GLM-5.3-Flash-exl3-3.05bpw",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 4,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 260,
+    "disk_gb": 125.3,
+    "cpus": 20
+  },
+  "setup": "Requires one Intel Arc Pro B70 32 GB, ~260 GB of free host RAM (114.6 GB USM host memory + 114.2 GB FTX CPU expert copy), 20 AVX2/FMA/F16C CPU cores, and 125.3 GB for the EXL3 3.05 bpw checkpoint. Measured in campaign run G262-I0s800c1k on omarchy (EPYC 7443P, 512 GB DDR4): 262,144 context (270,336 fp8 KV cache), 8k prefill 189.4 tok/s, C1 decode 17.5 tok/s, C4 aggregate decode 24.5 tok/s.",
+  "source": "https://github.com/sybil-solutions/glm-flash-lite/tree/6fe077da79a4d6fc842cf9f50cb703e4409924ca/b70"
+}
