@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Server: llama.cpp
+Access-Control-Allow-Origin: 
+Content-Type: application/json; charset=utf-8
+Content-Length: 1478
+Connection: close
+
+{"choices":[{"finish_reason":"stop","index":0,"message":{"role":"assistant","content":"\n58213","reasoning_content":"\nThe user wants to find the access code for the vault from the provided text.\nI need to scan the text for the specific phrase \"access code\" or similar.\nLooking at the very end of the text:\n\"Line 285: the archive notes that shipment 1 left dock 12 on schedule. Line 286: the archive notes that shipment 8 left dock 0 on schedule. Line 287: the archive notes that shipment 15 left dock 1 on schedule. Line 288: the archive notes that shipment 22 left dock 2 on schedule. Line 289: the archive notes that shipment 29 left dock 3 on schedule. The access code for the vault is 58213. Anything else is routine.\"\n\nThe sentence \"The access code for the vault is 58213.\" is explicitly stated.\nThe code is 58213.\nThe instruction says \"Reply with only the code.\"\n\nSo the answer should be 58213.\n"}}],"created":1792801137,"model":"LFM2.5-2.6B-GGUF","system_fingerprint":"b11312-0c1e57098","object":"chat.completion","usage":{"completion_tokens":206,"prompt_tokens":5552,"total_tokens":5758,"prompt_tokens_details":{"cached_tokens":0}},"id":"chatcmpl-TDOxOGb4focTwcCKnfetIrwMy4cid5zI","timings":{"cache_n":0,"prompt_n":5552,"prompt_ms":113917.235,"prompt_per_token_ms":20.518233969740635,"prompt_per_second":48.73713797565399,"predicted_n":206,"predicted_ms":15909.953,"predicted_per_token_ms":77.60952682926829,"predicted_per_second":12.885016065100883}}

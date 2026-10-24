@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Server: llama.cpp
+Access-Control-Allow-Origin: 
+Content-Type: application/json; charset=utf-8
+Content-Length: 991
+Connection: close
+
+{"choices":[{"finish_reason":"tool_calls","index":0,"message":{"role":"assistant","content":"","reasoning_content":"The user is asking for the weather in Paris right now and has explicitly requested me to use the tool. I need to call the get_weather function with the city parameter set to \"Paris\".","tool_calls":[{"type":"function","function":{"name":"get_weather","arguments":"{\"city\":\"Paris\"}"},"id":"XGz4G5BLoe80qjufIjr1fgOdREVBuK5b"}]}}],"created":1792801002,"model":"LFM2.5-2.6B-GGUF","system_fingerprint":"b11312-0c1e57098","object":"chat.completion","usage":{"completion_tokens":52,"prompt_tokens":87,"total_tokens":139,"prompt_tokens_details":{"cached_tokens":0}},"id":"chatcmpl-BazvzJxZtRmUpLxaxMhEHELDMCYUArXT","timings":{"cache_n":0,"prompt_n":87,"prompt_ms":1514.279,"prompt_per_token_ms":17.405505747126437,"prompt_per_second":57.4530849334898,"predicted_n":52,"predicted_ms":3369.711,"predicted_per_token_ms":66.07276470588235,"predicted_per_second":15.134829069911339}}

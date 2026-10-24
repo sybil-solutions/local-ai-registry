@@ -1,0 +1,14 @@
+commit 6c6504c4fccb3111b4691a76fab25338734c9536
+b7d36ea47989bd9d5283d2d5799851827480aba53b11aacc9fe10dd403245cca  lab/lab.py
+47961cb4002dc1811bcd969a50b331588441d1b99e76b7dabd2429fce5a2b707  data/sources/i5-10210u-cpu-4t-container/repro.sh
+451c18f58236d0dd47bb1bae14a7627d56d35eafb72aa04a419db87eb1e51623  data/sources/i5-10210u-cpu-4t-container/observer.py
+1dd10b018d6c43544ec1caffbc11be9317f0cd80780f68a4d43b320f8296256a  data/sources/i5-10210u-cpu-4t-container/check_run.py
+4d73c8010f5b96e3e8a3a65b00237dbf487d1dbd55f6947b806edcf26aee69b5  registry/launches/llama.cpp-lfm2.5-2.6b-qad-q4-0-8k-cpu-docker-4t.json
+ed7de8175780255ff74444173517d57f30af5968eae639d8460f2913c688a7a8  registry/recipes/cpu/x86-64-avx2-cpu/lfm2.5-2.6b.llama.cpp.8k.4t.json
+da774f4830cb863edcdceb595f7a4c75fe4b744fc0578b1d785971c92ece2a8a  registry/cards/cpu/x86-64-avx2-cpu.json
+a247afd6414918eac8e520a9e6137dc271235461ecbe1180462221d5b8d40b03  /home/baney75/sybil-chapel-final-20261023/models/LFM2.5-2.6B-QAD-Q4_0.gguf
+image a57203c59d9a839a9558b964972e52e1f112c15aa5b3a3cf7e9b20984e3bfce8 sha256:23fd59bc5e5b06ca68003a5772d441f0411fb723eeaff850b9111bcd2ac4fd33
+0374e7e88ff820ff2cb3b52f01cb3c361684f9070a1450cc56a8c6c9391fdc87  /home/baney75/sybil-chapel-final-20261023/hostwatch.py
+2369ecfde56b0af6ee501f45bad67ec44867e5835ba2ee5800a93ce5e69ddd06  /home/baney75/sybil-chapel-final-20261023/podman-task.sh
+7caf7c4f56e05febee88a7c3c7a1f6add96c19234d0516e07c69154c04a74d1e  /home/baney75/sybil-chapel-final-20261023/e2e-run-cpu.sh
+launch_sha256 f47439fecb04920684f9e6fa115763986025ee8ba8b2f54e739dd929fb9a49e4

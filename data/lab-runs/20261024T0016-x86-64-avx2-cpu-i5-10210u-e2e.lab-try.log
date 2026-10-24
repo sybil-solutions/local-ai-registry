@@ -1,0 +1,2 @@
+[lab 20:23:57] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 15.1 tok/s, prefill 43 tok/s; evidence lab/runs/x86-64-avx2-cpu.lfm2.5-2.6b.llama.cpp-lfm2.5-2.6b-qad-q4-0-8k-cpu-docker-4t.8k.20261024T002357.json
+[lab 20:23:57] PASSED: wrote registry/recipes/cpu/x86-64-avx2-cpu/lfm2.5-2.6b.llama.cpp.8k.4t.json (905 bytes)

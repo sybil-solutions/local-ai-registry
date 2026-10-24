@@ -1,0 +1,9 @@
+POST /v1/chat/completions HTTP/1.1
+Accept-Encoding: identity
+Content-Length: 170
+Host: 127.0.0.1:18091
+User-Agent: Python-urllib/3.14
+Content-Type: application/json
+Connection: close
+
+{"model": "LFM2.5-2.6B-GGUF", "messages": [{"role": "user", "content": "Write a detailed 600-word story about a lighthouse keeper."}], "temperature": 0.8, "stream": true}

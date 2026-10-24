@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Server: llama.cpp
+Access-Control-Allow-Origin: 
+Content-Type: application/json; charset=utf-8
+Content-Length: 610
+Connection: close
+
+{"models":[{"name":"LFM2.5-2.6B-GGUF","model":"LFM2.5-2.6B-GGUF","modified_at":"","size":"","digest":"","type":"model","description":"","tags":[""],"capabilities":["completion"],"parameters":"","details":{"parent_model":"","format":"gguf","family":"","families":[""],"parameter_size":"","quantization_level":""}}],"object":"list","data":[{"id":"LFM2.5-2.6B-GGUF","aliases":["LFM2.5-2.6B-GGUF"],"tags":[],"object":"model","created":1792800968,"owned_by":"llamacpp","meta":{"vocab_type":2,"n_vocab":128000,"n_ctx":8192,"n_ctx_train":128000,"n_embd":2048,"n_params":2697198592,"size":1585655808,"ftype":"Q4_0"}}]}

@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Server: llama.cpp
+Access-Control-Allow-Origin: 
+Content-Type: application/json; charset=utf-8
+Content-Length: 807
+Connection: close
+
+{"choices":[{"finish_reason":"stop","index":0,"message":{"role":"assistant","content":"391","reasoning_content":"The user is asking for the product of 17 and 23.\nCalculation: 17 * 23 = 391.\nThe user requested the reply with *only* the number.\n\nResult: 391."}}],"created":1792800997,"model":"LFM2.5-2.6B-GGUF","system_fingerprint":"b11312-0c1e57098","object":"chat.completion","usage":{"completion_tokens":46,"prompt_tokens":25,"total_tokens":71,"prompt_tokens_details":{"cached_tokens":0}},"id":"chatcmpl-qpa9VuuKYHFYiBLlPO5uW9Ap43rqkWlN","timings":{"cache_n":0,"prompt_n":25,"prompt_ms":476.458,"prompt_per_token_ms":19.058320000000002,"prompt_per_second":52.470522060706294,"predicted_n":46,"predicted_ms":2971.227,"predicted_per_token_ms":66.02726666666666,"predicted_per_second":15.145258171119206}}

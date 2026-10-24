@@ -1,0 +1,98 @@
+{
+  "id": "llama.cpp-lfm2.5-2.6b-qad-q4-0-8k-cpu-docker-4t",
+  "engine": "llama.cpp",
+  "about": "LFM2.5-2.6B QAD-Q4_0 on the official llama.cpp b11312 CPU image, four threads (one per physical core on a 4-core/8-thread CPU), 4 GiB memory cap; no GPU access",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:23fd59bc5e5b06ca68003a5772d441f0411fb723eeaff850b9111bcd2ac4fd33",
+  "backend": "cpu",
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "-m",
+    "/models/LFM2.5-2.6B-QAD-Q4_0.gguf",
+    "--alias",
+    "LFM2.5-2.6B-GGUF",
+    "--ctx-size",
+    "8192",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "0",
+    "--flash-attn",
+    "off",
+    "--no-mmproj",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--threads",
+    "4",
+    "--threads-batch",
+    "4",
+    "--batch-size",
+    "512",
+    "--ubatch-size",
+    "128",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--metrics"
+  ],
+  "env": {},
+  "port": 8080,
+  "shm": "1g",
+  "resources": {
+    "memoryBytes": 4294967296,
+    "memorySwapBytes": 4294967296
+  },
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM2.5-2.6B-GGUF",
+      "revision": "84022ce711b28455e8c4fc364ce68c00cf995875",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "LFM2.5-2.6B-QAD-Q4_0.gguf"
+      ]
+    }
+  ],
+  "ctx": 8192,
+  "seqs": 1,
+  "vision": false,
+  "needs": {
+    "host_ram_gb": 4,
+    "disk_gb": 1.7,
+    "cpus": 4
+  },
+  "variant": "4t",
+  "plugin": {
+    "name": "LFM2.5-2.6B",
+    "family": "lfm",
+    "format": "GGUF QAD-Q4_0",
+    "engine": "llama.cpp",
+    "servedName": "LFM2.5-2.6B-GGUF",
+    "sizeGb": 1.6,
+    "minDriver": "",
+    "weights": [
+      {
+        "sizeGb": 1.6,
+        "layout": "dir",
+        "mountPath": "/models",
+        "files": "LFM2.5-2.6B-QAD-Q4_0.gguf"
+      }
+    ],
+    "asset": null,
+    "scratch": null,
+    "serving": {
+      "ctxTokens": 8192,
+      "kvTokens": 9216
+    },
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false
+    }
+  },
+  "ids": {
+    "x86-64-avx2-cpu": "lfm25-26b-qad-q4-cpu-4t"
+  }
+}

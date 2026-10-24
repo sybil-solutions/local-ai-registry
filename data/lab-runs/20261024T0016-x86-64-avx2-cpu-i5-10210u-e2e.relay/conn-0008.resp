@@ -1,0 +1,8 @@
+HTTP/1.1 404 Not Found
+Server: llama.cpp
+Access-Control-Allow-Origin: 
+Content-Type: application/json; charset=utf-8
+Content-Length: 74
+Connection: close
+
+{"error":{"message":"File Not Found","type":"not_found_error","code":404}}

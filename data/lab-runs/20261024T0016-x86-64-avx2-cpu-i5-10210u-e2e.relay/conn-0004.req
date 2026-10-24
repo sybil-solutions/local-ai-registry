@@ -1,0 +1,9 @@
+POST /v1/chat/completions HTTP/1.1
+Accept-Encoding: identity
+Content-Length: 363
+Host: 127.0.0.1:18091
+User-Agent: Python-urllib/3.14
+Content-Type: application/json
+Connection: close
+
+{"model": "LFM2.5-2.6B-GGUF", "messages": [{"role": "user", "content": "What's the weather in Paris right now? Use the tool."}], "temperature": 0.6, "tools": [{"type": "function", "function": {"name": "get_weather", "description": "Current weather for a city", "parameters": {"type": "object", "properties": {"city": {"type": "string"}}, "required": ["city"]}}}]}

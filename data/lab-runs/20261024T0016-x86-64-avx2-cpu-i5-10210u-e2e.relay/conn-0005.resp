@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Server: llama.cpp
+Access-Control-Allow-Origin: 
+Content-Type: application/json; charset=utf-8
+Content-Length: 946
+Connection: close
+
+{"choices":[{"finish_reason":"stop","index":0,"message":{"role":"assistant","content":"The current weather in Paris is 17°C with overcast skies.","reasoning_content":"The user asked for the weather in Paris, and I've successfully called the get_weather tool. The response shows:\n- City: Paris\n- Temperature: 17°C\n- Sky: overcast\n\nI should provide this information to the user in a clear and helpful way."}}],"created":1792801008,"model":"LFM2.5-2.6B-GGUF","system_fingerprint":"b11312-0c1e57098","object":"chat.completion","usage":{"completion_tokens":73,"prompt_tokens":128,"total_tokens":201,"prompt_tokens_details":{"cached_tokens":83}},"id":"chatcmpl-ed5LGRl7cy1wXVYI0JiFqFtYzBhVUeig","timings":{"cache_n":83,"prompt_n":45,"prompt_ms":824.22,"prompt_per_token_ms":18.316,"prompt_per_second":54.5970735968552,"predicted_n":73,"predicted_ms":4769.475,"predicted_per_token_ms":66.24270833333334,"predicted_per_second":15.096001132200083}}

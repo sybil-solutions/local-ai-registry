@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "lfm2.5-2.6b",
+  "weights": "LiquidAI/LFM2.5-2.6B-GGUF@84022ce711b28455e8c4fc364ce68c00cf995875",
+  "engine": "llama.cpp-lfm2.5-2.6b-qad-q4-0-8k-cpu-docker-4t@23fd59bc5e5b",
+  "set": {},
+  "card": "x86-64-avx2-cpu"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Core i5-10210U (4 cores, 8 threads), four threads, 4 GiB container cap, no GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-23",
+  "on": "owner",
+  "gpu": "Intel Core i5-10210U (4 cores, 8 threads), four threads, 4 GiB container cap, no GPU",
+  "launch_sha256": "f47439fecb04920684f9e6fa115763986025ee8ba8b2f54e739dd929fb9a49e4",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 15.1,
+  "prefill": 46,
+  "served": "LFM2.5-2.6B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 315,
+   "content": "\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "grNAYfVfVu3J4QZqn49x9RwyV148MHUX"
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with **overcast** skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 236
+  },
+  "context": {
+   "prompt_tokens": 5552,
+   "seconds": 119.8,
+   "content": "\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 3698,
+   "seconds_total": 257.4
+  }
+ },
+ "launch_config_sha256": null
+}
