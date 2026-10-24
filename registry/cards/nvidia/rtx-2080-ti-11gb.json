@@ -1,0 +1,16 @@
+{
+  "id": "rtx-2080-ti-11gb",
+  "name": "GeForce RTX 2080 Ti",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 11,
+  "bandwidth_gb_s": 616,
+  "match": {
+    "backend": "nvidia",
+    "name": "GeForce RTX 2080 Ti",
+    "names": [
+      "rtx2080ti"
+    ],
+    "vramGb": 11
+  }
+}
