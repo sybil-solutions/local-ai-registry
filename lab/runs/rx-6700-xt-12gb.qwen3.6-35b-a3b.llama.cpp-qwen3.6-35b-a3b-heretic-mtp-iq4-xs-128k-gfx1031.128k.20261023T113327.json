@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.6-35b-a3b",
+  "weights": "hermeticvm/Qwen3.6-35B-A3B-heretic-MTP-IQ4_XS-GGUF@bddeb3e159fc4214fc2b244cddb75a34a661d58e",
+  "engine": "llama.cpp-qwen3.6-35b-a3b-heretic-mtp-iq4-xs-128k-gfx1031@bdbbab3b239f",
+  "set": {},
+  "card": "rx-6700-xt-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "AMD Radeon RX 6700 XT"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-23",
+  "on": "owner",
+  "gpu": "AMD Radeon RX 6700 XT",
+  "launch_sha256": "356c17f6b412fd3af2b45e034bc1d2abc95f65a818f0d910d4a57304e0eb392e",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 34.9,
+  "prefill": 464,
+  "served": "/models/Qwen3.6-35B-A3B-heretic-MTP-IQ4_XS.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 943,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "uTDw8VF5TYc7MY3aEtfHfV8vTyeuRgn5"
+    }
+   ],
+   "reply": "The weather in Paris right now is overcast with a temperature of 17°C.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 235
+  },
+  "context": {
+   "prompt_tokens": 106252,
+   "seconds": 229.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 2871,
+   "seconds_total": 82.5
+  }
+ },
+ "launch_config_sha256": null
+}

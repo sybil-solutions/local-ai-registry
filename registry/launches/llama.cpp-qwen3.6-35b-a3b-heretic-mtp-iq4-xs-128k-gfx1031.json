@@ -1,0 +1,115 @@
+{
+  "id": "llama.cpp-qwen3.6-35b-a3b-heretic-mtp-iq4-xs-128k-gfx1031",
+  "engine": "llama.cpp",
+  "about": "Qwen3.6-35B-A3B heretic (refusals removed) IQ4_XS with its MTP head on one 12 GB RDNA2 card (gfx1031: RX 6700 XT / 6750 XT), experts in system RAM: 24 of 40 expert layers stay in pinned host RAM (--n-cpu-moe 24, --load-mode none); the 131,072-token q8_0 KV (only 10 of 40 layers hold KV), attention, shared weights and the rest of the experts on the GPU. Drafts come from the MTP head and from n-grams of the context (ngram-mod, up to 256 tokens); the draft context costs about 1 GiB of VRAM, which forces -ub 1024. Thinking is capped at 2048 tokens: uncapped, the model occasionally reasons in circles until it runs out of tokens. ROCm gfx1030 code objects via HSA_OVERRIDE_GFX_VERSION. The configuration a daily-driver server ran for SWE-bench Verified Mini (27/50 with mini-swe-agent). Measured on one RX 6700 XT (PCIe 4.0 x16), Ryzen 5 5600X, 32 GB DDR4-2933 single channel: 12,098 of 12,272 MiB VRAM at the peak of the 106K-token context gate and at most a 14.7 GB MemAvailable drop over three gate runs; host_ram_gb adds headroom for the host prompt cache (--cache-ram 6144), which grows with use. Overfilling VRAM on RDNA2 can deadlock amdgpu instead of failing, so do not lower --n-cpu-moe on a 12 GB card.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-rocm-b11804@sha256:bdbbab3b239f4a7ada461ddb82b01d7328c6988e194572ae4f08144b710f1013",
+  "backend": "amd-rocm",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Qwen3.6-35B-A3B-heretic-MTP-IQ4_XS.gguf",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "131072",
+    "--n-gpu-layers",
+    "99",
+    "--n-cpu-moe",
+    "24",
+    "--load-mode",
+    "none",
+    "--threads",
+    "6",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "1024",
+    "--spec-type",
+    "draft-mtp,ngram-mod",
+    "--spec-ngram-mod-n-max",
+    "256",
+    "--cache-type-k-draft",
+    "q8_0",
+    "--cache-type-v-draft",
+    "q8_0",
+    "--reasoning-budget",
+    "2048",
+    "--cache-ram",
+    "6144",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--metrics",
+    "--temp",
+    "0.6",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0.0"
+  ],
+  "env": {
+    "HSA_OVERRIDE_GFX_VERSION": "10.3.0"
+  },
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "hermeticvm/Qwen3.6-35B-A3B-heretic-MTP-IQ4_XS-GGUF",
+      "revision": "bddeb3e159fc4214fc2b244cddb75a34a661d58e",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Qwen3.6-35B-A3B-heretic-MTP-IQ4_XS.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 20.8,
+    "disk_gb": 19.18
+  },
+  "plugin": {
+    "name": "Qwen3.6-35B-A3B heretic",
+    "family": "qwen",
+    "format": "GGUF \u00b7 IQ4_XS + MTP, heretic (experts in RAM)",
+    "engine": "llama.cpp",
+    "servedName": "/models/Qwen3.6-35B-A3B-heretic-MTP-IQ4_XS.gguf",
+    "sizeGb": 19.18,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 131072,
+      "kvTokens": 131072
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Qwen3.6-35B-A3B-heretic-MTP-IQ4_XS.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 19.18
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}

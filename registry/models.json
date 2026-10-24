@@ -1188,6 +1188,10 @@
     "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170": {
       "format": "safetensors · FP8 / MXFP4 experts",
       "size_gb": 510.311
+    },
+    "hermeticvm/Qwen3.6-35B-A3B-heretic-MTP-IQ4_XS-GGUF@bddeb3e159fc4214fc2b244cddb75a34a661d58e": {
+      "format": "GGUF · IQ4_XS + MTP, heretic",
+      "size_gb": 19.18
     }
   }
 }
