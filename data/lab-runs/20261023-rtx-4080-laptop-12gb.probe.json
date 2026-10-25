@@ -1,0 +1,51 @@
+{
+ "host": {
+  "kernel": "7.2.5-3-omarchy",
+  "cpu": "Intel(R) Core(TM) i9-14900HX",
+  "cpus": 32,
+  "avx512": false
+ },
+ "ram": {
+  "total_gb": 33.35,
+  "available_gb": 4.18,
+  "swap_total_gb": 66.7,
+  "swap_used_gb": 4.87
+ },
+ "storage": {
+  "path": "/srv/magnus-data/workspaces/sybil-parish-final-20261023/models",
+  "free_gb": 413.35,
+  "total_gb": 502.92,
+  "device": "/dev/nvme1n1p1",
+  "fstype": "ext4",
+  "physical_disks": [
+   {
+    "disk": "nvme1n1",
+    "nvme": true,
+    "rotational": false,
+    "model": "SAMSUNG MZVL2512HCJQ-00BH1"
+   }
+  ],
+  "all_nvme": true
+ },
+ "gpus": [
+  {
+   "vendor": "nvidia",
+   "index": 0,
+   "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+   "vram_gb": 12,
+   "vram_mib": 12282,
+   "vram_used_mib": 2896,
+   "unified_memory": false,
+   "pci": "00000000:01:00.0",
+   "pcie_gen_max": "4",
+   "pcie_width_max": "16",
+   "driver": "610.57.04"
+  },
+  {
+   "vendor": "intel",
+   "card": "card2",
+   "name": "Intel Corporation Raptor Lake-S UHD Graphics (rev 04)",
+   "vram_gb": null
+  }
+ ]
+}

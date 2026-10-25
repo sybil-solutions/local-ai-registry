@@ -1,0 +1,72 @@
+{
+ "pass": true,
+ "failures": [],
+ "chat_records": [
+  {
+   "n": 2,
+   "stream": false,
+   "finish": [
+    "stop"
+   ],
+   "status": 200,
+   "ok": true
+  },
+  {
+   "n": 5,
+   "stream": false,
+   "finish": [
+    "stop"
+   ],
+   "status": 200,
+   "ok": true
+  },
+  {
+   "n": 8,
+   "stream": false,
+   "finish": [
+    "tool_calls"
+   ],
+   "status": 200,
+   "ok": true
+  },
+  {
+   "n": 11,
+   "stream": false,
+   "finish": [
+    "stop"
+   ],
+   "status": 200,
+   "ok": true
+  },
+  {
+   "n": 14,
+   "stream": false,
+   "finish": [
+    "stop"
+   ],
+   "status": 200,
+   "ok": true
+  },
+  {
+   "n": 17,
+   "stream": true,
+   "finish": [
+    "stop"
+   ],
+   "status": 200,
+   "ok": true
+  },
+  {
+   "n": 21,
+   "stream": true,
+   "finish": [
+    "stop"
+   ],
+   "status": 200,
+   "ok": true
+  },
+  {
+   "other_posts": 14
+  }
+ ]
+}

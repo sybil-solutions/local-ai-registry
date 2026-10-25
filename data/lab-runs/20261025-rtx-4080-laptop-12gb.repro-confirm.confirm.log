@@ -1,0 +1,13 @@
+[2026-10-25T06:01:53Z] confirm run in /srv/magnus-data/workspaces/sybil-parish-final-20261023/confirm-20261025T060153Z; checkout 7a0875c4d5233943f3ab19f09fcfddef68febcdc
+[2026-10-25T06:01:53Z] parish-media ready
+1cdb92c43c6ffc0e262a85b4b6122688cb90caec0e634c8569ff254193939224  /srv/magnus-data/workspaces/sybil-parish-final-20261023/checkout-7a0875c4/data/sources/rtx4080-laptop-tabbyapi-exl3-container/repro.sh
+[2026-10-25T06:01:53Z] quiet baseline 60 s (memwatch 3425665, vmstat 3425669)
+[2026-10-25T06:02:53Z] baseline done; starting the published command
+[2026-10-25T06:06:06Z] repro.sh exit 0
+2026-10-25T06:06:23Z
+store containers:
+ports 15000/15001 free
+no recorder/watcher processes
+52 MiB, 9 %, P8
+MemAvailable:   24299864 kB
+[2026-10-25T06:06:23Z] done

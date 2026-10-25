@@ -1,0 +1,17 @@
+[2026-10-25T07:10:23Z] run 20261025T071023Z-3699549-22902 in /srv/magnus-data/workspaces/sybil-parish-final-20261023/podman/run-20261025T071023Z-3699549-22902
+[2026-10-25T07:10:31Z] preflight: GPU idle, power ok
+[2026-10-25T07:10:33Z] launch: GPU idle, power ok
+[2026-10-25T07:10:33Z] starting container
+[2026-10-25T07:10:34Z] container dec56b0c21386a8e886b9d7578aa6b64efc8a56ff31c51899395ad6732cf2880
+[2026-10-25T07:11:09Z] healthy
+[2026-10-25T07:11:09Z] lab try (in /srv/magnus-data/workspaces/sybil-parish-final-20261023/podman/run-20261025T071023Z-3699549-22902/lab-root)
+[lab 03:13:10] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 97.0 tok/s, prefill 1480 tok/s; evidence lab/runs/rtx-4080-laptop-12gb.qwen3.5-9b.tabbyapi-qwen3.5-9b-exl3-4bpw-128k.128k.20261025T071310.json
+[lab 03:13:10] PASSED: wrote registry/recipes/nvidia/rtx-4080-laptop-12gb/qwen3.5-9b.tabbyapi.128k.json (1122 bytes)
+[2026-10-25T07:13:10Z] lab exit 0
+[2026-10-25T07:13:36Z] repeat exit 0: {"at": 1792912390.971044, "served": "Qwen3.5-9B-EXL3-6hb-4bpw", "tps": 75.0, "tokens_total": 1891, "seconds_total": 25.4, "min_tps": 15.0, "pass": true}
+[2026-10-25T07:13:37Z] postconditions exit 0
+[2026-10-25T07:13:37Z] all gates, the repeat and every postcondition passed
+[2026-10-25T07:13:37Z] cleanup (reserve 540s)
+[2026-10-25T07:13:37Z] server log saved: 78 lines
+[2026-10-25T07:13:41Z] container dec56b0c2138 removed (positively gone)
+[2026-10-25T07:13:42Z] cleanup verdict: ok=1 after 5s of 540s; exit 0
