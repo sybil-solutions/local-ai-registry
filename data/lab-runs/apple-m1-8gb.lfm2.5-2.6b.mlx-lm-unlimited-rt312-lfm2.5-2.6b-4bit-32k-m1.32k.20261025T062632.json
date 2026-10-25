@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "lfm2.5-2.6b",
+  "weights": "LiquidAI/LFM2.5-2.6B-MLX-4bit@04efa23776ce61ec34ec95ec34c859854c89542b",
+  "engine": "mlx-lm-unlimited-rt312-lfm2.5-2.6b-4bit-32k-m1@fcfc3a6d18b2",
+  "set": {},
+  "card": "apple-m1-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 8GB (8-core GPU, Metal)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-25",
+  "on": "owner",
+  "gpu": "Apple M1 8GB (8-core GPU, Metal)",
+  "launch_sha256": "fd3e354887fe5d9830931614b958efd7b5fd094181965c9e77a920fc855f03ec",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 36.1,
+  "prefill": 206,
+  "served": "LiquidAI/LFM2.5-2.6B-MLX-4bit",
+  "tps_estimated": true,
+  "note": "tps counts tokens as characters/4 (an estimate): the server has no tokenize route"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, yellow, and blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 417,
+   "content": "\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "id": "c4df69c9-2763-4cc6-8c68-938959dc75f5"
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with **overcast** skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 244
+  },
+  "context": {
+   "prompt_tokens": 22242,
+   "seconds": 108.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 4362,
+   "seconds_total": 134.1,
+   "counted": "estimate"
+  }
+ },
+ "launch_config_sha256": "94300d5189c5d69d5a6727094601258807f64a4d3924da2c7e4b5ee584ed3943"
+}

@@ -66,7 +66,7 @@ export default function ConfigurationCards({ rows, showModel = false }: { rows: 
           {row.needs.length > 0 && <dl className={s.needs}>{row.needs.map((need) => <div key={need.label}><dt>{need.label}</dt><dd>{need.value}</dd></div>)}</dl>}
           {variants.length > 1 ? <label className={s.recipeField}>Exact recipe<select aria-label={`Recipe for ${row.model} on ${row.hardware}`} value={current.key} onChange={(e) => setSelected((chosen) => ({ ...chosen, [row.id]: e.target.value }))}>{variants.map((v) => <option key={v.key} value={v.key}>{v.label}</option>)}</select></label> : <div className="meta"><span>{ENGINE[current.engine] ?? current.engine}</span><span>{current.format || "Format not recorded"}</span></div>}
           <div className={`numbers ${s.metrics}`}>
-            <div><b data-speed="decode" title={current.decode == null ? "No measurement recorded" : undefined}>{measurement(current.decode)}</b><span>decode tok/s</span></div>
+            <div><b data-speed="decode" title={current.decode == null ? "No measurement recorded" : current.decodeEstimated ? "Estimated: the server had no tokenize route, so tokens were counted as characters/4" : undefined}>{current.decodeEstimated && current.decode != null ? "≈" : ""}{measurement(current.decode)}</b><span>decode tok/s</span></div>
             <div><b data-speed="prefill" title={current.prefill == null ? "No measurement recorded" : undefined}>{measurement(current.prefill)}</b><span>prefill tok/s</span></div>
             <div><b>{current.context >= 1024 ? `${Math.round(current.context / 1024)}K` : current.context}</b><span>context</span></div>
           </div>
@@ -82,6 +82,6 @@ export default function ConfigurationCards({ rows, showModel = false }: { rows: 
       })}
     </div>
     {!visible.length && <p className={s.empty}>No configurations match “{query}”. Try another hardware name, engine or model.</p>}
-    <p className={s.note}>Speeds are the selected recipe’s recorded measurements, not estimates; “—” means unmeasured. Evidence distinguishes checks on this card, sibling-card checks, earlier checks and publisher reports.</p>
+    <p className={s.note}>Speeds are the selected recipe’s recorded measurements; “≈” marks a decode speed the lab could only estimate (characters/4, when the server has no tokenize route), and “—” means unmeasured. Evidence distinguishes checks on this card, sibling-card checks, earlier checks and publisher reports.</p>
   </div>;
 }

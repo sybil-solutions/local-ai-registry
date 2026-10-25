@@ -1,0 +1,112 @@
+--- a/mlx_lm/server.py
++++ b/mlx_lm/server.py
+@@ -39,11 +39,39 @@
+     stream_generate,
+ )
+ from .models.cache import (
++    KVCache,
+     LRUPromptCache,
++    RotatingKVCache,
+     make_prompt_cache,
+ )
+ from .sample_utils import make_logits_processors, make_sampler
+ from .utils import _parse_size, load, sharded_load
++
++
++def _bounded_prompt_cache(model, max_kv_size):
++    # make_prompt_cache ignores max_kv_size when the model has its own make_cache (LFM2: a growing KVCache per attention
++    # layer). With a bound, each KVCache becomes a RotatingKVCache of max_kv_size tokens (keep=4, as make_prompt_cache
++    # uses for models without make_cache); fixed-size caches such as ArraysCache are kept.
++    cache = make_prompt_cache(model, max_kv_size)
++    if max_kv_size is None:
++        return cache
++    return [RotatingKVCache(max_size=max_kv_size, keep=4) if type(c) is KVCache else c for c in cache]
++
++
++class PromptTooLong(ValueError):
++    pass  # a prompt longer than --max-prompt-tokens: answered with HTTP 400 before any prefill or generation
++
++
++def _check_prompt_length(n_tokens, max_prompt_tokens):
++    if max_prompt_tokens is not None and n_tokens > max_prompt_tokens:
++        raise PromptTooLong(
++            f"the prompt is {n_tokens} tokens; this server accepts at most {max_prompt_tokens} (--max-prompt-tokens)"
++        )
++
++
++def _error_status(e):
++    # an over-long prompt is the client's to fix (400); every other error keeps the stock status
++    return 400 if isinstance(e, PromptTooLong) else 404
+
+
+ def get_system_fingerprint():
+@@ -683,7 +711,11 @@
+         return sm, sequences
+
+     def _is_batchable(self, args):
+-        return self.model_provider.is_batchable and args.seed is None
++        # max_tokens -1 (unlimited) is served sequentially: stream_generate/generate_step treat -1 as infinite,
++        # while BatchGenerator stops at num_tokens >= max_tokens; with a KV bound or a prompt limit every request is
++        # served sequentially, where the bounded cache is made and the prompt is measured
++        return (self.model_provider.is_batchable and args.seed is None and args.max_tokens != -1
++                and self.cli_args.max_kv_size is None and self.cli_args.max_prompt_tokens is None)
+
+     def _generate(self):
+         # Local thread stream that we 'll pass to the BatchGenerator to make
+@@ -934,6 +966,7 @@
+
+             # Prepare the prompt and state machine
+             prompt, _, _, initial_state = self._tokenize(tokenizer, request, args)
++            _check_prompt_length(len(prompt), self.cli_args.max_prompt_tokens)  # before the context, so the client gets 400
+             sm, sequences = self._make_state_machine(
+                 self.model_provider.model_key,
+                 tokenizer,
+@@ -968,7 +1001,7 @@
+             ctx.prompt_cache_count = len(prompt) - len(rest)
+             cache_key = prompt[:]
+             if cache is None:
+-                cache = make_prompt_cache(self.model_provider.model)
++                cache = _bounded_prompt_cache(self.model_provider.model, self.cli_args.max_kv_size)
+                 if self.model_provider.draft_model is not None:
+                     cache += make_prompt_cache(self.model_provider.draft_model)
+
+@@ -1229,7 +1262,12 @@
+     def validate_model_parameters(self):
+         """Validate that the passed model parameters have correct types and values."""
+         self._validate("stream", bool)
+-        self._validate("max_tokens", int, min_val=0)
++        self._validate("max_tokens", int, min_val=-1)  # -1 = unlimited (generate_step's own convention)
++        if self.max_tokens == -1 and (
++            self.requested_draft_model != "default_model"
++            or self.response_generator.cli_args.draft_model is not None
++        ):
++            raise ValueError("max_tokens -1 (unlimited) is not supported with a draft model")
+         self._validate("temperature", (float, int), min_val=0)
+         self._validate("top_p", (float, int), min_val=0, max_val=1)
+         self._validate("top_k", int, min_val=0)
+@@ -1422,7 +1460,7 @@
+                 progress_callback=keepalive_callback,
+             )
+         except Exception as e:
+-            self._set_completion_headers(404)
++            self._set_completion_headers(_error_status(e))
+             self.end_headers()
+             self.wfile.write(json.dumps({"error": str(e)}).encode())
+             return
+@@ -1880,6 +1918,16 @@
+         help="Maximum size in bytes of the KV caches",
+     )
+     parser.add_argument(
++        "--max-kv-size",
++        type=int,
++        help="Bound each attention layer's KV cache, prompt and answer together, to this many tokens (RotatingKVCache)",
++    )
++    parser.add_argument(
++        "--max-prompt-tokens",
++        type=int,
++        help="Answer a request whose prompt is longer than this many tokens with HTTP 400, before any generation",
++    )
++    parser.add_argument(
+         "--pipeline",
+         action="store_true",
+         help="Use pipelining instead of tensor parallelism",

@@ -1,9 +1,10 @@
 import { command as sdkCommand } from "../../sdk/js/index.js";
-import { cards, models, recipes, short, setupOf, format, engineKind, status, fmtDate, ctxLabel, type Recipe } from "./registry";
+import { cards, models, recipes, short, setupOf, format, engineKind, status, fmtDate, ctxLabel, tpsEstimated, type Recipe } from "./registry";
+import { topSpeed } from "./speed";
 
 export type ConfigurationVariant = {
   key: string; label: string; href: string; engine: string; format: string;
-  context: number; decode: number | null; prefill: number | null;
+  context: number; decode: number | null; decodeEstimated: boolean; prefill: number | null;
   status: string; statusTone: string; statusDetail: string; testedAt: string; command: string;
   requirements: string; machines: number;
 };
@@ -65,7 +66,7 @@ export function configurationRows(selected: Recipe[]): ConfigurationRow[] {
     const quant = format(r);
     row.variants.push({ key: r.key, label: [engine, quant, `${ctxLabel(r.launch.ctx)} context`].filter(Boolean).join(" · "),
       href: `/gpu/${r.card}/${r.slug}/`, engine, format: quant, context: r.launch.ctx,
-      decode: proof.tps ?? null, prefill: proof.prefill ?? null, status: evidence.label, statusTone: evidence.tone,
+      decode: proof.tps ?? null, decodeEstimated: tpsEstimated(r), prefill: proof.prefill ?? null, status: evidence.label, statusTone: evidence.tone,
       statusDetail: evidence.detail, testedAt: fmtDate(proof.at), command: oneCommand(r),
       requirements: r.launch.setup ?? "", machines: setup.machines });
   }
@@ -100,7 +101,7 @@ export function modelDirectoryRows(): ModelDirectoryRow[] {
 
 export type HardwareDirectoryRow = {
   id: string; name: string; vendor: string; memory: number; bandwidth: number | null;
-  models: number; configurations: number; decode: number | null;
+  models: number; configurations: number; decode: number | null; decodeEstimated: boolean;
 };
 export function hardwareDirectoryRows(extra: { id: string; name: string; vendor: string; vram_gb: number; bandwidth_gb_s: number | null }[]): HardwareDirectoryRow[] {
   const byHardware = new Map<string, Recipe[]>();
@@ -110,10 +111,10 @@ export function hardwareDirectoryRows(extra: { id: string; name: string; vendor:
   }
   return [...cards, ...extra].map((c) => {
     const rs = byHardware.get(c.id) ?? [];
-    const speeds = rs.map((r) => r.proof[0].tps).filter((n): n is number => n != null);
+    const top = topSpeed(rs.map((r) => r.proof[0]));  // the highest measured speed; an estimate only when nothing was measured
     return { id: c.id, name: short(c.name), vendor: c.vendor, memory: c.vram_gb,
       bandwidth: c.bandwidth_gb_s, models: new Set(rs.map((r) => r.model)).size,
       configurations: new Set(rs.map(hardwareConfigId)).size,
-      decode: speeds.length ? Math.max(...speeds) : null };
+      decode: top.tps, decodeEstimated: top.estimated };
   });
 }

@@ -1,0 +1,4 @@
+{"conn": "conn-0000", "method": "GET", "path": "/health", "status": 200, "req_sha256": "1a5b397671a836bb"}
+{"conn": "conn-0001", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "cfdc50b62cae1a02", "top_level_keys": ["messages", "model", "stream", "temperature"], "temperature": 0.6, "stream_content_chars": 319, "stream_reasoning_chars": 3014, "finish": ["stop"]}
+{"conn": "conn-0002", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "c787198321a2b56c", "top_level_keys": ["messages", "model", "stream", "temperature"], "temperature": 0.6, "stream_content_chars": 13495, "stream_reasoning_chars": 14758, "finish": ["stop"]}
+{"verdict": "pass", "connections": 3, "problems": []}

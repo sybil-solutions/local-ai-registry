@@ -25,6 +25,8 @@ import shlex
 import string
 import sys
 import time
+import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -70,7 +72,10 @@ def pin(p):
     keys = ("command", "install", "pip", "env", "port", "weights", "ctx", "seqs", "vision", "wired_limit_reserve_mb")
     # several cards (or machines) count too, but one is the default and stays out, so every single-card pin is unchanged
     topology = {k: p[k] for k in ("cards", "machines") if p.get(k, 1) != 1}
-    return hashlib.sha256(json.dumps({**{k: p.get(k) for k in keys}, **topology, "config": config_text(p)}, sort_keys=True).encode()).hexdigest()
+    # a pinned host runtime (interpreter archive, hash-locked wheels) is part of what runs; it counts only when present,
+    # so every pin without one is unchanged
+    runtime = {"runtime": p["runtime"]} if "runtime" in p else {}
+    return hashlib.sha256(json.dumps({**{k: p.get(k) for k in keys}, **topology, **runtime, "config": config_text(p)}, sort_keys=True).encode()).hexdigest()
 
 
 def profile_file(name):
@@ -135,6 +140,8 @@ def render(recipe):
             # MLX on Apple silicon: pinned packages, a launcher file, its environment, and a GPU wired-memory limit that
             # follows the card's unified memory
             out.update({k: p[k] for k in ("pip",) if p.get(k)})
+            if "runtime" in p:  # an optional pinned runtime: passed through whole, so lab.py check sees exactly what is pinned
+                out["runtime"] = p["runtime"]
             text = config_text(p)
             if text:
                 out["config"] = {"at": p["config"]["at"], "text": text, "sha256": hashlib.sha256(text.encode()).hexdigest()}
@@ -272,6 +279,9 @@ def count(endpoint, text):
         try:
             out, _ = call(endpoint, path, body, timeout=120)
             n = int(out.get("length") or out.get("count") or len(out.get("tokens") or []))
+        except urllib.error.HTTPError as e:  # no such route: close the error's response, then try the next one
+            e.close()
+            continue
         except Exception:
             continue
         if n or not text:  # no tokens for a non-empty text is a request the server did not understand
@@ -292,8 +302,12 @@ def chat(endpoint, model, messages, **kw):
     return c, u, secs
 
 
-def stream_rate(endpoint, model, prompt, window=30.0):
-    """Tokens per second over the first `window` seconds after the first token, from a streamed answer."""
+ESTIMATED_TPS = "tps counts tokens as characters/4 (an estimate): the server has no tokenize route"
+
+
+def stream_rate(endpoint, model, prompt, window=30.0, modes=None):
+    """Tokens per second over the first `window` seconds after the first token, from a streamed answer. If `modes` is a
+    list, how the window and the whole answer were counted ("tokenizer" or "estimate", from count()) is appended to it."""
     body = {"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0.8, "stream": True}
     headers = {"Content-Type": "application/json"}
     if os.environ.get("LAB_API_KEY"):
@@ -320,8 +334,10 @@ def stream_rate(endpoint, model, prompt, window=30.0):
     whole = "".join(text)
     elapsed = time.monotonic() - (first or t0)
     sample, span = at_window or (whole, elapsed)
-    n, _ = count(endpoint, sample)
-    total, _ = count(endpoint, whole)
+    n, how = count(endpoint, sample)
+    total, how_total = count(endpoint, whole)
+    if modes is not None:
+        modes += [how, how_total]
     return (n / span if span else 0), total, time.monotonic() - t0
 
 
@@ -393,13 +409,17 @@ def gates(endpoint, launch):
         ev["context"]["peak_gib"] = round(u["peak_memory_gb"] * 1e9 / 2**30, 2)
     # speed: decode at concurrency 1, measured over the first 30 s of a streamed answer; the answer still runs
     # to its natural end (never capped), and its full length is kept as evidence
-    tps, total, secs = stream_rate(endpoint, served, "Write a detailed 600-word story about a lighthouse keeper.")
+    modes = []
+    tps, total, secs = stream_rate(endpoint, served, "Write a detailed 600-word story about a lighthouse keeper.", modes=modes)
     ok["speed"] = tps >= MIN_TPS
-    ev["speed"] = {"window_s": 30, "tokens_total": total, "seconds_total": round(secs, 1)}
+    ev["speed"] = {"window_s": 30, "tokens_total": total, "seconds_total": round(secs, 1), "counted": modes[0]}
     # a retried answer comes from the server's prefix cache, so its seconds is not a prefill time: leave the
     # number out rather than publish a cached rate (the run can be repeated for a real prefill measurement)
     prefill = None if dropped else (round(got / ev["context"]["seconds"]) if got and ev["context"]["seconds"] else None)
     proof = {"gates": " ".join(g for g in GATES if ok.get(g)), "tps": round(tps, 1), "prefill": prefill, "served": served}
+    if modes[0] == "estimate":  # say so wherever the proof is shown, not only in the run's evidence
+        proof["tps_estimated"] = True  # the typed flag the catalog and the site read
+        proof["note"] = ESTIMATED_TPS
     return all(ok.get(g) for g in GATES), proof, {"ok": ok, **ev}
 
 
@@ -510,6 +530,10 @@ def cmd_try(args):
     recipe = {"model": args.model, "weights": args.weights, "engine": f"{p['id']}@{pin(p)[:12]}",
               "set": sets, "card": args.card}
     launch = render(recipe)
+    try:
+        check_host_runtime(launch)
+    except AssertionError as e:
+        raise SystemExit(f"{p['id']}: {e}")
     if below_kv_floor(recipe, launch):
         raise SystemExit(f"{kv_tokens(recipe, launch)} KV tokens on {setup_vram_gb(recipe, launch):g} GB: a setup over "
                          f"{KV_FLOOR_ABOVE_VRAM_GB} GB needs at least {KV_FLOOR_TOKENS} (raise ctx or seqs)")
@@ -621,6 +645,131 @@ def cmd_render(args):
 NEEDS = {"host_ram_gb": (int, float), "disk_gb": (int, float), "fast_storage": str, "cpus": int}
 
 
+# ----------------------------------------------------------------------------- pinned host runtime
+# An optional host-launch contract that the SDKs render as executable, fail-closed steps (docs/design.md, "A pinned host
+# runtime"): `runtime.archive` {url, sha256, into} is a release archive extracted into a directory; `runtime.python` is the
+# interpreter that installs `runtime.packages` {dir, target, wheels: [{name, version, url, sha256}]} offline and hash-locked
+# into `target`; host weights with `layout: hub` go to a Hugging Face cache at `at`, with an optional task-local `ref`
+# (refs/<ref> -> the pinned revision). Every value is validated here and again in both SDKs before anything is rendered.
+RT_SHA = r"[0-9a-f]{64}"
+RT_REL = r"(?!.*(?:^|/)\.\.?(?:/|$))[A-Za-z0-9_][A-Za-z0-9._+-]*(?:/[A-Za-z0-9_][A-Za-z0-9._+-]*)*"  # relative, no . or .. parts
+RT_URL = r"https://[A-Za-z0-9.-]+(?:/[A-Za-z0-9._~%+-]+)+"  # no query, fragment, credentials or shell syntax
+RT_ARCHIVE = r"[A-Za-z0-9][A-Za-z0-9._+-]*\.(?:tar\.gz|tgz)"
+RT_WHEEL = r"[A-Za-z0-9][A-Za-z0-9._+-]*\.whl"
+RT_NAME = r"[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?"
+RT_VERSION = r"[A-Za-z0-9][A-Za-z0-9.+!_-]*"
+RT_REF = r"[A-Za-z0-9][A-Za-z0-9._-]*"
+RT_REPO = r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+"
+
+
+def _canon(name):
+    return re.sub(r"[-_.]+", "-", name).lower()
+
+
+def _url_file(url):
+    """The file a URL names: its last path segment, percent-decoded (a CPython release asset's %2B becomes +)."""
+    return urllib.parse.unquote(url.rsplit("/", 1)[1])
+
+
+def check_host_runtime(launch):
+    """Validate the optional pinned host runtime and Hugging Face cache weights of a launch; raise AssertionError."""
+    kind = launch.get("kind")
+    weights = launch.get("weights") or []
+    weights = weights if isinstance(weights, list) else [weights]
+    if kind == "host":
+        assert len({w.get("layout") == "hub" for w in weights}) <= 1, "host weights mix hub and directory layouts"
+    for w in weights:
+        if "ref" in w:
+            assert kind == "host" and w.get("layout") == "hub", "weights.ref is only for host weights with layout hub"
+            assert isinstance(w["ref"], str) and re.fullmatch(RT_REF, w["ref"]), f"weights.ref {w.get('ref')!r}"
+        if kind == "host" and w.get("layout") == "hub":
+            assert set(w) <= {"repo", "revision", "at", "layout", "files", "ref"}, f"hub weights keys {sorted(w)}"
+            assert re.fullmatch(RT_REPO, w["repo"]) and re.fullmatch(r"[0-9a-f]{40}", w["revision"]), "hub weights repo@revision"
+            assert isinstance(w["at"], str) and re.fullmatch(RT_REL, w["at"]), f"hub weights cache dir {w.get('at')!r}"
+            fs = w.get("files") or []
+            fs = fs if isinstance(fs, list) else [fs]
+            assert all(isinstance(f, str) and re.fullmatch(RT_REL, f) for f in fs), "hub weights files"
+    # one entry per repo per cache: each publish replaces the whole model directory, so a second entry would erase the first
+    hubs = [(w["at"].lower(), w["repo"].lower()) for w in weights if kind == "host" and w.get("layout") == "hub"]
+    assert len(hubs) == len(set(hubs)), "a repo is listed twice in one hub cache (a second entry would replace the first)"
+    rt = launch.get("runtime")
+    hub = any(w.get("layout") == "hub" for w in weights if w)
+    if kind == "host" and launch.get("config") and (rt is not None or hub):  # a launcher the setup steps write
+        assert isinstance(launch["config"].get("at"), str) and re.fullmatch(RT_REL, launch["config"]["at"]), "launcher path"
+    if rt is None:
+        if kind == "host":
+            check_host_paths(launch)
+        return
+    assert kind == "host", "runtime is for host launches"
+    assert isinstance(rt, dict) and rt and set(rt) <= {"archive", "python", "packages", "macos"}, f"runtime keys {sorted(rt) if isinstance(rt, dict) else rt}"
+    if "macos" in rt:  # the lowest macOS major version: the steps stop before any download on an older one
+        assert type(rt["macos"]) is int and 11 <= rt["macos"] <= 99, f"runtime.macos {rt.get('macos')!r} is a major version, 11 to 99"
+    assert not launch.get("pip"), "runtime and pip are exclusive (pip installs globally)"
+    if "archive" in rt:
+        a = rt["archive"]
+        assert isinstance(a, dict) and set(a) == {"url", "sha256", "into"}, "runtime.archive needs exactly url, sha256, into"
+        assert isinstance(a["url"], str) and re.fullmatch(RT_URL, a["url"]), f"runtime.archive.url {a.get('url')!r}"
+        assert re.fullmatch(RT_ARCHIVE, _url_file(a["url"])), f"runtime.archive file {_url_file(a['url'])!r} is not a .tar.gz/.tgz"
+        assert isinstance(a["sha256"], str) and re.fullmatch(RT_SHA, a["sha256"]), "runtime.archive.sha256"
+        assert isinstance(a["into"], str) and re.fullmatch(RT_REL, a["into"]), f"runtime.archive.into {a.get('into')!r}"
+    if "python" in rt:  # inside the pinned archive, so never a name looked up on PATH
+        assert isinstance(rt["python"], str) and re.fullmatch(RT_REL, rt["python"]), f"runtime.python {rt.get('python')!r}"
+        assert "archive" in rt and rt["python"].startswith(rt["archive"]["into"] + "/"), "runtime.python must be inside runtime.archive.into"
+    if "packages" in rt:
+        pk = rt["packages"]
+        assert "python" in rt, "runtime.packages needs runtime.python"
+        assert isinstance(pk, dict) and set(pk) == {"dir", "target", "wheels"}, "runtime.packages needs exactly dir, target, wheels"
+        for k in ("dir", "target"):
+            assert isinstance(pk[k], str) and re.fullmatch(RT_REL, pk[k]), f"runtime.packages.{k} {pk.get(k)!r}"
+        d, t = pk["dir"], pk["target"]
+        assert not (d == t or d.startswith(t + "/") or t.startswith(d + "/")), "runtime.packages dir and target overlap"
+        assert isinstance(pk["wheels"], list) and pk["wheels"], "runtime.packages.wheels is a non-empty list"
+        names, files = set(), set()
+        for w in pk["wheels"]:
+            assert isinstance(w, dict) and set(w) == {"name", "version", "url", "sha256"}, "each wheel needs exactly name, version, url, sha256"
+            assert isinstance(w["name"], str) and re.fullmatch(RT_NAME, w["name"]), f"wheel name {w.get('name')!r}"
+            assert isinstance(w["version"], str) and re.fullmatch(RT_VERSION, w["version"]), f"wheel version {w.get('version')!r}"
+            assert isinstance(w["url"], str) and re.fullmatch(RT_URL, w["url"]), f"wheel url {w.get('url')!r}"
+            assert isinstance(w["sha256"], str) and re.fullmatch(RT_SHA, w["sha256"]), f"wheel sha256 for {w['name']}"
+            f = _url_file(w["url"])
+            assert re.fullmatch(RT_WHEEL, f), f"wheel file {f!r}"
+            dist, ver = (f.split("-") + ["", ""])[:2]
+            assert _canon(dist) == _canon(w["name"]) and ver == w["version"], f"wheel file {f} is not {w['name']} {w['version']}"
+            assert _canon(w["name"]) not in names and f not in files, f"wheel {w['name']} listed twice"
+            names.add(_canon(w["name"])); files.add(f)
+    if weights:  # downloaded by the runtime's own huggingface_hub into a cache, never by an hf on PATH
+        assert all(w.get("layout") == "hub" for w in weights), "weights with a runtime need layout hub"
+        assert "packages" in rt and "huggingface-hub" in {_canon(w["name"]) for w in rt["packages"]["wheels"]}, \
+            "weights with a runtime need a pinned huggingface_hub wheel in runtime.packages"
+    check_host_paths(launch)
+
+
+def _overlap(a, b):
+    a, b = a.lower(), b.lower()  # macOS file systems ignore case
+    return a == b or a.startswith(b + "/") or b.startswith(a + "/")
+
+
+def check_host_paths(launch):
+    """No setup step may publish over another's output: packages target and dir, host hub caches (which weights may
+    share) and the launcher never equal or nest, none is or holds runtime.archive.into, and none lies in the archive
+    entry that holds the interpreter (the runtime step replaces whole entries)."""
+    weights = launch.get("weights") or []
+    hub = [w["at"] for w in (weights if isinstance(weights, list) else [weights]) if w and w.get("repo") and w.get("layout") == "hub"]
+    rt = launch.get("runtime") or {}
+    pk = rt.get("packages") or {}
+    owned = ([("packages.target", pk["target"]), ("packages.dir", pk["dir"])] if pk else []) + [("weights.at", a) for a in hub] + \
+        ([("launcher", launch["config"]["at"])] if launch.get("config") and (rt or hub) else [])
+    for i, (na, a) in enumerate(owned):
+        for nb, b in owned[i + 1:]:
+            assert (na == nb == "weights.at" and a.lower() == b.lower()) or not _overlap(a, b), f"{na} {a} and {nb} {b} overlap"
+    if rt.get("archive"):
+        into, py = rt["archive"]["into"], rt.get("python")
+        entry = into + "/" + py[len(into) + 1:].split("/")[0] if py else None
+        for n, x in owned:
+            assert not (x.lower() == into.lower() or into.lower().startswith(x.lower() + "/")), f"{n} {x} would replace runtime.archive.into"
+            assert not entry or not _overlap(x, entry), f"{n} {x} overlaps the interpreter's archive entry {entry}"
+
+
 def check_needs(n):
     """`needs`: what the host must have besides the card, for launches that keep weights in system RAM or read them
     from disk while serving. host_ram_gb = free system RAM the server takes (measured peak), disk_gb = space for the
@@ -650,6 +799,7 @@ def cmd_check(_):
             assert f.parent.name == r["card"] and f.parent.parent.name == c["vendor"], "path is not recipes/<vendor>/<card>/"
             launch = render(r)
             assert f == recipe_path(r, launch), f"file name should be {recipe_path(r, launch).name}"
+            check_host_runtime(launch)
             if launch.get("kind") == "host":  # the SDK's host steps start one program on one machine
                 assert type(launch["cards"]) is int and launch["cards"] >= 1, "host cards must be a whole number of cards"
                 assert launch.get("machines", 1) == 1, "multi-machine host launches are not supported by the current SDK; use a container launch"
@@ -665,6 +815,8 @@ def cmd_check(_):
                     assert p.get("launch_sha256") == launch_hash(launch), "typed launch changed since acceptance; rerun the recipe"
             if "withdrawn" in p:
                 assert p["withdrawn"] is True and p.get("src") and p.get("reason"), "withdrawal needs source and reason"
+            for q in r["proof"]:  # an estimated decode speed says so in a typed flag, and only as True
+                assert q.get("tps_estimated", True) is True, "proof.tps_estimated is true or absent"
             need = set() if p.get("reported") or p.get("withdrawn") else {"load", "chat"} if p.get("legacy") else set(GATES)
             assert not r["proof"][0].get("reported") or r["proof"][0].get("src"), "a reported proof names its source"
             assert need <= set(r["proof"][0]["gates"].split()), "latest proof lacks a gate"

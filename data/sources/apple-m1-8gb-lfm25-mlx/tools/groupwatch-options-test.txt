@@ -1,0 +1,22 @@
+$ groupwatch.py run --state <tmp>/a --min-free-percent 10 -- true
+groupwatch run: unknown option or missing value: --min-free-percent
+rc=1
+$ groupwatch.py run --state <tmp>/a --min-free-pct 10 true
+groupwatch run: put -- before the command
+rc=1
+$ groupwatch.py run --state <tmp>/a --min-free-pct -- true
+groupwatch run: unknown option or missing value: --min-free-pct
+rc=1
+$ groupwatch.py run --min-free-pct 10 -- true
+groupwatch run: --state DIR and a command are required
+rc=1
+$ groupwatch.py run --state <tmp>/ok --min-free-pct 10 --max-seconds 2 -- sleep 5   (control: guard armed, lifetime cap ends it)
+rc=3
+options: --max-seconds=2 --min-free-pct=10
+supervisor pid 27362 started child pid 27364 pgid 27364: sleep 5
+TEARDOWN (lifetime cap 2 s): pgid 27364, recorded [27364]
+send SIGTERM to group 27364 (members [27364], all recorded)
+send SIGTERM to recorded pids [27364]
+after teardown alive: none
+ABORT: lifetime cap 2 s; clean=True
+(mem free_pct polls: 1)

@@ -1,0 +1,68 @@
+{
+ "mlx": "0.31.2",
+ "seeds": [
+  7,
+  8,
+  7,
+  null,
+  null
+ ],
+ "main": {
+  "compiled": [
+   "221022210330200130211211",
+   "223130231332312300221201",
+   "221022210330200130211211",
+   "112201023012222321001200",
+   "230331031031113330022310"
+  ],
+  "plain": [
+   "221022210330200130211211",
+   "223130231332312300221201",
+   "221022210330200130211211",
+   "112201023012222321001200",
+   "230331031031113330022310"
+  ]
+ },
+ "thread": {
+  "compiled": [
+   "222222222222222222222222",
+   "222222222222222222222222",
+   "222222222222222222222222",
+   "222222222222222222222222",
+   "222222222222222222222222"
+  ],
+  "plain": [
+   "221022210330200130211211",
+   "223130231332312300221201",
+   "221022210330200130211211",
+   "112201023012222321001200",
+   "230331031031113330022310"
+  ]
+ },
+ "findings": {
+  "main compiled": {
+   "seed 7 repeats": true,
+   "seed 7 != seed 8": true,
+   "unseeded draws differ": true,
+   "draws vary within a sequence": true
+  },
+  "main plain": {
+   "seed 7 repeats": true,
+   "seed 7 != seed 8": true,
+   "unseeded draws differ": true,
+   "draws vary within a sequence": true
+  },
+  "thread compiled": {
+   "seed 7 repeats": true,
+   "seed 7 != seed 8": false,
+   "unseeded draws differ": false,
+   "draws vary within a sequence": false
+  },
+  "thread plain": {
+   "seed 7 repeats": true,
+   "seed 7 != seed 8": true,
+   "unseeded draws differ": true,
+   "draws vary within a sequence": true
+  }
+ }
+}

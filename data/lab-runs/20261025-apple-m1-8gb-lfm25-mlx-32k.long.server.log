@@ -1,0 +1,44 @@
+<task dir>/rt312/site/mlx_lm/server.py:1761: UserWarning: mlx_lm.server is not recommended for production as it only implements basic security checks.
+  help="Optional path for the trained adapter weights and config.",
+2026-10-25 03:30:42,719 - INFO - Starting httpd at 127.0.0.1 on port 8080...
+127.0.0.1 - - [25/Oct/2026 03:30:44] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2026 03:30:45] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2026 03:30:46] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2026 03:30:46] "POST /v1/chat/completions HTTP/1.1" 200 -
+2026-10-25 03:30:46,544 - INFO - Prompt Cache: 0 sequences, 0.00 GB
+2026-10-25 03:30:46,544 - INFO - - assistant: 0 sequences, 0.00 GB
+2026-10-25 03:30:46,544 - INFO - - user: 0 sequences, 0.00 GB
+2026-10-25 03:30:46,544 - INFO - - system: 0 sequences, 0.00 GB
+2026-10-25 03:30:46,604 - INFO - Prompt processing progress: 0/24086
+2026-10-25 03:30:55,685 - INFO - Prompt processing progress: 2048/24086
+2026-10-25 03:31:04,703 - INFO - Prompt processing progress: 4096/24086
+2026-10-25 03:31:13,884 - INFO - Prompt processing progress: 6144/24086
+2026-10-25 03:31:23,227 - INFO - Prompt processing progress: 8192/24086
+2026-10-25 03:31:32,746 - INFO - Prompt processing progress: 10240/24086
+2026-10-25 03:31:42,439 - INFO - Prompt processing progress: 12288/24086
+2026-10-25 03:31:52,289 - INFO - Prompt processing progress: 14336/24086
+2026-10-25 03:32:02,296 - INFO - Prompt processing progress: 16384/24086
+2026-10-25 03:32:12,501 - INFO - Prompt processing progress: 18432/24086
+2026-10-25 03:32:22,865 - INFO - Prompt processing progress: 20480/24086
+2026-10-25 03:32:33,380 - INFO - Prompt processing progress: 22528/24086
+2026-10-25 03:32:41,655 - INFO - Prompt processing progress: 24085/24086
+2026-10-25 03:32:41,751 - INFO - Prompt processing progress: 24086/24086
+127.0.0.1 - - [25/Oct/2026 03:33:09] "POST /v1/chat/completions HTTP/1.1" 200 -
+2026-10-25 03:33:09,658 - INFO - Prompt Cache: 1 sequences, 0.41 GB
+2026-10-25 03:33:09,658 - INFO - - assistant: 1 sequences, 0.41 GB
+2026-10-25 03:33:09,658 - INFO - - user: 0 sequences, 0.00 GB
+2026-10-25 03:33:09,658 - INFO - - system: 0 sequences, 0.00 GB
+2026-10-25 03:33:10,345 - INFO - Prompt processing progress: 0/24097
+2026-10-25 03:33:19,181 - INFO - Prompt processing progress: 2048/24097
+2026-10-25 03:33:28,195 - INFO - Prompt processing progress: 4096/24097
+2026-10-25 03:33:37,358 - INFO - Prompt processing progress: 6144/24097
+2026-10-25 03:33:46,690 - INFO - Prompt processing progress: 8192/24097
+2026-10-25 03:33:56,209 - INFO - Prompt processing progress: 10240/24097
+2026-10-25 03:34:05,896 - INFO - Prompt processing progress: 12288/24097
+2026-10-25 03:34:15,753 - INFO - Prompt processing progress: 14336/24097
+2026-10-25 03:34:25,774 - INFO - Prompt processing progress: 16384/24097
+2026-10-25 03:34:35,956 - INFO - Prompt processing progress: 18432/24097
+2026-10-25 03:34:46,324 - INFO - Prompt processing progress: 20480/24097
+2026-10-25 03:34:56,869 - INFO - Prompt processing progress: 22528/24097
+2026-10-25 03:35:05,065 - INFO - Prompt processing progress: 24096/24097
+2026-10-25 03:35:05,144 - INFO - Prompt processing progress: 24097/24097

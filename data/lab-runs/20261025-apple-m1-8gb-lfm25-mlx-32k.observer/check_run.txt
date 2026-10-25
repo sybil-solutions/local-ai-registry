@@ -1,0 +1,7 @@
+{"conn": "conn-0002", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0003", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0004", "stream": false, "temperature": 0.6, "finish": ["tool_calls"], "want": "tool_calls", "problems": []}
+{"conn": "conn-0005", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0006", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0007", "stream": true, "temperature": 0.8, "finish": ["stop"], "want": "stop", "problems": []}
+{"verdict": "pass", "chat_requests": 6, "expected": 6, "failing": []}

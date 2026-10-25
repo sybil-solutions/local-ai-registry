@@ -54,6 +54,72 @@ A host profile runs on the machine itself instead: install its pinned pip packag
 profile's paths, write the launcher, raise `iogpu.wired_limit_mb` to the card's memory less the profile's reserve
 (it resets on reboot), and start the launcher. `lab.py try --on endpoint` tests it where it runs.
 
+### A pinned host runtime
+
+A host profile whose runtime is not on the machine can pin it with an optional `runtime` (never together with `pip`).
+The SDKs render it as steps in place of the free-text `install`. Each setup step is one `( set -e ... )` subshell, so it
+stops at its first failure and exits non-zero, and the one-script `command()` of such a launch starts with `set -e`, so a
+failed step stops every later step and the server, however the script is run. Nothing is written through a symlink: each
+step first refuses a symlink at its destination or at any directory above it, and checks again right before it renames
+into place. A file (`refs/<ref>`, the launcher) is written to an exclusive `mktemp` file in its checked directory and
+renamed over the destination only if that is neither a link nor a directory.
+
+Every download in these steps is `curl -q ...` (`-q` first, so no `.curlrc` is read).
+
+- `archive: {url, sha256, into}`: an `https` `.tar.gz` or `.tgz` (the file name is the URL's last segment, percent-decoded,
+  so `%2B` is `+`). It is downloaded into a fresh directory inside `into`, checked with `shasum -a 256 -c` and extracted
+  there. Before anything live is touched, no member name may be absolute or contain `..`; every link in the extracted tree
+  must be relative, not dangling, and resolve inside it (safe internal links such as `python3 -> python3.12` are kept);
+  every hard link must stay inside it; it may hold no device, fifo, socket or set-id file; every top-level entry must have
+  a plain name, must not be a link in `into`, and must not hold another step's destination, compared ignoring case (an
+  entry `SITE` holds `rt/site`, and so does `site` when the target is `RT/site`); and the staged interpreter
+  (so resolved inside the archive) must exist and run. Only then does each entry replace the
+  one in `into` by rename. If the publication does not finish (a rename fails, or the step is stopped by TERM, INT or
+  HUP), every entry already moved is put back before anything is cleaned up (a further TERM, INT or HUP during the put-back is
+  ignored, so it always finishes), so the previous runtime stays whole and
+  usable; if putting it back fails too, the previous copy is kept (not deleted), the step says where and fails. The same
+  holds for the packages target and wheel dir and for a hub model directory. A KILL cannot be caught: it leaves the
+  staging and backup directories in place, never deletes them. Other files in
+  `into` (packages, weights, the launcher) are kept.
+- `python`: the interpreter, a relative path inside `into`, run as `./<python>`, never looked up on `PATH`.
+- `macos`: the lowest macOS major version the runtime runs on (an integer, 11 to 99). It renders as the first step,
+  "Check the macOS version", which reads `sw_vers -productVersion` and stops, before anything is downloaded, on an older
+  macOS or where the version cannot be read.
+- `packages: {dir, target, wheels: [{name, version, url, sha256}]}` (needs `python`; `dir` and `target` do not overlap):
+  every wheel is downloaded into a fresh directory beside `dir` and checked against its hash, then installed offline into a
+  fresh directory beside `target` with
+  `./<python> -I -m pip --isolated install --no-index --find-links <wheels> --only-binary :all: --require-hashes -r requirements.lock.txt --target <fresh> --no-cache-dir`,
+  with `PIP_CONFIG_FILE=/dev/null` (which turns off every pip config file; `--isolated` alone does not) and `TMPDIR`, `TMP`,
+  `TEMP`, `HOME`, `XDG_CACHE_HOME` and `XDG_CONFIG_HOME` inside the staging directory, which is removed afterwards.
+  The lock lists exactly these wheels, so a missing or extra dependency fails the install. Only after the install succeeds
+  do the fresh directories replace `target` and `dir` by rename, so `target` holds exactly the pinned wheels (nothing left
+  from an earlier install); a failure, including a failed rename, leaves the previous `target` and `dir` as they were.
+
+A host weights entry with `layout: "hub"` is a Hugging Face cache at `at`; one launch's host weights are all hub or all
+directories. Entries may share a cache only when their `at` is the same path; distinct caches never nest. A repo appears
+at most once per cache (a second entry, for another revision or other files, is rejected), because each publish replaces
+the repo's whole model directory. Paths are compared ignoring case, as macOS file systems do.
+
+A host launch with a runtime or with hub weights is confined, so its launcher (`config.at`) must be a plain relative path
+that overlaps no other destination, and is written by the same guarded writer (an exclusive temp file renamed into
+place, never through a link). A host launch with directory weights and no runtime renders its launcher as before. With a pinned runtime, `runtime.packages` must include `huggingface_hub`, and the download runs on the pinned
+interpreter with `target` on its path (`snapshot_download(..., token=False)`), so the machine needs no `hf`. Without one
+it is `hf download`. Either way the download goes into a fresh staging cache beside `at`, with every `HF_*` and
+`HUGGING_FACE_*` variable and `NETRC` removed and `HOME`, `HF_HOME`, `HF_XET_CACHE` and `TMPDIR` inside that staging cache, so no
+ambient token, config, cache or `.netrc` is used, and nothing already in `at` (a planted `blobs` or `refs` link) is written
+through. In the staged cache `models--<org>--<name>/snapshots/<revision>` must exist and every link must stay inside the
+model directory (the same check as the archive); with `ref` (for example `main`) a `refs/<ref>` file is written to name
+the revision, so a server that loads the repo id offline finds it. Only then does the staged model directory replace the
+one in `at` by rename, put back if that fails. A rerun downloads the revision again.
+
+`lab.py check` rejects hashes that are not 64 hex characters, URLs that are not plain `https` paths, absolute paths or `..`,
+an interpreter outside the archive, wheel files whose name or version differ from the entry, duplicate wheels, unknown
+keys, `ref` without `layout: "hub"`, runtime weights without hub layout or a pinned `huggingface_hub`, and destinations
+that collide: `packages.target`, `packages.dir`, each hub cache (weights may share one) and the launcher never equal or
+contain one another, none is or contains `into`, and none lies in the archive entry that holds the interpreter. Both SDKs
+refuse to render any of them. These keys are in a host profile's digest only when present, so profiles without them keep their
+digest, and adding them to a measured profile means rerunning its recipe.
+
 ## Rules CI enforces
 
 - Every recipe is at its path, with weights pinned to a commit and a profile pinned to an image digest (or, for a host profile, the digest of its launch).

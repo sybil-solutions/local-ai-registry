@@ -1,0 +1,21 @@
+{"conn": "conn-0001", "stream": false, "temperature": 0.0, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0002", "stream": false, "temperature": 0.0, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0003", "stream": false, "temperature": 1.0, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0004", "stream": false, "temperature": 1.0, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0005", "stream": false, "temperature": 1.0, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0006", "stream": false, "temperature": 1.0, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0007", "stream": false, "temperature": 1.0, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0008", "stream": false, "temperature": 0.6, "finish": [], "want": "stop", "problems": ["HTTP 400", "response carries an error", "response: choices is not a list of one object", "finish_reason [], want ['stop']", "a stop answer must have content and no tool call"]}
+{"conn": "conn-0009", "stream": false, "temperature": 0.6, "finish": [], "want": "stop", "problems": ["HTTP 400", "response carries an error", "response: choices is not a list of one object", "finish_reason [], want ['stop']", "a stop answer must have content and no tool call"]}
+{"conn": "conn-0010", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0011", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0012", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0013", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0014", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0015", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0016", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0017", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0018", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0019", "stream": false, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0020", "problems": ["unreadable: RemoteDisconnected: Remote end closed connection without response"]}
+{"verdict": "fail", "chat_requests": 20, "expected": 20, "failing": ["conn-0008", "conn-0009", "conn-0020"]}

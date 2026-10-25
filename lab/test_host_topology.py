@@ -35,21 +35,37 @@ class HostTopologyTest(unittest.TestCase):
         self.assertNotEqual(lab.pin(HOST), lab.pin({**HOST, 'machines': 2}))
         self.assertEqual(lab.pin(HOST), lab.pin({**HOST, 'cards': 1, 'machines': 1}))
 
-    def test_existing_host_pins_unchanged(self):
-        # the pin before cards and machines counted: every host profile in the registry still gets it
-        hosts = [p for p in (json.loads(f.read_text()) for f in sorted(lab.LAUNCHES.glob('*.json'))) if p.get('kind') == 'host']
+    def assert_legacy_pins(self, launches):
+        """Every single-machine host profile in `launches` without a pinned runtime keeps the pin from before cards,
+        machines and runtime counted. One with a runtime pins it on purpose (lab/test_host_runtime.py RUNTIME_LAUNCHES):
+        its pin differs, and only because of the runtime."""
+        hosts = [p for p in (json.loads(f.read_text()) for f in sorted(launches.glob('*.json'))) if p.get('kind') == 'host']
         self.assertTrue(hosts)
         for p in hosts:
-            if single(p):
+            if not single(p):
+                continue
+            if 'runtime' in p:
+                self.assertNotEqual(lab.pin(p), old_pin(p), p.get('id'))
+                self.assertEqual(lab.pin({k: v for k, v in p.items() if k != 'runtime'}), old_pin(p), p.get('id'))
+            else:
                 self.assertEqual(lab.pin(p), old_pin(p), p.get('id'))
 
+    def test_existing_host_pins_unchanged(self):
+        self.assert_legacy_pins(lab.LAUNCHES)
+
     def test_pin_compatibility_on_a_mixed_registry(self):
-        # a registry holding a legacy single-card host and a new two-card one: only the first keeps the old pin
+        # a registry holding a legacy single-card host, a new two-card one and a single-card one with a pinned runtime:
+        # only the first keeps the old pin; the runtime one moves only by its runtime
+        rt = {'archive': {'url': 'https://example.invalid/python.tar.gz', 'sha256': '1' * 64, 'into': 'rt'}, 'python': 'rt/python/bin/python3'}
         with tempfile.TemporaryDirectory() as d, patch.object(lab, 'LAUNCHES', Path(d)):
-            for name, p in (('one', HOST), ('two', {**HOST, 'cards': 2})):
+            for name, p in (('one', HOST), ('two', {**HOST, 'cards': 2}), ('rt', {**HOST, 'runtime': rt})):
                 (Path(d) / f'{name}.json').write_text(json.dumps({'id': name, **p}))
             got = {p['id']: (single(p), lab.pin(p) == old_pin(p)) for p in (json.loads(f.read_text()) for f in sorted(Path(d).glob('*.json')))}
-        self.assertEqual(got, {'one': (True, True), 'two': (False, False)})
+            self.assert_legacy_pins(Path(d))
+        self.assertEqual(got, {'one': (True, True), 'rt': (True, False), 'two': (False, False)})
+        moved = {**rt, 'archive': {**rt['archive'], 'sha256': '2' * 64}}
+        self.assertNotEqual(lab.pin({**HOST, 'runtime': rt}), lab.pin({**HOST, 'runtime': moved}))  # the runtime itself counts
+        self.assertEqual(lab.pin({'id': 'x', **HOST}), old_pin(HOST))  # a legacy profile, unchanged
 
     def test_explicit_single_topology_renders_the_same_launch(self):
         hashes = []

@@ -1,0 +1,43 @@
+{
+ "window": 32768,
+ "cases": [
+  {
+   "case": "within the window",
+   "code": "61842",
+   "budget_s": 1200,
+   "prompt_plus_events": 24793,
+   "passed_window": false,
+   "recalled": true,
+   "repeated_share_of_tail": 0.0,
+   "content_chars": 319,
+   "content_tail": "The archive is a detailed log of shipment records documenting their departure from docks on schedule. Every entry includes a shipment number, the specific dock, and confirmation of their on-time departure. This serves as a comprehensive operational history of logistics activities spanning a large dataset.\n\nCODE: 61842",
+   "prompt_tokens": 24086,
+   "events": 707,
+   "reasoning_chars": 3014,
+   "finish": "stop",
+   "ended": true,
+   "first_event_s": 115.3,
+   "status": 200,
+   "seconds": 143.1
+  },
+  {
+   "case": "past the window",
+   "code": "47106",
+   "budget_s": 1500,
+   "prompt_plus_events": 30298,
+   "passed_window": false,
+   "recalled": true,
+   "repeated_share_of_tail": 0.02,
+   "content_chars": 13495,
+   "content_tail": "oden walls hold the stories of the docks, their cargoes, their people, and their triumphs. The crew that tends it is a living archive, their dedication a reminder that the past is not merely a record but a present reality. In the quiet hum of the docks, where the tide meets the shore, the archive stands as a monument to the resilience of the community, a testament to the enduring connection between the people and their harbor. And as long as the wooden shutters stand and the ledgers turn their pages, the story of the harbor will continue to be told\u2014by those who know how to listen.\n\nCODE: 47106",
+   "prompt_tokens": 24097,
+   "events": 6201,
+   "reasoning_chars": 14758,
+   "finish": "stop",
+   "ended": true,
+   "first_event_s": 115.5,
+   "status": 200,
+   "seconds": 362.5
+  }
+ ]
+}

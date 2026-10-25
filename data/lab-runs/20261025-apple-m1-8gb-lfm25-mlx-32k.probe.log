@@ -1,0 +1,46 @@
+{"label": "t0 #1", "status": 200, "answer_sha256": "07cc794cc9e7fdecc0430dd0adcf406103f6bd25d64783f7cded4c7a54c3775d", "completion_tokens": 295, "finish": "stop"}
+{"label": "t0 #2", "status": 200, "answer_sha256": "07cc794cc9e7fdecc0430dd0adcf406103f6bd25d64783f7cded4c7a54c3775d", "completion_tokens": 295, "finish": "stop"}
+{"label": "t1 #1", "status": 200, "answer_sha256": "f54c1e2dd5d5693371f42bb17a61a0185d62fb10f10adec85c5f097d99214933", "completion_tokens": 415, "finish": "stop"}
+{"label": "t1 #2", "status": 200, "answer_sha256": "f54c1e2dd5d5693371f42bb17a61a0185d62fb10f10adec85c5f097d99214933", "completion_tokens": 415, "finish": "stop"}
+{"label": "t1 seed7 #1", "status": 200, "answer_sha256": "f54c1e2dd5d5693371f42bb17a61a0185d62fb10f10adec85c5f097d99214933", "completion_tokens": 415, "finish": "stop"}
+{"label": "t1 seed7 #2", "status": 200, "answer_sha256": "f54c1e2dd5d5693371f42bb17a61a0185d62fb10f10adec85c5f097d99214933", "completion_tokens": 415, "finish": "stop"}
+{"label": "t1 seed8", "status": 200, "answer_sha256": "f54c1e2dd5d5693371f42bb17a61a0185d62fb10f10adec85c5f097d99214933", "completion_tokens": 415, "finish": "stop"}
+{"target_prompt_tokens": 24900, "status": 400, "seconds": 0.0, "error": "the prompt is 25011 tokens; this server accepts at most 24576 (--max-prompt-tokens)"}
+{"target_prompt_tokens": 30000, "status": 400, "seconds": 0.0, "error": "the prompt is 30331 tokens; this server accepts at most 24576 (--max-prompt-tokens)"}
+{"volume": 1, "status": 200, "prompt_tokens": 24071, "completion_tokens": 47, "recalled": true, "finish": "stop", "seconds": 116.9}
+{"volume": 2, "status": 200, "prompt_tokens": 24071, "completion_tokens": 61, "recalled": true, "finish": "stop", "seconds": 117.9}
+{"volume": 3, "status": 200, "prompt_tokens": 24071, "completion_tokens": 61, "recalled": true, "finish": "stop", "seconds": 117.9}
+{"volume": 4, "status": 200, "prompt_tokens": 24071, "completion_tokens": 90, "recalled": true, "finish": "stop", "seconds": 119.1}
+{"volume": 5, "status": 200, "prompt_tokens": 24071, "completion_tokens": 61, "recalled": true, "finish": "stop", "seconds": 118.0}
+{"volume": 6, "status": 200, "prompt_tokens": 24071, "completion_tokens": 63, "recalled": true, "finish": "stop", "seconds": 118.0}
+{"volume": 7, "status": 200, "prompt_tokens": 24071, "completion_tokens": 74, "recalled": true, "finish": "stop", "seconds": 118.5}
+{"volume": 8, "status": 200, "prompt_tokens": 24071, "completion_tokens": 46, "recalled": true, "finish": "stop", "seconds": 117.4}
+{"volume": 9, "status": 200, "prompt_tokens": 24071, "completion_tokens": 97, "recalled": true, "finish": "stop", "seconds": 119.4}
+{"volume": 10, "status": 200, "prompt_tokens": 24071, "completion_tokens": 52, "recalled": true, "finish": "stop", "seconds": 117.6}
+Traceback (most recent call last):
+  File "<task dir>/tools/probe_m1.py", line 93, in <module>
+    r = chat([{"role": "user", "content": prompt + "\n\nNow write a detailed 3,000-word story about the dock workers in this archive. "
+  File "<task dir>/tools/probe_m1.py", line 39, in chat
+    status, o, secs = post({"messages": messages, **kw})
+  File "<task dir>/tools/probe_m1.py", line 30, in post
+    with urllib.request.urlopen(req, timeout=3600) as r:
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 214, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 517, in open
+    response = self._open(req, data)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 534, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 494, in _call_chain
+    result = func(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1375, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1350, in do_open
+    r = h.getresponse()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1349, in getresponse
+    response.begin()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+probe exit 1

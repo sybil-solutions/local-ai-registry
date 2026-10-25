@@ -1,0 +1,31 @@
+window | requests | cache kept before it | lowest available GB | max swap GB | max GPU in use GB
+lab gates | 6 | 0 seq 0.00 GB, 1 seq 0.00 GB, 1 seq 0.01 GB, 1 seq 0.37 GB | 1.21 | 0.17 | 3.50   (256 rows)
+sampler + two 400s | 7 | 1 seq 0.01 GB, 1 seq 0.08 GB | 2.57 | 0.17 | 1.94   (76 rows)
+ten distinct near-limit prompts | 10 | 1 seq 0.01 GB, 1 seq 0.40 GB | 0.91 | 0.17 | 3.94   (1115 rows)
+long answer | 1 | 1 seq 0.40 GB | 0.88 | 0.17 | 3.97   (2432 rows)
+per near-limit prompt (lowest available / max GPU in use): 1: 1.17/3.55; 2: 0.92/3.94; 3: 0.92/3.94; 4: 0.92/3.94; 5: 0.92/3.94; 6: 0.92/3.94; 7: 0.92/3.94; 8: 0.91/3.94; 9: 0.92/3.94; 10: 0.91/3.94
+whole run: 3896 rows, lowest available 0.88 GB, max swap 0.17 GB, max GPU in use 3.97 GB
+server guard polls 778 lowest free_pct 21 | swap_used_mb seen ['169.88']
+
+the long answer's decode (02:49:41, after its 24,096-token prefill, to 03:30:12, when the run was stopped), by two minutes:
+ 0- 2 min: GPU in use median 2.690 GB (min 2.67, max 3.04); available median 2.13 GB
+ 2- 4 min: GPU in use median 2.741 GB (min 2.71, max 3.20); available median 2.07 GB
+ 4- 6 min: GPU in use median 2.786 GB (min 2.76, max 2.81); available median 2.01 GB
+ 6- 8 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.98 GB
+ 8-10 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.98 GB
+10-12 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.97 GB
+12-14 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.96 GB
+14-16 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.95 GB
+16-18 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.76 GB
+18-20 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.75 GB
+20-22 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.73 GB
+22-24 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.72 GB
+24-26 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.72 GB
+26-28 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.72 GB
+28-30 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.72 GB
+30-32 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.72 GB
+32-34 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.70 GB
+34-36 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.69 GB
+36-38 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.69 GB
+38-40 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.69 GB
+40-42 min: GPU in use median 2.803 GB (min 2.80, max 2.81); available median 1.68 GB

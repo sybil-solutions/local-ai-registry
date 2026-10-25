@@ -28,6 +28,8 @@ jobs:
           python3 -m unittest discover -s lab -p test_offload_contract.py
           python3 -m unittest discover -s lab -p test_slotstream.py
           python3 -m unittest discover -s lab -p test_host_topology.py
+          python3 -m unittest discover -s lab -p test_host_runtime.py
+          python3 -m unittest discover -s lab -p test_tps_estimate.py
           python3 -m unittest discover -s lab -p test_build_pin.py
           python3 -m unittest discover -s lab -p test_export_plugin.py
           python3 lab/image_trust.py --base "$IMAGE_BASE"
@@ -42,5 +44,7 @@ jobs:
           node-version: 22
       - name: The JavaScript and Python SDKs agree on every card
         run: sdk/test.sh
+      - name: The site marks estimated decode speeds and never ranks them as measured
+        run: node --experimental-strip-types --test site/lib/speed.test.mjs
       - name: The site builds
         run: cd site && npm install --no-audit --no-fund && npm run build

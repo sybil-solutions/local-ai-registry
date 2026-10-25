@@ -40,12 +40,12 @@ export default function HardwareDirectory({ rows }: { rows: HardwareDirectoryRow
         <div className={`numbers ${s.metrics}`}>
           <div><b>{r.memory || "System RAM"}</b><span>memory GB</span></div>
           <div><b>{r.bandwidth == null ? "—" : r.bandwidth.toLocaleString("en-US")}</b><span>bandwidth GB/s</span></div>
-          <div><b data-speed="decode">{r.decode == null ? "—" : r.decode.toLocaleString("en-US", { maximumFractionDigits: 1 })}</b><span>max decode tok/s</span></div>
+          <div><b data-speed="decode" title={r.decode != null && r.decodeEstimated ? "Estimated: no recipe here has a measured speed; the server had no tokenize route, so tokens were counted as characters/4" : undefined}>{r.decode == null ? "—" : `${r.decodeEstimated ? "≈" : ""}${r.decode.toLocaleString("en-US", { maximumFractionDigits: 1 })}`}</b><span>max decode tok/s</span></div>
         </div>
         <div className="actions"><Link className="btn" href={`/gpu/${r.id}/`}>{r.models ? "View models and recipes ›" : "View specifications ›"}</Link></div>
       </article>)}
     </div>
     {!visible.length && <p className={s.empty}>No hardware matches “{query}”.</p>}
-    <p className={s.note}>Maximum decode is the highest recorded recipe measurement for any model and topology on this hardware, not a like-for-like ranking. Open the hardware page to compare exact models, card counts, host requirements and evidence. Manufacturer logos identify the cards; original product photos and their source attribution remain on hardware detail pages.</p>
+    <p className={s.note}>Maximum decode is the highest recorded recipe measurement for any model and topology on this hardware, not a like-for-like ranking; an estimated speed counts only where nothing was measured, and is marked “≈”. Open the hardware page to compare exact models, card counts, host requirements and evidence. Manufacturer logos identify the cards; original product photos and their source attribution remain on hardware detail pages.</p>
   </div>;
 }

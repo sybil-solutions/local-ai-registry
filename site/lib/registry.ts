@@ -2,14 +2,23 @@
 import catalog from "../../dist/catalog.json";
 import hardwareFile from "../../dist/hardware.json";
 import { steps as sdkSteps } from "../../sdk/js/index.js";
+import { isEstimated, fastestMeasured } from "./speed";
 
 export type Proof = {
   at: string; on: string; gpu?: string | null; gates: string; tps: number | null; prefill?: number | null;
   proxy?: string; legacy?: boolean; log?: string; reported?: boolean; src?: string; claims?: string; note?: string;
+  /** The lab could only estimate tps (characters/4: the server had no tokenize route). */
+  tps_estimated?: boolean;
+};
+export type Weights = { repo: string; revision: string; at: string; layout?: string; files?: string | string[] | null; ref?: string };
+/** A pinned host runtime; the SDK renders it as checked install steps (see sdk/js/index.d.ts). */
+export type Runtime = {
+  archive?: { url: string; sha256: string; into: string }; python?: string; macos?: number;
+  packages?: { dir: string; target: string; wheels: { name: string; version: string; url: string; sha256: string }[] };
 };
 export type Launch = {
   image: string; entrypoint: string | null; args: string[]; env: Record<string, string>; port: number; shm: string | null;
-  weights: { repo: string; revision: string; at: string; layout?: string; files?: string | string[] | null } | { repo: string; revision: string; at: string; layout?: string; files?: string | string[] | null }[];
+  weights: Weights | Weights[]; command?: string[]; pip?: string[]; runtime?: Runtime;
   config: { at: string; text: string } | null; ctx: number; seqs: number; vision: boolean; cards?: number; backend?: string | null;
   prepare?: { at: string; args: string[] }; kind?: string; machines?: number; build?: { repo: string; commit: string }; setup?: string; source?: string; install?: string;
   needs?: { host_ram_gb?: number; disk_gb?: number; fast_storage?: string; cpus?: number };
@@ -75,8 +84,10 @@ export function status(r: Recipe) {
   if (p.reported) return { label: `Reported by ${p.on === "miaai-lab" ? "MiaAI-Lab" : p.on}`, tone: "dim", detail: `Published by ${p.on === "miaai-lab" ? "MiaAI-Lab" : p.on} in ${p.src}${p.tps ? `, where it reports ${p.tps} tok/s` : ""}. Our six checks have not run on it yet.${p.note ? ` ${p.note}` : ""}` };
   if (p.legacy) return { label: "Earlier check", tone: "dim", detail: "Passed the older check (loads and chats); a full six-check run is pending." };
   if (p.proxy) return { label: "Tested on a sibling", tone: "warm", detail: `No ${cardName(r.card)} is rentable; this ran on the ${cardName(p.proxy)}, the same chip family.` };
-  return { label: "Tested on this card", tone: "ok", detail: `Passed all six checks on a real ${p.gpu ?? cardName(r.card)} on ${fmtDate(p.at)}.` };
+  return { label: "Tested on this card", tone: "ok", detail: `Passed all six checks on a real ${p.gpu ?? cardName(r.card)} on ${fmtDate(p.at)}.${p.note ? ` ${p.note}.` : ""}` };
 }
+/** A decode speed the lab could only estimate (proof.tps_estimated: the server had no tokenize route). */
+export const tpsEstimated = (r: Recipe) => isEstimated(r.proof[0]);
 export const gates = (r: Recipe) => new Set(r.proof[0].gates.split(" "));
 /** What a recipe can do: what our checks proved, or for a reported one what its publisher says. */
 export const claims = (r: Recipe) => new Set(r.proof[0].reported ? (r.proof[0].claims ?? "").split(" ") : r.proof[0].gates.split(" "));
@@ -105,8 +116,8 @@ export function format(r: Recipe) {
 /** Why a pick is in the top three on its card: the first is recommended, the others say what they are best at. */
 export function role(r: Recipe, all: Recipe[]) {
   if (all[0]?.key === r.key) return "Recommended";
-  const fastest = [...all].sort((a, b) => (b.proof[0].tps ?? 0) - (a.proof[0].tps ?? 0))[0];
-  if (fastest.key === r.key) return "Fastest";
+  // an estimated speed is not compared with measured ones, so it never makes a recipe "Fastest"
+  if (fastestMeasured(all, (x) => x.proof[0])?.key === r.key) return "Fastest";
   const longest = [...all].sort((a, b) => b.launch.ctx - a.launch.ctx)[0];
   if (longest.key === r.key && longest.launch.ctx > all[0].launch.ctx) return "Longest context";
   if (model(r).family !== model(all[0]).family) return "Another family";

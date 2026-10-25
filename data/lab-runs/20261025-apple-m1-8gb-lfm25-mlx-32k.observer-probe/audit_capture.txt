@@ -1,0 +1,22 @@
+{"conn": "conn-0000", "method": "GET", "path": "/health", "status": 200, "req_sha256": "1a5b397671a836bb"}
+{"conn": "conn-0001", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "9fd021bbca8015cf", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.0}
+{"conn": "conn-0002", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "9fd021bbca8015cf", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.0}
+{"conn": "conn-0003", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "53076676fe4d3b8e", "top_level_keys": ["messages", "model", "temperature"], "temperature": 1.0}
+{"conn": "conn-0004", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "53076676fe4d3b8e", "top_level_keys": ["messages", "model", "temperature"], "temperature": 1.0}
+{"conn": "conn-0005", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "e56597589a411a3c", "top_level_keys": ["messages", "model", "seed", "temperature"], "temperature": 1.0}
+{"conn": "conn-0006", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "e56597589a411a3c", "top_level_keys": ["messages", "model", "seed", "temperature"], "temperature": 1.0}
+{"conn": "conn-0007", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "80bb1e3dd0b19e59", "top_level_keys": ["messages", "model", "seed", "temperature"], "temperature": 1.0}
+{"conn": "conn-0008", "method": "POST", "path": "/v1/chat/completions", "status": 400, "req_sha256": "1999a2db3a051371", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0009", "method": "POST", "path": "/v1/chat/completions", "status": 400, "req_sha256": "e7e6a94e9014547f", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0010", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "59b07e5a47209d1d", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0011", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "25d79df616bc7863", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0012", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "f008051bab277ca4", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0013", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "2bad20608ecd3e6f", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0014", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "79e89f2162b9bb6e", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0015", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "4863471df61e4191", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0016", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "a53014cd18c8115b", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0017", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "31e47f4ca290abb1", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0018", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "b86017fc0f7a86a2", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0019", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "9ba36d962d4ea850", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0020", "method": "POST", "path": "/v1/chat/completions", "status": null, "req_sha256": "19cda73c6a61a56a", "response": "none (the connection closed before an answer)", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"verdict": "pass", "connections": 21, "problems": [], "allowed_sampler_keys": ["seed"], "unanswered_or_partial": ["conn-0020"]}

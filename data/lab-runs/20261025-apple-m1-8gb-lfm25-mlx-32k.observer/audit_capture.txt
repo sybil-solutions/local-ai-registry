@@ -1,0 +1,17 @@
+{"conn": "conn-0000", "method": "GET", "path": "/health", "status": 200, "req_sha256": "b563364d235894b5"}
+{"conn": "conn-0001", "method": "GET", "path": "/v1/models", "status": 200, "req_sha256": "bfcd203a2f09e2eb"}
+{"conn": "conn-0002", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "6f2a723072bc7d7a", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0003", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "e23bd3ea5aeb90a4", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0004", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "10ead31f3364003d", "top_level_keys": ["messages", "model", "temperature", "tools"], "temperature": 0.6}
+{"conn": "conn-0005", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "fbc07899d9aaf7bf", "top_level_keys": ["messages", "model", "temperature", "tools"], "temperature": 0.6}
+{"conn": "conn-0006", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "a798444bd8c5ce11", "top_level_keys": ["messages", "model", "temperature"], "temperature": 0.6}
+{"conn": "conn-0007", "method": "POST", "path": "/v1/chat/completions", "status": 200, "req_sha256": "6134a989b6cfdc24", "top_level_keys": ["messages", "model", "stream", "temperature"], "temperature": 0.8, "stream_content_chars": 3619, "stream_reasoning_chars": 13832, "finish": ["stop"]}
+{"conn": "conn-0008", "method": "POST", "path": "/v1/token/encode", "status": 404, "req_sha256": "7d62f8b2ccd95a78"}
+{"conn": "conn-0009", "method": "POST", "path": "/tokenize", "status": 404, "req_sha256": "8ebafb122773a34b"}
+{"conn": "conn-0010", "method": "POST", "path": "/v1/tokenize", "status": 404, "req_sha256": "d6b327f32e0fdb8e"}
+{"conn": "conn-0011", "method": "POST", "path": "/tokenize", "status": 404, "req_sha256": "861b9718845cee0c"}
+{"conn": "conn-0012", "method": "POST", "path": "/v1/token/encode", "status": 404, "req_sha256": "1b2348bb9935537a"}
+{"conn": "conn-0013", "method": "POST", "path": "/tokenize", "status": 404, "req_sha256": "e76dc3d9c9c329a9"}
+{"conn": "conn-0014", "method": "POST", "path": "/v1/tokenize", "status": 404, "req_sha256": "1c98566719436a97"}
+{"conn": "conn-0015", "method": "POST", "path": "/tokenize", "status": 404, "req_sha256": "8f8f1862372acd5f"}
+{"verdict": "pass", "connections": 16, "problems": []}

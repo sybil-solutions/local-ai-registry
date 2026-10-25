@@ -1,0 +1,1 @@
+rt312/python/bin/python3.12 -s rt312/mlx_lm_unlimited_serve.py --model LiquidAI/LFM2.5-2.6B-MLX-4bit --max-tokens -1 --max-kv-size 32768 --max-prompt-tokens 24576 --prompt-cache-size 1 --host 127.0.0.1 --port 8080

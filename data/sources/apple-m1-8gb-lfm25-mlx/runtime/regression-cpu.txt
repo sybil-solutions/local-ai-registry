@@ -1,0 +1,81 @@
+usage: test_unlimited_max_tokens.py [-h] [--model MODEL]
+                                    [--adapter-path ADAPTER_PATH]
+                                    [--host HOST] [--port PORT]
+                                    [--allowed-origins ALLOWED_ORIGINS]
+                                    [--draft-model DRAFT_MODEL]
+                                    [--num-draft-tokens NUM_DRAFT_TOKENS]
+                                    [--trust-remote-code]
+                                    [--log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                                    [--chat-template CHAT_TEMPLATE]
+                                    [--use-default-chat-template]
+                                    [--temp TEMP] [--top-p TOP_P]
+                                    [--top-k TOP_K] [--min-p MIN_P]
+                                    [--max-tokens MAX_TOKENS]
+                                    [--chat-template-args CHAT_TEMPLATE_ARGS]
+                                    [--decode-concurrency DECODE_CONCURRENCY]
+                                    [--prompt-concurrency PROMPT_CONCURRENCY]
+                                    [--prefill-step-size PREFILL_STEP_SIZE]
+                                    [--prompt-cache-size PROMPT_CACHE_SIZE]
+                                    [--prompt-cache-bytes PROMPT_CACHE_BYTES]
+                                    [--pipeline]
+test_unlimited_max_tokens.py: error: unrecognized arguments: --max-kv-size 24576
+usage: test_unlimited_max_tokens.py [-h] [--model MODEL]
+                                    [--adapter-path ADAPTER_PATH]
+                                    [--host HOST] [--port PORT]
+                                    [--allowed-origins ALLOWED_ORIGINS]
+                                    [--draft-model DRAFT_MODEL]
+                                    [--num-draft-tokens NUM_DRAFT_TOKENS]
+                                    [--trust-remote-code]
+                                    [--log-level {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                                    [--chat-template CHAT_TEMPLATE]
+                                    [--use-default-chat-template]
+                                    [--temp TEMP] [--top-p TOP_P]
+                                    [--top-k TOP_K] [--min-p MIN_P]
+                                    [--max-tokens MAX_TOKENS]
+                                    [--chat-template-args CHAT_TEMPLATE_ARGS]
+                                    [--decode-concurrency DECODE_CONCURRENCY]
+                                    [--prompt-concurrency PROMPT_CONCURRENCY]
+                                    [--prefill-step-size PREFILL_STEP_SIZE]
+                                    [--prompt-cache-size PROMPT_CACHE_SIZE]
+                                    [--prompt-cache-bytes PROMPT_CACHE_BYTES]
+                                    [--pipeline]
+test_unlimited_max_tokens.py: error: unrecognized arguments: --max-kv-size 32768 --max-prompt-tokens 24576
+PASS  lab request, CLI --max-tokens -1         pristine=reject (max_tokens must be at least 0)  patched=accept (-1)
+PASS  body max_tokens -1                       pristine=reject (max_tokens must be at least 0)  patched=accept (-1)
+PASS  body max_completion_tokens -1            pristine=reject (max_tokens must be at least 0)  patched=accept (-1)
+PASS  CLI default 512 unchanged                pristine=accept (512)  patched=accept (512)
+PASS  body finite 100 unchanged                pristine=accept (100)  patched=accept (100)
+PASS  body 0 unchanged                         pristine=accept (0)  patched=accept (0)
+PASS  body -2 still rejected                   pristine=reject (max_tokens must be at least 0)  patched=reject (max_tokens must be at least -1)
+PASS  CLI -5 still rejected                    pristine=reject (max_tokens must be at least 0)  patched=reject (max_tokens must be at least -1)
+PASS  body non-int still rejected              pristine=reject (max_tokens must be of type int)  patched=reject (max_tokens must be of type int)
+PASS  -1 with CLI draft model rejected         pristine=reject (max_tokens must be at least 0)  patched=reject (max_tokens -1 (unlimited) is not supported with a draft model)
+PASS  -1 with request draft model rejected     pristine=reject (max_tokens must be at least 0)  patched=reject (max_tokens -1 (unlimited) is not supported with a draft model)
+PASS  route max_tokens -1                      pristine batch=True  patched batch=False
+PASS  route finite 512                         pristine batch=True  patched batch=True
+PASS  route seed set                           pristine batch=False  patched batch=False
+PASS  route finite 512 with --max-kv-size      pristine batch=True  patched batch=False
+PASS  route finite 512 with --max-prompt-tokens pristine batch=True  patched batch=False
+PASS  CLI parse pristine                        --max-tokens -1 -> -1; default -> 512
+PASS  CLI parse patched                         --max-tokens -1 -> -1; default -> 512
+PASS  CLI parse --max-kv-size              pristine rejected; patched 24576 -> 24576; default -> None
+PASS  CLI parse launch flags               pristine rejected; patched (max_tokens, kv, prompt limit, cache size) (-1, 32768, 24576, 1)
+PASS  bounded cache                         bound 24576 -> ['RotatingKVCache', 'ArraysCache', 'RotatingKVCache']; no bound -> unchanged; sequential path uses the CLI bound
+PASS  prompt limit: one token over the limit     pristine served; patched rejected
+PASS  prompt limit: at the limit                 pristine served; patched served
+PASS  prompt limit: far over, no limit set       pristine served; patched served
+PASS  error status: over-long prompt            pristine [404]; patched [400] ('the prompt is 24577 tokens')
+PASS  error status: other error                 pristine [404]; patched [404] ('model not found')
+PASS  prompt cache: pristine                    run() sizes it from --prompt-cache-size
+PASS  prompt cache: patched                     run() sizes it from --prompt-cache-size
+PASS  prompt cache: launch flags                --prompt-cache-size 1 keeps 1 of 3 (0.35 GiB)
+PASS  prompt cache: stock default               --prompt-cache-size 10 keeps 3 of 3 (1.05 GiB)
+PASS  dispatch pristine                       join existing batch requires _is_batchable
+PASS  dispatch pristine                       otherwise drain the batch and requeue
+PASS  dispatch pristine                       no generator: non-batchable -> _serve_single
+PASS  dispatch patched                        join existing batch requires _is_batchable
+PASS  dispatch patched                        otherwise drain the batch and requeue
+PASS  dispatch patched                        no generator: non-batchable -> _serve_single
+REGRESSION PASS
+exit 0
+mlx modules loaded: none

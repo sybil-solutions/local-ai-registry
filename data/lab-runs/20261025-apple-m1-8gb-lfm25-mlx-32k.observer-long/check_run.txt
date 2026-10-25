@@ -1,0 +1,3 @@
+{"conn": "conn-0001", "stream": true, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"conn": "conn-0002", "stream": true, "temperature": 0.6, "finish": ["stop"], "want": "stop", "problems": []}
+{"verdict": "pass", "chat_requests": 2, "expected": 2, "failing": []}

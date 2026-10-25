@@ -1,0 +1,7 @@
+== tools replaced after the q3 probe, 2026-10-25T07:30:31Z
+before:
+e7ad64365971744e2a78736cd8b18b0f5d90b2a8978182255100e94cae94af3f  tools/macmini-run3.sh
+tools/long_answer.py absent
+after:
+d98a6c9cf0b7eb0abb2d703c5f03daa31de6cc78aafee87ceef21c9ddf374cad  tools/macmini-run3.sh
+08f001cb98c6cd8bb02b52a52a93b8e812f5d1121bebdca81ab47a1a92e960bb  tools/long_answer.py

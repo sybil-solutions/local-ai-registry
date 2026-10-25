@@ -4,7 +4,8 @@ two machines, ...), each with its picks (at most 3, one per model, the first rec
 (more), and each recipe with its rendered launch. The card's own `picks` and `more` are its one-card setup, so a
 client that runs one card never sees a recipe that needs several. `--check` fails if it is stale.
 
-Ranking on a card: family order in registry/models.json, then the newest model, then decode speed. A model
+Ranking on a card: family order in registry/models.json, then the newest model, then decode speed (a measured speed
+before an estimated one). A model
 older than max_age_days, or outside the families, is never picked. Standard library only."""
 import datetime as dt, hashlib, json, sys
 from pathlib import Path
@@ -55,7 +56,10 @@ def build(today=None):
         # every machine with the card can run, and the plugin offers it only where the host has what it needs
         rank = (gguf, bool(launch.get("needs")), old, *mf, bool(demoted), not exl3)
         setup = (launch.get("cards") or 1, launch.get("machines") or 1)
-        cards.setdefault(r["card"], {}).setdefault(setup, []).append((*rank, -(r["proof"][0]["tps"] or 0), r["model"], key))
+        # decode speed breaks the last tie, and an estimated speed (proof.tps_estimated) is never compared with a measured
+        # one: it follows them
+        speed = (bool(r["proof"][0].get("tps_estimated")), -(r["proof"][0]["tps"] or 0))
+        cards.setdefault(r["card"], {}).setdefault(setup, []).append((*rank, *speed, r["model"], key))
     out_cards = {}
     for card, by_setup in sorted(cards.items()):
         hw = lab.card(card)

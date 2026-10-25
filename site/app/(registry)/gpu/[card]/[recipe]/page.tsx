@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import Copy from "@/components/Copy";
 import Logo from "@/components/Logo";
 import Viewed from "@/components/Viewed";
-import { recipes, recipe, card, model, format, ctxLabel, engineKind, gates, status, steps, weightsList, fmtDate, cardName, setupOf } from "@/lib/registry";
+import { recipes, recipe, card, model, format, ctxLabel, engineKind, gates, status, steps, weightsList, fmtDate, cardName, setupOf, tpsEstimated } from "@/lib/registry";
+import { tpsPhrase, tpsValue } from "@/lib/speed";
 
 type P = { params: Promise<{ card: string; recipe: string }> };
 export const generateStaticParams = () => recipes.map((r) => ({ card: r.card, recipe: r.slug }));
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const r = recipe(c, s);
   if (!r) return {};
   const on = setupOf(r).name;
-  return { title: `${model(r).name} on ${on}`, description: `${format(r)}, ${ctxLabel(r.launch.ctx)} context, ${Math.round(r.proof[0].tps ?? 0)} tok/s on ${setupOf(r).cards * setupOf(r).machines > 1 ? on : `the ${on}`}. ${status(r).detail}` };
+  return { title: `${model(r).name} on ${on}`, description: `${format(r)}, ${ctxLabel(r.launch.ctx)} context, ${tpsPhrase(r.proof[0])} on ${setupOf(r).cards * setupOf(r).machines > 1 ? on : `the ${on}`}. ${status(r).detail}` };
 }
 
 export default async function RecipePage({ params }: P) {
@@ -40,7 +41,7 @@ export default async function RecipePage({ params }: P) {
       {m.about && <p style={{ maxWidth: "70ch", marginTop: 22 }}>{m.about}</p>}
 
       <section className="grid cols-4">
-        <div className="stat"><b>{p.tps ? Math.round(p.tps) : "–"} tok/s</b><span>decode</span></div>
+        <div className="stat"><b title={tpsEstimated(r) ? p.note : undefined}>{tpsValue(p)} tok/s</b><span>{tpsEstimated(r) ? "decode (estimate)" : "decode"}</span></div>
         <div className="stat"><b>{p.prefill ? Math.round(p.prefill).toLocaleString("en-US") : "–"} tok/s</b><span>prefill</span></div>
         <div className="stat"><b>{ctxLabel(r.launch.ctx)}</b><span>context window</span></div>
         <div className="stat"><b className={s.tone}>{s.label}</b><span>{p.at ? fmtDate(p.at) : "earlier"}</span></div>

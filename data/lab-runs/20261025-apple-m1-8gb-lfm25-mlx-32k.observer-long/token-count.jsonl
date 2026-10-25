@@ -1,0 +1,2 @@
+{"conn": "conn-0001", "status": 200, "events": 708, "content_events": 707, "chars": 3333, "chars_div_4": 833, "retokenized_tokens": 721, "finish": ["stop"]}
+{"conn": "conn-0002", "status": 200, "events": 6202, "content_events": 6201, "chars": 28253, "chars_div_4": 7063, "retokenized_tokens": 6226, "finish": ["stop"]}

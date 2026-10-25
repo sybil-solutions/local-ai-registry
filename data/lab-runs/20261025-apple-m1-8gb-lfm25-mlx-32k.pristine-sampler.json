@@ -1,0 +1,69 @@
+{
+ "model": "LiquidAI/LFM2.5-2.6B-MLX-4bit",
+ "server": "stock mlx_lm.server 0.31.3",
+ "requests": [
+  {
+   "label": "t0 #1",
+   "request": {
+    "temperature": 0.0
+   },
+   "finish": "stop",
+   "completion_tokens": 295,
+   "answer_sha256": "07cc794cc9e7fdecc0430dd0adcf406103f6bd25d64783f7cded4c7a54c3775d"
+  },
+  {
+   "label": "t1 #1 no seed (batch path)",
+   "request": {
+    "temperature": 1.0
+   },
+   "finish": "stop",
+   "completion_tokens": 68,
+   "answer_sha256": "9bc5bf1bbf53c672cf207753493c71b1a869ecc87c4a97194831ae91694da0e4"
+  },
+  {
+   "label": "t1 #2 no seed (batch path)",
+   "request": {
+    "temperature": 1.0
+   },
+   "finish": "stop",
+   "completion_tokens": 68,
+   "answer_sha256": "9bc5bf1bbf53c672cf207753493c71b1a869ecc87c4a97194831ae91694da0e4"
+  },
+  {
+   "label": "t1 seed7 #1 (sequential path)",
+   "request": {
+    "temperature": 1.0,
+    "seed": 7
+   },
+   "finish": "stop",
+   "completion_tokens": 209,
+   "answer_sha256": "817bad215abb97d5d95caee47424438feebe0572d0f3b1c454b6ded7bb86e23f"
+  },
+  {
+   "label": "t1 seed7 #2 (sequential path)",
+   "request": {
+    "temperature": 1.0,
+    "seed": 7
+   },
+   "finish": "stop",
+   "completion_tokens": 209,
+   "answer_sha256": "817bad215abb97d5d95caee47424438feebe0572d0f3b1c454b6ded7bb86e23f"
+  },
+  {
+   "label": "t1 seed8 (sequential path)",
+   "request": {
+    "temperature": 1.0,
+    "seed": 8
+   },
+   "finish": "stop",
+   "completion_tokens": 209,
+   "answer_sha256": "817bad215abb97d5d95caee47424438feebe0572d0f3b1c454b6ded7bb86e23f"
+  }
+ ],
+ "comparisons": {
+  "batch path: unseeded repeats equal": true,
+  "sequential path: seed 7 == seed 8": true,
+  "t0 == t1 batch": false,
+  "batch == sequential at t1": false
+ }
+}

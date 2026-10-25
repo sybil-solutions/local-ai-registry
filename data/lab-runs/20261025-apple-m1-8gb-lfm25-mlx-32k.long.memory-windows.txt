@@ -1,0 +1,4 @@
+window | lowest available GB | max swap GB | max GPU in use GB
+within the window (24,086 + 721) | 1.22 | 0.17 | 3.50   (136 rows)
+long story (24,097 + 6,226) | 0.89 | 0.17 | 3.98   (345 rows)
+server guard polls 108 lowest free_pct 21 | swap_used_mb seen ['169.88']
