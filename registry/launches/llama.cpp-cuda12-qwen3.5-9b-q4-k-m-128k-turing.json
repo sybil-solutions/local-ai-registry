@@ -1,0 +1,56 @@
+{
+  "id": "llama.cpp-cuda12-qwen3.5-9b-q4-k-m-128k-turing",
+  "engine": "llama.cpp",
+  "about": "Qwen3.5-9B Q4_K_M at 128K on CUDA 12 (llama.cpp b10481): the 128K launch with a quantised KV cache so it fits 11 GB Turing cards",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12-b10481@sha256:b2497f8834f5ecb4e38530f6bf2734b8e0be107ff48e4720145911c86930f2ce",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Qwen3.5-9B-Q4_K_M.gguf",
+    "--n-gpu-layers",
+    "999",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "131072",
+    "--flash-attn",
+    "on",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "64"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "16g",
+  "weights": [
+    {
+      "repo": "unsloth/Qwen3.5-9B-GGUF",
+      "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "Qwen3.5-9B-Q4_K_M.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1
+}
