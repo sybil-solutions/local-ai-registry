@@ -7,6 +7,34 @@ import json, os, shlex, subprocess, sys
 sys.path.insert(0, "sdk/python")
 import local_ai_registry as L
 cat = json.load(open("dist/catalog.json"))
+def downloads(st):
+    """(repo, files) of each weights download in the steps: `hf download` lines, or the pinned runtime's snapshot_download."""
+    out = []
+    for step in st:
+        if step["title"] != "Download the weights":
+            continue
+        strict = step["code"].startswith("(\nset -e\n")
+        for cmd in step["code"].split("\n") if strict else step["code"].split("\n\n"):
+            cmd = cmd.replace("\\\n", "")
+            if cmd.startswith('(hubenv "$c"; exec ') and cmd.endswith(")"):  # a download isolated in its staging cache
+                cmd = cmd[len('(hubenv "$c"; exec '):-1]
+            argv = shlex.split(cmd)
+            if argv[:2] == ["hf", "download"]:
+                out.append((argv[2], argv[3:argv.index("--revision")]))
+            elif "-c" in argv and "snapshot_download" in " ".join(argv):
+                i = argv.index("-c")
+                out.append((argv[i + 3], argv[i + 6:]))
+    return out
+def check_downloads(k, launch, st):
+    weights = launch.get("weights") or []
+    weights = weights if isinstance(weights, list) else [weights]
+    got = downloads(st)
+    assert len(got) == len([w for w in weights if w and w.get("repo")]), (k, got)
+    for w, (repo, fs) in zip(weights, got):
+        files = w.get("files") or []
+        files = files if isinstance(files, list) else [files]
+        assert repo == w["repo"], (k, repo)
+        assert fs == files, f"download ignores selected files for {k}"
 # Identical driver names need memory to distinguish 10 and 12 GB variants.
 variants = {"cards": {
     "rtx-3080-10gb": {"name": "GeForce RTX 3080", "vram_gb": 10},
@@ -44,14 +72,7 @@ for i, (got, sts) in json.loads(js).items():
             command = st[-1]["code"]
             assert "--gpus" not in command and "--device" not in command, f"CPU launch requires a GPU for {k}"
         launch = cat["recipes"][k]["launch"]
-        weights = launch.get("weights") or []
-        weights = weights if isinstance(weights, list) else [weights]
-        downloads = [shlex.split(cmd.replace("\\\n", "")) for step in st if step["title"] == "Download the weights" for cmd in step["code"].split("\n\n")]
-        for w, argv in zip(weights, downloads):
-            files = w.get("files") or []
-            files = files if isinstance(files, list) else [files]
-            assert argv[:3] == ["hf", "download", w["repo"]], (k, argv)
-            assert argv[3:argv.index("--revision")] == files, f"download ignores selected files for {k}"
+        check_downloads(k, launch, st)
         if launch.get("prepare"):
             prep = next(s["code"] for s in st if s["title"] == "Prepare the model (first start)")
             argv = shlex.split(prep.split("\n", 1)[1].replace("\\\n", ""))
@@ -123,4 +144,47 @@ js_steps = json.loads(subprocess.run(["node", "--input-type=module", "-e",
     input=json.dumps(fixture), capture_output=True, text=True, check=True).stdout)
 assert py_steps == js_steps
 assert py_steps[-1]["code"].count("/root/.cache/huggingface") == 1, py_steps[-1]["code"]
+# Every catalog recipe, listed on a card or not: the same steps and the same one-script command in both SDKs.
+every = json.loads(subprocess.run(["node", "--input-type=module", "-e", """
+import { readFileSync } from "node:fs"; import { steps, command } from "./sdk/js/index.js";
+const cat = JSON.parse(readFileSync("dist/catalog.json"));
+console.log(JSON.stringify(Object.fromEntries(Object.entries(cat.recipes).map(([k, r]) => [k, [steps({ key: k, ...r }), command({ key: k, ...r })]]))));"""],
+    capture_output=True, text=True, check=True).stdout)
+assert sorted(every) == sorted(cat["recipes"])
+for k, r in cat["recipes"].items():
+    assert every[k] == [L.steps({"key": k, **r}), L.command({"key": k, **r})], f"js and python differ for {k}"
+# A pinned host runtime (lab/test_host_runtime.py): the same steps for each shape, and both SDKs refuse every bad one.
+sys.path.insert(0, "lab")
+import test_host_runtime as T
+import copy
+full = T.launch()
+shapes = {"full": full,
+    "archive and python, nothing to download": {**full, "runtime": {k: full["runtime"][k] for k in ("archive", "python")}, "weights": [], "config": None},
+    "no launcher": {**full, "config": None},
+    "hub without ref": {**full, "weights": [{k: v for k, v in full["weights"][0].items() if k != "ref"}]},
+    "hub with files": {**full, "weights": [{**full["weights"][0], "files": ["config.json", "model.safetensors"]}]},
+    "two hub weights in one cache": {**full, "weights": [full["weights"][0], {**full["weights"][0], "repo": "org/draft", "revision": "c" * 40}]},
+    "nested under one directory": T.launch(root="opt/rt"),
+    "same repo in two separate caches": {**full, "weights": [full["weights"][0], {**full["weights"][0], "at": "rt/hf-other", "revision": "d" * 40}]},
+    "hub weights without a runtime": {k: v for k, v in full.items() if k != "runtime"}}
+cases = {**{f"ok: {k}": {"model": "rt", "launch": v} for k, v in shapes.items()},
+         **{f"bad: {k}": {"model": "rt", "launch": make()} for k, make in T.BAD.items()}}
+js = json.loads(subprocess.run(["node", "--input-type=module", "-e", """
+import { readFileSync } from "node:fs"; import { steps, command } from "./sdk/js/index.js";
+const out = {}; for (const [k, r] of Object.entries(JSON.parse(readFileSync(0, "utf8")))) {
+  try { out[k] = [steps(r), command(r)]; } catch (e) { out[k] = { threw: String(e.message) }; } }
+console.log(JSON.stringify(out));"""], input=json.dumps(cases), capture_output=True, text=True, check=True).stdout)
+for k, r in cases.items():
+    if k.startswith("ok: "):
+        assert js[k] == [L.steps(copy.deepcopy(r)), L.command(copy.deepcopy(r))], f"js and python differ for runtime {k}"
+        assert js[k][1].startswith("set -e\n\n"), f"command for {k} does not stop at the first failure"
+        check_downloads(k, r["launch"], js[k][0])
+    else:
+        assert "threw" in js[k] and js[k]["threw"].startswith("invalid host runtime"), f"js renders {k}: {js[k]}"
+        try:
+            L.steps(r)
+            raise AssertionError(f"python renders {k}")
+        except ValueError:
+            pass
+print(f"sdk ok: {len(every)} catalog recipes and {len(cases)} host runtime cases, js and python agree")
 PY

@@ -25,6 +25,7 @@ import shlex
 import string
 import sys
 import time
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -70,7 +71,10 @@ def pin(p):
     keys = ("command", "install", "pip", "env", "port", "weights", "ctx", "seqs", "vision", "wired_limit_reserve_mb")
     # several cards (or machines) count too, but one is the default and stays out, so every single-card pin is unchanged
     topology = {k: p[k] for k in ("cards", "machines") if p.get(k, 1) != 1}
-    return hashlib.sha256(json.dumps({**{k: p.get(k) for k in keys}, **topology, "config": config_text(p)}, sort_keys=True).encode()).hexdigest()
+    # a pinned host runtime (interpreter archive, hash-locked wheels) is part of what runs; it counts only when present,
+    # so every pin without one is unchanged
+    runtime = {"runtime": p["runtime"]} if "runtime" in p else {}
+    return hashlib.sha256(json.dumps({**{k: p.get(k) for k in keys}, **topology, **runtime, "config": config_text(p)}, sort_keys=True).encode()).hexdigest()
 
 
 def profile_file(name):
@@ -135,6 +139,8 @@ def render(recipe):
             # MLX on Apple silicon: pinned packages, a launcher file, its environment, and a GPU wired-memory limit that
             # follows the card's unified memory
             out.update({k: p[k] for k in ("pip",) if p.get(k)})
+            if "runtime" in p:  # an optional pinned runtime: passed through whole, so lab.py check sees exactly what is pinned
+                out["runtime"] = p["runtime"]
             text = config_text(p)
             if text:
                 out["config"] = {"at": p["config"]["at"], "text": text, "sha256": hashlib.sha256(text.encode()).hexdigest()}
@@ -510,6 +516,10 @@ def cmd_try(args):
     recipe = {"model": args.model, "weights": args.weights, "engine": f"{p['id']}@{pin(p)[:12]}",
               "set": sets, "card": args.card}
     launch = render(recipe)
+    try:
+        check_host_runtime(launch)
+    except AssertionError as e:
+        raise SystemExit(f"{p['id']}: {e}")
     if below_kv_floor(recipe, launch):
         raise SystemExit(f"{kv_tokens(recipe, launch)} KV tokens on {setup_vram_gb(recipe, launch):g} GB: a setup over "
                          f"{KV_FLOOR_ABOVE_VRAM_GB} GB needs at least {KV_FLOOR_TOKENS} (raise ctx or seqs)")
@@ -621,6 +631,129 @@ def cmd_render(args):
 NEEDS = {"host_ram_gb": (int, float), "disk_gb": (int, float), "fast_storage": str, "cpus": int}
 
 
+# ----------------------------------------------------------------------------- pinned host runtime
+# An optional host-launch contract that the SDKs render as executable, fail-closed steps (docs/design.md, "A pinned host
+# runtime"): `runtime.archive` {url, sha256, into} is a release archive extracted into a directory; `runtime.python` is the
+# interpreter that installs `runtime.packages` {dir, target, wheels: [{name, version, url, sha256}]} offline and hash-locked
+# into `target`; host weights with `layout: hub` go to a Hugging Face cache at `at`, with an optional task-local `ref`
+# (refs/<ref> -> the pinned revision). Every value is validated here and again in both SDKs before anything is rendered.
+RT_SHA = r"[0-9a-f]{64}"
+RT_REL = r"(?!.*(?:^|/)\.\.?(?:/|$))[A-Za-z0-9_][A-Za-z0-9._+-]*(?:/[A-Za-z0-9_][A-Za-z0-9._+-]*)*"  # relative, no . or .. parts
+RT_URL = r"https://[A-Za-z0-9.-]+(?:/[A-Za-z0-9._~%+-]+)+"  # no query, fragment, credentials or shell syntax
+RT_ARCHIVE = r"[A-Za-z0-9][A-Za-z0-9._+-]*\.(?:tar\.gz|tgz)"
+RT_WHEEL = r"[A-Za-z0-9][A-Za-z0-9._+-]*\.whl"
+RT_NAME = r"[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?"
+RT_VERSION = r"[A-Za-z0-9][A-Za-z0-9.+!_-]*"
+RT_REF = r"[A-Za-z0-9][A-Za-z0-9._-]*"
+RT_REPO = r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+"
+
+
+def _canon(name):
+    return re.sub(r"[-_.]+", "-", name).lower()
+
+
+def _url_file(url):
+    """The file a URL names: its last path segment, percent-decoded (a CPython release asset's %2B becomes +)."""
+    return urllib.parse.unquote(url.rsplit("/", 1)[1])
+
+
+def check_host_runtime(launch):
+    """Validate the optional pinned host runtime and Hugging Face cache weights of a launch; raise AssertionError."""
+    kind = launch.get("kind")
+    weights = launch.get("weights") or []
+    weights = weights if isinstance(weights, list) else [weights]
+    if kind == "host":
+        assert len({w.get("layout") == "hub" for w in weights}) <= 1, "host weights mix hub and directory layouts"
+    for w in weights:
+        if "ref" in w:
+            assert kind == "host" and w.get("layout") == "hub", "weights.ref is only for host weights with layout hub"
+            assert isinstance(w["ref"], str) and re.fullmatch(RT_REF, w["ref"]), f"weights.ref {w.get('ref')!r}"
+        if kind == "host" and w.get("layout") == "hub":
+            assert set(w) <= {"repo", "revision", "at", "layout", "files", "ref"}, f"hub weights keys {sorted(w)}"
+            assert re.fullmatch(RT_REPO, w["repo"]) and re.fullmatch(r"[0-9a-f]{40}", w["revision"]), "hub weights repo@revision"
+            assert isinstance(w["at"], str) and re.fullmatch(RT_REL, w["at"]), f"hub weights cache dir {w.get('at')!r}"
+            fs = w.get("files") or []
+            fs = fs if isinstance(fs, list) else [fs]
+            assert all(isinstance(f, str) and re.fullmatch(RT_REL, f) for f in fs), "hub weights files"
+    # one entry per repo per cache: each publish replaces the whole model directory, so a second entry would erase the first
+    hubs = [(w["at"].lower(), w["repo"].lower()) for w in weights if kind == "host" and w.get("layout") == "hub"]
+    assert len(hubs) == len(set(hubs)), "a repo is listed twice in one hub cache (a second entry would replace the first)"
+    rt = launch.get("runtime")
+    hub = any(w.get("layout") == "hub" for w in weights if w)
+    if kind == "host" and launch.get("config") and (rt is not None or hub):  # a launcher the setup steps write
+        assert isinstance(launch["config"].get("at"), str) and re.fullmatch(RT_REL, launch["config"]["at"]), "launcher path"
+    if rt is None:
+        if kind == "host":
+            check_host_paths(launch)
+        return
+    assert kind == "host", "runtime is for host launches"
+    assert isinstance(rt, dict) and rt and set(rt) <= {"archive", "python", "packages"}, f"runtime keys {sorted(rt) if isinstance(rt, dict) else rt}"
+    assert not launch.get("pip"), "runtime and pip are exclusive (pip installs globally)"
+    if "archive" in rt:
+        a = rt["archive"]
+        assert isinstance(a, dict) and set(a) == {"url", "sha256", "into"}, "runtime.archive needs exactly url, sha256, into"
+        assert isinstance(a["url"], str) and re.fullmatch(RT_URL, a["url"]), f"runtime.archive.url {a.get('url')!r}"
+        assert re.fullmatch(RT_ARCHIVE, _url_file(a["url"])), f"runtime.archive file {_url_file(a['url'])!r} is not a .tar.gz/.tgz"
+        assert isinstance(a["sha256"], str) and re.fullmatch(RT_SHA, a["sha256"]), "runtime.archive.sha256"
+        assert isinstance(a["into"], str) and re.fullmatch(RT_REL, a["into"]), f"runtime.archive.into {a.get('into')!r}"
+    if "python" in rt:  # inside the pinned archive, so never a name looked up on PATH
+        assert isinstance(rt["python"], str) and re.fullmatch(RT_REL, rt["python"]), f"runtime.python {rt.get('python')!r}"
+        assert "archive" in rt and rt["python"].startswith(rt["archive"]["into"] + "/"), "runtime.python must be inside runtime.archive.into"
+    if "packages" in rt:
+        pk = rt["packages"]
+        assert "python" in rt, "runtime.packages needs runtime.python"
+        assert isinstance(pk, dict) and set(pk) == {"dir", "target", "wheels"}, "runtime.packages needs exactly dir, target, wheels"
+        for k in ("dir", "target"):
+            assert isinstance(pk[k], str) and re.fullmatch(RT_REL, pk[k]), f"runtime.packages.{k} {pk.get(k)!r}"
+        d, t = pk["dir"], pk["target"]
+        assert not (d == t or d.startswith(t + "/") or t.startswith(d + "/")), "runtime.packages dir and target overlap"
+        assert isinstance(pk["wheels"], list) and pk["wheels"], "runtime.packages.wheels is a non-empty list"
+        names, files = set(), set()
+        for w in pk["wheels"]:
+            assert isinstance(w, dict) and set(w) == {"name", "version", "url", "sha256"}, "each wheel needs exactly name, version, url, sha256"
+            assert isinstance(w["name"], str) and re.fullmatch(RT_NAME, w["name"]), f"wheel name {w.get('name')!r}"
+            assert isinstance(w["version"], str) and re.fullmatch(RT_VERSION, w["version"]), f"wheel version {w.get('version')!r}"
+            assert isinstance(w["url"], str) and re.fullmatch(RT_URL, w["url"]), f"wheel url {w.get('url')!r}"
+            assert isinstance(w["sha256"], str) and re.fullmatch(RT_SHA, w["sha256"]), f"wheel sha256 for {w['name']}"
+            f = _url_file(w["url"])
+            assert re.fullmatch(RT_WHEEL, f), f"wheel file {f!r}"
+            dist, ver = (f.split("-") + ["", ""])[:2]
+            assert _canon(dist) == _canon(w["name"]) and ver == w["version"], f"wheel file {f} is not {w['name']} {w['version']}"
+            assert _canon(w["name"]) not in names and f not in files, f"wheel {w['name']} listed twice"
+            names.add(_canon(w["name"])); files.add(f)
+    if weights:  # downloaded by the runtime's own huggingface_hub into a cache, never by an hf on PATH
+        assert all(w.get("layout") == "hub" for w in weights), "weights with a runtime need layout hub"
+        assert "packages" in rt and "huggingface-hub" in {_canon(w["name"]) for w in rt["packages"]["wheels"]}, \
+            "weights with a runtime need a pinned huggingface_hub wheel in runtime.packages"
+    check_host_paths(launch)
+
+
+def _overlap(a, b):
+    a, b = a.lower(), b.lower()  # macOS file systems ignore case
+    return a == b or a.startswith(b + "/") or b.startswith(a + "/")
+
+
+def check_host_paths(launch):
+    """No setup step may publish over another's output: packages target and dir, host hub caches (which weights may
+    share) and the launcher never equal or nest, none is or holds runtime.archive.into, and none lies in the archive
+    entry that holds the interpreter (the runtime step replaces whole entries)."""
+    weights = launch.get("weights") or []
+    hub = [w["at"] for w in (weights if isinstance(weights, list) else [weights]) if w and w.get("repo") and w.get("layout") == "hub"]
+    rt = launch.get("runtime") or {}
+    pk = rt.get("packages") or {}
+    owned = ([("packages.target", pk["target"]), ("packages.dir", pk["dir"])] if pk else []) + [("weights.at", a) for a in hub] + \
+        ([("launcher", launch["config"]["at"])] if launch.get("config") and (rt or hub) else [])
+    for i, (na, a) in enumerate(owned):
+        for nb, b in owned[i + 1:]:
+            assert (na == nb == "weights.at" and a.lower() == b.lower()) or not _overlap(a, b), f"{na} {a} and {nb} {b} overlap"
+    if rt.get("archive"):
+        into, py = rt["archive"]["into"], rt.get("python")
+        entry = into + "/" + py[len(into) + 1:].split("/")[0] if py else None
+        for n, x in owned:
+            assert not (x.lower() == into.lower() or into.lower().startswith(x.lower() + "/")), f"{n} {x} would replace runtime.archive.into"
+            assert not entry or not _overlap(x, entry), f"{n} {x} overlaps the interpreter's archive entry {entry}"
+
+
 def check_needs(n):
     """`needs`: what the host must have besides the card, for launches that keep weights in system RAM or read them
     from disk while serving. host_ram_gb = free system RAM the server takes (measured peak), disk_gb = space for the
@@ -650,6 +783,7 @@ def cmd_check(_):
             assert f.parent.name == r["card"] and f.parent.parent.name == c["vendor"], "path is not recipes/<vendor>/<card>/"
             launch = render(r)
             assert f == recipe_path(r, launch), f"file name should be {recipe_path(r, launch).name}"
+            check_host_runtime(launch)
             if launch.get("kind") == "host":  # the SDK's host steps start one program on one machine
                 assert type(launch["cards"]) is int and launch["cards"] >= 1, "host cards must be a whole number of cards"
                 assert launch.get("machines", 1) == 1, "multi-machine host launches are not supported by the current SDK; use a container launch"
