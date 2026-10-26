@@ -1,0 +1,42 @@
+{
+  "id": "strata-qwen3.8-flash-next-q2-0-256k-rtx-3090-24gb",
+  "kind": "host",
+  "engine": "strata-q2",
+  "about": "Qwen3.8-Flash-Next (ISTA-DASLab GSQ-RCO Q2_0: 2-bit, all 512 experts) on one 24 GB card with Strata 0.1.40.3 (github.com/Niko1221/Strata): a VRAM expert cache auto-sized from free VRAM, the experts the GPU does not hold kept in RAM (low-RAM mode off, no expert reads from the SSD while serving), MTP speculative decoding (4 drafts) from the original checkpoint's MTP layer, int8 KV with the first 32,768 tokens resident on the GPU, 256K window.",
+  "command": [
+    ".venv/bin/python",
+    "serve/server.py",
+    "--engine",
+    "strata",
+    "--config",
+    "strata-q2_0.json",
+    "--port",
+    "8080"
+  ],
+  "install": "git clone https://github.com/Niko1221/Strata && git -C Strata checkout d5ea7133741e67743c0e886bb426c0ce8d69cf6c && cd Strata && ./setup.sh --family qwen --model Q2_0 --context 262144 --vision no --kv int8 --low-ram off --kv-streaming on --parallel 1 --build --no-start --yes (compiles engine 0.1.40.3 for sm_86; our build of this commit with CUDA 13.4: engine/strata sha256 ac36b0292348f5cb61ba5d9012953a424e0078c80a094bfa9dbfb098f3a2f34f; setup downloads the pinned GGUF shards, builds the pack and fetches the MTP layer, and writes strata-q2_0.json)",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+      "at": "../Strata-data/models/Q2_0",
+      "layout": "dir",
+      "files": [
+        "Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+        "Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf"
+      ]
+    }
+  ],
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "source": "https://github.com/Niko1221/Strata/tree/d5ea7133741e67743c0e886bb426c0ce8d69cf6c",
+  "needs": {
+    "host_ram_gb": 42.0,
+    "disk_gb": 113.7,
+    "fast_storage": "nvme"
+  },
+  "setup": "NEEDS: one 24 GB NVIDIA card (sm_86 build), 64 GB RAM or more (Strata's setup asks 48 GB for Q2_0), ~114 GB on a local NVMe SSD (66.4 GB GGUF + 40.3 GB pack + 6.9 GB MTP layer). The pack holds the Q2_0 experts repacked for Strata's AVX-512 kernel (~34 GB), which setup writes on a CPU with full AVX-512 (F, BW, VL, VNNI, VBMI), as on the CPU this was measured on; without it the pack is ~1.5 GB (~75 GB in all). Low-RAM mode off: at start Strata loads the experts its VRAM cache does not hold into a host arena (34.1 GiB anonymous memory at peak); the GGUF stays mapped through the OS file cache, which MemAvailable counts as available. Strata serves one request at a time (--parallel 1). KV: int8, the first 32,768 tokens on the GPU and the rest streamed from RAM (--kv-resident 32768; setup puts that RAM copy at 3.6 GB for 256K). Measured on an RTX 3090 (PCIe 4.0 x16, also driving a desktop, ~250 MiB), Intel Core i9-11900K, 94 GiB RAM, NVMe: VRAM 23,825 MiB peak, no swap used. host_ram_gb is the largest MemAvailable drop from before the start to the end of the lab gates (41.45 GB, sampled every 0.5 s), rounded up. The lab's tps estimates tokens as chars/4 because Strata has no tokenize endpoint; Strata's own count for the speed gate's answer was 159 tok/s."
+}

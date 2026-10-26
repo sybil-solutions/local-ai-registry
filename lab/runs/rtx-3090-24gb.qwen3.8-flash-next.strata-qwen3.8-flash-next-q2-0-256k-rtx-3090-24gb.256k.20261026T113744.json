@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF@ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+  "engine": "strata-qwen3.8-flash-next-q2-0-256k-rtx-3090-24gb@049bb197710e",
+  "set": {},
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 3090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-26",
+  "on": "owner",
+  "gpu": "RTX 3090",
+  "launch_sha256": "78d9e33399234e876d7814d56c4022982bf0f0e4f780048ad9709086257fd425",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 97.3,
+  "prefill": 2654,
+  "served": "qwen3.8-flash-next-q2_0"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 95,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_4024d3fb28e74c6fbe76442b",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "It's currently **17°C in Paris** with an **overcast** sky.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 97
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 80.5,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 15471,
+   "seconds_total": 139.0
+  }
+ },
+ "launch_config_sha256": null
+}
