@@ -1,0 +1,56 @@
+{
+  "request": {
+    "model": "../models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Experiment 3: Write a detailed 1000-word explanation of how computers evolved from mechanical calculators to modern processors."
+      }
+    ],
+    "max_tokens": 512,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64,
+    "cache_prompt": false
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "**From Gear to Silicon: The Evolution of Computing**\n\nThe modern computer is a paradox: a device that can simulate a universe, render a movie, and run a hospital, yet its entire lineage can be traced back to wooden gears and brass wheels designed to add columns of numbers by hand. The evolution from mechanical calculator to modern processor is not a single invention but a chain of conceptual breakthroughs \u2014 each one replacing human labor with automation, and automation with ever faster, smaller, and more reliable physical substrates.\n\nThe story begins with the mechanical calculator. In the 17th century, Blaise Pascal built the Pascaline in 1642, a carry-performing adding machine driven by stepped drums. It was followed by Gottfried Wilhelm Leibniz's Stepped Reckoner in 1673, which could perform all four arithmetic operations. These",
+          "reasoning_content": "Experiment 3: Write a detailed 1000-word explanation of how computers evolved from mechanical calculators to modern processors.\n\nWe need to write detailed 1000-word explanation. Probably about 1000 words. Should be detailed. Might be ~900-1100 words. Provide explanation.\n\nUser asks Experiment 3: Write a detailed 1000-word explanation...\n\nProbably deliver essay. Should be about evolution: mechanical calculators -> analytical engine -> electromechanical -> vacuum tubes -> transistors -> integrated circuits -> microprocessors -> modern processors.\n\nWe need 1000-word. Let's aim ~950-1100 words.\n\nMake structured. Possibly headings.\n\nShould be detailed.\n\nNo disallowed content. Fine.\n\nProbably use paragraphs.\n\nMake sure ~1000 words. Let's target about 1000 words. Approx 1000 words = ~ 6500 characters.\n\nLet's produce ~ 1000 words.\n\nWe can count roughly. 1000 words is long. Let's produce about 900-1000.\n\nLet's draft ~ 950 words.\n\nWe need ensure quality.\n\nMaybe intro, mechanical calculators, Babbage, Hollerith, electromechanical, ENIAC, transistor, integrated circuit, microprocessor, modern processors.\n\nLet's produce.\n\nWe must not mention policy. Just output.\n\nProbably use simple formatting.\n\nLet's generate about 1000 words. Approx 7-8 paragraphs of ~130 words each.\n\nLet's aim for ~1000 words.\n\nLet's start writing.\n\nWord count estimate: Let's produce ~ 1000 words.\n\nI'll produce around 980 words.\n\nLet's draft.\n\nCount roughly: 1 paragraph ~ 120 words.\n\n8 paragraphs = 960.\n\nLet's do.\n\nProceed."
+        }
+      }
+    ],
+    "created": 1791925401,
+    "model": "../models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf",
+    "system_fingerprint": "b11429-d81235049",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 512,
+      "prompt_tokens": 79,
+      "total_tokens": 591,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-nGzmtZahPDEKgJ3t6gMJWJgzWYdVaewT",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 79,
+      "prompt_ms": 129.213,
+      "prompt_per_token_ms": 1.6356075949367088,
+      "prompt_per_second": 611.3935904282077,
+      "predicted_n": 512,
+      "predicted_ms": 7042.8,
+      "predicted_per_token_ms": 13.782387475538162,
+      "predicted_per_second": 72.55636962571705,
+      "draft_n": 2508,
+      "draft_n_accepted": 341
+    }
+  },
+  "seconds": 7.189847595058382
+}

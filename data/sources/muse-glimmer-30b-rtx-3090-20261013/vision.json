@@ -1,0 +1,64 @@
+{
+  "request": {
+    "model": "../models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "What color and shape is in the center of this image? Answer briefly."
+          },
+          {
+            "type": "image_url",
+            "image_url": {
+              "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAE70lEQVR4nO3TwQkAQQzDwPTf9F0R+zBCGlxADM59iditD0iWeoCo9QBR6wGi1gNErQeIWg8QtR4gaj1A1HqAqPUAUesBotYDRK0HiFoPELUeIGo9QNR6gKj1AFHrAaLWA0StB4haDxC1HiBqPUDUeoCo9QBR6wGi1gNErQeIWg8QtR4gaj1A1HqAqPUAUesBotYDRK0HiFoPELUeIGo9QNR6gKj1AFHrAaLWA0StB4haDxC1HiBqPUDUeoCo9QBR6wGi1gNErQeIWg8QtR4gaj1A1HqAqPUAUesBotYDRK0HiFoPEDX+A9yVZeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOX2C/AHng8AX2C5AHDl9gvwB54PAF9guQBw5fYL8AeeDwBfYLkAcOXyB50QNErQeIWg8QtR4gaj1A1HqAqPUAUesBotYDRK0HiFoPELUeIGo9QNR6gKj1AFHrAaLWA0StB4haDxC1HiBqPUDUeoCo9QBR6wGi1gNErQeIWg8QtR4gaj1A1HqAqPUAUesBotYDRK0HiFoPELUeIGo9QNR6gKj1AFHrAaLWA0StB4haDxC1HiBqPUDUeoCo9QBR6wGi1gNErQeIWg8QtR4gaj1A1HqAqPUAUesBotYDRK0HiFoPELUeIGo9QNR6gKj1AFH7AXvgpVT2dl6BAAAAAElFTkSuQmCC"
+            }
+          }
+        ]
+      }
+    ],
+    "max_tokens": 512,
+    "temperature": 0
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "A red square is in the center of the image.",
+          "reasoning_content": "What color and shape is in the center of this image? Answer briefly.\n\nThe image shows a red square in center. Color red, shape square. Possibly red square.\n\nAnswer briefly: Red square.\n\nMaybe \"red square\". Could be \"a red square\". Answer briefly.\n\nProbably: Red square.\n\nReturn."
+        }
+      }
+    ],
+    "created": 1791925380,
+    "model": "../models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf",
+    "system_fingerprint": "b11429-d81235049",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 84,
+      "prompt_tokens": 173,
+      "total_tokens": 257,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-yainKWz949u2jd0CzVaqvlUGNby0zwiy",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 173,
+      "prompt_ms": 517.255,
+      "prompt_per_token_ms": 2.9899132947976876,
+      "prompt_per_second": 334.4578592763724,
+      "predicted_n": 84,
+      "predicted_ms": 831.131,
+      "predicted_per_token_ms": 10.013626506024096,
+      "predicted_per_second": 99.86392036875053,
+      "draft_n": 270,
+      "draft_n_accepted": 65
+    }
+  },
+  "seconds": 1.3664119171444327
+}

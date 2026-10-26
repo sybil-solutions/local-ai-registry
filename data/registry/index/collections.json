@@ -2079,6 +2079,8 @@
       "unsloth-minimax-m2-7--ud-iq4-xs",
       "unsloth-minimax-m2-7-gguf--ud-q3-k-m",
       "unsloth-mistral-small-3-2-24b-instruct-2506-gguf--gguf-ud-q4-k-xl",
+      "unsloth-muse-glimmer-30b-gguf--dflash-kquant",
+      "unsloth-muse-glimmer-30b-gguf--mmproj-kquant",
       "unsloth-muse-glimmer-30b-gguf--q4-k-xl",
       "unsloth-muse-glimmer-30b-gguf--q5-k-xl",
       "unsloth-muse-glimmer-30b-gguf--q8-k-xl",
@@ -8821,7 +8823,7 @@
     "benchmark": 118,
     "hardware": 118,
     "model": 801,
-    "model_instance": 1227,
+    "model_instance": 1229,
     "price": 229,
     "recipe": 3061,
     "speed_sweep": 3217
