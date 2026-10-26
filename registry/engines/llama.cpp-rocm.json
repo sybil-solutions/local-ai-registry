@@ -1,0 +1,39 @@
+{
+  "id": "llama.cpp-rocm",
+  "engine": "llama.cpp",
+  "about": "llama.cpp server on ROCm, the ggml-org image pinned by digest; one GGUF file per recipe, OpenAI chat API with tool calls and reasoning split out",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:9e4536dfc7ec47fb9be2db36b25cca1eab45667509e3a1938356268d10d8d2cc",
+  "backend": "amd-rocm",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/${name}/${file}",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "${ctx}",
+    "--n-gpu-layers",
+    "999",
+    "--flash-attn",
+    "auto",
+    "--jinja",
+    "--reasoning-format",
+    "${think}",
+    "--parallel",
+    "${seqs}",
+    "${extra}"
+  ],
+  "shm": "8g",
+  "weights_at": "/models/${name}",
+  "defaults": {
+    "ctx": 32768,
+    "seqs": 1,
+    "file": "model.gguf",
+    "think": "deepseek",
+    "vision": false,
+    "extra": ""
+  }
+}

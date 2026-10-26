@@ -9,7 +9,8 @@
     "backend": "amd-rocm",
     "name": "AMD Radeon RX 6800 XT",
     "names": [
-      "rx6800xt"
+      "rx6800xt",
+      "rx6900xt"
     ],
     "vramGb": 16
   }

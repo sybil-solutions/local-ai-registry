@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "gemma-4-12b",
+  "weights": "google/gemma-4-12B-it-qat-q4_0-gguf@29d097773436b69ff9feafd636ab4cf873786537",
+  "engine": "llama.cpp-rocm@9e4536dfc7ec",
+  "set": {
+   "ctx": 131072,
+   "file": "gemma-4-12b-it-qat-q4_0.gguf"
+  },
+  "card": "rx-6800-xt-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "AMD Radeon RX 6900 XT"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-26",
+  "on": "owner",
+  "gpu": "AMD Radeon RX 6900 XT",
+  "launch_sha256": "f75647247fff808fa2b52b4a1a5e7dda143cce65e72af61955857c5a5e2b0439",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 47.2,
+  "prefill": 610,
+  "served": "/models/gemma-4-12B-it-qat-q4_0-gguf-29d09777/gemma-4-12b-it-qat-q4_0.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 117,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "WziVFWirfhgfH8xBe4DJ2fX1qU7QC1wY"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with overcast skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 0
+  },
+  "context": {
+   "prompt_tokens": 106258,
+   "seconds": 174.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1663,
+   "seconds_total": 37.4
+  }
+ },
+ "launch_config_sha256": null
+}
