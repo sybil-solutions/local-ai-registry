@@ -965,6 +965,10 @@
       "format": "EXL3 · SC 3.00bpw H4 V4",
       "size_gb": 12.12
     },
+    "turboderp/Qwen3.8-27B-exl3@86b95530f9d365d90dd24d01a997a8de0cdf6c55": {
+      "format": "EXL3 · SC 3.00bpw H4",
+      "size_gb": 12.55
+    },
     "Mia-AiLab/Qwen3.8-27B-EXL3-2.0bpw@b4925724092da59826c02d25a7201fb272bf4f34": {
       "format": "EXL3 · 2.0 bpw",
       "size_gb": 9.68

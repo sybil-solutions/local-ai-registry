@@ -1,0 +1,32 @@
+{
+  "id": "exllamav3-rdna4-qwen3.8-27b-exl3-sc3.0bpw-h4-dflash2-96k-rx-9070-xt-16gb",
+  "engine": "exllamav3",
+  "about": "Qwen3.8-27B EXL3 SC 3.0 bpw H4 + DFlash2 speculative decoding (3.0 bpw draft) on TabbyAPI, with RDNA4 kernels for gfx1201, as one container; from parth-thakre/exl3-rdna4-recipe",
+  "image": "ghcr.io/sybil-solutions/exl3-rdna4@sha256:e6848578634da8ed0a78de886d15b9ef857ce84b379257e4a0398c580bea8a49",
+  "backend": "amd-rocm",
+  "port": 8096,
+  "entrypoint": null,
+  "args": [],
+  "env": {},
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "turboderp/Qwen3.8-27B-exl3",
+      "revision": "86b95530f9d365d90dd24d01a997a8de0cdf6c55",
+      "at": "/models/Qwen3.8-27B-EXL3-SC3.0bpw-H4",
+      "layout": "dir"
+    },
+    {
+      "repo": "parth-thakre/Qwen3.8-27B-DFlash2-EXL3-3.0bpw",
+      "revision": "3d915b126ceecdb3ce41587ca19faa782a91fee0",
+      "at": "/models/draft/Qwen3.8-27B-DFlash2-EXL3-3.0bpw",
+      "layout": "dir"
+    }
+  ],
+  "ctx": 98304,
+  "seqs": 3,
+  "vision": true,
+  "cards": 1,
+  "setup": "One container for an RX 9070 / 9070 XT (gfx1201): upstream ExLlamaV3 dev 0f685aa with the recipe's RDNA4 patches, built by the recipe's own setup scripts on AMD's ROCm 7.2.4 image, and TabbyAPI a3fed43 unpatched; the runtime image needs no ROCm on the host, only the amdgpu driver. The draft is our 3.0 bpw EXL3 quant of inco.ai's DFlash2 draft (Apache-2.0). Serves 96K context shared by up to 3 concurrent requests, which leaves room for a desktop on the same card (tested with ~1.9 GB already in use); the vision encoder is kept in system RAM.",
+  "source": "https://github.com/parth-thakre/exl3-rdna4-recipe/tree/6ffe066e0958ba35a0f699192c159f516d31746b"
+}
