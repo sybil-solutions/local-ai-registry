@@ -1,0 +1,28 @@
+{
+  "model": "qwen3.5-9b",
+  "card": "rx-7900-xtx-24gb",
+  "engine": "llamacpp-rocm@build",
+  "weights": {
+    "repo": "bartowski/Qwen_Qwen3.5-9B-GGUF",
+    "revision": "c4829a1d5e3b09f8a124e76c9d20381a4f7b6e12",
+    "file": "Qwen_Qwen3.5-9B-Q4_K_M.gguf"
+  },
+  "set": {
+    "ctx": 131072
+  },
+  "proof": {
+    "run": "20261029-rx-7900-xtx-24gb-qwen3.5-9b-llamacpp-128k",
+    "at": "2026-10-29T14:42:18Z",
+    "gpu": "AMD Radeon RX 7900 XTX",
+    "vram_mb": 24560,
+    "tps": 64.8,
+    "gates": {
+      "load": true,
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "context": true,
+      "speed": true
+    }
+  }
+}
