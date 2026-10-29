@@ -743,6 +743,17 @@
       "good_for": "Local agents, chat, reasoning, tool calls and images on one 32 GB GPU",
       "logo": "hf",
       "hf": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF"
+    },
+    "swift-1.5-qwen3.8-flash-next": {
+      "family": "qwen",
+      "name": "Swift 1.5 Qwen3.8 Flash-Next",
+      "released": "2026-09-22",
+      "reasoning": true,
+      "vision": false,
+      "about": "UkisAI Swift fine-tune of Qwen3.8-Flash-Next, served here as IQ2_XS with the official Strata runtime. This launch is text-only.",
+      "good_for": "Long-context local chat, reasoning and tool use with host-RAM expert offload",
+      "logo": "qwen",
+      "hf": "ukisai/Swift-Qwen3.8-Flash-Next"
     }
   },
   "builds": {
@@ -1188,6 +1199,10 @@
     "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170": {
       "format": "safetensors · FP8 / MXFP4 experts",
       "size_gb": 510.311
+    },
+    "ukisai/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-GGUF@99bb8f7f95c7aa7b24a36a7786a4f657b30f5d3d": {
+      "format": "GGUF · IQ2_XS, Q2_0 MTP",
+      "size_gb": 68.152167168
     }
   }
 }

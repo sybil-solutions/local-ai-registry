@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "swift-1.5-qwen3.8-flash-next",
+  "weights": "ukisai/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-GGUF@99bb8f7f95c7aa7b24a36a7786a4f657b30f5d3d",
+  "engine": "strata-swift-1.5-flash-next-iq2-xs-128k-rtx2080-stock-0152@fb878d5c0f17",
+  "set": {},
+  "card": "rtx-2080-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 2080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-29",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 2080",
+  "launch_sha256": "835b994291772a7b9e37afcb56efb96b5be202079536da3218e7f13785829812",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 40.4,
+  "prefill": 322,
+  "served": "swift-1.5-qwen3.8-flash-next-iq2_xs"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 112,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_3efe9472cfad47d1bcecb76f",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with **overcast** skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 62
+  },
+  "context": {
+   "prompt_tokens": 106294,
+   "seconds": 329.8,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 4537,
+   "seconds_total": 136.9
+  }
+ },
+ "launch_config_sha256": "748e38769f6a10112d45468cf22e7316ba657d0d7ec72a6079715c4a2d9779cc"
+}

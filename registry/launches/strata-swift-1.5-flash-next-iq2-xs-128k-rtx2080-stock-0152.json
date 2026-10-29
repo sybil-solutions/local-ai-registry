@@ -1,0 +1,48 @@
+{
+  "id": "strata-swift-1.5-flash-next-iq2-xs-128k-rtx2080-stock-0152",
+  "kind": "host",
+  "engine": "strata",
+  "about": "Official unmodified Strata 0.1.52 CUDA 13 release engine and 0.2.7 Python server, one headless RTX 2080 8 GB at 165 W. Swift 1.5 Flash-Next IQ2_XS, host-RAM experts, NVMe PLE mmap, 128K int8 KV / 32K GPU-resident. MTP four drafts; conversation parking disabled. No custom source patches; STRATA_ROUTE_PRIOR=0 disables the upstream small-card routing bias. STRATA_ROUTE_TAIL_SKIP=0 retains all routed expert picks.",
+  "command": [
+    ".venv/bin/python",
+    "serve/server.py",
+    "--engine",
+    "strata",
+    "--config",
+    "registry-rtx2080.json",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "Clone https://github.com/Niko1221/Strata at 5e8a4cca7d690ac60ca37eb09e7d0e010099ad6d and follow lab/runs/rtx2080-strata-stock-0152-setup.sh. Official v0.2.7 engine archive SHA256 4177c1a8ffc59bf66074093b22ac55ed477bcbe84f8bd12e378b0f1236da55c7, executable SHA256 9d415609c6abf40352345e20c75fc2205db0bc7acb804a75d12ab4ac10ee16ad. No source patches.",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "ukisai/Swift-1.5-Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "revision": "99bb8f7f95c7aa7b24a36a7786a4f657b30f5d3d",
+      "at": "data/models/Swift-IQ2_XS",
+      "layout": "dir",
+      "files": [
+        "Swift-Qwen3.8-Flash-Next-GSQ-RCO-IQ2_XS-00001-of-00002.gguf",
+        "Swift-Qwen3.8-Flash-Next-GSQ-RCO-IQ2_XS-00002-of-00002.gguf"
+      ]
+    }
+  ],
+  "config": {
+    "at": "registry-rtx2080.json",
+    "text": "{\n  \"exe\": \"engine/strata\",\n  \"args\": [\n    \"--pack\",\n    \"data/packs/swift-iq2_xs\",\n    \"--native\",\n    \"data/models/Swift-IQ2_XS/Swift-Qwen3.8-Flash-Next-GSQ-RCO-IQ2_XS-00001-of-00002.gguf\",\n    \"--ple-gguf\",\n    \"data/models/Swift-IQ2_XS/Swift-Qwen3.8-Flash-Next-GSQ-RCO-IQ2_XS-00001-of-00002.gguf\",\n    \"--ple-io\",\n    \"mmap\",\n    \"--expert-cache\",\n    \"auto\",\n    \"--spec\",\n    \"4\",\n    \"--spec-min-p\",\n    \"0.70\",\n    \"--kv\",\n    \"int8\",\n    \"--prefill\",\n    \"512\",\n    \"--mtp\",\n    \"data/mtp/rt\",\n    \"--max-context\",\n    \"131072\",\n    \"--kv-resident\",\n    \"32768\",\n    \"--pcie-frac\",\n    \"0.35\",\n    \"--adapt-every\",\n    \"1\",\n    \"--adapt-swaps\",\n    \"80\",\n    \"--adapt-decay\",\n    \"0.97\",\n    \"--conversation-cache-mib\",\n    \"0\",\n    \"--conversation-cache-slots\",\n    \"0\",\n    \"--expert-profile\",\n    \"data/expert-profile.bin\"\n  ],\n  \"cwd\": \".\",\n  \"tokenizer\": \"data/packs/swift-iq2_xs/tokenizer\",\n  \"model_name\": \"swift-1.5-qwen3.8-flash-next-iq2_xs\",\n  \"log\": \"registry-rtx2080.engine.log\",\n  \"host\": \"127.0.0.1\",\n  \"port\": 8080,\n  \"fit_max_tokens\": true,\n  \"env\": {\n    \"STRATA_KV_PREFETCH\": \"1\",\n    \"STRATA_SM75_PERF\": \"1\",\n    \"STRATA_PF_FUSED\": \"1\",\n    \"STRATA_PF_FUSED_SM75\": \"1\",\n    \"STRATA_ROUTE_TAIL_SKIP\": \"0\",\n    \"STRATA_ROUTE_PRIOR\": \"0\"\n  }\n}\n"
+  },
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "source": "https://github.com/Niko1221/Strata/releases/tag/v0.2.7",
+  "needs": {
+    "host_ram_gb": 48,
+    "disk_gb": 90,
+    "fast_storage": "nvme"
+  },
+  "setup": "After cloning the pinned source: create .venv and install its pinned requirements.txt. Extract the official strata-engine-0.1.52-linux-x86_64-cuda-cuda13.tar.gz to engine/; verify archive SHA256 4177c1a8ffc59bf66074093b22ac55ed477bcbe84f8bd12e378b0f1236da55c7 and engine SHA256 9d415609c6abf40352345e20c75fc2205db0bc7acb804a75d12ab4ac10ee16ad. Use gguf-py from llama.cpp commit 3cf03257f219afbe7334045ff7c6a06ac68c627d with the unmodified tools/iq_pack.py to prepare data/packs/swift-iq2_xs. tools/mtp_fetch.py fetch --out data/mtp fetches only pinned original Qwen MTP tensor ranges (revision de4b8e4d43b917e7706784d8bb445c9af86a3540); verify, then tools/mtp_pack.py --src data/mtp --experts q2_0 --out data/mtp/mtp-q2_0.gguf and tools/mtp_rt.py --gguf data/mtp/mtp-q2_0.gguf --out data/mtp/rt. Source and official binary stay unmodified. See accompanying lab run reproduction note for exact commands. host_ram_gb is a conservative 48 GB available-RAM budget; the accompanying memory trace measures the MemAvailable decline from before startup through all gates. It includes headroom beyond that measured decline. The weights and PLE table must reside on local NVMe; tested host has 64 GB installed RAM and six physical i5-9600K cores."
+}
