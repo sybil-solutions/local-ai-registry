@@ -254,7 +254,7 @@ def check_companion(c):
 
 
 def call(endpoint, path, body=None, timeout=3600):  # a 128k prompt on a small card takes a while; never cut an answer short
-    headers = {"Content-Type": "application/json"}
+    headers = {"Content-Type": "application/json", "User-Agent": "local-ai-lab/1"}  # RunPod's proxy refuses the urllib default
     if os.environ.get("LAB_API_KEY"):  # an owner's server behind a keyed gateway
         headers["Authorization"] = f"Bearer {os.environ['LAB_API_KEY']}"
     req = urllib.request.Request(endpoint + path, data=json.dumps(body).encode() if body else None, headers=headers)
@@ -295,7 +295,7 @@ def chat(endpoint, model, messages, **kw):
 def stream_rate(endpoint, model, prompt, window=30.0):
     """Tokens per second over the first `window` seconds after the first token, from a streamed answer."""
     body = {"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0.8, "stream": True}
-    headers = {"Content-Type": "application/json"}
+    headers = {"Content-Type": "application/json", "User-Agent": "local-ai-lab/1"}
     if os.environ.get("LAB_API_KEY"):
         headers["Authorization"] = f"Bearer {os.environ['LAB_API_KEY']}"
     req = urllib.request.Request(endpoint + "/v1/chat/completions", data=json.dumps(body).encode(), headers=headers)
@@ -472,8 +472,8 @@ def rented(recipe, launch, args):
                 if ep and vr.http_probe(f"{ep}/v1/models") == "ok":
                     break
                 started, note = provider.poll(handle)
-                if not started and time.monotonic() - t0 > 900:
-                    exclude.update({handle.get("offer"), handle.get("machine")})
+                if not started and time.monotonic() - t0 > getattr(provider, "start_grace", 900):
+                    exclude.update({handle.get("offer"), handle.get("machine"), handle.get("cloud")})
                     raise vr.StartStalled(note)
                 if time.monotonic() - t0 > getattr(args, "ready_timeout", 5400):  # pull, download and load: about an hour for 70 GB at 300 Mbps
                     raise SystemExit(f"not ready within {getattr(args, 'ready_timeout', 5400)}s")

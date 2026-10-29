@@ -10,7 +10,7 @@ A recipe is only as good as the run behind it. There are three ways a recipe get
 
 ## Where the cards are
 
-Vast has most consumer and pro NVIDIA cards, some only on unverified hosts (`--any-host`; the gates are the same). RunPod adds the RTX PRO 4000/4500/6000 and the MI300X, and needs Docker Hub images (vLLM, SGLang). Neither has AMD Radeon, Intel Arc, laptops, the RTX 2000 Ada or the DGX Spark: those take `--on endpoint` from an owner, or a `proxy` from a sibling card (`lab.py proxy`).
+Vast has most consumer and pro NVIDIA cards, some only on unverified hosts (`--any-host`; the gates are the same). RunPod adds the RTX PRO 4000/4500/6000 and the MI300X; a pod that never starts on one RunPod cloud is retried on the other. Neither has AMD Radeon, Intel Arc, laptops, the RTX 2000 Ada or the DGX Spark: those take `--on endpoint` from an owner, or a `proxy` from a sibling card (`lab.py proxy`).
 
 ## 1. The lab rents the card (tested)
 
