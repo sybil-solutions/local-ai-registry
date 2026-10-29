@@ -743,6 +743,17 @@
       "good_for": "Local agents, chat, reasoning, tool calls and images on one 32 GB GPU",
       "logo": "hf",
       "hf": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF"
+    },
+    "nemotron-3.5-bolt-e4b": {
+      "family": "nemotron",
+      "name": "NVIDIA Nemotron 3.5 Bolt E4B",
+      "released": "2026-10-23",
+      "reasoning": true,
+      "vision": false,
+      "about": "NVIDIA post-training of Gemma 4 E4B. This recipe serves text with Unsloth UD-Q4_K_XL weights and a Q8_0 DFlash drafter.",
+      "good_for": "Fast local chat, reasoning and tool-using agents on an 8 GB GPU",
+      "logo": "hf",
+      "hf": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-BF16"
     }
   },
   "builds": {
@@ -1188,6 +1199,10 @@
     "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170": {
       "format": "safetensors · FP8 / MXFP4 experts",
       "size_gb": 510.311
+    },
+    "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF@b738967d6da3441a7d1c71fcec15e49e32e16ecd": {
+      "format": "GGUF · UD-Q4_K_XL + Q8_0 DFlash",
+      "size_gb": 5.459374496
     }
   }
 }

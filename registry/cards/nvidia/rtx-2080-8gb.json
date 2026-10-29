@@ -1,0 +1,17 @@
+{
+  "id": "rtx-2080-8gb",
+  "name": "GeForce RTX 2080",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 8,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "nvidia",
+    "name": "GeForce RTX 2080",
+    "names": [
+      "rtx2080"
+    ],
+    "vramGb": 8
+  },
+  "notes": "Owner-tested stock 8192 MiB TU104 (SM75); headless GPU, desktop on Intel iGPU. Bandwidth was not measured in this submission."
+}

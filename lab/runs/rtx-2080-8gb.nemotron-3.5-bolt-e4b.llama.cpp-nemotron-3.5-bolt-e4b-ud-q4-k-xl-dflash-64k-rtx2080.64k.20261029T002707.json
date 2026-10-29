@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "nemotron-3.5-bolt-e4b",
+  "weights": "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF@b738967d6da3441a7d1c71fcec15e49e32e16ecd",
+  "engine": "llama.cpp-nemotron-3.5-bolt-e4b-ud-q4-k-xl-dflash-64k-rtx2080@490d8cd80002",
+  "set": {},
+  "card": "rtx-2080-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 2080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-29",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 2080",
+  "launch_sha256": "33cfb0801195fedae9071eb617168372b52f118a1d5681cc8432f8960fbe0b43",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 84.6,
+  "prefill": 1741,
+  "served": "nemotron-3.5-bolt-e4b"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 191,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "33sjbm4gDHACaVBsF9450ytaPQpM1Mnf"
+    }
+   ],
+   "reply": "The weather in Paris right now is 17°C and it is overcast.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 365
+  },
+  "context": {
+   "prompt_tokens": 52592,
+   "seconds": 30.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 913,
+   "seconds_total": 11.0
+  }
+ },
+ "launch_config_sha256": "c6bc28779705e25fb1f2de04f3e74b7e4efcc56a1b138a87b5bed5388b90642f"
+}
