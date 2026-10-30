@@ -743,6 +743,17 @@
       "good_for": "Local agents, chat, reasoning, tool calls and images on one 32 GB GPU",
       "logo": "hf",
       "hf": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF"
+    },
+    "lfm2.5-24b-a2b": {
+      "family": "lfm",
+      "name": "LFM2.5-24B-A2B",
+      "released": "2026-10-12",
+      "reasoning": true,
+      "vision": false,
+      "about": "Liquid AI's 24B hybrid mixture-of-experts (about 2B active; 30 short-convolution and 10 attention layers, 64 experts). It reasons before it answers and calls tools.",
+      "good_for": "Fast chat and tool calls at 128K",
+      "logo": "hf",
+      "hf": "LiquidAI/LFM2.5-24B-A2B"
     }
   },
   "builds": {
@@ -1188,6 +1199,10 @@
     "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170": {
       "format": "safetensors · FP8 / MXFP4 experts",
       "size_gb": 510.311
+    },
+    "LiquidAI/LFM2.5-24B-A2B-FP8@f54bf39547fd5b7955abb9fe8d1b151e31fbbddb": {
+      "format": "compressed-tensors · FP8 block",
+      "size_gb": 24.75
     }
   }
 }
