@@ -2,11 +2,11 @@
   "id": "strata-usb-qwen3.8-flash-next-exl3-3.05bpw-200k-rtx-3090-24gb",
   "kind": "host",
   "engine": "strata-usb",
-  "about": "Qwen3.8-Flash-Next (turboderp EXL3 3.05 bpw: all 512 routed experts of all 48 layers, exact, nothing pruned) on one RTX 3090 24 GB in a USB dock (ASM2464, USB 3.2 10 Gb/s, PCIe Gen3 x2) attached to a Mac mini M4 (16 GiB), config AM of the recipe repo: Strata v0.1.41 (github.com/Niko1221/Strata) plus its patches 0001-0030, running on macOS through the tgcu CUDA-runtime shim on tinygrad's NV backend. The 3090 holds the attention, the dense part and the hottest experts; the mini computes every other expert on its Metal GPU from a 6,400-slot RAM LRU backed by NVMe. Elastic k8v4 KV up to 204,800 tokens, image input (mmproj on the mini's GPU), MTP speculative decoding (4 drafts), an idle-only SSD-parked conversation cache (8 GiB bound), OpenAI and Anthropic APIs, one request at a time.",
+  "about": "Qwen3.8-Flash-Next (turboderp EXL3 3.05 bpw: all 512 routed experts of all 48 layers, exact, nothing pruned) on one RTX 3090 24 GB in a USB dock (ASM2464, USB 3.2 10 Gb/s, PCIe Gen3 x2) attached to a Mac mini M4 (16 GiB), config L of the recipe repo: Strata v0.1.41 (github.com/Niko1221/Strata) plus its patches 0001-0032, running on macOS through the tgcu CUDA-runtime shim on tinygrad's NV backend. The 3090 holds the attention, the dense part and the hottest experts; the mini computes every other expert on its Metal GPU from a 6,400-slot RAM LRU backed by NVMe. Elastic k8v4 KV up to 204,800 tokens, image input (mmproj on the mini's GPU), MTP speculative decoding (4 drafts), an idle-only SSD-parked conversation cache (8 GiB bound), OpenAI and Anthropic APIs, one request at a time.",
   "command": [
     "./run.sh"
   ],
-  "install": "https://github.com/sybil-solutions/qwen38-flash-next-3090-usb-offload/tree/c20b4a4527e77357f4aa7294877568a2d7e315c3",
+  "install": "https://github.com/sybil-solutions/qwen38-flash-next-3090-usb-offload/tree/d20645f9429bafdba5b824b21c58faaa098aa761",
   "env": {},
   "port": 8080,
   "weights": [],
@@ -14,7 +14,7 @@
   "seqs": 1,
   "vision": true,
   "backend": "nvidia",
-  "source": "https://github.com/sybil-solutions/qwen38-flash-next-3090-usb-offload/tree/c20b4a4527e77357f4aa7294877568a2d7e315c3",
+  "source": "https://github.com/sybil-solutions/qwen38-flash-next-3090-usb-offload/tree/d20645f9429bafdba5b824b21c58faaa098aa761",
   "needs": {
     "host_ram_gb": 14.0,
     "disk_gb": 148.8,
