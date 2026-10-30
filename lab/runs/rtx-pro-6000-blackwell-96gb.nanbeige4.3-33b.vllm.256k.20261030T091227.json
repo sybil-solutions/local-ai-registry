@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "nanbeige4.3-33b",
+  "weights": "primitive-ai/Nanbeige4.3-33B-NVFP4@5ddf8788ed1fa4bec0c0b6fc74ddb0bef7dc4212",
+  "engine": "vllm@8a69ffad015f",
+  "set": {
+   "ctx": 262144,
+   "kv": "fp8"
+  },
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell WS (450 W cap)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-30",
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell WS (450 W cap)",
+  "launch_sha256": "65b545a3764442e9a6c7c5106f1e9851b78b8d55619fce3084beacbe49ba03b4",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 71.1,
+  "prefill": 1505,
+  "served": "Nanbeige4.3-33B-NVFP4-5ddf8788"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 131,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-ac045c4ecc2b5437",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nThe current weather in Paris is:\n\n- **Temperature:** 17°C\n- **Sky:** Overcast\n\nIt's a mild but cloudy day in Paris right now. Let me know if you'd like the weather for any other city!",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 134
+  },
+  "context": {
+   "prompt_tokens": 213592,
+   "seconds": 141.9,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 6816,
+   "seconds_total": 96.9
+  }
+ },
+ "launch_config_sha256": null
+}

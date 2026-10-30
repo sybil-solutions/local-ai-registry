@@ -16,7 +16,8 @@
     "mistral",
     "inkling",
     "ornith",
-    "lfm"
+    "lfm",
+    "nanbeige"
   ],
   "max_age_days": 240,
   "models": {
@@ -743,6 +744,17 @@
       "good_for": "Local agents, chat, reasoning, tool calls and images on one 32 GB GPU",
       "logo": "hf",
       "hf": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF"
+    },
+    "nanbeige4.3-33b": {
+      "family": "nanbeige",
+      "name": "Nanbeige4.3-33B",
+      "released": "2026-10-24",
+      "reasoning": true,
+      "vision": false,
+      "about": "Nanbeige's 33B dense reasoning model (Llama architecture, 52 layers, 512K positions). It thinks at length before it answers and calls tools.",
+      "good_for": "Reasoning and tool calls at 256K",
+      "logo": "hf",
+      "hf": "Nanbeige/Nanbeige4.3-33B"
     }
   },
   "builds": {
@@ -1188,6 +1200,10 @@
     "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170": {
       "format": "safetensors · FP8 / MXFP4 experts",
       "size_gb": 510.311
+    },
+    "primitive-ai/Nanbeige4.3-33B-NVFP4@5ddf8788ed1fa4bec0c0b6fc74ddb0bef7dc4212": {
+      "format": "compressed-tensors · NVFP4",
+      "size_gb": 22.07
     }
   }
 }
