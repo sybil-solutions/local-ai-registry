@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "turboderp/Qwen3.8-Flash-Next-exl3@69e33439ae950f17bcbe95c98f117d80f759ab6d",
+  "engine": "strata-usb-qwen3.8-flash-next-exl3-3.05bpw-200k-rtx-3090-24gb@6bfeb28b32d2",
+  "set": {},
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 3090 (USB dock, Mac mini M4 host)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-18",
+  "on": "owner",
+  "gpu": "RTX 3090 (USB dock, Mac mini M4 host)",
+  "launch_sha256": "254e73eb2f7a7607f4a3a10209ca452cccd118143984fbd2cef1947f6188f967",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 22.2,
+  "prefill": 490,
+  "served": "qwen3.8-flash-next-exl3-3.05bpw-full512-final-g4-lru-ht-strata-exl3-full512-final-g4-lru-ht-prefix-p600-d4-d14-kvg2-d15-cenA-d15-cenB-d15-cenC-d15-cfgC-e19hoist-f22usb"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 146,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_32fa53529c6e40ac93757cbb",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is currently **17°C** with **overcast** skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 86
+  },
+  "context": {
+   "prompt_tokens": 166667,
+   "seconds": 339.9,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 6042,
+   "seconds_total": 287.8
+  }
+ },
+ "launch_config_sha256": null
+}
