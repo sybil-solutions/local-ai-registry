@@ -1,0 +1,917 @@
+{
+ "updated": "2026-10-31T15:46:54Z",
+ "bounty": {
+  "month": "2026-10",
+  "cap": 1000,
+  "owed": 200,
+  "accepted": 4,
+  "open": 4,
+  "openValue": 200,
+  "claims": 32,
+  "prsOpen": 8,
+  "months": {
+   "2026-10": {
+    "accepted": 4,
+    "owed": 200
+   }
+  },
+  "list": [
+   {
+    "issue": 216,
+    "device": "Intel Arc B580 12 GB",
+    "amount": 50,
+    "state": "open",
+    "claims": [
+     {
+      "by": "abdallah038",
+      "at": "2026-10-13T16:54:01Z"
+     },
+     {
+      "by": "Hung2124",
+      "at": "2026-10-13T17:02:47Z"
+     },
+     {
+      "by": "Johanxd43",
+      "at": "2026-10-15T21:59:08Z"
+     },
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-16T06:17:51Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 283,
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:00:10Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": null,
+    "pr": null,
+    "month": null
+   },
+   {
+    "issue": 217,
+    "device": "RTX 2080 Ti 11 GB",
+    "amount": 50,
+    "state": "open",
+    "claims": [
+     {
+      "by": "lizulin848-gif",
+      "at": "2026-10-13T04:01:27Z"
+     },
+     {
+      "by": "maebahesioru",
+      "at": "2026-10-13T08:13:17Z"
+     },
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-16T06:22:15Z"
+     },
+     {
+      "by": "ArtyormSatori",
+      "at": "2026-10-16T08:33:56Z"
+     },
+     {
+      "by": "dalisoft",
+      "at": "2026-10-16T08:44:19Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 243,
+      "by": "Angelel02",
+      "at": "2026-10-13T08:22:44Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 245,
+      "by": "maebahesioru",
+      "at": "2026-10-13T09:02:50Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 248,
+      "by": "lizulin848-gif",
+      "at": "2026-10-13T12:41:37Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 364,
+      "by": "mjneuroart",
+      "at": "2026-10-25T14:03:28Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "passing"
+     }
+    ],
+    "paidTo": null,
+    "pr": null,
+    "month": null
+   },
+   {
+    "issue": 218,
+    "device": "GTX 1080 Ti 11 GB",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "pythonyx135793",
+      "at": "2026-10-12T13:51:56Z"
+     },
+     {
+      "by": "Hung2124",
+      "at": "2026-10-13T17:02:49Z"
+     },
+     {
+      "by": "celestial-fix",
+      "at": "2026-10-14T01:48:04Z"
+     },
+     {
+      "by": "maebahesioru",
+      "at": "2026-10-15T07:27:57Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 226,
+      "by": "yakejkl",
+      "at": "2026-10-12T13:59:34Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 244,
+      "by": "Angelel02",
+      "at": "2026-10-13T08:23:05Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 255,
+      "by": "celestial-fix",
+      "at": "2026-10-14T02:00:53Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 275,
+      "by": "maebahesioru",
+      "at": "2026-10-15T08:53:12Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 276,
+      "by": "pythonyx135793",
+      "at": "2026-10-15T11:02:05Z",
+      "state": "merged",
+      "mergedAt": "2026-10-17T05:46:53Z",
+      "checks": "passing"
+     },
+     {
+      "pr": 302,
+      "by": "LuciferMornigstar7",
+      "at": "2026-10-16T22:17:01Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": "pythonyx135793",
+    "pr": 276,
+    "month": "2026-10"
+   },
+   {
+    "issue": 219,
+    "device": "RX 7900 XTX 24 GB",
+    "amount": 50,
+    "state": "open",
+    "claims": [
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-13T06:01:40Z"
+     },
+     {
+      "by": "Hung2124",
+      "at": "2026-10-13T17:02:45Z"
+     },
+     {
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:13:18Z"
+     },
+     {
+      "by": "kamm3r",
+      "at": "2026-10-20T06:02:25Z"
+     },
+     {
+      "by": "calproencrip",
+      "at": "2026-10-23T13:34:30Z"
+     },
+     {
+      "by": "MrGeorgeOwl",
+      "at": "2026-10-28T19:50:38Z"
+     },
+     {
+      "by": "nghoang1288",
+      "at": "2026-10-29T15:37:11Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 284,
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:13:33Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 329,
+      "by": "kamm3r",
+      "at": "2026-10-20T06:02:37Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 375,
+      "by": "nghoang1288",
+      "at": "2026-10-29T15:12:54Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 381,
+      "by": "Dungsky",
+      "at": "2026-10-31T13:46:36Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": null,
+    "pr": null,
+    "month": null
+   },
+   {
+    "issue": 220,
+    "device": "a 27B model on a 16 GB AMD card",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "Vmarcelo49",
+      "at": "2026-10-12T16:15:16Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 232,
+      "by": "Vmarcelo49",
+      "at": "2026-10-12T16:31:58Z",
+      "state": "merged",
+      "mergedAt": "2026-10-16T18:18:25Z",
+      "checks": "passing"
+     }
+    ],
+    "paidTo": "Vmarcelo49",
+    "pr": 232,
+    "month": "2026-10"
+   },
+   {
+    "issue": 221,
+    "device": "RTX 4060 Ti 16 GB",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-13T06:02:51Z"
+     },
+     {
+      "by": "hirschga",
+      "at": "2026-10-14T11:01:07Z"
+     },
+     {
+      "by": "Yuvi1192p",
+      "at": "2026-10-14T12:16:22Z"
+     },
+     {
+      "by": "dalisoft",
+      "at": "2026-10-16T08:44:44Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 242,
+      "by": "mjneuroart",
+      "at": "2026-10-13T08:21:08Z",
+      "state": "merged",
+      "mergedAt": "2026-10-16T13:35:38Z",
+      "checks": "passing"
+     },
+     {
+      "pr": 246,
+      "by": "tim777z",
+      "at": "2026-10-13T10:02:20Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "failing"
+     },
+     {
+      "pr": 259,
+      "by": "Yuvi1192p",
+      "at": "2026-10-14T12:16:53Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "failing"
+     },
+     {
+      "pr": 278,
+      "by": "Johanxd43",
+      "at": "2026-10-15T14:20:09Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 310,
+      "by": "dalisoft",
+      "at": "2026-10-17T13:43:24Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": "mjneuroart",
+    "pr": 242,
+    "month": "2026-10"
+   },
+   {
+    "issue": 222,
+    "device": "RTX 5060 Ti 16 GB",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "bookkuybig",
+      "at": "2026-10-12T13:08:43Z"
+     },
+     {
+      "by": "adelmhmdhassan",
+      "at": "2026-10-12T19:36:45Z"
+     },
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-15T06:56:05Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 241,
+      "by": "bookkuybig",
+      "at": "2026-10-13T07:53:55Z",
+      "state": "merged",
+      "mergedAt": "2026-10-16T18:31:18Z",
+      "checks": "passing"
+     },
+     {
+      "pr": 272,
+      "by": "baoltg8888",
+      "at": "2026-10-15T07:06:01Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 274,
+      "by": "baoltg8888",
+      "at": "2026-10-15T08:08:56Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": "bookkuybig",
+    "pr": 241,
+    "month": "2026-10"
+   },
+   {
+    "issue": 223,
+    "device": "Ryzen AI 890M (Radeon 890M iGPU)",
+    "amount": 50,
+    "state": "open",
+    "claims": [
+     {
+      "by": "satyamshrivastav955-dotcom",
+      "at": "2026-10-13T12:09:38Z"
+     },
+     {
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:13:35Z"
+     },
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-16T06:17:59Z"
+     },
+     {
+      "by": "1132dadf",
+      "at": "2026-10-18T07:35:40Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 285,
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:13:49Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 294,
+      "by": "satyamshrivastav955-dotcom",
+      "at": "2026-10-16T18:31:43Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     }
+    ],
+    "paidTo": null,
+    "pr": null,
+    "month": null
+   }
+  ]
+ },
+ "plugin": {
+  "prs": 5,
+  "drafts": 1,
+  "passing": 2,
+  "failing": 0,
+  "issues": 1,
+  "list": [
+   {
+    "n": 184,
+    "title": "A llama.cpp model on an AMD card with Resizable BAR off keeps its buffers in card memory",
+    "by": "rndaom",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 183,
+    "title": "The panel reads Omarchy's colours again on Qt 6.12",
+    "by": "rndaom",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 181,
+    "title": "Your own recipes outlast updates: recipes.local.json, and sysNice",
+    "by": "diverseau",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 176,
+    "title": "Local AI 8 UI: connect, hardware tree, model, main, settings (draft, not for release)",
+    "by": "0xSero",
+    "draft": true,
+    "checks": "failing"
+   },
+   {
+    "n": 172,
+    "title": "Add WorkBuddy as an agent",
+    "by": "Cheurteenyt",
+    "draft": false,
+    "checks": "passing"
+   }
+  ],
+  "devAhead": 7,
+  "version": "6.24.0"
+ },
+ "registry": {
+  "prs": 53,
+  "drafts": 1,
+  "passing": 19,
+  "failing": 3,
+  "issues": 13,
+  "list": [
+   {
+    "n": 381,
+    "title": "fix: resolve #219 - Bounty $50: recipe for RX 7900 XTX 24 GB",
+    "by": "Dungsky",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 380,
+    "title": "recipe: Nemotron 3.5 Lightning 30B-A3B NVFP4 on RTX PRO 6000 Blackwell, vLLM v0.30.0 (128K",
+    "by": "nateemerson",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 379,
+    "title": "recipe: Nanbeige4.3-33B NVFP4 on RTX PRO 6000 Blackwell, vLLM v0.30.0 (256K)",
+    "by": "nateemerson",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 378,
+    "title": "recipe: Granite 4.2 30B NVFP4 on RTX PRO 6000 Blackwell, vLLM v0.30.0 (128K)",
+    "by": "nateemerson",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 377,
+    "title": "recipe: LFM2.5-24B-A2B FP8 on RTX PRO 6000 Blackwell, vLLM v0.30.0 (128K)",
+    "by": "nateemerson",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 376,
+    "title": "recipe: Qwen3.8-Flash-Next 3.05 bpw on RTX PRO 6000 Blackwell, SGLang EXL3 offload multiar",
+    "by": "nateemerson",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 375,
+    "title": "fix: add validated 128K Qwen3.5-9B llama.cpp ROCm recipe for RX 7900 XTX 24 GB (Fixes #219",
+    "by": "nghoang1288",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 374,
+    "title": "recipe: Nanbeige4.3-33B on the RTX 5090 at 128K (TabbyAPI EXL3 4.0 bpw, 67.7 tok/s)",
+    "by": "Honkware",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 373,
+    "title": "lab: provision RunPod pods, read their uptime from GraphQL, retry a stalled cloud on the o",
+    "by": "Honkware",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 372,
+    "title": "recipe: Swift Flash-Next on RTX 2080 with stock Strata",
+    "by": "riccardogiorato",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 371,
+    "title": "recipes: Bonsai 2 9B and Bolt E4B on RTX 2080 8 GB",
+    "by": "riccardogiorato",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 367,
+    "title": "recipe: DeepSeek-V4.1-Flash-1017 on 4x RTX PRO 6000, vLLM-Moet r21 + engram_disk (TP4, 512",
+    "by": "0xSero",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 366,
+    "title": "rx-6800-xt: Gemma 4 12B at 128K on llama.cpp ROCm, RX 6900 XT alias, llama.cpp-rocm profil",
+    "by": "stewartjarod",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 365,
+    "title": "recipe: Qwen3.8-Flash-Next Q2_0 on one RTX 3090 at 256K (Strata 0.1.40.3, host launch)",
+    "by": "mrq1911",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 364,
+    "title": "recipe: qwen3.5-9b on the rtx-2080-ti-11gb at 128K (llama.cpp b10481, lab.py try)",
+    "by": "mjneuroart",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 363,
+    "title": "recipe: LFM2.5-2.6B MLX 32K on Apple M1 8 GB",
+    "by": "baney75",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 362,
+    "title": "recipe: Qwen3.5-9B EXL3 128K on RTX 4080 Laptop",
+    "by": "baney75",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 361,
+    "title": "sdk: add pinned host runtimes for reproducible local launches",
+    "by": "baney75",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 360,
+    "title": "card: RX 7800 XT 16GB, Swift-1.5-Qwen3.8-27B IQ3_S + MTP Vulkan recipe at 128K, 46.1 tok/s",
+    "by": "rndaom",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 359,
+    "title": "CPU fallback proposal: LFM2.5 8K on i5-10210U (4 threads)",
+    "by": "baney75",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 357,
+    "title": "GTX 1650 SUPER 4 GB: verified LFM2.5 INT4 on vLLM at 8K",
+    "by": "baney75",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 355,
+    "title": "recipe: Qwen3.6-35B-A3B heretic on the RX 6700 XT at 128K (llama.cpp ROCm, experts in RAM)",
+    "by": "hermeticvm",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 354,
+    "title": "fix(lab): verify endpoint served model matches requested weights in try --on endpoint (#33",
+    "by": "agent-102",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 353,
+    "title": "fix(lab): bind launch_sha256 and enforce MIN_TPS in lab.py check (#334)",
+    "by": "agent-102",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 352,
+    "title": "sdk: retry a failed catalog fetch and cache per URL in JS",
+    "by": "danyurkin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 350,
+    "title": "feat(registry): add B70 GLM-5.3-Flash, 4x RTX PRO 6000 DeepSeek-V4.1-Flash, and qwen-serve",
+    "by": "ryder777777",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 347,
+    "title": "fix(lab): default vLLM on unified-memory NVIDIA cards to --safetensors-load-strategy eager",
+    "by": "ryder777777",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 346,
+    "title": "recipe: Qwen3.8-27B on the RX 7900 XTX at 256K (EXL3, ROCm, vision)",
+    "by": "kamm3r",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 345,
+    "title": "lab: plant context gate code in first fifth of prompt and record counted mode (#333)",
+    "by": "ryder777777",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 344,
+    "title": "lab: verify endpoint /v1/models served id matches launch weights in gates() (#331)",
+    "by": "ryder777777",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 343,
+    "title": "lab: bind proof launch_sha256, log hash, and MIN_TPS in cmd_check (#334)",
+    "by": "ryder777777",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 342,
+    "title": "lab: omit unsupported sampling parameters for diffusion models in gates and export (#271)",
+    "by": "ryder777777",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 341,
+    "title": "lab: pin explicit encoding=\"utf-8\" across all read_text/write_text calls (#315)",
+    "by": "ryder777777",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 340,
+    "title": "lab: the six checks, the check and the run record say what really happened",
+    "by": "Cheurteenyt",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 330,
+    "title": "card + recipe: RTX 3070 Ti Laptop GPU (8 GB) \u2014 Qwen3.5-9B EXL3 64k tabbyapi",
+    "by": "Wardad52",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 329,
+    "title": "recipe: Qwen3.8-27B on the RX 7900 XTX at 128K (EXL3, ROCm, vision)",
+    "by": "kamm3r",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 324,
+    "title": "rtx-3090-24gb: Qwen3.8-Flash-Next on Strata over USB with a Mac mini M4: update to config ",
+    "by": "0xSero",
+    "draft": true,
+    "checks": "passing"
+   },
+   {
+    "n": 323,
+    "title": "NVIDIA RTX 2080 Ti 11 GB: Qwen3.5-9B UD-Q4_K_XL at 128K with MTP, llamADALL sm_75 build, 1",
+    "by": "dalisoft",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 322,
+    "title": "data: recipe kit submissions move to data/sources/recipe-kit",
+    "by": "0xSero",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 321,
+    "title": "NVIDIA RTX 2080 Ti 11 GB: Qwen3.5-9B Q4_K_M at 128K with MTP, llamADALL sm_75 build, 157.9",
+    "by": "dalisoft",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 320,
+    "title": "NVIDIA RTX 2080 Ti 11 GB: Bonsai 2 27B (NInfer v3) at 140K with MTP, ninfer, 127.3 tok/s",
+    "by": "dalisoft",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 319,
+    "title": "rtx-3090-24gb: Qwen3.8-Flash-Next on Strata over USB with a Mac mini M4: update to config ",
+    "by": "0xSero",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 317,
+    "title": "rtx-3090-24gb: Qwen3.8-Flash-Next EXL3 3.05bpw on Strata over USB with a Mac mini M4, 200K",
+    "by": "0xSero",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 310,
+    "title": "feat(submissions): add Qwen3.8-27B (GSQ3) on RTX 4060 Ti 16GB measurement",
+    "by": "dalisoft",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 307,
+    "title": "Add Apple M4 Max 36GB card + validated Qwen3.8-27B MLX recipe",
+    "by": "hey-dan123",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 267,
+    "title": "GLM-5.3-Flash on an RTX 3090 with 22 GB of RAM and a 32-thread CPU (reported, 5 of 6 gates",
+    "by": "danbunnell",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 259,
+    "title": "recipe: add RTX 4060 Ti 16 GB recipe for Qwen3.8-27B 128k context (closes #221)",
+    "by": "Yuvi1192p",
+    "draft": false,
+    "checks": "failing"
+   },
+   {
+    "n": 257,
+    "title": "registry: Qwen3.8-27B EXL3 + DFlash2 on the RX 9070 XT as a container (96K, lab-validated)",
+    "by": "parth-thakre",
+    "draft": false,
+    "checks": "failing"
+   },
+   {
+    "n": 252,
+    "title": "add tested muse glimmer dflash recipe for one rtx 3090",
+    "by": "mrq1911",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 248,
+    "title": "NVIDIA RTX 2080 Ti 11 GB: Qwen3.5-9B llama.cpp recipe at 128K (#217)",
+    "by": "lizulin848-gif",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 245,
+    "title": "NVIDIA RTX 2080 Ti (rtx-2080-ti-11gb): first recipe, lab accepted 6/6 at 20.0 tok/s (llama",
+    "by": "maebahesioru",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 236,
+    "title": "Radeon 8060S (Strix Halo): card and Qwen3.8-27B IQ4_XS + MTP Vulkan recipe, 18.0 tok/s",
+    "by": "joonsp",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 149,
+    "title": "Strix Halo: Radeon 8060S card, Halogen launches, lab-passed recipes",
+    "by": "hjanuschka",
+    "draft": false,
+    "checks": "failing"
+   }
+  ]
+ },
+ "marketplace": {
+  "verify": {
+   "issue": 11207,
+   "state": "closed",
+   "labels": [
+    "validated",
+    "security-review-required",
+    "plugin-update"
+   ],
+   "target": "55b2342b06d0b4aa3ff1c6563d9008ac856893cf",
+   "lastBy": "0xSero",
+   "lastAt": "2026-10-16T14:25:30Z"
+  },
+  "migration": {
+   "pr": 11412,
+   "state": "closed",
+   "mergeable": "conflicting"
+  },
+  "listing": {
+   "version": "6.24.0",
+   "verificationStatus": "unverified",
+   "verificationCommit": "43371ba5395f58d569b67275504e0fa22be9309f",
+   "installAvailable": false,
+   "repo": "https://github.com/0xSero/omarchy-local-ai"
+  }
+ },
+ "devices": {
+  "kinds": 50,
+  "recipes": 170
+ }
+}
