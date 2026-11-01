@@ -1,0 +1,78 @@
+2026-10-25T03:10:34.629916000-04:00 07:10:34.627 INFO:     Using config file /app/config.yml
+2026-10-25T03:10:34.641136000-04:00 07:10:34.640 INFO:     Configured backend: cudaMallocAsync
+2026-10-25T03:10:37.175811000-04:00 07:10:37.174 WARNING:  No sampler override preset is configured
+2026-10-25T03:10:37.176185000-04:00                        (sampling.override_preset), so sampling parameters have
+2026-10-25T03:10:37.176233000-04:00                        no fallback values. Requests that omit them run
+2026-10-25T03:10:37.176261000-04:00                        untruncated: temperature 1.0, top_k 0, top_p 1.0, min_p
+2026-10-25T03:10:37.176296000-04:00                        0. Set override_preset to safe_defaults unless this is
+2026-10-25T03:10:37.176325000-04:00                        intentional.
+2026-10-25T03:10:37.177677000-04:00 07:10:37.177 WARNING:  Generation config file not found in model directory,
+2026-10-25T03:10:37.177731000-04:00                        skipping.
+2026-10-25T03:10:37.178915000-04:00 07:10:37.178 INFO:     exllamav3 version: 1.5.1
+2026-10-25T03:10:38.185129000-04:00 07:10:38.184 INFO:     The provided model has vision capabilities, vision is
+2026-10-25T03:10:38.185499000-04:00                        disabled in config.
+2026-10-25T03:10:38.185712000-04:00 07:10:38.185 INFO:     Using main model MTP component for drafting
+2026-10-25T03:10:38.185958000-04:00 07:10:38.185 INFO:     Disabling GPU split because one GPU is in use.
+2026-10-25T03:10:38.186444000-04:00 07:10:38.185 INFO:     Context: max_seq_len 131,072 tokens (configured),
+2026-10-25T03:10:38.186481000-04:00                        cache_size 131,072 tokens
+2026-10-25T03:10:38.226322000-04:00 07:10:38.225 INFO:     Using template "chat_template" for chat completions.
+2026-10-25T03:10:38.226930000-04:00 07:10:38.226 INFO:     Response parsing: tool format qwen3_coder (template,
+2026-10-25T03:10:38.226985000-04:00                        tokenizer, architecture), reasoning tags <think> </think>
+2026-10-25T03:10:38.227040000-04:00                        (template)
+2026-10-25T03:10:38.700841000-04:00 07:10:38.700 INFO:     Loading model /workspace/models/Qwen3.5-9B-EXL3-6hb-4bpw
+2026-10-25T03:10:38.700974000-04:00                        (manual GPU split)
+2026-10-25T03:11:04.723372000-04:00 Loading draft modules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 3/3   0:00:00
+2026-10-25T03:11:04.723917000-04:00 Loading model modules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 35/35 0:00:00
+2026-10-25T03:11:05.228701000-04:00 07:11:05.227 INFO:     Model loaded in 27.0 s
+2026-10-25T03:11:05.228946000-04:00 
+2026-10-25T03:11:05.229141000-04:00 07:11:05.228 WARNING:  Disabling authentication makes your instance vulnerable.
+2026-10-25T03:11:05.229200000-04:00                        Set the `disable_auth` flag to False in config.yml if you
+2026-10-25T03:11:05.229241000-04:00                        want to share this instance with others.
+2026-10-25T03:11:05.230349000-04:00 07:11:05.229 WARNING:  With authentication disabled and `allowed_origins` left
+2026-10-25T03:11:05.230466000-04:00                        at ["*"], any website open in a browser on this machine
+2026-10-25T03:11:05.230504000-04:00                        can send requests to this instance and read the
+2026-10-25T03:11:05.230546000-04:00                        responses, including admin endpoints. Set
+2026-10-25T03:11:05.230579000-04:00                        `network.allowed_origins` to your own frontends (or [])
+2026-10-25T03:11:05.230620000-04:00                        unless you use a browser-based frontend that needs it.
+2026-10-25T03:11:05.231616000-04:00 07:11:05.231 INFO:     Serving OAI API on http://0.0.0.0:5000 (docs at
+2026-10-25T03:11:05.231700000-04:00                        http://0.0.0.0:5000/redoc)
+2026-10-25T03:11:10.005825000-04:00 07:11:10.004 INFO:     #3 chat/completions: 18 prompt tokens · temperature: 0.6
+2026-10-25T03:11:10.006291000-04:00                        (req), max_tokens: 131053 (auto)
+2026-10-25T03:11:26.752575000-04:00 07:11:26.751 INFO:     #3 chat/completions: 288 tokens generated at 26.9 T/s ·
+2026-10-25T03:11:26.752995000-04:00                        prompt 18 tokens, none cached, 18 new in 6.04 s · first
+2026-10-25T03:11:26.753038000-04:00                        token 6.04 s, total 16.7 s · draft 210/312 accepted (67%)
+2026-10-25T03:11:26.762232000-04:00 07:11:26.761 INFO:     #6 chat/completions: 26 prompt tokens · temperature: 0.6
+2026-10-25T03:11:26.762391000-04:00                        (req), max_tokens: 131045 (auto)
+2026-10-25T03:11:28.174578000-04:00 07:11:28.173 INFO:     #6 chat/completions: 218 tokens generated at 158.2 T/s ·
+2026-10-25T03:11:28.174931000-04:00                        prompt 26 tokens, none cached, 26 new in 0.03 s · first
+2026-10-25T03:11:28.174976000-04:00                        token 0.03 s, total 1.41 s · draft 164/216 accepted (76%)
+2026-10-25T03:11:28.183850000-04:00 07:11:28.183 INFO:     #9 chat/completions: 280 prompt tokens · temperature: 0.6
+2026-10-25T03:11:28.183988000-04:00                        (req), max_tokens: 130791 (auto)
+2026-10-25T03:11:30.059825000-04:00 07:11:30.059 INFO:     #9 chat/completions: parsed 1 tool call (qwen3_coder)
+2026-10-25T03:11:30.060850000-04:00 07:11:30.060 INFO:     #9 chat/completions: 74 tokens generated at 159.0 T/s ·
+2026-10-25T03:11:30.060903000-04:00                        prompt 280 tokens, none cached, 280 new in 1.40 s (200
+2026-10-25T03:11:30.060957000-04:00                        T/s) · first token 1.40 s, total 1.87 s · draft 56/72
+2026-10-25T03:11:30.060988000-04:00                        accepted (78%)
+2026-10-25T03:11:30.069791000-04:00 07:11:30.069 INFO:     #12 chat/completions: 344 prompt tokens · temperature:
+2026-10-25T03:11:30.069930000-04:00                        0.6 (req), max_tokens: 130727 (auto)
+2026-10-25T03:11:31.645003000-04:00 07:11:31.644 INFO:     #12 chat/completions: 120 tokens generated at 126.8 T/s ·
+2026-10-25T03:11:31.645428000-04:00                        prompt 344 tokens, 74% cached, 88 new in 0.61 s · first
+2026-10-25T03:11:31.646047000-04:00                        token 0.62 s, total 1.57 s · draft 83/148 accepted (56%)
+2026-10-25T03:11:31.830732000-04:00 07:11:31.829 INFO:     #15 chat/completions: 106,252 prompt tokens ·
+2026-10-25T03:11:31.830854000-04:00                        temperature: 0.6 (req), max_tokens: 24819 (auto)
+2026-10-25T03:12:43.436260000-04:00 07:12:43.435 INFO:     #15 chat/completions: 607 tokens generated at 90.5 T/s ·
+2026-10-25T03:12:43.436574000-04:00                        prompt 106,252 tokens, none cached, 106,252 new in 64.9 s
+2026-10-25T03:12:43.436607000-04:00                        (1,638 T/s) · first token 64.9 s, total 71.6 s · draft
+2026-10-25T03:12:43.436624000-04:00                        445/648 accepted (69%)
+2026-10-25T03:12:43.594976000-04:00 07:12:43.594 INFO:     #18 chat/completions (stream): 25 prompt tokens ·
+2026-10-25T03:12:43.595134000-04:00                        temperature: 0.8 (req), max_tokens: 131046 (auto)
+2026-10-25T03:13:10.744702000-04:00 07:13:10.742 INFO:     #18 chat/completions (stream): 2,627 tokens generated at
+2026-10-25T03:13:10.745386000-04:00                        96.9 T/s · prompt 25 tokens, none cached, 25 new in 0.03
+2026-10-25T03:13:10.745469000-04:00                        s · first token 0.03 s, total 27.1 s · draft 1652/3900
+2026-10-25T03:13:10.745540000-04:00                        accepted (42%)
+2026-10-25T03:13:10.979568000-04:00 07:13:10.977 INFO:     #22 chat/completions (stream): 25 prompt tokens ·
+2026-10-25T03:13:10.979809000-04:00                        temperature: 0.8 (req), max_tokens: 131046 (auto)
+2026-10-25T03:13:36.327721000-04:00 07:13:36.324 INFO:     #22 chat/completions (stream): 1,894 tokens generated at
+2026-10-25T03:13:36.328483000-04:00                        74.9 T/s · prompt 25 tokens, none cached, 25 new in 0.04
+2026-10-25T03:13:36.328579000-04:00                        s · first token 0.04 s, total 25.3 s · draft 1101/3172
+2026-10-25T03:13:36.328665000-04:00                        accepted (35%)

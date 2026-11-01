@@ -1,0 +1,2103 @@
+{
+ "base_ref": "origin/main",
+ "base_sha": "c0604cff48078bfc13678c42b501bdced0c0fb81",
+ "build_date": "2026-10-25",
+ "conclusions": {
+  "age_churn_plugin_models": [
+   "Qwen3.5-9B"
+  ],
+  "plugin_v2_v3_parity_all_views": true,
+  "this_branch_catalog_cards": [],
+  "this_branch_catalog_recipes": {
+   "added": [],
+   "changed": [],
+   "removed": []
+  },
+  "this_branch_plugin_delta_empty": true,
+  "this_card_in_plugin_v2": false,
+  "this_card_in_plugin_v3": false,
+  "total_equals_age_churn_for_plugin": true
+ },
+ "files": {
+  "catalog": "dist/catalog.json",
+  "plugin_v2": "plugin/v2/recipes.json",
+  "plugin_v3": "plugin/v3/recipes.json"
+ },
+ "head_sha": "f1a5fa7380ea288807f1ae80a08add2e3f655ff0",
+ "head_worktree_clean_for_generated_files": true,
+ "views": {
+  "age_churn (base -> base_today)": {
+   "catalog": {
+    "cards": {
+     "gtx-1080-ti-11gb": "removed",
+     "intel-arc-pro-b70-32gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "intel/intel-arc-pro-b70-32gb/qwen3.5-9b.llama.cpp.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ]
+     },
+     "rtx-2000-ada-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-2000-ada-16gb/lfm2.5-2.6b.sglang.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-2000-ada-16gb/lfm2.5-2.6b.sglang.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-2000-ada-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-3060-12gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3060-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-3060-ti-8gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3060-ti-8gb/qwen3.8-flash-next.sglang.64k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3060-ti-8gb/qwen3.8-flash-next.sglang.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-3060-ti-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-3070-8gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3070-8gb/qwen3.8-flash-next.sglang.64k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3070-8gb/qwen3.8-flash-next.sglang.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-3070-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-3070-laptop-8gb": "removed",
+     "rtx-3070-ti-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3070-ti-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-3080-10gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3080-10gb/qwen3.8-flash-next.sglang.64k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3080-10gb/qwen3.8-flash-next.sglang.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-3080-10gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-3080-ti-12gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3080-ti-12gb/qwen3.8-flash-next.sglang.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3080-ti-12gb/qwen3.8-flash-next.sglang.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-3080-ti-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-3090-24gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3090-24gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ]
+     },
+     "rtx-3090-ti-24gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3090-ti-24gb/gemma-4-26b-a4b.tabbyapi.64k",
+        "nvidia/rtx-3090-ti-24gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3090-ti-24gb/gemma-4-26b-a4b.tabbyapi.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-3090-ti-24gb/qwen3.5-9b.sglang.256k"
+       ]
+      }
+     },
+     "rtx-4000-ada-20gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4000-ada-20gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4000-ada-20gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-4000-ada-20gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4060-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4060-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-4060-laptop-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4060-laptop-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-4060-ti-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4060-ti-16gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4060-ti-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-4060-ti-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4060-ti-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4060-ti-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-4070-12gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4070-12gb/qwen3.8-flash-next.sglang.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4070-12gb/qwen3.8-flash-next.sglang.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-4070-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4070-super-12gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4070-super-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4070-ti-12gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4070-ti-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4070-ti-super-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4070-ti-super-16gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4070-ti-super-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-4070-ti-super-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4080-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4080-16gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4080-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-4080-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4090-24gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4090-24gb/gemma-4-26b-a4b.tabbyapi.64k",
+        "nvidia/rtx-4090-24gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4090-24gb/gemma-4-26b-a4b.tabbyapi.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-4090-24gb/qwen3.5-9b.sglang.256k"
+       ]
+      }
+     },
+     "rtx-5060-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5060-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-5060-ti-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5060-ti-16gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5060-ti-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-5060-ti-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-5060-ti-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5060-ti-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-5070-12gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5070-12gb/qwen3.5-9b.tabbyapi.128k",
+        "nvidia/rtx-5070-12gb/qwen3.8-flash-next.sglang.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5070-12gb/qwen3.8-flash-next.sglang.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-5070-12gb/qwen3.5-9b.sglang.96k"
+       ]
+      }
+     },
+     "rtx-5070-ti-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.tabbyapi.128k",
+        "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.vllm.64k",
+        "nvidia/rtx-5070-ti-16gb/qwen3.8-flash-next.sglang.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5070-ti-16gb/qwen3.8-flash-next.sglang.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.sglang.256k"
+       ]
+      }
+     },
+     "rtx-5080-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5080-16gb/qwen3.5-9b.tabbyapi.256k",
+        "nvidia/rtx-5080-16gb/qwen3.5-9b.vllm.64k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5080-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-5080-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-5080-laptop-16gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5080-laptop-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-5090-32gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5090-32gb/gemma-4-26b-a4b.tabbyapi.128k",
+        "nvidia/rtx-5090-32gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5090-32gb/gemma-4-26b-a4b.tabbyapi.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-5090-32gb/qwen3.5-9b.sglang.256k"
+       ]
+      }
+     },
+     "rtx-5090-laptop-24gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5090-laptop-24gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5090-laptop-24gb/qwen3.5-9b.sglang.128k"
+       ]
+      }
+     },
+     "rtx-6000-ada-48gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-6000-ada-48gb/gemma-4-26b-a4b.tabbyapi.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-6000-ada-48gb/gemma-4-26b-a4b.tabbyapi.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-6000-ada-48gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      }
+     },
+     "rtx-a6000-48gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-a6000-48gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      }
+     },
+     "rtx-pro-6000-blackwell-96gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-pro-6000-blackwell-96gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ]
+     },
+     "rx-6700-xt-12gb": "removed",
+     "rx-6750-xt-12gb": "removed"
+    },
+    "other_top_level_changed": [
+     "sha256"
+    ],
+    "recipes_added": [],
+    "recipes_changed": [],
+    "recipes_removed": [
+     "amd/rx-6700-xt-12gb/qwen3.5-9b.llama.cpp.64k",
+     "amd/rx-6750-xt-12gb/qwen3.5-9b.llama.cpp.64k",
+     "intel/intel-arc-pro-b70-32gb/qwen3.5-9b.llama.cpp.256k",
+     "nvidia/gtx-1080-ti-11gb/qwen3.5-9b.llama.cpp.128k",
+     "nvidia/rtx-2000-ada-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-3060-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-3060-ti-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3070-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3070-laptop-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3070-ti-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3080-10gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3080-ti-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-3090-24gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-3090-ti-24gb/qwen3.5-9b.sglang.256k",
+     "nvidia/rtx-3090-ti-24gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4000-ada-20gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4060-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-4060-laptop-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-4060-ti-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4060-ti-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-4070-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4070-super-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4070-ti-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4070-ti-super-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4080-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4090-24gb/qwen3.5-9b.sglang.256k",
+     "nvidia/rtx-4090-24gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-5060-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-5060-ti-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5060-ti-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-5070-12gb/qwen3.5-9b.sglang.96k",
+     "nvidia/rtx-5070-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.sglang.256k",
+     "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.vllm.64k",
+     "nvidia/rtx-5080-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5080-16gb/qwen3.5-9b.vllm.64k",
+     "nvidia/rtx-5080-laptop-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5090-32gb/qwen3.5-9b.sglang.256k",
+     "nvidia/rtx-5090-32gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-5090-laptop-24gb/qwen3.5-9b.sglang.128k",
+     "nvidia/rtx-5090-laptop-24gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-6000-ada-48gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-a6000-48gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-pro-6000-blackwell-96gb/qwen3.5-9b.tabbyapi.256k"
+    ]
+   },
+   "counts": {
+    "catalog_cards_touched": 37,
+    "catalog_recipes_added": 0,
+    "catalog_recipes_changed": 0,
+    "catalog_recipes_removed": 45,
+    "plugin_v3_added": 6,
+    "plugin_v3_changed": 0,
+    "plugin_v3_removed": 34
+   },
+   "plugin_v2": {
+    "added": [
+     {
+      "card": "rtx-4000-ada-20gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4000-ada-20gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-super-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4070-ti-super-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5080-16gb",
+      "name": "Qwen3.5-9B"
+     }
+    ],
+    "cards_added": [],
+    "cards_removed": [
+     "gtx-1080-ti-11gb",
+     "rtx-3070-laptop-8gb",
+     "rtx-4070-super-12gb",
+     "rtx-4070-ti-12gb"
+    ],
+    "changed": [],
+    "removed": [
+     {
+      "card": "gtx-1080-ti-11gb",
+      "id": "qwen3.5-9b.llama.cpp.128k.gtx-1080-ti-11gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "intel-arc-pro-b70-32gb",
+      "id": "qwen35-9b-q4km-256k-arcprob70-llamacpp-sycl",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-2000-ada-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-2000-ada-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3060-12gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-3060-12gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-laptop-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-laptop-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3080-ti-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx3080ti-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3090-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-3090-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3090-ti-24gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-3090-ti-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4000-ada-20gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4000-ada-20gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-laptop-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-laptop-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx4070-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-super-12gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4070-super-12gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx4070ti-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-super-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4070-ti-super-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4090-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4090-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-5060-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-5060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5070-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx5070-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5070-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5070-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-laptop-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5080-laptop-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5090-32gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5090-32gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5090-laptop-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5090-laptop-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-6000-ada-48gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-6000-ada-48gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-a6000-48gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-a6000-48gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-pro-6000-blackwell-96gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-pro-6000-blackwell-96gb",
+      "name": "Qwen3.5-9B"
+     }
+    ]
+   },
+   "plugin_v2_v3_parity": true,
+   "plugin_v3": {
+    "added": [
+     {
+      "card": "rtx-4000-ada-20gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4000-ada-20gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-super-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4070-ti-super-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5080-16gb",
+      "name": "Qwen3.5-9B"
+     }
+    ],
+    "cards_added": [],
+    "cards_removed": [
+     "gtx-1080-ti-11gb",
+     "rtx-3070-laptop-8gb",
+     "rtx-4070-super-12gb",
+     "rtx-4070-ti-12gb"
+    ],
+    "changed": [],
+    "removed": [
+     {
+      "card": "gtx-1080-ti-11gb",
+      "id": "qwen3.5-9b.llama.cpp.128k.gtx-1080-ti-11gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "intel-arc-pro-b70-32gb",
+      "id": "qwen35-9b-q4km-256k-arcprob70-llamacpp-sycl",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-2000-ada-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-2000-ada-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3060-12gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-3060-12gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-laptop-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-laptop-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3080-ti-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx3080ti-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3090-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-3090-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3090-ti-24gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-3090-ti-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4000-ada-20gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4000-ada-20gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-laptop-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-laptop-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx4070-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-super-12gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4070-super-12gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx4070ti-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-super-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4070-ti-super-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4090-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4090-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-5060-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-5060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5070-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx5070-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5070-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5070-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-laptop-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5080-laptop-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5090-32gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5090-32gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5090-laptop-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5090-laptop-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-6000-ada-48gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-6000-ada-48gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-a6000-48gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-a6000-48gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-pro-6000-blackwell-96gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-pro-6000-blackwell-96gb",
+      "name": "Qwen3.5-9B"
+     }
+    ]
+   }
+  },
+  "this_branch (base_today -> head)": {
+   "catalog": {
+    "cards": {},
+    "other_top_level_changed": [],
+    "recipes_added": [],
+    "recipes_changed": [],
+    "recipes_removed": []
+   },
+   "counts": {
+    "catalog_cards_touched": 0,
+    "catalog_recipes_added": 0,
+    "catalog_recipes_changed": 0,
+    "catalog_recipes_removed": 0,
+    "plugin_v3_added": 0,
+    "plugin_v3_changed": 0,
+    "plugin_v3_removed": 0
+   },
+   "plugin_v2": {
+    "added": [],
+    "cards_added": [],
+    "cards_removed": [],
+    "changed": [],
+    "removed": []
+   },
+   "plugin_v2_v3_parity": true,
+   "plugin_v3": {
+    "added": [],
+    "cards_added": [],
+    "cards_removed": [],
+    "changed": [],
+    "removed": []
+   }
+  },
+  "total (base -> head)": {
+   "catalog": {
+    "cards": {
+     "gtx-1080-ti-11gb": "removed",
+     "intel-arc-pro-b70-32gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "intel/intel-arc-pro-b70-32gb/qwen3.5-9b.llama.cpp.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ]
+     },
+     "rtx-2000-ada-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-2000-ada-16gb/lfm2.5-2.6b.sglang.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-2000-ada-16gb/lfm2.5-2.6b.sglang.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-2000-ada-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-3060-12gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3060-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-3060-ti-8gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3060-ti-8gb/qwen3.8-flash-next.sglang.64k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3060-ti-8gb/qwen3.8-flash-next.sglang.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-3060-ti-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-3070-8gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3070-8gb/qwen3.8-flash-next.sglang.64k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3070-8gb/qwen3.8-flash-next.sglang.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-3070-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-3070-laptop-8gb": "removed",
+     "rtx-3070-ti-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3070-ti-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-3080-10gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3080-10gb/qwen3.8-flash-next.sglang.64k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3080-10gb/qwen3.8-flash-next.sglang.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-3080-10gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-3080-ti-12gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3080-ti-12gb/qwen3.8-flash-next.sglang.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3080-ti-12gb/qwen3.8-flash-next.sglang.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-3080-ti-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-3090-24gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3090-24gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ]
+     },
+     "rtx-3090-ti-24gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-3090-ti-24gb/gemma-4-26b-a4b.tabbyapi.64k",
+        "nvidia/rtx-3090-ti-24gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-3090-ti-24gb/gemma-4-26b-a4b.tabbyapi.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-3090-ti-24gb/qwen3.5-9b.sglang.256k"
+       ]
+      }
+     },
+     "rtx-4000-ada-20gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4000-ada-20gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4000-ada-20gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-4000-ada-20gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4060-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4060-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-4060-laptop-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4060-laptop-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-4060-ti-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4060-ti-16gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4060-ti-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-4060-ti-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4060-ti-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4060-ti-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-4070-12gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4070-12gb/qwen3.8-flash-next.sglang.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4070-12gb/qwen3.8-flash-next.sglang.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-4070-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4070-super-12gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4070-super-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4070-ti-12gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4070-ti-12gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4070-ti-super-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4070-ti-super-16gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4070-ti-super-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-4070-ti-super-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4080-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4080-16gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4080-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-4080-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-4090-24gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-4090-24gb/gemma-4-26b-a4b.tabbyapi.64k",
+        "nvidia/rtx-4090-24gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-4090-24gb/gemma-4-26b-a4b.tabbyapi.64k"
+       ],
+       "removed": [
+        "nvidia/rtx-4090-24gb/qwen3.5-9b.sglang.256k"
+       ]
+      }
+     },
+     "rtx-5060-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5060-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-5060-ti-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5060-ti-16gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5060-ti-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-5060-ti-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-5060-ti-8gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5060-ti-8gb/qwen3.5-9b.tabbyapi.64k"
+       ]
+      }
+     },
+     "rtx-5070-12gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5070-12gb/qwen3.5-9b.tabbyapi.128k",
+        "nvidia/rtx-5070-12gb/qwen3.8-flash-next.sglang.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5070-12gb/qwen3.8-flash-next.sglang.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-5070-12gb/qwen3.5-9b.sglang.96k"
+       ]
+      }
+     },
+     "rtx-5070-ti-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.tabbyapi.128k",
+        "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.vllm.64k",
+        "nvidia/rtx-5070-ti-16gb/qwen3.8-flash-next.sglang.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5070-ti-16gb/qwen3.8-flash-next.sglang.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.sglang.256k"
+       ]
+      }
+     },
+     "rtx-5080-16gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5080-16gb/qwen3.5-9b.tabbyapi.256k",
+        "nvidia/rtx-5080-16gb/qwen3.5-9b.vllm.64k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5080-16gb/qwen3.5-9b.tabbyapi.256k"
+       ],
+       "removed": [
+        "nvidia/rtx-5080-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-5080-laptop-16gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5080-laptop-16gb/qwen3.5-9b.tabbyapi.128k"
+       ]
+      }
+     },
+     "rtx-5090-32gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5090-32gb/gemma-4-26b-a4b.tabbyapi.128k",
+        "nvidia/rtx-5090-32gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-5090-32gb/gemma-4-26b-a4b.tabbyapi.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-5090-32gb/qwen3.5-9b.sglang.256k"
+       ]
+      }
+     },
+     "rtx-5090-laptop-24gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5090-laptop-24gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-5090-laptop-24gb/qwen3.5-9b.sglang.128k"
+       ]
+      }
+     },
+     "rtx-6000-ada-48gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-6000-ada-48gb/gemma-4-26b-a4b.tabbyapi.128k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [
+        "nvidia/rtx-6000-ada-48gb/gemma-4-26b-a4b.tabbyapi.128k"
+       ],
+       "removed": [
+        "nvidia/rtx-6000-ada-48gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      }
+     },
+     "rtx-a6000-48gb": {
+      "other_fields_changed": [
+       "setups"
+      ],
+      "picks": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-a6000-48gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      }
+     },
+     "rtx-pro-6000-blackwell-96gb": {
+      "more": {
+       "added": [],
+       "removed": [
+        "nvidia/rtx-pro-6000-blackwell-96gb/qwen3.5-9b.tabbyapi.256k"
+       ]
+      },
+      "other_fields_changed": [
+       "setups"
+      ]
+     },
+     "rx-6700-xt-12gb": "removed",
+     "rx-6750-xt-12gb": "removed"
+    },
+    "other_top_level_changed": [
+     "sha256"
+    ],
+    "recipes_added": [],
+    "recipes_changed": [],
+    "recipes_removed": [
+     "amd/rx-6700-xt-12gb/qwen3.5-9b.llama.cpp.64k",
+     "amd/rx-6750-xt-12gb/qwen3.5-9b.llama.cpp.64k",
+     "intel/intel-arc-pro-b70-32gb/qwen3.5-9b.llama.cpp.256k",
+     "nvidia/gtx-1080-ti-11gb/qwen3.5-9b.llama.cpp.128k",
+     "nvidia/rtx-2000-ada-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-3060-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-3060-ti-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3070-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3070-laptop-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3070-ti-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3080-10gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-3080-ti-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-3090-24gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-3090-ti-24gb/qwen3.5-9b.sglang.256k",
+     "nvidia/rtx-3090-ti-24gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4000-ada-20gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4060-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-4060-laptop-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-4060-ti-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4060-ti-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-4070-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4070-super-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4070-ti-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4070-ti-super-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4080-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-4090-24gb/qwen3.5-9b.sglang.256k",
+     "nvidia/rtx-4090-24gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-5060-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-5060-ti-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5060-ti-8gb/qwen3.5-9b.tabbyapi.64k",
+     "nvidia/rtx-5070-12gb/qwen3.5-9b.sglang.96k",
+     "nvidia/rtx-5070-12gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.sglang.256k",
+     "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5070-ti-16gb/qwen3.5-9b.vllm.64k",
+     "nvidia/rtx-5080-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5080-16gb/qwen3.5-9b.vllm.64k",
+     "nvidia/rtx-5080-laptop-16gb/qwen3.5-9b.tabbyapi.128k",
+     "nvidia/rtx-5090-32gb/qwen3.5-9b.sglang.256k",
+     "nvidia/rtx-5090-32gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-5090-laptop-24gb/qwen3.5-9b.sglang.128k",
+     "nvidia/rtx-5090-laptop-24gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-6000-ada-48gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-a6000-48gb/qwen3.5-9b.tabbyapi.256k",
+     "nvidia/rtx-pro-6000-blackwell-96gb/qwen3.5-9b.tabbyapi.256k"
+    ]
+   },
+   "counts": {
+    "catalog_cards_touched": 37,
+    "catalog_recipes_added": 0,
+    "catalog_recipes_changed": 0,
+    "catalog_recipes_removed": 45,
+    "plugin_v3_added": 6,
+    "plugin_v3_changed": 0,
+    "plugin_v3_removed": 34
+   },
+   "plugin_v2": {
+    "added": [
+     {
+      "card": "rtx-4000-ada-20gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4000-ada-20gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-super-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4070-ti-super-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5080-16gb",
+      "name": "Qwen3.5-9B"
+     }
+    ],
+    "cards_added": [],
+    "cards_removed": [
+     "gtx-1080-ti-11gb",
+     "rtx-3070-laptop-8gb",
+     "rtx-4070-super-12gb",
+     "rtx-4070-ti-12gb"
+    ],
+    "changed": [],
+    "removed": [
+     {
+      "card": "gtx-1080-ti-11gb",
+      "id": "qwen3.5-9b.llama.cpp.128k.gtx-1080-ti-11gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "intel-arc-pro-b70-32gb",
+      "id": "qwen35-9b-q4km-256k-arcprob70-llamacpp-sycl",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-2000-ada-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-2000-ada-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3060-12gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-3060-12gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-laptop-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-laptop-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3080-ti-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx3080ti-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3090-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-3090-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3090-ti-24gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-3090-ti-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4000-ada-20gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4000-ada-20gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-laptop-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-laptop-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx4070-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-super-12gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4070-super-12gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx4070ti-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-super-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4070-ti-super-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4090-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4090-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-5060-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-5060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5070-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx5070-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5070-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5070-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-laptop-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5080-laptop-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5090-32gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5090-32gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5090-laptop-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5090-laptop-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-6000-ada-48gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-6000-ada-48gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-a6000-48gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-a6000-48gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-pro-6000-blackwell-96gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-pro-6000-blackwell-96gb",
+      "name": "Qwen3.5-9B"
+     }
+    ]
+   },
+   "plugin_v2_v3_parity": true,
+   "plugin_v3": {
+    "added": [
+     {
+      "card": "rtx-4000-ada-20gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4000-ada-20gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-super-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4070-ti-super-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5080-16gb",
+      "name": "Qwen3.5-9B"
+     }
+    ],
+    "cards_added": [],
+    "cards_removed": [
+     "gtx-1080-ti-11gb",
+     "rtx-3070-laptop-8gb",
+     "rtx-4070-super-12gb",
+     "rtx-4070-ti-12gb"
+    ],
+    "changed": [],
+    "removed": [
+     {
+      "card": "gtx-1080-ti-11gb",
+      "id": "qwen3.5-9b.llama.cpp.128k.gtx-1080-ti-11gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "intel-arc-pro-b70-32gb",
+      "id": "qwen35-9b-q4km-256k-arcprob70-llamacpp-sycl",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-2000-ada-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-2000-ada-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3060-12gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-3060-12gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-laptop-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-laptop-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3070-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-3070-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3080-ti-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx3080ti-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3090-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-3090-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-3090-ti-24gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-3090-ti-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4000-ada-20gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4000-ada-20gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-laptop-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-laptop-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-4060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx4070-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-super-12gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4070-super-12gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx4070ti-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4070-ti-super-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4070-ti-super-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-4080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-4090-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-4090-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-5060-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5060-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5060-ti-8gb",
+      "id": "qwen3.5-9b.tabbyapi.64k.rtx-5060-ti-8gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5070-12gb",
+      "id": "qwen359b-exl3-4bpw-rtx5070-tabbyapi-tp1",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5070-ti-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5070-ti-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5080-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5080-laptop-16gb",
+      "id": "qwen3.5-9b.tabbyapi.128k.rtx-5080-laptop-16gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5090-32gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5090-32gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-5090-laptop-24gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-5090-laptop-24gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-6000-ada-48gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-6000-ada-48gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-a6000-48gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-a6000-48gb",
+      "name": "Qwen3.5-9B"
+     },
+     {
+      "card": "rtx-pro-6000-blackwell-96gb",
+      "id": "qwen3.5-9b.tabbyapi.256k.rtx-pro-6000-blackwell-96gb",
+      "name": "Qwen3.5-9B"
+     }
+    ]
+   }
+  }
+ }
+}
