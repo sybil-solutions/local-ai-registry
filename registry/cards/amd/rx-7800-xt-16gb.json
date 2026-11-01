@@ -1,0 +1,16 @@
+{
+  "id": "rx-7800-xt-16gb",
+  "name": "AMD Radeon RX 7800 XT",
+  "vendor": "amd",
+  "backend": "amd-rocm",
+  "vram_gb": 16,
+  "bandwidth_gb_s": 624,
+  "match": {
+    "backend": "amd-rocm",
+    "name": "AMD Radeon RX 7800 XT",
+    "names": [
+      "rx7800xt"
+    ],
+    "vramGb": 16
+  }
+}
