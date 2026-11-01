@@ -1,0 +1,16 @@
+{
+  "id": "apple-m4-max-36gb",
+  "name": "Apple M4 Max",
+  "vendor": "apple",
+  "backend": "metal",
+  "vram_gb": 36,
+  "bandwidth_gb_s": 546,
+  "match": {
+    "backend": "metal",
+    "name": "Apple M4 Max",
+    "names": [
+      "applem4max"
+    ],
+    "vramGb": 36
+  }
+}
