@@ -1,0 +1,71 @@
+{
+ "recipe": {
+  "model": "qwen3.8-27b",
+  "weights": "mlx-community/Qwen3.8-27B-4bit@10c35caafbb80f7dc6a7a432cdd11af10a6d4818",
+  "engine": "mlx-vlm-qwen3.8-27b-4bit-mtp-200k@bd7091b5a9e0",
+  "set": {},
+  "card": "apple-m4-max-36gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M4 Max"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-17",
+  "on": "owner",
+  "gpu": "Apple M4 Max",
+  "launch_sha256": "7822f125b39ba9a9c6a8f0b11e1e4f91adf62c1455cb647e430f75cfe9dc182c",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 25.5,
+  "prefill": 87,
+  "served": "models/Qwen3.8-27B-4bit-10c35caa"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 139,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "index": 0,
+     "id": "eaae9087-9702-4482-8874-5911929fe271",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "It's currently **17°C** and **overcast** in Paris.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 221
+  },
+  "context": {
+   "prompt_tokens": 166667,
+   "seconds": 1922.9,
+   "content": "58213",
+   "peak_gib": 20.78
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 7720,
+   "seconds_total": 284.0
+  }
+ },
+ "launch_config_sha256": "f8cd617060c26a5618d75a314931717779a72848f443c18a645e1db2d165f94a"
+}
