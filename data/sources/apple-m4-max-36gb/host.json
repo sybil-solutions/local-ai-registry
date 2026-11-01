@@ -1,0 +1,31 @@
+{
+  "captured_at_utc": "2026-10-23T05:08:31Z",
+  "machine": {
+    "model_identifier": "Mac16,6",
+    "chip": "Apple M4 Max",
+    "cpu_cores_total": 14,
+    "cpu_cores_performance": 10,
+    "cpu_cores_efficiency": 4,
+    "gpu": "Apple M4 Max (built-in)",
+    "unified_memory_bytes": 38654705664
+  },
+  "os": {
+    "product": "macOS",
+    "version": "27.0.1",
+    "build": "26A434",
+    "arch": "arm64"
+  },
+  "gpu_wired_limit_mb": 0,
+  "gpu_wired_limit_note": "sysctl iogpu.wired_limit_mb = 0 (system default; not explicitly raised for this run)",
+  "power_during_run": "AC (battery charging throughout)",
+  "python_stack": {
+    "mlx": "0.32.2",
+    "mlx-vlm": "0.7.3",
+    "transformers": "5.17.0",
+    "pillow": "12.3.0",
+    "huggingface_hub": "1.33.0",
+    "tokenizers": "0.23.3"
+  },
+  "full_environment": "pip-freeze.txt",
+  "privacy": "Serial number, hardware UUID, and provisioning UDID intentionally omitted."
+}
