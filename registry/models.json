@@ -1184,6 +1184,10 @@
     "RedHatAI/Qwen3.8-27B-INT4@bf08f3dbd9a324e53956920aad378a1f1b6dd24a": {
       "format": "compressed-tensors · W4A16 INT4",
       "size_gb": 19.47
+    },
+    "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170": {
+      "format": "safetensors · FP8 / MXFP4 experts",
+      "size_gb": 510.311
     }
   }
 }

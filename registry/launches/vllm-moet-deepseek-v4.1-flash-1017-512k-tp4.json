@@ -1,0 +1,93 @@
+{
+  "id": "vllm-moet-deepseek-v4.1-flash-1017-512k-tp4",
+  "engine": "vllm",
+  "about": "DeepSeek-V4.1-Flash-1017 (official MXFP4/MXFP8 checkpoint) on 4x RTX PRO 6000 Blackwell, TP4, 512K, 8 sequences: kacper-daftcode/vLLM-Moet r13 (vLLM nightly df3bd094 + sm_120 steps 1-28: MXFP8 GEMV, FP4 KV record + MXFP4 indexer, b12x MoE with the fused decode kernel, sparse-MLA gather loads, MXFP8 lm_heads, PCIe P2P all-reduce in NCCL's order), DSpark k=7, KV offload to 32 GiB host RAM + an in-container disk tier, and the engram_disk layer (Engram tables read from the checkpoint on NVMe instead of ~330 GB of host shm). Image: sybil-solutions/local-ai-images vllm-moet-dsv41.",
+  "image": "ghcr.io/sybil-solutions/vllm-moet-dsv41@sha256:08f61e680ddab3f1f1b50f92020133c382630f9798ab0ff5729f8931a604f82d",
+  "provenance": "https://github.com/sybil-solutions/local-ai-images/actions/runs/40005217711",
+  "backend": "nvidia",
+  "port": 8000,
+  "entrypoint": [
+    "vllm",
+    "serve"
+  ],
+  "args": [
+    "/models",
+    "--served-model-name",
+    "deepseek-v4.1-flash",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000",
+    "--tensor-parallel-size",
+    "4",
+    "--max-model-len",
+    "524288",
+    "--gpu-memory-utilization",
+    "0.94",
+    "--max-num-seqs",
+    "8",
+    "--kv-cache-dtype",
+    "nvfp4_ds_mla",
+    "--tool-call-parser",
+    "deepseek_v41",
+    "--enable-auto-tool-choice",
+    "--reasoning-parser",
+    "deepseek_v41",
+    "--tokenizer-mode",
+    "deepseek_v41",
+    "--max-num-batched-tokens",
+    "4096",
+    "--max-cudagraph-capture-size",
+    "64",
+    "--speculative-config",
+    "{\"method\":\"dspark\",\"num_speculative_tokens\":7,\"draft_sample_method\":\"probabilistic\",\"rejection_sample_method\":\"block\",\"enable_adaptive_verification\":false,\"moe_backend\":\"b12x\"}",
+    "--attention-config",
+    "{\"indexer_kv_dtype\":\"mxfp4\",\"indexer_tp_shard_min_rows\":2048}",
+    "--moe-backend",
+    "b12x",
+    "--kv-offloading-size",
+    "32",
+    "--kv-transfer-config",
+    "{\"kv_connector\":\"OffloadingConnector\",\"kv_role\":\"kv_both\",\"kv_connector_extra_config\":{\"spec_name\":\"TieringOffloadingSpec\",\"secondary_tiers\":[{\"type\":\"fs\",\"root_dir\":\"/srv/kvcache/v41-interleaved\",\"n_read_threads\":16,\"n_write_threads\":16,\"locality\":\"LOCAL\"}],\"offload_prompt_only\":false}}"
+  ],
+  "env": {
+    "VLLM_MOET_B12X_MOE_FUSED": "1",
+    "VLLM_MOET_SPARSE_MLA_LDG": "1",
+    "VLLM_MOET_TARGET_LM_HEAD_MXFP8": "1",
+    "VLLM_MOET_P2P_AR": "1",
+    "VLLM_MOET_P2P_AR_FUSED_MAX_ROWS": "16",
+    "VLLM_MOET_ENGRAM_DISK": "1",
+    "VLLM_MOET_ENGRAM_DISK_THREADS": "16",
+    "NCCL_P2P_DISABLE": "0",
+    "NCCL_P2P_LEVEL": "SYS",
+    "VLLM_ENGINE_READY_TIMEOUT_S": "3600",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "shm": "48g",
+  "weights": [
+    {
+      "repo": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "revision": "1bae0e1088993b9b82de08f59de5be5a34e42170",
+      "at": "/models",
+      "layout": "dir"
+    }
+  ],
+  "config": null,
+  "ctx": 524288,
+  "seqs": 8,
+  "vision": true,
+  "cards": 4,
+  "needs": {
+    "host_ram_gb": 47,
+    "disk_gb": 520,
+    "fast_storage": "nvme"
+  },
+  "resources": {
+    "memlockUnlimited": true,
+    "ipcLock": true
+  },
+  "source": "https://github.com/sybil-solutions/local-ai-images/tree/9b79a61a06dc4d7e21c1b0be4b3e302eb0b7281d/vllm-moet-dsv41",
+  "setup": "NEEDS (measured on the reference host with the recipe kit's memwatch, before launch to peak): 4x RTX PRO 6000 Blackwell 96 GB (sm_120) in ONE machine with GPU peer-to-peer over PCIe (cudaDeviceCanAccessPeer true for every pair; the P2P all-reduce and NCCL_P2P_LEVEL=SYS rely on it), 368,132 MiB VRAM in use at ready (0.94) / 387,916 MiB peak; host RAM: 47 GB MemAvailable drop at peak (32 GiB of it is the pinned KV offload region, which lives in the container's /dev/shm, hence --shm-size 48g); disk: 510.3 GB of weights on local NVMe (Engram rows are read from the checkpoint at every decode step) + the 9.6 GB image; the KV disk tier writes into the container's own filesystem (/srv/kvcache) and goes away with it. FIRST START: FlashInfer autotune + DeepGEMM JIT run in the container (~22 min upstream, nothing is cached across --rm containers); then 9.69M GPU KV tokens (18.5x concurrency at 524,288). MEASURED on the reference host (Threadripper PRO 9965WX, 125 GiB RAM, PCIe 5.0, 300 W per GPU, stock memory clock; same vLLM-Moet 5d25cff + engram_disk build tagged locally, warm caches, a serving box with other agent traffic during the sweep): recipe kit sweep, natural completions, no output caps (https://github.com/sybil-solutions/local-ai-recipe-kit/blob/321e7a4ffe9e627d5bb899fb83ecada5deb57580/submissions/4x-rtx-pro-6000-96gb/2026-10-21-0xSero.json): prefill 8k 8,944 / 16k 9,937 / 32k 10,695 / 64k 11,119 tok/s; decode C1 137.6, C2 191.7, C3 202.5, C4 263.2, C8 271.7 tok/s aggregate (prose), C1 at 32k 73.1 tok/s. vLLM-Moet's single-stream code bench (tools/sm120_perf/fraser_bench.py, 2,048 tokens, 10 reps, 2026-10-21): median 403 tok/s (live traffic), undisturbed reps 557-573 tok/s at 5.4-5.6 accepted tokens per step; upstream reports 641 median / 686 best at 325 W with +5000 MHz memory and the Engram table in host RAM. QUALITY vs a stock-kernel reference (the same image with every VLLM_MOET_* switch 0, fp8_ds_mla KV, fp8 indexer, default MoE, no speculative decoding; 8 prompts, 1,953 teacher-forced positions; https://github.com/sybil-solutions/local-ai-recipe-kit/blob/321e7a4ffe9e627d5bb899fb83ecada5deb57580/targets/deepseek-v4.1-flash-4x-rtx-pro-6000.md): top-1 agreement 0.974, mean KL 0.0195 (reference vs itself 0.9995 / 0.00019); needle PASS at 245K and 510K. Lossy by design: the FP4 KV record, MXFP4 indexer keys, b12x 8-bit MoE activations and the MXFP8 target lm_head; every other switch is bit-identical to the path it replaces (VLLM_MOET_*=0 falls back to stock). Decode is power-bound: record the GPU power limit with any number.",
+  "variant": "moet-r13"
+}
