@@ -1,0 +1,219 @@
+[
+ {
+  "conn": "conn-0000",
+  "request": "GET /v1/models HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {},
+  "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 640
+ },
+ {
+  "conn": "conn-0001",
+  "request": "GET /v1/models HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {},
+  "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 659
+ },
+ {
+  "conn": "conn-0002",
+  "request": "POST /v1/chat/completions HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {
+   "model": "LFM2.5-2.6B-AutoRound-W4A16-2244dd32",
+   "temperature": 0.6
+  },
+  "body_sha256": "35051c55dfa97c33061ed80903de21fbf235a68e8275fc67b5818c61e711700b",
+  "has_max_tokens": false,
+  "finish_reasons": [
+   "stop"
+  ],
+  "response_bytes": 1870
+ },
+ {
+  "conn": "conn-0003",
+  "request": "POST /v1/chat/completions HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {
+   "model": "LFM2.5-2.6B-AutoRound-W4A16-2244dd32",
+   "temperature": 0.6
+  },
+  "body_sha256": "a2dcdfe32d3e73c766a5f1103e0e113656b33206e8a14323d0ccc5b66ac12758",
+  "has_max_tokens": false,
+  "finish_reasons": [
+   "stop"
+  ],
+  "response_bytes": 1708
+ },
+ {
+  "conn": "conn-0004",
+  "request": "POST /v1/chat/completions HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {
+   "model": "LFM2.5-2.6B-AutoRound-W4A16-2244dd32",
+   "temperature": 0.6
+  },
+  "body_sha256": "84da227efd4de1f438efb2068416357922baa7dee2fbdbe8cf57f9a87b113633",
+  "has_max_tokens": false,
+  "finish_reasons": [
+   "tool_calls"
+  ],
+  "response_bytes": 1304
+ },
+ {
+  "conn": "conn-0005",
+  "request": "POST /v1/chat/completions HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {
+   "model": "LFM2.5-2.6B-AutoRound-W4A16-2244dd32",
+   "temperature": 0.6
+  },
+  "body_sha256": "2955d897173e60f6e197db61bf553c65ac2b82db1b5520c617af2e6ac67a7f68",
+  "has_max_tokens": false,
+  "finish_reasons": [
+   "stop"
+  ],
+  "response_bytes": 1190
+ },
+ {
+  "conn": "conn-0006",
+  "request": "POST /v1/chat/completions HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {
+   "model": "LFM2.5-2.6B-AutoRound-W4A16-2244dd32",
+   "temperature": 0.6
+  },
+  "body_sha256": "952403fc3c4acc7ba5127094be2dc93c3b123af72b29499670c3c8b0244e24cd",
+  "has_max_tokens": false,
+  "finish_reasons": [
+   "stop"
+  ],
+  "response_bytes": 6717
+ },
+ {
+  "conn": "conn-0007",
+  "request": "POST /v1/chat/completions HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {
+   "model": "LFM2.5-2.6B-AutoRound-W4A16-2244dd32",
+   "temperature": 0.8,
+   "stream": true
+  },
+  "body_sha256": "ef8fecb3127c79863ba051c72e32880d62398279b8cc5a2bda72e6eb93e28d53",
+  "has_max_tokens": false,
+  "finish_reasons": [
+   "stop"
+  ],
+  "response_bytes": 383630
+ },
+ {
+  "conn": "conn-0008",
+  "request": "POST /v1/token/encode HTTP/1.1",
+  "status": "HTTP/1.1 404 Not Found",
+  "params": {},
+  "body_sha256": "6660ac6223060b400dbc35653eb52d6316016771f04b9c272d6217d7ab024a21",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 173
+ },
+ {
+  "conn": "conn-0009",
+  "request": "POST /tokenize HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {},
+  "body_sha256": "d79f0e27b157c3038a116f0c843d0fe04afe09935b360b97553e085df17a700f",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 3069
+ },
+ {
+  "conn": "conn-0010",
+  "request": "POST /v1/token/encode HTTP/1.1",
+  "status": "HTTP/1.1 404 Not Found",
+  "params": {},
+  "body_sha256": "e76083d8d58d6851fe669d6b11628cc57c8a48ca628dca89ceb7d835755f11d8",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 173
+ },
+ {
+  "conn": "conn-0011",
+  "request": "POST /tokenize HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {},
+  "body_sha256": "94ce8bfff40ce48434a71e694923ad6555e9fffc456677a503517737c2c4ce2b",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 7236
+ },
+ {
+  "conn": "conn-0012",
+  "request": "GET /v1/models HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {},
+  "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 659
+ },
+ {
+  "conn": "conn-0013",
+  "request": "POST /v1/chat/completions HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {
+   "model": "LFM2.5-2.6B-AutoRound-W4A16-2244dd32",
+   "temperature": 0.8,
+   "stream": true
+  },
+  "body_sha256": "ef8fecb3127c79863ba051c72e32880d62398279b8cc5a2bda72e6eb93e28d53",
+  "has_max_tokens": false,
+  "finish_reasons": [
+   "stop"
+  ],
+  "response_bytes": 789793
+ },
+ {
+  "conn": "conn-0014",
+  "request": "POST /v1/token/encode HTTP/1.1",
+  "status": "HTTP/1.1 404 Not Found",
+  "params": {},
+  "body_sha256": "6bfc99e743dfb84eba6cb7ed3373919a9a7ec04754f069e305be71a35e66bc40",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 173
+ },
+ {
+  "conn": "conn-0015",
+  "request": "POST /tokenize HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {},
+  "body_sha256": "926a2bd8aaf55080ddfed0b24e9dd022d7e97077bf5502aa71ae84d7e383993d",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 3065
+ },
+ {
+  "conn": "conn-0016",
+  "request": "POST /v1/token/encode HTTP/1.1",
+  "status": "HTTP/1.1 404 Not Found",
+  "params": {},
+  "body_sha256": "03f688446927bee5e679aa725209b09a70d32f052744d52ee2cdd41695741587",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 173
+ },
+ {
+  "conn": "conn-0017",
+  "request": "POST /tokenize HTTP/1.1",
+  "status": "HTTP/1.1 200 OK",
+  "params": {},
+  "body_sha256": "cbafd82a3f8a8b4f88f03db8430a216cab4f85c5d28d8ac14b892cfeaca888cd",
+  "has_max_tokens": false,
+  "finish_reasons": [],
+  "response_bytes": 14610
+ }
+]
