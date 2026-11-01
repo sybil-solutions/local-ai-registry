@@ -1,0 +1,45 @@
+{
+ "host": {
+  "kernel": "6.6.87.2-microsoft-standard-WSL2",
+  "cpu": "AMD Ryzen 5 3600 6-Core Processor",
+  "cpus": 12,
+  "avx512": false
+ },
+ "ram": {
+  "total_gb": 29.43,
+  "available_gb": 27.55,
+  "swap_total_gb": 8.59,
+  "swap_used_gb": 1.91
+ },
+ "storage": {
+  "path": "/mnt/magnus/sybil-awq-20261023/models",
+  "free_gb": 1756.93,
+  "total_gb": 1967.81,
+  "device": "/dev/sde1",
+  "fstype": "ext4",
+  "physical_disks": [
+   {
+    "disk": "sde",
+    "nvme": false,
+    "rotational": true,
+    "model": "Drive 2657"
+   }
+  ],
+  "all_nvme": false
+ },
+ "gpus": [
+  {
+   "vendor": "nvidia",
+   "index": 0,
+   "name": "NVIDIA GeForce GTX 1650 SUPER",
+   "vram_gb": 4,
+   "vram_mib": 4096,
+   "vram_used_mib": 167,
+   "unified_memory": false,
+   "pci": "00000000:0C:00.0",
+   "pcie_gen_max": "3",
+   "pcie_width_max": "16",
+   "driver": "595.95"
+  }
+ ]
+}
