@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "freriadoc/Qwen3.8-Flash-Next-Avalon-GGUF@372fe3a4e572c5ba75a90e579de0695633d083a8",
+  "engine": "avalon-qwen3.8-flash-next-iq3ks-256k-rtx-3090-24gb@5819796f2c7f",
+  "set": {},
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 3090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-01",
+  "on": "owner",
+  "gpu": "RTX 3090",
+  "launch_sha256": "f566e65e858122948bd8d4434744c88c6a986a79392b902aa73aad565e58142f",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 106.6,
+  "prefill": 1460,
+  "served": "/mnt/nvme/models/Qwen3.8-Flash-Next-Avalon-GGUF/Qwen3.8-Flash-Next-Avalon-IQ3KS-00001-of-00033.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 129,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "VDCa2bqW4v3zbCmS1Mk6xUrblLF1SM3m"
+    }
+   ],
+   "reply": "It's currently **17°C** in Paris with **overcast** skies — grey and mild, so no rain expected right now but you might want a light jacket. 🌥️",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 107
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 146.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 8098,
+   "seconds_total": 80.2
+  }
+ },
+ "launch_config_sha256": null
+}

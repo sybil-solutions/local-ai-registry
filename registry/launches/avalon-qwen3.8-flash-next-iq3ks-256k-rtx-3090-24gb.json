@@ -1,0 +1,72 @@
+{
+  "id": "avalon-qwen3.8-flash-next-iq3ks-256k-rtx-3090-24gb",
+  "kind": "host",
+  "engine": "avalon",
+  "about": "Qwen3.8-Flash-Next (freriadoc's IQ3_KS hybrid: ISTA's experts with the up/gate tensors of 27 layers requantized from BF16) on one 24 GB card with Avalon (github.com/freriadoc/Avalon), a llama.cpp fork that keeps the MoE block on the GPU, computes the experts its VRAM cache holds while the CPU computes the missing ones, and prefetches the next experts during prefill. MTP speculative decoding with a 65k-vocabulary draft head (2 drafts), q8_0 key cache and q4_0 value cache, 256K window.",
+  "command": [
+    "build/bin/llama-server",
+    "-m",
+    "../models/Qwen3.8-Flash-Next-Avalon-GGUF/Qwen3.8-Flash-Next-Avalon-IQ3KS-00001-of-00033.gguf",
+    "-c",
+    "262144",
+    "-b",
+    "9536",
+    "-ub",
+    "9536",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q4_0",
+    "--jinja",
+    "--parallel",
+    "1",
+    "-md",
+    "../models/Qwen3.8-Flash-Next-Avalon-GGUF/MTP/mtp-Qwen3.8-Flash-Next-shared-IQ3K-IQ4NL-FR65k.gguf",
+    "--spec-type",
+    "draft-mtp",
+    "--spec-draft-n-max",
+    "2",
+    "-ubd",
+    "256",
+    "-ctkd",
+    "q8_0",
+    "-ctvd",
+    "q8_0",
+    "--alias",
+    "qwen3.8-flash-next",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080"
+  ],
+  "install": "git clone https://github.com/freriadoc/Avalon && git -C Avalon checkout 9ff242b7827ef6535eaaf062de86ccf1f7afb3d7 && cmake -S Avalon -B Avalon/build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=86 -DCMAKE_BUILD_TYPE=Release && cmake --build Avalon/build -j$(nproc) --target llama-server (Avalon's CUDA build; its installer is ROCm only. On Arch the toolkit is in /opt/cuda, so add -DCMAKE_CUDA_COMPILER=/opt/cuda/bin/nvcc -DCUDAToolkit_ROOT=/opt/cuda if cmake cannot find nvcc)",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "freriadoc/Qwen3.8-Flash-Next-Avalon-GGUF",
+      "revision": "372fe3a4e572c5ba75a90e579de0695633d083a8",
+      "at": "../models/Qwen3.8-Flash-Next-Avalon-GGUF",
+      "layout": "dir",
+      "files": [
+        "Qwen3.8-Flash-Next-Avalon-IQ3KS-00001-of-00033.gguf",
+        "MTP/mtp-Qwen3.8-Flash-Next-shared-IQ3K-IQ4NL-FR65k.gguf",
+        "moe-cache-ranking.bin"
+      ]
+    }
+  ],
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "source": "https://github.com/freriadoc/Avalon/tree/9ff242b7827ef6535eaaf062de86ccf1f7afb3d7",
+  "needs": {
+    "host_ram_gb": 5.0,
+    "disk_gb": 96.3,
+    "fast_storage": "nvme",
+    "cpus": 8
+  },
+  "setup": "NEEDS: one 24 GB NVIDIA card, an AVX2 CPU (the experts the GPU does not hold are computed on it; Avalon's own installer refuses a machine without AVX2), 32 GB of system RAM or more and ~97 GB on a local NVMe SSD (96.3 GB of GGUF: 89 GiB model, 1.4 GiB MTP head, 173 KB expert ranking). The model is memory-mapped and the resident expert cache is 9 - 14 GiB, so what does not fit in RAM is re-read from the SSD while serving; measured on an RTX 3090 (Ryzen 9, 94 GB RAM, NVMe) the largest MemAvailable drop from a stopped, cache-cleared start to the end of the gates was 5.0 GiB and VRAM peaked at 22.8 GiB. Cold prefill of 188,746 tokens: 1,361 tok/s. Avalon is built for one model: no other weights run on it."
+}
