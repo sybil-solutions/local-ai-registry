@@ -363,10 +363,11 @@ def gates(endpoint, launch):
                   "thinking_chars": len(c2["message"].get("reasoning_content") or c2["message"].get("reasoning") or "")}
     ok["tools"] = first and "17" in reply
     ev["tools"] = {"call": calls[:1], "reply": reply[-200:], **second}
-    # context: a code planted near the end of a prompt that fills ~85% of the window
+    # context: a code planted in the first fifth of a prompt that fills ~85% of the window so front-truncation loses it
     target = int(launch["ctx"] * 0.85)
-    filler = " ".join(f"Line {i}: the archive notes that shipment {i * 7 % 997} left dock {i % 13} on schedule." for i in range(target // 24))  # ~23.6 tokens a line (measured: 32,834 tokens from 1,473 lines)
-    prompt = filler + " The access code for the vault is 58213. " + "Anything else is routine."
+    lines = [f"Line {i}: the archive notes that shipment {i * 7 % 997} left dock {i % 13} on schedule." for i in range(target // 24)]  # ~23.6 tokens a line (measured: 32,834 tokens from 1,473 lines)
+    split = max(1, len(lines) // 5)
+    prompt = " ".join(lines[:split]) + " The access code for the vault is 58213. " + " ".join(lines[split:]) + " Anything else is routine."
     dropped = []  # seconds each dropped attempt ran before its connection dropped
     for attempt in range(3):  # a rented host's port mapping can silently drop a connection that stays idle for
         started = time.monotonic()
@@ -384,8 +385,10 @@ def gates(endpoint, launch):
     else:  # unreachable: the last attempt raises
         raise SystemExit("context gate: the connection dropped three times")
     got = u.get("prompt_tokens") or 0
-    ok["context"] = "58213" in (c["message"].get("content") or "") and got >= launch["ctx"] * 0.6
+    ok["context"] = "58213" in (c["message"].get("content") or "") and got >= launch["ctx"] * 0.6 and u.get("counted") != "estimate"
     ev["context"] = {"prompt_tokens": got, "seconds": round(secs, 1), "content": (c["message"].get("content") or "")[-80:]}
+    if u.get("counted"):
+        ev["context"]["counted"] = u["counted"]
     if dropped:  # the number came from a retry: say which attempt answered and how long the dropped attempt ran
         ev["context"]["retried"] = attempt
         ev["context"]["dropped_s"] = dropped
@@ -634,8 +637,35 @@ def check_needs(n):
     assert n.get("cpus", 1) > 0, "needs.cpus counts CPU threads the engine pins work to"
 
 
+DRIFTED_HISTORICAL_RECIPES = {
+    "nvidia/rtx-3060-ti-8gb/qwen3.6-35b-a3b.sglang.128k.json",
+    "nvidia/rtx-3070-8gb/qwen3.6-35b-a3b.sglang.128k.json",
+    "nvidia/rtx-3080-10gb/qwen3.6-35b-a3b.sglang.256k.json",
+}
+
+
+def run_records():
+    """Index run evidence files in lab/runs/ and data/lab-runs/ by their proof log digest (sha256:<16 hex>)."""
+    out = {}
+    for folder in (RUNS, ROOT / "data" / "lab-runs"):
+        if not folder.exists():
+            continue
+        for rf in folder.glob("*.json"):
+            try:
+                raw = rf.read_text(encoding="utf-8")
+                rec = json.loads(raw)
+            except Exception:
+                continue
+            if isinstance(rec, dict):
+                for variant in (raw.rstrip("\n"), raw):
+                    h = "sha256:" + hashlib.sha256(variant.encode("utf-8")).hexdigest()[:16]
+                    out[h] = rec
+    return out
+
+
 def cmd_check(_):
     bad = []
+    runs = run_records()
     exempt = kv_floor_exempt()
     gone = sorted(x for x in exempt if not (RECIPES / x).exists())
     if gone:
@@ -657,17 +687,33 @@ def cmd_check(_):
                 check_needs(launch["needs"])
             if "companion" in launch:
                 check_companion(launch["companion"])
+            rel = str(f.relative_to(RECIPES))
             p = r["proof"][0]
             if launch.get("resources") or "verifyArgs" in (launch.get("prepare") or {}):
                 check_execution(launch)
                 # a reported proof is its publisher's run, not an acceptance: there is no lab hash to bind
                 if not p.get("withdrawn") and not p.get("reported"):
                     assert p.get("launch_sha256") == launch_hash(launch), "typed launch changed since acceptance; rerun the recipe"
+            if not p.get("withdrawn") and not p.get("reported") and p.get("launch_sha256") and rel not in DRIFTED_HISTORICAL_RECIPES:
+                assert p.get("launch_sha256") == launch_hash(launch), "launch changed since acceptance; rerun the recipe"
             if "withdrawn" in p:
                 assert p["withdrawn"] is True and p.get("src") and p.get("reason"), "withdrawal needs source and reason"
             need = set() if p.get("reported") or p.get("withdrawn") else {"load", "chat"} if p.get("legacy") else set(GATES)
             assert not r["proof"][0].get("reported") or r["proof"][0].get("src"), "a reported proof names its source"
             assert need <= set(r["proof"][0]["gates"].split()), "latest proof lacks a gate"
+            if not p.get("withdrawn") and not p.get("reported") and not p.get("legacy"):
+                assert (p.get("tps") or 0) >= MIN_TPS, f"latest proof tps {p.get('tps')} is below MIN_TPS ({MIN_TPS})"
+                assert re.fullmatch(r"sha256:[0-9a-f]{16,64}", str(p.get("log") or "")), "latest proof lacks a run evidence log hash"
+                if p["log"] in runs:
+                    run = runs[p["log"]]
+                    rec, rproof, ev = run.get("recipe") or {}, run.get("proof") or {}, run.get("evidence") or {}
+                    ok = ev.get("ok") or {}
+                    assert set(p["gates"].split()) == {g for g in GATES if ok.get(g)}, "proof gates do not match run evidence"
+                    assert p.get("tps") == rproof.get("tps"), "proof tps does not match run record"
+                    assert p.get("served") == rproof.get("served"), "proof served model does not match run record"
+                    assert r.get("model") == rec.get("model") and r.get("weights") == rec.get("weights"), "recipe model or weights do not match run record"
+                    assert r.get("card") == rec.get("card") or p.get("proxy") == rec.get("card"), "recipe card does not match run record"
+                    assert "context" not in ev or ((ev.get("context") or {}).get("prompt_tokens") or 0) >= launch["ctx"] * 0.6, "recipe ctx exceeds run evidence context window"
             assert f.stat().st_size <= MAX_RECIPE_BYTES, f"{f.stat().st_size} bytes"
             rel = str(f.relative_to(RECIPES))
             low = not p.get("withdrawn") and below_kv_floor(r, launch)
