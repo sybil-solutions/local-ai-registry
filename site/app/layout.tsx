@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import PostHog from "@/components/PostHog";
 import { stats } from "@/lib/registry";
 import "./globals.css";
 
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", weight: ["400", "500"] });
-const sans = Geist({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "500", "600"] });
+const mono = localFont({ src: [{ path: "../assets/mono-400.ttf", weight: "400" }, { path: "../assets/mono-500.ttf", weight: "500" }], variable: "--font-mono" });
+// Geist 1.9.0 from vercel/geist-font; license in assets/geist-OFL.txt.
+const sans = localFont({ src: "../assets/geist-sans.woff2", variable: "--font-sans", weight: "100 900" });
 const SITE = "https://local.sybilsolutions.ai";
 
 export const metadata: Metadata = {

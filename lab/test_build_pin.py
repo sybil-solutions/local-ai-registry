@@ -18,7 +18,7 @@ BUILD = {'id': 'fixture-4x', 'engine': 'fixture', 'image': None, 'backend': 'nvi
 class BuildPinTest(unittest.TestCase):
     def profile(self, ref, p=BUILD):
         with tempfile.TemporaryDirectory() as d, patch.object(lab, 'LAUNCHES', Path(d)):
-            (Path(d) / f"{p['id']}.json").write_text(json.dumps(p))
+            (Path(d) / f"{p['id']}.json").write_text(json.dumps(p), encoding="utf-8")
             return lab.profile(ref)
 
     def test_a_build_launch_pins_to_its_commit(self):
@@ -41,7 +41,7 @@ class BuildPinTest(unittest.TestCase):
         self.assertEqual(lab.pin({**BUILD, 'image': 'ghcr.io/test/engine@sha256:' + 'a' * 64}), 'a' * 64)
 
     def test_every_build_launch_in_the_registry_pins_and_keeps_its_recipes(self):
-        launches = [p for p in (json.loads(f.read_text()) for f in sorted(lab.LAUNCHES.glob('*.json'))) if p.get('build') and not p.get('image')]
+        launches = [p for p in (json.loads(f.read_text(encoding="utf-8")) for f in sorted(lab.LAUNCHES.glob('*.json'))) if p.get('build') and not p.get('image')]
         self.assertTrue(launches)
         for p in launches:
             self.assertRegex(lab.pin(p), r'^[0-9a-f]{40}$', p['id'])
@@ -50,7 +50,7 @@ class BuildPinTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
             (root / 'launches').mkdir()
-            (root / 'launches/fixture-4x.json').write_text(json.dumps(BUILD))
+            (root / 'launches/fixture-4x.json').write_text(json.dumps(BUILD), encoding="utf-8")
             args = argparse.Namespace(weights='test/raw@' + 'b' * 40, model='test-model', engine='fixture-4x', card='dgx-spark-gb10-128gb',
                                       set=[], dry_run=False, on='endpoint', endpoint='http://fixture.invalid', gpu='4x DGX Spark (GB10)', proxy_gpu=None)
             proof = {'gates': ' '.join(lab.GATES), 'tps': 30.1, 'prefill': 300, 'served': 'fixture'}
@@ -60,7 +60,7 @@ class BuildPinTest(unittest.TestCase):
                     contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
                 self.assertEqual(lab.cmd_try(args), 0)
             [out] = list((root / 'recipes').rglob('*.json'))
-            self.assertEqual(json.loads(out.read_text())['engine'], 'fixture-4x@' + COMMIT[:12])
+            self.assertEqual(json.loads(out.read_text(encoding="utf-8"))['engine'], 'fixture-4x@' + COMMIT[:12])
             self.assertTrue(out.name.endswith('.1024k.4x.json'), out.name)
 
 

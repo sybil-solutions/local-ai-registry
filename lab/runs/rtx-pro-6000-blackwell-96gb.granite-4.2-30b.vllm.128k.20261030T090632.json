@@ -1,0 +1,73 @@
+{
+ "recipe": {
+  "model": "granite-4.2-30b",
+  "weights": "ibm-granite/granite-4.2-30b-nvfp4@bddf34bc6db17e5c4f586e49c1668c8e97610446",
+  "engine": "vllm@8a69ffad015f",
+  "set": {
+   "ctx": 131072,
+   "kv": "fp8",
+   "think": "deepseek_r1"
+  },
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell WS (450 W cap)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-30",
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell WS (450 W cap)",
+  "launch_sha256": "1e1ce723f97bf4fbe96edea8c9aa61732b8de1e77529eccf1198b1bc667e9957",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 78.6,
+  "prefill": 3843,
+  "served": "granite-4.2-30b-nvfp4-bddf34bc"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\nred, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 375,
+   "content": "\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-98f78fc6986f7a67",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\nThe current weather in Paris is 17°C with overcast skies. This means the sky is covered with clouds, but there's no mention of rain or other precipitation. Let me know if you'd like more details!",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 466
+  },
+  "context": {
+   "prompt_tokens": 87246,
+   "seconds": 22.7,
+   "content": "\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1587,
+   "seconds_total": 20.2
+  }
+ },
+ "launch_config_sha256": null
+}

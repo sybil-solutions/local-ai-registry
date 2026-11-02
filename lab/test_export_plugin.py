@@ -24,7 +24,7 @@ class ExportFlagsTest(unittest.TestCase):
 
 
 def recipe(path):
-    return json.loads((lab.RECIPES / path).read_text())
+    return json.loads((lab.RECIPES / path).read_text(encoding="utf-8"))
 
 
 class KvFloorTest(unittest.TestCase):
@@ -49,7 +49,7 @@ class KvFloorTest(unittest.TestCase):
         self.assertTrue(lab.below_kv_floor(r))
 
     def test_export_holds_the_floor(self):
-        cat = json.loads((lab.ROOT / "dist" / "catalog.json").read_text())
+        cat = json.loads((lab.ROOT / "dist" / "catalog.json").read_text(encoding="utf-8"))
         for version in (2, 3):
             out = json.loads(build(version))
             self.assertTrue(out["hardware"])

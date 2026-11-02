@@ -1,0 +1,16 @@
+{
+  "id": "rtx-5060-laptop-8gb",
+  "name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 8,
+  "bandwidth_gb_s": 384,
+  "match": {
+    "backend": "nvidia",
+    "name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "names": [
+      "rtx5060laptopgpu"
+    ],
+    "vramGb": 8
+  }
+}

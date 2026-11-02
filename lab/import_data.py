@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lab
 
 D = lab.ROOT / "data" / "registry"
-load = lambda p: json.loads(Path(p).read_text())
+load = lambda p: json.loads(Path(p).read_text(encoding="utf-8"))
 
 
 def c1_decode(sweep):
@@ -54,7 +54,7 @@ def freeze(rid, model, name=None):
             elif "huggingface" in src:
                 weights.append({"repo": mi["repository"], "revision": mi["revision"], "at": m["target"], "layout": "hub"})
             elif src.startswith("asset/"):
-                config = {"at": m["target"], "text": (D / src).read_text()}
+                config = {"at": m["target"], "text": (D / src).read_text(encoding="utf-8")}
         if L.get("ipc") == "host":
             flags.append("--ipc host")
         flags += [f"--security-opt {x}" for x in L.get("security_opt") or []] + [f"--ulimit {x}" for x in L.get("ulimits") or []]
@@ -74,7 +74,7 @@ def freeze(rid, model, name=None):
     while (lab.LAUNCHES / f"{name}.json").exists() and load(lab.LAUNCHES / f"{name}.json").get("frozen_from") != [rid]:
         name, n = f"{base}-v{n}", n + 1
     prof = {"id": name, **prof, "frozen_from": [rid]}
-    (lab.LAUNCHES / f"{name}.json").write_text(json.dumps(prof, indent=2) + "\n")
+    (lab.LAUNCHES / f"{name}.json").write_text(json.dumps(prof, indent=2) + "\n", encoding="utf-8")
     digest = prof["image"].split("@sha256:")[1][:12] if prof.get("image") and "@sha256:" in prof["image"] else "host"
     recipe = {"model": model, "weights": f"{mi['repository']}@{mi['revision']}" if mi.get("revision") else "baked-into-image",
               "engine": f"{name}@{digest}", "set": {}, "card": r["hardware_id"],
@@ -82,7 +82,7 @@ def freeze(rid, model, name=None):
                          "tps": round(tps, 1) if tps else None, "legacy": True}]}
     out = lab.recipe_path(recipe, lab.render(recipe))
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(recipe, separators=(",", ":")) + "\n")
+    out.write_text(json.dumps(recipe, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"{rid} -> {out.relative_to(lab.ROOT)} (profile {name})")
 
 

@@ -37,7 +37,7 @@ class HostTopologyTest(unittest.TestCase):
 
     def test_existing_host_pins_unchanged(self):
         # the pin before cards and machines counted: every host profile in the registry still gets it
-        hosts = [p for p in (json.loads(f.read_text()) for f in sorted(lab.LAUNCHES.glob('*.json'))) if p.get('kind') == 'host']
+        hosts = [p for p in (json.loads(f.read_text(encoding="utf-8")) for f in sorted(lab.LAUNCHES.glob('*.json'))) if p.get('kind') == 'host']
         self.assertTrue(hosts)
         for p in hosts:
             if single(p):
@@ -47,8 +47,8 @@ class HostTopologyTest(unittest.TestCase):
         # a registry holding a legacy single-card host and a new two-card one: only the first keeps the old pin
         with tempfile.TemporaryDirectory() as d, patch.object(lab, 'LAUNCHES', Path(d)):
             for name, p in (('one', HOST), ('two', {**HOST, 'cards': 2})):
-                (Path(d) / f'{name}.json').write_text(json.dumps({'id': name, **p}))
-            got = {p['id']: (single(p), lab.pin(p) == old_pin(p)) for p in (json.loads(f.read_text()) for f in sorted(Path(d).glob('*.json')))}
+                (Path(d) / f'{name}.json').write_text(json.dumps({'id': name, **p}), encoding="utf-8")
+            got = {p['id']: (single(p), lab.pin(p) == old_pin(p)) for p in (json.loads(f.read_text(encoding="utf-8")) for f in sorted(Path(d).glob('*.json')))}
         self.assertEqual(got, {'one': (True, True), 'two': (False, False)})
 
     def test_explicit_single_topology_renders_the_same_launch(self):
@@ -77,7 +77,7 @@ class HostTopologyTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d, patch.object(lab, 'ROOT', Path(d)), patch.object(lab, 'RECIPES', Path(d) / 'recipes'), \
                 patch.object(lab, 'profile', return_value={**HOST, 'machines': 2}):
             r = recipe()
-            out = lab.recipe_path(r, lab.render(r)); out.parent.mkdir(parents=True); out.write_text(json.dumps(r))
+            out = lab.recipe_path(r, lab.render(r)); out.parent.mkdir(parents=True); out.write_text(json.dumps(r), encoding="utf-8")
             buf = io.StringIO()
             with contextlib.redirect_stdout(buf):
                 self.assertEqual(lab.cmd_check(None), 1)
@@ -102,13 +102,13 @@ class HostTopologyTest(unittest.TestCase):
                 patch.object(lab, 'LAUNCHES', Path(d) / 'launches'), contextlib.redirect_stdout(io.StringIO()):
             (Path(d) / 'launches').mkdir()
             src = Path(d) / 'src' / 'test.json'; src.parent.mkdir()
-            src.write_text(json.dumps([{**v, 'gpus_per_machine': g} for v in (host, box) for g in (1, 2)]))
+            src.write_text(json.dumps([{**v, 'gpus_per_machine': g} for v in (host, box) for g in (1, 2)]), encoding="utf-8")
             import_reported.main([str(src)])
             files = sorted((Path(d) / 'recipes').rglob('*.json'))
             self.assertEqual(len(files), 4)
             self.assertEqual(len(list((Path(d) / 'launches').glob('*.json'))), 4)
             for f in files:
-                r = json.loads(f.read_text()); L = lab.render(r)
+                r = json.loads(f.read_text(encoding="utf-8")); L = lab.render(r)
                 self.assertEqual(f, lab.recipe_path(r, L))
                 self.assertEqual(L['cards'], 2 if f.name.endswith('.2x.json') else 1, f.name)
 

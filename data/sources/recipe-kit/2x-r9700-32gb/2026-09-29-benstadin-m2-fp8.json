@@ -1,0 +1,370 @@
+{
+ "schema": "local-ai-recipe-kit/submission/v1",
+ "submitted": "2026-09-29",
+ "handle": "benstadin",
+ "target": "qwen3.8-flash-next-offload",
+ "launch": {
+  "image": "docker.io/tcclaviger/vllm@sha256:cabd0947e156d835b1b919418fded164b82aabe48d35cb73d5f7ff73f03eafe3",
+  "args": [
+   "/app/tools/image_entrypoint.sh",
+   "/app/models",
+   "--host",
+   "<bind address>",
+   "--port",
+   "8080",
+   "--served-model-name",
+   "qwen3.8-flash-next",
+   "--tensor-parallel-size",
+   "2",
+   "--enable-expert-offload",
+   "--expert-offload-mem",
+   "40",
+   "--expert-precise-memory",
+   "--ple-nvme-offload",
+   "--ple-nvme-dir",
+   "/app/pleoffload",
+   "--ple-cache-gb",
+   "2",
+   "--ple-cache-reuse",
+   "true",
+   "--tool-call-parser",
+   "qwen3_coder",
+   "--enable-auto-tool-choice",
+   "--reasoning-parser",
+   "qwen3",
+   "--max-num-seqs",
+   "4",
+   "--enable-chunked-prefill",
+   "--max-num-batched-tokens",
+   "4096",
+   "--gpu-memory-utilization",
+   "0.97",
+   "--kv-cache-dtype",
+   "fp8",
+   "--max-model-len",
+   "262144",
+   "--compilation-config",
+   "{\"cudagraph_mode\": \"PIECEWISE\", \"cudagraph_capture_sizes\": [4], \"max_cudagraph_capture_size\": 4}",
+   "--speculative-config",
+   "{\"method\": \"mtp\", \"num_speculative_tokens\": 3}",
+   "--enable-log-requests",
+   "--enable-log-outputs",
+   "--max-log-len",
+   "2000",
+   "--max-logprobs",
+   "100"
+  ],
+  "env": {
+   "RADIANCE_KV_RESERVE_SEQS": "1.5",
+   "TRITON_CACHE_DIR": "/cache/triton",
+   "VLLM_CACHE_ROOT": "/cache/vllm",
+   "TORCHINDUCTOR_CACHE_DIR": "/cache/inductor",
+   "OMP_NUM_THREADS": "8",
+   "VLLM_ROCM_USE_AITER": "0",
+   "GPU_MAX_HW_QUEUES": "2",
+   "HSA_ENABLE_INTERRUPT": "1",
+   "HSA_ENABLE_MWAITX": "1",
+   "VLLM_PLE_CPU_OFFLOAD": "1",
+   "ROCR_VISIBLE_DEVICES": "0,1",
+   "HIP_VISIBLE_DEVICES": "0,1",
+   "HF_HUB_OFFLINE": "1",
+   "VLLM_NO_USAGE_STATS": "1",
+   "VLLM_API_KEY": "<set, not shown>"
+  },
+  "shm": "host IPC (--ipc=host)",
+  "gpu": "2x AMD Radeon AI PRO R9700 32 GB (gfx1201), tensor parallel 2, each PCIe 5.0 x8 to the CPU",
+  "network": "host",
+  "runtime": [
+   "podman (rootless)",
+   "--privileged",
+   "--ipc=host",
+   "--network=host",
+   "--device /dev/kfd",
+   "--device /dev/dri",
+   "--group-add keep-groups",
+   "--security-opt seccomp=unconfined",
+   "--ulimit memlock=-1:-1"
+  ],
+  "mounts": [
+   "<models dir>/Qwen3.8-Flash-Next-MXFP4-FP8-GPTQ@ab7c138a:/app/models:ro",
+   "<state>/plecache:/app/pleoffload",
+   "<state>/cache/triton:/cache/triton",
+   "<state>/cache/vllm:/cache/vllm",
+   "<state>/cache/inductor:/cache/inductor",
+   "<patches>/expert_plan.py:/opt/vllm/lib/python3.14/site-packages/vllm/model_executor/offloader/expert_plan.py:ro",
+   "<patches>/expert_activation_registry.py:/opt/vllm/lib/python3.14/site-packages/vllm/model_executor/offloader/expert_activation_registry.py:ro"
+  ],
+  "weights": "tcclaviger/Qwen3.8-Flash-Next-MXFP4-FP8-GPTQ @ ab7c138a0c6119d485d58033e9e992752e14004f",
+  "profile": "M2 with FP8 KV"
+ },
+ "probe": {
+  "host": {
+   "kernel": "7.0.14-19-pve",
+   "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+   "cpus": 32,
+   "avx512": true
+  },
+  "ram": {
+   "total_gb": 132.47,
+   "available_gb": 21.77,
+   "swap_total_gb": 0.0,
+   "swap_used_gb": 0.0
+  },
+  "storage": {
+   "path": "/srv/radiance-flash/models",
+   "free_gb": 93.66,
+   "total_gb": 263.09,
+   "device": "/dev/mapper/pve-radiance--flash",
+   "fstype": "ext4",
+   "physical_disks": [
+    {
+     "disk": "nvme0n1",
+     "nvme": true,
+     "rotational": false,
+     "model": "Samsung SSD 9100 PRO 4TB"
+    }
+   ],
+   "all_nvme": true
+  },
+  "gpus": [
+   {
+    "vendor": "amd",
+    "card": "card0",
+    "pci": "0000:03:00.0",
+    "name": "Advanced Micro Devices, Inc. [AMD/ATI] Navi 48 [Radeon AI PRO R9700] (rev c0)",
+    "vram_gb": 34.21,
+    "vram_used_mib": 31581,
+    "pcie_card_link": "32.0 GT/s PCIe x16",
+    "pcie_root_port_link": "32.0 GT/s PCIe x8"
+   },
+   {
+    "vendor": "amd",
+    "card": "card1",
+    "pci": "0000:07:00.0",
+    "name": "Advanced Micro Devices, Inc. [AMD/ATI] Navi 48 [Radeon AI PRO R9700] (rev c0)",
+    "vram_gb": 34.21,
+    "vram_used_mib": 31372,
+    "pcie_card_link": "32.0 GT/s PCIe x16",
+    "pcie_root_port_link": "32.0 GT/s PCIe x8"
+   }
+  ]
+ },
+ "quality": {
+  "panel": {
+   "top1_agreement": 0.9686771076307897,
+   "mean_kl_top20": 0.015022211921085023,
+   "positions": 3001
+  },
+  "needle": {
+   "prompt_tokens": 254747,
+   "depth": 0.8,
+   "code": "7775-9682",
+   "answer": "7775-9682",
+   "pass": true,
+   "seconds": 60.1
+  }
+ },
+ "speed": {
+  "status": "DONE",
+  "config": "docker.io/tcclaviger/vllm@sha256:cabd0947e156d835b1b919418fded164b82aabe48d35cb73d5f7ff73f03eafe3 \u00b7 Qwen3.8-Flash-Next-MXFP4-FP8-GPTQ@ab7c138a \u00b7 TP2 \u00b7 M2 with FP8 KV (only change): KV x1.5 requests, 40 GiB experts in RAM \u00b7 gpu-util 0.97 \u00b7 chunk 4096 \u00b7 max-seqs 4 \u00b7 MTP 3 \u00b7 KV pool 303149",
+  "prefill": {
+   "8192": {
+    "median": 3953.8,
+    "min": 3912.7,
+    "max": 3954.5,
+    "n": 3,
+    "all": [
+     3912.7,
+     3954.5,
+     3953.8
+    ]
+   },
+   "16384": {
+    "median": 4215.8,
+    "min": 4170.0,
+    "max": 4230.2,
+    "n": 3,
+    "all": [
+     4170.0,
+     4215.8,
+     4230.2
+    ]
+   },
+   "32768": {
+    "median": 4179.9,
+    "min": 4155.2,
+    "max": 4205.8,
+    "n": 3,
+    "all": [
+     4179.9,
+     4155.2,
+     4205.8
+    ]
+   },
+   "65536": {
+    "median": 4137.3,
+    "min": 4132.2,
+    "max": 4145.3,
+    "n": 3,
+    "all": [
+     4137.3,
+     4145.3,
+     4132.2
+    ]
+   }
+  },
+  "decode": {
+   "C1": {
+    "aggregate": {
+     "median": 120.985,
+     "min": 118.62,
+     "max": 123.35,
+     "n": 2,
+     "all": [
+      118.62,
+      123.35
+     ]
+    },
+    "per_stream_mean": {
+     "median": 120.91,
+     "min": 118.53,
+     "max": 123.29,
+     "n": 2,
+     "all": [
+      118.53,
+      123.29
+     ]
+    }
+   },
+   "C2": {
+    "aggregate": {
+     "median": 111.25999999999999,
+     "min": 108.33,
+     "max": 114.19,
+     "n": 2,
+     "all": [
+      114.19,
+      108.33
+     ]
+    },
+    "per_stream_mean": {
+     "median": 57.394999999999996,
+     "min": 57.14,
+     "max": 57.65,
+     "n": 2,
+     "all": [
+      57.14,
+      57.65
+     ]
+    }
+   },
+   "C3": {
+    "aggregate": {
+     "median": 120.005,
+     "min": 107.04,
+     "max": 132.97,
+     "n": 2,
+     "all": [
+      132.97,
+      107.04
+     ]
+    },
+    "per_stream_mean": {
+     "median": 43.005,
+     "min": 37.13,
+     "max": 48.88,
+     "n": 2,
+     "all": [
+      48.88,
+      37.13
+     ]
+    }
+   },
+   "C4": {
+    "aggregate": {
+     "median": 134.64,
+     "min": 127.19,
+     "max": 142.09,
+     "n": 2,
+     "all": [
+      142.09,
+      127.19
+     ]
+    },
+    "per_stream_mean": {
+     "median": 36.89,
+     "min": 34.78,
+     "max": 39.0,
+     "n": 2,
+     "all": [
+      39.0,
+      34.78
+     ]
+    }
+   },
+   "C1@32k": {
+    "aggregate": {
+     "median": 120.14500000000001,
+     "min": 118.15,
+     "max": 122.14,
+     "n": 2,
+     "all": [
+      122.14,
+      118.15
+     ]
+    },
+    "per_stream_mean": null
+   }
+  },
+  "server_args": {
+   "max_running_requests": 4,
+   "max_total_num_tokens": 303149,
+   "chunked_prefill_size": 4096,
+   "kv_cache_dtype": "fp8",
+   "context_length": 262144,
+   "mem_fraction_static": 0.97,
+   "max_mamba_cache_size": null
+  },
+  "gates": {
+   "prefill_8192": {
+    "value": 3953.8,
+    "best_known": null,
+    "pass": true
+   },
+   "prefill_16384": {
+    "value": 4215.8,
+    "best_known": null,
+    "pass": true
+   },
+   "prefill_32768": {
+    "value": 4179.9,
+    "best_known": null,
+    "pass": true
+   },
+   "prefill_65536": {
+    "value": 4137.3,
+    "best_known": null,
+    "pass": true
+   },
+   "decode_C1": {
+    "value": 120.98,
+    "best_known": null,
+    "pass": true
+   },
+   "decode_C4": {
+    "value": 134.64,
+    "best_known": null,
+    "pass": true
+   }
+  }
+ },
+ "needs_measured": {
+  "samples": 722,
+  "mem_available_start_gb": 80.01,
+  "mem_available_min_gb": 18.4,
+  "host_ram_drop_peak_gb": 61.61,
+  "swap_used_max_gb": 0.0,
+  "gpu_used_peak_mib": 62457.0
+ },
+ "notes": "Profile M2 with FP8 KV cache (--kv-cache-dtype fp8), the only change from the BF16 profile, for comparability with the kit's FP8 references. The planner keeps KV room for the same number of full-length requests, so the GPU memory FP8 frees goes to the GPU expert cache (17.65 GiB instead of 14.47 GiB per GPU); KV pool 303,149 tokens (1.5 full-length requests; measured with --max-logprobs 100). New hardware class (PROMPT.md step 8): 2x AMD Radeon AI PRO R9700 32 GB, tensor parallel 2, each card PCIe 5.0 x8 to the CPU (hw_bw: 28.8 GB/s H2D pinned at 1 GiB, 28.2 D2H; host memcpy 18.9 GB/s), Ryzen 9 9950X, 128 GB RAM, Samsung 9100 PRO (nvme_rand on the served n-gram file: 246k IOPS at 4 KiB / 32 threads, 8.9 GB/s at 128 KiB). Different checkpoint and engine from the target's known-good configs: tcclaviger/Qwen3.8-Flash-Next-MXFP4-FP8-GPTQ @ ab7c138a (MXFP4 experts, FP8 attention and MTP head, int6 n-gram table) on the pinned tcclaviger/vllm fork image (expert offload to pinned host RAM, n-gram table on NVMe), FP8 KV, MTP speculative decoding 3 tokens, CUDA-graph mode PIECEWISE (not eager). Two local changes to the image's memory planner, mounted read-only: the FP8-fitted per-token KV size is doubled for a non-FP8 KV dtype (BF16 cannot start at 262k without it) and RADIANCE_KV_RESERVE_SEQS reserves KV for N full-length requests. Tools: sweep.py, score_ref_panel.py, needle.py, probe.py and memwatch.sh were adapted for vLLM and AMD (SGLang /generate -> /v1/completions with token-id prompts and streamed usage; /server_info -> /v1/models plus the launch settings; panel via vLLM prompt_logprobs; API-key header; AMD VRAM and link width from sysfs); protocol, prompts, sampling and arithmetic unchanged; diff available. Panel: scored exactly with top-100 logprobs (22 of 60,020 reference ids fell outside the server's top 100 and got its 100th logprob); outside the band as expected, because the reference is the EXL3 3.05 bpw quantization and this is a different quantization of the same model; all 8 sequences agree 94-100 % on top-1, so no tokenizer mismatch. --max-logprobs 100 was added for the measured launch only (it changes what is returned, not what is generated). Needle at 254,747 prompt tokens, depth 0.8: pass. One C2 round ended one stream by the server's own repetition stop (finish_reason 'repetition'); no client caps. LOG_OUTPUTS on (request/output logging). The host also runs an agents VM (load average 13.6 and one kvm process at ~180 % CPU at the start of the M2 run), which also moves MemAvailable; no power, clock or fan changes. best_known.json has no entry for this card, so no early-exit gate applied."
+}
