@@ -79,5 +79,5 @@
     "fast_storage": "nvme"
   },
   "source": "https://github.com/sybil-solutions/local-ai-images/tree/vllm-dsv41-h200/vllm-dsv41-h200",
-  "setup": "Download deepseek-ai/DeepSeek-V4.1-Flash-1017 at the pinned revision (510 GB) to local NVMe and mount it at /models. The image reads the Engram tables from that directory at every decode step (DSV41_ENGRAM_DISK=1 in the image ENV), so keep it on NVMe, not network storage. The first start JIT-compiles FlashInfer and CuTe kernels for several minutes; mount /root/.cache to keep them."
+  "setup": "Download deepseek-ai/DeepSeek-V4.1-Flash-1017 at the pinned revision (510 GB) to local NVMe and mount it at /models. The image reads the Engram tables from that directory at every decode step (DSV41_ENGRAM_DISK=1 in the image ENV), so keep it on NVMe, not network storage. The first start JIT-compiles FlashInfer and CuTe kernels for several minutes; mount /root/.cache to keep them. Clients should ask for usage once at the end (stream_options include_usage, the OpenAI default): with a reasoning parser, continuous_usage_stats makes vLLM recount the reasoning tokens of the whole output on every chunk, which cut 8k decode at 160 users from 6,810 to 1,290 tok/s here."
 }
