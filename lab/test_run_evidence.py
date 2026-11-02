@@ -97,7 +97,7 @@ class RunEvidenceTests(unittest.TestCase):
         error, _ = self.try_with(Provider(), lambda *a: (_ for _ in ()).throw(RuntimeError("the context gate exploded")))
         self.assertIsInstance(error, RuntimeError)
         self.assertEqual(len(self.records()), 1)
-        self.assertIn("the context gate exploded", self.records()[0].read_text())
+        self.assertIn("the context gate exploded", self.records()[0].read_text(encoding="utf-8"))
 
     def test_a_box_that_cannot_be_destroyed_does_not_mask_the_error_or_lose_the_record(self):
         provider = Provider()
@@ -105,7 +105,7 @@ class RunEvidenceTests(unittest.TestCase):
         error, errors = self.try_with(provider, lambda *a: (_ for _ in ()).throw(RuntimeError("the context gate exploded")))
         self.assertIsInstance(error, RuntimeError)  # not the destroy failure
         self.assertEqual(len(self.records()), 1)
-        self.assertIn("the context gate exploded", self.records()[0].read_text())
+        self.assertIn("the context gate exploded", self.records()[0].read_text(encoding="utf-8"))
         self.assertIn("could not destroy", errors)
         self.assertIn("fake-1", errors)
 

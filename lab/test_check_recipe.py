@@ -37,7 +37,7 @@ class CheckRecipeTests(unittest.TestCase):
         good = {**r, "set": {}} if not isinstance(r.get("set"), dict) else r
         out = lab.recipe_path(good, lab.render(good))
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(text if text is not None else json.dumps(r, separators=(",", ":")) + "\n")
+        out.write_text(text if text is not None else json.dumps(r, separators=(",", ":")) + "\n", encoding="utf-8")
         return out
 
     def check(self):

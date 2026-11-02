@@ -37,7 +37,7 @@ class ProxyCardTests(unittest.TestCase):
     def write(self, r):
         out = lab.recipe_path(r, lab.render(r))
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(r, separators=(",", ":")) + "\n")
+        out.write_text(json.dumps(r, separators=(",", ":")) + "\n", encoding="utf-8")
         return out
 
     def test_proxy_refuses_a_sibling_with_another_memory(self):
@@ -50,7 +50,7 @@ class ProxyCardTests(unittest.TestCase):
     def test_proxy_copies_a_sibling_with_the_same_memory(self):
         self.write(recipe("rtx-4060-8gb"))
         lab.cmd_proxy(argparse.Namespace(card="rtx-3070-8gb", sibling="rtx-4060-8gb"))
-        copied = json.loads(lab.recipe_path(recipe("rtx-3070-8gb"), lab.render(recipe("rtx-3070-8gb"))).read_text())
+        copied = json.loads(lab.recipe_path(recipe("rtx-3070-8gb"), lab.render(recipe("rtx-3070-8gb"))).read_text(encoding="utf-8"))
         self.assertEqual(copied["card"], "rtx-3070-8gb")
         self.assertEqual(copied["proof"][0]["proxy"], "rtx-4060-8gb")
 
@@ -75,7 +75,7 @@ class ProxyCardTests(unittest.TestCase):
                 patch.object(lab, "gates", return_value=(True, proof, evidence)), \
                 contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             self.assertEqual(lab.cmd_try(args), 0)
-        return json.loads(lab.recipe_path(recipe("rtx-3070-ti-8gb"), lab.render(recipe("rtx-3070-ti-8gb"))).read_text())
+        return json.loads(lab.recipe_path(recipe("rtx-3070-ti-8gb"), lab.render(recipe("rtx-3070-ti-8gb"))).read_text(encoding="utf-8"))
 
     def test_rented_proxy_does_not_claim_a_memory_cap(self):
         proof = self.try_on(self.args())["proof"][0]
