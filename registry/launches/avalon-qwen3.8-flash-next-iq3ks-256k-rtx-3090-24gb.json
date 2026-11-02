@@ -10,9 +10,9 @@
     "-c",
     "262144",
     "-b",
-    "9536",
+    "8192",
     "-ub",
-    "9536",
+    "8192",
     "-fa",
     "on",
     "-ctk",
@@ -68,5 +68,6 @@
     "fast_storage": "nvme",
     "cpus": 8
   },
-  "setup": "NEEDS: one 24 GB NVIDIA card, an AVX2 CPU (the experts the GPU does not hold are computed on it; Avalon's own installer refuses a machine without AVX2), 32 GB of system RAM or more and ~97 GB on a local NVMe SSD (96.3 GB of GGUF: 89 GiB model, 1.4 GiB MTP head, 173 KB expert ranking). The model is memory-mapped and the resident expert cache is 9 - 14 GiB, so what does not fit in RAM is re-read from the SSD while serving; measured on an RTX 3090 (Ryzen 9, 94 GB RAM, NVMe) the largest MemAvailable drop from a stopped, cache-cleared start to the end of the gates was 5.0 GiB and VRAM peaked at 22.8 GiB. Cold prefill of 188,746 tokens: 1,361 tok/s. Avalon is built for one model: no other weights run on it."
+  "setup": "NEEDS: one 24 GB NVIDIA card, an AVX2 CPU (the experts the GPU does not hold are computed on it; Avalon's own installer refuses a machine without AVX2), 32 GB of system RAM or more and ~97 GB on a local NVMe SSD (96.3 GB of GGUF: 89 GiB model, 1.4 GiB MTP head, 173 KB expert ranking). The model is memory-mapped and the resident expert cache is 9 - 14 GiB, so what does not fit in RAM is re-read from the SSD while serving; measured on an RTX 3090 (Ryzen 9, 94 GB RAM, NVMe) the largest MemAvailable drop from a stopped, cache-cleared start to the end of the gates was 5.0 GiB and VRAM peaked at 22.8 GiB. Cold prefill of 188,746 tokens: 1,361 tok/s. Avalon is built for one model: no other weights run on it.",
+  "notes": "ubatch capped at 8192 on CUDA: with the upstream -b 9536 -ub 9536 flags and the MTP draft active, an RTX 3090 (sm_86) aborts mid-prefill on long tool requests (CUDA error: too many resources requested for launch in ggml_cuda_kernel_launch). 8192 survives repeated 157k-token tool requests and keeps the MTP decode gain."
 }

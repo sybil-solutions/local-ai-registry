@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "freriadoc/Qwen3.8-Flash-Next-Avalon-GGUF@372fe3a4e572c5ba75a90e579de0695633d083a8",
+  "engine": "avalon-qwen3.8-flash-next-iq3ks-256k-rtx-3090-24gb@46fc40d48a5c",
+  "set": {},
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 3090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-02",
+  "on": "owner",
+  "gpu": "RTX 3090",
+  "launch_sha256": "ef96e8fc4d2463022c9c260dba44cbdc2a698eaf7b10e2864ace6094370d2180",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 107.5,
+  "prefill": 1428,
+  "served": "qwen3.8-flash-next"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 132,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "ldB9AVoQ9F5ICMjXWkjSWuF7hHnOzMLw"
+    }
+   ],
+   "reply": "It's currently **17°C** in Paris with **overcast** skies. 🌥️",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 74
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 149.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 16800,
+   "seconds_total": 158.9
+  }
+ },
+ "launch_config_sha256": null
+}
