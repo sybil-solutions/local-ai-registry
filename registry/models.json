@@ -767,6 +767,17 @@
       "good_for": "Reasoning and tool calls at 128K",
       "logo": "hf",
       "hf": "ibm-granite/granite-4.2-30b"
+    },
+    "lfm2.5-24b-a2b": {
+      "family": "lfm",
+      "name": "LFM2.5-24B-A2B",
+      "released": "2026-10-12",
+      "reasoning": true,
+      "vision": false,
+      "about": "Liquid AI's 24B hybrid mixture-of-experts (about 2B active; 30 short-convolution and 10 attention layers, 64 experts). It reasons before it answers and calls tools.",
+      "good_for": "Fast chat and tool calls at 128K",
+      "logo": "hf",
+      "hf": "LiquidAI/LFM2.5-24B-A2B"
     }
   },
   "builds": {
@@ -1224,6 +1235,10 @@
     "ibm-granite/granite-4.2-30b-nvfp4@bddf34bc6db17e5c4f586e49c1668c8e97610446": {
       "format": "compressed-tensors · NVFP4",
       "size_gb": 17.65
+    },
+    "LiquidAI/LFM2.5-24B-A2B-FP8@f54bf39547fd5b7955abb9fe8d1b151e31fbbddb": {
+      "format": "compressed-tensors · FP8 block",
+      "size_gb": 24.75
     }
   }
 }
