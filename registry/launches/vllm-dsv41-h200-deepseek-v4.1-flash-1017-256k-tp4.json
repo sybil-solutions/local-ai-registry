@@ -74,7 +74,7 @@
   "vision": false,
   "cards": 4,
   "needs": {
-    "host_ram_gb": 0,
+    "host_ram_gb": 64,
     "disk_gb": 520,
     "fast_storage": "nvme"
   },
