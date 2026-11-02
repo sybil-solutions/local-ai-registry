@@ -157,7 +157,7 @@ python3 lab/lab.py try <repo>@<commit> --model <id> --engine tabbyapi-exl3 --car
 ### Bounties
 
 Cards and models without a tested recipe carry a **$50 bounty**: [open bounties](https://github.com/sybil-solutions/local-ai-registry/issues?q=is%3Aissue+is%3Aopen+label%3Abounty).
-Claim one with `/attempt`, run it with the [recipe kit](https://github.com/sybil-solutions/local-ai-recipe-kit), and open one PR with the recipe `lab.py try --on endpoint` wrote.
+Claim one with `/attempt`, run it with the [recipe kit](https://github.com/sybil-solutions/local-ai-recipe-kit), and open one PR with the recipe `lab.py try --on endpoint` wrote and the kit's submission file under [`data/sources/recipe-kit/<card id>/`](data/sources/recipe-kit/README.md).
 The rules are in [BOUNTIES.md](https://github.com/sybil-solutions/.github/blob/main/BOUNTIES.md); every PR follows [CONTRIBUTING](https://github.com/sybil-solutions/.github/blob/main/CONTRIBUTING.md).
 
 ## Using it
