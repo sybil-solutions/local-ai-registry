@@ -18,7 +18,7 @@ class OffloadContractTest(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         (self.root / 'dist').mkdir(); (self.root / 'registry').mkdir()
-        (self.root / 'registry/models.json').write_text('{}')
+        (self.root / 'registry/models.json').write_text('{}', encoding="utf-8")
         self.profile = {'image': 'ghcr.io/example/engine@sha256:' + 'a'*64, 'ids': {'test': 'fixture'},
             'args': [], 'port': 8000, 'ctx': 8192, 'weights': [{'repo': 'test/raw', 'revision': 'b'*40, 'at': '/models/raw'}],
             'plugin': {'name': 'Fixture', 'family': 'test', 'format': 'EXL3', 'engine': 'vllm', 'servedName': 'fixture',
@@ -33,7 +33,7 @@ class OffloadContractTest(unittest.TestCase):
             L = lab.render(r)
             r['proof'][0]['launch_sha256'] = '0'*64 if stale else hashlib.sha256(json.dumps(L, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
             cat = {'cards': {'test': {'picks': ['test/fixture'], 'more': [], 'match': {}}}, 'recipes': {'test/fixture': {**r, 'launch': L}}}
-            (self.root / 'dist/catalog.json').write_text(json.dumps(cat))
+            (self.root / 'dist/catalog.json').write_text(json.dumps(cat), encoding="utf-8")
             return json.loads(export.build() if version == 2 else export.build(version))
 
     def test_v2_excludes_prepare_only_and_resources_only(self):
@@ -63,8 +63,8 @@ class OffloadContractTest(unittest.TestCase):
                 self.assertFalse(export.eligible(r, version))
 
     def test_passing_try_requalifies_withdrawn_recipes_within_size_limit(self):
-        withdrawn = [(f, json.loads(f.read_text())) for f in lab.RECIPES.rglob('*.json')
-                     if json.loads(f.read_text())['proof'][0].get('withdrawn')]
+        withdrawn = [(f, json.loads(f.read_text(encoding="utf-8"))) for f in lab.RECIPES.rglob('*.json')
+                     if json.loads(f.read_text(encoding="utf-8"))['proof'][0].get('withdrawn')]
         self.assertTrue(withdrawn)
         for source, recipe in withdrawn:
             with self.subTest(card=recipe['card']), tempfile.TemporaryDirectory() as directory:
@@ -74,7 +74,7 @@ class OffloadContractTest(unittest.TestCase):
                 profile = {**lab.profile(recipe['engine']), 'defaults': {}}
                 output = recipes / source.relative_to(lab.RECIPES)
                 output.parent.mkdir(parents=True)
-                output.write_text(json.dumps(recipe, separators=(',', ':')) + '\n')
+                output.write_text(json.dumps(recipe, separators=(',', ':')) + '\n', encoding="utf-8")
                 args = argparse.Namespace(weights=recipe['weights'], model=recipe['model'],
                     engine=recipe['engine'], card=recipe['card'], set=[], dry_run=False,
                     on='endpoint', endpoint='http://fixture.invalid', gpu='RTX 4070 Ti SUPER', proxy_gpu=None)
@@ -89,7 +89,7 @@ class OffloadContractTest(unittest.TestCase):
                      contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
                     self.assertEqual(lab.cmd_try(args), 0)
                     self.assertEqual(lab.cmd_check(None), 0)
-                result = json.loads(output.read_text())
+                result = json.loads(output.read_text(encoding="utf-8"))
                 self.assertEqual(result['proof'][1:], recipe['proof'][:2])
                 self.assertNotIn('withdrawn', result['proof'][0])
                 self.assertLessEqual(output.stat().st_size, lab.MAX_RECIPE_BYTES)
