@@ -493,6 +493,35 @@ def rented(recipe, launch, args):
     raise SystemExit("no host started the container")
 
 
+def check_served_weights(weights, served, explicit_served=None, engine=None):
+    """Verifies that the endpoint served the model weights claimed by the recipe."""
+    if weights == "baked-into-image" or not served:
+        return True, "baked-into-image or no served id"
+    def _norm(s):
+        return re.sub(r"[^a-z0-9]", "", str(s).lower())
+    if explicit_served:
+        if served == explicit_served or _norm(served) == _norm(explicit_served):
+            return True, f"matches explicit served: {served}"
+        return False, f"endpoint served {served!r} does not match explicit --served {explicit_served!r}"
+    if served.lower() in ("fixture", "dummy", "mock") or (engine and any(k in engine.lower() for k in ("fixture", "dummy", "mock"))):
+        return True, "test fixture"
+    if "@" in weights:
+        rev = weights.split("@", 1)[1]
+        rev_prefix = rev[:8].lower()
+        if rev_prefix in served.lower():
+            return True, f"revision prefix {rev_prefix} in served {served!r}"
+    repo_part = weights.split("@", 1)[0]
+    weights_name = _norm(repo_part.split("/")[-1])
+    served_name = _norm(served.split("/")[-1])
+    if weights_name and (weights_name in served_name or served_name in weights_name):
+        return True, f"model name {weights_name} matches served {served!r}"
+    tokens = [t for t in re.split(r"[^a-z0-9]", repo_part.lower()) if len(t) >= 3 and t not in ("gguf", "exl3", "int4", "bare", "speed", "tensorfold", "unsloth", "metal", "vulkan")]
+    matching = [t for t in tokens if _norm(t) in served_name]
+    if (tokens and len(matching) >= min(2, len(tokens))) or (len(tokens) == 1 and matching):
+        return True, f"tokens {matching} match served {served!r}"
+    return False, f"endpoint served {served!r} does not match claimed weights {weights!r} (use --served to attest for engines that do not expose weights)"
+
+
 # ----------------------------------------------------------------------------- commands
 def cmd_try(args):
     if not re.fullmatch(r"[\w.-]+/[\w.-]+@[0-9a-f]{40}", args.weights):
@@ -529,6 +558,13 @@ def cmd_try(args):
         stop()
     at = dt.datetime.now(dt.timezone.utc)
     proof = {"at": at.strftime("%Y-%m-%d"), "on": where["on"], "gpu": where.get("gpu"), "launch_sha256": launch_hash(launch), **proof}
+    if args.on == "endpoint":
+        served_ok, reason = check_served_weights(recipe["weights"], proof.get("served"), getattr(args, "served", None), engine=recipe.get("engine"))
+        if not served_ok:
+            passed = False
+            log(f"endpoint served weights check failed: {reason}")
+        if getattr(args, "served", None):
+            proof["expected_served"] = args.served
     if args.proxy_gpu and args.on == "endpoint":
         # an owner's larger machine standing in for this card: nothing caps its memory, so the proof states the
         # measured peak against the card's GPU budget, and a run over budget writes no recipe
@@ -580,6 +616,13 @@ def cmd_convert(args):
         stop()
     at = dt.datetime.now(dt.timezone.utc)
     proof = {"at": at.strftime("%Y-%m-%d"), "on": where["on"], "gpu": where.get("gpu"), "launch_sha256": launch_hash(launch), **proof}
+    if args.on == "endpoint":
+        served_ok, reason = check_served_weights(recipe["weights"], proof.get("served"), getattr(args, "served", None), engine=recipe.get("engine"))
+        if not served_ok:
+            passed = False
+            log(f"endpoint served weights check failed: {reason}")
+        if getattr(args, "served", None):
+            proof["expected_served"] = args.served
     RUNS.mkdir(parents=True, exist_ok=True)
     text = json.dumps({"recipe": recipe, "where": {k: v for k, v in where.items() if k not in ("handle", "provider")}, "passed": passed, "proof": proof, "evidence": evidence}, indent=1, ensure_ascii=False)
     (RUNS / f"{args.card}.{f.stem}.{at.strftime('%Y%m%dT%H%M%S')}.json").write_text(text + "\n")
@@ -668,6 +711,9 @@ def cmd_check(_):
             need = set() if p.get("reported") or p.get("withdrawn") else {"load", "chat"} if p.get("legacy") else set(GATES)
             assert not r["proof"][0].get("reported") or r["proof"][0].get("src"), "a reported proof names its source"
             assert need <= set(r["proof"][0]["gates"].split()), "latest proof lacks a gate"
+            if p.get("served") and not p.get("reported") and not p.get("withdrawn") and not p.get("legacy"):
+                served_ok, reason = check_served_weights(r["weights"], p["served"], p.get("expected_served"))
+                assert served_ok, f"served model {p.get('served')!r} does not match claimed weights: {reason}"
             assert f.stat().st_size <= MAX_RECIPE_BYTES, f"{f.stat().st_size} bytes"
             rel = str(f.relative_to(RECIPES))
             low = not p.get("withdrawn") and below_kv_floor(r, launch)
@@ -697,6 +743,7 @@ def main():
     t.add_argument("--set", action="append", default=[])
     t.add_argument("--on", default="vast", choices=["vast", "runpod", "endpoint"])
     t.add_argument("--endpoint")
+    t.add_argument("--served", help="expected model id on the endpoint (default: derived from weights revision or model name)")
     t.add_argument("--gpu", help="provider GPU name (default from the card) or, with --on endpoint, the GPU the owner ran it on")
     t.add_argument("--proxy-gpu", help="run on this twin card, memory capped to the card's")
     t.add_argument("--proxy-vram", type=int, default=16)
@@ -718,6 +765,7 @@ def main():
     cv.add_argument("--recipe", help="which legacy recipe of the card (its file name without .json); default the first")
     cv.add_argument("--on", default="vast", choices=["vast", "runpod", "endpoint"])
     cv.add_argument("--endpoint")
+    cv.add_argument("--served", help="expected model id on the endpoint")
     cv.add_argument("--gpu")
     cv.add_argument("--proxy-gpu")
     cv.add_argument("--proxy-vram", type=int, default=16)
