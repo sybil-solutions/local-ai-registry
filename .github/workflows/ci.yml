@@ -35,6 +35,7 @@ jobs:
           python3 -m unittest discover -s lab -p test_export_plugin.py
           python3 -m unittest discover -s lab -p test_speed_evidence.py
           python3 -m unittest discover -s lab -p test_gate_answers.py
+          python3 -m unittest discover -s lab -p test_runpod.py
           python3 lab/image_trust.py --base "$IMAGE_BASE"
       - name: Recipes are well-formed, pinned, in the right place and proven
         run: python3 lab/lab.py check

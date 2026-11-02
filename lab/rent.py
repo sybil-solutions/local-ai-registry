@@ -87,7 +87,7 @@ def log(msg):
 def http_probe(url, timeout=10):
     """-> 'ok' | 'refused' (host reachable, server not listening yet) | 'timeout' (port unreachable) | 'http-<code>'."""
     try:
-        with urllib.request.urlopen(url, timeout=timeout) as response:
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "local-ai-lab/1"}), timeout=timeout) as response:
             return "ok" if response.status == 200 else f"http-{response.status}"
     except urllib.error.HTTPError as error:
         return f"http-{error.code}"
@@ -205,6 +205,7 @@ class Spec:
 class RunPod:
     API = "https://rest.runpod.io/v1"
     name = "runpod"
+    start_grace = 1800  # a pod has no uptime until its image is pulled, and a big image can take 15 min
 
     def __init__(self, args):
         self.cloud = args.cloud
@@ -252,15 +253,21 @@ class RunPod:
             "containerDiskInGb": spec.disk, "volumeInGb": 0, "gpuTypeIds": self.gpu_ids(spec),
             "gpuTypePriority": "custom", "gpuCount": 1, "interruptible": False,
         }
+        if spec.provision:
+            if not spec.entrypoint:
+                raise SystemExit("in-container provisioning needs an explicit entrypoint in the contract")
+            body["dockerEntrypoint"], body["dockerStartCmd"] = ["/bin/sh", "-c"], [spec.onstart_script()]
         for cloud in dict.fromkeys([self.cloud, "SECURE", "COMMUNITY"]):
+            if cloud in exclude:  # a pod there never started: try the other cloud
+                continue
             body["cloudType"] = cloud
             try:
                 pod = self.call("POST", "/pods", body)
                 self.cloud = cloud
-                return {"id": pod["id"], "cost": pod.get("costPerHr"), "gpu": self.gpu_ids(spec)[0],
+                return {"id": pod["id"], "cost": pod.get("costPerHr"), "gpu": self.gpu_ids(spec)[0], "cloud": cloud,
                         "endpoint": f"https://{pod['id']}-{spec.port}.proxy.runpod.net"}
             except SystemExit as error:
-                if "no instances currently available" not in str(error):
+                if not re.search(r"instances (currently )?available", str(error)):
                     raise
                 log(f"no {cloud} instances for {self.gpu_ids(spec)[0]} right now")
         raise SystemExit(f"no RunPod instances available for {self.gpu_ids(spec)[0]}; try later or lower --disk")
@@ -270,9 +277,20 @@ class RunPod:
         status = state.get("desiredStatus")
         if status in ("EXITED", "TERMINATED"):
             raise SystemExit(f"pod {status} before the server became healthy")
-        started = bool((state.get("runtime") or {}).get("uptimeInSeconds"))
+        started = bool(self.uptime(handle["id"]))
         handle["gpu"] = (state.get("machine") or {}).get("gpuTypeId") or handle["gpu"]
         return started, f"pod {status}"
+
+    def uptime(self, pod_id):  # a REST pod has no runtime field; GraphQL has it
+        query = '{ pod(input: {podId: "%s"}) { runtime { uptimeInSeconds } } }' % pod_id
+        request = urllib.request.Request("https://api.runpod.io/graphql", data=json.dumps({"query": query}).encode(), headers={
+            "Authorization": f"Bearer {self.key()}", "Content-Type": "application/json", "User-Agent": "local-ai-lab/1"})
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                pod = (json.loads(response.read()).get("data") or {}).get("pod") or {}
+        except (OSError, ValueError):
+            return None
+        return (pod.get("runtime") or {}).get("uptimeInSeconds")
 
     def destroy(self, handle):
         self.call("DELETE", f"/pods/{handle['id']}")
