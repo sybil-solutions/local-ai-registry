@@ -1243,6 +1243,10 @@
     "Honkware/Nanbeige4.3-33B-exl3-4.0bpw@164ca0ee2b4a2aedb3d43c903cdff53f9688120c": {
       "format": "EXL3 · 4 bpw, 6-bit head",
       "size_gb": 17.41
+    },
+    "turboderp/Qwen3.8-27B-exl3@86b95530f9d365d90dd24d01a997a8de0cdf6c55": {
+      "format": "EXL3 · SC 3.00bpw H4",
+      "size_gb": 12.55
     }
   }
 }
