@@ -953,6 +953,10 @@
       "format": "GGUF · QAD-Q4_0",
       "size_gb": 1.59
     },
+    "plavno/LFM2.5-2.6B-AutoRound-W4A16@2244dd328189f0b58d9b938b576937ad7d216b7f": {
+      "format": "AutoRound · INT4 W4A16 (g128, sym, GPTQ-packed)",
+      "size_gb": 1.79
+    },
     "google/gemma-4-12B-it-qat-q4_0-gguf@29d097773436b69ff9feafd636ab4cf873786537": {
       "format": "GGUF · Q4_0",
       "size_gb": 6.98

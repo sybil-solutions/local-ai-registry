@@ -1,0 +1,31 @@
+{
+ "host": {
+  "kernel": "7.2.8-9-omarchy",
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "cpus": 16,
+  "avx512": true
+ },
+ "ram": {
+  "total_gb": 32.45,
+  "available_gb": 26.16,
+  "swap_total_gb": 64.9,
+  "swap_used_gb": 0.09
+ },
+ "storage": {
+  "path": "~/models/swift-1.5",
+  "free_gb": 291.58,
+  "total_gb": 509.94,
+  "device": "/dev/mapper/root",
+  "fstype": "btrfs",
+  "physical_disks": [
+   {
+    "disk": "nvme0n1",
+    "nvme": true,
+    "rotational": false,
+    "model": "KingFast"
+   }
+  ],
+  "all_nvme": true
+ },
+ "gpus": []
+}
