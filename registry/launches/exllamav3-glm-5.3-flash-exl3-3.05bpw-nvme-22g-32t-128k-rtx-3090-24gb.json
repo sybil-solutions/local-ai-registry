@@ -1,0 +1,113 @@
+{
+ "id": "exllamav3-glm-5.3-flash-exl3-3.05bpw-nvme-22g-32t-128k-rtx-3090-24gb",
+ "engine": "exllamav3-nvme22g-32t",
+ "about": "GLM-5.3-Flash EXL3 3.05bpw on one RTX 3090 inside 22 GiB of host RAM: routed experts streamed with O_DIRECT from a packed NVMe store through a ~1,400-1,650-expert pinned RAM tier and an elastic GPU expert cache, AVX2 CPU lane for cold RAM-resident decode picks, threads laid out for a 16-core / 32-thread CPU (glm-flash-lite 0bd10f3 = v4.6.1-nvme, GLM53_MODE=nvme; the entrypoint applies its small-host budget below a 24 GiB cap)",
+ "image": "ghcr.io/sybil-solutions/glm53-flash-offload@sha256:6f6dc68521c37d486de9bd1adbecf88f30134dcb328a93eaed8d7752bacba45e",
+ "provenance": "https://github.com/sybil-solutions/local-ai-images/actions/runs/37910016883",
+ "backend": "nvidia",
+ "port": 30000,
+ "entrypoint": "/opt/glm53/docker/entrypoint.sh",
+ "args": [
+  "-m",
+  "/models/turboderp-GLM-5.3-Flash-exl3-3.05bpw",
+  "-cs",
+  "131072",
+  "--max-batch-size",
+  "8",
+  "-chunk_size",
+  "8192",
+  "-ambs",
+  "4",
+  "--host",
+  "0.0.0.0",
+  "--port",
+  "30000",
+  "--served-name",
+  "glm-5.3-flash"
+ ],
+ "env": {
+  "GLM53_MODE": "nvme",
+  "GLM53_EC_MAX_SLOTS": "1376",
+  "GLM53_MODEL_DIR": "/models/turboderp-GLM-5.3-Flash-exl3-3.05bpw",
+  "GLM53_MODEL_DOWNLOAD": "0",
+  "GLM53_NV_STORE_DIR": "/nvx",
+  "HF_HUB_OFFLINE": "1",
+  "GLM53_MAIN_CPUS": "0",
+  "GLM53_NV_CTL_CPU": "1",
+  "GLM53_NV_CPU_CPUS": "2-15",
+  "GLM53_NV_READER_CPUS": "18-31"
+ },
+ "shm": "1g",
+ "weights": [
+  {
+   "repo": "turboderp/GLM-5.3-Flash-exl3",
+   "revision": "332ab457b709b7ba30dd9a448be5de03b80a7ac9",
+   "at": "/models/turboderp-GLM-5.3-Flash-exl3-3.05bpw",
+   "layout": "dir",
+   "files": null
+  }
+ ],
+ "config": null,
+ "ctx": 131072,
+ "seqs": 4,
+ "vision": false,
+ "cards": 1,
+ "needs": {
+  "host_ram_gb": 23.6,
+  "disk_gb": 242.6,
+  "fast_storage": "nvme",
+  "cpus": 32
+ },
+ "resources": {
+  "memoryBytes": 23622320128,
+  "memorySwapBytes": 23622320128,
+  "memlockUnlimited": true
+ },
+ "prepare": {
+  "at": "/nvx",
+  "args": [
+   "pack-store"
+  ],
+  "verifyArgs": [
+   "verify-store"
+  ],
+  "gpu": false,
+  "sizeGb": 117.33
+ },
+ "setup": "NEEDS: 1x RTX 3090 24 GB (expert cache capped at 1,376 slots by GLM53_EC_MAX_SLOTS so a desktop on the same GPU cannot run the CUDA graphs out of memory); the container is capped at 22 GiB of host RAM (resources: --memory 22g --memory-swap 22g, swap off inside the cap) and runs with --ulimit memlock=-1 (the RAM tier is cudaHostRegister'ed). Below a 24 GiB cap the image's entrypoint (v4.2-nvme) applies a small-host budget: -rcs 1 (exllamav3 host recurrent-state cache 1 GiB instead of 4), GLM53_NV_MARGIN_GB=1.5, GLM53_NV_PF_RING=128 prefill read-ahead slots, and a deeper NVMe reader pool (GLM53_NV_THREADS=48 x GLM53_NV_PIECE_KB=1024), each overridable; NVMe modes are refused only under 15 GiB. The RAM tier sizes itself from the cap (1,393-1,652 experts = 12.2-14.5 GiB on the measured box, fewer when the page cache already holds part of the cap at start). An x86-64 CPU with AVX2+FMA+F16C and >= 32 logical CPUs: nv2 is pinned to a 16-core / 32-thread layout (main thread 0, controller 1, CPU lane 2-15, NVMe readers 18-31, the lane's SMT siblings on the measured box). Disk: the 125.3 GB checkpoint (only its non-expert weights are read) plus the 117.3 GB packed expert store on a local NVMe filesystem that supports O_DIRECT (xfs, ext4). This launch is NVMe-bound (measured on a 3x NVMe md RAID0 ext4 array: 2x Samsung 990 PRO + WD_BLACK SN850); a single drive or a slower array decodes proportionally slower. PREPARE (once, CPU only): the image's `pack-store` packs the routed experts (42 layers x 288 x 9.44 MB) from the read-only checkpoint into /nvx/glm53_flash_exl3_3.05bpw_experts.bin + .json, re-reads every record with O_DIRECT and checks its sha256, and byte-compares a sample against the checkpoint; `verify-store` repeats the sha256 re-read. Serving mounts /nvx read-only. MEASURED (lab.py try --on endpoint; Ryzen 9 9950X3D 16c/32t, 32 GB DDR5, PCIe 4.0 x16 with a 4K desktop on the same GPU, natural completions, v4.6-nvme): prefill 1,009 tok/s, decode C1 12.2-12.5 tok/s with GLM53_LA=0 and 12.8 tok/s with the glm-flash-lite #18 fix and the lookahead on; nvme16g on the same box with GLM53_LA=0: decode C1 9.8 tok/s. QUALITY: same kernels as the 55 GB launch: prefill / teacher-forced panel exact (top-1 1.0000, KL 0); decode not exact (AVX2 CPU lane on RAM-resident picks; paired decode KL 0.005 measured at 55 GB). Text only; OpenAI tool calls parsed from GLM's <tool_call> format. IMAGE v4.6.1-nvme (glm-flash-lite 0bd10f3): v4.6-nvme plus the fix for a decode-lookahead stall after the first max_rq_tokens requeue (glm-flash-lite #18); GLM53_MODE=nvme defaults to the N135 CPU-lane forward and the N136 decode switches (each settable to 0).",
+ "source": "https://github.com/sybil-solutions/glm-flash-lite/tree/0bd10f371abdcdb8c3648453f9da834c6dd2c980",
+ "plugin": {
+  "name": "GLM-5.3-Flash",
+  "family": "glm",
+  "format": "EXL3 · 3.05 bpw (22 GB RAM, experts on NVMe)",
+  "engine": "exllamav3",
+  "servedName": "glm-5.3-flash",
+  "sizeGb": 125.3,
+  "minDriver": "580.0",
+  "scratch": null,
+  "capabilities": {
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "vision": false,
+   "video": false
+  },
+  "serving": {
+   "ctxTokens": 131072,
+   "kvTokens": 131072
+  },
+  "weights": [
+   {
+    "dir": "turboderp-GLM-5.3-Flash-exl3-3.05bpw",
+    "files": "",
+    "layout": "dir",
+    "mountPath": "/models",
+    "sizeGb": 125.3
+   }
+  ],
+  "asset": null
+ },
+ "ids": {
+  "rtx-3090-24gb": "glm53flash-exl3-3.05bpw-nvme22g-32t-rtx3090-exllamav3-tp1"
+ }
+}
