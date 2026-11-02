@@ -1,0 +1,74 @@
+{
+ "recipe": {
+  "model": "nanbeige4.3-33b",
+  "weights": "Honkware/Nanbeige4.3-33B-exl3-4.0bpw@164ca0ee2b4a2aedb3d43c903cdff53f9688120c",
+  "engine": "tabbyapi-exl3@0f83e6198dc3",
+  "set": {
+   "ctx": 131072
+  },
+  "card": "rtx-5090-32gb"
+ },
+ "where": {
+  "on": "runpod",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "host": null,
+  "cost_h": 1.19
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-29",
+  "on": "runpod",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "launch_sha256": "f949dff8c892222bbdc09f0f354a8d2af1058fa3655e4cbf71ef4238641a6247",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 67.7,
+  "prefill": 1369,
+  "served": "Nanbeige4.3-33B-exl3-4.0bpw-164ca0ee"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 169,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_a5a15b5be9994a8fa5558f3d",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ],
+   "reply": "\n\nThe current weather in Paris is:\n\n- **Temperature:** 17°C\n- **Sky:** Overcast\n\nIt's a mild but cloudy day in Paris right now. Let me know if you'd like to check the weather in any other city!",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 160
+  },
+  "context": {
+   "prompt_tokens": 106244,
+   "seconds": 77.6,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 14763,
+   "seconds_total": 225.8
+  }
+ },
+ "launch_config_sha256": "334fbb74cfadf3a376c0ff07bde86b4db6e9587ca43f26bbb89f21bd030fc1a2"
+}

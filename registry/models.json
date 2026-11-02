@@ -752,8 +752,8 @@
       "released": "2026-10-24",
       "reasoning": true,
       "vision": false,
-      "about": "Nanbeige's 33B dense reasoning model (Llama architecture, 52 layers, 512K positions). It thinks at length before it answers and calls tools.",
-      "good_for": "Reasoning and tool calls at 256K",
+      "about": "Nanbeige4.3, a 33B dense Llama-architecture model with thinking, tool calls and a 512K window.",
+      "good_for": "Reasoning and tool calls on one 32 GB card",
       "logo": "hf",
       "hf": "Nanbeige/Nanbeige4.3-33B"
     },
@@ -1239,6 +1239,10 @@
     "LiquidAI/LFM2.5-24B-A2B-FP8@f54bf39547fd5b7955abb9fe8d1b151e31fbbddb": {
       "format": "compressed-tensors · FP8 block",
       "size_gb": 24.75
+    },
+    "Honkware/Nanbeige4.3-33B-exl3-4.0bpw@164ca0ee2b4a2aedb3d43c903cdff53f9688120c": {
+      "format": "EXL3 · 4 bpw, 6-bit head",
+      "size_gb": 17.41
     }
   }
 }
