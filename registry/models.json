@@ -17,7 +17,8 @@
     "inkling",
     "ornith",
     "lfm",
-    "nanbeige"
+    "nanbeige",
+    "granite"
   ],
   "max_age_days": 240,
   "models": {
@@ -755,6 +756,17 @@
       "good_for": "Reasoning and tool calls at 256K",
       "logo": "hf",
       "hf": "Nanbeige/Nanbeige4.3-33B"
+    },
+    "granite-4.2-30b": {
+      "family": "granite",
+      "name": "Granite 4.2 30B",
+      "released": "2026-08-07",
+      "reasoning": true,
+      "vision": false,
+      "about": "IBM's 30B dense model (64 layers). It thinks before it answers and calls tools.",
+      "good_for": "Reasoning and tool calls at 128K",
+      "logo": "hf",
+      "hf": "ibm-granite/granite-4.2-30b"
     }
   },
   "builds": {
@@ -1208,6 +1220,10 @@
     "primitive-ai/Nanbeige4.3-33B-NVFP4@5ddf8788ed1fa4bec0c0b6fc74ddb0bef7dc4212": {
       "format": "compressed-tensors · NVFP4",
       "size_gb": 22.07
+    },
+    "ibm-granite/granite-4.2-30b-nvfp4@bddf34bc6db17e5c4f586e49c1668c8e97610446": {
+      "format": "compressed-tensors · NVFP4",
+      "size_gb": 17.65
     }
   }
 }
