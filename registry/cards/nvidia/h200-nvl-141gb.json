@@ -1,0 +1,16 @@
+{
+  "id": "h200-nvl-141gb",
+  "name": "H200 NVL",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 141,
+  "bandwidth_gb_s": 4800,
+  "match": {
+    "backend": "nvidia",
+    "name": "H200 NVL",
+    "names": [
+      "h200nvl"
+    ],
+    "vramGb": 141
+  }
+}

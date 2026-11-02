@@ -1,0 +1,70 @@
+{
+ "recipe": {
+  "model": "qwen3.5-9b",
+  "weights": "TheMelonGod/Qwen3.5-9B-exl3@e98453aa143a24fab9eb14b718daed02e2fa6eef",
+  "engine": "tabbyapi-qwen3.5-9b-exl3-4bpw-128k@0f83e6198dc3",
+  "set": {},
+  "card": "rtx-4080-laptop-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-24",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU",
+  "launch_sha256": "72198e58f86afcf47cd0b7aae9d2c23dfc5f2af25440b260e2bca6a816e07097",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 91.9,
+  "prefill": 1620,
+  "served": "Qwen3.5-9B-EXL3-6hb-4bpw"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nRed, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 774,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_783e3bc38a9b49d394e7a5fb",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ],
+   "reply": "\n\nThe current weather in Paris is 17°C with overcast skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 289
+  },
+  "context": {
+   "prompt_tokens": 106242,
+   "seconds": 65.6,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 2062,
+   "seconds_total": 22.6
+  }
+ },
+ "launch_config_sha256": "d3efe710e28fe94a93a81a86bf52f74f95ab6740800890d78b6a4f9db7ee9d0c"
+}
