@@ -1,0 +1,88 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "turboderp/Qwen3.8-Flash-Next-exl3@69e33439ae950f17bcbe95c98f117d80f759ab6d",
+  "engine": "sglang-exl3-offload@9d137b00a524",
+  "set": {
+   "ctx": 262144,
+   "chunk": 8192,
+   "mem": "0.88",
+   "mamba": 5,
+   "graphs": 1,
+   "alloc": "expandable_segments:True",
+   "cpu_tier": 1,
+   "ngram_ram": 2,
+   "ram": 56,
+   "disk": 86,
+   "extra": "--speculative-algorithm NEXTN --speculative-num-steps 2 --speculative-eagle-topk 1 --speculative-num-draft-tokens 3",
+   "cache": "8.4",
+   "elastic": "2.2",
+   "override": "{\"language_model_only\":true}"
+  },
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 3090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-03",
+  "on": "owner",
+  "gpu": "RTX 3090",
+  "launch_sha256": "2204c52d94fe2c737373f6bed72509082e895fce42d98a113407e007e1a50b9f",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 65.6,
+  "prefill": 2180,
+  "served": "Qwen3.8-Flash-Next-exl3-69e33439"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 121,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_6c65e21fe44244e1958617f6",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nThe current weather in Paris is **17°C with overcast skies**.\n\nThe code returned by the tool is: `ac45d29a`",
+   "code": "ac45d29a",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 409
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 98.0,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1969,
+   "tokens_total": 20888,
+   "seconds_total": 318.4,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}
