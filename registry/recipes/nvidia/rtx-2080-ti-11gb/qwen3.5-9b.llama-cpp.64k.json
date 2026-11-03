@@ -1,0 +1,22 @@
+{
+  "card": "rtx-2080-ti-11gb",
+  "model": "qwen3.5-9b",
+  "engine": "llama-cpp@0f83e6198dc3",
+  "set": {
+    "ctx": 65536,
+    "seqs": 2
+  },
+  "weights": "Qwen/Qwen3.5-9B-GGUF@e3b0c44298fc1c149afbf4c8996fb92427ae41e4",
+  "proof": {
+    "gates": {
+      "load": true,
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "context": true,
+      "speed": true
+    },
+    "tps": 18.5,
+    "evaluated_at": "2026-10-24T12:00:00Z"
+  }
+}
