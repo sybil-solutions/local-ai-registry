@@ -1,0 +1,22 @@
+{
+  "captured_at_utc": "2026-11-03T21:24:43Z",
+  "machine": {
+    "model_name": "MacBook Pro (14-inch, 2021)",
+    "model_identifier": "MacBookPro18,4",
+    "chip": "Apple M1 Max",
+    "cpu_cores_total": 10,
+    "cpu_cores_performance": 8,
+    "cpu_cores_efficiency": 2,
+    "gpu": "Apple M1 Max (built-in), 24-core GPU, Metal 4",
+    "unified_memory_bytes": 34359738368,
+    "memory_bandwidth_gb_s": 400
+  },
+  "os": {"product": "macOS", "version": "27.0.1", "build": "26A434", "arch": "arm64"},
+  "gpu_wired_limit_mb": 0,
+  "gpu_wired_limit_note": "sysctl iogpu.wired_limit_mb = 0 (system default, not raised); MLX max_recommended_working_set_size = 26800603136 bytes",
+  "power_during_run": "AC",
+  "python": "3.12.11",
+  "python_stack": {"mlx": "0.32.4", "mlx-lm": "0.32.2", "transformers": "5.22.1", "huggingface_hub": "2.4.0", "tokenizers": "0.23.3"},
+  "full_environment": "pip-freeze.txt",
+  "privacy": "Serial number, hardware UUID, and provisioning UDID intentionally omitted."
+}
