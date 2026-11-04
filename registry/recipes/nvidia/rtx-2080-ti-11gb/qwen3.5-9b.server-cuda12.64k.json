@@ -1,0 +1,1 @@
+{"model":"qwen3.5-9b","weights":"unsloth/Qwen3.5-9B-GGUF@3885219b6810b007914f3a7950a8d1b469d598a5","engine":"server-cuda12@b11146","set":{"ctx":65536},"card":"rtx-2080-ti-11gb","proof":[{"at":"2026-10-25","on":"vast","gpu":"RTX 2080 Ti","gates":"load chat reasoning tools context speed","tps":20.0,"prefill":523,"served":"Qwen3.5-9B-GGUF","log":"sha256:0000000000000000"}]}
