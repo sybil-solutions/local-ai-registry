@@ -1,0 +1,45 @@
+{
+ "host": {
+  "kernel": "7.0.0-1019-nvidia",
+  "cpu": "Cortex-X925",
+  "cpus": 20,
+  "avx512": false
+ },
+ "ram": {
+  "total_gb": 132.27,
+  "available_gb": 0.87,
+  "swap_total_gb": 17.18,
+  "swap_used_gb": 8.54
+ },
+ "storage": {
+  "path": "~/.cache/huggingface/hub/models--LiquidAI--LFM2.5-24B-A2B-FP8/snapshots/f54bf39547fd5b7955abb9fe8d1b151e31fbbddb",
+  "free_gb": 474.09,
+  "total_gb": 4031.87,
+  "device": "/dev/nvme0n1p2",
+  "fstype": "ext4",
+  "physical_disks": [
+   {
+    "disk": "nvme0n1",
+    "nvme": true,
+    "rotational": false,
+    "model": "SAMSUNG MZALC4T0HBL1-00B07"
+   }
+  ],
+  "all_nvme": true
+ },
+ "gpus": [
+  {
+   "vendor": "nvidia",
+   "index": 0,
+   "name": "NVIDIA GB10",
+   "vram_gb": null,
+   "vram_mib": null,
+   "vram_used_mib": null,
+   "unified_memory": true,
+   "pci": "0000000F:01:00.0",
+   "pcie_gen_max": "1",
+   "pcie_width_max": "16",
+   "driver": "580.178.04"
+  }
+ ]
+}
