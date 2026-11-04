@@ -2,11 +2,11 @@
   "id": "rx-9070-xt-16gb",
   "name": "AMD Radeon RX 9070 XT",
   "vendor": "amd",
-  "backend": "amd-vulkan",
+  "backend": "amd-rocm",
   "vram_gb": 16,
   "bandwidth_gb_s": 640,
   "match": {
-    "backend": "amd-vulkan",
+    "backend": "amd-rocm",
     "name": "AMD Radeon RX 9070 XT",
     "names": [
       "rx9070xt"

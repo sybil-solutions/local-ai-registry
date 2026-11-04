@@ -33,7 +33,7 @@ def exportable(launch):
 def entry(key, r, meta):
     p = lab.profile(r["engine"])
     L = lab.render(r)
-    caps = {"chat": True, "reasoning": "reasoning" in r["proof"][0]["gates"], "tools": "tools" in r["proof"][0]["gates"], "vision": L["vision"]}
+    caps = {"chat": True, "reasoning": "reasoning" in r["proof"][0]["gates"], "tools": "tools" in r["proof"][0]["gates"], "vision": L["vision"], **({"diffusion": True} if (meta.get("models", {}).get(r.get("model")) or {}).get("diffusion") else {})}
     if "plugin" in p:  # a launch frozen from a validated recipe: its own export fields
         x = p["plugin"]
         assert len(L["weights"]) == len(x["weights"]), "plugin input mounts do not match the accepted launch"

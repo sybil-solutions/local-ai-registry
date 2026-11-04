@@ -1,0 +1,9 @@
+run gtx1650-vllm.UbBQI2QE in /mnt/magnus/sybil-awq-20261023/e2e-20261023/tmp/gtx1650-vllm.UbBQI2QE
+server healthy after 162s
+[lab 19:42:08] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 20.3 tok/s, prefill 53 tok/s; evidence lab/runs/gtx-1650-super-4gb.lfm2.5-2.6b.vllm.8k.20261023T234208.json
+[lab 19:42:08] PASSED: wrote registry/recipes/nvidia/gtx-1650-super-4gb/lfm2.5-2.6b.vllm.8k.json (864 bytes)
+{"at": "2026-10-23T23:43:53Z", "prompt": "Write a detailed 600-word story about a lighthouse keeper.", "tps_first_30s": 20.44, "tokens_total": 2115, "seconds_total": 104.8, "min_tps": 15.0}
+{"verdict": "pass", "chat_requests": 7, "expected": 7, "failing": []}
+server log saved: 26403 bytes
+container 359014243bcb6f93030df5773d3a48d5d1e5d1546e05686adb12d63194107c87 removed
+{"lab_six_gates": 1, "speed_repeat": 1, "seven_natural_ends": 1, "cleanup": 1}

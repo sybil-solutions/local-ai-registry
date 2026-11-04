@@ -1,0 +1,34 @@
+{
+  "id": "exllamav3-rocm-qwen3.8-27b-exl3-3.0bpw-mtp-vision-256k-rx-7900-xtx-24gb",
+  "kind": "host",
+  "engine": "exllamav3",
+  "about": "Qwen3.8-27B EXL3 3.0 bpw (SC H4) with its built-in MTP head and vision on unpatched TabbyAPI and the official ExLlamaV3 1.6.3 ROCm 10 wheels, gfx1100; from kamm3r/exl3-rdna3-recipe",
+  "command": [
+    "serve/run.sh",
+    "3.0bpw-256k"
+  ],
+  "install": "https://github.com/kamm3r/exl3-rdna3-recipe/tree/7b1005395a4d7f48c964d8cda1a859d944444a7a",
+  "env": {
+    "HIP_VISIBLE_DEVICES": "0"
+  },
+  "port": 5000,
+  "weights": [
+    {
+      "repo": "turboderp/Qwen3.8-27B-exl3",
+      "revision": "86b95530f9d365d90dd24d01a997a8de0cdf6c55",
+      "at": "models/Qwen3.8-27B-exl3-SC3.0",
+      "layout": "dir"
+    }
+  ],
+  "config": {
+    "at": "serve/configs/3.0bpw-256k.yml",
+    "text": "# Qwen3.8-27B EXL3 3.0 bpw on one RX 7900 XTX (24 GB): 256K context, 8-bit K / 6-bit V cache, MTP draft, vision.\n# Start with: serve/run.sh 3.0bpw-256k\n# Paths are relative to tabbyAPI/ (serve/run.sh starts the server from there).\nnetwork:\n  host: 127.0.0.1\n  port: 5000\n  disable_auth: true\n  allowed_origins: []\n\nlogging:\n  log_prompt: false\n  log_requests: false\n\nmodel:\n  model_dir: ../models\n  model_name: Qwen3.8-27B-exl3-SC3.0\n  backend: exllamav3\n  max_seq_len: 262144\n  cache_size: 262144\n  # 8-bit keys, 6-bit values: 8,8 at 256K leaves only ~1.1 GB free with a desktop on the card.\n  cache_mode: 8,6\n  max_batch_size: 1\n  chunk_size: 2048\n  vision: true\n  vision_offload: true\n  reasoning: true\n  tool_format: qwen3_coder\n\ndraft_model:\n  draft_mode: mtp\n  # The model has one MTP layer; drafting 3 tokens instead of the default 4 measured ~9% faster decode here.\n  draft_num_tokens: 3\n"
+  },
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": true,
+  "backend": "amd-rocm",
+  "setup": "Not Docker; Linux on an RX 7900 XTX (gfx1100). setup/install.sh clones TabbyAPI at e086a65 (unpatched) into a Python 3.12 uv venv and installs the measured package set (setup/requirements.lock.txt: torch 2.13.0+rocm10.0.0, rocm 10.0.0 and amd-torch-device-gfx1100 from AMD's whl-next indexes, the official exllamav3 1.6.3+rocm10.0 wheel); nothing compiles and no system ROCm is needed, only the amdgpu kernel driver. setup/download_model.sh 3.0 fetches the pinned weights; serve/run.sh 3.0bpw-256k starts TabbyAPI with serve/configs/3.0bpw-256k.yml: 262144 context, cache_mode 8,6, max_batch_size 1, MTP draft with draft_num_tokens 3, reasoning, tool_format qwen3_coder, vision with vision_offload (encoder weights in system RAM). HIP_VISIBLE_DEVICES selects the discrete card over a Ryzen iGPU. Peaks around 21 GiB of the card's 24 GiB with the desktop on the same card.",
+  "variant": "3bpw",
+  "source": "https://github.com/kamm3r/exl3-rdna3-recipe/tree/7b1005395a4d7f48c964d8cda1a859d944444a7a"
+}

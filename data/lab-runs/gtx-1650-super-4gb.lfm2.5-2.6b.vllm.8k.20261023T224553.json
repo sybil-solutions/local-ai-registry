@@ -1,0 +1,74 @@
+{
+ "recipe": {
+  "model": "lfm2.5-2.6b",
+  "weights": "plavno/LFM2.5-2.6B-AutoRound-W4A16@2244dd328189f0b58d9b938b576937ad7d216b7f",
+  "engine": "vllm@8a69ffad015f",
+  "set": {
+   "ctx": 8192,
+   "mem": "0.78",
+   "tools": "lfm2",
+   "think": "deepseek_r1"
+  },
+  "card": "gtx-1650-super-4gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce GTX 1650 SUPER"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-10-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce GTX 1650 SUPER",
+  "launch_sha256": "7a3aea9cbfeffc16321f292ac05632a6b8fc3bb8c78b77a166da2cd10df589b2",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 20.3,
+  "prefill": 53,
+  "served": "LFM2.5-2.6B-AutoRound-W4A16-2244dd32"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, green, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 772,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-9d3e6c9e0d4d7a5a",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with **overcast** skies.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 244
+  },
+  "context": {
+   "prompt_tokens": 5552,
+   "seconds": 104.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1501,
+   "seconds_total": 74.4
+  }
+ },
+ "launch_config_sha256": null
+}

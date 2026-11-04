@@ -21,12 +21,12 @@ class ImageTrustTest(unittest.TestCase):
                 path = Path("registry/engines/test.json")
                 path.parent.mkdir(parents=True)
                 digest = "a" * 64
-                path.write_text('{"image":"ghcr.io/0xsero/gateway:old@sha256:' + digest + '"}')
+                path.write_text('{"image":"ghcr.io/0xsero/gateway:old@sha256:' + digest + '"}', encoding="utf-8")
                 git("add", ".")
                 git("commit", "-m", "base")
                 base = git("rev-parse", "HEAD").strip()
                 path.write_text('{"image":"ghcr.io/0xsero/gateway:new@sha256:' + digest +
-                    '","nested":{"image":"ghcr.io/0xsero/exl3xpu@sha256:' + "b" * 64 + '"}}')
+                    '","nested":{"image":"ghcr.io/0xsero/exl3xpu@sha256:' + "b" * 64 + '"}}', encoding="utf-8")
                 git("add", ".")
                 git("commit", "-m", "new image")
                 self.assertEqual(images("HEAD") - images(base),

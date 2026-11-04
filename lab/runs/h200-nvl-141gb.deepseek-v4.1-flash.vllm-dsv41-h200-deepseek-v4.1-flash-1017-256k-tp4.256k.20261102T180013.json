@@ -1,0 +1,69 @@
+{
+ "recipe": {
+  "model": "deepseek-v4.1-flash",
+  "weights": "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170",
+  "engine": "vllm-dsv41-h200-deepseek-v4.1-flash-1017-256k-tp4@42b9c8311c32",
+  "set": {},
+  "card": "h200-nvl-141gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "H200 NVL"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-02",
+  "on": "owner",
+  "gpu": "H200 NVL",
+  "launch_sha256": "d281a2e7174f3d439eb5b69ad094b08423ff8c349a7d129b45dc03ce7183d7b0",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 225.4,
+  "prefill": 17035,
+  "served": "deepseek-v4.1-flash"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 55,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-9df96f83541cd7f3",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Right now in Paris it's **17°C** with an **overcast sky**. Let me know if you'd like the weather for anywhere else.",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 0
+  },
+  "context": {
+   "prompt_tokens": 175457,
+   "seconds": 10.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30,
+   "tokens_total": 1013,
+   "seconds_total": 4.6
+  }
+ },
+ "launch_config_sha256": null
+}

@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
       - name: New image digests have approved build provenance
@@ -23,14 +23,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           IMAGE_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
-          python3 -m unittest discover -s lab -p test_image_trust.py
-          python3 -m unittest discover -s lab -p test_digest.py
-          python3 -m unittest discover -s lab -p test_offload_contract.py
-          python3 -m unittest discover -s lab -p test_slotstream.py
-          python3 -m unittest discover -s lab -p test_host_topology.py
-          python3 -m unittest discover -s lab -p test_build_pin.py
-          python3 -m unittest discover -s lab -p test_export_plugin.py
-          python3 -m unittest discover -s lab -p test_evidence.py
+          python3 -m unittest discover -s lab
           python3 lab/image_trust.py --base "$IMAGE_BASE"
       - name: Recipes are well-formed, pinned, in the right place and proven
         run: python3 lab/lab.py check

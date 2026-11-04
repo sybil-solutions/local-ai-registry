@@ -176,7 +176,7 @@ def main():
     ap.add_argument("--min-inet", type=int, default=300)
     ap.add_argument("--disk", type=int, default=90)
     a = ap.parse_args()
-    ra, rb = json.loads(Path(a.a).read_text()), json.loads(Path(a.b).read_text())
+    ra, rb = json.loads(Path(a.a).read_text(encoding="utf-8")), json.loads(Path(a.b).read_text(encoding="utf-8"))
     la, lb = lab.render(ra), lab.render(rb)
     levels = [int(x) for x in a.levels.split(",")]
     # the controls: an unfair comparison is refused, not run
@@ -232,18 +232,18 @@ def main():
                                     "criteria": "Decision per metric" + __doc__.split("Decision per metric")[1].split("The decision goes")[0].rstrip(),
                                     "a": {"recipe": a.a, **hosts["a"]}, "b": {"recipe": a.b, **hosts["b"]}, "levels": levels,
                                     "waves": {"prefill": PREFILL_WAVES, "decode": DECODE_WAVES, "turns": TURNS},
-                                    "samples": samples, "verdict": verdict, "b_replaces_a": replaces, "at": at.isoformat()}, indent=1) + "\n")
+                                    "samples": samples, "verdict": verdict, "b_replaces_a": replaces, "at": at.isoformat()}, indent=1) + "\n", encoding="utf-8")
     print(f"\n{ra['card']} {ra['model']}: {eb} (B) vs {ea} (A), same weights, machine {hosts['a']['machine']}")
     print(f"{'C':>3} {'metric':<18} {'A':>9} {'B':>9}  B/A [95% CI]           result")
     for C in levels:
         for m, v in verdict[C].items():
             ci = v["ratio_ci95"] or [None] * 3
             print(f"{C:>3} {m:<18} {v['median_a']!s:>9} {v['median_b']!s:>9}  {ci[1]} [{ci[0]}, {ci[2]}]  {v['result']}")
-    prefer = json.loads(PREFER.read_text()) if PREFER.exists() else {}
+    prefer = json.loads(PREFER.read_text(encoding="utf-8")) if PREFER.exists() else {}
     prefer[f"{ra['card']}/{ra['model']}"] = {"engine": eb if replaces else ea, "over": ea if replaces else eb, "weights": ra["weights"],
                                              "at": at.strftime("%Y-%m-%d"), "evidence": run_file.name,
                                              "c": {str(C): {m: v["ratio_ci95"] for m, v in verdict[C].items()} for C in levels}}
-    PREFER.write_text(json.dumps(dict(sorted(prefer.items())), indent=1) + "\n")
+    PREFER.write_text(json.dumps(dict(sorted(prefer.items())), indent=1) + "\n", encoding="utf-8")
     lab.log(f"{'B replaces A' if replaces else 'A stays'}; evidence {run_file.relative_to(lab.ROOT)}")
     return 0
 

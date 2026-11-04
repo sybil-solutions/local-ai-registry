@@ -124,3 +124,25 @@ js_steps = json.loads(subprocess.run(["node", "--input-type=module", "-e",
 assert py_steps == js_steps
 assert py_steps[-1]["code"].count("/root/.cache/huggingface") == 1, py_steps[-1]["code"]
 PY
+# The JS catalog is cached per URL, one shared fetch while it is in flight: a failed fetch is retried, each URL keeps its own.
+node --input-type=module -e '
+import { catalog } from "./sdk/js/index.js";
+const calls = [];
+globalThis.fetch = async (url) => {
+  calls.push(url);
+  if (calls.length === 1) throw new Error("offline");
+  if (calls.length === 2) return { ok: false, status: 503 };
+  return { ok: true, json: async () => ({ url }) };
+};
+const fails = async () => { try { await catalog(); } catch { return true; } return false; };
+if (!(await fails()) || !(await fails())) throw new Error("a failed fetch should reject");
+if ((await catalog()).url === undefined || calls.length !== 3) throw new Error("a failed fetch is cached");
+await catalog();
+if (calls.length !== 3) throw new Error("a loaded catalog is fetched again");
+const other = "https://example.invalid/other.json";
+if ((await catalog(other)).url !== other) throw new Error("another URL returns the first catalog");
+if ((await catalog()).url === other || (await catalog(other)).url !== other || calls.length !== 4) throw new Error("the cache keeps only the latest URL");
+const same = await Promise.all([catalog("https://example.invalid/third.json"), catalog("https://example.invalid/third.json")]);
+if (same[0] !== same[1] || calls.length !== 5) throw new Error("concurrent calls for one URL should share one fetch");
+'
+echo "sdk ok: catalog cache retries failures and keys by URL"

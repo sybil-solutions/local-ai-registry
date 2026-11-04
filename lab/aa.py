@@ -56,7 +56,7 @@ def base_of(key, models):
 def main():
     req = urllib.request.Request(URL, headers={"User-Agent": "local-ai-registry (lab/aa.py)"})
     rows = leaderboard(urllib.request.urlopen(req, timeout=60).read().decode("utf-8"))
-    meta = json.loads(MODELS.read_text())
+    meta = json.loads(MODELS.read_text(encoding="utf-8"))
     today = date.today().isoformat()
     scored, missing = 0, []
     for key, m in meta["models"].items():
@@ -72,7 +72,7 @@ def main():
         else:
             m.pop("aa", None)
             missing.append(key)
-    MODELS.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n")
+    MODELS.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"aa: {scored} models scored from {len(rows)} on the leaderboard; not listed: {', '.join(missing) or 'none'}")
 
 
