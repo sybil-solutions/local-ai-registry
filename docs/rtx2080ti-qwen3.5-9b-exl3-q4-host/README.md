@@ -15,8 +15,9 @@ Evidence: `lab/runs/rtx-2080-ti-11gb.qwen3.5-9b.tabbyapi-exl3-turing-qwen3.5-9b-
 Why a host launch, not the `tabbyapi-exl3` container image: the container
 image pins ExLlamaV3 1.5.1 and the rented host cannot run Docker (the
 instance container lacks the capability to create the Docker NAT chain), so
-the measured launch runs TabbyAPI from source on the host, exactly as the
-Ornith Turing host launch does. The frozen profile is
+the measured launch runs TabbyAPI from source on the host, the same
+host-launch approach the registry's exllamav3-* launches use. The frozen
+profile is
 `tabbyapi-exl3-turing-qwen3.5-9b-64k2-q4@9213b8b94873`, variant q4.
 
 Use Linux Python 3.12 on a compute node. Keep HOME unchanged and all
@@ -50,9 +51,9 @@ python3.12 "$DOC/reproduce_host.py" serve --run-dir "$RUN" --model-dir "$MODEL" 
 
 In a second terminal in that same GPU allocation, run the original gates
 against the service. The helper invokes the unchanged lab with no --set or
-output cap. Warm the server with one chat call first: the very first
-generation after load once returned no content (finish `repetition`); every
-later call, including the recorded run, answers normally.
+output cap. It warms the server with one short chat call first: the very
+first generation after load once returned no content (finish `repetition`);
+every later call, including the recorded run, answers normally.
 
 ```sh
 REG=/actual/patched-registry

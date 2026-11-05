@@ -61,6 +61,24 @@ def run(command):
     print(json.dumps({'command': [str(x) for x in command]}), flush=True)
     subprocess.run([str(x) for x in command], cwd=root, env=env, check=True)
 
+def warmup():
+    """One short chat call before the gates: the very first generation after load once returned no content (finish `repetition`); every later call answers normally."""
+    weights = profile['weights'] if isinstance(profile['weights'], list) else [profile['weights']]
+    model = Path(weights[0]['at']).name
+    payload = json.dumps({
+        "model": model,
+        "messages": [{"role": "user", "content": "Say hello."}],
+        "max_tokens": 16,
+    }).encode()
+    request = urllib.request.Request(
+        "http://127.0.0.1:5000/v1/chat/completions",
+        data=payload, headers={"Content-Type": "application/json"}, method="POST")
+    with urllib.request.urlopen(request, timeout=300) as response:
+        body = json.loads(response.read())
+    content = (body.get("choices") or [{}])[0].get("message", {}).get("content")
+    assert content, "warmup chat returned no content"
+    print("WARMUP_OK", flush=True)
+
 
 if args.action == 'setup':
     for row in manifest['files']:
@@ -112,6 +130,7 @@ elif args.action == 'serve':
     os.execvpe(profile['command'][0], profile['command'], env)
 else:
     assert args.registry, '--registry is required for gates'
+    warmup()
     command = [str(runtime), str(args.registry.resolve() / 'lab/lab.py'), 'try',
         manifest['repo'] + '@' + manifest['revision'], '--model', 'qwen3.5-9b',
         '--engine', profile['id'], '--card', 'rtx-2080-ti-11gb', '--on', 'endpoint',
