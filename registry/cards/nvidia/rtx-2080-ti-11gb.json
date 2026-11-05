@@ -1,0 +1,10 @@
+{
+  "id": "rtx-2080-ti-11gb",
+  "name": "NVIDIA GeForce RTX 2080 Ti",
+  "vendor": "nvidia",
+  "vram_gb": 11,
+  "match": {
+    "name": "NVIDIA GeForce RTX 2080 Ti",
+    "pci_id": "10de:1e04"
+  }
+}
