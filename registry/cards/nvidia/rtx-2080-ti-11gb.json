@@ -1,0 +1,17 @@
+{
+  "id": "rtx-2080-ti-11gb",
+  "name": "GeForce RTX 2080 Ti",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 11,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "nvidia",
+    "name": "GeForce RTX 2080 Ti",
+    "names": [
+      "rtx2080ti"
+    ],
+    "vramGb": 11
+  },
+  "notes": "Stock 11 GiB RTX 2080 Ti. Matches the 11264 MiB card used in the attached measured run; excludes 22 GiB memory modifications."
+}
