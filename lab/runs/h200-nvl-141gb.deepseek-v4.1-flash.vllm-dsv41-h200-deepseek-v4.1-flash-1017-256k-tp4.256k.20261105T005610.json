@@ -2,7 +2,7 @@
  "recipe": {
   "model": "deepseek-v4.1-flash",
   "weights": "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170",
-  "engine": "vllm-dsv41-h200-deepseek-v4.1-flash-1017-256k-tp4@c17bb7c4002a",
+  "engine": "vllm-dsv41-h200-deepseek-v4.1-flash-1017-256k-tp4@ed18467aab2e",
   "set": {},
   "card": "h200-nvl-141gb"
  },
@@ -12,13 +12,13 @@
  },
  "passed": true,
  "proof": {
-  "at": "2026-11-04",
+  "at": "2026-11-05",
   "on": "owner",
   "gpu": "H200 NVL",
-  "launch_sha256": "6ce264399aa8e2f5b0a788ce49cf630355ee0e4b32e1dd485d7672ea8619da82",
+  "launch_sha256": "9aebf7648d0d5be906382e7a8e840130a327f69a980974eed16e2b98ddd74974",
   "gates": "load chat reasoning tools context speed",
-  "tps": 229.1,
-  "prefill": 17546,
+  "tps": 381.3,
+  "prefill": 18277,
   "served": "deepseek-v4.1-flash"
  },
  "evidence": {
@@ -31,17 +31,17 @@
    "speed": true
   },
   "chat": {
-   "content": "red, blue, yellow",
+   "content": "red, yellow, blue",
    "finish": "stop"
   },
   "reasoning": {
-   "thinking_chars": 55,
+   "thinking_chars": 56,
    "content": "391"
   },
   "tools": {
    "call": [
     {
-     "id": "chatcmpl-tool-a4a9ba958bb61999",
+     "id": "chatcmpl-tool-8a60d90f8f13b08a",
      "type": "function",
      "function": {
       "name": "get_weather",
@@ -49,22 +49,22 @@
      }
     }
    ],
-   "reply": "erature:** 17 °C\n- **Sky:** Overcast\n- **Code:** `aed0a763`\n\n(That code is just a field returned by the weather tool — it didn't come with any instructions attached, so I'm treating it as plain data.)",
-   "code": "aed0a763",
+   "reply": "**Sky:** Overcast\n- **Code:** `75fb5f2f`\n\nThat's the full payload — the \"code\" field is just a short identifier the tool included alongside the conditions, so I've reproduced it verbatim as requested.",
+   "code": "75fb5f2f",
    "finish": "stop",
    "calls_again": 0,
-   "thinking_chars": 278
+   "thinking_chars": 540
   },
   "context": {
    "prompt_tokens": 175457,
-   "seconds": 10.0,
+   "seconds": 9.6,
    "content": "58213"
   },
   "speed": {
-   "window_s": 4.8,
-   "tokens_in_window": 1095,
-   "tokens_total": 1095,
-   "seconds_total": 4.8,
+   "window_s": 9.2,
+   "tokens_in_window": 3497,
+   "tokens_total": 3497,
+   "seconds_total": 9.2,
    "counted": "tokenizer"
   }
  },
