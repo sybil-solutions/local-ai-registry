@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "nanbeige4.2-3b",
+  "weights": "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF@17562eefe9752007209148d5f7a6e275fc8d8077",
+  "engine": "llama.cpp-nanbeige4.2-3b-q2-k-fit-ub128-144k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-07",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "513dd778f501af1e83eae434df5147b5379bbebb3634a420290fe8e8bb566277",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 17.8,
+  "prefill": 104,
+  "served": "Nanbeige4.2-3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "The term \"primary colors\" can vary depending on context, but in the most commonly referenced traditional art and pigment mixing (where colors are combined to create other colors), the three primary colors are:\n\n**red, blue, yellow**\n\n⚠️ *Note:* In additive color theory (light/screens), primary colors are **red, green, blue** (RGB). However, for general queries without specified context—especially in educational or art settings—the standard answer expected is **red, blue, yellow**. This response follows the instruction for comma-separated output and the predominant convention.",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 441,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "kTBZvMtlvYvvXRj6E7yA0vh00fTFr9rN"
+    }
+   ],
+   "reply": "y\": \"Paris\", \"temp_c\": 17, \"sky\": \"overcast\", \"code\": \"98fd46fb\"}\n```\n\nThis JSON response contains all the weather data for Paris. Let me know if you need more details or want to check another city! ⛅",
+   "code": "98fd46fb",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 102
+  },
+  "context": {
+   "prompt_tokens": 119687,
+   "seconds": 1149.5,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 535,
+   "tokens_total": 3251,
+   "seconds_total": 204.4,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

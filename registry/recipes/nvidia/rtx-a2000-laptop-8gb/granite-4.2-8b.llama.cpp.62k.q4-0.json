@@ -1,0 +1,20 @@
+{
+  "model": "granite-4.2-8b",
+  "weights": "ibm-granite/granite-4.2-8b-GGUF@93f3f6a8938ee922b784cf4e5b4203cd3428df8f",
+  "engine": "llama.cpp-granite-4.2-8b-q4-0-62k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb",
+  "proof": [
+    {
+      "at": "2026-11-06",
+      "on": "owner",
+      "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+      "launch_sha256": "5bfb4a0083d90a2dec58d60175365bb394082900eb07e5b0b1fe9f682d409019",
+      "gates": "load chat reasoning tools context speed",
+      "tps": 30.2,
+      "prefill": 388,
+      "served": "Granite-4.2-8B",
+      "log": "sha256:c1ae7d0b24c6057e"
+    }
+  ]
+}

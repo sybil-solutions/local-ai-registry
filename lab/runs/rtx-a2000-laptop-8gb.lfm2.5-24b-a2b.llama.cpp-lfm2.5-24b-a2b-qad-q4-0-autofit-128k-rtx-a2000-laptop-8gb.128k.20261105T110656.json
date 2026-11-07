@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "lfm2.5-24b-a2b",
+  "weights": "LiquidAI/LFM2.5-24B-A2B-GGUF@0912d33141f77e10705345a6732bfd83f0252fdc",
+  "engine": "llama.cpp-lfm2.5-24b-a2b-qad-q4-0-autofit-128k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-05",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "20682f7d46558d99b6ff14ac5a9d2cd83e14646461af502df25301b494684bc2",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 40.9,
+  "prefill": 720,
+  "served": "LFM2.5-24B-A2B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nThe answer depends on the color model: traditional pigments are red, yellow, blue; light (additive) is red, green, blue; and printing (subtractive) is cyan, magenta, yellow.",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 96,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "fft9qZ5Vnla30g9a9ciyNX46IoJcQxru"
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with an **overcast** sky.  \n\nThe tool also returned a code: **d9c72c1b**.",
+   "code": "d9c72c1b",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 1347
+  },
+  "context": {
+   "prompt_tokens": 91882,
+   "seconds": 127.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1228,
+   "tokens_total": 7821,
+   "seconds_total": 195.8,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

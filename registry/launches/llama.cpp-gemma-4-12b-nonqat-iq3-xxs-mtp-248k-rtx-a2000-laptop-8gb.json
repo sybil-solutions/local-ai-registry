@@ -1,0 +1,144 @@
+{
+  "id": "llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-248k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Gemma 4 12B GGUF · IQ3_XXS + MTP, vision at a 253,952-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 26.5 tok/s decode, 229 tok/s prefill, RAM drop 1.70 GB. At 262,144 tokens the context gate failed: llama.cpp could not parse the answer as Gemma 4 output.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12-b11146@sha256:52192a23c7b258044463aebba78826cdff39a7393b713edc313324b343a7b836",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/gemma-4-12b-it-UD-IQ3_XXS.gguf",
+    "--mmproj",
+    "/extra/mmproj-gemma-4-12b-it-qat-q4_0.gguf",
+    "--no-mmproj-offload",
+    "--alias",
+    "Gemma-4-12B",
+    "--spec-type",
+    "draft-mtp",
+    "--model-draft",
+    "/draft/mtp-gemma-4-12B-it-Q4_0.gguf",
+    "--spec-draft-n-max",
+    "2",
+    "--cache-type-k-draft",
+    "q4_0",
+    "--cache-type-v-draft",
+    "q4_0",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--n-gpu-layers",
+    "999",
+    "--fit",
+    "off",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "253952",
+    "--flash-attn",
+    "on",
+    "--parallel",
+    "1",
+    "--ubatch-size",
+    "128",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--chat-template-kwargs",
+    "{\"enable_thinking\":true}",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "64"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "unsloth/gemma-4-12b-it-GGUF",
+      "revision": "fc034cfff751157913579611efad8462ac1be606",
+      "at": "/models",
+      "layout": "dir",
+      "files": "gemma-4-12b-it-UD-IQ3_XXS.gguf"
+    },
+    {
+      "repo": "google/gemma-4-12B-it-qat-q4_0-gguf",
+      "revision": "29d097773436b69ff9feafd636ab4cf873786537",
+      "at": "/extra",
+      "layout": "dir",
+      "files": [
+        "mmproj-gemma-4-12b-it-qat-q4_0.gguf"
+      ]
+    },
+    {
+      "repo": "ggml-org/gemma-4-12B-it-GGUF",
+      "revision": "790d826c6ec7dc8aa0ab23af33e5b8313140a231",
+      "at": "/draft",
+      "layout": "dir",
+      "files": "mtp-gemma-4-12B-it-Q4_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 253952,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 3,
+    "disk_gb": 5.069
+  },
+  "plugin": {
+    "name": "Gemma 4 12B",
+    "family": "gemma",
+    "format": "GGUF · IQ3_XXS + MTP, vision",
+    "engine": "llama.cpp",
+    "servedName": "Gemma-4-12B",
+    "sizeGb": 5.069,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": true,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 253952,
+      "kvTokens": 253952
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "gemma-4-12b-it-UD-IQ3_XXS.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 4.64
+      },
+      {
+        "dir": "",
+        "files": "mmproj-gemma-4-12b-it-qat-q4_0.gguf",
+        "layout": "dir",
+        "mountPath": "/extra",
+        "sizeGb": 0.175
+      },
+      {
+        "dir": "",
+        "files": "mtp-gemma-4-12B-it-Q4_0.gguf",
+        "layout": "dir",
+        "mountPath": "/draft",
+        "sizeGb": 0.254
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}

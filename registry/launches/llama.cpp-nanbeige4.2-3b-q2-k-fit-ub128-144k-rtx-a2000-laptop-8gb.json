@@ -1,0 +1,104 @@
+{
+  "id": "llama.cpp-nanbeige4.2-3b-q2-k-fit-ub128-144k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Nanbeige4.2-3B GGUF · Q2_K at a 147,456-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 17.8 tok/s decode, 104 tok/s prefill, RAM drop 2.98 GB.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:821d0ae4e5d4e82a2ad8d08973b5f9cd5d0b84524b1d2439ed1f3e41ebc6b4c7",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Nanbeige_Nanbeige4.2-3B-Q2_K.gguf",
+    "--alias",
+    "Nanbeige4.2-3B",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "147456",
+    "--flash-attn",
+    "on",
+    "--ubatch-size",
+    "128",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--fit-target",
+    "64",
+    "--threads",
+    "12",
+    "--cpu-range",
+    "0-11",
+    "--cpu-strict",
+    "1"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF",
+      "revision": "17562eefe9752007209148d5f7a6e275fc8d8077",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Nanbeige_Nanbeige4.2-3B-Q2_K.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 147456,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 4,
+    "disk_gb": 1.85,
+    "cpus": 12
+  },
+  "plugin": {
+    "name": "Nanbeige4.2-3B",
+    "family": "nanbeige",
+    "format": "GGUF · Q2_K",
+    "engine": "llama.cpp",
+    "servedName": "Nanbeige4.2-3B",
+    "sizeGb": 1.85,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 147456,
+      "kvTokens": 147456
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Nanbeige_Nanbeige4.2-3B-Q2_K.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 1.85
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}
