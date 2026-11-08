@@ -1,0 +1,76 @@
+{
+ "recipe": {
+  "model": "nemotron-3.5-lightning-30b-a3b",
+  "weights": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4@bee7596271d1495f6992ae224aefde4410e816b8",
+  "engine": "vllm@8a69ffad015f",
+  "set": {
+   "ctx": 131072,
+   "kv": "fp8",
+   "think": "nemotron_v3"
+  },
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Max-Q WS (300 W)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-08",
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Max-Q WS (300 W)",
+  "launch_sha256": "db358c216e6208e2b490709095c574deb77babec6f359461019d613fcdca35f4",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 323.0,
+  "prefill": 16866,
+  "served": "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4-bee75962"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 881,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-8bb560a3e9e4c4fd",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "f8f03b24",
+   "code": "f8f03b24",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 598
+  },
+  "context": {
+   "prompt_tokens": 106257,
+   "seconds": 6.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 9.4,
+   "tokens_in_window": 3033,
+   "tokens_total": 3033,
+   "seconds_total": 9.5,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}
