@@ -1,0 +1,17 @@
+{
+  "id": "gtx-1060-6gb",
+  "name": "NVIDIA GeForce GTX 1060 6GB",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 6,
+  "bandwidth_gb_s": 192,
+  "match": {
+    "backend": "nvidia",
+    "name": "GeForce GTX 1060 6GB",
+    "names": [
+      "gtx10606gb",
+      "gtx1060"
+    ],
+    "vramGb": 6
+  }
+}

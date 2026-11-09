@@ -1,0 +1,103 @@
+{
+  "id": "llama.cpp-lfm2.5-24b-a2b-ud-iq3-xxs-moe-cache-64k-gtx-1060-6gb",
+  "engine": "llama.cpp",
+  "about": "LFM2.5-24B-A2B UD-IQ3_XXS on one GTX 1060 6GB (Pascal): all 40 layers' experts in host RAM with a 2600 MiB GPU MoE cache (--moe-cache-mib, cpu share 0.8), 64K q8_0 KV, 4 threads.",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:4ede2c4bbd36304eab85778b25e0016a290c653a05a12398470bb5ad17af8395",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "-m",
+    "/models/LFM2.5-24B-A2B-UD-IQ3_XXS.gguf",
+    "--alias",
+    "LFM2.5-24B-A2B-UD-IQ3_XXS",
+    "-ngl",
+    "99",
+    "-ncmoe",
+    "40",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-fa",
+    "on",
+    "-fit",
+    "off",
+    "-c",
+    "65536",
+    "-np",
+    "1",
+    "--moe-cache-mib",
+    "2600",
+    "--moe-cache-cpu-share",
+    "0.8",
+    "--load-mode",
+    "mmap",
+    "--no-warmup",
+    "-ub",
+    "512",
+    "-t",
+    "4",
+    "-tb",
+    "4",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--metrics"
+  ],
+  "env": {},
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "unsloth/LFM2.5-24B-A2B-GGUF",
+      "revision": "aacc77834f6aa568c93b4dbd6d295059736be98c",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "LFM2.5-24B-A2B-UD-IQ3_XXS.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 65536,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 8,
+    "disk_gb": 9
+  },
+  "plugin": {
+    "name": "LFM2.5-24B-A2B",
+    "family": "lfm",
+    "format": "GGUF · UD-IQ3_XXS (experts in RAM, MoE cache)",
+    "engine": "llama.cpp",
+    "servedName": "LFM2.5-24B-A2B-UD-IQ3_XXS",
+    "sizeGb": 8.96,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 65536,
+      "kvTokens": 66560
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "LFM2.5-24B-A2B-UD-IQ3_XXS.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 8.96
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}
