@@ -1,0 +1,23 @@
+{
+  "card": "intel-arc-b580-12gb",
+  "engine": "llama-cpp@main",
+  "model": "qwen3.5-9b",
+  "weights": "Qwen/Qwen3.5-9B-GGUF@qwen3.5-9b-Q4_K_M.gguf",
+  "set": {
+    "ctx": 65536,
+    "seqs": 1,
+    "gpu_layers": 99
+  },
+  "proof": {
+    "run": "20261026-intel-arc-b580-12gb",
+    "speed_tps": 18.4,
+    "passed": [
+      "load",
+      "chat",
+      "reasoning",
+      "tools",
+      "context",
+      "speed"
+    ]
+  }
+}
