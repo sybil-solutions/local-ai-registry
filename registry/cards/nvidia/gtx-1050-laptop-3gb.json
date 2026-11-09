@@ -1,0 +1,16 @@
+{
+  "id": "gtx-1050-laptop-3gb",
+  "name": "NVIDIA GeForce GTX 1050 Laptop 3 GB",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 3,
+  "bandwidth_gb_s": 112,
+  "match": {
+    "backend": "nvidia",
+    "name": "NVIDIA GeForce GTX 1050",
+    "names": [
+      "gtx1050"
+    ],
+    "vramGb": 3
+  }
+}
