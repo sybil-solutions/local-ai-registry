@@ -781,6 +781,10 @@
     }
   },
   "builds": {
+    "unsloth/LFM2.5-24B-A2B-GGUF@aacc77834f6aa568c93b4dbd6d295059736be98c": {
+      "format": "GGUF · UD-IQ3_XXS",
+      "size_gb": 8.95932848
+    },
     "ConwayResearch/Underdog-Saluki-27B-1.0@1336c0b5d74dfe6ad7f793577092f5effd9f97c6": {
       "format": "GGUF · IQ2-mix",
       "size_gb": 7.898369152
