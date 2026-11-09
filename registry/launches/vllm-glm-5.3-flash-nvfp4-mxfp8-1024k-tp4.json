@@ -160,7 +160,7 @@
   "weights": [
     {
       "repo": "nvidia/GLM-5.3-Flash-NVFP4",
-      "revision": "da920bb0b9f4a06727223a349e55468e38352348",
+      "revision": "1d00738646cbb0c6d0a9eb403dac5f366f1473a7",
       "at": "/models",
       "layout": "dir"
     }
