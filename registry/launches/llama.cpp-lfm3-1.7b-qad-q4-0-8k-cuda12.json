@@ -1,0 +1,58 @@
+{
+  "id": "llama.cpp-lfm3-1.7b-qad-q4-0-8k-cuda12",
+  "engine": "llama.cpp",
+  "about": "LFM3-1.7B QAD-Q4_0 on the official llama.cpp CUDA 12 server image (Pascal sm_61), 8K f16 KV; requires b11960 or newer",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12-b12211@sha256:f28803153f5ce48a6c8deaef694f58fca09b5dd79baca75fced670ec23b7bd71",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--device",
+    "CUDA0",
+    "-m",
+    "/models/LFM3-1.7B-QAD-Q4_0.gguf",
+    "--alias",
+    "LFM3-1.7B-GGUF",
+    "--ctx-size",
+    "8192",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "999",
+    "--fit",
+    "off",
+    "--flash-attn",
+    "auto",
+    "--no-mmproj",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--metrics",
+    "--batch-size",
+    "512",
+    "--ubatch-size",
+    "128",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080"
+  ],
+  "env": {},
+  "shm": "16g",
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM3-1.7B-GGUF",
+      "revision": "cd0c74c575b5c416f3011b5b4c298077f26ca8c2",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "LFM3-1.7B-QAD-Q4_0.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 8192,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1
+}
