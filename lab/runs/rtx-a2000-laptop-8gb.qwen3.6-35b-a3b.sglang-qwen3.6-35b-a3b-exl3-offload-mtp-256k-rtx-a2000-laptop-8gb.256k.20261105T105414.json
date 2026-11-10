@@ -1,0 +1,73 @@
+{
+ "recipe": {
+  "model": "qwen3.6-35b-a3b",
+  "weights": "yeasah/Qwen3.6-35B-A3B-exl3@73da68ef827084d72c59936b4c2088c6580f4e2b",
+  "engine": "sglang-qwen3.6-35b-a3b-exl3-offload-mtp-256k-rtx-a2000-laptop-8gb@ce47df25cee7",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-05",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "df4c24dfb52d1572dbe678a899d94b10a827fd6c2b10e3b5ebe951106e8da6db",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 27.0,
+  "prefill": 476,
+  "served": "Qwen3.6-35B-A3B-exl3-73da68ef"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nRed, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 563,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_bb8070fda5d747b8bf8fb8a6",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nThe weather in Paris is currently 17°C and overcast. The code provided by the tool is a2c24ebd.",
+   "code": "a2c24ebd",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 286
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 448.7,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 810,
+   "tokens_total": 4014,
+   "seconds_total": 143.2,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

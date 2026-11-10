@@ -1,0 +1,98 @@
+{
+  "id": "llama.cpp-welp-35b-a3b-autofit-pcores-256k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Welp-35B-A3B (Qwen3.6-35B-A3B in 13.2 GB) at the full 262k context with a q4_0 KV cache on an RTX A2000 8GB Laptop GPU (35 W): llama.cpp b11681, auto-fit (--fit-target 256) keeps attention, the KV cache and as many experts as fit on the GPU and maps the rest from the GGUF in host RAM; the CPU share runs on the 12 performance-core threads (--threads 12 --cpu-range 0-11 --cpu-strict 1), and --ubatch-size 512 raises prefill at no decode cost. --cache-ram 0 turns off the host prompt cache. Measured on a ThinkPad P1 Gen 5 (i7-12700H, 32 GB single-channel DDR5, display on the Intel GPU), 30 s decode runs: 30.5 tok/s with the rtx-5060-ti-16gb launch, 31.5 with fit 256, 33.1 with pinned threads, 33.7 with pinned threads on b11681. The weights are memory-mapped, so free RAM falls by only about 1.5 GB in the lab, but about 8 GB of experts stay in the page cache (8.7 GB drop when loaded without mmap); needs.host_ram_gb counts them.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Welp-35B-A3B.gguf",
+    "--fit-target",
+    "256",
+    "--flash-attn",
+    "on",
+    "--ctx-size",
+    "262144",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--ubatch-size",
+    "512",
+    "--threads",
+    "12",
+    "--cpu-range",
+    "0-11",
+    "--cpu-strict",
+    "1",
+    "--parallel",
+    "1",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--jinja",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "16g",
+  "weights": [
+    {
+      "repo": "quaedra/Welp-35B-A3B-GGUF",
+      "revision": "3e4a3adbda8df07d2889978170d9955c2e59fb7a",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "Welp-35B-A3B.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "disk_gb": 13.21,
+    "host_ram_gb": 10.0,
+    "cpus": 12
+  },
+  "ids": {},
+  "plugin": {
+    "name": "Welp-35B-A3B",
+    "family": "qwen",
+    "format": "GGUF · mixed K-quants, experts in RAM",
+    "engine": "llama.cpp",
+    "servedName": "/models/Welp-35B-A3B.gguf",
+    "sizeGb": 13.21,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 262144,
+      "kvTokens": 262144
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Welp-35B-A3B.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 13.21
+      }
+    ],
+    "asset": null
+  }
+}

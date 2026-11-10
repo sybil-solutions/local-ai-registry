@@ -1,0 +1,104 @@
+{
+  "id": "llama.cpp-lfm3-vl-2b-qad-q4-0-128k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "LFM3-VL-2B QAD-Q4_0 with vision at its full 128,000 context on an RTX A2000 8GB Laptop GPU (35 W), llama.cpp b12124. Lab: 113.7 tok/s decode, 2,478 tok/s prefill, RAM drop 0.72 GB. Sweeps: 113.9 tok/s at 3,039 MiB; Q4_K_M 103.8, Q8_0 75.0. Reasoning 5 of 5, tool code back 10 of 10, context 5 of 5, nine solid-colour images right.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:821d0ae4e5d4e82a2ad8d08973b5f9cd5d0b84524b1d2439ed1f3e41ebc6b4c7",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/LFM3-VL-2B-QAD-Q4_0.gguf",
+    "--mmproj",
+    "/models/mmproj-LFM3-VL-2B-Q8_0.gguf",
+    "--alias",
+    "LFM3-VL-2B",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--n-gpu-layers",
+    "999",
+    "--fit",
+    "off",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "128000",
+    "--flash-attn",
+    "on",
+    "--ubatch-size",
+    "1024",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "0.1",
+    "--top-k",
+    "50",
+    "--repeat-penalty",
+    "1.1"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM3-VL-2B-GGUF",
+      "revision": "1add221a5ea6c047fcf1eaaf2d247939d7cf8849",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "LFM3-VL-2B-QAD-Q4_0.gguf",
+        "mmproj-LFM3-VL-2B-Q8_0.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 128000,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 2,
+    "disk_gb": 1.25
+  },
+  "plugin": {
+    "name": "LFM3-VL-2B",
+    "family": "lfm",
+    "format": "GGUF · QAD-Q4_0, vision",
+    "engine": "llama.cpp",
+    "servedName": "LFM3-VL-2B",
+    "sizeGb": 1.25,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": true,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 128000,
+      "kvTokens": 128000
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "LFM3-VL-2B-QAD-Q4_0.gguf,mmproj-LFM3-VL-2B-Q8_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 1.25
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}

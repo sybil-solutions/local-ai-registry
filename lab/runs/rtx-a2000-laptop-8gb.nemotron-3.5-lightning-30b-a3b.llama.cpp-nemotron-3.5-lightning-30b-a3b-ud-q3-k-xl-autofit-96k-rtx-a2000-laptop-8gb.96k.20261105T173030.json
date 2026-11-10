@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "nemotron-3.5-lightning-30b-a3b",
+  "weights": "unsloth/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF@f2d3fe3694501008786e81e5f20360cbf715496a",
+  "engine": "llama.cpp-nemotron-3.5-lightning-30b-a3b-ud-q3-k-xl-autofit-96k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-05",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "d5aafcc28f4db5cfa5376986d47993ce5f52aa5743d79c4dc48d0403ad626d10",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 26.5,
+  "prefill": 510,
+  "served": "Nemotron-3.5-Lightning-30B-A3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 732,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "jzVgBJv75um0nURtM7JuNEj7LiHcXTOa"
+    }
+   ],
+   "reply": "The current weather in Paris is **17 °C** with **overcast** skies. The code provided by the tool is **77943064**.",
+   "code": "77943064",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 532
+  },
+  "context": {
+   "prompt_tokens": 79410,
+   "seconds": 155.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 796,
+   "tokens_total": 2325,
+   "seconds_total": 88.3,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

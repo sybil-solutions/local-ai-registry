@@ -1,0 +1,16 @@
+{
+  "id": "apple-m1-max-32gb",
+  "name": "Apple M1 Max",
+  "vendor": "apple",
+  "backend": "metal",
+  "vram_gb": 32,
+  "bandwidth_gb_s": 400,
+  "match": {
+    "backend": "metal",
+    "name": "Apple M1 Max",
+    "names": [
+      "applem1max"
+    ],
+    "vramGb": 32
+  }
+}

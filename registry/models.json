@@ -778,6 +778,83 @@
       "good_for": "Fast chat and tool calls at 128K",
       "logo": "hf",
       "hf": "LiquidAI/LFM2.5-24B-A2B"
+    },
+    "lfm3-1.7b": {
+      "family": "lfm",
+      "name": "LFM3-1.7B",
+      "released": "2026-10-23",
+      "reasoning": true,
+      "vision": false,
+      "about": "Liquid AI's 1.7B hybrid model with a 256K context: it thinks before it answers and calls tools.",
+      "good_for": "Fast tool calls and long context on small cards",
+      "logo": "hf",
+      "hf": "LiquidAI/LFM3-1.7B"
+    },
+    "nemotron-3.5-bolt-e4b": {
+      "family": "nemotron",
+      "name": "Nemotron 3.5 Bolt E4B",
+      "released": "2026-10-23",
+      "reasoning": true,
+      "vision": false,
+      "about": "NVIDIA's post-trained Gemma 4 E4B, built for low memory and fast first tokens: it thinks and calls tools at 64K.",
+      "good_for": "Tool calls and chat on 8 GB cards",
+      "logo": "hf",
+      "hf": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB"
+    },
+    "groot-19b-a3b": {
+      "family": "qwen",
+      "name": "Groot 19B-A3B",
+      "released": "2026-10-23",
+      "reasoning": true,
+      "vision": true,
+      "about": "GrootTeam's post-trained Qwen3.6-35B-A3B in 19B: 128 experts, about 3B active per token. It thinks, calls tools and reads images at 256K.",
+      "good_for": "Reasoning and tool calls at long context on small cards",
+      "logo": "hf",
+      "hf": "GrootTeam/Groot-19B-A3B-261023-GGUF"
+    },
+    "lfm3-vl-2b": {
+      "family": "lfm",
+      "name": "LFM3-VL-2B",
+      "released": "2026-10-19",
+      "reasoning": true,
+      "vision": true,
+      "about": "Liquid AI's LFM3 with vision: a small hybrid model that reads images at 128K.",
+      "good_for": "Fast image questions on small cards",
+      "logo": "hf",
+      "hf": "LiquidAI/LFM3-VL-2B"
+    },
+    "granite-4.2-8b": {
+      "logo": "hf",
+      "family": "granite",
+      "name": "Granite 4.2 8B",
+      "released": "2026-08-07",
+      "reasoning": true,
+      "vision": false,
+      "about": "IBM's 8B dense model (40 layers). It thinks before it answers and calls tools.",
+      "good_for": "Reasoning and tool calls on 8 GB cards",
+      "hf": "ibm-granite/granite-4.2-8b"
+    },
+    "granite-4.2-3b": {
+      "logo": "hf",
+      "family": "granite",
+      "name": "Granite 4.2 3B",
+      "released": "2026-08-07",
+      "reasoning": true,
+      "vision": false,
+      "about": "IBM's 3B dense model (40 layers). It thinks before it answers and calls tools.",
+      "good_for": "Fast tool calls on small cards",
+      "hf": "ibm-granite/granite-4.2-3b"
+    },
+    "nanbeige4.2-3b": {
+      "logo": "hf",
+      "family": "nanbeige",
+      "name": "Nanbeige4.2-3B",
+      "released": "2026-07-21",
+      "reasoning": true,
+      "vision": false,
+      "about": "Nanbeige4.2: a 3B model with looped layers, thinking, tool calls and a 256K window.",
+      "good_for": "Agent work and long context on 8 GB cards",
+      "hf": "Nanbeige/Nanbeige4.2-3B"
     }
   },
   "builds": {
@@ -1216,6 +1293,10 @@
       "format": "GGUF · Q2_0",
       "size_gb": 2.556640128
     },
+    "prism-ml/Ternary-Bonsai-2-27B-gguf@6ed5e12bf84b7a63069882c91dd9e9218647d17b": {
+      "format": "GGUF · PQ2_0",
+      "size_gb": 7.206168928
+    },
     "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF@e0fecb69cb3e5e4c5e8a056fa2aec98c78e91246": {
       "format": "GGUF · IQ2_XXS / NVFP4 / Q8_0 (NVIDIA 24 GB)",
       "size_gb": 23.75
@@ -1240,6 +1321,10 @@
       "format": "compressed-tensors · FP8 block",
       "size_gb": 24.75
     },
+    "LiquidAI/LFM2.5-24B-A2B-GGUF@0912d33141f77e10705345a6732bfd83f0252fdc": {
+      "format": "GGUF · Q4_0 (QAD)",
+      "size_gb": 13.58
+    },
     "Honkware/Nanbeige4.3-33B-exl3-4.0bpw@164ca0ee2b4a2aedb3d43c903cdff53f9688120c": {
       "format": "EXL3 · 4 bpw, 6-bit head",
       "size_gb": 17.41
@@ -1247,6 +1332,54 @@
     "turboderp/Qwen3.8-27B-exl3@86b95530f9d365d90dd24d01a997a8de0cdf6c55": {
       "format": "EXL3 · SC 3.00bpw H4",
       "size_gb": 12.55
+    },
+    "LiquidAI/LFM3-1.7B-GGUF@cd0c74c575b5c416f3011b5b4c298077f26ca8c2": {
+      "format": "GGUF · QAD-Q4_0",
+      "size_gb": 1.05
+    },
+    "LiquidAI/LFM3-VL-2B-GGUF@1add221a5ea6c047fcf1eaaf2d247939d7cf8849": {
+      "format": "GGUF · QAD-Q4_0, vision",
+      "size_gb": 1.25
+    },
+    "ibm-granite/granite-4.2-8b-GGUF@93f3f6a8938ee922b784cf4e5b4203cd3428df8f": {
+      "format": "GGUF · Q2_K, Q3_K_M, Q4_0",
+      "size_gb": 5.06
+    },
+    "ibm-granite/granite-4.2-3b-GGUF@c40945d71cd90f249a56985e8155551a9188dc30": {
+      "format": "GGUF · Q4_0",
+      "size_gb": 2.13
+    },
+    "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF@17562eefe9752007209148d5f7a6e275fc8d8077": {
+      "format": "GGUF · Q2_K, Q4_0",
+      "size_gb": 2.54
+    },
+    "bartowski/Ornith-1.5-35B-A3B-GGUF@64b0493d34a5ca4c1b4ad67bb99b41d74b4f07d6": {
+      "format": "GGUF · Q2_K, Q4_0",
+      "size_gb": 20.42
+    },
+    "bartowski/Qwen_Qwen3.6-35B-A3B-GGUF@5c2410d71524f4f72b023ce8daf7a80528226d5f": {
+      "format": "GGUF · Q2_K, Q4_0",
+      "size_gb": 20.84
+    },
+    "bartowski/Ornith-1.5-9B-GGUF@1fc60d6805eaa18bbed4088391db9336eb9581c4": {
+      "format": "GGUF · Q4_0",
+      "size_gb": 5.48
+    },
+    "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF@8cd082170ed313484be1cf44f256a5caa2cfdad3": {
+      "format": "GGUF · Q4_0",
+      "size_gb": 18.9
+    },
+    "bartowski/GrootTeam_Groot-19B-A3B-261023-GGUF@0025df0d03fb385344394f4e5afd73ce47da0680": {
+      "format": "GGUF · Q2_K, Q4_0, vision",
+      "size_gb": 11.04
+    },
+    "bartowski/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF@7a243bc11b80212594a71d2ecddde5798a43e265": {
+      "format": "GGUF · Q4_0",
+      "size_gb": 5.22
+    },
+    "unsloth/gemma-4-12b-it-GGUF@fc034cfff751157913579611efad8462ac1be606": {
+      "format": "GGUF · IQ3_XXS",
+      "size_gb": 4.64
     }
   }
 }

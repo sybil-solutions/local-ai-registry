@@ -1,0 +1,77 @@
+{
+ "recipe": {
+  "model": "gemma-4-12b",
+  "weights": "turboderp/gemma-4-12B-it-exl3@38309570753c5fde71a818feb513b1e09a81fc18",
+  "engine": "tabbyapi-exl3@0f83e6198dc3",
+  "set": {
+   "vision": true,
+   "tools": "null",
+   "vars": "{enable_thinking: true}"
+  },
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-03",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "b67ea2851a9f51b98d84694f6f453555d1da439bd2daa3f2f0f2bc8425d68b88",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 15.1,
+  "prefill": 451,
+  "served": "gemma-4-12B-it-exl3-38309570"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 114,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_22cdf4593c234e11a9782f48",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ],
+   "reply": "The weather in Paris is currently 17°C and overcast. The code provided is d95566b7.",
+   "code": "d95566b7",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 1
+  },
+  "context": {
+   "prompt_tokens": 25731,
+   "seconds": 57.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.1,
+   "tokens_in_window": 454,
+   "tokens_total": 2207,
+   "seconds_total": 150.3,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": "54489831a168a6e5ca324558ab7ba89bee362efef1a5eed0491ae95719f2ec57"
+}

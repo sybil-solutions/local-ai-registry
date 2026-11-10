@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "lfm2.5-2.6b",
+  "weights": "LiquidAI/LFM2.5-2.6B-GGUF@84022ce711b28455e8c4fc364ce68c00cf995875",
+  "engine": "llama.cpp-lfm2.5-2.6b-qad-q4-0-64k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-06",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "71d11284b10a6cec31fb9ab061ee77cc856194375166d98a543a49b46a4d825f",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 81.8,
+  "prefill": 1863,
+  "served": "LFM2.5-2.6B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 335,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "NgLvcerfrcK5SBFigKHnvLFfO9mpYUvz"
+    }
+   ],
+   "reply": "Here is the current weather in Paris:\n\n- **Temperature:** 17°C\n- **Sky:** Overcast\n- **Code:** 67d84237\n\n**Code:** 67d84237",
+   "code": "67d84237",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 356
+  },
+  "context": {
+   "prompt_tokens": 45462,
+   "seconds": 24.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 2454,
+   "tokens_total": 4777,
+   "seconds_total": 59.5,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

@@ -9,7 +9,8 @@
     "backend": "nvidia",
     "name": "RTX PRO 6000 Blackwell",
     "names": [
-      "rtxpro6000blackwell"
+      "rtxpro6000blackwell",
+      "rtxpro6000blackwellmaxq"
     ],
     "vramGb": 96
   }

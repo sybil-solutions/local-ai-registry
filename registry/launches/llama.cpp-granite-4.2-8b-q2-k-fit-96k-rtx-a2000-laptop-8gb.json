@@ -1,0 +1,102 @@
+{
+  "id": "llama.cpp-granite-4.2-8b-q2-k-fit-96k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Granite 4.2 8B GGUF · Q2_K at a 98,304-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 33.9 tok/s decode, 277 tok/s prefill, RAM drop 1.31 GB.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:821d0ae4e5d4e82a2ad8d08973b5f9cd5d0b84524b1d2439ed1f3e41ebc6b4c7",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/granite-4.2-8b-Q2_K.gguf",
+    "--alias",
+    "Granite-4.2-8B",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "98304",
+    "--flash-attn",
+    "on",
+    "--ubatch-size",
+    "256",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--fit-target",
+    "64",
+    "--threads",
+    "12",
+    "--cpu-range",
+    "0-11",
+    "--cpu-strict",
+    "1"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "ibm-granite/granite-4.2-8b-GGUF",
+      "revision": "93f3f6a8938ee922b784cf4e5b4203cd3428df8f",
+      "at": "/models",
+      "layout": "dir",
+      "files": "granite-4.2-8b-Q2_K.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 98304,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 3,
+    "disk_gb": 3.41,
+    "cpus": 12
+  },
+  "plugin": {
+    "name": "Granite 4.2 8B",
+    "family": "granite",
+    "format": "GGUF · Q2_K",
+    "engine": "llama.cpp",
+    "servedName": "Granite-4.2-8B",
+    "sizeGb": 3.41,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 98304,
+      "kvTokens": 98304
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "granite-4.2-8b-Q2_K.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 3.41
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}
