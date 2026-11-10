@@ -1,0 +1,66 @@
+{
+  "repo": "TheMelonGod/Qwen3.5-9B-exl3",
+  "revision": "22ef1303062e0f6d0b282440f8c1f685947f4938",
+  "files": [
+    {
+      "name": "LICENSE",
+      "bytes": 11544,
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    },
+    {
+      "name": "README.md",
+      "bytes": 77643,
+      "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0"
+    },
+    {
+      "name": "chat_template.jinja",
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    },
+    {
+      "name": "config.json",
+      "bytes": 3412,
+      "sha256": "478ee51e9be937aa8cabc839846a926251db41c6e26fd27b709810f8e5085936"
+    },
+    {
+      "name": "merges.txt",
+      "bytes": 3353259,
+      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+    },
+    {
+      "name": "model.safetensors",
+      "bytes": 6443442774,
+      "sha256": "60c4a31c7a59d2e18230267350b1fb73055f71cef18f519515adb9f11ea63a9b"
+    },
+    {
+      "name": "preprocessor_config.json",
+      "bytes": 390,
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+    },
+    {
+      "name": "quantization_config.json",
+      "bytes": 314800,
+      "sha256": "1912bcd11ae5b4886703bf55413bc0dffbc232cf8f20fe04a72fb2833d25d0c5"
+    },
+    {
+      "name": "tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    {
+      "name": "tokenizer_config.json",
+      "bytes": 16710,
+      "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+    },
+    {
+      "name": "video_preprocessor_config.json",
+      "bytes": 385,
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+    },
+    {
+      "name": "vocab.json",
+      "bytes": 6722759,
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+    }
+  ]
+}
