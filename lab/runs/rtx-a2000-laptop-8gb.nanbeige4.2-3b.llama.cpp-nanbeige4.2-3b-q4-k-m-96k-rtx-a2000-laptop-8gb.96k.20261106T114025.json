@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "nanbeige4.2-3b",
+  "weights": "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF@17562eefe9752007209148d5f7a6e275fc8d8077",
+  "engine": "llama.cpp-nanbeige4.2-3b-q4-k-m-96k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-06",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "aef602194b3300954917c9c210c57c5dc16470cc8dece6328f0c81ad68d1a30e",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 29.3,
+  "prefill": 173,
+  "served": "Nanbeige4.2-3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 512,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "HcXGEba4tOzjwDs8L8U5ZdPrsoCYkrTW"
+    }
+   ],
+   "reply": "*Paris** as the city parameter to the `get_weather` tool, which returned the current weather data for the city. Paris is currently experiencing **17°C with overcast skies** — a mild but cloudy day! ☁️",
+   "code": "072ce2b3",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 142
+  },
+  "context": {
+   "prompt_tokens": 79430,
+   "seconds": 459.9,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 879,
+   "tokens_total": 2876,
+   "seconds_total": 107.1,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

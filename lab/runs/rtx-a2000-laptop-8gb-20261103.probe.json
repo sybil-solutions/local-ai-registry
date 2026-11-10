@@ -1,0 +1,51 @@
+{
+ "host": {
+  "kernel": "7.2.15-1-omarchy",
+  "cpu": "12th Gen Intel(R) Core(TM) i7-12700H",
+  "cpus": 20,
+  "avx512": false
+ },
+ "ram": {
+  "total_gb": 33.32,
+  "available_gb": 25.21,
+  "swap_total_gb": 66.65,
+  "swap_used_gb": 2.98
+ },
+ "storage": {
+  "path": "~/.cache/omarchy/local-ai/models",
+  "free_gb": 114.56,
+  "total_gb": 1022.04,
+  "device": "/dev/mapper/root",
+  "fstype": "btrfs",
+  "physical_disks": [
+   {
+    "disk": "nvme0n1",
+    "nvme": true,
+    "rotational": false,
+    "model": "WD PC SN740 SDDQNQD-1T00-1001"
+   }
+  ],
+  "all_nvme": true
+ },
+ "gpus": [
+  {
+   "vendor": "nvidia",
+   "index": 0,
+   "name": "NVIDIA RTX A2000 8GB Laptop GPU",
+   "vram_gb": 8,
+   "vram_mib": 8192,
+   "vram_used_mib": 2,
+   "unified_memory": false,
+   "pci": "00000000:01:00.0",
+   "pcie_gen_max": "4",
+   "pcie_width_max": "16",
+   "driver": "615.78.08"
+  },
+  {
+   "vendor": "intel",
+   "card": "card2",
+   "name": "Intel Corporation Alder Lake-P Integrated Graphics Controller (rev 0c)",
+   "vram_gb": null
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+{
+  "id": "llama.cpp-bonsai-2-27b-pq2-0-40k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Prism ML's ternary Bonsai 2 27B (Qwen3.8-27B) in the PQ2_0 packing, fully on one 8 GB laptop card, text only, on the trusted fork image (prism-b10683) with a 40,960-token q4_0 KV cache. In 30 s runs of the lab's speed prompt on an RTX A2000 8GB Laptop GPU at 35 W (decode is compute and power bound: 34.9 W at 1,267 MHz): PTQ1_0 13.4 tok/s at 32K and 64K; PQ2_0 15.6 at 8K, 16K, 32K and 40K (7,851 MiB); 48K and 64K fail to create the context, also with ubatch 256. A newer Prism ML fork release may be faster once a trusted image wraps it. Generation and thinking are uncapped.",
+  "image": "ghcr.io/0xsero/deploy-llamacpp-bonsai-ptq1-rtx-2000-ada-16gb@sha256:9a646183bf0dd199504bea9b6f47d9ec2aa07a3bdf1a4827382f449e94292f02",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/opt/llama/llama-server",
+  "args": [
+    "--model",
+    "/models/Ternary-Bonsai-2-27B-PQ2_0.gguf",
+    "--alias",
+    "Bonsai-2-27B",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--n-gpu-layers",
+    "999",
+    "--split-mode",
+    "none",
+    "--ctx-size",
+    "40960",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--jinja",
+    "--metrics",
+    "--no-mmproj",
+    "--fit",
+    "off",
+    "--cache-ram",
+    "0",
+    "--batch-size",
+    "512",
+    "--ubatch-size",
+    "512",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0",
+    "--presence-penalty",
+    "1.0",
+    "--repeat-penalty",
+    "1.0",
+    "--repeat-last-n",
+    "64"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "prism-ml/Ternary-Bonsai-2-27B-gguf",
+      "revision": "6ed5e12bf84b7a63069882c91dd9e9218647d17b",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Ternary-Bonsai-2-27B-PQ2_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 40960,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 4.0,
+    "disk_gb": 7.21
+  },
+  "plugin": {
+    "name": "Bonsai 2 27B",
+    "family": "qwen",
+    "format": "GGUF PQ2_0 (ternary), text only",
+    "engine": "llama.cpp",
+    "servedName": "Bonsai-2-27B",
+    "sizeGb": 7.206168928,
+    "minDriver": "570.124.06",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 40960,
+      "kvTokens": 40960
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Ternary-Bonsai-2-27B-PQ2_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 7.206168928
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}

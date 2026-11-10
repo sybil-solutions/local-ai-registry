@@ -1,0 +1,587 @@
+2026-11-04T10:49:30 runlabs started: ['registry/recipes/nvidia/rtx-a2000-laptop-8gb/bonsai-2-9b.llama.cpp.32k.json', 'registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.tabbyapi.32k.json', 'registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-35b-a3b.llama.cpp.256k.json']
+2026-11-04T10:49:35 bonsai-2-9b.llama.cpp.32k: engine started, cap 27g; MemAvailable 28.38 GB
+2026-11-04T10:49:40 bonsai-2-9b.llama.cpp.32k: ready after 5 s; GPU 3445 MiB; MemAvailable 28.06 GB; running lab
+2026-11-04T10:51:15 bonsai-2-9b.llama.cpp.32k: lab exit 0; [lab 10:51:15] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 45.0 tok/s, prefill 677 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.bonsai-2-9b.llama.cpp-bonsai-2-9b-q2-0-32k-cuda12.32k.20261104T095115.json | [lab 10:51:15] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/bonsai-2-9b.llama.cpp.32k.json (794 bytes)
+2026-11-04T10:51:16 bonsai-2-9b.llama.cpp.32k: engine removed (was: running OOMKilled=false); MemAvailable 28.38 -> lowest 26.19 GB (drop 2.19); watchdog quiet
+2026-11-04T10:51:21 gemma-4-12b.tabbyapi.32k: engine started, cap 27g; MemAvailable 28.32 GB
+2026-11-04T10:51:36 gemma-4-12b.tabbyapi.32k: ready after 15 s; GPU 5729 MiB; MemAvailable 24.75 GB; running lab
+2026-11-04T10:54:54 gemma-4-12b.tabbyapi.32k: lab exit 1; [lab 10:54:54] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': False}  decode 14.5 tok/s, prefill 423 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.tabbyapi-exl3.32k.20261104T095454.json | [lab 10:54:54] FAILED: no recipe written
+2026-11-04T10:54:54 gemma-4-12b.tabbyapi.32k: engine removed (was: running OOMKilled=false); MemAvailable 28.32 -> lowest 23.77 GB (drop 4.55); watchdog quiet
+2026-11-04T10:55:00 ornith-1.5-35b-a3b.llama.cpp.256k: engine started, cap 27g; MemAvailable 28.18 GB
+2026-11-04T10:55:17 ornith-1.5-35b-a3b.llama.cpp.256k: ready after 18 s; GPU 7239 MiB; MemAvailable 8.69 GB; running lab
+2026-11-04T11:12:49 ornith-1.5-35b-a3b.llama.cpp.256k: lab exit 0; [lab 11:12:49] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 27.5 tok/s, prefill 213 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-35b-a3b.llama.cpp-ornith-1.5-35b-a3b-q4-k-m-mtp-autofit-256k-rtx-a2000-laptop-8gb.256k.20261104T101249.json | [lab 11:12:49] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-35b-a3b.llama.cpp.256k.json (883 bytes)
+2026-11-04T11:12:51 ornith-1.5-35b-a3b.llama.cpp.256k: engine removed (was: running OOMKilled=false); MemAvailable 28.18 -> lowest 7.31 GB (drop 20.86); watchdog quiet
+2026-11-04T11:12:57 runlabs finished
+2026-11-04T11:43:29 runlabs started: ['qwen36-a2000.spec.json']
+2026-11-04T11:44:28 runlabs started: ['qwen36-a2000.spec.json']
+2026-11-04T11:44:33 qwen36-a2000: engine started, cap 27g; MemAvailable 28.69 GB
+2026-11-04T11:44:51 qwen36-a2000: ready after 18 s; GPU 7271 MiB; MemAvailable 7.90 GB; running lab
+2026-11-04T12:05:22 qwen36-a2000: lab exit 0; [lab 12:05:22] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 25.2 tok/s, prefill 214 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.6-35b-a3b.llama.cpp-qwen3.6-35b-a3b-mtp-ud-q4-k-xl-autofit-256k-rtx-a2000-laptop-8gb.256k.20261104T110522.json | [lab 12:05:22] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/qwen3.6-35b-a3b.llama.cpp.256k.json (576 bytes)
+2026-11-04T12:05:24 qwen36-a2000: engine removed (was: running OOMKilled=false); MemAvailable 28.69 -> lowest 6.40 GB (drop 22.29); watchdog quiet
+2026-11-04T12:05:29 runlabs finished
+2026-11-04T14:16:53 runlabs started: ['bonsai9-256k.spec.json']
+2026-11-04T14:16:58 bonsai9-256k: engine started, cap 27g; MemAvailable 28.80 GB
+2026-11-04T14:17:03 bonsai9-256k: ready after 5 s; GPU 6035 MiB; MemAvailable 28.22 GB; running lab
+2026-11-04T14:27:20 bonsai9-256k: lab exit 0; [lab 14:27:20] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 45.3 tok/s, prefill 391 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.bonsai-2-9b.llama.cpp-bonsai-2-9b-q2-0-256k-rtx-a2000-laptop-8gb.256k.20261104T132720.json | [lab 14:27:20] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/bonsai-2-9b.llama.cpp.256k.json (523 bytes)
+2026-11-04T14:27:20 bonsai9-256k: engine removed (was: running OOMKilled=false); MemAvailable 28.80 -> lowest 25.27 GB (drop 3.53); watchdog quiet
+2026-11-04T14:27:24 runlabs finished
+2026-11-04T14:56:40 runlabs started: ['bonsai9-256k.spec.json']
+2026-11-04T14:56:46 bonsai9-256k: engine started, cap 27g; MemAvailable 28.88 GB
+2026-11-04T14:56:51 bonsai9-256k: ready after 5 s; GPU 6035 MiB; MemAvailable 28.09 GB; running lab
+2026-11-04T15:05:35 bonsai9-256k: lab exit 0; [lab 15:05:35] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 44.9 tok/s, prefill 459 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.bonsai-2-9b.llama.cpp-bonsai-2-9b-q2-0-256k-rtx-a2000-laptop-8gb.256k.20261104T140535.json | [lab 15:05:35] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/bonsai-2-9b.llama.cpp.256k.json (809 bytes)
+2026-11-04T15:05:35 bonsai9-256k: engine removed (was: running OOMKilled=false); MemAvailable 28.88 -> lowest 24.92 GB (drop 3.96); watchdog quiet
+2026-11-04T15:05:41 runlabs finished
+2026-11-04T15:05:41 runlabs started: ['gemma12-80k.spec.json']
+2026-11-04T15:05:46 gemma12-80k: engine started, cap 27g; MemAvailable 28.53 GB
+2026-11-04T15:05:51 gemma12-80k: ready after 5 s; GPU 7849 MiB; MemAvailable 27.87 GB; running lab
+2026-11-04T15:09:47 gemma12-80k: lab exit 0; [lab 15:09:46] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 31.8 tok/s, prefill 392 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-qat-q4-0-mtp-80k-rtx-a2000-laptop-8gb.80k.20261104T140946.json | [lab 15:09:46] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.llama.cpp.80k.json (532 bytes)
+2026-11-04T15:09:47 gemma12-80k: engine removed (was: running OOMKilled=false); MemAvailable 28.53 -> lowest 27.36 GB (drop 1.17); watchdog quiet
+2026-11-04T15:09:52 runlabs finished
+2026-11-04T15:09:52 runlabs started: ['gemma12-128k.spec.json']
+2026-11-04T15:09:58 gemma12-128k: engine started, cap 27g; MemAvailable 28.55 GB
+2026-11-04T15:10:03 gemma12-128k: ready after 5 s; GPU 7787 MiB; MemAvailable 27.85 GB; running lab
+2026-11-04T15:17:12 gemma12-128k: lab exit 0; [lab 15:17:12] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 20.6 tok/s, prefill 334 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-qat-q4-0-128k-rtx-a2000-laptop-8gb.128k.20261104T141712.json | [lab 15:17:12] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.llama.cpp.128k.json (529 bytes)
+2026-11-04T15:17:12 gemma12-128k: engine removed (was: running OOMKilled=false); MemAvailable 28.55 -> lowest 27.54 GB (drop 1.01); watchdog quiet
+2026-11-04T15:17:18 runlabs finished
+2026-11-04T18:19:23 runlabs started: ['bonsai27-pq2-40k.spec.json']
+2026-11-04T18:19:28 bonsai27-pq2-40k: engine started, cap 27g; MemAvailable 29.25 GB
+2026-11-04T18:19:33 bonsai27-pq2-40k: ready after 5 s; GPU 7841 MiB; MemAvailable 28.64 GB; running lab
+2026-11-04T18:43:04 bonsai27-pq2-40k: lab exit 0; [lab 18:43:04] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 15.5 tok/s, prefill 210 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.bonsai-2-27b.llama.cpp-bonsai-2-27b-pq2-0-40k-rtx-a2000-laptop-8gb.40k.20261104T174304.json | [lab 18:43:04] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/bonsai-2-27b.llama.cpp.40k.json (527 bytes)
+2026-11-04T18:43:04 bonsai27-pq2-40k: engine removed (was: running OOMKilled=false); MemAvailable 29.25 -> lowest 27.51 GB (drop 1.73); watchdog quiet
+2026-11-04T18:43:10 runlabs finished
+2026-11-05T09:00:24 runlabs started: ['qwen36-pcores.spec.json']
+2026-11-05T09:00:29 qwen36-pcores: engine started, cap 27g; MemAvailable 28.54 GB
+2026-11-05T09:00:45 qwen36-pcores: ready after 16 s; GPU 7563 MiB; MemAvailable 9.58 GB; running lab
+2026-11-05T09:19:21 qwen36-pcores: lab exit 0; [lab 09:19:21] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 30.0 tok/s, prefill 225 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.6-35b-a3b.llama.cpp-qwen3.6-35b-a3b-mtp-ud-q4-k-xl-autofit-pcores-256k-rtx-a2000-laptop-8gb.256k.20261105T081921.json | [lab 09:19:21] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/qwen3.6-35b-a3b.llama.cpp.256k.json (583 bytes)
+2026-11-05T09:19:23 qwen36-pcores: engine removed (was: running OOMKilled=false); MemAvailable 28.54 -> lowest 8.54 GB (drop 20.00); watchdog quiet
+2026-11-05T09:19:28 runlabs finished
+2026-11-05T09:19:29 runlabs started: ['ornith-pcores.spec.json']
+2026-11-05T09:19:34 ornith-pcores: engine started, cap 27g; MemAvailable 28.78 GB
+2026-11-05T09:19:49 ornith-pcores: ready after 15 s; GPU 7441 MiB; MemAvailable 10.69 GB; running lab
+2026-11-05T09:36:35 ornith-pcores: lab exit 0; [lab 09:36:35] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 31.3 tok/s, prefill 224 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-35b-a3b.llama.cpp-ornith-1.5-35b-a3b-q4-k-m-mtp-autofit-pcores-256k-rtx-a2000-laptop-8gb.256k.20261105T083635.json | [lab 09:36:35] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-35b-a3b.llama.cpp.256k.json (581 bytes)
+2026-11-05T09:36:37 ornith-pcores: engine removed (was: running OOMKilled=false); MemAvailable 28.78 -> lowest 9.95 GB (drop 18.82); watchdog quiet
+2026-11-05T09:36:42 runlabs finished
+2026-11-05T09:36:42 runlabs started: ['welp-pcores.spec.json']
+2026-11-05T09:36:47 welp-pcores: engine started, cap 27g; MemAvailable 28.66 GB
+2026-11-05T09:36:57 welp-pcores: ready after 10 s; GPU 7527 MiB; MemAvailable 28.02 GB; running lab
+2026-11-05T09:52:19 welp-pcores: lab exit 0; [lab 09:52:19] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 33.0 tok/s, prefill 272 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.welp-35b-a3b.llama.cpp-welp-35b-a3b-autofit-pcores-256k-rtx-a2000-laptop-8gb.256k.20261105T085219.json | [lab 09:52:19] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/welp-35b-a3b.llama.cpp.256k.json (541 bytes)
+2026-11-05T09:52:19 welp-pcores: engine removed (was: running OOMKilled=false); MemAvailable 28.66 -> lowest 27.20 GB (drop 1.46); watchdog quiet
+2026-11-05T09:52:25 runlabs finished
+2026-11-05T11:42:17 runlabs started: ['sglang-qwen36-mtp.spec.json']
+2026-11-05T11:42:23 sglang-qwen36-mtp: engine started, cap 27g; MemAvailable 29.17 GB
+2026-11-05T11:43:38 sglang-qwen36-mtp: ready after 75 s; GPU 7460 MiB; MemAvailable 10.61 GB; running lab
+2026-11-05T11:54:14 sglang-qwen36-mtp: lab exit 0; [lab 11:54:14] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 27.0 tok/s, prefill 476 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.6-35b-a3b.sglang-qwen3.6-35b-a3b-exl3-offload-mtp-256k-rtx-a2000-laptop-8gb.256k.20261105T105414.json | [lab 11:54:14] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/qwen3.6-35b-a3b.sglang.256k.json (552 bytes)
+2026-11-05T11:54:15 sglang-qwen36-mtp: engine removed (was: running OOMKilled=false); MemAvailable 29.17 -> lowest 10.18 GB (drop 19.00); watchdog quiet
+2026-11-05T11:54:20 runlabs finished
+2026-11-05T12:00:43 runlabs started: ['lfm24.spec.json']
+2026-11-05T12:00:48 lfm24: engine started, cap 27g; MemAvailable 29.06 GB
+2026-11-05T12:00:58 lfm24: ready after 10 s; GPU 7321 MiB; MemAvailable 21.13 GB; running lab
+2026-11-05T12:06:56 lfm24: lab exit 0; [lab 12:06:56] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 40.9 tok/s, prefill 720 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-24b-a2b.llama.cpp-lfm2.5-24b-a2b-qad-q4-0-autofit-128k-rtx-a2000-laptop-8gb.128k.20261105T110656.json | [lab 12:06:56] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm2.5-24b-a2b.llama.cpp.128k.json (539 bytes)
+2026-11-05T12:06:57 lfm24: engine removed (was: running OOMKilled=false); MemAvailable 29.06 -> lowest 20.69 GB (drop 8.37); watchdog quiet
+2026-11-05T12:07:03 runlabs finished
+2026-11-05T12:07:03 runlabs started: ['nemotron35-1m.spec.json']
+2026-11-05T12:07:09 nemotron35-1m: engine started, cap 27g; MemAvailable 29.15 GB
+2026-11-05T12:07:24 nemotron35-1m: ready after 16 s; GPU 7329 MiB; MemAvailable 11.09 GB; running lab
+2026-11-05T13:08:09 nemotron35-1m: lab exit 1; [lab 13:08:09] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': False}  decode 0 tok/s, prefill None tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nemotron-3.5-lightning-30b-a3b.llama.cpp-nemotron-3.5-lightning-30b-a3b-ud-q3-k-xl-autofit-1m-rtx-a2000-laptop-8gb.1024k.20261105T120809.json | [lab 13:08:09] FAILED: no recipe written
+2026-11-05T13:08:11 nemotron35-1m: engine removed (was: running OOMKilled=false); MemAvailable 29.15 -> lowest 10.09 GB (drop 19.06); watchdog quiet
+2026-11-05T13:08:16 runlabs finished
+2026-11-05T13:51:15 runlabs started: ['lfm8.spec.json']
+2026-11-05T13:51:20 lfm8: engine started, cap 27g; MemAvailable 29.17 GB
+2026-11-05T13:51:25 lfm8: ready after 5 s; GPU 6885 MiB; MemAvailable 28.62 GB; running lab
+2026-11-05T13:56:47 lfm8: lab exit 1; [lab 13:56:47] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': False, 'context': True, 'speed': True}  decode 102.3 tok/s, prefill 306 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-8b-a1b.llama.cpp-lfm2.5-8b-a1b-q4-k-m-128k-rtx-a2000-laptop-8gb.125k.20261105T125647.json | [lab 13:56:47] FAILED: no recipe written
+2026-11-05T13:56:47 lfm8: engine removed (was: running OOMKilled=false); MemAvailable 29.17 -> lowest 28.24 GB (drop 0.93); watchdog quiet
+2026-11-05T13:56:52 runlabs finished
+2026-11-05T13:56:53 runlabs started: ['nemotron35-768k.spec.json']
+2026-11-05T13:56:58 nemotron35-768k: engine started, cap 27g; MemAvailable 29.08 GB
+2026-11-05T13:57:13 nemotron35-768k: ready after 15 s; GPU 7101 MiB; MemAvailable 10.13 GB; running lab
+2026-11-05T14:41:46 nemotron35-768k: lab exit 1; [lab 14:41:46] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': False, 'speed': True}  decode 23.8 tok/s, prefill 264 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nemotron-3.5-lightning-30b-a3b.llama.cpp-nemotron-3.5-lightning-30b-a3b-ud-q3-k-xl-autofit-768k-rtx-a2000-laptop-8gb.768k.20261105T134146.json | [lab 14:41:46] FAILED: no recipe written
+2026-11-05T14:41:47 nemotron35-768k: engine removed (was: running OOMKilled=false); MemAvailable 29.08 -> lowest 8.99 GB (drop 20.10); watchdog quiet
+2026-11-05T14:41:53 runlabs finished
+2026-11-05T15:08:21 runlabs started: ['lfm8.spec.json']
+2026-11-05T15:08:27 lfm8: engine started, cap 27g; MemAvailable 29.17 GB
+2026-11-05T15:08:32 lfm8: ready after 5 s; GPU 6885 MiB; MemAvailable 28.52 GB; running lab
+2026-11-05T15:09:36 lfm8: lab exit 1; [lab 15:09:36] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': False, 'speed': True}  decode 102.8 tok/s, prefill 1989 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-8b-a1b.llama.cpp-lfm2.5-8b-a1b-q4-k-m-128k-rtx-a2000-laptop-8gb.125k.20261105T140936.json | [lab 15:09:36] FAILED: no recipe written
+2026-11-05T15:09:37 lfm8: engine removed (was: running OOMKilled=false); MemAvailable 29.17 -> lowest 28.30 GB (drop 0.86); watchdog quiet
+2026-11-05T15:09:42 runlabs finished
+2026-11-05T15:09:42 runlabs started: ['ornith9b-128k.spec.json']
+2026-11-05T15:09:47 ornith9b-128k: engine started, cap 27g; MemAvailable 29.18 GB
+2026-11-05T15:09:52 ornith9b-128k: ready after 5 s; GPU 7461 MiB; MemAvailable 28.35 GB; running lab
+2026-11-05T15:13:50 ornith9b-128k: lab exit 0; [lab 15:13:50] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 27.0 tok/s, prefill 572 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-9b.llama.cpp-ornith-1.5-9b-q4-k-m-mtp-128k-rtx-a2000-laptop-8gb.128k.20261105T141350.json | [lab 15:13:50] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-9b.llama.cpp.128k.json (530 bytes)
+2026-11-05T15:13:50 ornith9b-128k: engine removed (was: running OOMKilled=false); MemAvailable 29.18 -> lowest 28.00 GB (drop 1.18); watchdog quiet
+2026-11-05T15:13:56 runlabs finished
+2026-11-05T15:13:56 runlabs started: ['ornith9b-248k.spec.json']
+2026-11-05T15:14:01 ornith9b-248k: engine started, cap 27g; MemAvailable 29.19 GB
+2026-11-05T15:14:06 ornith9b-248k: ready after 5 s; GPU 7591 MiB; MemAvailable 27.57 GB; running lab
+2026-11-05T15:27:00 ornith9b-248k: lab exit 0; [lab 15:27:00] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 17.2 tok/s, prefill 299 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-9b.llama.cpp-ornith-1.5-9b-q4-k-m-mtp-248k-rtx-a2000-laptop-8gb.248k.20261105T142700.json | [lab 15:27:00] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-9b.llama.cpp.248k.json (530 bytes)
+2026-11-05T15:27:01 ornith9b-248k: engine removed (was: running OOMKilled=false); MemAvailable 29.19 -> lowest 26.92 GB (drop 2.28); watchdog quiet
+2026-11-05T15:27:06 runlabs finished
+2026-11-05T15:47:23 runlabs started: ['lfm8.spec.json']
+2026-11-05T15:47:28 lfm8: engine started, cap 27g; MemAvailable 29.02 GB
+2026-11-05T15:47:33 lfm8: ready after 5 s; GPU 6885 MiB; MemAvailable 28.43 GB; running lab
+2026-11-05T15:48:47 lfm8: lab exit 0; [lab 15:48:47] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 100.9 tok/s, prefill 1686 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-8b-a1b.llama.cpp-lfm2.5-8b-a1b-q4-k-m-128k-rtx-a2000-laptop-8gb.125k.20261105T144847.json | [lab 15:48:47] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm2.5-8b-a1b.llama.cpp.125k.json (527 bytes)
+2026-11-05T15:48:47 lfm8: engine removed (was: running OOMKilled=false); MemAvailable 29.02 -> lowest 28.18 GB (drop 0.84); watchdog quiet
+2026-11-05T15:48:53 runlabs finished
+2026-11-05T17:08:40 runlabs started: ['ornith9b-256k.spec.json']
+2026-11-05T17:08:51 ornith9b-256k: engine started, cap 27g; MemAvailable 29.15 GB
+2026-11-05T17:09:01 ornith9b-256k: ready after 10 s; GPU 7709 MiB; MemAvailable 27.65 GB; running lab
+2026-11-05T17:24:54 ornith9b-256k: lab exit 0; [lab 17:24:54] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 17.8 tok/s, prefill 242 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-9b.llama.cpp-ornith-1.5-9b-q4-k-m-mtp-256k-rtx-a2000-laptop-8gb.256k.20261105T162454.json | [lab 17:24:54] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-9b.llama.cpp.256k.json (530 bytes)
+2026-11-05T17:24:54 ornith9b-256k: engine removed (was: running OOMKilled=false); MemAvailable 29.15 -> lowest 27.02 GB (drop 2.13); watchdog quiet
+2026-11-05T17:24:59 runlabs finished
+2026-11-05T18:25:27 runlabs started: ['nemotron35-96k.spec.json']
+2026-11-05T18:25:33 nemotron35-96k: engine started, cap 27g; MemAvailable 29.24 GB
+2026-11-05T18:25:43 nemotron35-96k: ready after 10 s; GPU 7487 MiB; MemAvailable 14.52 GB; running lab
+2026-11-05T18:30:30 nemotron35-96k: lab exit 0; [lab 18:30:30] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 26.5 tok/s, prefill 510 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nemotron-3.5-lightning-30b-a3b.llama.cpp-nemotron-3.5-lightning-30b-a3b-ud-q3-k-xl-autofit-96k-rtx-a2000-laptop-8gb.96k.20261105T173030.json | [lab 18:30:30] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nemotron-3.5-lightning-30b-a3b.llama.cpp.96k.json (610 bytes)
+2026-11-05T18:30:31 nemotron35-96k: engine removed (was: running OOMKilled=false); MemAvailable 29.24 -> lowest 13.85 GB (drop 15.39); watchdog quiet
+2026-11-05T18:30:37 runlabs finished
+2026-11-05T19:33:55 runlabs started: ['lfm3-256k.spec.json']
+2026-11-05T19:34:01 lfm3-256k: engine started, cap 27g; MemAvailable 29.02 GB
+2026-11-05T19:34:06 lfm3-256k: ready after 5 s; GPU 4581 MiB; MemAvailable 28.15 GB; running lab
+2026-11-05T19:38:19 lfm3-256k: lab exit 0; [lab 19:38:19] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 75.2 tok/s, prefill 1367 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm3-1.7b.llama.cpp-lfm3-1.7b-q8-0-256k-rtx-a2000-laptop-8gb.256k.20261105T183819.json | [lab 19:38:19] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm3-1.7b.llama.cpp.256k.json (508 bytes)
+2026-11-05T19:38:19 lfm3-256k: engine removed (was: running OOMKilled=false); MemAvailable 29.02 -> lowest 28.04 GB (drop 0.98); watchdog quiet
+2026-11-05T19:38:25 runlabs finished
+2026-11-05T20:14:08 runlabs finished
+2026-11-05T20:20:10 runlabs finished
+2026-11-05T21:03:32 runlabs finished
+2026-11-05T21:18:50 runlabs finished
+2026-11-05T21:19:55 runlabs started: ['groot-vision.spec.json']
+2026-11-05T21:20:00 groot-vision: engine started, cap 27g; MemAvailable 29.08 GB
+2026-11-05T21:20:10 groot-vision: ready after 10 s; GPU 7737 MiB; MemAvailable 21.53 GB; running lab
+2026-11-05T21:33:31 groot-vision: lab exit 0; [lab 21:33:31] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 34.8 tok/s, prefill 364 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.groot-19b-a3b.llama.cpp-groot-19b-a3b-q4-k-m-vision-autofit-pcores-256k-rtx-a2000-laptop-8gb.256k.20261105T203331.json | [lab 21:33:31] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/groot-19b-a3b.llama.cpp.256k.json (555 bytes)
+2026-11-05T21:33:32 groot-vision: engine removed (was: running OOMKilled=false); MemAvailable 29.08 -> lowest 21.11 GB (drop 7.97); watchdog quiet
+2026-11-05T21:33:38 runlabs finished
+2026-11-05T22:23:03 runlabs started: ['bolt-dflash.spec.json']
+2026-11-05T22:23:13 bolt-dflash: engine started, cap 27g; MemAvailable 29.12 GB
+2026-11-05T22:23:18 bolt-dflash: ready after 5 s; GPU 6163 MiB; MemAvailable 28.55 GB; running lab
+2026-11-05T22:24:42 bolt-dflash: lab exit 0; [lab 22:24:42] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 45.1 tok/s, prefill 996 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nemotron-3.5-bolt-e4b.llama.cpp-nemotron-3.5-bolt-e4b-q4-k-m-dflash-64k-rtx-a2000-laptop-8gb.64k.20261105T212442.json | [lab 22:24:42] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nemotron-3.5-bolt-e4b.llama.cpp.64k.json (567 bytes)
+2026-11-05T22:24:42 bolt-dflash: engine removed (was: running OOMKilled=false); MemAvailable 29.12 -> lowest 27.88 GB (drop 1.24); watchdog quiet
+2026-11-05T22:24:47 runlabs finished
+2026-11-05T22:39:06 runlabs started: ['lfm3-qad.spec.json']
+2026-11-05T22:39:12 lfm3-qad: engine started, cap 27g; MemAvailable 28.91 GB
+2026-11-05T22:39:17 lfm3-qad: ready after 5 s; GPU 3821 MiB; MemAvailable 28.00 GB; running lab
+2026-11-05T22:42:45 lfm3-qad: lab exit 0; [lab 22:42:45] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 113.9 tok/s, prefill 1793 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm3-1.7b.llama.cpp-lfm3-1.7b-qad-q4-0-256k-rtx-a2000-laptop-8gb.256k.20261105T214245.json | [lab 22:42:45] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm3-1.7b.llama.cpp.256k.json (513 bytes)
+2026-11-05T22:42:45 lfm3-qad: engine removed (was: running OOMKilled=false); MemAvailable 28.91 -> lowest 27.88 GB (drop 1.03); watchdog quiet
+2026-11-05T22:42:50 runlabs finished
+2026-11-05T22:48:44 runlabs started: ['lfm3vl.spec.json']
+2026-11-05T22:48:50 lfm3vl: engine started, cap 27g; MemAvailable 28.88 GB
+2026-11-05T22:48:55 lfm3vl: ready after 5 s; GPU 3791 MiB; MemAvailable 27.84 GB; running lab
+2026-11-05T22:53:51 lfm3vl: lab exit 0; [lab 22:53:51] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 75.0 tok/s, prefill 2431 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm3-vl-2b.llama.cpp-lfm3-vl-2b-q8-0-128k-rtx-a2000-laptop-8gb.125k.20261105T215351.json | [lab 22:53:51] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm3-vl-2b.llama.cpp.125k.json (512 bytes)
+2026-11-05T22:53:51 lfm3vl: engine removed (was: running OOMKilled=false); MemAvailable 28.88 -> lowest 27.61 GB (drop 1.27); watchdog quiet
+2026-11-05T22:53:56 runlabs finished
+2026-11-06T09:50:32 runlabs started: ['nb42.spec.json']
+2026-11-06T09:50:37 nb42: engine started, cap 30g; MemAvailable 29.24 GB
+2026-11-06T09:50:42 nb42: engine removed (was: exited OOMKilled=false); MemAvailable 29.24 -> lowest 29.16 GB (drop 0.08); watchdog quiet
+2026-11-06T09:50:48 runlabs finished
+2026-11-06T09:51:09 runlabs started: ['gr3.spec.json']
+2026-11-06T09:51:14 gr3: engine started, cap 30g; MemAvailable 29.34 GB
+2026-11-06T09:51:19 gr3: engine removed (was: exited OOMKilled=false); MemAvailable 29.34 -> lowest 29.30 GB (drop 0.04); watchdog quiet
+2026-11-06T09:51:24 runlabs finished
+2026-11-06T10:03:18 runlabs started: ['gr8.spec.json']
+2026-11-06T10:03:23 gr8: engine started, cap 30g; MemAvailable 29.39 GB
+2026-11-06T10:03:28 gr8: ready after 5 s; GPU 7789 MiB; MemAvailable 29.06 GB; running lab
+2026-11-06T10:06:22 gr8: lab exit 0; [lab 10:06:22] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 27.3 tok/s, prefill 337 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q4-k-m-56k-rtx-a2000-laptop-8gb.56k.20261106T090622.json | [lab 10:06:22] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.56k.json (531 bytes)
+2026-11-06T10:06:23 gr8: engine removed (was: running OOMKilled=false); MemAvailable 29.39 -> lowest 28.57 GB (drop 0.82); watchdog quiet
+2026-11-06T10:06:28 runlabs finished
+2026-11-06T10:14:33 runlabs started: ['vlqad.spec.json']
+2026-11-06T10:14:38 vlqad: engine started, cap 30g; MemAvailable 29.30 GB
+2026-11-06T10:14:43 vlqad: ready after 5 s; GPU 3031 MiB; MemAvailable 28.72 GB; running lab
+2026-11-06T10:16:54 vlqad: lab exit 0; [lab 10:16:54] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 113.7 tok/s, prefill 2478 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm3-vl-2b.llama.cpp-lfm3-vl-2b-qad-q4-0-128k-rtx-a2000-laptop-8gb.125k.20261106T091654.json | [lab 10:16:54] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm3-vl-2b.llama.cpp.125k.json (517 bytes)
+2026-11-06T10:16:54 vlqad: engine removed (was: running OOMKilled=false); MemAvailable 29.30 -> lowest 28.58 GB (drop 0.72); watchdog quiet
+2026-11-06T10:17:00 runlabs finished
+2026-11-06T10:19:51 runlabs started: ['omniq4.spec.json']
+2026-11-06T10:19:57 omniq4: engine started, cap 30g; MemAvailable 29.32 GB
+2026-11-06T10:20:02 omniq4: ready after 5 s; GPU 3779 MiB; MemAvailable 28.54 GB; running lab
+2026-11-06T10:20:45 omniq4: lab exit 1; [lab 10:20:45] gates: {'load': True, 'chat': True, 'reasoning': False, 'tools': True, 'context': True, 'speed': True}  decode 116.3 tok/s, prefill 2686 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm3-omni-2b.llama.cpp-lfm3-omni-2b-q4-0-128k-rtx-a2000-laptop-8gb.125k.20261106T092045.json | [lab 10:20:45] FAILED: no recipe written
+2026-11-06T10:20:45 omniq4: engine removed (was: running OOMKilled=false); MemAvailable 29.32 -> lowest 28.52 GB (drop 0.80); watchdog quiet
+2026-11-06T10:20:50 runlabs finished
+2026-11-06T10:34:46 runlabs started: ['lfm26qad.spec.json']
+2026-11-06T10:34:51 lfm26qad: engine started, cap 30g; MemAvailable 29.31 GB
+2026-11-06T10:34:56 lfm26qad: ready after 5 s; GPU 2467 MiB; MemAvailable 28.83 GB; running lab
+2026-11-06T10:36:26 lfm26qad: lab exit 0; [lab 10:36:26] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 81.8 tok/s, prefill 1863 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-2.6b.llama.cpp-lfm2.5-2.6b-qad-q4-0-64k-rtx-a2000-laptop-8gb.64k.20261106T093626.json | [lab 10:36:26] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm2.5-2.6b.llama.cpp.64k.json (519 bytes)
+2026-11-06T10:36:26 lfm26qad: engine removed (was: running OOMKilled=false); MemAvailable 29.31 -> lowest 28.73 GB (drop 0.58); watchdog quiet
+2026-11-06T10:36:32 runlabs finished
+2026-11-06T10:43:22 runlabs started: ['nb42b.spec.json']
+2026-11-06T10:43:27 nb42b: engine started, cap 30g; MemAvailable 29.21 GB
+2026-11-06T10:43:32 nb42b: ready after 5 s; GPU 7383 MiB; MemAvailable 28.61 GB; running lab
+2026-11-06T10:53:24 nb42b: lab exit 0; [lab 10:53:24] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 29.1 tok/s, prefill 190 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nanbeige4.2-3b.llama.cpp-nanbeige4.2-3b-q4-k-m-88k-rtx-a2000-laptop-8gb.88k.20261106T095324.json | [lab 10:53:24] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nanbeige4.2-3b.llama.cpp.88k.json (538 bytes)
+2026-11-06T10:53:25 nb42b: engine removed (was: running OOMKilled=false); MemAvailable 29.21 -> lowest 28.07 GB (drop 1.14); watchdog quiet
+2026-11-06T10:53:30 runlabs finished
+2026-11-06T10:53:30 runlabs started: ['nb42c.spec.json']
+2026-11-06T10:53:36 nb42c: engine started, cap 30g; MemAvailable 29.26 GB
+2026-11-06T10:53:41 nb42c: ready after 5 s; GPU 7275 MiB; MemAvailable 28.74 GB; running lab
+2026-11-06T11:00:38 nb42c: lab exit 0; [lab 11:00:38] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 29.1 tok/s, prefill 291 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nanbeige4.2-3b.llama.cpp-nanbeige4.2-3b-q4-k-m-48k-rtx-a2000-laptop-8gb.48k.20261106T100038.json | [lab 11:00:38] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nanbeige4.2-3b.llama.cpp.48k.json (538 bytes)
+2026-11-06T11:00:39 nb42c: engine removed (was: running OOMKilled=false); MemAvailable 29.26 -> lowest 28.58 GB (drop 0.68); watchdog quiet
+2026-11-06T11:00:44 runlabs finished
+2026-11-06T11:12:15 runlabs started: ['gr3.spec.json']
+2026-11-06T11:12:20 gr3: engine started, cap 30g; MemAvailable 29.26 GB
+2026-11-06T11:12:25 gr3: ready after 5 s; GPU 5405 MiB; MemAvailable 28.79 GB; running lab
+2026-11-06T11:17:05 gr3: lab exit 0; [lab 11:17:05] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 54.7 tok/s, prefill 367 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-3b.llama.cpp-granite-4.2-3b-q4-k-m-128k-rtx-a2000-laptop-8gb.128k.20261106T101705.json | [lab 11:17:05] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-3b.llama.cpp.128k.json (532 bytes)
+2026-11-06T11:17:05 gr3: engine removed (was: running OOMKilled=false); MemAvailable 29.26 -> lowest 28.68 GB (drop 0.58); watchdog quiet
+2026-11-06T11:17:11 runlabs finished
+2026-11-06T11:17:11 runlabs started: ['gr8b.spec.json']
+2026-11-06T11:17:16 gr8b: engine started, cap 30g; MemAvailable 29.34 GB
+2026-11-06T11:17:21 gr8b: ready after 5 s; GPU 7749 MiB; MemAvailable 28.26 GB; running lab
+2026-11-06T11:23:21 gr8b: lab exit 1; [lab 11:23:21] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': False, 'context': True, 'speed': True}  decode 17.1 tok/s, prefill 282 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q4-k-m-autofit-88k-rtx-a2000-laptop-8gb.88k.20261106T102321.json | [lab 11:23:21] FAILED: no recipe written
+2026-11-06T11:23:22 gr8b: engine removed (was: running OOMKilled=false); MemAvailable 29.34 -> lowest 27.89 GB (drop 1.45); watchdog quiet
+2026-11-06T11:23:27 runlabs finished
+2026-11-06T11:23:27 runlabs started: ['omniq4.spec.json']
+2026-11-06T11:23:33 omniq4: engine started, cap 30g; MemAvailable 29.36 GB
+2026-11-06T11:23:38 omniq4: ready after 5 s; GPU 3779 MiB; MemAvailable 28.82 GB; running lab
+2026-11-06T11:24:18 omniq4: lab exit 1; [lab 11:24:18] gates: {'load': True, 'chat': True, 'reasoning': False, 'tools': True, 'context': True, 'speed': True}  decode 115.6 tok/s, prefill 2662 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm3-omni-2b.llama.cpp-lfm3-omni-2b-q4-0-128k-rtx-a2000-laptop-8gb.125k.20261106T102418.json | [lab 11:24:18] FAILED: no recipe written
+2026-11-06T11:24:18 omniq4: engine removed (was: running OOMKilled=false); MemAvailable 29.36 -> lowest 28.64 GB (drop 0.72); watchdog quiet
+2026-11-06T11:24:24 runlabs finished
+2026-11-06T11:43:52 runlabs started: ['lfm26b.spec.json']
+2026-11-06T11:43:57 lfm26b: engine started, cap 30g; MemAvailable 29.28 GB
+2026-11-06T11:44:02 lfm26b: ready after 5 s; GPU 2567 MiB; MemAvailable 28.72 GB; running lab
+2026-11-06T11:45:15 lfm26b: lab exit 0; [lab 11:45:15] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 81.4 tok/s, prefill 1664 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-2.6b.llama.cpp-lfm2.5-2.6b-qad-q4-0-72k-rtx-a2000-laptop-8gb.72k.20261106T104515.json | [lab 11:45:15] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm2.5-2.6b.llama.cpp.72k.json (519 bytes)
+2026-11-06T11:45:16 lfm26b: engine removed (was: running OOMKilled=false); MemAvailable 29.28 -> lowest 28.68 GB (drop 0.60); watchdog quiet
+2026-11-06T11:45:21 runlabs finished
+2026-11-06T12:23:57 runlabs started: ['q27a.spec.json']
+2026-11-06T12:24:03 q27a: engine started, cap 30g; MemAvailable 29.35 GB
+2026-11-06T12:24:08 q27a: ready after 5 s; GPU 7237 MiB; MemAvailable 27.91 GB; running lab
+2026-11-06T12:27:44 q27a: lab exit 1; [lab 12:27:44] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': False, 'context': True, 'speed': True}  decode 15.8 tok/s, prefill 216 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.8-27b.llama.cpp-qwen3.8-27b-ud-iq1-s-mtp-16k-rtx-a2000-laptop-8gb.16k.20261106T112744.json | [lab 12:27:44] FAILED: no recipe written
+2026-11-06T12:27:45 q27a: engine removed (was: running OOMKilled=false); MemAvailable 29.35 -> lowest 27.02 GB (drop 2.33); watchdog quiet
+2026-11-06T12:27:50 runlabs finished
+2026-11-06T12:29:56 runlabs started: ['nb42d.spec.json']
+2026-11-06T12:30:01 nb42d: engine started, cap 30g; MemAvailable 29.25 GB
+2026-11-06T12:30:06 nb42d: ready after 5 s; GPU 7827 MiB; MemAvailable 28.77 GB; running lab
+2026-11-06T12:40:25 nb42d: lab exit 0; [lab 12:40:25] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 29.3 tok/s, prefill 173 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nanbeige4.2-3b.llama.cpp-nanbeige4.2-3b-q4-k-m-96k-rtx-a2000-laptop-8gb.96k.20261106T114025.json | [lab 12:40:25] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nanbeige4.2-3b.llama.cpp.96k.json (538 bytes)
+2026-11-06T12:40:25 nb42d: engine removed (was: running OOMKilled=false); MemAvailable 29.25 -> lowest 28.36 GB (drop 0.89); watchdog quiet
+2026-11-06T12:40:30 runlabs finished
+2026-11-06T12:51:26 runlabs started: ['gr8b.spec.json']
+2026-11-06T12:51:31 gr8b: engine started, cap 30g; MemAvailable 29.38 GB
+2026-11-06T12:51:36 gr8b: ready after 5 s; GPU 7749 MiB; MemAvailable 28.26 GB; running lab
+2026-11-06T12:57:31 gr8b: lab exit 0; [lab 12:57:30] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 17.1 tok/s, prefill 270 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q4-k-m-autofit-88k-rtx-a2000-laptop-8gb.88k.20261106T115730.json | [lab 12:57:30] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.88k.json (539 bytes)
+2026-11-06T12:57:31 gr8b: engine removed (was: running OOMKilled=false); MemAvailable 29.38 -> lowest 28.04 GB (drop 1.34); watchdog quiet
+2026-11-06T12:57:36 runlabs finished
+2026-11-06T13:04:40 runlabs started: ['q27a.spec.json']
+2026-11-06T13:04:45 q27a: engine started, cap 30g; MemAvailable 29.29 GB
+2026-11-06T13:04:50 q27a: ready after 5 s; GPU 7237 MiB; MemAvailable 27.93 GB; running lab
+2026-11-06T13:09:35 q27a: lab exit 1; [lab 13:09:35] gates: {'load': True, 'chat': True, 'reasoning': False, 'tools': True, 'context': False, 'speed': False}  decode 14.4 tok/s, prefill 48 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.8-27b.llama.cpp-qwen3.8-27b-ud-iq1-s-mtp-16k-rtx-a2000-laptop-8gb.16k.20261106T120935.json | [lab 13:09:35] FAILED: no recipe written
+2026-11-06T13:09:36 q27a: engine removed (was: running OOMKilled=false); MemAvailable 29.29 -> lowest 26.83 GB (drop 2.46); watchdog quiet
+2026-11-06T13:09:41 runlabs finished
+2026-11-06T13:09:41 runlabs started: ['q27a.spec.json']
+2026-11-06T13:09:46 q27a: engine started, cap 30g; MemAvailable 29.29 GB
+2026-11-06T13:09:52 q27a: ready after 5 s; GPU 7237 MiB; MemAvailable 27.96 GB; running lab
+2026-11-06T13:15:37 q27a: lab exit 1; [lab 13:15:37] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': False, 'speed': True}  decode 17.8 tok/s, prefill 47 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.8-27b.llama.cpp-qwen3.8-27b-ud-iq1-s-mtp-16k-rtx-a2000-laptop-8gb.16k.20261106T121537.json | [lab 13:15:37] FAILED: no recipe written
+2026-11-06T13:15:37 q27a: engine removed (was: running OOMKilled=false); MemAvailable 29.29 -> lowest 26.89 GB (drop 2.40); watchdog quiet
+2026-11-06T13:15:43 runlabs finished
+2026-11-06T13:15:43 runlabs started: ['q2724k.spec.json']
+2026-11-06T13:15:48 q2724k: engine started, cap 30g; MemAvailable 29.33 GB
+2026-11-06T13:15:53 q2724k: ready after 5 s; GPU 7435 MiB; MemAvailable 27.93 GB; running lab
+2026-11-06T13:23:27 q2724k: lab exit 1; [lab 13:23:27] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': False, 'context': False, 'speed': False}  decode 14.5 tok/s, prefill 45 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.8-27b.llama.cpp-qwen3.8-27b-ud-iq1-s-mtp-24k-rtx-a2000-laptop-8gb.24k.20261106T122327.json | [lab 13:23:27] FAILED: no recipe written
+2026-11-06T13:23:27 q2724k: engine removed (was: running OOMKilled=false); MemAvailable 29.33 -> lowest 26.60 GB (drop 2.73); watchdog quiet
+2026-11-06T13:23:33 runlabs finished
+2026-11-06T13:23:33 runlabs started: ['q2732k.spec.json']
+2026-11-06T13:23:38 q2732k: engine started, cap 30g; MemAvailable 29.33 GB
+2026-11-06T13:23:43 q2732k: ready after 5 s; GPU 7651 MiB; MemAvailable 27.82 GB; running lab
+2026-11-06T13:31:01 q2732k: lab exit 1; [lab 13:31:01] gates: {'load': True, 'chat': False, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 16.6 tok/s, prefill 190 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.8-27b.llama.cpp-qwen3.8-27b-ud-iq1-s-mtp-32k-rtx-a2000-laptop-8gb.32k.20261106T123101.json | [lab 13:31:01] FAILED: no recipe written
+2026-11-06T13:31:01 q2732k: engine removed (was: running OOMKilled=false); MemAvailable 29.33 -> lowest 26.81 GB (drop 2.52); watchdog quiet
+2026-11-06T13:31:07 runlabs finished
+2026-11-06T13:39:27 runlabs started: ['bzp.spec.json']
+2026-11-06T13:39:32 runlabs finished
+2026-11-06T15:43:25 runlabs started: ['ornsg.spec.json']
+2026-11-06T15:43:31 ornsg: engine started, cap 30g; MemAvailable 29.21 GB
+2026-11-06T15:44:46 ornsg: ready after 75 s; GPU 7366 MiB; MemAvailable 6.03 GB; running lab
+2026-11-06T15:54:39 ornsg: lab exit 0; [lab 15:54:39] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 17.4 tok/s, prefill 431 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-35b-a3b.sglang-ornith-1.5-35b-exl3-4bpw-cpu-256k-rtx-a2000-laptop-8gb.256k.20261106T145439.json | [lab 15:54:39] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-35b-a3b.sglang.256k.json (574 bytes)
+2026-11-06T15:54:40 ornsg: engine removed (was: running OOMKilled=false); MemAvailable 29.21 -> lowest 5.61 GB (drop 23.60); watchdog quiet
+2026-11-06T15:54:46 runlabs finished
+2026-11-06T17:49:48 runlabs started: ['gr3q4.spec.json']
+2026-11-06T17:49:53 gr3q4: engine started, cap 30g; MemAvailable 29.29 GB
+2026-11-06T17:49:58 gr3q4: ready after 5 s; GPU 5295 MiB; MemAvailable 28.87 GB; running lab
+2026-11-06T17:54:19 gr3q4: lab exit 0; [lab 17:54:19] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 59.7 tok/s, prefill 378 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-3b.llama.cpp-granite-4.2-3b-q4-0-128k-rtx-a2000-laptop-8gb.128k.20261106T165419.json | [lab 17:54:19] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-3b.llama.cpp.128k.json (530 bytes)
+2026-11-06T17:54:19 gr3q4: engine removed (was: running OOMKilled=false); MemAvailable 29.29 -> lowest 28.62 GB (drop 0.67); watchdog quiet
+2026-11-06T17:54:24 runlabs finished
+2026-11-06T17:54:24 runlabs started: ['gr8q3f.spec.json']
+2026-11-06T17:54:30 gr8q3f: engine started, cap 30g; MemAvailable 29.23 GB
+2026-11-06T17:54:35 gr8q3f: ready after 5 s; GPU 7771 MiB; MemAvailable 27.13 GB; running lab
+2026-11-06T18:04:27 gr8q3f: lab exit 1; [lab 18:04:27] gates: {'load': True, 'chat': True, 'reasoning': False, 'tools': True, 'context': True, 'speed': True}  decode 16.4 tok/s, prefill 187 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q3-k-m-fit-128k-rtx-a2000-laptop-8gb.128k.20261106T170427.json | [lab 18:04:27] FAILED: no recipe written
+2026-11-06T18:04:27 gr8q3f: engine removed (was: running OOMKilled=false); MemAvailable 29.23 -> lowest 26.55 GB (drop 2.69); watchdog quiet
+2026-11-06T18:04:33 runlabs finished
+2026-11-06T18:34:20 runlabs started: ['nb40.spec.json']
+2026-11-06T18:34:25 nb40: engine started, cap 30g; MemAvailable 29.20 GB
+2026-11-06T18:34:30 nb40: ready after 5 s; GPU 7801 MiB; MemAvailable 28.73 GB; running lab
+2026-11-06T18:44:25 nb40: lab exit 0; [lab 18:44:25] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 32.9 tok/s, prefill 189 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nanbeige4.2-3b.llama.cpp-nanbeige4.2-3b-q4-0-98k-rtx-a2000-laptop-8gb.98k.20261106T174425.json | [lab 18:44:25] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nanbeige4.2-3b.llama.cpp.98k.json (536 bytes)
+2026-11-06T18:44:26 nb40: engine removed (was: running OOMKilled=false); MemAvailable 29.20 -> lowest 28.44 GB (drop 0.76); watchdog quiet
+2026-11-06T18:44:31 runlabs finished
+2026-11-06T18:44:31 runlabs started: ['gr8q4.spec.json']
+2026-11-06T18:44:36 gr8q4: engine started, cap 30g; MemAvailable 29.19 GB
+2026-11-06T18:44:41 gr8q4: ready after 5 s; GPU 7805 MiB; MemAvailable 29.00 GB; running lab
+2026-11-06T18:47:34 gr8q4: lab exit 0; [lab 18:47:34] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 30.2 tok/s, prefill 388 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q4-0-62k-rtx-a2000-laptop-8gb.62k.20261106T174734.json | [lab 18:47:34] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.62k.json (529 bytes)
+2026-11-06T18:47:34 gr8q4: engine removed (was: running OOMKilled=false); MemAvailable 29.19 -> lowest 28.72 GB (drop 0.47); watchdog quiet
+2026-11-06T18:47:39 runlabs finished
+2026-11-06T18:47:40 runlabs started: ['gr8q3.spec.json']
+2026-11-06T18:47:45 gr8q3: engine started, cap 30g; MemAvailable 29.17 GB
+2026-11-06T18:47:50 gr8q3: ready after 5 s; GPU 7875 MiB; MemAvailable 28.97 GB; running lab
+2026-11-06T18:51:35 gr8q3: lab exit 0; [lab 18:51:35] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 29.2 tok/s, prefill 348 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q3-k-m-76k-rtx-a2000-laptop-8gb.76k.20261106T175135.json | [lab 18:51:35] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.76k.json (531 bytes)
+2026-11-06T18:51:35 gr8q3: engine removed (was: running OOMKilled=false); MemAvailable 29.17 -> lowest 28.55 GB (drop 0.61); watchdog quiet
+2026-11-06T18:51:40 runlabs finished
+2026-11-06T18:51:40 runlabs started: ['gr8q4f.spec.json']
+2026-11-06T18:51:46 gr8q4f: engine started, cap 30g; MemAvailable 29.20 GB
+2026-11-06T18:51:51 gr8q4f: ready after 5 s; GPU 7673 MiB; MemAvailable 27.83 GB; running lab
+2026-11-06T18:57:53 gr8q4f: lab exit 0; [lab 18:57:53] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 17.5 tok/s, prefill 278 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q4-0-fit-96k-rtx-a2000-laptop-8gb.96k.20261106T175753.json | [lab 18:57:53] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.96k.json (533 bytes)
+2026-11-06T18:57:53 gr8q4f: engine removed (was: running OOMKilled=false); MemAvailable 29.20 -> lowest 27.70 GB (drop 1.49); watchdog quiet
+2026-11-06T18:57:59 runlabs finished
+2026-11-06T18:57:59 runlabs started: ['gr8q3f.spec.json']
+2026-11-06T18:58:04 gr8q3f: engine started, cap 30g; MemAvailable 29.24 GB
+2026-11-06T18:58:09 gr8q3f: ready after 5 s; GPU 7771 MiB; MemAvailable 27.07 GB; running lab
+2026-11-06T19:08:49 gr8q3f: lab exit 1; [lab 19:08:49] gates: {'load': True, 'chat': True, 'reasoning': False, 'tools': True, 'context': True, 'speed': True}  decode 17.1 tok/s, prefill 211 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q3-k-m-fit-128k-rtx-a2000-laptop-8gb.128k.20261106T180849.json | [lab 19:08:49] FAILED: no recipe written
+2026-11-06T19:08:49 gr8q3f: engine removed (was: running OOMKilled=false); MemAvailable 29.24 -> lowest 26.61 GB (drop 2.63); watchdog quiet
+2026-11-06T19:08:54 runlabs finished
+2026-11-06T21:41:29 runlabs started: ['a5lfm258ba1bq40128k.spec.json']
+2026-11-06T21:41:34 a5lfm258ba1bq40128k: engine started, cap 30g; MemAvailable 29.41 GB
+2026-11-06T21:41:39 a5lfm258ba1bq40128k: ready after 5 s; GPU 6589 MiB; MemAvailable 28.84 GB; running lab
+2026-11-06T21:42:40 a5lfm258ba1bq40128k: lab exit 1; [lab 21:42:40] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': False, 'speed': True}  decode 116.5 tok/s, prefill 1954 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-8b-a1b.llama.cpp-lfm2.5-8b-a1b-q4-0-128k-rtx-a2000-laptop-8gb.125k.20261106T204240.json | [lab 21:42:40] FAILED: no recipe written
+2026-11-06T21:42:40 a5lfm258ba1bq40128k: engine removed (was: running OOMKilled=false); MemAvailable 29.41 -> lowest 28.55 GB (drop 0.86); watchdog quiet
+2026-11-06T21:42:46 runlabs finished
+2026-11-06T21:42:46 runlabs started: ['a5groot19bq40vision256k.spec.json']
+2026-11-06T21:42:51 a5groot19bq40vision256k: engine started, cap 30g; MemAvailable 29.28 GB
+2026-11-06T21:43:01 a5groot19bq40vision256k: ready after 10 s; GPU 7749 MiB; MemAvailable 22.47 GB; running lab
+2026-11-06T21:57:12 a5groot19bq40vision256k: lab exit 0; [lab 21:57:12] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 36.4 tok/s, prefill 384 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.groot-19b-a3b.llama.cpp-groot-19b-q4-0-vision-256k-rtx-a2000-laptop-8gb.256k.20261106T205712.json | [lab 21:57:12] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/groot-19b-a3b.llama.cpp.256k.json (544 bytes)
+2026-11-06T21:57:12 a5groot19bq40vision256k: engine removed (was: running OOMKilled=false); MemAvailable 29.28 -> lowest 21.81 GB (drop 7.47); watchdog quiet
+2026-11-06T21:57:16 runlabs finished
+2026-11-06T21:57:17 runlabs started: ['a5nemotronlightning30bq409.spec.json']
+2026-11-06T21:57:22 a5nemotronlightning30bq409: engine started, cap 30g; MemAvailable 29.34 GB
+2026-11-06T21:57:37 a5nemotronlightning30bq409: ready after 15 s; GPU 7525 MiB; MemAvailable 16.81 GB; running lab
+2026-11-06T22:01:41 a5nemotronlightning30bq409: lab exit 0; [lab 22:01:41] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 29.6 tok/s, prefill 552 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nemotron-3.5-lightning-30b-a3b.llama.cpp-nemotron-lightning-30b-q4-0-96k-rtx-a2000-laptop-8gb.96k.20261106T210141.json | [lab 22:01:41] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nemotron-3.5-lightning-30b-a3b.llama.cpp.96k.json (589 bytes)
+2026-11-06T22:01:42 a5nemotronlightning30bq409: engine removed (was: running OOMKilled=false); MemAvailable 29.34 -> lowest 16.17 GB (drop 13.16); watchdog quiet
+2026-11-06T22:01:46 runlabs finished
+2026-11-06T22:01:46 runlabs started: ['a5qwen3635bq40mtpfit256k.spec.json']
+2026-11-06T22:01:52 a5qwen3635bq40mtpfit256k: engine started, cap 30g; MemAvailable 29.36 GB
+2026-11-06T22:02:08 a5qwen3635bq40mtpfit256k: ready after 16 s; GPU 7441 MiB; MemAvailable 12.13 GB; running lab
+2026-11-06T22:18:38 a5qwen3635bq40mtpfit256k: lab exit 0; [lab 22:18:38] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 33.9 tok/s, prefill 239 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.6-35b-a3b.llama.cpp-qwen3.6-35b-q4-0-mtp-fit-256k-rtx-a2000-laptop-8gb.256k.20261106T211838.json | [lab 22:18:38] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/qwen3.6-35b-a3b.llama.cpp.256k.json (564 bytes)
+2026-11-06T22:18:40 a5qwen3635bq40mtpfit256k: engine removed (was: running OOMKilled=false); MemAvailable 29.36 -> lowest 11.29 GB (drop 18.07); watchdog quiet
+2026-11-06T22:18:44 runlabs finished
+2026-11-06T22:18:44 runlabs started: ['a5ornith1535bq40fit256k.spec.json']
+2026-11-06T22:18:50 a5ornith1535bq40fit256k: engine started, cap 30g; MemAvailable 29.35 GB
+2026-11-06T22:19:05 a5ornith1535bq40fit256k: ready after 16 s; GPU 7625 MiB; MemAvailable 14.34 GB; running lab
+2026-11-06T22:33:37 a5ornith1535bq40fit256k: lab exit 0; [lab 22:33:37] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 31.6 tok/s, prefill 260 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-35b-a3b.llama.cpp-ornith-1.5-35b-q4-0-fit-256k-rtx-a2000-laptop-8gb.256k.20261106T213337.json | [lab 22:33:37] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-35b-a3b.llama.cpp.256k.json (562 bytes)
+2026-11-06T22:33:39 a5ornith1535bq40fit256k: engine removed (was: running OOMKilled=false); MemAvailable 29.35 -> lowest 13.84 GB (drop 15.51); watchdog quiet
+2026-11-06T22:33:43 runlabs finished
+2026-11-06T22:33:43 runlabs started: ['a5ornith159bq40128k.spec.json']
+2026-11-06T22:33:48 a5ornith159bq40128k: engine started, cap 30g; MemAvailable 29.42 GB
+2026-11-06T22:33:53 a5ornith159bq40128k: ready after 5 s; GPU 6693 MiB; MemAvailable 28.43 GB; running lab
+2026-11-06T22:38:39 a5ornith159bq40128k: lab exit 0; [lab 22:38:39] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 29.4 tok/s, prefill 674 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-9b.llama.cpp-ornith-1.5-9b-q4-0-128k-rtx-a2000-laptop-8gb.128k.20261106T213839.json | [lab 22:38:39] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-9b.llama.cpp.128k.json (524 bytes)
+2026-11-06T22:38:39 a5ornith159bq40128k: engine removed (was: running OOMKilled=false); MemAvailable 29.42 -> lowest 28.29 GB (drop 1.12); watchdog quiet
+2026-11-06T22:38:43 runlabs finished
+2026-11-06T22:38:43 runlabs started: ['a5ornith159bq40256k.spec.json']
+2026-11-06T22:38:49 a5ornith159bq40256k: engine started, cap 30g; MemAvailable 29.25 GB
+2026-11-06T22:38:54 a5ornith159bq40256k: ready after 5 s; GPU 7749 MiB; MemAvailable 28.51 GB; running lab
+2026-11-06T22:49:50 a5ornith159bq40256k: lab exit 0; [lab 22:49:50] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 20.9 tok/s, prefill 359 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-9b.llama.cpp-ornith-1.5-9b-q4-0-256k-rtx-a2000-laptop-8gb.256k.20261106T214950.json | [lab 22:49:50] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-9b.llama.cpp.256k.json (524 bytes)
+2026-11-06T22:49:50 a5ornith159bq40256k: engine removed (was: running OOMKilled=false); MemAvailable 29.25 -> lowest 27.56 GB (drop 1.68); watchdog quiet
+2026-11-06T22:49:54 runlabs finished
+2026-11-06T22:49:54 runlabs started: ['a5nemotronbolte4bq40df64k.spec.json']
+2026-11-06T22:49:59 a5nemotronbolte4bq40df64k: engine started, cap 30g; MemAvailable 29.32 GB
+2026-11-06T22:50:05 a5nemotronbolte4bq40df64k: ready after 5 s; GPU 5901 MiB; MemAvailable 28.85 GB; running lab
+2026-11-06T22:51:21 a5nemotronbolte4bq40df64k: lab exit 0; [lab 22:51:21] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 50.9 tok/s, prefill 1089 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nemotron-3.5-bolt-e4b.llama.cpp-nemotron-bolt-e4b-q4-0-df-64k-rtx-a2000-laptop-8gb.64k.20261106T215121.json | [lab 22:51:21] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nemotron-3.5-bolt-e4b.llama.cpp.64k.json (562 bytes)
+2026-11-06T22:51:21 a5nemotronbolte4bq40df64k: engine removed (was: running OOMKilled=false); MemAvailable 29.32 -> lowest 28.12 GB (drop 1.20); watchdog quiet
+2026-11-06T22:51:25 runlabs finished
+2026-11-06T22:55:01 runlabs started: ['a5lfm258ba1bq40128k.spec.json']
+2026-11-06T22:55:07 a5lfm258ba1bq40128k: engine started, cap 30g; MemAvailable 29.34 GB
+2026-11-06T22:55:12 a5lfm258ba1bq40128k: ready after 5 s; GPU 6589 MiB; MemAvailable 28.69 GB; running lab
+2026-11-06T22:56:42 a5lfm258ba1bq40128k: lab exit 1; [lab 22:56:42] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': False, 'context': False, 'speed': True}  decode 116.3 tok/s, prefill 2096 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-8b-a1b.llama.cpp-lfm2.5-8b-a1b-q4-0-128k-rtx-a2000-laptop-8gb.125k.20261106T215642.json | [lab 22:56:42] FAILED: no recipe written
+2026-11-06T22:56:42 a5lfm258ba1bq40128k: engine removed (was: running OOMKilled=false); MemAvailable 29.34 -> lowest 28.47 GB (drop 0.87); watchdog quiet
+2026-11-06T22:56:46 runlabs finished
+2026-11-06T23:39:44 runlabs started: ['lfm864.spec.json']
+2026-11-06T23:39:49 lfm864: engine started, cap 30g; MemAvailable 29.31 GB
+2026-11-06T23:39:54 lfm864: ready after 5 s; GPU 5735 MiB; MemAvailable 28.86 GB; running lab
+2026-11-06T23:40:29 lfm864: lab exit 0; [lab 23:40:29] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 117.6 tok/s, prefill 2431 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-8b-a1b.llama.cpp-lfm2.5-8b-a1b-q4-0-64k-rtx-a2000-laptop-8gb.64k.20261106T224029.json | [lab 23:40:29] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm2.5-8b-a1b.llama.cpp.64k.json (524 bytes)
+2026-11-06T23:40:29 lfm864: engine removed (was: running OOMKilled=false); MemAvailable 29.31 -> lowest 28.61 GB (drop 0.70); watchdog quiet
+2026-11-06T23:40:33 runlabs finished
+2026-11-07T10:29:56 runlabs started: ['a7gemma412b160kiq3xxslonger.spec.json']
+2026-11-07T10:30:01 a7gemma412b160kiq3xxslonger: engine started, cap 30g; MemAvailable 29.41 GB
+2026-11-07T10:30:06 a7gemma412b160kiq3xxslonger: ready after 5 s; GPU 5783 MiB; MemAvailable 28.61 GB; running lab
+2026-11-07T10:40:01 a7gemma412b160kiq3xxslonger: lab exit 0; [lab 10:40:00] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 18.3 tok/s, prefill 293 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-160k-rtx-a2000-laptop-8gb.160k.20261107T094000.json | [lab 10:40:00] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.llama.cpp.160k.json (527 bytes)
+2026-11-07T10:40:01 a7gemma412b160kiq3xxslonger: engine removed (was: running OOMKilled=false); MemAvailable 29.41 -> lowest 27.99 GB (drop 1.42); watchdog quiet
+2026-11-07T10:40:06 runlabs finished
+2026-11-07T10:40:06 runlabs started: ['a7gemma412b256kiq3xxslonger.spec.json']
+2026-11-07T10:40:12 a7gemma412b256kiq3xxslonger: engine started, cap 30g; MemAvailable 29.36 GB
+2026-11-07T10:40:17 a7gemma412b256kiq3xxslonger: ready after 5 s; GPU 6455 MiB; MemAvailable 28.51 GB; running lab
+2026-11-07T10:56:01 a7gemma412b256kiq3xxslonger: lab exit 1; [lab 10:56:01] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True}  decode 0 tok/s, prefill None tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-256k-rtx-a2000-laptop-8gb.256k.20261107T095601.json
+2026-11-07T10:56:01 a7gemma412b256kiq3xxslonger: engine removed (was: running OOMKilled=false); MemAvailable 29.36 -> lowest 28.15 GB (drop 1.21); watchdog quiet
+2026-11-07T10:56:06 runlabs finished
+2026-11-07T10:56:06 runlabs started: ['a7granite428b96kq3kl.spec.json']
+2026-11-07T10:56:12 a7granite428b96kq3kl: engine started, cap 30g; MemAvailable 29.38 GB
+2026-11-07T10:56:17 a7granite428b96kq3kl: ready after 5 s; GPU 7659 MiB; MemAvailable 28.11 GB; running lab
+2026-11-07T11:02:01 a7granite428b96kq3kl: lab exit 1; [lab 11:02:01] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': False, 'context': True, 'speed': True}  decode 19.1 tok/s, prefill 268 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q3-k-l-fit-96k-rtx-a2000-laptop-8gb.96k.20261107T100201.json | [lab 11:02:01] FAILED: no recipe written
+2026-11-07T11:02:02 a7granite428b96kq3kl: engine removed (was: running OOMKilled=false); MemAvailable 29.38 -> lowest 27.97 GB (drop 1.42); watchdog quiet
+2026-11-07T11:02:07 runlabs finished
+2026-11-07T11:02:07 runlabs started: ['a7granite428b128kq2kfitlonger.spec.json']
+2026-11-07T11:02:13 a7granite428b128kq2kfitlonger: engine started, cap 30g; MemAvailable 29.39 GB
+2026-11-07T11:02:18 a7granite428b128kq2kfitlonger: ready after 5 s; GPU 7827 MiB; MemAvailable 27.65 GB; running lab
+2026-11-07T11:51:01 a7granite428b128kq2kfitlonger: lab exit 0; [lab 11:51:01] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 24.5 tok/s, prefill 214 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q2-k-fit-128k-rtx-a2000-laptop-8gb.128k.20261107T105101.json | [lab 11:51:01] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.128k.json (534 bytes)
+2026-11-07T11:51:02 a7granite428b128kq2kfitlonger: engine removed (was: running OOMKilled=false); MemAvailable 29.39 -> lowest 27.05 GB (drop 2.34); watchdog quiet
+2026-11-07T11:51:07 runlabs finished
+2026-11-07T11:51:07 runlabs started: ['a7gemma412b160kiq3xxsmtplonger.spec.json']
+2026-11-07T11:51:13 a7gemma412b160kiq3xxsmtplonger: engine started, cap 30g; MemAvailable 29.45 GB
+2026-11-07T11:51:18 a7gemma412b160kiq3xxsmtplonger: ready after 5 s; GPU 6341 MiB; MemAvailable 28.50 GB; running lab
+2026-11-07T12:00:35 a7gemma412b160kiq3xxsmtplonger: lab exit 0; [lab 12:00:35] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 26.3 tok/s, prefill 289 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-160k-rtx-a2000-laptop-8gb.160k.20261107T110035.json | [lab 12:00:35] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.llama.cpp.160k.json (531 bytes)
+2026-11-07T12:00:35 a7gemma412b160kiq3xxsmtplonger: engine removed (was: running OOMKilled=false); MemAvailable 29.45 -> lowest 27.97 GB (drop 1.48); watchdog quiet
+2026-11-07T12:00:40 runlabs finished
+2026-11-07T12:00:40 runlabs started: ['a7granite428b96kq3ks.spec.json']
+2026-11-07T12:00:46 a7granite428b96kq3ks: engine started, cap 30g; MemAvailable 29.39 GB
+2026-11-07T12:00:51 a7granite428b96kq3ks: ready after 5 s; GPU 7839 MiB; MemAvailable 28.56 GB; running lab
+2026-11-07T12:05:38 a7granite428b96kq3ks: lab exit 0; [lab 12:05:38] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 26.4 tok/s, prefill 300 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q3-k-s-fit-96k-rtx-a2000-laptop-8gb.96k.20261107T110538.json | [lab 12:05:38] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.96k.json (535 bytes)
+2026-11-07T12:05:38 a7granite428b96kq3ks: engine removed (was: running OOMKilled=false); MemAvailable 29.39 -> lowest 28.35 GB (drop 1.04); watchdog quiet
+2026-11-07T12:05:44 runlabs finished
+2026-11-07T12:05:44 runlabs started: ['a7gemma412b256kiq3xxsmtplonger.spec.json']
+2026-11-07T12:05:49 a7gemma412b256kiq3xxsmtplonger: engine started, cap 30g; MemAvailable 29.39 GB
+2026-11-07T12:05:54 a7gemma412b256kiq3xxsmtplonger: ready after 5 s; GPU 7205 MiB; MemAvailable 28.43 GB; running lab
+2026-11-07T12:22:07 a7gemma412b256kiq3xxsmtplonger: lab exit 1; [lab 12:22:07] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True}  decode 0 tok/s, prefill None tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-256k-rtx-a2000-laptop-8gb.256k.20261107T112207.json
+2026-11-07T12:22:08 a7gemma412b256kiq3xxsmtplonger: engine removed (was: running OOMKilled=false); MemAvailable 29.39 -> lowest 27.82 GB (drop 1.57); watchdog quiet
+2026-11-07T12:22:13 runlabs finished
+2026-11-07T12:22:13 runlabs started: ['a7granite428b84kq3kslonger.spec.json']
+2026-11-07T12:22:18 a7granite428b84kq3kslonger: engine started, cap 30g; MemAvailable 29.31 GB
+2026-11-07T12:22:24 a7granite428b84kq3kslonger: ready after 5 s; GPU 7887 MiB; MemAvailable 29.05 GB; running lab
+2026-11-07T12:22:51 a7granite428b84kq3kslonger: lab exit 1; [lab 12:22:51] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': False}  decode 0 tok/s, prefill None tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q3-k-s-84k-rtx-a2000-laptop-8gb.84k.20261107T112251.json | [lab 12:22:51] FAILED: no recipe written
+2026-11-07T12:22:51 a7granite428b84kq3kslonger: engine removed (was: exited OOMKilled=false); MemAvailable 29.31 -> lowest 28.64 GB (drop 0.68); watchdog quiet
+2026-11-07T12:22:56 runlabs finished
+2026-11-07T12:22:56 runlabs started: ['a7nemotron35lightning30ba3b96kq3ks.spec.json']
+2026-11-07T12:23:02 a7nemotron35lightning30ba3b96kq3ks: engine started, cap 30g; MemAvailable 29.23 GB
+2026-11-07T12:23:17 a7nemotron35lightning30ba3b96kq3ks: ready after 15 s; GPU 7313 MiB; MemAvailable 17.15 GB; running lab
+2026-11-07T12:27:48 a7nemotron35lightning30ba3b96kq3ks: lab exit 1; [lab 12:27:47] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': False, 'speed': True}  decode 31.7 tok/s, prefill 570 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nemotron-3.5-lightning-30b-a3b.llama.cpp-nemotron-lightning-30b-q3-k-s-96k-rtx-a2000-laptop-8gb.96k.20261107T112747.json | [lab 12:27:47] FAILED: no recipe written
+2026-11-07T12:27:49 a7nemotron35lightning30ba3b96kq3ks: engine removed (was: running OOMKilled=false); MemAvailable 29.23 -> lowest 16.59 GB (drop 12.65); watchdog quiet
+2026-11-07T12:27:54 runlabs finished
+2026-11-07T12:27:54 runlabs started: ['a7granite428b96kq2k.spec.json']
+2026-11-07T12:28:00 a7granite428b96kq2k: engine started, cap 30g; MemAvailable 29.38 GB
+2026-11-07T12:28:05 a7granite428b96kq2k: ready after 5 s; GPU 7775 MiB; MemAvailable 28.84 GB; running lab
+2026-11-07T12:36:02 a7granite428b96kq2k: lab exit 0; [lab 12:36:01] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 33.9 tok/s, prefill 277 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q2-k-fit-96k-rtx-a2000-laptop-8gb.96k.20261107T113601.json | [lab 12:36:01] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.96k.json (533 bytes)
+2026-11-07T12:36:02 a7granite428b96kq2k: engine removed (was: running OOMKilled=false); MemAvailable 29.38 -> lowest 28.08 GB (drop 1.31); watchdog quiet
+2026-11-07T12:36:07 runlabs finished
+2026-11-07T12:36:07 runlabs started: ['a7qwen3635ba3b256kiq4xs.spec.json']
+2026-11-07T12:36:13 a7qwen3635ba3b256kiq4xs: engine started, cap 30g; MemAvailable 29.43 GB
+2026-11-07T12:36:28 a7qwen3635ba3b256kiq4xs: ready after 16 s; GPU 7463 MiB; MemAvailable 13.28 GB; running lab
+2026-11-07T12:53:37 a7qwen3635ba3b256kiq4xs: lab exit 0; [lab 12:53:37] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 34.1 tok/s, prefill 244 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.6-35b-a3b.llama.cpp-qwen3.6-35b-iq4-xs-mtp-fit-256k-rtx-a2000-laptop-8gb.256k.20261107T115337.json | [lab 12:53:37] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/qwen3.6-35b-a3b.llama.cpp.256k.json (568 bytes)
+2026-11-07T12:53:38 a7qwen3635ba3b256kiq4xs: engine removed (was: running OOMKilled=false); MemAvailable 29.43 -> lowest 12.48 GB (drop 16.94); watchdog quiet
+2026-11-07T12:53:44 runlabs finished
+2026-11-07T12:53:44 runlabs started: ['a7qwen3635ba3b256kq3km.spec.json']
+2026-11-07T12:53:49 a7qwen3635ba3b256kq3km: engine started, cap 30g; MemAvailable 29.41 GB
+2026-11-07T12:54:05 a7qwen3635ba3b256kq3km: ready after 16 s; GPU 7463 MiB; MemAvailable 15.87 GB; running lab
+2026-11-07T13:10:18 a7qwen3635ba3b256kq3km: lab exit 0; [lab 13:10:18] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 36.3 tok/s, prefill 251 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.6-35b-a3b.llama.cpp-qwen3.6-35b-q3-k-m-mtp-fit-256k-rtx-a2000-laptop-8gb.256k.20261107T121018.json | [lab 13:10:18] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/qwen3.6-35b-a3b.llama.cpp.256k.json (568 bytes)
+2026-11-07T13:10:19 a7qwen3635ba3b256kq3km: engine removed (was: running OOMKilled=false); MemAvailable 29.41 -> lowest 15.02 GB (drop 14.39); watchdog quiet
+2026-11-07T13:10:25 runlabs finished
+2026-11-07T13:10:25 runlabs started: ['a7granite428b62kq2k.spec.json']
+2026-11-07T13:10:30 a7granite428b62kq2k: engine started, cap 30g; MemAvailable 29.44 GB
+2026-11-07T13:10:35 a7granite428b62kq2k: ready after 5 s; GPU 6331 MiB; MemAvailable 29.08 GB; running lab
+2026-11-07T13:14:28 a7granite428b62kq2k: lab exit 0; [lab 13:14:28] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 36.6 tok/s, prefill 312 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.granite-4.2-8b.llama.cpp-granite-4.2-8b-q2-k-62k-rtx-a2000-laptop-8gb.62k.20261107T121428.json | [lab 13:14:28] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/granite-4.2-8b.llama.cpp.62k.json (529 bytes)
+2026-11-07T13:14:28 a7granite428b62kq2k: engine removed (was: running OOMKilled=false); MemAvailable 29.44 -> lowest 28.91 GB (drop 0.54); watchdog quiet
+2026-11-07T13:14:34 runlabs finished
+2026-11-07T13:14:34 runlabs started: ['a7ornith1535ba3b256kq2kfit.spec.json']
+2026-11-07T13:14:39 a7ornith1535ba3b256kq2kfit: engine started, cap 30g; MemAvailable 29.38 GB
+2026-11-07T13:14:49 a7ornith1535ba3b256kq2kfit: ready after 10 s; GPU 7569 MiB; MemAvailable 21.71 GB; running lab
+2026-11-07T13:27:45 a7ornith1535ba3b256kq2kfit: lab exit 0; [lab 13:27:45] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 39.2 tok/s, prefill 291 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-35b-a3b.llama.cpp-ornith-1.5-35b-q2-k-fit-256k-rtx-a2000-laptop-8gb.256k.20261107T122745.json | [lab 13:27:45] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-35b-a3b.llama.cpp.256k.json (562 bytes)
+2026-11-07T13:27:46 a7ornith1535ba3b256kq2kfit: engine removed (was: running OOMKilled=false); MemAvailable 29.38 -> lowest 21.00 GB (drop 8.38); watchdog quiet
+2026-11-07T13:27:51 runlabs finished
+2026-11-07T13:27:51 runlabs started: ['a7qwen3635ba3b256kq2k.spec.json']
+2026-11-07T13:27:57 a7qwen3635ba3b256kq2k: engine started, cap 30g; MemAvailable 29.43 GB
+2026-11-07T13:28:07 a7qwen3635ba3b256kq2k: ready after 11 s; GPU 7487 MiB; MemAvailable 19.43 GB; running lab
+2026-11-07T13:43:35 a7qwen3635ba3b256kq2k: lab exit 0; [lab 13:43:35] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 41.8 tok/s, prefill 262 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.6-35b-a3b.llama.cpp-qwen3.6-35b-q2-k-mtp-fit-256k-rtx-a2000-laptop-8gb.256k.20261107T124335.json | [lab 13:43:35] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/qwen3.6-35b-a3b.llama.cpp.256k.json (564 bytes)
+2026-11-07T13:43:36 a7qwen3635ba3b256kq2k: engine removed (was: running OOMKilled=false); MemAvailable 29.43 -> lowest 18.68 GB (drop 10.75); watchdog quiet
+2026-11-07T13:43:42 runlabs finished
+2026-11-07T13:43:42 runlabs started: ['a7groot19ba3b256kq2k.spec.json']
+2026-11-07T13:43:47 a7groot19ba3b256kq2k: engine started, cap 30g; MemAvailable 29.43 GB
+2026-11-07T13:43:58 a7groot19ba3b256kq2k: ready after 10 s; GPU 7759 MiB; MemAvailable 25.67 GB; running lab
+2026-11-07T13:54:20 a7groot19ba3b256kq2k: lab exit 0; [lab 13:54:20] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 43.9 tok/s, prefill 410 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.groot-19b-a3b.llama.cpp-groot-19b-q2-k-vision-256k-rtx-a2000-laptop-8gb.256k.20261107T125420.json | [lab 13:54:20] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/groot-19b-a3b.llama.cpp.256k.json (544 bytes)
+2026-11-07T13:54:21 a7groot19ba3b256kq2k: engine removed (was: running OOMKilled=false); MemAvailable 29.43 -> lowest 25.03 GB (drop 4.41); watchdog quiet
+2026-11-07T13:54:26 runlabs finished
+2026-11-07T14:32:41 runlabs started: ['a8qwen3635ba3b128k.spec.json']
+2026-11-07T14:32:46 a8qwen3635ba3b128k: engine started, cap 30g; MemAvailable 29.48 GB
+2026-11-07T14:33:02 a8qwen3635ba3b128k: ready after 16 s; GPU 7665 MiB; MemAvailable 13.98 GB; running lab
+2026-11-07T14:40:46 a8qwen3635ba3b128k: lab exit 0; [lab 14:40:46] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 35.7 tok/s, prefill 302 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.qwen3.6-35b-a3b.llama.cpp-qwen3.6-35b-q4-0-mtp-fit-128k-rtx-a2000-laptop-8gb.128k.20261107T134046.json | [lab 14:40:46] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/qwen3.6-35b-a3b.llama.cpp.128k.json (564 bytes)
+2026-11-07T14:40:47 a8qwen3635ba3b128k: engine removed (was: running OOMKilled=false); MemAvailable 29.48 -> lowest 13.27 GB (drop 16.20); watchdog quiet
+2026-11-07T14:40:52 runlabs finished
+2026-11-07T14:40:52 runlabs started: ['a8ornith1535ba3b32k.spec.json']
+2026-11-07T14:40:58 a8ornith1535ba3b32k: engine started, cap 30g; MemAvailable 29.42 GB
+2026-11-07T14:41:13 a8ornith1535ba3b32k: ready after 15 s; GPU 7521 MiB; MemAvailable 16.54 GB; running lab
+2026-11-07T14:43:10 a8ornith1535ba3b32k: lab exit 0; [lab 14:43:10] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 33.2 tok/s, prefill 370 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-35b-a3b.llama.cpp-ornith-1.5-35b-q4-0-fit-32k-rtx-a2000-laptop-8gb.32k.20261107T134310.json | [lab 14:43:10] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-35b-a3b.llama.cpp.32k.json (561 bytes)
+2026-11-07T14:43:11 a8ornith1535ba3b32k: engine removed (was: running OOMKilled=false); MemAvailable 29.42 -> lowest 16.03 GB (drop 13.39); watchdog quiet
+2026-11-07T14:43:16 runlabs finished
+2026-11-07T14:43:16 runlabs started: ['a8groot19ba3b128k.spec.json']
+2026-11-07T14:43:22 a8groot19ba3b128k: engine started, cap 30g; MemAvailable 29.46 GB
+2026-11-07T14:43:32 a8groot19ba3b128k: ready after 10 s; GPU 7799 MiB; MemAvailable 24.05 GB; running lab
+2026-11-07T14:49:19 a8groot19ba3b128k: lab exit 0; [lab 14:49:19] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 39.5 tok/s, prefill 542 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.groot-19b-a3b.llama.cpp-groot-19b-q4-0-vision-128k-rtx-a2000-laptop-8gb.128k.20261107T134919.json | [lab 14:49:19] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/groot-19b-a3b.llama.cpp.128k.json (544 bytes)
+2026-11-07T14:49:20 a8groot19ba3b128k: engine removed (was: running OOMKilled=false); MemAvailable 29.46 -> lowest 23.23 GB (drop 6.23); watchdog quiet
+2026-11-07T14:49:25 runlabs finished
+2026-11-07T14:49:25 runlabs started: ['a8groot19ba3b32k.spec.json']
+2026-11-07T14:49:30 a8groot19ba3b32k: engine started, cap 30g; MemAvailable 29.41 GB
+2026-11-07T14:49:40 a8groot19ba3b32k: ready after 10 s; GPU 7791 MiB; MemAvailable 24.94 GB; running lab
+2026-11-07T14:54:07 a8groot19ba3b32k: lab exit 0; [lab 14:54:07] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 41.3 tok/s, prefill 725 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.groot-19b-a3b.llama.cpp-groot-19b-q4-0-vision-32k-rtx-a2000-laptop-8gb.32k.20261107T135407.json | [lab 14:54:07] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/groot-19b-a3b.llama.cpp.32k.json (543 bytes)
+2026-11-07T14:54:08 a8groot19ba3b32k: engine removed (was: running OOMKilled=false); MemAvailable 29.41 -> lowest 24.51 GB (drop 4.90); watchdog quiet
+2026-11-07T14:54:13 runlabs finished
+2026-11-07T14:54:13 runlabs started: ['a8lfm2524ba2b64k.spec.json']
+2026-11-07T14:54:18 a8lfm2524ba2b64k: engine started, cap 30g; MemAvailable 29.45 GB
+2026-11-07T14:54:28 a8lfm2524ba2b64k: ready after 10 s; GPU 7403 MiB; MemAvailable 22.13 GB; running lab
+2026-11-07T14:56:41 a8lfm2524ba2b64k: lab exit 0; [lab 14:56:41] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 43.9 tok/s, prefill 703 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.lfm2.5-24b-a2b.llama.cpp-lfm2.5-24b-a2b-qad-q4-0-autofit-64k-rtx-a2000-laptop-8gb.64k.20261107T135641.json | [lab 14:56:41] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/lfm2.5-24b-a2b.llama.cpp.64k.json (538 bytes)
+2026-11-07T14:56:42 a8lfm2524ba2b64k: engine removed (was: running OOMKilled=false); MemAvailable 29.45 -> lowest 21.81 GB (drop 7.64); watchdog quiet
+2026-11-07T14:56:46 runlabs finished
+2026-11-07T16:12:01 runlabs started: ['a9gemma412b224kiq3xxsmtp.spec.json']
+2026-11-07T16:12:07 a9gemma412b224kiq3xxsmtp: engine started, cap 30g; MemAvailable 29.29 GB
+2026-11-07T16:12:12 a9gemma412b224kiq3xxsmtp: ready after 5 s; GPU 6917 MiB; MemAvailable 28.33 GB; running lab
+2026-11-07T16:27:18 a9gemma412b224kiq3xxsmtp: lab exit 0; [lab 16:27:18] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 25.8 tok/s, prefill 243 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-224k-rtx-a2000-laptop-8gb.224k.20261107T152718.json | [lab 16:27:18] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.llama.cpp.224k.json (531 bytes)
+2026-11-07T16:27:18 a9gemma412b224kiq3xxsmtp: engine removed (was: running OOMKilled=false); MemAvailable 29.29 -> lowest 27.72 GB (drop 1.58); watchdog quiet
+2026-11-07T16:27:24 runlabs finished
+2026-11-07T16:27:24 runlabs started: ['a9gemma412b192kiq3xxsmtp.spec.json']
+2026-11-07T16:27:29 a9gemma412b192kiq3xxsmtp: engine started, cap 30g; MemAvailable 29.32 GB
+2026-11-07T16:27:34 a9gemma412b192kiq3xxsmtp: ready after 5 s; GPU 6629 MiB; MemAvailable 28.37 GB; running lab
+2026-11-07T16:39:30 a9gemma412b192kiq3xxsmtp: lab exit 0; [lab 16:39:30] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 26.1 tok/s, prefill 265 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-192k-rtx-a2000-laptop-8gb.192k.20261107T153930.json | [lab 16:39:30] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.llama.cpp.192k.json (531 bytes)
+2026-11-07T16:39:30 a9gemma412b192kiq3xxsmtp: engine removed (was: running OOMKilled=false); MemAvailable 29.32 -> lowest 27.53 GB (drop 1.79); watchdog quiet
+2026-11-07T16:39:35 runlabs finished
+2026-11-07T16:39:35 runlabs started: ['a9ornith1535ba3bsglang64k.spec.json']
+2026-11-07T16:39:41 a9ornith1535ba3bsglang64k: engine started, cap 30g; MemAvailable 29.36 GB
+2026-11-07T16:40:51 a9ornith1535ba3bsglang64k: ready after 70 s; GPU 7244 MiB; MemAvailable 6.18 GB; running lab
+2026-11-07T16:43:44 a9ornith1535ba3bsglang64k: lab exit 0; [lab 16:43:44] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 17.5 tok/s, prefill 714 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.ornith-1.5-35b-a3b.sglang-ornith-1.5-35b-exl3-4bpw-cpu-64k-rtx-a2000-laptop-8gb.64k.20261107T154344.json | [lab 16:43:44] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/ornith-1.5-35b-a3b.sglang.64k.json (573 bytes)
+2026-11-07T16:43:45 a9ornith1535ba3bsglang64k: engine removed (was: running OOMKilled=false); MemAvailable 29.36 -> lowest 5.68 GB (drop 23.68); watchdog quiet
+2026-11-07T16:43:51 runlabs finished
+2026-11-07T17:33:41 runlabs started: ['a10nanbeigefit128kq2k.spec.json']
+2026-11-07T17:33:46 a10nanbeigefit128kq2k: engine started, cap 30g; MemAvailable 29.36 GB
+2026-11-07T17:33:51 a10nanbeigefit128kq2k: ready after 5 s; GPU 7773 MiB; MemAvailable 27.82 GB; running lab
+2026-11-07T17:49:51 a10nanbeigefit128kq2k: lab exit 0; [lab 17:49:51] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 23.3 tok/s, prefill 142 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nanbeige4.2-3b.llama.cpp-nanbeige4.2-3b-q2-k-fit-128k-rtx-a2000-laptop-8gb.128k.20261107T164951.json | [lab 17:49:51] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nanbeige4.2-3b.llama.cpp.128k.json (541 bytes)
+2026-11-07T17:49:51 a10nanbeigefit128kq2k: engine removed (was: running OOMKilled=false); MemAvailable 29.36 -> lowest 27.17 GB (drop 2.20); watchdog quiet
+2026-11-07T17:49:57 runlabs finished
+2026-11-07T18:06:00 runlabs started: ['a11nanbeigefit144kq2k.spec.json']
+2026-11-07T18:06:06 a11nanbeigefit144kq2k: engine started, cap 30g; MemAvailable 29.34 GB
+2026-11-07T18:06:11 a11nanbeigefit144kq2k: ready after 5 s; GPU 7737 MiB; MemAvailable 26.94 GB; running lab
+2026-11-07T19:07:17 a11nanbeigefit144kq2k: lab exit 1; [lab 19:07:17] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': False}  decode 0 tok/s, prefill None tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nanbeige4.2-3b.llama.cpp-nanbeige4.2-3b-q2-k-fit-144k-rtx-a2000-laptop-8gb.144k.20261107T180717.json | [lab 19:07:17] FAILED: no recipe written
+2026-11-07T19:07:17 a11nanbeigefit144kq2k: engine removed (was: running OOMKilled=false); MemAvailable 29.34 -> lowest 26.19 GB (drop 3.15); watchdog quiet
+2026-11-07T19:07:22 runlabs finished
+2026-11-07T19:32:46 runlabs started: ['a12nanbeigefit144kub128.spec.json']
+2026-11-07T19:32:51 a12nanbeigefit144kub128: engine started, cap 30g; MemAvailable 29.36 GB
+2026-11-07T19:32:56 a12nanbeigefit144kub128: ready after 5 s; GPU 7831 MiB; MemAvailable 27.19 GB; running lab
+2026-11-07T19:56:53 a12nanbeigefit144kub128: lab exit 0; [lab 19:56:53] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 17.8 tok/s, prefill 104 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nanbeige4.2-3b.llama.cpp-nanbeige4.2-3b-q2-k-fit-ub128-144k-rtx-a2000-laptop-8gb.144k.20261107T185653.json | [lab 19:56:53] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nanbeige4.2-3b.llama.cpp.144k.json (547 bytes)
+2026-11-07T19:56:53 a12nanbeigefit144kub128: engine removed (was: running OOMKilled=false); MemAvailable 29.36 -> lowest 26.38 GB (drop 2.98); watchdog quiet
+2026-11-07T19:56:59 runlabs finished
+2026-11-07T21:49:25 runlabs started: ['a15gemma256kfit256.spec.json']
+2026-11-07T21:49:30 a15gemma256kfit256: engine started, cap 30g; MemAvailable 29.28 GB
+2026-11-07T21:49:35 a15gemma256kfit256: ready after 5 s; GPU 7205 MiB; MemAvailable 28.34 GB; running lab
+2026-11-07T22:05:52 a15gemma256kfit256: lab exit 1; [lab 22:05:52] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True}  decode 0 tok/s, prefill None tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-fit256-256k-rtx-a2000-laptop-8gb.256k.20261107T210552.json
+2026-11-07T22:05:52 a15gemma256kfit256: engine removed (was: running OOMKilled=false); MemAvailable 29.28 -> lowest 27.82 GB (drop 1.46); watchdog quiet
+2026-11-07T22:05:58 runlabs finished
+2026-11-07T22:05:58 runlabs started: ['a15gemma256kfit64.spec.json']
+2026-11-07T22:06:03 a15gemma256kfit64: engine started, cap 30g; MemAvailable 29.31 GB
+2026-11-07T22:06:08 a15gemma256kfit64: ready after 5 s; GPU 7205 MiB; MemAvailable 28.32 GB; running lab
+2026-11-07T22:22:30 a15gemma256kfit64: lab exit 1; [lab 22:22:30] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True}  decode 0 tok/s, prefill None tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-fit64-256k-rtx-a2000-laptop-8gb.256k.20261107T212230.json
+2026-11-07T22:22:30 a15gemma256kfit64: engine removed (was: running OOMKilled=false); MemAvailable 29.31 -> lowest 27.70 GB (drop 1.61); watchdog quiet
+2026-11-07T22:22:35 runlabs finished
+2026-11-08T10:25:29 runlabs started: ['a16gemmaiq3248k.spec.json']
+2026-11-08T10:25:35 a16gemmaiq3248k: engine started, cap 30g; MemAvailable 28.75 GB
+2026-11-08T10:25:40 a16gemmaiq3248k: ready after 5 s; GPU 7133 MiB; MemAvailable 27.81 GB; running lab
+2026-11-08T10:42:27 a16gemmaiq3248k: lab exit 0; [lab 10:42:27] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 26.5 tok/s, prefill 229 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-248k-rtx-a2000-laptop-8gb.248k.20261108T094227.json | [lab 10:42:27] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.llama.cpp.248k.json (531 bytes)
+2026-11-08T10:42:27 a16gemmaiq3248k: engine removed (was: running OOMKilled=false); MemAvailable 28.75 -> lowest 27.04 GB (drop 1.70); watchdog quiet
+2026-11-08T10:42:33 runlabs finished
+2026-11-08T10:42:33 runlabs started: ['a16gemmaiq3240k.spec.json']
+2026-11-08T10:42:38 a16gemmaiq3240k: engine started, cap 30g; MemAvailable 28.76 GB
+2026-11-08T10:42:43 a16gemmaiq3240k: ready after 5 s; GPU 7061 MiB; MemAvailable 27.82 GB; running lab
+2026-11-08T10:58:43 a16gemmaiq3240k: lab exit 0; [lab 10:58:43] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 27.0 tok/s, prefill 233 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-240k-rtx-a2000-laptop-8gb.240k.20261108T095843.json | [lab 10:58:43] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/gemma-4-12b.llama.cpp.240k.json (531 bytes)
+2026-11-08T10:58:44 a16gemmaiq3240k: engine removed (was: running OOMKilled=false); MemAvailable 28.76 -> lowest 27.06 GB (drop 1.71); watchdog quiet
+2026-11-08T10:58:49 runlabs finished
+2026-11-08T12:13:03 runlabs started: ['a17gemmaiq3252k.spec.json']
+2026-11-08T12:13:09 a17gemmaiq3252k: engine started, cap 30g; MemAvailable 28.82 GB
+2026-11-08T12:13:14 a17gemmaiq3252k: ready after 5 s; GPU 7171 MiB; MemAvailable 27.76 GB; running lab
+2026-11-08T12:29:07 a17gemmaiq3252k: lab exit 1; [lab 12:29:07] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True}  decode 0 tok/s, prefill None tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.gemma-4-12b.llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-252k-rtx-a2000-laptop-8gb.252k.20261108T112907.json
+2026-11-08T12:29:07 a17gemmaiq3252k: engine removed (was: running OOMKilled=false); MemAvailable 28.82 -> lowest 26.98 GB (drop 1.84); watchdog quiet
+2026-11-08T12:29:13 runlabs finished
+2026-11-08T13:18:58 runlabs started: ['a19nb152kfit32.spec.json']
+2026-11-08T13:19:03 a19nb152kfit32: engine started, cap 30g; MemAvailable 28.74 GB
+2026-11-08T13:19:08 a19nb152kfit32: ready after 5 s; GPU 7835 MiB; MemAvailable 26.13 GB; running lab
+2026-11-08T13:43:06 a19nb152kfit32: lab exit 0; [lab 13:43:06] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 16.3 tok/s, prefill 106 tok/s; evidence lab/runs/rtx-a2000-laptop-8gb.nanbeige4.2-3b.llama.cpp-nanbeige4.2-3b-q2-k-fit-ub128-fit32-152k-rtx-a2000-laptop-8gb.152k.20261108T124306.json | [lab 13:43:06] PASSED: wrote registry/recipes/nvidia/rtx-a2000-laptop-8gb/nanbeige4.2-3b.llama.cpp.152k.json (553 bytes)
+2026-11-08T13:43:06 a19nb152kfit32: engine removed (was: running OOMKilled=false); MemAvailable 28.74 -> lowest 25.69 GB (drop 3.05); watchdog quiet
+2026-11-08T13:43:12 runlabs finished
