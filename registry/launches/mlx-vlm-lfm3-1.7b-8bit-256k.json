@@ -1,0 +1,52 @@
+{
+  "id": "mlx-vlm-lfm3-1.7b-8bit-256k",
+  "kind": "host",
+  "engine": "mlx-vlm",
+  "about": "LFM3-1.7B (MLX \u00b7 8-bit, Liquid AI's own export) on mlx-vlm 0.7.12's server at the model's full 262,144 window, one request at a time, thinking on by default. mlx-lm cannot load LFM3 yet (ml-explore/mlx-lm#2016). Prefill runs in 128-token steps: with mlx-vlm's default 2,048 macOS stopped prompts of 32K and more on this laptop (kIOGPUCommandBufferCallbackErrorImpactingInteractivity), and the smaller step costs no speed. MLX_VLM_TOKEN_QUEUE_TIMEOUT is raised because a prompt that fills the window takes longer to read than mlx-vlm's 600 s limit. Lab on an M1 Max with the 32-core GPU: 101.2 tok/s decode, 508 tok/s prefill over a 184,722-token prompt, 5.38 GiB peak. Of Liquid AI's three MLX exports, 8-bit decodes 1.6x as fast as bf16 (102 against 63 tok/s at 8K) with the same prefill and stays within 0.0037 nats of it; 4-bit is faster again (131) but 0.257 nats away. About 2 GB of weights.",
+  "command": [
+    "python3",
+    "lfm3_mlx_serve.py",
+    "--model",
+    "models/LFM3-1.7B-MLX-8bit-4d6d94c9",
+    "--max-tokens",
+    "262144",
+    "--enable-thinking",
+    "--max-num-seqs",
+    "1",
+    "--prefill-step-size",
+    "128",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "python3 -m pip install mlx-vlm==0.7.12 mlx==0.32.4 transformers==5.22.2 huggingface_hub==2.4.0 (macOS on Apple silicon, Python >= 3.10)",
+  "pip": [
+    "mlx-vlm==0.7.12",
+    "mlx==0.32.4",
+    "transformers==5.22.2",
+    "huggingface_hub==2.4.0"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "MLX_VLM_TOKEN_QUEUE_TIMEOUT": "7200"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM3-1.7B-MLX-8bit",
+      "revision": "4d6d94c9c2c2f249f1f740f4f08e071b0dbfe099",
+      "at": "models/LFM3-1.7B-MLX-8bit-4d6d94c9",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "lfm3_mlx_serve.py",
+    "file": "mlx-vlm-lfm3-serve.py"
+  },
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}

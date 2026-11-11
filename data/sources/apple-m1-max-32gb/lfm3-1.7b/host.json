@@ -1,0 +1,23 @@
+{
+  "captured_at_utc": "2026-11-11T18:40:00Z",
+  "machine": {
+    "model_name": "MacBook Pro (16-inch, 2021)",
+    "model_identifier": "MacBookPro18,2",
+    "chip": "Apple M1 Max",
+    "cpu_cores_total": 10,
+    "cpu_cores_performance": 8,
+    "cpu_cores_efficiency": 2,
+    "gpu": "Apple M1 Max (built-in), 32-core GPU, Metal 4",
+    "unified_memory_bytes": 34359738368,
+    "memory_bandwidth_gb_s": 400
+  },
+  "os": {"product": "macOS", "version": "26.5", "build": "25F5058e", "arch": "arm64"},
+  "gpu_wired_limit_mb": 0,
+  "gpu_wired_limit_note": "sysctl iogpu.wired_limit_mb = 0 (system default, not raised)",
+  "power_during_run": "AC",
+  "python": "3.12.13",
+  "python_stack": {"mlx-vlm": "0.7.12", "mlx": "0.32.4", "transformers": "5.22.2", "huggingface_hub": "2.4.0", "tokenizers": "0.23.3"},
+  "full_environment": "pip-freeze.txt",
+  "in_use": "The owner's working laptop: a browser, editors and other programs were open throughout; no other model server was running. The 1-minute load average is recorded with every measured wave.",
+  "privacy": "Serial number, hardware UUID, and provisioning UDID intentionally omitted."
+}

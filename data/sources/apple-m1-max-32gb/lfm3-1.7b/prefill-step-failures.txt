@@ -1,0 +1,9 @@
+== serve-4bit.log
+2026-11-11 13:19:30,943 - INFO - Prefill progress: request=15178dca0 tokens=124928/222359 (56.2%)
+RuntimeError: [METAL] Command buffer execution failed: Impacting Interactivity (0000000e:kIOGPUCommandBufferCallbackErrorImpactingInteractivity).
+== serve-4bit-p512.log
+2026-11-11 13:24:18,733 - INFO - Prefill progress: request=14796a5a0 tokens=140288/222293 (63.1%)
+RuntimeError: [METAL] Command buffer execution failed: Impacting Interactivity (0000000e:kIOGPUCommandBufferCallbackErrorImpactingInteractivity).
+== serve-8bit-step2048.log
+2026-11-11 13:40:47,174 - INFO - Prefill progress: request=118823a40 tokens=28672/32769 (87.5%)
+RuntimeError: [METAL] Command buffer execution failed: Impacting Interactivity (0000000e:kIOGPUCommandBufferCallbackErrorImpactingInteractivity).

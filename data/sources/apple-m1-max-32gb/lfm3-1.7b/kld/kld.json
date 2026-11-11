@@ -1,0 +1,35 @@
+{
+ "method": "token-wise KL(teacher || candidate), full vocabulary, nats, float64; teacher-forced forward passes",
+ "panel": {
+  "file": "panel_tokens.npy",
+  "windows": 25,
+  "tokens": 2048,
+  "stride": 2,
+  "positions": 25600,
+  "sha256": "bf5e0d11e1084863c98504822dc1530c58b4fb5f543c450f3e8cfafdf58b3237"
+ },
+ "teacher": "models/LFM3-1.7B-MLX-bf16-52041852",
+ "seconds": 175.9,
+ "candidates": {
+  "8bit": {
+   "path": "models/LFM3-1.7B-MLX-8bit-4d6d94c9",
+   "value": 0.0036958364681311563,
+   "ci95_low": 0.002940407101778613,
+   "ci95_high": 0.004501706328200783,
+   "median_tokenwise": 0.0021561018217347754,
+   "p95_tokenwise": 0.01185417256917658,
+   "top1_next_token_agreement": 0.9680078125,
+   "control_shuffled_kl_window0": 9.752549298776792
+  },
+  "4bit": {
+   "path": "models/LFM3-1.7B-MLX-4bit-91f34088",
+   "value": 0.25708529612073594,
+   "ci95_low": 0.21381005418275228,
+   "ci95_high": 0.304448225008641,
+   "median_tokenwise": 0.1549850600218588,
+   "p95_tokenwise": 0.8593564561384149,
+   "top1_next_token_agreement": 0.7511328125,
+   "control_shuffled_kl_window0": 9.32834650901155
+  }
+ }
+}
