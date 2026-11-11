@@ -1,0 +1,18 @@
+{
+ "served": "models/LFM3-1.7B-MLX-8bit-4d6d94c9",
+ "target_tokens": 255900,
+ "prompt_tokens": 255365,
+ "cached_tokens": 0,
+ "seconds": 737.6,
+ "prefill_tps": 346,
+ "server_prompt_tps": 393.5118913496573,
+ "server_decode_tps": 35.02228953961218,
+ "completion_tokens": 3054,
+ "peak_memory_gb": 7.222669014,
+ "peak_gib": 6.73,
+ "code": "53915",
+ "content": "The access code for the vault is **53915**.",
+ "pass": true,
+ "finish": "stop",
+ "at": "2026-11-11T20:32:19Z"
+}
