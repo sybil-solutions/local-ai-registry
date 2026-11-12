@@ -375,6 +375,70 @@ def speculation(launch):
     return hits or None
 
 
+def check_served_weights(weights, served, explicit_served=None, engine=None):
+    """Fail-closed verification that the endpoint loaded the exact pinned recipe weights."""
+    def _norm(s):
+        return re.sub(r"[^a-z0-9]", "", str(s or "").lower())
+
+    # 1. Fail-closed: rechazar siempre IDs vacíos o ausentes (incluso en baked-into-image)
+    if not served or not isinstance(served, str) or not served.strip():
+        return False, "missing or empty served model ID"
+
+    clean_served = served.strip()
+    norm_served = _norm(clean_served)
+
+    # 2. Prohibición estricta de identificadores de prueba / fixtures / placeholders
+    FORBIDDEN_IDS = {"fixture", "dummy", "mock", "test", "none", "null", "default", "model", "local"}
+    if clean_served.lower() in FORBIDDEN_IDS or norm_served in FORBIDDEN_IDS or len(norm_served) < 3:
+        return False, f"rejected fixture-like or trivial identifier {clean_served!r}"
+
+    if not weights or not isinstance(weights, str) or not weights.strip():
+        return False, "missing claimed weights in recipe"
+
+    if weights == "baked-into-image":
+        if explicit_served and _norm(explicit_served) != norm_served:
+            return False, f"endpoint served {clean_served!r} != explicit --served {explicit_served!r}"
+        return True, f"baked-into-image verified with non-trivial served ID {clean_served!r}"
+
+    # 3. Si se pasa --served explícito, debe coincidir exactamente con lo reportado por el endpoint
+    if explicit_served is not None:
+        if not isinstance(explicit_served, str) or not explicit_served.strip():
+            return False, "empty explicit --served argument"
+        if _norm(explicit_served) != norm_served:
+            return False, f"endpoint served {clean_served!r} does not match explicit --served {explicit_served!r}"
+
+    # 4. Extraer identidad canónica de weights (repo y revisión opcional)
+    repo_part, _, rev_part = weights.partition("@")
+    model_slug = repo_part.strip().split("/")[-1].lower()
+    norm_model_slug = _norm(model_slug)
+
+    # Extraer discriminadores obligatorios de tamaño (ej. 7b, 70b, 8x7b, 0.5b)
+    size_tokens = re.findall(r"\b(?:\d+x)?\d+(?:\.\d+)?b\b", model_slug)
+    for st in size_tokens:
+        if _norm(st) not in norm_served:
+            return False, f"served ID {clean_served!r} missing required parameter size token {st!r} from {weights!r}"
+
+    # 5. Match por hash de revisión fijado (>= 7 hex chars) o nombre completo del modelo
+    if rev_part and len(rev_part.strip()) >= 7:
+        rev_prefix = rev_part.strip()[:8].lower()
+        if rev_prefix in clean_served.lower():
+            return True, f"pinned revision prefix {rev_prefix} attested in {clean_served!r}"
+
+    if norm_model_slug and norm_model_slug in norm_served:
+        return True, f"canonical model slug {model_slug!r} attested in {clean_served!r}"
+
+    # 6. Match por todos los tokens significativos de identidad (excluyendo sufijos genéricos)
+    NOISE_TOKENS = {"gguf", "exl3", "exl2", "int4", "int8", "fp16", "fp8", "awq", "gptq", "bare", "speed", "unsloth", "hf"}
+    core_tokens = [
+        _norm(t) for t in re.split(r"[^a-z0-9.]+", model_slug)
+        if len(_norm(t)) >= 2 and _norm(t) not in NOISE_TOKENS
+    ]
+    if core_tokens and all(ct in norm_served for ct in core_tokens):
+        return True, f"all core weight tokens {core_tokens} attested in {clean_served!r}"
+
+    return False, f"endpoint served {clean_served!r} does not establish pinned weights {weights!r}"
+
+
 def gates(endpoint, launch, ev=None):
     """Run every gate; returns (passed, proof, evidence). `ev` is filled as the gates run, so a gate that blows up
     leaves the evidence of the gates that ran: a failed run is still evidence."""
