@@ -1,0 +1,34 @@
+{
+  "captured_at_utc": "2026-11-11T23:30:00Z",
+  "machine": {
+    "model_name": "Mac mini (M1, 2020)",
+    "model_identifier": "Macmini9,1",
+    "chip": "Apple M1",
+    "cpu_cores_total": 8,
+    "cpu_cores_performance": 4,
+    "cpu_cores_efficiency": 4,
+    "gpu": "Apple M1 (built-in), 8-core GPU, Metal 4",
+    "unified_memory_bytes": 8589934592,
+    "memory_bandwidth_gb_s": 68.25
+  },
+  "os": {
+    "product": "macOS",
+    "version": "26.4.1",
+    "build": "25E253",
+    "arch": "arm64"
+  },
+  "gpu_wired_limit_mb": 0,
+  "gpu_wired_limit_note": "sysctl iogpu.wired_limit_mb = 0 (system default, not raised)",
+  "power_during_run": "AC",
+  "python": "3.12.15",
+  "python_stack": {
+    "mlx-vlm": "0.7.12",
+    "mlx": "0.32.4",
+    "transformers": "5.22.2",
+    "huggingface_hub": "2.4.0",
+    "tokenizers": "0.23.3"
+  },
+  "full_environment": "pip-freeze.txt",
+  "in_use": "An always-on Mac mini with two small background servers running throughout (about 0.4 GB between them); no other model server was running. Free memory, swap and the 1-minute load average are in memwatch.log.",
+  "privacy": "Serial number, hardware UUID, and provisioning UDID intentionally omitted."
+}
