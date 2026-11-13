@@ -375,12 +375,103 @@ def speculation(launch):
     return hits or None
 
 
-def gates(endpoint, launch, ev=None):
+def check_served_weights(weights, served, explicit_served=None, engine=None):
+    """Fail-closed verification that the endpoint loaded the exact pinned recipe weights."""
+    def _norm(s):
+        return re.sub(r"[^a-z0-9]", "", str(s or "").lower())
+
+    # 1. Fail-closed: rechazar siempre IDs vacíos o ausentes (incluso en baked-into-image)
+    if not served or not isinstance(served, str) or not served.strip():
+        return False, "missing or empty served model ID"
+
+    clean_served = served.strip()
+    norm_served = _norm(clean_served)
+
+    # 2. Prohibición estricta de identificadores de prueba / fixtures / placeholders
+    FORBIDDEN_IDS = {"fixture", "dummy", "mock", "test", "none", "null", "default", "model", "local"}
+    if clean_served.lower() in FORBIDDEN_IDS or norm_served in FORBIDDEN_IDS or len(norm_served) < 3:
+        return False, f"rejected fixture-like or trivial identifier {clean_served!r}"
+
+    if not weights or not isinstance(weights, str) or not weights.strip():
+        return False, "missing claimed weights in recipe"
+
+    if weights == "baked-into-image":
+        if explicit_served and _norm(explicit_served) != norm_served:
+            return False, f"endpoint served {clean_served!r} != explicit --served {explicit_served!r}"
+        return True, f"baked-into-image verified with non-trivial served ID {clean_served!r}"
+
+    # 3. Si se pasa --served explícito, debe coincidir exactamente con lo reportado por el endpoint
+    if explicit_served is not None:
+        if not isinstance(explicit_served, str) or not explicit_served.strip():
+            return False, "empty explicit --served argument"
+        if _norm(explicit_served) != norm_served:
+            return False, f"endpoint served {clean_served!r} does not match explicit --served {explicit_served!r}"
+
+    # 4. Extraer identidad canónica de weights (repo y revisión opcional)
+    repo_part, _, rev_part = weights.partition("@")
+    model_slug = repo_part.strip().split("/")[-1].lower()
+    norm_model_slug = _norm(model_slug)
+
+    # Extraer discriminadores obligatorios de tamaño (ej. 7b, 70b, 8x7b, 0.5b)
+    size_tokens = re.findall(r"\b(?:\d+x)?\d+(?:\.\d+)?b\b", model_slug)
+    for st in size_tokens:
+        if _norm(st) not in norm_served:
+            return False, f"served ID {clean_served!r} missing required parameter size token {st!r} from {weights!r}"
+
+    # 5. Match por hash de revisión fijado (>= 7 hex chars) o nombre completo del modelo
+    if rev_part and len(rev_part.strip()) >= 7:
+        rev_prefix = rev_part.strip()[:8].lower()
+        if rev_prefix in clean_served.lower():
+            return True, f"pinned revision prefix {rev_prefix} attested in {clean_served!r}"
+
+    if norm_model_slug and norm_model_slug in norm_served:
+        return True, f"canonical model slug {model_slug!r} attested in {clean_served!r}"
+
+    # 6. Match por todos los tokens significativos de identidad (excluyendo sufijos genéricos)
+    NOISE_TOKENS = {"gguf", "exl3", "exl2", "int4", "int8", "fp16", "fp8", "awq", "gptq", "bare", "speed", "unsloth", "hf"}
+    core_tokens = [
+        _norm(t) for t in re.split(r"[^a-z0-9.]+", model_slug)
+        if len(_norm(t)) >= 2 and _norm(t) not in NOISE_TOKENS
+    ]
+    if core_tokens and all(ct in norm_served for ct in core_tokens):
+        return True, f"all core weight tokens {core_tokens} attested in {clean_served!r}"
+
+    return False, f"endpoint served {clean_served!r} does not establish pinned weights {weights!r}"
+
+
+def _weights_candidates(launch, explicit_weights=None):
+    """Extract canonical weight identifiers (`repo@rev` or `baked-into-image`) from `launch`."""
+    raw = explicit_weights if explicit_weights is not None else (launch.get("weights") if isinstance(launch, dict) else None)
+    if isinstance(raw, str):
+        s = raw.strip()
+        return [s] if s else []
+    if isinstance(raw, dict):
+        repo = str(raw.get("repo") or "").strip()
+        rev = str(raw.get("revision") or "").strip()
+        if repo:
+            return [f"{repo}@{rev}" if rev else repo]
+        return []
+    if isinstance(raw, list):
+        cands = []
+        for item in raw:
+            if isinstance(item, str) and item.strip():
+                cands.append(item.strip())
+            elif isinstance(item, dict):
+                repo = str(item.get("repo") or "").strip()
+                rev = str(item.get("revision") or "").strip()
+                if repo:
+                    cands.append(f"{repo}@{rev}" if rev else repo)
+        non_mmproj = [c for c in cands if "mmproj" not in c.lower()]
+        return non_mmproj or cands
+    return []
+
+
+def gates(endpoint, launch, ev=None, weights=None, explicit_served=None):
     """Run every gate; returns (passed, proof, evidence). `ev` is filled as the gates run, so a gate that blows up
     leaves the evidence of the gates that ran: a failed run is still evidence."""
     ev, ok = {} if ev is None else ev, {}
     try:
-        return run_gates(endpoint, launch, ev, ok)
+        return run_gates(endpoint, launch, ev, ok, weights=weights, explicit_served=explicit_served)
     except Exception as e:  # a gate blew up: it is a failed gate, not a lost run
         failed = next((g for g in GATES if g not in ok), None)  # the gates run in order: the first that never answered blew up
         log(f"the {failed or 'load'} gate failed: {e!r}")
@@ -397,12 +488,42 @@ def gates(endpoint, launch, ev=None):
     return passed, proof, evidence
 
 
-def run_gates(endpoint, launch, ev, ok):
+def run_gates(endpoint, launch, ev, ok, weights=None, explicit_served=None):
     """The gates themselves; `gates` keeps the evidence when one of them blows up."""
     ev["spec"] = speculation(launch)  # first, so a run that blows up still says what it ran
     models, _ = call(endpoint, "/v1/models", timeout=30)
-    served = models["data"][0]["id"]
-    ok["load"] = True
+    data_list = models.get("data") if isinstance(models, dict) else None
+    served = (data_list[0].get("id") if isinstance(data_list[0], dict) else None) if isinstance(data_list, list) and data_list else None
+
+    cands = _weights_candidates(launch, explicit_weights=weights)
+    if not cands and weights:
+        cands = _weights_candidates({}, explicit_weights=weights)
+    expected_claim = cands[0] if cands else ""
+    target_explicit = explicit_served if explicit_served is not None else (launch.get("explicit_served") if isinstance(launch, dict) else None)
+    engine_hint = (launch.get("backend") or launch.get("engine")) if isinstance(launch, dict) else None
+
+    if not cands:
+        weights_ok, weights_reason = check_served_weights(None, served, explicit_served=target_explicit, engine=engine_hint)
+    else:
+        weights_ok, weights_reason = False, ""
+        for idx, cand in enumerate(cands):
+            cand_ok, cand_reason = check_served_weights(cand, served, explicit_served=target_explicit, engine=engine_hint)
+            if idx == 0:
+                expected_claim, weights_ok, weights_reason = cand, cand_ok, cand_reason
+            if cand_ok:
+                expected_claim, weights_ok, weights_reason = cand, True, cand_reason
+                break
+
+    ev["load"] = {
+        "served": served,
+        "expected_weights": expected_claim or None,
+        "verified": bool(weights_ok),
+        "reason": weights_reason,
+    }
+    ok["load"] = bool(weights_ok)
+    if not weights_ok:
+        log(f"load gate failed (fail-closed): {weights_reason}")
+        return False, {"gates": "", "tps": 0, "prefill": None, "served": served}, {"ok": ok, **ev}
     # chat: an answer that ends by itself
     c, u, _ = chat(endpoint, served, [{"role": "user", "content": "Name three primary colors, comma separated."}])
     ok["chat"] = bool((c["message"].get("content") or "").strip()) and c.get("finish_reason") == "stop"
@@ -651,7 +772,7 @@ def cmd_try(args):
         endpoint, where, stop = rented(recipe, launch, args)
     evidence, failure = {}, None
     try:
-        passed, proof, evidence = gates(endpoint, launch, evidence)
+        passed, proof, evidence = gates(endpoint, launch, evidence, weights=recipe.get("weights") if not launch.get("weights") else None)
     except BaseException as e:  # the run could not go on: the record is written anyway, and the error is not masked
         passed, proof = False, {"gates": "", "tps": 0, "prefill": None, "served": None}
         evidence.setdefault("ok", {})
@@ -706,7 +827,7 @@ def cmd_convert(args):
         endpoint, where, stop = rented(recipe, launch, args)
     evidence, failure = {}, None
     try:
-        passed, proof, evidence = gates(endpoint, launch, evidence)
+        passed, proof, evidence = gates(endpoint, launch, evidence, weights=recipe.get("weights") if not launch.get("weights") else None)
     except BaseException as e:  # the run could not go on: the record is written anyway, and the error is not masked
         passed, proof = False, {"gates": "", "tps": 0, "prefill": None, "served": None}
         evidence.setdefault("ok", {})
