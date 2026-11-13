@@ -1,0 +1,62 @@
+{
+  "id": "llama.cpp-lfm3-1.7b-qad-q4-0-32k-cpu-docker",
+  "engine": "llama.cpp",
+  "about": "LFM3-1.7B QAD-Q4_0 with a 32,768 context on the official llama.cpp b12124 CPU image (LFM3 needs b11960 or newer), eight threads, flash attention off, no GPU access, Liquid AI's recommended sampling. Lab on an Intel Core Ultra 9 285 (eight threads, docker --cpus 8): 49.6 tok/s decode, 252 tok/s prefill, the 22,241-token context prompt in 83 s; container memory peak 2.5 GB. QAD-Q4_0 was the fastest file at every thread count (eight threads: 47.7 tok/s against Q4_K_M 39.2 and Q8_0 28.5 in llama-bench). Decode falls with depth (16.8 tok/s at 32K with flash attention off, 10.2 with it on), so the window stays at 32K; a 262,144 window (flash attention on) took 35 minutes to prefill the context gate's 184,717 tokens and then decoded at 2.5 tok/s.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-b12124@sha256:c0a11067c72bb1eb330b8bddbf9869274c195e596bf4fae55fd527102e644b85",
+  "backend": "cpu",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/LFM3-1.7B-QAD-Q4_0.gguf",
+    "--alias",
+    "LFM3-1.7B",
+    "--ctx-size",
+    "32768",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "0",
+    "--flash-attn",
+    "off",
+    "--jinja",
+    "--threads",
+    "8",
+    "--threads-batch",
+    "8",
+    "--cache-ram",
+    "0",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--metrics",
+    "--temp",
+    "0.1",
+    "--top-k",
+    "50",
+    "--repeat-penalty",
+    "1.1"
+  ],
+  "env": {},
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM3-1.7B-GGUF",
+      "revision": "cd0c74c575b5c416f3011b5b4c298077f26ca8c2",
+      "at": "/models",
+      "layout": "dir",
+      "files": "LFM3-1.7B-QAD-Q4_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 32768,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 4,
+    "disk_gb": 1.05,
+    "cpus": 8
+  }
+}

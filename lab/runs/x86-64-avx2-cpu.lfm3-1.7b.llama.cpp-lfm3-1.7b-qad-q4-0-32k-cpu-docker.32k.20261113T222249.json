@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm3-1.7b",
+  "weights": "LiquidAI/LFM3-1.7B-GGUF@cd0c74c575b5c416f3011b5b4c298077f26ca8c2",
+  "engine": "llama.cpp-lfm3-1.7b-qad-q4-0-32k-cpu-docker@c0a11067c72b",
+  "set": {},
+  "card": "x86-64-avx2-cpu"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Core Ultra 9 285 CPU, eight threads, 10 GiB container cap, no GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-13",
+  "on": "owner",
+  "gpu": "Intel Core Ultra 9 285 CPU, eight threads, 10 GiB container cap, no GPU",
+  "launch_sha256": "9922ea802db0ad4d01252f70c51542de46e66e264285c5ea20f76dfd431446af",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 49.3,
+  "prefill": 241,
+  "served": "LFM3-1.7B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 283,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "Bej5BpMx8ulrzwfPm825qQcJ9ZP21WUr"
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with **overcast** sky.  \nThe code provided by the tool for this query is: **`aef6488a`**.",
+   "code": "aef6488a",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 633
+  },
+  "context": {
+   "prompt_tokens": 22242,
+   "seconds": 92.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1480,
+   "tokens_total": 12814,
+   "seconds_total": 326.3,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 241,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
