@@ -20,7 +20,7 @@
     "nanbeige",
     "granite"
   ],
-  "max_age_days": 240,
+  "max_age_days": 300,
   "models": {
     "underdog-saluki-27b-1.0": {
       "family": "qwen",
