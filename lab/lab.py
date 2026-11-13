@@ -439,12 +439,39 @@ def check_served_weights(weights, served, explicit_served=None, engine=None):
     return False, f"endpoint served {clean_served!r} does not establish pinned weights {weights!r}"
 
 
-def gates(endpoint, launch, ev=None):
+def _weights_candidates(launch, explicit_weights=None):
+    """Extract canonical weight identifiers (`repo@rev` or `baked-into-image`) from `launch`."""
+    raw = explicit_weights if explicit_weights is not None else (launch.get("weights") if isinstance(launch, dict) else None)
+    if isinstance(raw, str):
+        s = raw.strip()
+        return [s] if s else []
+    if isinstance(raw, dict):
+        repo = str(raw.get("repo") or "").strip()
+        rev = str(raw.get("revision") or "").strip()
+        if repo:
+            return [f"{repo}@{rev}" if rev else repo]
+        return []
+    if isinstance(raw, list):
+        cands = []
+        for item in raw:
+            if isinstance(item, str) and item.strip():
+                cands.append(item.strip())
+            elif isinstance(item, dict):
+                repo = str(item.get("repo") or "").strip()
+                rev = str(item.get("revision") or "").strip()
+                if repo:
+                    cands.append(f"{repo}@{rev}" if rev else repo)
+        non_mmproj = [c for c in cands if "mmproj" not in c.lower()]
+        return non_mmproj or cands
+    return []
+
+
+def gates(endpoint, launch, ev=None, weights=None, explicit_served=None):
     """Run every gate; returns (passed, proof, evidence). `ev` is filled as the gates run, so a gate that blows up
     leaves the evidence of the gates that ran: a failed run is still evidence."""
     ev, ok = {} if ev is None else ev, {}
     try:
-        return run_gates(endpoint, launch, ev, ok)
+        return run_gates(endpoint, launch, ev, ok, weights=weights, explicit_served=explicit_served)
     except Exception as e:  # a gate blew up: it is a failed gate, not a lost run
         failed = next((g for g in GATES if g not in ok), None)  # the gates run in order: the first that never answered blew up
         log(f"the {failed or 'load'} gate failed: {e!r}")
@@ -461,12 +488,42 @@ def gates(endpoint, launch, ev=None):
     return passed, proof, evidence
 
 
-def run_gates(endpoint, launch, ev, ok):
+def run_gates(endpoint, launch, ev, ok, weights=None, explicit_served=None):
     """The gates themselves; `gates` keeps the evidence when one of them blows up."""
     ev["spec"] = speculation(launch)  # first, so a run that blows up still says what it ran
     models, _ = call(endpoint, "/v1/models", timeout=30)
-    served = models["data"][0]["id"]
-    ok["load"] = True
+    data_list = models.get("data") if isinstance(models, dict) else None
+    served = (data_list[0].get("id") if isinstance(data_list[0], dict) else None) if isinstance(data_list, list) and data_list else None
+
+    cands = _weights_candidates(launch, explicit_weights=weights)
+    if not cands and weights:
+        cands = _weights_candidates({}, explicit_weights=weights)
+    expected_claim = cands[0] if cands else ""
+    target_explicit = explicit_served if explicit_served is not None else (launch.get("explicit_served") if isinstance(launch, dict) else None)
+    engine_hint = (launch.get("backend") or launch.get("engine")) if isinstance(launch, dict) else None
+
+    if not cands:
+        weights_ok, weights_reason = check_served_weights(None, served, explicit_served=target_explicit, engine=engine_hint)
+    else:
+        weights_ok, weights_reason = False, ""
+        for idx, cand in enumerate(cands):
+            cand_ok, cand_reason = check_served_weights(cand, served, explicit_served=target_explicit, engine=engine_hint)
+            if idx == 0:
+                expected_claim, weights_ok, weights_reason = cand, cand_ok, cand_reason
+            if cand_ok:
+                expected_claim, weights_ok, weights_reason = cand, True, cand_reason
+                break
+
+    ev["load"] = {
+        "served": served,
+        "expected_weights": expected_claim or None,
+        "verified": bool(weights_ok),
+        "reason": weights_reason,
+    }
+    ok["load"] = bool(weights_ok)
+    if not weights_ok:
+        log(f"load gate failed (fail-closed): {weights_reason}")
+        return False, {"gates": "", "tps": 0, "prefill": None, "served": served}, {"ok": ok, **ev}
     # chat: an answer that ends by itself
     c, u, _ = chat(endpoint, served, [{"role": "user", "content": "Name three primary colors, comma separated."}])
     ok["chat"] = bool((c["message"].get("content") or "").strip()) and c.get("finish_reason") == "stop"
@@ -715,7 +772,7 @@ def cmd_try(args):
         endpoint, where, stop = rented(recipe, launch, args)
     evidence, failure = {}, None
     try:
-        passed, proof, evidence = gates(endpoint, launch, evidence)
+        passed, proof, evidence = gates(endpoint, launch, evidence, weights=recipe.get("weights") if not launch.get("weights") else None)
     except BaseException as e:  # the run could not go on: the record is written anyway, and the error is not masked
         passed, proof = False, {"gates": "", "tps": 0, "prefill": None, "served": None}
         evidence.setdefault("ok", {})
@@ -770,7 +827,7 @@ def cmd_convert(args):
         endpoint, where, stop = rented(recipe, launch, args)
     evidence, failure = {}, None
     try:
-        passed, proof, evidence = gates(endpoint, launch, evidence)
+        passed, proof, evidence = gates(endpoint, launch, evidence, weights=recipe.get("weights") if not launch.get("weights") else None)
     except BaseException as e:  # the run could not go on: the record is written anyway, and the error is not masked
         passed, proof = False, {"gates": "", "tps": 0, "prefill": None, "served": None}
         evidence.setdefault("ok", {})
