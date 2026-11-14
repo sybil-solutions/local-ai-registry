@@ -1337,6 +1337,10 @@
       "format": "GGUF · QAD-Q4_0",
       "size_gb": 1.05
     },
+    "LiquidAI/LFM3-1.7B-NVFP4@cfe4b5eabe33e828256f760f72c0af600ceff0ad": {
+      "format": "NVFP4",
+      "size_gb": 1.85
+    },
     "LiquidAI/LFM3-VL-2B-GGUF@1add221a5ea6c047fcf1eaaf2d247939d7cf8849": {
       "format": "GGUF · QAD-Q4_0, vision",
       "size_gb": 1.25

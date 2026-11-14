@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm3-1.7b",
+  "weights": "LiquidAI/LFM3-1.7B-NVFP4@cfe4b5eabe33e828256f760f72c0af600ceff0ad",
+  "engine": "vllm-lfm3-1.7b-nvfp4-256k-rtx-5070-12gb@cfa6d27bfe58",
+  "set": {},
+  "card": "rtx-5070-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5070"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-13",
+  "on": "owner",
+  "gpu": "RTX 5070",
+  "launch_sha256": "1abe07d0784bce4170cd819a7ae876bdd5c6aab217d2fc9834cf13cc7827d261",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 235.9,
+  "prefill": 9011,
+  "served": "LFM3-1.7B-NVFP4-cfe4b5ea"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, green, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 245,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-ba90c054ac27a36b",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with **overcast** skies.  \nThe code provided by the tool is: **7b40c0ea**.  \n\n(Repeating the code as requested.)",
+   "code": "7b40c0ea",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 469
+  },
+  "context": {
+   "prompt_tokens": 184722,
+   "seconds": 20.5,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 7076,
+   "tokens_total": 7716,
+   "seconds_total": 32.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 9011,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

@@ -1,0 +1,49 @@
+{
+  "id": "vllm-lfm3-1.7b-nvfp4-256k-rtx-5070-12gb",
+  "engine": "vllm",
+  "about": "LFM3-1.7B NVFP4 (Liquid AI's modelopt export: W4A4 feed-forward, attention and convolutions in BF16) at its full 262,144 context on an RTX 5070 12GB: vLLM nightly 0.34.0rc1.dev398 (LFM3 support merged 2026-11-06, after v0.33.0rc3), BF16 KV cache, one sequence, Liquid AI's recommended sampling (temperature 0.1, top-k 50, repetition penalty 1.1). Lab: 255.0 tok/s decode, 6,842 tok/s prefill; 9.35 GB GPU peak with a 1.1 GB desktop, at least 2.4 GB left free. --gpu-memory-utilization 0.70 still holds 295,787 KV tokens; 0.75 passed too (235.9 tok/s) with 0.5 GB less left free.",
+  "image": "vllm/vllm-openai:nightly-153dc046462c4724a9a4eb393cadd60169ed943c@sha256:cfa6d27bfe586d084ac00bc1984788df4445bf4946cb482c911c999f51ea9f89",
+  "backend": "nvidia",
+  "port": 8000,
+  "entrypoint": "vllm",
+  "args": [
+    "serve",
+    "/models/LFM3-1.7B-NVFP4-cfe4b5ea",
+    "--served-model-name",
+    "LFM3-1.7B-NVFP4-cfe4b5ea",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000",
+    "--max-model-len",
+    "262144",
+    "--max-num-seqs",
+    "1",
+    "--gpu-memory-utilization",
+    "0.70",
+    "--enable-auto-tool-choice",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--reasoning-parser",
+    "qwen3",
+    "--generation-config",
+    "vllm",
+    "--override-generation-config",
+    "{\"temperature\":0.1,\"top_k\":50,\"repetition_penalty\":1.1}"
+  ],
+  "env": {},
+  "shm": "4g",
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM3-1.7B-NVFP4",
+      "revision": "cfe4b5eabe33e828256f760f72c0af600ceff0ad",
+      "at": "/models/LFM3-1.7B-NVFP4-cfe4b5ea",
+      "layout": "dir"
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1
+}
