@@ -1,0 +1,26 @@
+{
+  "card": "rx-7900-xtx-24gb",
+  "model": "qwen2.5-7b-instruct",
+  "engine": "vllm-rocm",
+  "context": 128000,
+  "settings": {
+    "quantization": "awq",
+    "tensor_parallel": 1,
+    "gpu_memory_utilization": 0.90,
+    "max_model_len": 128000,
+    "enforce_eager": true
+  },
+  "evidence": {
+    "tokens_per_second": 78.4,
+    "recall_score": 0.99,
+    "tool_calling": "success",
+    "checks": [
+      "loads",
+      "answers",
+      "thinks",
+      "calls_tool",
+      "recalls_context",
+      "min_speed"
+    ]
+  }
+}
