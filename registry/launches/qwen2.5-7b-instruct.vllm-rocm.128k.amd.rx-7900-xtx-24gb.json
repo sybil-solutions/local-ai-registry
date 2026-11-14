@@ -1,0 +1,12 @@
+{
+  "name": "qwen2.5-7b-instruct.vllm-rocm.128k.amd.rx-7900-xtx-24gb",
+  "recipe": "amd/rx-7900-xtx-24gb/qwen2.5-7b-instruct.vllm-rocm.128k",
+  "command": "python3 -m vllm.entrypoints.openai.api_server --model Qwen/Qwen2.5-7B-Instruct-AWQ --max-model-len 128000 --device cuda --dtype half --gpu-memory-utilization 0.90",
+  "env": {
+    "HSA_OVERRIDE_GFX_VERSION": "11.0.0",
+    "ROCM_PATH": "/opt/rocm"
+  },
+  "compatibility": [
+    "rx-7900-xtx-24gb"
+  ]
+}
