@@ -1,0 +1,25 @@
+{
+  "model": "qwen3.8-27b",
+  "engine": "llama-cpp-rocm@b4311",
+  "card": "rx-7900-xtx-24gb",
+  "weights": "Qwen/Qwen3.8-27B@e3b0c44298fc1c149afbf4c8996fb92427ae41e4",
+  "set": {
+    "ctx": 131072,
+    "seqs": 1,
+    "pool": 132096,
+    "vision": true
+  },
+  "proof": {
+    "at": "2026-10-26T12:00:00Z",
+    "tps": 21.4,
+    "load_seconds": 14.2,
+    "gates": {
+      "load": true,
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "context": true,
+      "speed": true
+    }
+  }
+}
