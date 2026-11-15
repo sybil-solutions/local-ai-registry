@@ -299,6 +299,16 @@
         "at": "2026-10-05"
       }
     },
+    "inkling-2-small": {
+      "family": "inkling",
+      "name": "Inkling-2-Small",
+      "released": "2026-11-04",
+      "reasoning": true,
+      "vision": false,
+      "about": "Thinking Machines' Inkling 2 Small (594B MoE, 17B active).",
+      "good_for": "16 agent sessions at 380K context on 4x RTX PRO 6000",
+      "logo": "hf"
+    },
     "inkling-small": {
       "family": "inkling",
       "name": "Inkling-Small",
