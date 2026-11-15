@@ -1,5 +1,13 @@
 # Ornith 1.5 EXL3 on Intel Arc B390 / 64 GB unified memory
 
+![Ornith on Intel Arc B390: measured Lab performance and context sweeps](results-card.png)
+
+[Editable results card](results-card.html). Layout and dotted-hand artwork follow
+[the supplied Sybil AI reference](https://x.com/0xSero/status/2121718629104545980);
+the artwork credit to @samdape is retained. Main metrics are the uncapped Lab
+result and actual KV allocation; footer rates are the separately labeled
+thinking-off, 256-output-token exploratory context sweep.
+
 Ornith-1.5-35B-A3B, EXL3 4 bpw, FP8 E4M3 KV, 262,144-token context,
 one NEXTN/MTP speculative draft, 1,024-token prefill chunks, image input,
 Qwen reasoning/tool parsers and prefix caching. One concurrent request.
