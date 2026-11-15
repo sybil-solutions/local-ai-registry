@@ -1,0 +1,24 @@
+{
+  "card": "radeon-890m-48gb",
+  "engine": "llama-cpp@rocm",
+  "model": "qwen3.5-9b",
+  "weights": "Qwen/Qwen3.5-9B-GGUF@qwen3.5-9b-q4_k_m.gguf",
+  "set": {
+    "ctx": 65536,
+    "seqs": 1,
+    "vision": false
+  },
+  "proof": {
+    "passed": true,
+    "tokens_per_second": 18.4,
+    "gates": {
+      "load": true,
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "context": true,
+      "speed": true
+    },
+    "tested_at": "2026-10-26T00:00:00Z"
+  }
+}
