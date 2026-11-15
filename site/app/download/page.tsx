@@ -10,9 +10,10 @@ import s from "../landing.module.css";
 // The words are in lib/landing/copy.json (d…).
 export const metadata: Metadata = { title: copy.dHead, description: copy.dLede };
 const INSTALL = "curl -fsSL https://local.sybilsolutions.ai/install.sh | bash";
-// Whether the newest release holds the Mac app (Local-AI-mac-arm64.dmg). It does not yet: no notarized build of the
-// app has been published. Until it does, a button here would lead nowhere, so the Mac block is left out.
-const MAC = false;
+// Whether the newest release holds the Mac app (Local-AI-mac-arm64.dmg). It has since 0.7.10. A release published
+// with the Linux files alone (scripts/publish.sh --linux in the app's repo) has none: the button would then lead
+// nowhere, so set this to false until the Mac app is added to that release.
+const MAC = true;
 
 export default function DownloadPage() {
   return (
