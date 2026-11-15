@@ -6,7 +6,9 @@ import s from "@/app/landing.module.css";
 export const X = "https://x.com/0xSero";
 export const PLUGIN = "https://github.com/sybil-solutions/omarchy-local-ai";
 export const REGISTRY = "https://github.com/sybil-solutions/local-ai-registry";
-const NAV: Record<string, string> = { "what it is": "/#what", models: "/models/", hardware: "/hardware/", videos: "/videos/", "how it works": "/#how", contribute: "/#contribute", github: REGISTRY, docs: "/docs/", api: "/docs/#api" };
+// Where the desktop app's releases are published. public/_redirects sends /download/mac and /install.sh to its newest one.
+export const RELEASES = "https://github.com/sybil-solutions/local-ai-releases";
+const NAV: Record<string, string> = { download: "/download/", "what it is": "/#what", models: "/models/", hardware: "/hardware/", videos: "/videos/", "how it works": "/#how", contribute: "/#contribute", github: REGISTRY, docs: "/docs/", api: "/docs/#api" };
 
 export const list = (v: string | null | undefined) => String(v ?? "").split(",").map((x) => x.trim()).filter(Boolean);
 
