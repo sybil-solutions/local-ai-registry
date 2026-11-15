@@ -3,5 +3,7 @@
 /install.sh https://github.com/sybil-solutions/local-ai-releases/releases/latest/download/install.sh 302
 /download/mac https://github.com/sybil-solutions/local-ai-releases/releases/latest/download/Local-AI-mac-arm64.dmg 302
 /download/mac/ https://github.com/sybil-solutions/local-ai-releases/releases/latest/download/Local-AI-mac-arm64.dmg 302
+/download/windows https://github.com/sybil-solutions/local-ai-releases/releases/latest/download/Local-AI-windows-x64.exe 302
+/download/windows/ https://github.com/sybil-solutions/local-ai-releases/releases/latest/download/Local-AI-windows-x64.exe 302
 /download/linux https://github.com/sybil-solutions/local-ai-releases/releases/latest/download/local-ai-linux.tar.gz 302
 /download/linux/ https://github.com/sybil-solutions/local-ai-releases/releases/latest/download/local-ai-linux.tar.gz 302
