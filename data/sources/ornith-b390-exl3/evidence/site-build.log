@@ -1,0 +1,122 @@
+
+> build
+> node scripts/api.mjs && node scripts/model-cards.mjs && next build
+
+api: catalog + 71 gpus
+cache     bonsai-2-27b -> prism-ml/Ternary-Bonsai-2-27B-gguf
+cache     deepseek-v4-flash -> deepseek-ai/DeepSeek-V4-Flash
+cache     deepseek-v4.1-flash -> deepseek-ai/DeepSeek-V4.1-Flash
+cache     diffusiongemma-26b-a4b -> google/diffusiongemma-26B-A4B-it
+cache     diffusiongemma-26b-a4b-it-awq-int4 -> cyankiwi/diffusiongemma-26B-A4B-it-AWQ-INT4
+cache     gemma-4-12b -> google/gemma-4-12B
+cache     gemma-4-12b-it-awq-int4 -> cyankiwi/gemma-4-12B-it-AWQ-INT4
+cache     gemma-4-26b-a4b -> google/gemma-4-26B-A4B
+cache     gemma-4-26b-a4b-it-awq-4bit -> cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit
+cache     gemma-4-26b-a4b-it-awq-8bit -> cyankiwi/gemma-4-26B-A4B-it-AWQ-8bit
+cache     gemma-4-31b-it-awq-4bit -> cyankiwi/gemma-4-31B-it-AWQ-4bit
+cache     glm-5.2 -> zai-org/GLM-5.2
+cache     glm-5.3 -> zai-org/GLM-5.3
+cache     glm-5.3-flash -> zai-org/GLM-5.3-Flash
+cache     hy3 -> tencent/Hy3
+cache     inkling-small -> thinkingmachines/Inkling-Small
+cache     laguna-s-2.1 -> poolside/Laguna-S-2.1
+cache     leanstral-1.5-119b-a6b -> mistralai/Leanstral-1.5-119B-A6B
+cache     lfm2.5-2.6b -> LiquidAI/LFM2.5-2.6B
+ok        bonsai-2-9b -> prism-ml/Ternary-Bonsai-2-9B-gguf
+ok        groot-19b-a3b -> GrootTeam/Groot-19B-A3B-261023-GGUF
+ok        granite-4.2-3b -> ibm-granite/granite-4.2-3b
+ok        granite-4.2-8b -> ibm-granite/granite-4.2-8b
+cache     ling-3.0-flash -> inclusionAI/Ling-3.0-flash
+cache     mimo-v2.5 -> XiaomiMiMo/MiMo-V2.5
+cache     mimo-v2.6-flash -> XiaomiMiMo/MiMo-V2.6-Flash-RL
+cache     muse-glimmer-30b -> meta-models/Muse-Glimmer-30B
+ok        granite-4.2-30b -> ibm-granite/granite-4.2-30b
+ok        lfm2.5-24b-a2b -> LiquidAI/LFM2.5-24B-A2B
+ok        lfm2.5-8b-a1b -> LiquidAI/LFM2.5-8B-A1B
+ok        nanbeige4.2-3b -> Nanbeige/Nanbeige4.2-3B
+cache     nemotron-3.5-lightning-30b-a3b -> nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4
+cache     nemotron-labs-3-puzzle-75b-a9b -> nvidia/NVIDIA-Nemotron-Labs-3-Puzzle-75B-A9B-NVFP4
+cache     ornith-1.5-35b-a3b -> ornith-ai/Ornith-1.5-35B-A3B
+cache     ornith-1.5-9b -> ornith-ai/Ornith-1.5-9B
+cache     qwen3.5-9b -> Qwen/Qwen3.5-9B
+cache     qwen3.6-27b -> Qwen/Qwen3.6-27B
+cache     qwen3.6-35b-a3b -> Qwen/Qwen3.6-35B-A3B
+cache     qwen3.8-27b -> Qwen/Qwen3.8-27B
+cache     qwen3.8-27b-awq-bf16-int4 -> cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4
+cache     qwen3.8-27b-awq-fp8 -> cyankiwi/Qwen3.8-27B-AWQ-FP8
+cache     qwen3.8-27b-pi -> bytkim/Qwen3.8-27B-pi
+cache     qwen3.8-flash-next -> Qwen/Qwen3.8-Flash-Next
+cache     step-3.7-flash -> stepfun-ai/Step-3.7-Flash
+cache     step-5-preview -> L-Alchemyst/Step-5-Preview-GGUF
+cache     swift-1.5-qwen3.8-27b -> ukisai/Swift-1.5-Qwen3.8-27b
+cache     underdog-saluki-27b-1.0 -> ConwayResearch/Underdog-Saluki-27B-1.0
+cache     welp-35b-a3b -> quaedra/Welp-35B-A3B-GGUF
+ok        lfm3-vl-2b -> LiquidAI/LFM3-VL-2B
+ok        nanbeige4.3-33b -> Nanbeige/Nanbeige4.3-33B
+ok        lfm3-1.7b -> LiquidAI/LFM3-1.7B
+ok        nemotron-3.5-bolt-74b-a9b -> nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF
+ok        nemotron-3.5-bolt-e4b -> nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB
+model-cards: 53/53 cards fetched; wrote /home/sero/Projects/local-ai-registry/site/lib/model-cards.data.json
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+   ▲ Next.js 15.5.29
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 4.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/1035) ...
+   Generating static pages (258/1035)
+   Generating static pages (517/1035)
+   Generating static pages (776/1035)
+ ✓ Generating static pages (1035/1035)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/2) ...
+ ✓ Exporting (2/2)
+
+Route (app)                                                                       Size  First Load JS
+┌ ○ /                                                                           2.1 kB         204 kB
+├ ○ /_not-found                                                                  998 B         104 kB
+├ ○ /docs                                                                        263 B         103 kB
+├ ○ /download                                                                  1.37 kB         204 kB
+├ ● /gpu/[card]                                                                  298 B         206 kB
+├   ├ /gpu/h200-nvl-141gb
+├   ├ /gpu/dgx-spark-gb10-128gb
+├   ├ /gpu/rtx-spark-n1x-128gb
+├   └ [+127 more paths]
+├ ● /gpu/[card]/[recipe]                                                         828 B         203 kB
+├   ├ /gpu/mi300x-192gb/lfm2.5-2.6b.sglang.128k
+├   ├ /gpu/mi300x-192gb/ornith-1.5-35b-a3b.sglang.128k
+├   ├ /gpu/mi300x-192gb/qwen3.8-27b.sglang.128k
+├   └ [+353 more paths]
+├ ● /gpu/[card]/[recipe]/opengraph-image-1uhp2x                                  127 B         103 kB
+├   ├ /gpu/mi300x-192gb/lfm2.5-2.6b.sglang.128k/opengraph-image-1uhp2x
+├   ├ /gpu/mi300x-192gb/ornith-1.5-35b-a3b.sglang.128k/opengraph-image-1uhp2x
+├   ├ /gpu/mi300x-192gb/qwen3.8-27b.sglang.128k/opengraph-image-1uhp2x
+├   └ [+353 more paths]
+├ ● /gpu/[card]/opengraph-image-1y2yi7                                           127 B         103 kB
+├   ├ /gpu/h200-nvl-141gb/opengraph-image-1y2yi7
+├   ├ /gpu/dgx-spark-gb10-128gb/opengraph-image-1y2yi7
+├   ├ /gpu/rtx-spark-n1x-128gb/opengraph-image-1y2yi7
+├   └ [+127 more paths]
+├ ○ /hardware                                                                   2.4 kB         109 kB
+├ ○ /models                                                                    2.12 kB         108 kB
+├ ● /models/[model]                                                              331 B         206 kB
+├   ├ /models/lfm2.5-2.6b
+├   ├ /models/ornith-1.5-35b-a3b
+├   ├ /models/qwen3.8-27b
+├   └ [+50 more paths]
+├ ○ /opengraph-image                                                             127 B         103 kB
+└ ○ /videos                                                                      642 B         107 kB
++ First Load JS shared by all                                                   103 kB
+  ├ chunks/255-0e5ac6cd71b0e266.js                                             46.7 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js                                        54.2 kB
+  └ other shared chunks (total)                                                1.93 kB
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)

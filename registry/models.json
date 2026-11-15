@@ -436,7 +436,7 @@
       "name": "Ornith-1.5-35B-A3B",
       "released": "2026-08-18",
       "reasoning": true,
-      "vision": false,
+      "vision": true,
       "about": "Ornith 1.5, a 35B mixture-of-experts with built-in MTP.",
       "good_for": "Fast serving on one Spark",
       "logo": "hf"
@@ -1380,6 +1380,10 @@
     "unsloth/gemma-4-12b-it-GGUF@fc034cfff751157913579611efad8462ac1be606": {
       "format": "GGUF · IQ3_XXS",
       "size_gb": 4.64
+    },
+    "ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw@6507c778b466b78eaaad0d7d552f98625bd97881": {
+      "format": "EXL3 · 4 bpw",
+      "size_gb": 19.76
     }
   }
 }

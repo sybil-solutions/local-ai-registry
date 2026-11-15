@@ -64,3 +64,35 @@ Original exploratory tuning records, if included, are separate from the Lab
 proof: synthetic repeated-word documents, three retrieval markers, thinking
 disabled and 256 output tokens per cell. They do not establish general model
 quality or controlled FP8-versus-BF16 speed differences.
+
+Acceptance on 2026-11-15 passed all six gates on the source-built image:
+**28.6 tok/s decode**, counted with the server tokenizer over the first 30 s
+of an uncapped answer, and **255 tok/s prefill**, measured by the Lab as
+213,570 prompt tokens divided by the complete context request's 838.3 seconds.
+The context answer was `58213`; chat, separated reasoning and both halves of
+the tool round-trip passed. The additional image test returned `Red` and EOS.
+
+- [Generated recipe](../../../registry/recipes/intel/intel-arc-b390-64gb/ornith-1.5-35b-a3b.sglang.256k.json)
+- [Lab run](evidence/lab-run.json), log hash `sha256:8ab539d49c675b32`
+- [Accepted launch](evidence/accepted-launch.json), SHA256
+  `198cf489e9cb2191c1cf436acd14f825213b6427bae68b1bb5296a3a906aec28`
+- [Vision response](evidence/vision.json)
+- [Host memory](evidence/host-memory.json): MemAvailable fell from
+  46,637,301,760 to 22,253,457,408 bytes, a 24,383,844,352-byte peak drop.
+  The declared 48 GB available-RAM budget includes 23,616,155,648 bytes of
+  conservative headroom above that measured drop. This measurement differs
+  from the process-PSS-plus-graphics-residency estimate above.
+- [Build log](evidence/registry-build.log) and [server log](evidence/server.log)
+- Files beginning `tuning-` retain the earlier exploratory runs, which were
+  made before clean-build Lab acceptance and are not the recipe's gate proof.
+
+The exact recipe can be requalified with the unmodified Lab:
+
+```bash
+python3 lab/lab.py try \
+  ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw@6507c778b466b78eaaad0d7d552f98625bd97881 \
+  --model ornith-1.5-35b-a3b \
+  --engine sglang-ornith-1.5-35b-a3b-exl3-4bpw-fp8-mtp-256k-b390 \
+  --card intel-arc-b390-64gb --on endpoint \
+  --endpoint http://127.0.0.1:8000 --gpu 'Intel Arc B390, 64 GB unified RAM'
+```

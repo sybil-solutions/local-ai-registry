@@ -1,0 +1,48 @@
+[
+  {
+    "turn": 1,
+    "wall_seconds": 29.226190585999575,
+    "usage": {
+      "prompt_tokens": 31856,
+      "total_tokens": 31863,
+      "completion_tokens": 7,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 0
+    },
+    "cached_tokens": 0,
+    "answer": "cedar4821",
+    "passed": true
+  },
+  {
+    "turn": 2,
+    "wall_seconds": 0.9492838139995001,
+    "usage": {
+      "prompt_tokens": 31886,
+      "total_tokens": 31893,
+      "completion_tokens": 7,
+      "prompt_tokens_details": {
+        "cached_tokens": 31744
+      },
+      "reasoning_tokens": 0
+    },
+    "cached_tokens": 31744,
+    "answer": "violet7396",
+    "passed": true
+  },
+  {
+    "turn": 3,
+    "wall_seconds": 0.8367555200020433,
+    "usage": {
+      "prompt_tokens": 31917,
+      "total_tokens": 31924,
+      "completion_tokens": 7,
+      "prompt_tokens_details": {
+        "cached_tokens": 31872
+      },
+      "reasoning_tokens": 0
+    },
+    "cached_tokens": 31872,
+    "answer": "cobalt1658",
+    "passed": true
+  }
+]
