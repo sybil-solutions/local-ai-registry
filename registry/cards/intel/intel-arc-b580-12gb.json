@@ -1,0 +1,10 @@
+{
+  "vendor": "intel",
+  "name": "Intel Arc B580 12 GB",
+  "vram_gb": 12,
+  "match": {
+    "pciVendor": "8086",
+    "pciDevice": "e20b"
+  },
+  "about": "Intel Arc B580 Battlemage desktop graphics card with 12 GB GDDR6 memory."
+}
