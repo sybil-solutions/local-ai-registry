@@ -2,7 +2,7 @@
  "id": "exllamav3-inkling-2-small-exl3-4.0bpw-380k-4x-rtx-pro-6000",
  "engine": "exllamav3",
  "about": "Inkling-2-Small EXL3 4.0 bpw on 4x RTX PRO 6000 Blackwell (one machine, 300 W cap): the owner's production launch (github.com/0xSero/inkling2-exl3, Local Studio recipe inkling-2-small); image built by sybil-solutions/local-ai-images release-image.yml (inkling2-exl3). exllamav3 1.6.6 overlay: TP4 attention + EP2xTP2 experts through the b12x fused Trellis MoE, token-sharded prefill with copy-engine collectives, DSpark speculative decoding (always on) with adaptive verify width, rotated 4-bit global KV, 16 sessions x 380K.",
- "image": "ghcr.io/sybil-solutions/inkling2-exl3@sha256:99674e0941d77b5846b3f772958db677da8adee254784a33304b7717f0aa2f06",
+ "image": "ghcr.io/sybil-solutions/inkling2-exl3@sha256:7fc0e5f127b9e3aa79faffa40c4f39bf8d920a593d06720cf4de661551addb99",
  "backend": "nvidia",
  "port": 8000,
  "entrypoint": "/opt/inkling2/scripts/entrypoint.sh",
@@ -48,5 +48,5 @@
   "--ulimit memlock=-1:-1",
   "--ulimit stack=67108864"
  ],
- "source": "https://github.com/0xSero/inkling2-exl3/tree/8ba4513"
+ "source": "https://github.com/0xSero/inkling2-exl3/tree/d982916"
 }
