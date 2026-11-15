@@ -1,0 +1,11 @@
+{
+  "id": "radeon-890m-48gb",
+  "name": "AMD Radeon 890M (48GB)",
+  "vendor": "amd",
+  "vram_gb": 48,
+  "match": {
+    "pciVendor": "1002",
+    "pciDevice": "164e",
+    "unifiedMemory": true
+  }
+}
