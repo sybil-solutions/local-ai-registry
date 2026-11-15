@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF@ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+  "engine": "strata-metal-qwen3.8-flash-next-iq3-s-128k-m5-pro-48gb@f35896c3b5ee",
+  "set": {},
+  "card": "apple-m5-pro-48gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Pro (20-core GPU), 48 GB unified memory"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-15",
+  "on": "owner",
+  "gpu": "Apple M5 Pro (20-core GPU), 48 GB unified memory",
+  "launch_sha256": "4605557193f04dcf025f5f98f8545e91698fd20f3f1e8e60ac0e4b01d57e5102",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 26.4,
+  "prefill": 622,
+  "served": "qwen3.8-flash-next-iq3_s"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_dc82df47f9b14df4810212a4",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris right now: **17°C, overcast**.\n\nCode from the tool: `c9b0940f`",
+   "code": "c9b0940f",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 628
+  },
+  "context": {
+   "prompt_tokens": 106294,
+   "seconds": 171.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 794,
+   "tokens_total": 8589,
+   "seconds_total": 273.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 622,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
