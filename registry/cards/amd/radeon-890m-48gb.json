@@ -1,0 +1,7 @@
+{
+  "name": "Radeon 890M (48GB Shared)",
+  "vendor": "amd",
+  "memory": 48,
+  "match": ["Radeon 890M", "AMD Radeon 890M"],
+  "architecture": "gfx1150"
+}

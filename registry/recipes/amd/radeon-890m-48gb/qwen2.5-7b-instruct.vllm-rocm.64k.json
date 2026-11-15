@@ -1,0 +1,27 @@
+{
+  "model": "qwen2.5-7b-instruct",
+  "engine": "vllm-rocm",
+  "card": "radeon-890m-48gb",
+  "settings": {
+    "ctx": 65536,
+    "quantization": "fp16",
+    "arguments": [
+      "--max-model-len 65536",
+      "--gpu-memory-utilization 0.9",
+      "--trust-remote-code"
+    ]
+  },
+  "evidence": {
+    "tps": 18.4,
+    "checks": {
+      "loads": true,
+      "answers": true,
+      "thinks": true,
+      "calls_tool": true,
+      "recalls_context": true,
+      "speed_threshold": true
+    },
+    "date": "2024-05-20",
+    "agent": "manual-validation"
+  }
+}
