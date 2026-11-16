@@ -1,23 +1,23 @@
 python3 -m unittest discover -s lab
 .............................................fatal: Not a valid object name missing-base
-.........................[lab 06:13:43] rtx-3070-8gb: 1 recipe(s) from rtx-4060-8gb, marked proxy
-.............../usr/lib/python3.14/socketserver.py:818: ResourceWarning: unclosed <socket.socket [closed] fd=4, family=2, type=1, proto=6>
-  self.wfile = _SocketWriter(self.connection)
+.........................[lab 17:49:32] rtx-3070-8gb: 1 recipe(s) from rtx-4060-8gb, marked proxy
+.............../usr/lib/python3.14/socket.py:716: ResourceWarning: unclosed <socket.socket [closed] fd=4, family=2, type=1, proto=6>
+  def readinto(self, b):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 /usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 400: 'Bad Request'>
   _warnings.warn(self.warn_message, ResourceWarning)
-...../usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 45049)>
+...../usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 41819)>
   for index, test in enumerate(self):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-./usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 34387)>
+./usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 36397)>
   for index, test in enumerate(self):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-./usr/lib/python3.14/unittest/suite.py:84: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 42853)>
+./usr/lib/python3.14/unittest/suite.py:84: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 46257)>
   return self.run(*args, **kwds)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ...
 ----------------------------------------------------------------------
-Ran 95 tests in 3.945s
+Ran 95 tests in 3.890s
 
 OK
 python3 lab/lab.py check

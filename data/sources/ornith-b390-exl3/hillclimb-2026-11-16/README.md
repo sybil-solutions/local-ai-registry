@@ -1,16 +1,15 @@
 # Ornith-1.5-35B-A3B on Arc B390 — hill-climbed recipe (2026-11-16)
 
-Successor to the Lab-validated recipe in `../` (registry launch
+Hill-climb log behind the current recipe in `../` (registry launch
 `sglang-ornith-1.5-35b-a3b-exl3-4bpw-fp8-mtp-256k-b390`). Same weights, model and
-context (262,144). **Not yet registered as a launch:** the new kernels are an uncommitted
-trellis-serve patch, so the registry source build cannot reproduce them yet. Next step: land
-the patch, rebuild from the pinned source, re-run the Lab, then update the launch entry.
+context (262,144). **Registered:** the trellis-serve changes are on branch `ornith-b390-exl3` (commit `0fab645`),
+the registry launch builds from them, and the Lab passed all six gates on 2026-11-16 (see `../README.md`).
 
 ![card](ornith-b390-card-2026-11-16.png)
 
 ## Results (Intel Arc B390, 64 GB LPDDR5X, AC power, performance profile)
 
-| Metric | Registered recipe | Hill-climbed |
+| Metric | Previous recipe (2026-11-15) | Hill-climbed |
 |---|---:|---:|
 | Decode, 1 user | 43.6 tok/s | **53.0** (median of 8 runs) |
 | Decode, 4 users aggregate | 84.7 (needs max-running 4) | **103** |
@@ -38,7 +37,7 @@ shared-expert fusion, MoE staging, device expert arena, chunk 1K/2K/8K, mixed ch
 Full log in `PLAN.md`; bandwidth/compute ceilings in `THEORY.md`.
 
 ## Files
-- `trellis-serve-hillclimb.patch` — applies on trellis-serve commit in `trellis-serve.base-commit`.
+- `trellis-serve-hillclimb.patch` — the hill-climb changes, now committed as trellis-serve `0fab645` (applies on `trellis-serve.base-commit` + the old `k4-moe.patch`).
 - `images/` — `Dockerfile.dnnl` (oneDNN 2026 base), `Dockerfile` (plugin + dv256), `Dockerfile.mb64` (MB64 `_moe.so`, built by `scripts/build_and_test.sh`).
 - `configs/final-best.json` — env + args; `configs/run-best.sh` — launcher (port 8000, `ornith-1.5-35b-a3b`).
 - `scripts/` — hill-climb harness (`hc.py`), queue, footprint probe (`stackmem.sh`, needs `SUDO_PASS_FILE`), soak/equivalence/profile tools.
