@@ -783,8 +783,35 @@ def check_needs(n):
     assert n.get("cpus", 1) > 0, "needs.cpus counts CPU threads the engine pins work to"
 
 
+def run_records():
+    """Index run evidence files in lab/runs/ and data/lab-runs/.
+    Returns (runs_by_hash, runs_by_recipe)."""
+    by_hash = {}
+    by_recipe = {}
+    for folder in (RUNS, ROOT / "data" / "lab-runs"):
+        if not folder.exists():
+            continue
+        for rf in folder.glob("*.json"):
+            try:
+                raw = rf.read_text(encoding="utf-8").replace("\r\n", "\n")
+                rec = json.loads(raw)
+            except Exception:
+                continue
+            if isinstance(rec, dict):
+                for variant in (raw.rstrip("\n"), raw):
+                    h = "sha256:" + hashlib.sha256(variant.encode("utf-8")).hexdigest()[:16]
+                    by_hash[h] = rec
+                if "recipe" in rec and "launch" in rec:
+                    r_in = rec["recipe"]
+                    l_in = rec["launch"]
+                    k = (r_in.get("card"), r_in.get("model"), r_in.get("engine"), l_in.get("ctx"))
+                    by_recipe.setdefault(k, []).append((h, rec))
+    return by_hash, by_recipe
+
+
 def cmd_check(_):
     bad = []
+    runs_by_hash, runs_by_recipe = run_records()
     exempt = kv_floor_exempt()
     gone = sorted(x for x in exempt if not (RECIPES / x).exists())
     if gone:
@@ -830,6 +857,24 @@ def cmd_check(_):
             need = set() if p.get("reported") or p.get("withdrawn") else {"load", "chat"} if p.get("legacy") else set(GATES)
             assert not r["proof"][0].get("reported") or r["proof"][0].get("src"), "a reported proof names its source"
             assert need <= set(r["proof"][0]["gates"].split()), "latest proof lacks a gate"
+            if not p.get("withdrawn") and not p.get("reported") and not p.get("legacy"):
+                assert (p.get("tps") or 0) >= MIN_TPS, f"latest proof tps {p.get('tps')} is below MIN_TPS ({MIN_TPS})"
+                assert re.fullmatch(r"sha256:[0-9a-f]{16,64}", str(p.get("log") or "")), "latest proof lacks a run evidence log hash"
+                k = (r.get("card"), r.get("model"), r.get("engine"), launch.get("ctx"))
+                cand_runs = runs_by_recipe.get(k)
+                if cand_runs:
+                    cand_hashes = [c[0] for c in cand_runs]
+                    assert p.get("log") in cand_hashes, f"proof log hash {p.get('log')} does not match on-disk run evidence"
+                if p.get("log") in runs_by_hash:
+                    run = runs_by_hash[p["log"]]
+                    rec, rproof, ev = run.get("recipe") or {}, run.get("proof") or {}, run.get("evidence") or {}
+                    ok = ev.get("ok") or {}
+                    assert not ok or set(p["gates"].split()) == {g for g in GATES if ok.get(g)}, "proof gates do not match run evidence"
+                    assert p.get("tps") == rproof.get("tps"), "proof tps does not match run record"
+                    assert p.get("served") == rproof.get("served"), "proof served model does not match run record"
+                    assert r.get("model") == rec.get("model") and r.get("weights") == rec.get("weights"), "recipe model or weights do not match run record"
+                    assert r.get("card") == rec.get("card") or p.get("proxy") == rec.get("card"), "recipe card does not match run record"
+                    assert "context" not in ev or ((ev.get("context") or {}).get("prompt_tokens") or 0) >= launch["ctx"] * 0.6, "recipe ctx exceeds run evidence context window"
             assert f.stat().st_size <= MAX_RECIPE_BYTES, f"{f.stat().st_size} bytes"
             rel = str(f.relative_to(RECIPES))
             low = not p.get("withdrawn") and below_kv_floor(r, launch)

@@ -17,7 +17,7 @@ ENGINE = "tabbyapi-exl3@0f83e6198dc3"
 def recipe(model="qwen3.5-9b", **kw):
     r = {"model": model, "weights": WEIGHTS, "engine": ENGINE, "set": {}, "card": "rtx-3070-ti-8gb",
          "proof": [{"at": "2026-10-20", "on": "vast", "gpu": "RTX 3070 Ti", "gates": "load chat reasoning tools context speed",
-                    "tps": 60.0, "prefill": 900, "served": "Qwen3.5-9B-exl3-22ef1303"}]}
+                    "tps": 60.0, "prefill": 900, "served": "Qwen3.5-9B-exl3-22ef1303", "log": "sha256:0123456789abcdef"}]}
     r.update(kw)
     return r
 
