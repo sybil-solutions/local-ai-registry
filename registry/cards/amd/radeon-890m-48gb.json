@@ -1,0 +1,14 @@
+{
+  "name": "radeon-890m-48gb",
+  "vendor": "amd",
+  "match": "Radeon 890M",
+  "memory": "48GB",
+  "description": "AMD Radeon 890M integrated GPU (48 GB VRAM).",
+  "supported_models": [
+    "Qwen3.5-9B",
+    "Gemma-4-12B"
+  ],
+  "context_window": 65536,
+  "recommended_engine": "default",
+  "notes": "Added to enable AI workloads on Strix Point laptops."
+}
