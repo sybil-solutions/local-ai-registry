@@ -1,0 +1,706 @@
+diff --git i/xpu/csrc/exl3_esimd.h w/xpu/csrc/exl3_esimd.h
+index b8fca13..74a4e0f 100644
+--- i/xpu/csrc/exl3_esimd.h
++++ w/xpu/csrc/exl3_esimd.h
+@@ -228,11 +228,12 @@ constexpr float kRsqrt128 = 0.08838834764831845f;
+ //  - split-K reduction + output Hadamard by the last-arriving thread of each 128-column block
+ 
+ struct FusedArgs {
+-    const fp16* x; int x_stride;       // [M, Kdim] row-major fp16 activations
++    const void* x; int x_stride;       // [M, Kdim] row-major fp16 or bf16 activations
+     const fp16* suh;                   // [S, Kdim]
+     const fp16* svh;                   // [N]
+-    fp16* out; int out_stride;         // [M, N] fp16
++    void* out; int out_stride;         // [M, N] fp16 or bf16
+     uint32_t* counters;                // [N/128], zero on entry, left zero on exit
++    int bf16 = 0;                      // 1: x and out are bfloat16 (uniform branch)
+ };
+ 
+ // xblk[m*128 + i] = fp16( H(fp16(x[m, kb*128 + .] * suh[shard, .])) / sqrt(128) )[i]
+@@ -242,7 +243,12 @@ ESIMD_INLINE void fused_had_in(const FusedArgs& fa, int M, int Kdim, int shard,
+ #pragma unroll
+     for (int m = 0; m < MROWS; ++m) {
+         if (m < M) {
+-            simd<float, 128> v = convert<float>(block_load<fp16, 128>(fa.x + (size_t)m * fa.x_stride + kb * 128)) * su;
++            size_t xo = (size_t)m * fa.x_stride + kb * 128;
++            simd<float, 128> v;
++            if (fa.bf16) v = convert<float>(block_load<sycl::ext::oneapi::bfloat16, 128>(
++                                 reinterpret_cast<const sycl::ext::oneapi::bfloat16*>(fa.x) + xo));
++            else v = convert<float>(block_load<fp16, 128>(reinterpret_cast<const fp16*>(fa.x) + xo));
++            v *= su;
+             v = convert<float>(convert<fp16>(v));
+             fwht128(v);
+             v *= kRsqrt128;
+@@ -256,7 +262,7 @@ ESIMD_INLINE void fused_had_in(const FusedArgs& fa, int M, int Kdim, int shard,
+ // Called by every thread after writing its partials for columns [col0, col0 + ncols) of split p.
+ // The thread that completes a 128-column block (arrivals == P * 128/ncols) reduces it.
+ ESIMD_INLINE void fused_had_out(const FusedArgs& fa, const float* part, int M, int N, int P, int col0, int ncols) {
+-    fence<memory_kind::global, fence_flush_op::none, fence_scope::gpu>();
++    fence<memory_kind::global, fence_flush_op::clean, fence_scope::gpu>();
+     int nb = col0 / 128;
+     uint32_t target = (uint32_t)(P * (128 / ncols));
+     simd<uint32_t, 1> off(nb * (uint32_t)sizeof(uint32_t));
+@@ -275,7 +281,11 @@ ESIMD_INLINE void fused_had_out(const FusedArgs& fa, const float* part, int M, i
+             v.template select<64, 1>(64) += block_load<float, 64>(src + 64, props);
+         }
+         fwht128(v);
+-        block_store<fp16, 128>(fa.out + (size_t)m * fa.out_stride + nb * 128, convert<fp16>(v * sv));
++        size_t oo = (size_t)m * fa.out_stride + nb * 128;
++        if (fa.bf16) block_store<sycl::ext::oneapi::bfloat16, 128>(
++                         reinterpret_cast<sycl::ext::oneapi::bfloat16*>(fa.out) + oo,
++                         convert<sycl::ext::oneapi::bfloat16>(v * sv));
++        else block_store<fp16, 128>(reinterpret_cast<fp16*>(fa.out) + oo, convert<fp16>(v * sv));
+     }
+ }
+ 
+@@ -572,7 +582,14 @@ struct GemvKernel {
+                     for (int l = 1; l < L; ++l) s += acc.template select<8, L>(base + l);
+                     o.template select<8, 1>(h * 8) = s;
+                 }
+-                block_store<float, 16>(part + ((size_t)p * M + m) * N + (tile_n0 + j) * 16, o);
++                if constexpr (FUSED) {
++                    // partials are reduced by another Xe core: bypass L1 so they are visible in L2 (Xe3 L1 may
++                    // hold stores write-back; the reducer reads L1-uncached)
++                    constexpr auto sp = properties{cache_hint_L1<cache_hint::uncached>, cache_hint_L2<cache_hint::write_back>};
++                    block_store<float, 16>(part + ((size_t)p * M + m) * N + (tile_n0 + j) * 16, o, sp);
++                } else {
++                    block_store<float, 16>(part + ((size_t)p * M + m) * N + (tile_n0 + j) * 16, o);
++                }
+             }
+         }
+         if constexpr (FUSED) fused_had_out(fa, part, M, N, Psplit, tile_n0 * 16, NT * 16);
+diff --git i/xpu/csrc/exl3_moe.sycl w/xpu/csrc/exl3_moe.sycl
+index a48f1f1..b2c1d18 100644
+--- i/xpu/csrc/exl3_moe.sycl
++++ w/xpu/csrc/exl3_moe.sycl
+@@ -403,7 +403,16 @@ struct CombineKernel {
+ template <int K, int NT, int u>
+ ESIMD_INLINE void build4(simd<uint32_t, NT * Geo<K>::WORDS>& words, simd<uint32_t, NT * Geo<K>::WORDS>& prev,
+                          simd<fp16, 256 * NT>& B) {
+-    if constexpr (u < Geo<K>::V) {
++    if constexpr (K == 4) {
++        // Native K=4 tile order: reuse the validated linear DPAS B builder.
++#pragma unroll
++        for (int j = 0; j < NT; ++j) {
++            simd<uint32_t, Geo<K>::WORDS> dw = words.template select<Geo<K>::WORDS, 1>(j * Geo<K>::WORDS);
++            simd<uint32_t, Geo<K>::WORDS> pw = prev.template select<Geo<K>::WORDS, 1>(j * Geo<K>::WORDS);
++            auto bv = B.template select<256, 1>(256 * j);
++            DpasKernel<4, 2, 32, 1>::build_k4(dw, pw, bv);
++        }
++    } else if constexpr (u < Geo<K>::V) {
+         static_assert(Geo<K>::V == 32 && NT * Geo<K>::G == 32, "build4: K with 32 values per period, 4-tile groups");
+         simd<fp16, 32> v = decode_cb_h<2, 32>(tile_states<K, u, NT, true>(words, prev));
+         constexpr int h = (u >> 2) & 1;
+@@ -429,7 +438,8 @@ struct GateUpDpasKernel {
+     int H, I;
+     size_t off_suh_g, off_svh_g, off_suh_d;
+ 
+-    static constexpr int NT = 4, W = Geo<K>::WORDS;
++    static constexpr int NT = MB >= 48 ? 2 : 4, W = Geo<K>::WORDS;
++    static constexpr int GPB = 128 / (NT * 16);   // thread groups per 128-col Hadamard block
+     static constexpr int SLM_A = 2 * 2 * 8 * MB * 16 * 2;          // [buf][proj][8 tile-rows][MB][16] fp16
+     static constexpr int SLM_E = MB * 256 * 4;                       // [MB][g 128 | u 128] fp32
+     static ESIMD_INLINE int a_off(int buf, int pj, int i, int m) { return (((buf * 2 + pj) * 8 + i) * MB + m) * 16 * 2; }
+@@ -514,14 +524,14 @@ struct GateUpDpasKernel {
+         int tk_d = I / 16;
+         for (int nb = 0; nb < I / 128; ++nb) {
+             barrier();
+-            if (grp / 2 == nb) {
+-                int hf = grp % 2;
++            if (grp / GPB == nb) {
++                int hf = grp % GPB;
+ #pragma unroll
+                 for (int m = 0; m < MB; ++m) {
+                     simd<float, NT * 16> o;
+ #pragma unroll
+                     for (int j = 0; j < NT; ++j) o.template select<16, 1>(j * 16) = acc.template select<16, 1>((j * MB + m) * 16);
+-                    slm_block_store<float, NT * 16>(SLM_A + (m * 256 + proj * 128 + hf * 64) * 4, o);
++                    slm_block_store<float, NT * 16>(SLM_A + (m * 256 + proj * 128 + hf * NT * 16) * 4, o);
+                 }
+             }
+             barrier();
+@@ -555,7 +565,8 @@ struct DownDpasKernel {
+     int H, I;
+     size_t off_d, off_svh_d;
+ 
+-    static constexpr int NT = 4, W = Geo<K>::WORDS;
++    static constexpr int NT = MB >= 48 ? 2 : 4, W = Geo<K>::WORDS;
++    static constexpr int GPB = 128 / (NT * 16);
+     static constexpr int NQ = 4;
+     static constexpr int SLM_E = MB * 128 * 4;
+ 
+@@ -611,14 +622,14 @@ struct DownDpasKernel {
+         const fp16* svd = reinterpret_cast<const fp16*>(base + off_svh_d);
+         for (int nbl = 0; nbl < qcols / 128; ++nbl) {
+             barrier();
+-            if (t / 2 == nbl) {
+-                int hf = t % 2;
++            if (t / GPB == nbl) {
++                int hf = t % GPB;
+ #pragma unroll
+                 for (int m = 0; m < MB; ++m) {
+                     simd<float, NT * 16> o;
+ #pragma unroll
+                     for (int j = 0; j < NT; ++j) o.template select<16, 1>(j * 16) = acc.template select<16, 1>((j * MB + m) * 16);
+-                    slm_block_store<float, NT * 16>((m * 128 + hf * 64) * 4, o);
++                    slm_block_store<float, NT * 16>((m * 128 + hf * NT * 16) * 4, o);
+                 }
+             }
+             barrier();
+@@ -725,6 +736,23 @@ static void down_dispatch(int MR, sycl::queue& q, const fp16* abuf, const int64_
+     TORCH_CHECK(false, "moe down: unsupported MR/P ", MR, "/", g_dn_p);
+ }
+ 
++template <typename TIn>
++static void gateup_dispatch_k4(int MR, sycl::queue& q, const TIn* x, int xs, const int64_t* ptrs, Route rt,
++                               fp16* abuf, int H, int I, const Geom& gm, int max_act) {
++#define GU4(M) if (MR == M) return launch_gateup<4, M, 4, TIn>(q, x, xs, ptrs, rt, abuf, H, I, gm, max_act);
++    GU4(1) GU4(2) GU4(4) GU4(8)
++#undef GU4
++    TORCH_CHECK(false, "moe K=4 gateup: unsupported MR ", MR);
++}
++
++static void down_dispatch_k4(int MR, sycl::queue& q, const fp16* abuf, const int64_t* ptrs, Route rt,
++                             float* y, int H, int I, const Geom& gm, int max_act) {
++#define DN4(M) if (MR == M) return launch_down<4, M, 4>(q, abuf, ptrs, rt, y, H, I, gm, max_act);
++    DN4(1) DN4(2) DN4(4) DN4(8)
++#undef DN4
++    TORCH_CHECK(false, "moe K=4 down: unsupported MR ", MR);
++}
++
+ static int g_mr_override = 0;
+ static int g_debug_skip = 0;
+ static int g_pair_max_m = 4;   // M <= this: pair mode (no align launch)
+@@ -760,14 +788,20 @@ static RouteBufs make_route(const at::Tensor& like, int npairs, int E, int mb =
+ // 3561, 384 4840 vs 3740, 1024 11338 vs 4474 -> DPAS from M=256 (it decodes each active expert once per 32-row block)
+ static int g_prefill_min_m = 256;   // M >= this: DPAS prefill path
+ void moe_set_prefill_min_m(int64_t v) { g_prefill_min_m = (int)v; }
+-constexpr int kPrefillMB = 32;
++#ifndef EXL3_MOE_PREFILL_MB
++#define EXL3_MOE_PREFILL_MB 32
++#endif
++// larger row blocks (decode each expert's trellis once per MB rows) only for K=4 (NT=2 needs even-K tile pairing)
++template <int K> constexpr int prefill_mb() { return K == 4 ? EXL3_MOE_PREFILL_MB : 32; }
++template <int K> constexpr int prefill_nt() { return prefill_mb<K>() >= 48 ? 2 : 4; }
+ 
++template <int K>
+ static at::Tensor moe_prefill(const at::Tensor& x, const at::Tensor& topk_ids, const at::Tensor& topk_w,
+                               const at::Tensor& ptrs, const Geom& gm, int E, at::Tensor& out) {
+     auto& q = queue_of(x);
+     int M = x.size(0), H = gm.H, I = gm.I, topk = topk_ids.size(1), npairs = M * topk;
+-    constexpr int MB = kPrefillMB;
+-    TORCH_CHECK(gm.K == 3 && I % 128 == 0 && H % (4 * 128) == 0 && (2 * I / 16) % 8 == 0, "moe prefill geometry");
++    constexpr int MB = prefill_mb<K>();
++    TORCH_CHECK(gm.K == K && I % 128 == 0 && H % (4 * 128) == 0 && (2 * I / 16) % 8 == 0, "moe prefill geometry");
+     auto rb = make_route(x, npairs, E, MB);
+     launch_align(q, topk_ids.data_ptr<int>(), topk_w.data_ptr<float>(), npairs, topk, E, MB, rb.act_expert,
+                  rb.act_start, rb.act_cnt, rb.n_act, rb.act_pstart, rb.pair_tok, rb.pair_w, rb.pair_of, rb.blk_a, rb.n_blk);
+@@ -775,17 +809,17 @@ static at::Tensor moe_prefill(const at::Tensor& x, const at::Tensor& topk_ids, c
+     auto y = at::empty({npairs, H}, x.options().dtype(at::kHalf));
+     const int64_t* pp = ptrs.data_ptr<int64_t>();
+     sycl::ext::oneapi::experimental::properties props{sycl::ext::intel::experimental::grf_size<256>};
+-    int T1 = 2 * (I / 16) / 4;
++    int T1 = 2 * (I / 16) / prefill_nt<K>();
+     auto run_gu = [&](auto tag) {
+         using TIn = decltype(tag);
+-        GateUpDpasKernel<3, MB, TIn> k{reinterpret_cast<const TIn*>(x.data_ptr()), (int)x.stride(0), pp, rb.rt, rb.blk_a,
++        GateUpDpasKernel<K, MB, TIn> k{reinterpret_cast<const TIn*>(x.data_ptr()), (int)x.stride(0), pp, rb.rt, rb.blk_a,
+                                        rb.n_blk, reinterpret_cast<fp16*>(ablk.data_ptr()), H, I, gm.off_suh_g(),
+                                        gm.off_svh_g(), gm.off_suh_d()};
+         q.submit([&](sycl::handler& h) { h.parallel_for(sycl::nd_range<1>((size_t)rb.max_blk * T1, T1), props, k); });
+     };
+     if (!(g_debug_skip & 1)) { if (x.scalar_type() == at::kHalf) run_gu(fp16{}); else run_gu(bf16{}); }
+-    int T2 = (H / 4 / 16) / 4;
+-    DownDpasKernel<3, MB, fp16> kd{reinterpret_cast<const fp16*>(ablk.data_ptr()), pp, rb.rt, rb.blk_a, rb.n_blk,
++    int T2 = (H / 4 / 16) / prefill_nt<K>();
++    DownDpasKernel<K, MB, fp16> kd{reinterpret_cast<const fp16*>(ablk.data_ptr()), pp, rb.rt, rb.blk_a, rb.n_blk,
+                                    reinterpret_cast<fp16*>(y.data_ptr()), H, I, gm.gu_bytes(), gm.off_svh_d()};
+     if (!(g_debug_skip & 2))
+         q.submit([&](sycl::handler& h) { h.parallel_for(sycl::nd_range<1>((size_t)rb.max_blk * 4 * T2, T2), props, kd); });
+@@ -1190,7 +1224,10 @@ static at::Tensor moe_forward_impl(at::Tensor x, at::Tensor topk_ids, at::Tensor
+     auto& q = queue_of(x);
+     Geom gm{H, (int)I, (int)K};
+     int npairs = M * topk;
+-    if (M >= g_prefill_min_m) return moe_prefill(x, topk_ids, topk_w, ptrs, gm, E, out);
++    if (M >= g_prefill_min_m) {
++        if (K == 3) return moe_prefill<3>(x, topk_ids, topk_w, ptrs, gm, E, out);
++        if (K == 4) return moe_prefill<4>(x, topk_ids, topk_w, ptrs, gm, E, out);
++    }
+     bool pair_mode = M <= g_pair_max_m;
+     auto rb = make_route(x, pair_mode ? 1 : npairs, E);
+     if (pair_mode) {
+@@ -1205,18 +1242,37 @@ static at::Tensor moe_forward_impl(at::Tensor x, at::Tensor topk_ids, at::Tensor
+     // rows per expert chunk: 1 at M=1, else up to 4 (8 for bigger batches)
+     // B70, layer-0 experts, device slots: grouped M=16 MR=1/2/4 = 723/693/734 us; pair mode wins M<=4 (no align).
+     int MR = pair_mode ? 1 : g_mr_override ? g_mr_override : (M <= 64 ? 2 : 4);
++    // MR=4 produces incorrect K=4 results on B390 (large grouped batches).
++    // MR=2 passes both fp16/bf16 reference checks through M=257.
++    if (K == 4 && MR > 2) MR = 2;
+     const int64_t* pp = ptrs.data_ptr<int64_t>();
+     fp16* ab = reinterpret_cast<fp16*>(abuf.data_ptr());
+-    TORCH_CHECK(K == 3, "moe: K=3 only in this build");
+-    if (g_debug_skip & 1) {}
+-    else if (x.scalar_type() == at::kHalf)
+-        gateup_dispatch<3, fp16>(MR, q, reinterpret_cast<const fp16*>(x.data_ptr()), x.stride(0), pp, rb.rt, ab, H, I, gm, max_act);
+-    else if (x.scalar_type() == at::kBFloat16)
+-        gateup_dispatch<3, bf16>(MR, q, reinterpret_cast<const bf16*>(x.data_ptr()), x.stride(0), pp, rb.rt, ab, H, I, gm, max_act);
+-    else TORCH_CHECK(false, "x dtype");
++    TORCH_CHECK(K == 3 || K == 4, "moe: supported expert bits are 3 and 4");
++    if (K == 4) {
++        // Ornith: H=2048, I=512. Four splits give complete 128-value
++        // Hadamard blocks; the Flash-Next split counts 5/10 do not divide it.
++        TORCH_CHECK(H % 512 == 0 && I % 512 == 0, "moe K=4: H and I must be multiples of 512");
++        if (!(g_debug_skip & 1)) {
++            if (x.scalar_type() == at::kHalf)
++                gateup_dispatch_k4<fp16>(MR, q, reinterpret_cast<const fp16*>(x.data_ptr()), x.stride(0), pp, rb.rt, ab, H, I, gm, max_act);
++            else if (x.scalar_type() == at::kBFloat16)
++                gateup_dispatch_k4<bf16>(MR, q, reinterpret_cast<const bf16*>(x.data_ptr()), x.stride(0), pp, rb.rt, ab, H, I, gm, max_act);
++            else TORCH_CHECK(false, "x dtype");
++        }
++    } else {
++        if (g_debug_skip & 1) {}
++        else if (x.scalar_type() == at::kHalf)
++            gateup_dispatch<3, fp16>(MR, q, reinterpret_cast<const fp16*>(x.data_ptr()), x.stride(0), pp, rb.rt, ab, H, I, gm, max_act);
++        else if (x.scalar_type() == at::kBFloat16)
++            gateup_dispatch<3, bf16>(MR, q, reinterpret_cast<const bf16*>(x.data_ptr()), x.stride(0), pp, rb.rt, ab, H, I, gm, max_act);
++        else TORCH_CHECK(false, "x dtype");
++    }
+     int dn_p_save = g_dn_p;
+     if (g_dn_p == 0) g_dn_p = M <= 1 ? 10 : 5;   // M=2: P=10 120.9 us vs P=5 112.8
+-    if (!(g_debug_skip & 2)) down_dispatch<3>(MR, q, ab, pp, rb.rt, y.data_ptr<float>(), H, I, gm, max_act);
++    if (!(g_debug_skip & 2)) {
++        if (K == 4) down_dispatch_k4(MR, q, ab, pp, rb.rt, y.data_ptr<float>(), H, I, gm, max_act);
++        else down_dispatch<3>(MR, q, ab, pp, rb.rt, y.data_ptr<float>(), H, I, gm, max_act);
++    }
+     g_dn_p = dn_p_save;
+     int n = M * (H / 128), local = 8;
+     auto run_c = [&](auto tag) {
+diff --git i/xpu/csrc/exl3_ops.sycl w/xpu/csrc/exl3_ops.sycl
+index 1185e71..e840d1c 100644
+--- i/xpu/csrc/exl3_ops.sycl
++++ w/xpu/csrc/exl3_ops.sycl
+@@ -223,10 +223,11 @@ static bool fused_small(const at::Tensor& x, const at::Tensor& tr, const at::Ten
+     int rps = ((tk + P - 1) / P + 7) / 8 * 8;             // multiple of 8 tile-rows (one Hadamard block)
+     P = (tk + rps - 1) / rps;
+     auto part = at::empty({P, M, N}, x.options().dtype(at::kFloat));
+-    FusedArgs fa{reinterpret_cast<const fp16*>(x.data_ptr()), (int)x.stride(0),
++    FusedArgs fa{x.data_ptr(), (int)x.stride(0),
+                  reinterpret_cast<const fp16*>(suh.data_ptr()), reinterpret_cast<const fp16*>(svh.data_ptr()),
+-                 reinterpret_cast<fp16*>(out.data_ptr()), (int)out.stride(0),
+-                 reinterpret_cast<uint32_t*>(fused_counters(x.device()).data_ptr())};
++                 out.data_ptr(), (int)out.stride(0),
++                 reinterpret_cast<uint32_t*>(fused_counters(x.device()).data_ptr()),
++                 x.scalar_type() == at::kBFloat16 ? 1 : 0};
+     const uint32_t* trp = reinterpret_cast<const uint32_t*>(tr.data_ptr());
+     const int* shp = shard.data_ptr<int>();
+     float* pp = part.data_ptr<float>();
+@@ -252,8 +253,8 @@ static bool fused_small(const at::Tensor& x, const at::Tensor& tr, const at::Ten
+     return true;
+ }
+ 
+-static bool g_fused = false;   // measured slower under XPU graphs (serialized split-K tail); opt in via exl3_set_fused
+-void exl3_set_fused(int64_t on) { g_fused = on != 0; }
++static int64_t g_fused = 0;   // 0 off, 1 all M<=8, >1: bitmask of allowed M (bit M); opt in via exl3_set_fused
++void exl3_set_fused(int64_t on) { g_fused = on; }
+ 
+ void exl3_gemm_small(at::Tensor x, at::Tensor trellis, at::Tensor suh, at::Tensor svh, at::Tensor shard_of_nb,
+                      at::Tensor out, int64_t K, int64_t cb) {
+@@ -261,7 +262,8 @@ void exl3_gemm_small(at::Tensor x, at::Tensor trellis, at::Tensor suh, at::Tenso
+     TORCH_CHECK(trellis.scalar_type() == at::kShort && trellis.is_contiguous());
+     auto& q = queue_of(x);
+     int M = x.size(0), Kdim = x.size(1), N = svh.size(0), S = suh.size(0);
+-    if (g_fused && M <= 8 && x.scalar_type() == at::kHalf && out.scalar_type() == at::kHalf && out.stride(1) == 1 &&
++    if (g_fused && M <= 8 && (g_fused == 1 || ((g_fused >> M) & 1)) && x.scalar_type() == out.scalar_type() &&
++        (x.scalar_type() == at::kHalf || x.scalar_type() == at::kBFloat16) && out.stride(1) == 1 &&
+         N / 128 <= (1 << 16)) {
+         bool done = false;
+         if (K == 4 && cb == 2) done = fused_small<4, 2>(x, trellis, suh, svh, shard_of_nb, out, M, Kdim, N, q);
+diff --git i/xpu/exl3xpu/moe_offload.py w/xpu/exl3xpu/moe_offload.py
+index dbb2ab2..387c860 100644
+--- i/xpu/exl3xpu/moe_offload.py
++++ w/xpu/exl3xpu/moe_offload.py
+@@ -67,6 +67,10 @@ def s64(p: int) -> int:
+ 
+ def planar4(tr: torch.Tensor, K: int) -> torch.Tensor:
+     """int16 trellis [rows, tiles, 16K] -> int32 words in PLANAR4 order (K with gcd(K, 32) = 1: 8 periods/tile)."""
++    # K=4 has one word per period; GemvKernel disables planarization for D=1.
++    # Preserve each tile's native word order, including its circular predecessor.
++    if K == 4:
++        return tr.contiguous().view(torch.int32)
+     assert K in (3, 5, 7), "PLANAR4 packing implemented for odd K (D = K words per 32-value period)"
+     r, n, _ = tr.shape
+     w = tr.contiguous().view(torch.int32).view(r, n // 4, 4, 8, K)       # [row, group, tile, period g, plane i]
+@@ -129,7 +133,11 @@ class ExpertStore:
+         if li >= self.max_layers:
+             raise RuntimeError(f"ExpertStore: more than max_layers={self.max_layers} MoE layers")
+         self.layer_index[key] = li
+-        h = self.X.host_alloc(self.E * self.blob).view(self.E, self.blob)
++        if os.environ.get("EXL3_MOE_ARENA", "host") == "device":
++            # integrated GPUs: same physical RAM, but device allocations read faster than host USM
++            h = torch.empty((self.E, self.blob), dtype=torch.uint8, device=self.dev)
++        else:
++            h = self.X.host_alloc(self.E * self.blob).view(self.E, self.blob)
+         if blobs is not None:
+             h.copy_(blobs)
+         self.host[key] = h
+diff --git i/xpu/exl3xpu/ops.py w/xpu/exl3xpu/ops.py
+index 00d3c11..c7db806 100644
+--- i/xpu/exl3xpu/ops.py
++++ w/xpu/exl3xpu/ops.py
+@@ -39,6 +39,8 @@ def _get_esimd():
+                 _esimd.exl3_set_target_threads_mb16(int(os.environ["EXL3_TARGET_THREADS_MB16"]))
+             if os.environ.get("EXL3_TARGET_THREADS_MB64") and hasattr(_esimd, "exl3_set_target_threads_mb64"):
+                 _esimd.exl3_set_target_threads_mb64(int(os.environ["EXL3_TARGET_THREADS_MB64"]))
++            if os.environ.get("EXL3_FUSED", "0") != "0" and hasattr(_esimd, "exl3_set_fused"):
++                _esimd.exl3_set_fused(int(os.environ["EXL3_FUSED"]))   # 1 = all M<=8, else bitmask of M         # single-kernel small-M linear (in-kernel Hadamards, split-K tail)
+             if INT8_PREFILL and hasattr(_esimd, "exl3_set_int8"):
+                 _esimd.exl3_set_int8(1)          # fused W8A8 prefill inside the C++ linear
+         except Exception as e:  # noqa
+diff --git i/xpu/exl3xpu/sglang_plugin.py w/xpu/exl3xpu/sglang_plugin.py
+index bcdd003..41d71f7 100644
+--- i/xpu/exl3xpu/sglang_plugin.py
++++ w/xpu/exl3xpu/sglang_plugin.py
+@@ -125,9 +125,14 @@ if _STAGE_MIN_M <= 0:
+     _STAGE_MIN_M = 1 << 30
+ 
+ 
++_SHARED_FUSE = os.environ.get("EXL3_SHARED_FUSE", "0") == "1"
++
++
+ def _moe_store(H: int, I: int, K: int, n_experts: int):
+-    """Process-wide ExpertStore (one slot arena shared by all MoE layers incl. the MTP layer)."""
++    """Process-wide ExpertStore (one slot arena shared by all MoE layers incl. the MTP layer).
++    EXL3_SHARED_FUSE=1: one extra expert per layer (index n_experts) holds the layer's shared expert."""
+     global _MOE_STORE
++    n_experts = n_experts + (1 if _SHARED_FUSE else 0)
+     if _MOE_STORE is None:
+         from .moe_offload import ExpertStore
+         _MOE_STORE = ExpertStore(H, I, K, n_experts, int(os.environ.get("EXL3_MOE_SLOTS", "0")), _dev())
+@@ -501,7 +506,15 @@ def _build_classes():
+             else:
+                 store.prefill_reset()
+                 fwd = store.forward_cached if _MOE_CACHE else store.forward
+-            y = fwd(self.key, flat, tk.topk_ids.reshape(flat.shape[0], -1), tk.topk_weights.reshape(flat.shape[0], -1))
++            ids = tk.topk_ids.reshape(flat.shape[0], -1)
++            w = tk.topk_weights.reshape(flat.shape[0], -1)
++            sid = getattr(layer, "exl3_shared_id", None)
++            if sid is not None:
++                g = layer.exl3_shared_gate(flat)
++                g = g[0] if isinstance(g, tuple) else g
++                ids = torch.cat([ids.to(torch.int32), torch.full_like(ids[:, :1], sid, dtype=torch.int32)], 1)
++                w = torch.cat([w.float(), torch.sigmoid(g.float()).reshape(-1, 1)], 1)
++            y = fwd(self.key, flat, ids, w)
+             return StandardCombineInput(hidden_states=y.view_as(x))
+ 
+         def get_triton_quant_info(self, layer):
+@@ -626,6 +639,7 @@ class _DraftHead(torch.nn.Module):
+ 
+ 
+ _TOPK_FAST = int(os.environ.get("EXL3_SGL_SAMPLE_TOPK", "256"))   # 0 disables the top-k fast path
++_TOPK2 = int(os.environ.get("EXL3_SGL_SAMPLE_TOPK2", "64"))        # xpu2 two-stage sampler: max supported top_k
+ 
+ 
+ def _sample_rows(logits: torch.Tensor, temps: torch.Tensor, top_ks: torch.Tensor | None,
+@@ -634,6 +648,44 @@ def _sample_rows(logits: torch.Tensor, temps: torch.Tensor, top_ks: torch.Tensor
+     renormalized probabilities (top_k_renorm_prob -> top_p_renorm_prob). When every row's top-k is <= _TOPK_FAST
+     (generation-config default top_k=20) only the top _TOPK_FAST logits are sorted: 0.3 vs 5.5 ms for 32 rows of the
+     248K vocab. Otherwise the whole row is sorted."""
++    output_device = logits.device
++    mode = os.environ.get("EXL3_SGL_SAMPLE_DEVICE", "xpu")
++    if mode == "xpu2" and logits.shape[1] % 128 == 0 and top_ks is not None and bool((top_ks <= _TOPK2).all()):
++        # Exact two-stage top-k on the device (no 248K-wide topk, no logits copy to the host): the top-K logits of a
++        # row lie inside the K blocks (of 128) with the largest block maxima, for any K <= _TOPK2.
++        R, V = logits.shape
++        x = logits.float() / temps.float().view(-1, 1)
++        bm = x.view(R, V // 128, 128).amax(-1)
++        _, bi = torch.topk(bm, _TOPK2, dim=-1)                                   # [R, K] block ids
++        cols = (bi.unsqueeze(-1) * 128 + torch.arange(128, device=x.device)).view(R, -1)
++        cand = x.gather(1, cols)                                                 # [R, K*128]
++        # second level: blocks of 16 inside the candidates; every torch.topk input stays <= ~2K wide (larger
++        # XPU topk calls segfault inside the server on B390)
++        bm2 = cand.view(R, -1, 16).amax(-1)                                       # [R, K*8]
++        _, bi2 = torch.topk(bm2, _TOPK2, dim=-1)
++        c2 = (bi2.unsqueeze(-1) * 16 + torch.arange(16, device=x.device)).view(R, -1)   # [R, K*16] into cand
++        cand2 = cand.gather(1, c2)
++        sv, ci = torch.topk(cand2, _TOPK2, dim=-1)
++        si = cols.gather(1, c2.gather(1, ci))
++        ranks = torch.arange(_TOPK2, device=x.device).view(1, -1)
++        if top_ks is not None:
++            sv = sv.masked_fill(ranks >= top_ks.view(-1, 1).clamp_min(1), float("-inf"))
++        sp = torch.softmax(sv, dim=-1)
++        if top_ps is not None:
++            keep = (sp.cumsum(-1) - sp) < top_ps.float().view(-1, 1)
++            keep[:, 0] = True
++            sp = sp * keep
++        # Gumbel-max == categorical sample (torch.multinomial crashes on this XPU stack)
++        g = -torch.log(-torch.log(torch.rand_like(sp).clamp_(1e-20, 1.0)))
++        pick = (torch.log(sp) + g).argmax(-1, keepdim=True)
++        return si.gather(1, pick)
++    if mode == "cpu" or mode == "xpu2":
++        # On B390 the first XPU topk over the 248K vocabulary can stall for
++        # minutes. Single-user verify has only two rows: sample the exact same
++        # top-k/top-p distribution on CPU, then return token IDs to the XPU.
++        logits, temps = logits.cpu(), temps.cpu()
++        top_ks = None if top_ks is None else top_ks.cpu()
++        top_ps = None if top_ps is None else top_ps.cpu()
+     x = logits.float() / temps.float().view(-1, 1)
+     if top_ks is not None and _TOPK_FAST > 0 and bool((top_ks <= _TOPK_FAST).all()):
+         sv, si = torch.topk(x, _TOPK_FAST, dim=-1)                   # sorted descending
+@@ -648,7 +700,7 @@ def _sample_rows(logits: torch.Tensor, temps: torch.Tensor, top_ks: torch.Tensor
+         keep[:, 0] = True
+         sp = sp * keep
+     pick = torch.multinomial(sp / sp.sum(-1, keepdim=True), 1)
+-    return si.gather(1, pick)
++    return si.gather(1, pick).to(output_device)
+ 
+ 
+ def _patch_xpu_spec_sampling() -> None:
+@@ -720,6 +772,11 @@ def _patch_xpu_gdn_verify() -> None:
+                           "stride_h0_source=(initial_state_source.stride(0) if initial_state_source is not None else 0),", 1)
+         src = src.replace(a2, "cache_steps=(intermediate_states_buffer.stride(0) // (HV * K * V) "
+                               "if intermediate_states_buffer is not None else (cache_steps or 0)),", 1)
++        bv, nw = os.environ.get("EXL3_GDN_BV"), os.environ.get("EXL3_GDN_WARPS")
++        if bv and "min(triton.next_power_of_2(V), 16)" in src:
++            src = src.replace("min(triton.next_power_of_2(V), 16)", f"min(triton.next_power_of_2(V), {int(bv)})", 1)
++        if nw and "num_warps = 1" in src:
++            src = src.replace("num_warps = 1", f"num_warps = {int(nw)}", 1)
+         ns: dict = {}
+         exec(compile(src, "<exl3xpu:xpu fused_sigmoid_gating_delta_rule_update>", "exec"), xm.__dict__, ns)
+         fn = ns["fused_sigmoid_gating_delta_rule_update"]
+@@ -945,6 +1002,60 @@ def install_mem_probe(model: torch.nn.Module, calls: int = 3, thresh_mb: int = 6
+     logger.info("exl3xpu mem probe installed on %d modules", sum(1 for _ in model.named_modules()))
+ 
+ 
++def _patch_shared_fuse() -> None:
++    """EXL3_SHARED_FUSE=1: run each Qwen MoE block's shared expert inside the routed EXL3 MoE kernel as expert
++    #n_experts with routing weight sigmoid(shared_expert_gate(x)); the separate shared MLP is skipped."""
++    if not _SHARED_FUSE:
++        return
++    from sglang.srt.model_executor import model_runner as mr
++    from sglang.srt.models import qwen2_moe as q2
++    orig_fse = q2.Qwen2MoeSparseMoeBlock._forward_shared_experts
++
++    def _forward_shared_experts(self, hidden_states, apply_gate=True):
++        if getattr(self, "_exl3_fused_shared", False):
++            return None
++        return orig_fse(self, hidden_states, apply_gate)
++
++    q2.Qwen2MoeSparseMoeBlock._forward_shared_experts = _forward_shared_experts
++    orig_load = mr.ModelRunner.load_model
++
++    def load_model(self, *a, **k):
++        r = orig_load(self, *a, **k)
++        from .moe_offload import pack_expert
++        n_done = 0
++        for name, m in self.model.named_modules():
++            if not isinstance(m, q2.Qwen2MoeSparseMoeBlock) or getattr(m, "shared_expert", None) is None:
++                continue
++            ex = m.experts
++            store = getattr(ex, "exl3_moe_store", None)
++            key = getattr(ex.quant_method, "key", None) if hasattr(ex, "quant_method") else None
++            gu, dn = m.shared_expert.gate_up_proj, m.shared_expert.down_proj
++            if store is None or key is None or not hasattr(gu, "exl3_trellis") or not hasattr(dn, "exl3_trellis"):
++                logger.warning("exl3xpu: shared fuse skipped for %s", name)
++                continue
++            if gu.exl3_K != store.K or dn.exl3_K != store.K or gu.exl3_cb != 2 or dn.exl3_cb != 2:
++                logger.warning("exl3xpu: shared fuse skipped for %s (K/codebook mismatch)", name)
++                continue
++            I = store.I
++            n_idx = store.E - 1
++            t = gu.exl3_trellis
++            sv = gu.exl3_svh
++            suh = gu.exl3_suh
++            gate = {"trellis": t[:, : I // 16], "suh": suh[0], "svh": sv[:I]}
++            up = {"trellis": t[:, I // 16:], "suh": suh[1] if suh.shape[0] > 1 else suh[0], "svh": sv[I:]}
++            down = {"trellis": dn.exl3_trellis, "suh": dn.exl3_suh[0], "svh": dn.exl3_svh}
++            pack_expert(gate, up, down, store.K, out=store.host_view(key)[n_idx])
++            ex.exl3_shared_id = n_idx
++            ex.exl3_shared_gate = m.shared_expert_gate
++            m._exl3_fused_shared = True
++            n_done += 1
++        torch.xpu.synchronize()
++        logger.info("exl3xpu: shared expert fused into the routed MoE kernel for %d blocks", n_done)
++        return r
++
++    mr.ModelRunner.load_model = load_model
++
++
+ def _patch_mem_probe() -> None:
+     if os.environ.get("EXL3_MEM_PROBE", "0") != "1":
+         return
+@@ -1179,6 +1290,83 @@ def _cuda_compat_shim() -> None:
+                 "is_current_stream_capturing} mapped to torch.xpu (XPU-only torch)")
+ 
+ 
++def _patch_mtp_m1() -> None:
++    """EXL3_SGL_MTP_M1=probe|pad: M=1 rows (only the MTP draft-decode steps at bs=1) vs the same row in an M=2 batch."""
++    mode = os.environ.get("EXL3_SGL_MTP_M1", "0")
++    if mode not in ("probe", "pad"):
++        return
++    _, Lin, _ = classes()
++    Moe = globals()["Exl3XpuMoEMethod"]
++    stat = {}
++
++    def _cmp(name, a, b):
++        s = stat.setdefault(name, [0, 0.0])
++        a, b = a.float().reshape(-1), b.float().reshape(-1)
++        s[0] += 1
++        s[1] = max(s[1], ((a - b).abs().max() / b.abs().max().clamp_min(1e-6)).item())
++        if s[0] % 64 == 1:
++            logger.info("exl3xpu M1 %s: n=%d max rel diff %.3e", name, s[0], s[1])
++
++    def _one(x):
++        return x.dim() == 2 and x.shape[0] == 1 and not (mode == "probe" and torch.xpu.is_current_stream_capturing())
++
++    lin_apply = Lin.apply
++
++    def apply(self, layer, x, bias=None):
++        if not _one(x):
++            return lin_apply(self, layer, x, bias)
++        y2 = lin_apply(self, layer, torch.cat([x, x]), bias)[:1]
++        if mode == "pad":
++            return y2
++        y = lin_apply(self, layer, x, bias)
++        _cmp("lin:" + self.prefix, y, y2)
++        return y
++
++    moe_apply = Moe.apply
++
++    def mapply(self, layer, dispatch_output):
++        from sglang.srt.layers.moe.token_dispatcher.standard import StandardCombineInput
++        x = dispatch_output.hidden_states
++        flat = x.reshape(-1, x.shape[-1])
++        if not _one(flat):
++            return moe_apply(self, layer, dispatch_output)
++        tk, store = dispatch_output.topk_output, layer.exl3_moe_store
++        store.prefill_reset()
++        fwd = store.forward_cached if _MOE_CACHE else store.forward
++        y2 = fwd(self.key, flat.repeat(2, 1), tk.topk_ids.reshape(1, -1).repeat(2, 1),
++                 tk.topk_weights.reshape(1, -1).repeat(2, 1))[:1]
++        if mode == "pad":
++            return StandardCombineInput(hidden_states=y2.view_as(x))
++        y = moe_apply(self, layer, dispatch_output)
++        _cmp("moe:" + self.key, y.hidden_states, y2)
++        return y
++
++    Lin.apply, Moe.apply = apply, mapply
++    logger.info("exl3xpu: MTP M=1 %s installed", mode)
++
++
++def _patch_mtp_shape_probe() -> None:
++    """EXL3_SGL_MTP_SHAPES=N: log forward mode + input/hidden row counts of the first N MTP forwards outside capture."""
++    n = int(os.environ.get("EXL3_SGL_MTP_SHAPES", "0"))
++    if not n:
++        return
++    from sglang.srt.models import qwen3_5_mtp as m
++    cls = m.Qwen3_5ForCausalLMMTP
++    orig = cls.forward
++    cnt = {"n": 0}
++
++    def forward(self, input_ids, positions, forward_batch, *a, **k):
++        if cnt["n"] < n and not torch.xpu.is_current_stream_capturing():
++            cnt["n"] += 1
++            hs = getattr(forward_batch.spec_info, "hidden_states", None)
++            logger.info("exl3xpu MTPSHAPE %d mode=%s ids=%s pos=%s hs=%s seq_lens=%s", cnt["n"], forward_batch.forward_mode,
++                        tuple(input_ids.shape), positions[:8].tolist(), None if hs is None else tuple(hs.shape),
++                        forward_batch.seq_lens[:4].tolist())
++        return orig(self, input_ids, positions, forward_batch, *a, **k)
++
++    cls.forward = forward
++
++
+ def activate() -> None:
+     """sglang.srt.plugins entry point."""
+     global _done
+@@ -1229,6 +1417,9 @@ def activate() -> None:
+     except ImportError as e:  # pragma: no cover - SGLang without qwen4_exp / qwen3_vl
+         logger.info("exl3xpu: vision shim not installed (%s)", e)
+     _patch_mtp()
++    _patch_mtp_m1()
++    _patch_mtp_shape_probe()
++    _patch_shared_fuse()
+     _patch_xpu_spec_sampling()
+     _patch_xpu_gdn_verify()
+     _patch_xpu_mamba_scatter()
+diff --git 1/xpu/tests/test_moe_k4.py 2/xpu/tests/test_moe_k4.py
+new file mode 100644
+index 0000000..de748b0
+--- /dev/null
++++ 2/xpu/tests/test_moe_k4.py
+@@ -0,0 +1,76 @@
++"""Validate Ornith-sized 4-bit MoE kernels against independent reconstructed weights.
++
++Run in the built XPU environment: python3 xpu/tests/test_moe_k4.py
++No model download is required. Exercises shared-USM and device expert pointers,
++both activation dtypes, pair/grouped routing, and the above-prefill-threshold path.
++"""
++import json
++import sys
++import faulthandler
++from pathlib import Path
++
++import torch
++import torch.nn.functional as F
++
++ROOT = Path(__file__).resolve().parents[2]
++sys.path[:0] = [str(ROOT / "core/src"), str(ROOT / "xpu")]
++from trellis_core import reference as ref
++from exl3xpu.moe_offload import ExpertStore, pack_expert, planar4
++
++H, I, K, E = 2048, 512, 4, 4
++faulthandler.dump_traceback_later(60, repeat=True)
++torch.manual_seed(20261115)
++torch.set_num_threads(4)
++device = torch.device("xpu:0")
++experts = []
++weights = []
++for e in range(E):
++    print(f"reference expert {e}", flush=True)
++    tensors = {}
++    reconstructed = {}
++    for role, rows, cols in (("gate", H, I), ("up", H, I), ("down", I, H)):
++        tr = torch.randint(-32768, 32768, (rows // 16, cols // 16, 16 * K), dtype=torch.int16)
++        assert torch.equal(planar4(tr, K).view(torch.int16), tr)
++        tensors[role] = {"trellis": tr, "suh": torch.full((rows,), .05, dtype=torch.float16),
++                         "svh": torch.full((cols,), .05, dtype=torch.float16)}
++        # Keep the independent bitstream decoder on CPU. Its int64 indexing
++        # otherwise triggers a very expensive first-use Intel JIT compilation.
++        t = tensors[role]
++        print(f"reconstruct {e}/{role}", flush=True)
++        reconstructed[role] = ref.weight_orig(t["trellis"], t["suh"], t["svh"], K, 2)
++    experts.append(pack_expert(tensors["gate"], tensors["up"], tensors["down"], K))
++    weights.append(reconstructed)
++
++store = ExpertStore(H, I, K, E, E, device=device)
++print("allocate expert store", flush=True)
++store.add_layer("synthetic", torch.stack(experts))
++X = store.X
++X.moe_set_prefill_min_m(256)
++rows = []
++for placement in ("host", "device"):
++    if placement == "device":
++        store.make_resident("synthetic", range(E))
++    for dtype in (torch.float16, torch.bfloat16):
++        for m in (1, 2, 5, 16, 257, 512):
++            x = (torch.randn((m, H)) * .5).to(dtype)
++            ids = torch.stack((torch.arange(m) % E, (torch.arange(m) + 1) % E), dim=1).to(torch.int32)
++            w = torch.tensor([.3, .7]).expand(m, -1).contiguous()
++            dx, di, dw = x.to(device), ids.to(device), w.to(device)
++            out = store.forward("synthetic", dx, di, dw).cpu()
++            repeated = store.forward("synthetic", dx, di, dw).cpu()
++            expected = torch.zeros((m, H))
++            for e, ws in enumerate(weights):
++                ri, ki = (ids == e).nonzero(as_tuple=True)
++                z = x[ri].float()
++                z = F.silu(z @ ws["gate"]) * (z @ ws["up"])
++                expected.index_add_(0, ri, (z @ ws["down"]) * w[ri, ki, None])
++            torch.xpu.synchronize()
++            relative_rms = ((out.float() - expected).square().mean() / expected.square().mean()).sqrt().item()
++            result = {"placement": placement, "dtype": str(dtype), "M": m,
++                      "relative_rms": relative_rms, "deterministic": torch.equal(out, repeated)}
++            print(json.dumps(result), flush=True)
++            assert torch.isfinite(out).all(), result
++            assert relative_rms < .02, result
++            assert result["deterministic"], result
++            rows.append(result)
++print(json.dumps({"status": "pass", "cases": len(rows)}))
