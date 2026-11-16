@@ -1,27 +1,27 @@
 python3 -m unittest discover -s lab
 .............................................fatal: Not a valid object name missing-base
-.........................[lab 06:13:43] rtx-3070-8gb: 1 recipe(s) from rtx-4060-8gb, marked proxy
+.........................[lab 17:51:00] rtx-3070-8gb: 1 recipe(s) from rtx-4060-8gb, marked proxy
 .............../usr/lib/python3.14/socketserver.py:818: ResourceWarning: unclosed <socket.socket [closed] fd=4, family=2, type=1, proto=6>
   self.wfile = _SocketWriter(self.connection)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 /usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 400: 'Bad Request'>
   _warnings.warn(self.warn_message, ResourceWarning)
-...../usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 45049)>
+...../usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 39197)>
   for index, test in enumerate(self):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-./usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 34387)>
+./usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 37653)>
   for index, test in enumerate(self):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-./usr/lib/python3.14/unittest/suite.py:84: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 42853)>
+./usr/lib/python3.14/unittest/suite.py:84: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 35031)>
   return self.run(*args, **kwds)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ...
 ----------------------------------------------------------------------
-Ran 95 tests in 3.945s
+Ran 95 tests in 3.873s
 
 OK
 python3 lab/lab.py check
-recipes ok: 439
+recipes ok: 440
 python3 lab/catalog.py --check
 dist/catalog.json is current
 python3 lab/hardware.py --check
@@ -29,5 +29,5 @@ python3 lab/export_plugin.py --check
 plugin/v2/recipes.json is current
 plugin/v3/recipes.json is current
 sdk/test.sh
-sdk ok: 71 cards, 356 recipes, js and python agree
+sdk ok: 71 cards, 357 recipes, js and python agree
 sdk ok: catalog cache retries failures and keys by URL
