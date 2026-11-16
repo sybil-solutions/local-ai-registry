@@ -1,0 +1,18 @@
+{
+  "name": "Intel Arc B580 12GB",
+  "vendor": "intel",
+  "model": "b580",
+  "memory_gb": 12,
+  "description": "Intel Arc B580 GPU with 12 GB of GDDR6 memory. Suitable for running 64K context models such as Qwen3.5‑9B or Gemma‑4‑12B.",
+  "match": "intel-arc-b580-12gb",
+  "capabilities": {
+    "max_context": 65536,
+    "throughput_tok_per_sec": 20,
+    "supports_tool_calls": true,
+    "supports_function_calls": true
+  },
+  "recommended_models": [
+    "Qwen3.5-9B",
+    "Gemma-4-12B"
+  ]
+}
