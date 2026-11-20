@@ -1,0 +1,7 @@
+Tue Nov 17 18:17:49 MST 2026
+iogpu.wired_limit_mb: 32768
+hw.memsize: 38654705664
+ProductName:		macOS
+ProductVersion:		27.2.1
+BuildVersion:		26B131
+argv: llama-b11671/llama-server -m models/ornith-ai-Ornith-1.5-35B-A3B-GGUF-12393612/Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf -c 262144 -np 1 -fit off -fa on -ctk q8_0 -ctv q8_0 -ngl 99 -b 2048 -ub 2048 --no-mmproj --jinja --reasoning-format deepseek --alias Ornith-1.5-35B-A3B-GGUF --metrics --host 127.0.0.1 --port 8080
