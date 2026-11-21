@@ -1,0 +1,54 @@
+{
+  "id": "omlx-inkling-2-mini-oq4e-dspark3-64k-2seq",
+  "kind": "host",
+  "engine": "omlx",
+  "about": "Inkling 2 Mini oQ4e with fixed DSpark depth three, 65,536 tokens per sequence and two configured request slots on Metal. Text validated at concurrency one.",
+  "command": [
+    "runtime/oMLX.app/Contents/Resources/Python/cpython-3.11/bin/python3.11",
+    "-m",
+    "omlx.cli",
+    "serve",
+    "--base-path",
+    "omlx-home",
+    "--model-dir",
+    "models",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18089",
+    "--max-concurrent-requests",
+    "2",
+    "--headless",
+    "--paged-ssd-cache-dir",
+    "omlx-kv",
+    "--paged-ssd-cache-max-size",
+    "2GB",
+    "--hot-cache-max-size",
+    "1GB"
+  ],
+  "install": "Download https://github.com/jundot/omlx/releases/download/v0.8.2/oMLX-0.8.2-macos26-27.dmg (SHA-256 6316ad32cde3248bcf23abece8b9222847f7ae8e594cea1b378a34049252df78) and place its oMLX.app under runtime/ in the recipe directory. The app supplies the complete Python runtime.",
+  "env": {
+    "PYTHONPATH": "runtime/oMLX.app/Contents/Resources:runtime/oMLX.app/Contents/Resources/Python/framework-mlx-base/lib/python3.11/site-packages",
+    "HF_HOME": "hf-cache",
+    "HF_HUB_OFFLINE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "port": 18089,
+  "weights": [
+    {
+      "repo": "mlx-community/Inkling-2-Mini-oQ4e-mtp",
+      "revision": "3eea042751cd296b7266628a8342c1749242e1fe",
+      "at": "models/inkling",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "omlx-home/model_settings.json",
+    "text": "{\n  \"version\": 2,\n  \"models\": {\n    \"inkling\": {\n      \"mtp_enabled\": true,\n      \"mtp_fixed_depth\": 3,\n      \"max_context_window\": 65536\n    }\n  }\n}\n"
+  },
+  "ctx": 65536,
+  "seqs": 2,
+  "vision": false,
+  "backend": "metal"
+}
