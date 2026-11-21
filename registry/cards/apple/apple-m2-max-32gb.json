@@ -1,0 +1,16 @@
+{
+  "id": "apple-m2-max-32gb",
+  "name": "Apple M2 Max",
+  "vendor": "apple",
+  "backend": "metal",
+  "vram_gb": 32,
+  "bandwidth_gb_s": 400,
+  "match": {
+    "backend": "metal",
+    "name": "Apple M2 Max",
+    "names": [
+      "applem2max"
+    ],
+    "vramGb": 32
+  }
+}

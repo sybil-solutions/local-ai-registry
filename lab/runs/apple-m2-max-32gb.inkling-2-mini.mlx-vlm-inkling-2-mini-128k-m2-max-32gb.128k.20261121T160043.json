@@ -1,0 +1,80 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "thinkingmachines/Inkling-2-Mini@ed40e7da625f594fc9c4990f5f66be24873c22d7",
+  "engine": "mlx-vlm-inkling-2-mini-128k-m2-max-32gb@d0f7ed4d2515",
+  "set": {},
+  "card": "apple-m2-max-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M2 Max 32GB (30-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "Apple M2 Max 32GB (30-core GPU)",
+  "launch_sha256": "455ef9bc450d2524610a88a5dd5fa784c76ad28f8bf0ebd2f3e9d2d3699c98d9",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 19.0,
+  "prefill": 117,
+  "served": "models/Inkling-2-Mini-ed40e7da"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "index": 0,
+     "id": "9177ac32-fae4-4145-a7e2-8413175ce5da",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is overcast at 17°C. Code: a0cd095d",
+   "code": "a0cd095d",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 695
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 783.0,
+   "content": "58213",
+   "peak_gib": 24.08
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 570,
+   "tokens_total": 1344,
+   "seconds_total": 76.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 117,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "aa522aed064f3dcb7c074da51b38a8ee84f413d361e8f861306ad35633fc64d9"
+}
