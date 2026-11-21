@@ -1,0 +1,75 @@
+{
+  "id": "llama.cpp-unsloth-arete-27b-q4-k-m-mtp-vision-128k-rtx-3090-24gb",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Nous Research's Arete-27B (a fine-tune of Qwen3.8-27B; vision, thinking) as Q4_K_M with Qwen3.8's multi-token-prediction head merged back into the GGUF, plus the f16 vision projector, on one 24 GB card with everything on the GPU. Nous ships Arete without the head, so the standard GGUFs decode at plain speed; JoeGuglielmucci/Arete-27B-MTP-GGUF adds Qwen's head; its card says Arete's weights are untouched. --spec-type draft-mtp drafts up to 3 tokens per step and Arete verifies each one. q8_0 KV lets the full 131,072-token window fit: on an RTX 3090 that was also driving a desktop (about 600 MiB) the whole card peaked at 24,063 of 24,576 MiB over two gate runs, so the card needs to be otherwise nearly empty; without --mmproj the peak was 22,907 MiB. On that machine the lab's speed gate read 79.4 and 82.8 tok/s with the draft and 43.4 tok/s with the two --spec flags removed. The gain depends on the text: 76% of drafted tokens were accepted on the speed gate's answer, 31 to 47% on short mixed answers. llama.cpp from Unsloth's prebuilt b12588-mix-c0c3de8 (unslothai/llama.cpp, CUDA 13 portable), the build this was tested on. One slot, flash attention at its default, temperature 1.0, top-k 20, top-p 0.95. Measured under WSL2 (Ubuntu 24.04 on Windows 11), not bare-metal Linux.",
+  "command": [
+    "llama-b12588-mix-c0c3de8/llama-server",
+    "-m",
+    "models/Arete-27B-MTP-GGUF-93d8dc24/Arete-27B-MTP-Q4_K_M.gguf",
+    "--mmproj",
+    "models/NousResearch_Arete-27B-GGUF-9762c850/mmproj-NousResearch_Arete-27B-f16.gguf",
+    "-ngl",
+    "all",
+    "--fit",
+    "off",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--spec-type",
+    "draft-mtp",
+    "--spec-draft-n-max",
+    "3",
+    "--temp",
+    "1.0",
+    "--top-k",
+    "20",
+    "--top-p",
+    "0.95",
+    "--min-p",
+    "0.0",
+    "--jinja",
+    "--alias",
+    "arete-27b",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/unslothai/llama.cpp/releases/download/b12588-mix-c0c3de8/app-b12588-mix-c0c3de8-linux-x64-cuda13-portable.tar.gz#sha256=6c1985d2d75c9cc6b299891d557aca70843ba5ccb68f14863a50687048cfdd48",
+  "env": {
+    "LD_LIBRARY_PATH": "llama-b12588-mix-c0c3de8:cuda13-runtime"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "JoeGuglielmucci/Arete-27B-MTP-GGUF",
+      "revision": "93d8dc24ec9ec7a95c63d7c72ccc509a43611b05",
+      "at": "models/Arete-27B-MTP-GGUF-93d8dc24",
+      "layout": "dir",
+      "files": [
+        "Arete-27B-MTP-Q4_K_M.gguf"
+      ]
+    },
+    {
+      "repo": "bartowski/NousResearch_Arete-27B-GGUF",
+      "revision": "9762c8502a79bd2b8634735d75f426b9febe092c",
+      "at": "models/NousResearch_Arete-27B-GGUF-9762c850",
+      "layout": "dir",
+      "files": [
+        "mmproj-NousResearch_Arete-27B-f16.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": true,
+  "backend": "nvidia",
+  "setup": "Not Docker; Linux x86-64 with an NVIDIA driver for CUDA 13. Unpack the archive into llama-b12588-mix-c0c3de8/ next to models/ and run from that directory. The archive does not bundle the CUDA runtime: put libcudart.so.13, libcublas.so.13 and libcublasLt.so.13 (PyPI nvidia-cuda-runtime 13.3.29 and nvidia-cublas 13.5.1.27) in cuda13-runtime/ and install libgomp1, or the server fails to load its CUDA backend.",
+  "source": "https://github.com/unslothai/llama.cpp/releases/tag/b12588-mix-c0c3de8"
+}

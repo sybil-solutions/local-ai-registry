@@ -62,6 +62,17 @@
       "logo": "qwen",
       "hf": "bytkim/Qwen3.8-27B-pi"
     },
+    "arete-27b": {
+      "family": "qwen",
+      "name": "Arete-27B",
+      "released": "2026-11-06",
+      "reasoning": true,
+      "vision": true,
+      "about": "Nous Research's supervised fine-tune of Qwen3.8-27B. Nous reports more factual answers on politically sensitive questions than the base model (answers flagged for propaganda down from 22% to 0.9% on its own evaluation) with general capability level with the base (Hermes Bench 65.60% against 65.77%). It ships without Qwen's MTP draft head; community GGUFs merge the head back in for speculative decoding.",
+      "good_for": "Agents and everyday assistant work on one 24 GB card",
+      "logo": "qwen",
+      "hf": "NousResearch/Arete-27B"
+    },
     "qwen3.8-flash-next": {
       "family": "qwen",
       "name": "Qwen3.8-Flash-Next",
