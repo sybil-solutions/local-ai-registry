@@ -1,0 +1,47 @@
+{
+ "name": "baseline",
+ "base_url": "http://127.0.0.1:8090",
+ "model": "inkling",
+ "launch": [
+  "bash",
+  "/tmp/inkling-skill/work/launch.sh",
+  "baseline",
+  "--jinja",
+  "-ngl",
+  "99",
+  "-fa",
+  "on",
+  "-c",
+  "65536",
+  "-np",
+  "1",
+  "-b",
+  "1024",
+  "-ub",
+  "256",
+  "-ctk",
+  "q8_0",
+  "-ctv",
+  "q8_0"
+ ],
+ "stop": [
+  "bash",
+  "/tmp/inkling-skill/work/stop.sh"
+ ],
+ "health_timeout_s": 300,
+ "concurrency": 2,
+ "prefill_lengths": [
+  4096,
+  16384
+ ],
+ "temperature": 1.0,
+ "require_ac": true,
+ "memory": {
+  "cap_gib": 24,
+  "probe": [
+   "bash",
+   "/tmp/inkling-skill/work/mem.sh"
+  ],
+  "interval_s": 2
+ }
+}

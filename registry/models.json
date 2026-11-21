@@ -299,6 +299,17 @@
         "at": "2026-10-05"
       }
     },
+    "inkling-2-mini": {
+      "family": "inkling",
+      "name": "Inkling-2-Mini",
+      "released": "2026-11-17",
+      "reasoning": true,
+      "vision": true,
+      "about": "Thinking Machines' Inkling 2 Mini: a looped mixture-of-experts (24 layers, layers 6-17 run three times per token; 128 experts, top 8). It reasons before it answers and calls tools.",
+      "good_for": "Reasoning and tool calls at 128K on a 32 GB Mac",
+      "logo": "hf",
+      "hf": "thinkingmachines/Inkling-2-Mini"
+    },
     "inkling-2-small": {
       "family": "inkling",
       "name": "Inkling-2-Small",
@@ -1378,6 +1389,10 @@
     "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF@8cd082170ed313484be1cf44f256a5caa2cfdad3": {
       "format": "GGUF · Q4_0",
       "size_gb": 18.9
+    },
+    "ggml-org/Inkling-2-Mini-GGUF@db61c5b492a6a034d986328d28274af0a439aa6c": {
+      "format": "GGUF · IQ4_NL",
+      "size_gb": 17.63
     },
     "bartowski/GrootTeam_Groot-19B-A3B-261023-GGUF@0025df0d03fb385344394f4e5afd73ce47da0680": {
       "format": "GGUF · Q2_K, Q4_0, vision",
