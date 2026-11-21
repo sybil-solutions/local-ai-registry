@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Round 1: built-in MTP head at 1/2/3 draft tokens between controls; round 2: larger ubatch for prefill.
+# Round 1 (PLAN.md E2): built-in MTP head at 1/2/3 draft tokens between controls, then E3: larger ubatch for prefill.
 # Base: 128K, -ub 256, q8_0 KV (same as the Inkling recipe). Waits for the baseline bench to finish first.
 set -u
 cd "$HOME/lai-work/qwen/exp"
