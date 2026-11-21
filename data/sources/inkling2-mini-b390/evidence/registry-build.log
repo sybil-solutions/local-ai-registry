@@ -1,0 +1,1438 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.57kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
+#2 DONE 0.7s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
+#4 resolve docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36 0.0s done
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 174B done
+#5 DONE 0.0s
+
+#6 [2/7] RUN git init -q /opt/trellis-serve  && cd /opt/trellis-serve  && git fetch -q --depth 1 https://github.com/sybil-solutions/trellis-serve.git "8f8e2fccf0c82c9715b774812f30d9d52f78a5fb"  && git checkout -q --detach FETCH_HEAD  && test "$(git rev-parse HEAD)" = "8f8e2fccf0c82c9715b774812f30d9d52f78a5fb"
+#6 DONE 0.9s
+
+#7 [3/7] RUN pip install --no-deps --no-build-isolation -e /opt/trellis-serve/core -e /opt/trellis-serve/xpu
+#7 0.633 Obtaining file:///opt/trellis-serve/core
+#7 0.633   Checking if build backend supports build_editable: started
+#7 0.740   Checking if build backend supports build_editable: finished with status 'done'
+#7 0.740   Preparing editable metadata (pyproject.toml): started
+#7 0.939   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#7 0.943 Obtaining file:///opt/trellis-serve/xpu
+#7 0.943   Checking if build backend supports build_editable: started
+#7 1.020   Checking if build backend supports build_editable: finished with status 'done'
+#7 1.020   Preparing editable metadata (pyproject.toml): started
+#7 1.185   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#7 1.189 Building wheels for collected packages: trellis-core, exl3xpu
+#7 1.190   Building editable for trellis-core (pyproject.toml): started
+#7 1.378   Building editable for trellis-core (pyproject.toml): finished with status 'done'
+#7 1.378   Created wheel for trellis-core: filename=trellis_core-0.1.0-0.editable-py3-none-any.whl size=1368 sha256=7f716ec4d6b807d1f0304685c94134f5947b6e01f800a7f1cb44d6525b2b518b
+#7 1.378   Stored in directory: /tmp/pip-ephem-wheel-cache-brd9yfas/wheels/ba/49/ac/18af0a10119c6ce6d395cfe5d915287e04d2b6cb5ae9372102
+#7 1.381   Building editable for exl3xpu (pyproject.toml): started
+#7 1.572   Building editable for exl3xpu (pyproject.toml): finished with status 'done'
+#7 1.572   Created wheel for exl3xpu: filename=exl3xpu-0.1.0-0.editable-py3-none-any.whl size=2993 sha256=457d7d80a1553a8f6ab768d2284319d889cc00c1a47ad163089b7f8345087e69
+#7 1.572   Stored in directory: /tmp/pip-ephem-wheel-cache-brd9yfas/wheels/2f/d9/77/ef43780b442bb9205b16e7bb9516382c6f2471ba2f5e3ed288
+#7 1.573 Successfully built trellis-core exl3xpu
+#7 1.584 Installing collected packages: trellis-core, exl3xpu
+#7 1.593 
+#7 1.602 Successfully installed exl3xpu-0.1.0 trellis-core-0.1.0
+#7 DONE 1.7s
+
+#8 [4/7] WORKDIR /opt/trellis-serve/xpu
+#8 DONE 0.0s
+
+#9 [5/7] RUN rm -f exl3xpu/_inkling2.so  && bash scripts/build_inkling2.sh  && test -s exl3xpu/_inkling2.so  && python3 -c "import torch; torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_inkling2.so'); print(torch.ops.inkling2_xpu.moe_gemv2)"
+#9 1.991 icpx: warning: '-x none' after last input file has no effect [-Wunused-command-line-argument]
+#9 2.805 In file included from csrc/inkling2_ops.sycl:12:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:10:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/ScalarType.h:4:
+#9 2.805 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/BFloat16.h:2:
+#9 2.805 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/util/BFloat16.h:106:7: warning: use of NaN is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 2.805   106 |   if (std::isnan(src)) {
+#9 2.805       |       ^~~~~~~~~~~~~~~
+#9 2.856 In file included from csrc/inkling2_ops.sycl:12:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 2.856 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 2.856 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 2.856    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 2.856       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 2.914 In file included from csrc/inkling2_ops.sycl:12:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:21:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/TensorImpl.h:9:
+#9 2.914 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/InferenceMode.h:4:
+#9 2.914 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/AutogradState.h:89:33: warning: default member initializer for bit-field is a C++20 extension [-Wc++20-extensions]
+#9 2.914    89 |   bool view_replay_enabled_ : 1 = false;
+#9 2.914       |                                 ^
+#9 2.914 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/AutogradState.h:90:45: warning: default member initializer for bit-field is a C++20 extension [-Wc++20-extensions]
+#9 2.914    90 |   bool grad_layout_enforcement_enabled_ : 1 = true;
+#9 2.914       |                                             ^
+#9 5.404 In file included from csrc/inkling2_ops.sycl:12:
+#9 5.404 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:16:
+#9 5.404 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:5:
+#9 5.404 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional.h:12:
+#9 5.404 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/loss.h:5:
+#9 5.404 /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/activation.h:900:16: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 5.404   900 |               -std::numeric_limits<scalar_t>::infinity());
+#9 5.404       |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 5.404 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:197:66: note: expanded from macro 'AT_DISPATCH_FLOATING_TYPES'
+#9 5.404   197 |   AT_DISPATCH_SWITCH(TYPE, NAME, AT_DISPATCH_CASE_FLOATING_TYPES(__VA_ARGS__))
+#9 5.404       |                                                                  ^~~~~~~~~~~
+#9 5.404 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:193:44: note: expanded from macro 'AT_DISPATCH_CASE_FLOATING_TYPES'
+#9 5.404   193 |   AT_DISPATCH_CASE(at::ScalarType::Double, __VA_ARGS__) \
+#9 5.404       |                                            ^~~~~~~~~~~
+#9 5.404 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:71:56: note: expanded from macro 'AT_DISPATCH_CASE'
+#9 5.404    71 |   AT_PRIVATE_CASE_TYPE_USING_HINT(enum_type, scalar_t, __VA_ARGS__)
+#9 5.404       |                                                        ^~~~~~~~~~~
+#9 5.404 note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+#9 5.404 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/Dispatch.h:13:12: note: expanded from macro 'THO_PRIVATE_CASE_TYPE_USING_HINT_TMPL'
+#9 5.404    13 |     return __VA_ARGS__();                                                    \
+#9 5.404       |            ^~~~~~~~~~~
+#9 5.404 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:190:7: note: expanded from macro 'AT_DISPATCH_SWITCH'
+#9 5.404   190 |       __VA_ARGS__)
+#9 5.404       |       ^~~~~~~~~~~
+#9 5.404 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/Dispatch.h:40:7: note: expanded from macro 'THO_DISPATCH_SWITCH_TMPL'
+#9 5.404    40 |       __VA_ARGS__                                                           \
+#9 5.404       |       ^~~~~~~~~~~
+#9 5.405 In file included from csrc/inkling2_ops.sycl:12:
+#9 5.405 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:16:
+#9 5.405 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:5:
+#9 5.405 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional.h:12:
+#9 5.405 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/loss.h:5:
+#9 5.405 /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/activation.h:900:16: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 5.405   900 |               -std::numeric_limits<scalar_t>::infinity());
+#9 5.405       |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 5.405 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:197:66: note: expanded from macro 'AT_DISPATCH_FLOATING_TYPES'
+#9 5.405   197 |   AT_DISPATCH_SWITCH(TYPE, NAME, AT_DISPATCH_CASE_FLOATING_TYPES(__VA_ARGS__))
+#9 5.405       |                                                                  ^~~~~~~~~~~
+#9 5.405 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:194:43: note: expanded from macro 'AT_DISPATCH_CASE_FLOATING_TYPES'
+#9 5.405   194 |   AT_DISPATCH_CASE(at::ScalarType::Float, __VA_ARGS__)
+#9 5.405       |                                           ^~~~~~~~~~~
+#9 5.405 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:71:56: note: expanded from macro 'AT_DISPATCH_CASE'
+#9 5.405    71 |   AT_PRIVATE_CASE_TYPE_USING_HINT(enum_type, scalar_t, __VA_ARGS__)
+#9 5.405       |                                                        ^~~~~~~~~~~
+#9 5.405 note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+#9 5.405 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/Dispatch.h:13:12: note: expanded from macro 'THO_PRIVATE_CASE_TYPE_USING_HINT_TMPL'
+#9 5.405    13 |     return __VA_ARGS__();                                                    \
+#9 5.405       |            ^~~~~~~~~~~
+#9 5.405 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:190:7: note: expanded from macro 'AT_DISPATCH_SWITCH'
+#9 5.405   190 |       __VA_ARGS__)
+#9 5.405       |       ^~~~~~~~~~~
+#9 5.405 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/Dispatch.h:40:7: note: expanded from macro 'THO_DISPATCH_SWITCH_TMPL'
+#9 5.405    40 |       __VA_ARGS__                                                           \
+#9 5.405       |       ^~~~~~~~~~~
+#9 5.777 In file included from csrc/inkling2_ops.sycl:12:
+#9 5.777 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:16:
+#9 5.777 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:11:
+#9 5.777 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/utils.h:4:
+#9 5.777 /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/utils/clip_grad.h:41:20: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 5.777    41 |   if (norm_type == std::numeric_limits<double>::infinity()) {
+#9 5.777       |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 5.778 /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/utils/clip_grad.h:72:9: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 5.778    72 |         std::isfinite(*total_norm),
+#9 5.778       |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 5.778 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/Exception.h:627:31: note: expanded from macro 'TORCH_CHECK'
+#9 5.778   627 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+#9 5.778       |                               ^~~~
+#9 5.778 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/util/Exception.h:28:47: note: expanded from macro 'C10_UNLIKELY_OR_CONST'
+#9 5.778    28 | #define C10_UNLIKELY_OR_CONST(e) C10_UNLIKELY(e)
+#9 5.778       |                                               ^
+#9 5.778 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/macros/Macros.h:202:64: note: expanded from macro 'C10_UNLIKELY'
+#9 5.778   202 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+#9 5.778       |                                                                ^~~~
+#9 6.201 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.201 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.201 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.201    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.201       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.201 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<unsigned char, double>' requested here
+#9 6.201   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.201       |                                    ^
+#9 6.201 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<unsigned char, double>' requested here
+#9 6.201   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.201       |                                       ^
+#9 6.201 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:82:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.201    82 |   _(uint8_t, Byte)                             \
+#9 6.201       |   ^
+#9 6.201 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.201   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.201       |              ^
+#9 6.203 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.203 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.203 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.203    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.203       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.203 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<signed char, double>' requested here
+#9 6.203   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.203       |                                    ^
+#9 6.203 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<signed char, double>' requested here
+#9 6.203   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.203       |                                       ^
+#9 6.203 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:83:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.203    83 |   _(int8_t, Char)                              \
+#9 6.203       |   ^
+#9 6.203 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.203   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.203       |              ^
+#9 6.204 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.204    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.204       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<short, double>' requested here
+#9 6.204   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.204       |                                    ^
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<short, double>' requested here
+#9 6.204   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.204       |                                       ^
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:84:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.204    84 |   _(int16_t, Short)                            \
+#9 6.204       |   ^
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.204   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.204       |              ^
+#9 6.204 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.204 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.204    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.204       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<int, double>' requested here
+#9 6.204   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.204       |                                    ^
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<int, double>' requested here
+#9 6.204   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.204       |                                       ^
+#9 6.204 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:85:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.204    85 |   _(int, Int)                                  \
+#9 6.205       |   ^
+#9 6.205 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.205   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.205       |              ^
+#9 6.205 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.205 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.205 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.205    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.205       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.205 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<long, double>' requested here
+#9 6.205   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.205       |                                    ^
+#9 6.205 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<long, double>' requested here
+#9 6.205   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.205       |                                       ^
+#9 6.205 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:86:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.205    86 |   _(int64_t, Long)                             \
+#9 6.205       |   ^
+#9 6.205 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.205   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.205       |              ^
+#9 6.206 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.206 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.206 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.206    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.206       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.206 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Half, double>' requested here
+#9 6.206   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.206       |                                    ^
+#9 6.206 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Half, double>' requested here
+#9 6.206   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.206       |                                       ^
+#9 6.206 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:87:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.206    87 |   _(c10::Half, Half)                           \
+#9 6.206       |   ^
+#9 6.206 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.206   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.206       |              ^
+#9 6.208 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.208 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.208 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.208    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.208       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.208 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<float, double>' requested here
+#9 6.208   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.208       |                                    ^
+#9 6.208 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<float, double>' requested here
+#9 6.208   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.208       |                                       ^
+#9 6.208 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:88:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.208    88 |   _(float, Float)                              \
+#9 6.208       |   ^
+#9 6.208 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.208   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.208       |              ^
+#9 6.209 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.209 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.209 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.209    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.209       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.209 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<double, double>' requested here
+#9 6.209   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.209       |                                    ^
+#9 6.209 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<double, double>' requested here
+#9 6.209   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.209       |                                       ^
+#9 6.209 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:89:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.209    89 |   _(double, Double)                            \
+#9 6.209       |   ^
+#9 6.209 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.209   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.209       |              ^
+#9 6.210 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.210 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.210 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.210    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.210       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.210 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::complex<Half>, double>' requested here
+#9 6.210   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.210       |                                    ^
+#9 6.210 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::complex<Half>, double>' requested here
+#9 6.210   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.210       |                                       ^
+#9 6.210 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:90:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.210    90 |   _(c10::complex<c10::Half>, ComplexHalf)      \
+#9 6.210       |   ^
+#9 6.210 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.210   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.210       |              ^
+#9 6.211 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.211 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.211 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.211    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.211       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.211 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::complex<float>, double>' requested here
+#9 6.211   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.211       |                                    ^
+#9 6.211 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::complex<float>, double>' requested here
+#9 6.211   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.211       |                                       ^
+#9 6.211 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:91:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.211    91 |   _(c10::complex<float>, ComplexFloat)         \
+#9 6.211       |   ^
+#9 6.211 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.211   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.211       |              ^
+#9 6.212 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.212 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.212 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.212    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.212       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.212 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::complex<double>, double>' requested here
+#9 6.212   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.212       |                                    ^
+#9 6.212 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::complex<double>, double>' requested here
+#9 6.212   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.212       |                                       ^
+#9 6.212 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:92:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.212    92 |   _(c10::complex<double>, ComplexDouble)       \
+#9 6.212       |   ^
+#9 6.212 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.212   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.212       |              ^
+#9 6.213 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.213 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.213 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.213    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.213       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.213 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<bool, double>' requested here
+#9 6.213   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.213       |                                    ^
+#9 6.213 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<bool, double>' requested here
+#9 6.213   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.213       |                                       ^
+#9 6.213 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:93:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.213    93 |   _(bool, Bool)                                \
+#9 6.213       |   ^
+#9 6.213 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.213   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.213       |              ^
+#9 6.214 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.214 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.214 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.214    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.214       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.214 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::BFloat16, double>' requested here
+#9 6.214   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.214       |                                    ^
+#9 6.214 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::BFloat16, double>' requested here
+#9 6.214   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.214       |                                       ^
+#9 6.214 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:94:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.214    94 |   _(c10::BFloat16, BFloat16)                   \
+#9 6.214       |   ^
+#9 6.214 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.214   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.214       |              ^
+#9 6.216 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.216 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.216 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.216    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.216       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.216 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e5m2, double>' requested here
+#9 6.216   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.216       |                                    ^
+#9 6.216 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e5m2, double>' requested here
+#9 6.216   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.216       |                                       ^
+#9 6.216 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:95:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.216    95 |   _(c10::Float8_e5m2, Float8_e5m2)             \
+#9 6.216       |   ^
+#9 6.216 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.216   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.216       |              ^
+#9 6.217 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.217 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.217 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.217    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.217       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.217 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e4m3fn, double>' requested here
+#9 6.217   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.217       |                                    ^
+#9 6.217 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e4m3fn, double>' requested here
+#9 6.217   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.217       |                                       ^
+#9 6.217 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:96:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.217    96 |   _(c10::Float8_e4m3fn, Float8_e4m3fn)         \
+#9 6.217       |   ^
+#9 6.217 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.217   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.217       |              ^
+#9 6.219 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.219 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.219 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.219    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.219       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.219 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e5m2fnuz, double>' requested here
+#9 6.219   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.219       |                                    ^
+#9 6.219 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e5m2fnuz, double>' requested here
+#9 6.219   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.219       |                                       ^
+#9 6.219 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:97:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.219    97 |   _(c10::Float8_e5m2fnuz, Float8_e5m2fnuz)     \
+#9 6.219       |   ^
+#9 6.219 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.219   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.219       |              ^
+#9 6.220 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.220 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.220 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.220    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.220       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.220 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e4m3fnuz, double>' requested here
+#9 6.220   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.220       |                                    ^
+#9 6.220 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e4m3fnuz, double>' requested here
+#9 6.220   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.220       |                                       ^
+#9 6.220 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:98:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.220    98 |   _(c10::Float8_e4m3fnuz, Float8_e4m3fnuz)     \
+#9 6.220       |   ^
+#9 6.220 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.220   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.220       |              ^
+#9 6.221 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.221 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.221 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.221    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.221       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.221 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e8m0fnu, double>' requested here
+#9 6.221   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.221       |                                    ^
+#9 6.221 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e8m0fnu, double>' requested here
+#9 6.221   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 6.221       |                                       ^
+#9 6.221 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:99:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 6.221    99 |   _(c10::Float8_e8m0fnu, Float8_e8m0fnu)
+#9 6.221       |   ^
+#9 6.221 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.221   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.221       |              ^
+#9 6.223 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.223 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.223 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.223    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.223       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.223 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<unsigned short, double>' requested here
+#9 6.223   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.223       |                                    ^
+#9 6.223 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:142:3: note: in instantiation of function template specialization 'c10::checked_convert<unsigned short, double>' requested here
+#9 6.223   142 |   DEFINE_ACCESSOR(uint16_t, UInt16)
+#9 6.223       |   ^
+#9 6.223 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.223   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.223       |              ^
+#9 6.224 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.224 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.224 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.224    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.224       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.224 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<unsigned int, double>' requested here
+#9 6.224   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.224       |                                    ^
+#9 6.224 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:143:3: note: in instantiation of function template specialization 'c10::checked_convert<unsigned int, double>' requested here
+#9 6.224   143 |   DEFINE_ACCESSOR(uint32_t, UInt32)
+#9 6.224       |   ^
+#9 6.224 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.224   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.224       |              ^
+#9 6.225 In file included from csrc/inkling2_ops.sycl:12:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 6.225 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 6.225 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 6.225    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 6.225       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 6.225 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<unsigned long, double>' requested here
+#9 6.225   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 6.225       |                                    ^
+#9 6.225 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:144:3: note: in instantiation of function template specialization 'c10::checked_convert<unsigned long, double>' requested here
+#9 6.225   144 |   DEFINE_ACCESSOR(uint64_t, UInt64)
+#9 6.225       |   ^
+#9 6.225 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 6.225   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 6.225       |              ^
+#9 9.831 29 warnings generated.
+#9 10.58 In file included from csrc/inkling2_ops.sycl:12:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:10:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/ScalarType.h:4:
+#9 10.58 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/BFloat16.h:2:
+#9 10.58 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/util/BFloat16.h:106:7: warning: use of NaN is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 10.58   106 |   if (std::isnan(src)) {
+#9 10.58       |       ^~~~~~~~~~~~~~~
+#9 10.63 In file included from csrc/inkling2_ops.sycl:12:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 10.63 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 10.63 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 10.63    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 10.63       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 10.69 In file included from csrc/inkling2_ops.sycl:12:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:21:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/TensorImpl.h:9:
+#9 10.69 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/InferenceMode.h:4:
+#9 10.69 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/AutogradState.h:89:33: warning: default member initializer for bit-field is a C++20 extension [-Wc++20-extensions]
+#9 10.69    89 |   bool view_replay_enabled_ : 1 = false;
+#9 10.69       |                                 ^
+#9 10.69 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/AutogradState.h:90:45: warning: default member initializer for bit-field is a C++20 extension [-Wc++20-extensions]
+#9 10.69    90 |   bool grad_layout_enforcement_enabled_ : 1 = true;
+#9 10.69       |                                             ^
+#9 12.75 In file included from csrc/inkling2_ops.sycl:12:
+#9 12.75 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:16:
+#9 12.75 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:5:
+#9 12.75 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional.h:12:
+#9 12.75 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/loss.h:5:
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/activation.h:900:16: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 12.75   900 |               -std::numeric_limits<scalar_t>::infinity());
+#9 12.75       |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:197:66: note: expanded from macro 'AT_DISPATCH_FLOATING_TYPES'
+#9 12.75   197 |   AT_DISPATCH_SWITCH(TYPE, NAME, AT_DISPATCH_CASE_FLOATING_TYPES(__VA_ARGS__))
+#9 12.75       |                                                                  ^~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:193:44: note: expanded from macro 'AT_DISPATCH_CASE_FLOATING_TYPES'
+#9 12.75   193 |   AT_DISPATCH_CASE(at::ScalarType::Double, __VA_ARGS__) \
+#9 12.75       |                                            ^~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:71:56: note: expanded from macro 'AT_DISPATCH_CASE'
+#9 12.75    71 |   AT_PRIVATE_CASE_TYPE_USING_HINT(enum_type, scalar_t, __VA_ARGS__)
+#9 12.75       |                                                        ^~~~~~~~~~~
+#9 12.75 note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/Dispatch.h:13:12: note: expanded from macro 'THO_PRIVATE_CASE_TYPE_USING_HINT_TMPL'
+#9 12.75    13 |     return __VA_ARGS__();                                                    \
+#9 12.75       |            ^~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:190:7: note: expanded from macro 'AT_DISPATCH_SWITCH'
+#9 12.75   190 |       __VA_ARGS__)
+#9 12.75       |       ^~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/Dispatch.h:40:7: note: expanded from macro 'THO_DISPATCH_SWITCH_TMPL'
+#9 12.75    40 |       __VA_ARGS__                                                           \
+#9 12.75       |       ^~~~~~~~~~~
+#9 12.75 In file included from csrc/inkling2_ops.sycl:12:
+#9 12.75 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:16:
+#9 12.75 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:5:
+#9 12.75 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional.h:12:
+#9 12.75 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/loss.h:5:
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/activation.h:900:16: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 12.75   900 |               -std::numeric_limits<scalar_t>::infinity());
+#9 12.75       |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:197:66: note: expanded from macro 'AT_DISPATCH_FLOATING_TYPES'
+#9 12.75   197 |   AT_DISPATCH_SWITCH(TYPE, NAME, AT_DISPATCH_CASE_FLOATING_TYPES(__VA_ARGS__))
+#9 12.75       |                                                                  ^~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:194:43: note: expanded from macro 'AT_DISPATCH_CASE_FLOATING_TYPES'
+#9 12.75   194 |   AT_DISPATCH_CASE(at::ScalarType::Float, __VA_ARGS__)
+#9 12.75       |                                           ^~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:71:56: note: expanded from macro 'AT_DISPATCH_CASE'
+#9 12.75    71 |   AT_PRIVATE_CASE_TYPE_USING_HINT(enum_type, scalar_t, __VA_ARGS__)
+#9 12.75       |                                                        ^~~~~~~~~~~
+#9 12.75 note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/Dispatch.h:13:12: note: expanded from macro 'THO_PRIVATE_CASE_TYPE_USING_HINT_TMPL'
+#9 12.75    13 |     return __VA_ARGS__();                                                    \
+#9 12.75       |            ^~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Dispatch.h:190:7: note: expanded from macro 'AT_DISPATCH_SWITCH'
+#9 12.75   190 |       __VA_ARGS__)
+#9 12.75       |       ^~~~~~~~~~~
+#9 12.75 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/Dispatch.h:40:7: note: expanded from macro 'THO_DISPATCH_SWITCH_TMPL'
+#9 12.75    40 |       __VA_ARGS__                                                           \
+#9 12.75       |       ^~~~~~~~~~~
+#9 13.06 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.06 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:16:
+#9 13.06 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:11:
+#9 13.06 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/utils.h:4:
+#9 13.06 /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/utils/clip_grad.h:41:20: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.06    41 |   if (norm_type == std::numeric_limits<double>::infinity()) {
+#9 13.06       |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.06 /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/nn/utils/clip_grad.h:72:9: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.06    72 |         std::isfinite(*total_norm),
+#9 13.06       |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.06 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/Exception.h:627:31: note: expanded from macro 'TORCH_CHECK'
+#9 13.06   627 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+#9 13.06       |                               ^~~~
+#9 13.06 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/util/Exception.h:28:47: note: expanded from macro 'C10_UNLIKELY_OR_CONST'
+#9 13.06    28 | #define C10_UNLIKELY_OR_CONST(e) C10_UNLIKELY(e)
+#9 13.06       |                                               ^
+#9 13.06 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/macros/Macros.h:202:64: note: expanded from macro 'C10_UNLIKELY'
+#9 13.06   202 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+#9 13.06       |                                                                ^~~~
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<unsigned char, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<unsigned char, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:82:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    82 |   _(uint8_t, Byte)                             \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<signed char, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<signed char, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:83:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    83 |   _(int8_t, Char)                              \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<short, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<short, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:84:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    84 |   _(int16_t, Short)                            \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<int, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<int, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:85:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    85 |   _(int, Int)                                  \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<long, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<long, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:86:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    86 |   _(int64_t, Long)                             \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Half, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Half, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:87:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    87 |   _(c10::Half, Half)                           \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<float, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<float, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:88:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    88 |   _(float, Float)                              \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<double, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<double, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:89:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    89 |   _(double, Double)                            \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.47 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.47 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.47    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.47       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::complex<Half>, double>' requested here
+#9 13.47   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.47       |                                    ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::complex<Half>, double>' requested here
+#9 13.47   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.47       |                                       ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:90:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.47    90 |   _(c10::complex<c10::Half>, ComplexHalf)      \
+#9 13.47       |   ^
+#9 13.47 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.47   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.47       |              ^
+#9 13.48 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.48    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.48       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::complex<float>, double>' requested here
+#9 13.48   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.48       |                                    ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::complex<float>, double>' requested here
+#9 13.48   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.48       |                                       ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:91:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.48    91 |   _(c10::complex<float>, ComplexFloat)         \
+#9 13.48       |   ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.48   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.48       |              ^
+#9 13.48 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.48    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.48       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::complex<double>, double>' requested here
+#9 13.48   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.48       |                                    ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::complex<double>, double>' requested here
+#9 13.48   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.48       |                                       ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:92:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.48    92 |   _(c10::complex<double>, ComplexDouble)       \
+#9 13.48       |   ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.48   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.48       |              ^
+#9 13.48 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.48    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.48       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<bool, double>' requested here
+#9 13.48   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.48       |                                    ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<bool, double>' requested here
+#9 13.48   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.48       |                                       ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:93:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.48    93 |   _(bool, Bool)                                \
+#9 13.48       |   ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.48   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.48       |              ^
+#9 13.48 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.48    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.48       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::BFloat16, double>' requested here
+#9 13.48   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.48       |                                    ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::BFloat16, double>' requested here
+#9 13.48   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.48       |                                       ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:94:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.48    94 |   _(c10::BFloat16, BFloat16)                   \
+#9 13.48       |   ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.48   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.48       |              ^
+#9 13.48 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.48    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.48       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e5m2, double>' requested here
+#9 13.48   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.48       |                                    ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e5m2, double>' requested here
+#9 13.48   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.48       |                                       ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:95:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.48    95 |   _(c10::Float8_e5m2, Float8_e5m2)             \
+#9 13.48       |   ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.48   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.48       |              ^
+#9 13.48 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.48    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.48       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e4m3fn, double>' requested here
+#9 13.48   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.48       |                                    ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e4m3fn, double>' requested here
+#9 13.48   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.48       |                                       ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:96:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.48    96 |   _(c10::Float8_e4m3fn, Float8_e4m3fn)         \
+#9 13.48       |   ^
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.48   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.48       |              ^
+#9 13.48 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.48 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.48    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.48       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.48 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e5m2fnuz, double>' requested here
+#9 13.48   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.48       |                                    ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e5m2fnuz, double>' requested here
+#9 13.49   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.49       |                                       ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:97:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.49    97 |   _(c10::Float8_e5m2fnuz, Float8_e5m2fnuz)     \
+#9 13.49       |   ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.49   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.49       |              ^
+#9 13.49 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.49    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.49       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e4m3fnuz, double>' requested here
+#9 13.49   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.49       |                                    ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e4m3fnuz, double>' requested here
+#9 13.49   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.49       |                                       ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:98:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.49    98 |   _(c10::Float8_e4m3fnuz, Float8_e4m3fnuz)     \
+#9 13.49       |   ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.49   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.49       |              ^
+#9 13.49 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.49    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.49       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<c10::Float8_e8m0fnu, double>' requested here
+#9 13.49   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.49       |                                    ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:141:39: note: in instantiation of function template specialization 'c10::checked_convert<c10::Float8_e8m0fnu, double>' requested here
+#9 13.49   141 |   AT_FORALL_SCALAR_TYPES_WITH_COMPLEX(DEFINE_ACCESSOR)
+#9 13.49       |                                       ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/torch/headeronly/core/ScalarType.h:99:3: note: expanded from macro 'AT_FORALL_SCALAR_TYPES_WITH_COMPLEX'
+#9 13.49    99 |   _(c10::Float8_e8m0fnu, Float8_e8m0fnu)
+#9 13.49       |   ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.49   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.49       |              ^
+#9 13.49 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.49    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.49       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<unsigned short, double>' requested here
+#9 13.49   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.49       |                                    ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:142:3: note: in instantiation of function template specialization 'c10::checked_convert<unsigned short, double>' requested here
+#9 13.49   142 |   DEFINE_ACCESSOR(uint16_t, UInt16)
+#9 13.49       |   ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.49   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.49       |              ^
+#9 13.49 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.49    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.49       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<unsigned int, double>' requested here
+#9 13.49   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.49       |                                    ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:143:3: note: in instantiation of function template specialization 'c10::checked_convert<unsigned int, double>' requested here
+#9 13.49   143 |   DEFINE_ACCESSOR(uint32_t, UInt32)
+#9 13.49       |   ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.49   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.49       |              ^
+#9 13.49 In file included from csrc/inkling2_ops.sycl:12:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/autograd.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/variable.h:7:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/Tensor.h:4:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/ATen/core/TensorBody.h:17:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:19:
+#9 13.49 In file included from /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:12:
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/overflows.h:66:30: warning: use of infinity is undefined behavior due to the currently enabled floating-point options [-Wnan-infinity-disabled]
+#9 13.49    66 |   if (limit::has_infinity && std::isinf(static_cast<double>(f))) {
+#9 13.49       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/util/TypeCast.h:197:36: note: in instantiation of function template specialization 'c10::overflows<unsigned long, double>' requested here
+#9 13.49   197 |   if (!std::is_same_v<To, bool> && overflows<To, From>(f)) {
+#9 13.49       |                                    ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:144:3: note: in instantiation of function template specialization 'c10::checked_convert<unsigned long, double>' requested here
+#9 13.49   144 |   DEFINE_ACCESSOR(uint64_t, UInt64)
+#9 13.49       |   ^
+#9 13.49 /opt/venv/lib/python3.12/site-packages/torch/include/c10/core/Scalar.h:117:14: note: expanded from macro 'DEFINE_ACCESSOR'
+#9 13.49   117 |       return checked_convert<type, double>(v.d, #type);               \
+#9 13.49       |              ^
+#9 24.52 29 warnings generated.
+#9 26.62 -rwxr-xr-x 1 root root 4833192 Nov 21 03:57 exl3xpu/_inkling2.so
+#9 27.32 inkling2_xpu.moe_gemv2
+#9 DONE 27.6s
+
+#10 [6/7] COPY data/sources/inkling2-mini-b390/entrypoint.sh /opt/inkling2-entrypoint.sh
+#10 DONE 0.0s
+
+#11 [7/7] RUN chmod 0755 /opt/inkling2-entrypoint.sh
+#11 DONE 0.1s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 0.2s done
+#12 exporting manifest sha256:5623b8f0102e42eeba50587df35f8e9d5985e4be6017c945b4467d16eb66abc1 done
+#12 exporting config sha256:0628c4c4234d9bc2fc6e6bbd74b94c0a900fb147bc3d16055780c7e42ea7ef17 done
+#12 exporting attestation manifest sha256:f57ccb31f0bfc45f969ec72db520d59354fc6382f3206d216a957a63a2f51201 done
+#12 exporting manifest list sha256:1fcb953b6d2d8d8cbabe4ca83dde03b37a2ed83235eb1800f0e0ffed29d65ff8 done
+#12 naming to docker.io/library/inkling2-b390-recipe:registry done
+#12 unpacking to docker.io/library/inkling2-b390-recipe:registry 0.1s done
+#12 DONE 0.3s
+BUILD_RC=0
