@@ -1,0 +1,46 @@
+{
+  "id": "llama.cpp-metal-gemma-4-31b-q4-k-m-128k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Gemma 4 31B (GGUF Q4_K_M, f16 KV) on llama.cpp b12588 Metal, -c 131072 -np 1, on Apple M5 Max 128GB",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/unsloth-gemma-4-31B-it-GGUF-c1ac76e9/gemma-4-31B-it-Q4_K_M.gguf",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-fa",
+    "on",
+    "-ngl",
+    "99",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--alias",
+    "gemma-4-31b",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "unsloth/gemma-4-31B-it-GGUF",
+      "revision": "c1ac76e99d5513b141e8adde7288b85c3f9c32ec",
+      "at": "models/unsloth-gemma-4-31B-it-GGUF-c1ac76e9",
+      "layout": "dir",
+      "files": [
+        "gemma-4-31B-it-Q4_K_M.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
