@@ -1,0 +1,403 @@
+0.00.154.682 I srv  llama_server: initializing ...
+0.00.154.691 I cmn  common_param: common_params_print_info: build 12588 (883286076) with AppleClang 21.0.0.21000101 for Darwin arm64 (Compiled by the Unsloth team)
+0.00.154.692 I cmn  common_param: common_params_print_info: verbosity = 2147483647 (adjust with the `-lv N` CLI arg)
+0.00.154.692 I cmn  common_param: device_info:
+0.00.154.697 I cmn  common_param:   - MTL0    : Apple M1 Max (25559 MiB, 25558 MiB free)
+0.00.154.698 I cmn  common_param:   - BLAS    : Accelerate (0 MiB, 0 MiB free)
+0.00.154.705 I cmn  common_param:   - CPU     : Apple M1 Max (32768 MiB, 32768 MiB free)
+0.00.154.718 I cmn  common_param: system_info: n_threads = 8 (n_threads_batch = 8) / 10 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | DOTPROD = 1 | LLAMAFILE = 1 | ACCELERATE = 1 | REPACK = 1 | 
+0.00.155.192 I srv          init: using 9 threads for HTTP server
+0.00.155.227 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.156.673 I srv    load_model: loading model 'weights/Inkling-2-Mini-UD-Q4_K_XL.gguf'
+0.00.156.677 I srv    load_model: local path 'weights/Inkling-2-Mini-UD-Q4_K_XL.gguf'
+0.00.215.593 I llama_model_loader: loaded meta data with 62 key-value pairs and 734 tensors from weights/Inkling-2-Mini-UD-Q4_K_XL.gguf (version GGUF V3 (latest))
+0.00.215.607 I llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+0.00.215.609 I llama_model_loader: - kv   0:                       general.architecture str              = inkling2
+0.00.215.610 I llama_model_loader: - kv   1:                               general.type str              = model
+0.00.215.610 I llama_model_loader: - kv   2:                               general.name str              = Inkling-2-Mini
+0.00.215.610 I llama_model_loader: - kv   3:                         general.size_label str              = 128x1.8B
+0.00.215.611 I llama_model_loader: - kv   4:                       inkling2.block_count u32              = 48
+0.00.215.612 I llama_model_loader: - kv   5:                    inkling2.context_length u32              = 1048576
+0.00.215.612 I llama_model_loader: - kv   6:                  inkling2.embedding_length u32              = 2304
+0.00.215.613 I llama_model_loader: - kv   7:               inkling2.feed_forward_length u32              = 1152
+0.00.215.616 I llama_model_loader: - kv   8:              inkling2.attention.head_count arr[i32,48]      = [24, 24, 24, 24, 24, 24, 24, 24, 24, ...
+0.00.215.617 I llama_model_loader: - kv   9:           inkling2.attention.head_count_kv arr[i32,48]      = [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, ...
+0.00.215.619 I llama_model_loader: - kv  10:  inkling2.attention.layer_norm_rms_epsilon f32              = 0.000001
+0.00.215.620 I llama_model_loader: - kv  11:                      inkling2.expert_count u32              = 128
+0.00.215.620 I llama_model_loader: - kv  12:                 inkling2.expert_used_count u32              = 8
+0.00.215.621 I llama_model_loader: - kv  13:              inkling2.attention.key_length u32              = 128
+0.00.215.621 I llama_model_loader: - kv  14:            inkling2.attention.value_length u32              = 128
+0.00.215.621 I llama_model_loader: - kv  15:                         inkling2.num_loops u32              = 3
+0.00.215.622 I llama_model_loader: - kv  16:                   inkling2.loop.core_start u32              = 6
+0.00.215.622 I llama_model_loader: - kv  17:                     inkling2.loop.core_end u32              = 18
+0.00.215.622 I llama_model_loader: - kv  18:                    inkling2.loop.gate_rank u32              = 64
+0.00.215.623 I llama_model_loader: - kv  19:                        inkling2.vocab_size u32              = 201024
+0.00.215.623 I llama_model_loader: - kv  20:               inkling2.vocab_size_unpadded u32              = 200058
+0.00.215.629 I llama_model_loader: - kv  21:        inkling2.expert_feed_forward_length u32              = 1152
+0.00.215.629 I llama_model_loader: - kv  22:          inkling2.attention.key_length_swa u32              = 128
+0.00.215.630 I llama_model_loader: - kv  23:        inkling2.attention.value_length_swa u32              = 128
+0.00.215.630 I llama_model_loader: - kv  24:              inkling2.rope.dimension_count u32              = 0
+0.00.215.630 I llama_model_loader: - kv  25:          inkling2.attention.sliding_window u32              = 1024
+0.00.215.632 I llama_model_loader: - kv  26:  inkling2.attention.sliding_window_pattern arr[bool,48]     = [true, true, true, true, true, false,...
+0.00.215.633 I llama_model_loader: - kv  27:                 inkling2.shortconv.l_cache u32              = 4
+0.00.215.634 I llama_model_loader: - kv  28:              inkling2.expert_weights_scale f32              = 8.000000
+0.00.215.634 I llama_model_loader: - kv  29:              inkling2.activation.situ_beta f32              = 4.000000
+0.00.215.634 I llama_model_loader: - kv  30:       inkling2.activation.situ_linear_beta f32              = 25.000000
+0.00.215.635 I llama_model_loader: - kv  31:               inkling2.attn_res.block_size u32              = 6
+0.00.215.635 I llama_model_loader: - kv  32:           inkling2.final_logit_softcapping f32              = 30.000000
+0.00.215.636 I llama_model_loader: - kv  33:         inkling2.attention.relative_length u32              = 16
+0.00.215.636 I llama_model_loader: - kv  34:         inkling2.attention.relative_extent u32              = 1024
+0.00.215.637 I llama_model_loader: - kv  35:                 inkling2.attention.qk_clip f32              = 22.627417
+0.00.215.637 I llama_model_loader: - kv  36:           inkling2.attention.relative_clip f32              = 8.000000
+0.00.215.637 I llama_model_loader: - kv  37:         inkling2.attention.log_scale_floor u32              = 8192
+0.00.215.638 I llama_model_loader: - kv  38:         inkling2.attention.log_scale_alpha f32              = 0.100000
+0.00.215.638 I llama_model_loader: - kv  39:                       tokenizer.ggml.model str              = gpt2
+0.00.215.639 I llama_model_loader: - kv  40:                         tokenizer.ggml.pre str              = inkling2
+0.00.215.641 I llama_model_loader: - kv  41:                      tokenizer.ggml.tokens arr[str,200058]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+0.00.215.642 I llama_model_loader: - kv  42:                  tokenizer.ggml.token_type arr[i32,200058]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+0.00.215.644 I llama_model_loader: - kv  43:                      tokenizer.ggml.merges arr[str,424413]  = ["i n", "e r", "t h", "a n", "o n", "...
+0.00.215.644 I llama_model_loader: - kv  44:                tokenizer.ggml.eos_token_id u32              = 200006
+0.00.215.644 I llama_model_loader: - kv  45:                tokenizer.ggml.eot_token_id u32              = 200006
+0.00.215.645 I llama_model_loader: - kv  46:               tokenizer.ggml.add_bos_token bool             = false
+0.00.215.645 I llama_model_loader: - kv  47:               tokenizer.ggml.add_eos_token bool             = false
+0.00.215.645 I llama_model_loader: - kv  48:                tokenizer.ggml.clean_spaces bool             = false
+0.00.215.646 I llama_model_loader: - kv  49:               general.quantization_version u32              = 2
+0.00.215.646 I llama_model_loader: - kv  50:                          general.file_type u32              = 7
+0.00.215.647 I llama_model_loader: - kv  51:                      quantize.imatrix.file str              = imatrix_unsloth.gguf
+0.00.215.647 I llama_model_loader: - kv  52:                   quantize.imatrix.dataset str              = unsloth_calibration_Inkling-2-Mini.co...
+0.00.215.648 I llama_model_loader: - kv  53:             quantize.imatrix.entries_count u32              = 392
+0.00.215.648 I llama_model_loader: - kv  54:              quantize.imatrix.chunks_count u32              = 892
+0.00.215.652 I llama_model_loader: - kv  55:                    tokenizer.chat_template str              = {%- set effort_map = {"none": 0.0, "m...
+0.00.215.653 I llama_model_loader: - kv  56:                           general.basename str              = Inkling-2-Mini
+0.00.215.653 I llama_model_loader: - kv  57:            tokenizer.ggml.padding_token_id u32              = 199999
+0.00.215.654 I llama_model_loader: - kv  58:                      general.sampling.temp f32              = 1.000000
+0.00.215.654 I llama_model_loader: - kv  59:                     general.sampling.top_k i32              = 0
+0.00.215.655 I llama_model_loader: - kv  60:                     general.sampling.top_p f32              = 1.000000
+0.00.215.655 I llama_model_loader: - kv  61:                     general.sampling.min_p f32              = 0.000000
+0.00.215.656 I llama_model_loader: - type  f32:  508 tensors
+0.00.215.656 I llama_model_loader: - type q8_0:  154 tensors
+0.00.215.656 I llama_model_loader: - type bf16:   32 tensors
+0.00.215.657 I llama_model_loader: - type nvfp4:   40 tensors
+0.00.215.657 I print_info: file format = GGUF V3 (latest)
+0.00.215.658 I print_info: file type   = Q8_0
+0.00.215.659 I print_info: file size   = 16.41 GiB (5.41 BPW) 
+0.00.215.675 I llama_prepare_model_devices: using device MTL0 (Apple M1 Max) (unknown id) - 25558 MiB free
+0.00.289.300 I load: 45 unused tokens
+0.00.304.338 I load: printing all EOG tokens:
+0.00.304.341 I load:   - 199999 ('<|endoftext|>')
+0.00.304.341 I load:   - 200006 ('<|content_model_end_sampling|>')
+0.00.304.458 I load: special tokens cache size = 60
+0.00.324.293 I load: token to piece cache size = 1.2012 MB
+0.00.324.311 I print_info: arch                  = inkling2
+0.00.324.311 I print_info: vocab_only            = 0
+0.00.324.311 I print_info: no_alloc              = 0
+0.00.324.312 I print_info: n_ctx_train           = 1048576
+0.00.324.312 I print_info: n_embd_inp            = 2304
+0.00.324.312 I print_info: n_embd                = 2304
+0.00.324.313 I print_info: n_embd_out            = 2304
+0.00.324.313 I print_info: n_layer               = 48
+0.00.324.313 I print_info: n_layer_all           = 48
+0.00.324.320 I print_info: n_head                = 24
+0.00.324.321 I print_info: n_head_kv             = 8
+0.00.324.321 I print_info: n_rot                 = 0
+0.00.324.321 I print_info: n_swa                 = 1024
+0.00.324.321 I print_info: is_swa_any            = 1
+0.00.324.321 I print_info: non_causal_type       = 0
+0.00.324.322 I print_info: n_embd_head_k         = 128
+0.00.324.322 I print_info: n_embd_head_v         = 128
+0.00.324.323 I print_info: n_gqa                 = 3
+0.00.324.323 I print_info: n_embd_k_gqa          = 1024
+0.00.324.324 I print_info: n_embd_v_gqa          = 1024
+0.00.324.325 I print_info: f_norm_eps            = 0.0e+00
+0.00.324.325 I print_info: f_norm_rms_eps        = 1.0e-06
+0.00.324.326 I print_info: f_clamp_kqv           = 0.0e+00
+0.00.324.326 I print_info: f_max_alibi_bias      = 0.0e+00
+0.00.324.326 I print_info: f_logit_scale         = 0.0e+00
+0.00.324.326 I print_info: f_attn_scale          = 0.0e+00
+0.00.324.326 I print_info: f_attn_value_scale    = 0.0000
+0.00.324.327 I print_info: n_ff                  = 1152
+0.00.324.327 I print_info: n_expert              = 128
+0.00.324.328 I print_info: n_expert_used         = 8
+0.00.324.328 I print_info: n_expert_groups       = 0
+0.00.324.328 I print_info: n_group_used          = 0
+0.00.324.328 I print_info: causal attn           = 1
+0.00.324.329 I print_info: pooling type          = -1
+0.00.324.329 I print_info: rope type             = -1
+0.00.324.329 I print_info: rope scaling          = linear
+0.00.324.329 I print_info: freq_base_train       = 10000.0
+0.00.324.329 I print_info: freq_scale_train      = 1
+0.00.324.330 I print_info: freq_base_swa         = 10000.0
+0.00.324.330 I print_info: freq_scale_swa        = 1
+0.00.324.330 I print_info: n_embd_head_k_swa     = 128
+0.00.324.330 I print_info: n_embd_head_v_swa     = 128
+0.00.324.330 I print_info: n_rot_swa             = 0
+0.00.324.331 I print_info: n_ctx_orig_yarn       = 1048576
+0.00.324.331 I print_info: rope_yarn_log_mul     = 0.0000
+0.00.324.331 I print_info: rope_finetuned        = unknown
+0.00.324.332 I print_info: model type            = ?B
+0.00.324.332 I print_info: model params          = 26.07 B
+0.00.324.333 I print_info: general.name          = Inkling-2-Mini
+0.00.324.333 I print_info: vocab type            = BPE
+0.00.324.334 I print_info: n_vocab               = 200058
+0.00.324.334 I print_info: n_merges              = 424413
+0.00.324.339 I print_info: EOS token             = 200006 '<|content_model_end_sampling|>'
+0.00.324.339 I print_info: EOT token             = 200006 '<|content_model_end_sampling|>'
+0.00.324.339 I print_info: PAD token             = 199999 '<|endoftext|>'
+0.00.324.340 I print_info: LF token              = 198 'Ċ'
+0.00.324.340 I print_info: EOG token             = 199999 '<|endoftext|>'
+0.00.324.340 I print_info: EOG token             = 200006 '<|content_model_end_sampling|>'
+0.00.324.340 I print_info: max token length      = 92
+0.00.324.345 I load_tensors: loading model tensors, this can take a while... (load_mode = mmap)
+0.01.503.774 I load_tensors: offloading output layer to GPU
+0.01.503.778 I load_tensors: offloading 23 repeating layers to GPU
+0.01.503.778 I load_tensors: offloaded 25/25 layers to GPU
+0.01.503.780 I load_tensors:   CPU_Mapped model buffer size =   469.31 MiB
+0.01.503.783 I load_tensors:  MTL0_Mapped model buffer size =   469.75 MiB
+0.01.503.783 I load_tensors:  MTL0_Mapped model buffer size = 15862.57 MiB
+0.01.506.533 I cmn  common_init_: added <|endoftext|> logit bias = -inf
+0.01.506.537 I cmn  common_init_: added <|content_model_end_sampling|> logit bias = -inf
+0.01.506.574 I llama_context: constructing llama_context
+0.01.506.576 I llama_context: n_seq_max             = 1
+0.01.506.576 I llama_context: n_ctx                 = 131072
+0.01.506.576 I llama_context: n_ctx_seq             = 131072
+0.01.506.576 I llama_context: n_batch               = 2048
+0.01.506.577 I llama_context: n_ubatch              = 256
+0.01.506.577 I llama_context: causal_attn           = 1
+0.01.506.577 I llama_context: flash_attn            = enabled
+0.01.506.578 I llama_context: kv_unified            = false
+0.01.506.579 I llama_context: freq_base             = 10000.0
+0.01.506.579 I llama_context: freq_scale            = 1
+0.01.506.579 I llama_context: n_rs_seq              = 3
+0.01.506.579 I llama_context: n_outputs_max         = 4
+0.01.506.579 I llama_context: n_outputs_max_per_seq = 4
+0.01.506.580 I llama_context: n_ctx_seq (131072) < n_ctx_train (1048576) -- the full capacity of the model will not be utilized
+0.01.506.622 I ggml_metal_init: allocating
+0.01.506.659 I ggml_metal_init: found device: Apple M1 Max
+0.01.506.662 I ggml_metal_init: picking default device: Apple M1 Max
+0.01.506.710 I ggml_metal_init: use fusion         = true
+0.01.506.712 I ggml_metal_init: use concurrency    = true
+0.01.506.712 I ggml_metal_init: use graph optimize = true
+0.01.506.779 I llama_context:        CPU  output buffer size =     0.76 MiB
+0.01.506.787 I llama_kv_cache_iswa: creating non-SWA KV cache, size = 131072 cells
+0.01.663.226 I llama_kv_cache:       MTL0 KV buffer size =  2176.00 MiB
+0.01.663.231 I llama_kv_cache: size = 2176.00 MiB (131072 cells,   8 layers,  1/1 seqs), K (q8_0): 1088.00 MiB, V (q8_0): 1088.00 MiB
+0.01.663.237 I llama_kv_cache: n_rot_k = 128, n_embd_head_k_all = 128
+0.01.663.238 I llama_kv_cache: n_rot_v = 64, n_embd_head_k_all = 128
+0.01.663.396 I init_rotation:       MTL0 rotation buffer size =     0.62 MiB
+0.01.663.411 I llama_kv_cache_iswa: creating     SWA KV cache, size = 1280 cells
+0.01.671.263 I llama_kv_cache:       MTL0 KV buffer size =   106.25 MiB
+0.01.671.267 I llama_kv_cache: size =  106.25 MiB (  1280 cells,  40 layers,  1/1 seqs), K (q8_0):   53.12 MiB, V (q8_0):   53.12 MiB
+0.01.671.267 I llama_kv_cache: n_rot_k = 128, n_embd_head_k_all = 128
+0.01.671.267 I llama_kv_cache: n_rot_v = 64, n_embd_head_k_all = 128
+0.01.671.529 I init_rotation:       MTL0 rotation buffer size =     3.12 MiB
+0.01.672.643 I llama_memory_recurrent:       MTL0 RS buffer size =    14.62 MiB
+0.01.672.648 I llama_memory_recurrent: size =   14.62 MiB (     1 cells,  48 layers,  1 seqs  3 rs_seq), R (f32):   14.62 MiB, S (f32):    0.00 MiB, P (f32):    0.00 MiB
+0.01.672.652 I sched_reserve: reserving ...
+0.01.672.928 I resolve_fused_ops: resolving fused DeepSeek V4 HC support:
+0.01.681.126 I resolve_fused_ops: fused DeepSeek V4 HC pre enabled
+0.01.688.873 I resolve_fused_ops: fused DeepSeek V4 HC comb enabled
+0.01.696.567 I resolve_fused_ops: fused DeepSeek V4 HC post enabled
+0.01.858.084 I sched_reserve:       MTL0 compute buffer size =  4712.28 MiB
+0.01.858.088 I sched_reserve:        CPU compute buffer size =   198.38 MiB
+0.01.858.092 I sched_reserve: graph (pp bs=256, tg bs=1): nodes = 14300 / 14002, splits = 2 / 2, input objects = 4 / 4, input tensors = 12 / 12
+0.01.858.093 I sched_reserve: reserve took 185.44 ms, sched copies = 1
+0.01.858.149 I cmn          init: llama threadpool init, n_threads = 8
+0.01.858.240 I cmn  common_init_: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+0.01.866.322 I sched_graph_realloc: graph reallocation: nodes = 14292 (changed = 1), splits = 2, n_same = 0, n_diff = 1
+0.01.948.607 I common_speculative_init_result: loading draft model 'weights/dspark-Inkling-2-Mini-Q8_0.gguf'
+0.02.003.058 I llama_model_loader: loaded meta data with 41 key-value pairs and 54 tensors from weights/dspark-Inkling-2-Mini-Q8_0.gguf (version GGUF V3 (latest))
+0.02.003.065 I llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+0.02.003.067 I llama_model_loader: - kv   0:                       general.architecture str              = dflash
+0.02.003.068 I llama_model_loader: - kv   1:                               general.type str              = model
+0.02.003.068 I llama_model_loader: - kv   2:                               general.name str              = Inkling-2-Mini
+0.02.003.069 I llama_model_loader: - kv   3:                         general.size_label str              = 318M
+0.02.003.070 I llama_model_loader: - kv   4:                         dflash.block_count u32              = 3
+0.02.003.070 I llama_model_loader: - kv   5:                      dflash.context_length u32              = 1048576
+0.02.003.071 I llama_model_loader: - kv   6:                    dflash.embedding_length u32              = 2304
+0.02.003.071 I llama_model_loader: - kv   7:                 dflash.feed_forward_length u32              = 9216
+0.02.003.071 I llama_model_loader: - kv   8:                dflash.attention.head_count u32              = 24
+0.02.003.072 I llama_model_loader: - kv   9:             dflash.attention.head_count_kv u32              = 8
+0.02.003.074 I llama_model_loader: - kv  10:                      dflash.rope.freq_base f32              = 1000000.000000
+0.02.003.077 I llama_model_loader: - kv  11:    dflash.attention.layer_norm_rms_epsilon f32              = 0.000001
+0.02.003.077 I llama_model_loader: - kv  12:                dflash.attention.key_length u32              = 128
+0.02.003.078 I llama_model_loader: - kv  13:              dflash.attention.value_length u32              = 128
+0.02.003.078 I llama_model_loader: - kv  14:                          dflash.vocab_size u32              = 201024
+0.02.003.078 I llama_model_loader: - kv  15:                 dflash.vocab_size_unpadded u32              = 200058
+0.02.003.079 I llama_model_loader: - kv  16:                          dflash.block_size u32              = 8
+0.02.003.080 I llama_model_loader: - kv  17:                       dflash.target_layers arr[i32,4]       = [5, 23, 41, 48]
+0.02.003.084 I llama_model_loader: - kv  18:                  dflash.dspark.markov_rank u32              = 256
+0.02.003.084 I llama_model_loader: - kv  19:                  dflash.sample_from_anchor bool             = false
+0.02.003.085 I llama_model_loader: - kv  20:                 dflash.has_confidence_head bool             = false
+0.02.003.085 I llama_model_loader: - kv  21:                    dflash.attention.causal bool             = false
+0.02.003.085 I llama_model_loader: - kv  22:            dflash.attention.sliding_window u32              = 1024
+0.02.003.086 I llama_model_loader: - kv  23:    dflash.attention.sliding_window_pattern arr[bool,3]      = [true, false, true]
+0.02.003.086 I llama_model_loader: - kv  24:                dflash.rope.dimension_count u32              = 128
+0.02.003.087 I llama_model_loader: - kv  25:             dflash.final_logit_softcapping f32              = 30.000000
+0.02.003.087 I llama_model_loader: - kv  26:                       tokenizer.ggml.model str              = gpt2
+0.02.003.088 I llama_model_loader: - kv  27:                         tokenizer.ggml.pre str              = inkling2
+0.02.003.090 I llama_model_loader: - kv  28:                      tokenizer.ggml.tokens arr[str,200058]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+0.02.003.092 I llama_model_loader: - kv  29:                  tokenizer.ggml.token_type arr[i32,200058]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+0.02.003.094 I llama_model_loader: - kv  30:                      tokenizer.ggml.merges arr[str,424413]  = ["i n", "e r", "t h", "a n", "o n", "...
+0.02.003.094 I llama_model_loader: - kv  31:                tokenizer.ggml.eos_token_id u32              = 200006
+0.02.003.094 I llama_model_loader: - kv  32:                tokenizer.ggml.eot_token_id u32              = 200006
+0.02.003.095 I llama_model_loader: - kv  33:               tokenizer.ggml.add_bos_token bool             = false
+0.02.003.095 I llama_model_loader: - kv  34:               tokenizer.ggml.add_eos_token bool             = false
+0.02.003.102 I llama_model_loader: - kv  35:                    tokenizer.chat_template str              = {%- set effort_map = {"none": 0.0, "m...
+0.02.003.103 I llama_model_loader: - kv  36:                tokenizer.ggml.clean_spaces bool             = false
+0.02.003.103 I llama_model_loader: - kv  37:               tokenizer.ggml.mask_token_id u32              = 0
+0.02.003.103 I llama_model_loader: - kv  38:                           general.basename str              = Inkling-2-Mini
+0.02.003.104 I llama_model_loader: - kv  39:               general.quantization_version u32              = 2
+0.02.003.104 I llama_model_loader: - kv  40:                          general.file_type u32              = 7
+0.02.003.104 I llama_model_loader: - type  f32:   24 tensors
+0.02.003.105 I llama_model_loader: - type q8_0:   27 tensors
+0.02.003.105 I llama_model_loader: - type bf16:    3 tensors
+0.02.003.106 I print_info: file format = GGUF V3 (latest)
+0.02.003.107 I print_info: file type   = Q8_0
+0.02.003.107 I print_info: file size   = 372.26 MiB (9.82 BPW) 
+0.02.003.120 I llama_prepare_model_devices: using device MTL0 (Apple M1 Max) (unknown id) - 2213 MiB free
+0.02.003.165 I load_arch_hparams: DFlash extract_layers = [5, 23, 41, 48]
+0.02.073.127 I load: 45 unused tokens
+0.02.087.601 I load: printing all EOG tokens:
+0.02.087.605 I load:   - 199999 ('<|endoftext|>')
+0.02.087.606 I load:   - 200006 ('<|content_model_end_sampling|>')
+0.02.087.720 I load: special tokens cache size = 60
+0.02.106.707 I load: token to piece cache size = 1.2012 MB
+0.02.106.718 I print_info: arch                  = dflash
+0.02.106.719 I print_info: vocab_only            = 0
+0.02.106.719 I print_info: no_alloc              = 0
+0.02.106.719 I print_info: n_ctx_train           = 1048576
+0.02.106.720 I print_info: n_embd_inp            = 2304
+0.02.106.720 I print_info: n_embd                = 2304
+0.02.106.720 I print_info: n_embd_out            = 2304
+0.02.106.720 I print_info: n_layer               = 3
+0.02.106.720 I print_info: n_layer_all           = 3
+0.02.106.726 I print_info: n_head                = 24
+0.02.106.727 I print_info: n_head_kv             = 8
+0.02.106.727 I print_info: n_rot                 = 128
+0.02.106.727 I print_info: n_swa                 = 1025
+0.02.106.728 I print_info: is_swa_any            = 1
+0.02.106.728 I print_info: non_causal_type       = 0
+0.02.106.728 I print_info: n_embd_head_k         = 128
+0.02.106.728 I print_info: n_embd_head_v         = 128
+0.02.106.729 I print_info: n_gqa                 = 3
+0.02.106.729 I print_info: n_embd_k_gqa          = 1024
+0.02.106.731 I print_info: n_embd_v_gqa          = 1024
+0.02.106.733 I print_info: f_norm_eps            = 0.0e+00
+0.02.106.734 I print_info: f_norm_rms_eps        = 1.0e-06
+0.02.106.734 I print_info: f_clamp_kqv           = 0.0e+00
+0.02.106.734 I print_info: f_max_alibi_bias      = 0.0e+00
+0.02.106.739 I print_info: f_logit_scale         = 0.0e+00
+0.02.106.739 I print_info: f_attn_scale          = 0.0e+00
+0.02.106.739 I print_info: f_attn_value_scale    = 0.0000
+0.02.106.740 I print_info: n_ff                  = 9216
+0.02.106.740 I print_info: n_expert              = 0
+0.02.106.740 I print_info: n_expert_used         = 0
+0.02.106.740 I print_info: n_expert_groups       = 0
+0.02.106.741 I print_info: n_group_used          = 0
+0.02.106.741 I print_info: causal attn           = 0
+0.02.106.741 I print_info: pooling type          = -1
+0.02.106.741 I print_info: rope type             = 2
+0.02.106.741 I print_info: rope scaling          = linear
+0.02.106.742 I print_info: freq_base_train       = 1000000.0
+0.02.106.742 I print_info: freq_scale_train      = 1
+0.02.106.742 I print_info: freq_base_swa         = 1000000.0
+0.02.106.742 I print_info: freq_scale_swa        = 1
+0.02.106.743 I print_info: n_embd_head_k_swa     = 128
+0.02.106.743 I print_info: n_embd_head_v_swa     = 128
+0.02.106.743 I print_info: n_rot_swa             = 128
+0.02.106.743 I print_info: n_ctx_orig_yarn       = 1048576
+0.02.106.743 I print_info: rope_yarn_log_mul     = 0.0000
+0.02.106.744 I print_info: rope_finetuned        = unknown
+0.02.106.744 I print_info: model type            = ?B
+0.02.106.745 I print_info: model params          = 317.90 M
+0.02.106.745 I print_info: general.name          = Inkling-2-Mini
+0.02.106.746 I print_info: vocab type            = BPE
+0.02.106.746 I print_info: n_vocab               = 200058
+0.02.106.746 I print_info: n_merges              = 424413
+0.02.106.746 I print_info: EOS token             = 200006 '<|content_model_end_sampling|>'
+0.02.106.746 I print_info: EOT token             = 200006 '<|content_model_end_sampling|>'
+0.02.106.747 I print_info: MASK token            = 0 '!'
+0.02.106.747 I print_info: LF token              = 198 'Ċ'
+0.02.106.748 I print_info: EOG token             = 199999 '<|endoftext|>'
+0.02.106.748 I print_info: EOG token             = 200006 '<|content_model_end_sampling|>'
+0.02.106.748 I print_info: max token length      = 92
+0.02.106.750 I load_tensors: loading model tensors, this can take a while... (load_mode = mmap)
+0.02.123.956 I load_tensors: offloading output layer to GPU
+0.02.123.958 I load_tensors: offloading 2 repeating layers to GPU
+0.02.123.959 I load_tensors: offloaded 4/4 layers to GPU
+0.02.123.960 I load_tensors:   CPU_Mapped model buffer size =     0.01 MiB
+0.02.123.961 I load_tensors:  MTL0_Mapped model buffer size =   106.80 MiB
+0.02.123.961 I load_tensors:  MTL0_Mapped model buffer size =   265.45 MiB
+0.02.125.269 I llama_context: constructing llama_context
+0.02.125.274 I llama_context: n_seq_max             = 1
+0.02.125.274 I llama_context: n_ctx                 = 131072
+0.02.125.274 I llama_context: n_ctx_seq             = 131072
+0.02.125.275 I llama_context: n_batch               = 2048
+0.02.125.275 I llama_context: n_ubatch              = 256
+0.02.125.275 I llama_context: causal_attn           = 0
+0.02.125.276 I llama_context: flash_attn            = enabled
+0.02.125.276 I llama_context: kv_unified            = false
+0.02.125.277 I llama_context: freq_base             = 1000000.0
+0.02.125.278 I llama_context: freq_scale            = 1
+0.02.125.278 I llama_context: n_rs_seq              = 0
+0.02.125.278 I llama_context: n_outputs_max         = 2048
+0.02.125.278 I llama_context: n_outputs_max_per_seq = 8
+0.02.125.279 I llama_context: n_ctx_seq (131072) < n_ctx_train (1048576) -- the full capacity of the model will not be utilized
+0.02.125.298 I ggml_metal_init: allocating
+0.02.125.334 I ggml_metal_init: found device: Apple M1 Max
+0.02.125.336 I ggml_metal_init: picking default device: Apple M1 Max
+0.02.125.372 I ggml_metal_init: use fusion         = true
+0.02.125.372 I ggml_metal_init: use concurrency    = true
+0.02.125.372 I ggml_metal_init: use graph optimize = true
+0.02.125.450 I llama_context:        CPU  output buffer size =     0.76 MiB
+0.02.125.452 I llama_kv_cache_iswa: creating non-SWA KV cache, size = 131072 cells
+0.02.177.879 I llama_kv_cache:       MTL0 KV buffer size =   512.00 MiB
+0.02.177.884 I llama_kv_cache: size =  512.00 MiB (131072 cells,   1 layers,  1/1 seqs), K (f16):  256.00 MiB, V (f16):  256.00 MiB
+0.02.177.886 I llama_kv_cache: n_rot_k = 0, n_embd_head_k_all = 128
+0.02.177.887 I llama_kv_cache: n_rot_v = 0, n_embd_head_k_all = 128
+0.02.177.889 I llama_kv_cache_iswa: creating     SWA KV cache, size = 1536 cells
+0.02.179.040 I llama_kv_cache:       MTL0 KV buffer size =    12.00 MiB
+0.02.179.062 I llama_kv_cache: size =   12.00 MiB (  1536 cells,   2 layers,  1/1 seqs), K (f16):    6.00 MiB, V (f16):    6.00 MiB
+0.02.179.063 I llama_kv_cache: n_rot_k = 0, n_embd_head_k_all = 128
+0.02.179.063 I llama_kv_cache: n_rot_v = 0, n_embd_head_k_all = 128
+0.02.179.068 I sched_reserve: reserving ...
+0.02.179.108 I resolve_fused_ops: resolving fused DeepSeek V4 HC support:
+0.02.179.326 I resolve_fused_ops: fused DeepSeek V4 HC pre enabled
+0.02.179.458 I resolve_fused_ops: fused DeepSeek V4 HC comb enabled
+0.02.179.568 I resolve_fused_ops: fused DeepSeek V4 HC post enabled
+0.02.328.115 I sched_reserve:       MTL0 compute buffer size =   606.56 MiB
+0.02.328.120 I sched_reserve:        CPU compute buffer size =    64.77 MiB
+0.02.328.122 I sched_reserve: graph (pp bs=256, tg bs=1): nodes = 120 / 129, splits = 4 / 2, input objects = 3 / 3, input tensors = 8 / 8
+0.02.328.123 I sched_reserve: reserve took 149.05 ms, sched copies = 1
+0.02.329.558 I cmn  common_conte: the context supports bounded partial sequence removal
+0.02.329.920 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 131072, kv_unified = 'false'
+0.02.330.113 I common_speculative_impl_draft_dflash: adding speculative implementation 'draft-dspark'
+0.02.330.115 I common_speculative_impl_draft_dflash: - n_max=3, n_min=0, p_min=0.00
+0.02.330.116 I common_speculative_impl_draft_dflash: - block_size=8, mask_token_id=0, n_extract=4
+0.02.330.213 I common_speculative_impl_draft_dspark: - sample_from_anchor=false, markov_rank=256
+0.02.330.757 I init: DFlash target features via host copies
+0.02.336.522 I sched_reserve: reserving ...
+0.02.337.031 I sched_reserve:       MTL0 compute buffer size =   606.56 MiB
+0.02.337.033 I sched_reserve:        CPU compute buffer size =    64.77 MiB
+0.02.337.035 I sched_reserve: graph (pp bs=256, tg bs=1): nodes = 120 / 129, splits = 4 / 2, input objects = 3 / 3, input tensors = 8 / 8
+0.02.337.035 I sched_reserve: reserve took 0.51 ms, sched copies = 1
+0.02.369.671 I srv    load_model: speculative decoding context initialized
+0.02.369.673 I slot   load_model: id  0 | task -1 | new slot, n_ctx = 131072
+0.02.369.962 I srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+0.02.369.963 I srv    load_model: use `--cache-ram 0` to disable the prompt cache
+0.02.369.963 I srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+0.02.369.964 I srv    load_model: context checkpoints enabled, max = 32, min spacing = 8192
+0.02.370.160 I srv          init: idle slots will be saved to prompt cache upon starting a new task
+0.02.373.807 I srv          init: init: chat template, example_format: '<|message_system|><|content_text|>You are a helpful assistant<|end_message|><|message_system|><|content_text|>Thinking effort level: 0.9<|end_message|><|message_user|><|content_text|>Hello<|end_message|><|message_model|><|content_text|>Hi there<|end_message|><|content_model_end_sampling|><|message_user|><|content_text|>How are you?<|end_message|>'
+0.02.373.888 I srv          init: init: chat template, thinking = 1
+0.02.373.896 I srv          init: preserve_reasoning kwarg: true
+0.02.373.896 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)
+0.02.373.934 I srv  server_run_i: model loaded
+0.02.374.080 I srv  server_on_li: listening on http://127.0.0.1:8080
+0.02.374.112 I srv  update_slots: all slots are idle
+0.03.125.236 I srv    operator(): operator(): cleaning up before exit...
+0.03.125.720 I common_memory_breakdown_print: | memory breakdown [MiB]  | total   free     self   model   context   compute    unaccounted |
+0.03.125.723 I common_memory_breakdown_print: |   - MTL0 (Apple M1 Max) | 25559 =  710 + (23345 = 16332 +    2300 +    4712) +        1503 |
+0.03.125.723 I common_memory_breakdown_print: |   - Host                |                   667 =   469 +       0 +     198                |
+0.03.126.811 I ggml_metal_free: deallocating
+0.03.158.883 I ggml_metal_free: deallocating
