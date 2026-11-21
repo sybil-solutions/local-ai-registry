@@ -1,0 +1,52 @@
+{
+  "id": "omlx-inkling-2-mini-oq4e-m1fast-dspark6-64k-2seq",
+  "kind": "host",
+  "engine": "omlx",
+  "variant": "m1fast",
+  "about": "Inkling 2 Mini oQ4e with M1 Max Metal kernels (--m1-fast --affine4), fixed DSpark depth 6, 65,536 tokens per sequence, and two request slots on Metal. Text validated at concurrency one.",
+  "source": "https://github.com/nerveband/inkling-m1max-lab/tree/c27638e05ed80d76598868e87fb0d7656def6e86",
+  "command": [
+    "python3.12",
+    "inkling-m1max-lab/serve_omlx.py",
+    "--app",
+    "runtime/oMLX.app",
+    "--weights",
+    "models/inkling",
+    "--state",
+    "omlx-home",
+    "--cache",
+    "omlx-kv",
+    "--context",
+    "65536",
+    "--depth",
+    "6",
+    "--slots",
+    "2",
+    "--m1-fast",
+    "--affine4"
+  ],
+  "install": "Download https://github.com/jundot/omlx/releases/download/v0.8.2/oMLX-0.8.2-macos26-27.dmg (SHA-256 6316ad32cde3248bcf23abece8b9222847f7ae8e594cea1b378a34049252df78) and copy its oMLX.app under runtime/ in the recipe directory. Clone https://github.com/nerveband/inkling-m1max-lab at commit c27638e05ed80d76598868e87fb0d7656def6e86 into inkling-m1max-lab/ and install Python 3.12.",
+  "env": {
+    "HF_HOME": "hf-cache",
+    "HF_HUB_OFFLINE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "port": 18089,
+  "weights": [
+    {
+      "repo": "mlx-community/Inkling-2-Mini-oQ4e-mtp",
+      "revision": "3eea042751cd296b7266628a8342c1749242e1fe",
+      "at": "models/inkling",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "omlx-home/model_settings.json",
+    "text": "{\n  \"version\": 2,\n  \"models\": {\n    \"inkling\": {\n      \"mtp_enabled\": true,\n      \"mtp_fixed_depth\": 6,\n      \"max_context_window\": 65536\n    }\n  }\n}\n"
+  },
+  "ctx": 65536,
+  "seqs": 2,
+  "vision": false,
+  "backend": "metal"
+}

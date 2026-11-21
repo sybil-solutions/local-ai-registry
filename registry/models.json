@@ -865,6 +865,16 @@
       "about": "Nanbeige4.2: a 3B model with looped layers, thinking, tool calls and a 256K window.",
       "good_for": "Agent work and long context on 8 GB cards",
       "hf": "Nanbeige/Nanbeige4.2-3B"
+    },
+    "inkling-2-mini": {
+      "name": "Inkling 2 Mini",
+      "family": "inkling",
+      "released": "2026-11-20",
+      "reasoning": true,
+      "vision": true,
+      "about": "Thinking Machines Lab’s multimodal mixture-of-experts model with 24 physical layers and 48 layer visits.",
+      "good_for": "Local coding agents and tool calls",
+      "logo": "hf"
     }
   },
   "builds": {
