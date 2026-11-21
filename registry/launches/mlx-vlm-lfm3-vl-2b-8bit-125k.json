@@ -1,0 +1,52 @@
+{
+  "id": "mlx-vlm-lfm3-vl-2b-8bit-125k",
+  "kind": "host",
+  "engine": "mlx-vlm",
+  "about": "LFM3-VL-2B (MLX \u00b7 8-bit, Liquid AI's own export) on mlx-vlm 0.7.12's server at a 128,000-token window, two concurrent requests, thinking on by default. Vision and text share the same server: the image tower is loaded from the same directory and images go in through the OpenAI content-parts shape. Same host program as the 8-bit text launch \u2014 mlx-lm cannot load the LFM3 family yet (ml-explore/mlx-lm#2016), prefill runs in 128-token steps because mlx-vlm's default 2,048 made macOS abort prompts of 32K and more (kIOGPUCommandBufferCallbackErrorImpactingInteractivity), and MLX_VLM_TOKEN_QUEUE_TIMEOUT is raised because a prompt that fills the window outlives the 600 s default. 8-bit rather than 4-bit keeps the quality lossless, matching every other Apple-hosted recipe in this registry. Two sequences rather than one because a recipe on a setup over 8 GB must hold at least 131,072 KV tokens; this model's window is 128,000, so capacity comes from seqs (128,000 x 2 + 2,048 = 258,048) rather than from a context it was never trained for.",
+  "command": [
+    "python3",
+    "lfm3_mlx_serve.py",
+    "--model",
+    "models/LFM3-VL-2B-MLX-8bit-6990b981",
+    "--max-tokens",
+    "128000",
+    "--enable-thinking",
+    "--max-num-seqs",
+    "2",
+    "--prefill-step-size",
+    "128",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "python3 -m pip install mlx-vlm==0.7.12 mlx==0.32.4 transformers==5.22.2 huggingface_hub==2.4.0 (macOS on Apple silicon, Python >= 3.10)",
+  "pip": [
+    "mlx-vlm==0.7.12",
+    "mlx==0.32.4",
+    "transformers==5.22.2",
+    "huggingface_hub==2.4.0"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "MLX_VLM_TOKEN_QUEUE_TIMEOUT": "7200"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM3-VL-2B-MLX-8bit",
+      "revision": "6990b981e8235d1a41a3aa3c50b3402631659abb",
+      "at": "models/LFM3-VL-2B-MLX-8bit-6990b981",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "lfm3_mlx_serve.py",
+    "file": "mlx-vlm-lfm3-serve.py"
+  },
+  "ctx": 128000,
+  "seqs": 2,
+  "vision": true,
+  "backend": "metal"
+}
