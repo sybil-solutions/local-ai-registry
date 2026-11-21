@@ -1,0 +1,53 @@
+{
+  "id": "tensorfold-gemma-4-31b-4bit-dflash-128k",
+  "kind": "host",
+  "engine": "tensorfold",
+  "about": "Gemma 4 31B (MLX 4-bit) with the z-lab DFlash drafter on TensorFold 1.3.2, thinking on, --context 131072 --parallel 1, on Apple M5 Max 128GB",
+  "command": [
+    "tensorfold",
+    "serve",
+    "models/gemma-4-31b-it-4bit-696d436c",
+    "--drafter",
+    "models/gemma-4-31B-it-DFlash-eabd6483",
+    "--name",
+    "gemma-4-31b",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080",
+    "--context",
+    "131072",
+    "--max-tokens",
+    "32768",
+    "--thinking",
+    "--parallel",
+    "1",
+    "--no-update-check"
+  ],
+  "install": "https://github.com/ashhart/TensorFold/releases/download/v1.3.2/tensorfold-1.3.2-macos-arm64.tar.gz#sha256=e5a1a00a67b58bee8d96dc030699308cf346a8342c7afebabaa4f8d5bf071188 (Homebrew: brew install ashhart/tensorfold/tensorfold, 1.3.2)",
+  "env": {
+    "HF_HUB_OFFLINE": "1"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "mlx-community/gemma-4-31b-it-4bit",
+      "revision": "696d436c404745a59f30e4939a658162b0a9e57f",
+      "at": "models/gemma-4-31b-it-4bit-696d436c",
+      "layout": "dir",
+      "files": null
+    },
+    {
+      "repo": "z-lab/gemma-4-31B-it-DFlash",
+      "revision": "eabd648301ce28583cc14757912e5e0f84e152e1",
+      "at": "models/gemma-4-31B-it-DFlash-eabd6483",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
