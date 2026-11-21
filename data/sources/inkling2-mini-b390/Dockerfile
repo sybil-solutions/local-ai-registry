@@ -4,7 +4,7 @@ FROM lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb
 LABEL org.opencontainers.image.source="https://github.com/sybil-solutions/local-ai-registry"
 # trellis-serve branch inkling2-mini-b390: SGLang model for Inkling2LoopForConditionalGeneration (registered by the
 # exl3xpu SGLang plugin), SYCL NVFP4/MXFP8/Q8 GEMV + flash-decoding, ESIMD DPAS prefill attention, Triton fused ops.
-ARG TRELLIS_COMMIT=5076a00d0f70f8d86bcb150552369932a1927330
+ARG TRELLIS_COMMIT=8f8e2fccf0c82c9715b774812f30d9d52f78a5fb
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN git init -q /opt/trellis-serve \
  && cd /opt/trellis-serve \
