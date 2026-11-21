@@ -3,6 +3,8 @@
 # 1 Hz MLX memory log (memserve_lab.py) in logs/<name>.mem.jsonl.
 #   serve.sh <name> [extra mlx_lm.server args...]
 # Base: the registry launch mlx-lm-lfm2.5-24b-a2b-6bit-128k (128K max tokens, one request at a time).
+# exp/memserve_lab.py is a copy of ../../memserve_lab.py and run/lfm25_mlx_serve.py a copy of
+# registry/launches/mlx-lm-lfm2.5-serve.py (sha256 7003b19c...5024f), both unchanged.
 set -euo pipefail
 name=$1; shift
 root=$HOME/lai-work/lfm

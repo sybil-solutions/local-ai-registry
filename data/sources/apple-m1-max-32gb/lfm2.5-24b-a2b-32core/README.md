@@ -66,7 +66,8 @@ measured ~970 (51%).
 | `evidence/memwatch.jsonl`, `evidence/memwatch.sh` | 1 Hz system memory, swap and server RSS |
 | `evidence/memwatch-mlx.jsonl` | 1 Hz MLX active/peak/cache memory from `../memserve_lab.py` |
 | `evidence/server-start.timestamp`, `evidence/host.json`, `evidence/pip-freeze.txt` | start time, machine facts, environment |
-| `ledger.jsonl`, `configs/`, `logs/`, `tools/` | every `bench.py` run, its config and output, and the serve/stop/sweep scripts |
+| `ledger.jsonl`, `configs/`, `logs/*.bench.log`, `tools/` | every `bench.py` run, its config and output, and the serve/stop/sweep scripts |
+| `logs/*.mem.jsonl` | 1 Hz MLX memory per hill-climb run (peak 19.61 GiB at the pinned launch, 21.99 GiB with `--kv-bits 8`) |
 | `ceiling-lfm25-24b-a2b-m1max.json` | ceiling inputs |
 
 Logs and scripts that name the running account's home directory have it replaced with `$HOME`.
