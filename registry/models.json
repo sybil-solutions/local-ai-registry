@@ -299,6 +299,17 @@
         "at": "2026-10-05"
       }
     },
+    "inkling-2-mini": {
+      "family": "inkling",
+      "name": "Inkling-2-Mini",
+      "released": "2026-11-17",
+      "reasoning": true,
+      "vision": false,
+      "about": "Thinking Machines' Inkling 2 Mini: a looped mixture-of-experts (24 layers, layers 6-17 run three times per token; 128 experts, top 8). It reasons before it answers and calls tools.",
+      "good_for": "Reasoning and tool calls at 256K on a 64 GB Mac",
+      "logo": "hf",
+      "hf": "thinkingmachines/Inkling-2-Mini"
+    },
     "inkling-2-small": {
       "family": "inkling",
       "name": "Inkling-2-Small",
@@ -1394,6 +1405,10 @@
     "ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw@6507c778b466b78eaaad0d7d552f98625bd97881": {
       "format": "EXL3 · 4 bpw",
       "size_gb": 19.76
+    },
+    "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2": {
+      "format": "MLX · 4-bit attention (g64), NVFP4/MXFP8 experts",
+      "size_gb": 17.31
     }
   }
 }
