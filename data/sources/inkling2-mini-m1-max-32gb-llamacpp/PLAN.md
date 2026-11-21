@@ -35,7 +35,8 @@ Metal buffers: weights 15,863 + 470 MiB, KV 4,096 + 240 MiB, compute 6,118 MiB =
 per ubatch token (relative-bias attention over the full window).
 
 ### E0b — -ub 256, f16 KV — FAILED (OOM)
-Compute 4,714 MiB; total 25,342 MiB, still OOM at warmup (other processes hold GPU memory). f16 KV at 128K needs
+Compute 4,714 MiB; total 25,342 MiB, still OOM at warmup although it is under the 25,558 MiB llama.cpp reports
+free. Not verified why; likely Metal allocations outside these buffers plus other apps' GPU memory. f16 KV at 128K needs
 `iogpu.wired_limit_mb` raised (sudo); out of scope (no system setting changes).
 
 ### E1 — baseline: -ub 256, q8_0 KV (labelled quality trade, as in PR #460) — base-a
@@ -43,7 +44,9 @@ c1 **20.45** tok/s [20.46 20.49 20.44 20.45 20.45 20.43], prefill 194.7 (3,302 t
 25% of the 83 tok/s bandwidth ceiling → kernel/launch-bound, not bandwidth-bound.
 
 ### E2 — DSpark drafter (dspark-Inkling-2-Mini-Q8_0, draft KV q8_0) — REJECTED at every length
-Needs -ub 128 to fit (draft adds weights 372 MiB + KV 277 MiB + compute 561 MiB; at -ub 256 → OOM). Controls -ub 128:
+Ledger row `dspark3-a` is the first try at -ub 256 with f16 draft KV: the server ran out of memory on its first
+request (`logs/e2-dspark-ub256-oom.server.log`), so every request failed and bench.py recorded null metrics with
+`ok: true`. It is not a measurement. Needs -ub 128 to fit (draft adds weights 372 MiB + KV 277 MiB + compute 561 MiB; at -ub 256 → OOM). Controls -ub 128:
 base128-a 20.77 [20.44 … 21.33], base128-b 20.39 [20.37 … 20.43].
 
 | draft n | c1 median | samples | acceptance (whole run) |
