@@ -94,8 +94,9 @@ without it, interleaved (`logs/guide32k-*.bench.log`).
 | `evidence/run-server.sh` | the measured launch, paths in `$HOME` form |
 | `evidence/memwatch.jsonl`, `evidence/memwatch.sh` | 1 Hz system memory, swap and server RSS during the lab run |
 | `evidence/host.json` | machine facts |
+| `evidence/server-start.timestamp` | UTC time the lab-run server started (memwatch began just before) |
 | `PLAN.md`, `THEORY.md`, `ceiling-inkling2mini-m1max.json` | hill-climb log, ceilings and their inputs |
-| `ledger.jsonl`, `configs/`, `logs/` | every `bench.py` run, its config and output; OOM server logs (debug lines removed) |
+| `ledger.jsonl`, `configs/`, `logs/` | every `bench.py` run, its config and output; OOM server logs (debug lines removed). `dspark3-a` is the OOM run (null metrics); `faoff` and `nommap` failed at server start, so they have configs but no ledger rows (`PLAN.md` E3, E4) |
 | `tools/` | `hwbench.py` (MLX bandwidth/GEMM), `gguf_meta.py` (header sizes), `memprobe.sh` (macOS memory probe for `bench.py`), the serve/stop and sweep scripts |
 
 Logs and scripts that name the running account's home directory have it replaced with `$HOME`.
