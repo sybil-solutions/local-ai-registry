@@ -1,0 +1,24 @@
+23:41:22 c1 median 70.35 [69.9, 70.28, 70.57, 70.39, 70.41, 70.32]
+23:41:25 prefill ~4096 988.5 tok/s over 2931 tokens
+23:41:53 prefill ~32768 788.0 tok/s over 22535 tokens
+{
+ "name": "kv8",
+ "time": "2026-11-21T23:40:33",
+ "ttft_short_ms": 102.8,
+ "c1_decode": 70.35,
+ "c1_all": [
+  69.9,
+  70.28,
+  70.57,
+  70.39,
+  70.41,
+  70.32
+ ],
+ "prefill_4096": 988.5,
+ "prefill_4096_tokens": 2931,
+ "prefill_32768": 788.0,
+ "prefill_32768_tokens": 22535,
+ "ok": true,
+ "mem_peak_gib": 28.2,
+ "flags": []
+}

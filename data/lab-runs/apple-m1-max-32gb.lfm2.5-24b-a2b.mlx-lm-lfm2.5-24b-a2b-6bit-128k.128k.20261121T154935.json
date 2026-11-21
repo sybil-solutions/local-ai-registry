@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm2.5-24b-a2b",
+  "weights": "LiquidAI/LFM2.5-24B-A2B-MLX-6bit@1deec53eb49571e21cdcbf82fd5839248f07ed88",
+  "engine": "mlx-lm-lfm2.5-24b-a2b-6bit-128k@01b0cef40877",
+  "set": {},
+  "card": "apple-m1-max-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max 32GB (32-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "Apple M1 Max 32GB (32-core GPU)",
+  "launch_sha256": "d8378a7b9b72fff61b919b7ecb5cc328b054518902a9cd076de1d9d96ae6c94b",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 67.0,
+  "prefill": 524,
+  "served": "models/LFM2.5-24B-A2B-MLX-6bit-1deec53e"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "\n\nRed, yellow, blue (pigment) or red, green, blue (light). The term \"primary colors\" depends on context; the most common answer in art is red, yellow, blue.",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 174,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "id": "fb589de6-122a-4b27-ac60-f73894cac578"
+    }
+   ],
+   "reply": ": \"overcast\", \"code\": \"228eed31\"}\n```\n\n**Current weather in Paris:**\n- Temperature: **17°C**\n- Sky condition: **Overcast**\n\nThe code indicates a moderate temperature with overcast skies at the moment.",
+   "code": "228eed31",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 485
+  },
+  "context": {
+   "prompt_tokens": 91882,
+   "seconds": 175.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 2009,
+   "tokens_total": 7631,
+   "seconds_total": 127.9,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 524,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "7003b19c082de027838540eb23ef5b8f3a15374bfa4361d806b3e8319b95024f"
+}

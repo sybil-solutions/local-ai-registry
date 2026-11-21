@@ -1,0 +1,19 @@
+{
+  "_note": "LFM2.5-24B-A2B MLX 6-bit (affine, group 64 = 6.5 bits/weight = 0.8125 B/param) on M1 Max 32GB, 32-core GPU. From config.json: 40 layers (30 short-conv, 10 full attention, 32 heads x 64, 8 KV heads), hidden 2048; 2 dense FFN layers (11776) and 38 MoE layers (64 experts x 1536, top-4); tied 128000 x 2048 embedding. Params: experts 22.95B, other non-embedding 0.75B, embedding/head 0.26B (total 23.97B; 19.5 GB on disk matches 0.8125 B/param). Active per token: 1.44B experts + 0.75B + 0.26B head = 2.45B. KV f16: 10 x 8 x 64 x 2 x 2 B = 20480 B/token. Bandwidth and peak are the MLX measurements from the Inkling run on this same machine. No drafter: every small LFM2.5 MLX model has a 65536-token vocabulary, the 24B one 128000.",
+  "bandwidth_gbs": 353,
+  "peak_tflops": 9.53,
+  "mfu": 0.5,
+  "dense_gb": 0.612,
+  "experts_gb": 18.65,
+  "top_k": 4,
+  "n_experts": 64,
+  "lm_head_gb": 0.213,
+  "active_params_b": 2.45,
+  "attn_layers": 10,
+  "attn_heads": 32,
+  "head_dim": 64,
+  "kv_bytes_per_token": 20480,
+  "spec": [{"drafts": 0, "accept": 1.0}],
+  "contexts": [4096, 32768, 91882, 131072],
+  "concurrency": [1]
+}

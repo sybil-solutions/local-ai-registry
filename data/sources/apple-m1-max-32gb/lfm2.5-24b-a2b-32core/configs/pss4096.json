@@ -1,0 +1,4 @@
+{"name": "pss4096", "base_url": "http://127.0.0.1:8080", "model": "models/LFM2.5-24B-A2B-MLX-6bit-1deec53e", "concurrency": 1,
+ "prefill_lengths": [4096, 32768], "temperature": 1.0,
+ "memory": {"cap_gib": 31, "probe": ["bash", "$HOME/lai-work/inkling/tools/memprobe.sh"], "interval_s": 2},
+ "require_ac": true}

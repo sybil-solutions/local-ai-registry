@@ -1,0 +1,24 @@
+23:38:33 c1 median 68.1 [67.44, 68.35, 68.25, 66.63, 68.0, 68.2]
+23:38:36 prefill ~4096 971.1 tok/s over 2931 tokens
+23:39:01 prefill ~32768 893.5 tok/s over 22535 tokens
+{
+ "name": "ctl-b",
+ "time": "2026-11-21T23:37:43",
+ "ttft_short_ms": 107.7,
+ "c1_decode": 68.1,
+ "c1_all": [
+  67.44,
+  68.35,
+  68.25,
+  66.63,
+  68.0,
+  68.2
+ ],
+ "prefill_4096": 971.1,
+ "prefill_4096_tokens": 2931,
+ "prefill_32768": 893.5,
+ "prefill_32768_tokens": 22535,
+ "ok": true,
+ "mem_peak_gib": 27.27,
+ "flags": []
+}
