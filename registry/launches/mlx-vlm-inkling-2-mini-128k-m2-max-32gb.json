@@ -1,0 +1,51 @@
+{
+  "id": "mlx-vlm-inkling-2-mini-128k-m2-max-32gb",
+  "kind": "host",
+  "engine": "mlx-vlm",
+  "about": "Inkling 2 Mini (Thinking Machines' own checkpoint) on mlx-vlm from akramshehadi/mlx-vlm@d186769, which is Neywa-Labs/mlx-vlm@fd6404f plus an Inkling tool-call parser and a fix that keeps reasoning out of tool-call content. Without that commit, tool calls come back null. Window is 131,072 tokens, one request at a time, bf16 KV (lossless), text only. The wrapper's --text-only drops the 0.64 GB vision tower after loading and rejects image input. Prefill runs in 64-token steps. Inkling's attention materializes a 24-head relative-position bias of prefill-step x context per layer. At mlx-vlm's default 2,048, a 53K prompt ran out of Metal memory on 32 GB. A 128K prompt still did at step 64 with the vision tower loaded, failing on its last token. MLX_VLM_TOKEN_QUEUE_TIMEOUT is raised because a full-window prompt takes ~21 min to read. M2 Max 32 GB (30-core GPU): 127,930-token needle found, 103 tok/s prefill, 26.31 GB peak against the 26.8 GB default working set (close the big apps), no swap growth; ~18 tok/s decode. About 18.9 GB of weights in memory.",
+  "command": [
+    "python3",
+    "inkling_mlx_serve.py",
+    "--model",
+    "models/Inkling-2-Mini-ed40e7da",
+    "--text-only",
+    "--max-num-seqs",
+    "1",
+    "--prefill-step-size",
+    "64",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "python3 -m pip install git+https://github.com/akramshehadi/mlx-vlm.git@d186769cdd373d5b7418a0c1c9a074807c62a13a mlx==0.32.4 transformers==5.23.0 tokenizers==0.23.3 huggingface_hub==2.4.0 (macOS on Apple silicon, Python >= 3.10)",
+  "pip": [
+    "mlx-vlm @ git+https://github.com/akramshehadi/mlx-vlm.git@d186769cdd373d5b7418a0c1c9a074807c62a13a",
+    "mlx==0.32.4",
+    "transformers==5.23.0",
+    "tokenizers==0.23.3",
+    "huggingface_hub==2.4.0"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "MLX_VLM_TOKEN_QUEUE_TIMEOUT": "7200"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "thinkingmachines/Inkling-2-Mini",
+      "revision": "ed40e7da625f594fc9c4990f5f66be24873c22d7",
+      "at": "models/Inkling-2-Mini-ed40e7da",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "inkling_mlx_serve.py",
+    "file": "mlx-vlm-inkling-2-mini-serve.py"
+  },
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
