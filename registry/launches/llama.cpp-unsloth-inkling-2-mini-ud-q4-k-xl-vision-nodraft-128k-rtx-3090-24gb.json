@@ -1,0 +1,60 @@
+{
+  "id": "llama.cpp-unsloth-inkling-2-mini-ud-q4-k-xl-vision-nodraft-128k-rtx-3090-24gb",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "variant": "nodraft",
+  "about": "Inkling 2 Mini (26B looped MoE, ~3B active, vision, thinking) UD-Q4_K_XL with the F16 vision projector on one 24 GB card, everything on the GPU, no draft model. Without the DSpark draft the full 131,072-token window fits with f16 KV, the default ubatch and CUDA graphs on: the server takes 22,945 MiB at ready, and on an RTX 3090 that was also driving a desktop (733 MiB) the whole card peaked at 23,910 of 24,576 MiB over three repeat gate runs. llama.cpp from Unsloth's prebuilt b12588-mix-c0c3de8 (unslothai/llama.cpp 8832860, CUDA 13 portable): the Inkling 2 architecture is not in a ggml-org release yet. One slot, flash attention at its default, Thinking Machines' recommended sampling. Measured under WSL2 (Ubuntu 24.04 on Windows 11), not bare-metal Linux. On that machine the same launch with GGML_CUDA_DISABLE_GRAPHS=1 decodes at 19.8 tok/s instead of 52, and with -ub 128 the lab's prefill is 638 tok/s instead of about 1,030.",
+  "command": [
+    "llama-b12588-mix-c0c3de8/llama-server",
+    "-m",
+    "models/Inkling-2-Mini-GGUF-ea0c79b2/Inkling-2-Mini-UD-Q4_K_XL.gguf",
+    "--mmproj",
+    "models/Inkling-2-Mini-GGUF-ea0c79b2/mmproj-F16.gguf",
+    "-ngl",
+    "all",
+    "--fit",
+    "off",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "1.0",
+    "--top-k",
+    "0",
+    "--min-p",
+    "0.0",
+    "--jinja",
+    "--alias",
+    "inkling-2-mini",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/unslothai/llama.cpp/releases/download/b12588-mix-c0c3de8/app-b12588-mix-c0c3de8-linux-x64-cuda13-portable.tar.gz#sha256=6c1985d2d75c9cc6b299891d557aca70843ba5ccb68f14863a50687048cfdd48",
+  "env": {
+    "LD_LIBRARY_PATH": "llama-b12588-mix-c0c3de8:cuda13-runtime"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "unsloth/Inkling-2-Mini-GGUF",
+      "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+      "at": "models/Inkling-2-Mini-GGUF-ea0c79b2",
+      "layout": "dir",
+      "files": [
+        "Inkling-2-Mini-UD-Q4_K_XL.gguf",
+        "mmproj-F16.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": true,
+  "backend": "nvidia",
+  "setup": "Not Docker; Linux x86-64 with an NVIDIA driver for CUDA 13. Unpack the archive into llama-b12588-mix-c0c3de8/ next to models/ and run from that directory. The archive does not bundle the CUDA runtime: put libcudart.so.13, libcublas.so.13 and libcublasLt.so.13 (PyPI nvidia-cuda-runtime 13.3.29 and nvidia-cublas 13.5.1.27) in cuda13-runtime/ and install libgomp1, or the server fails to load its CUDA backend.",
+  "source": "https://github.com/unslothai/llama.cpp/releases/tag/b12588-mix-c0c3de8"
+}
