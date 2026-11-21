@@ -1,0 +1,24 @@
+23:39:57 c1 median 68.4 [67.66, 68.37, 68.53, 67.83, 68.48, 68.43]
+23:40:00 prefill ~4096 858.1 tok/s over 2931 tokens
+23:40:28 prefill ~32768 808.5 tok/s over 22535 tokens
+{
+ "name": "pss512",
+ "time": "2026-11-21T23:39:05",
+ "ttft_short_ms": 107.6,
+ "c1_decode": 68.4,
+ "c1_all": [
+  67.66,
+  68.37,
+  68.53,
+  67.83,
+  68.48,
+  68.43
+ ],
+ "prefill_4096": 858.1,
+ "prefill_4096_tokens": 2931,
+ "prefill_32768": 808.5,
+ "prefill_32768_tokens": 22535,
+ "ok": true,
+ "mem_peak_gib": 27.0,
+ "flags": []
+}

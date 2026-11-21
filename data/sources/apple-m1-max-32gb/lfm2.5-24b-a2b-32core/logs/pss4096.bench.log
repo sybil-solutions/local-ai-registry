@@ -1,0 +1,24 @@
+23:35:47 c1 median 68.44 [67.17, 68.37, 68.64, 68.46, 68.42, 68.5]
+23:35:50 prefill ~4096 998.1 tok/s over 2931 tokens
+23:36:15 prefill ~32768 900.4 tok/s over 22535 tokens
+{
+ "name": "pss4096",
+ "time": "2026-11-21T23:34:57",
+ "ttft_short_ms": 109.8,
+ "c1_decode": 68.44,
+ "c1_all": [
+  67.17,
+  68.37,
+  68.64,
+  68.46,
+  68.42,
+  68.5
+ ],
+ "prefill_4096": 998.1,
+ "prefill_4096_tokens": 2931,
+ "prefill_32768": 900.4,
+ "prefill_32768_tokens": 22535,
+ "ok": true,
+ "mem_peak_gib": 27.77,
+ "flags": []
+}
