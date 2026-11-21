@@ -1,0 +1,20 @@
+{
+ "model": "lfm3-vl-2b",
+ "weights": "LiquidAI/LFM3-VL-2B-MLX-8bit@6990b981e8235d1a41a3aa3c50b3402631659abb",
+ "engine": "mlx-vlm-lfm3-vl-2b-8bit-125k@a7aed6c915ae",
+ "set": {},
+ "card": "apple-m1-max-32gb",
+ "proof": [
+  {
+   "at": "2026-11-21",
+   "on": "owner",
+   "gpu": "Apple M1 Max 32 GB (32-core GPU)",
+   "launch_sha256": "65b05e2faf5ce2dc9f46dd4817ad41fa9476120a019f21ad5aad494e9668ab24",
+   "gates": "load chat reasoning tools context speed",
+   "tps": 90.3,
+   "prefill": 527,
+   "served": "models/LFM3-VL-2B-MLX-8bit-6990b981",
+   "log": "sha256:602ca3f9f646da49"
+  }
+ ]
+}
