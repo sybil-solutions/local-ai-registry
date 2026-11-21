@@ -22,6 +22,16 @@
   ],
   "max_age_days": 240,
   "models": {
+    "inkling-2-mini": {
+      "family": "inkling",
+      "name": "Inkling-2-Mini",
+      "released": "2026-11-17",
+      "reasoning": true,
+      "vision": true,
+      "about": "Thinking Machines' Inkling-2-Mini: a 26.4B mixture-of-experts model with 5.4B active per token and a looped core - the file stores 24 blocks and executes the middle 12 three times, so a forward pass visits 48 layers on 24 sets of weights. Apache-2.0.",
+      "good_for": "160K context on two 12 GB consumer cards, at half the speed of a dense 27B",
+      "logo": "hf"
+    },
     "underdog-saluki-27b-1.0": {
       "family": "qwen",
       "name": "Underdog Saluki 27B 1.0",
