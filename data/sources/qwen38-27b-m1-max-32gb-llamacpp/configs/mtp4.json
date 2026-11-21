@@ -1,0 +1,4 @@
+{"name": "mtp4", "base_url": "http://127.0.0.1:8080", "model": "qwen3.8-27b", "concurrency": 1,
+ "prefill_lengths": [4096], "temperature": 1.0,
+ "memory": {"cap_gib": 31, "probe": ["bash", "$HOME/lai-work/inkling/tools/memprobe.sh"], "interval_s": 2},
+ "require_ac": true}

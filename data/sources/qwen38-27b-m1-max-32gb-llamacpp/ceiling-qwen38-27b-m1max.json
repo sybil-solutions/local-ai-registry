@@ -1,0 +1,21 @@
+{
+  "_note": "Qwen3.8-27B UD-Q4_K_XL on M1 Max 32GB. Dense hybrid model: 64 decoder layers (every 4th full attention = 16 attention layers, the rest Gated DeltaNet with fixed-size state) + 1 built-in MTP layer (blk.64). Sizes from the GGUF header (tools/gguf_meta.py): non-embedding tensors 15.89 GB (incl. the MTP layer), output head 1.043 GB. KV: 16 layers x 4 KV heads x 256 x (K+V) x 2 B (f16) = 65536 B/token. Bandwidth = measured MLX read (same machine as the Inkling run). MTP rows illustrative: acceptance unknown until measured; draft cost = MTP layer (~0.4 GB est.) + the shared LM head.",
+  "bandwidth_gbs": 353,
+  "peak_tflops": 9.53,
+  "mfu": 0.5,
+  "dense_gb": 15.49,
+  "experts_gb": 0,
+  "top_k": 1,
+  "n_experts": 1,
+  "lm_head_gb": 1.043,
+  "active_params_b": 26.9,
+  "attn_layers": 16,
+  "attn_heads": 24,
+  "head_dim": 256,
+  "kv_bytes_per_token": 65536,
+  "draft_layer_gb": 0.4,
+  "draft_head_gb": 1.043,
+  "spec": [{"drafts": 0, "accept": 1.0}, {"drafts": 1, "accept": 1.7}, {"drafts": 2, "accept": 2.2}],
+  "contexts": [4096, 32768, 111411, 131072],
+  "concurrency": [1]
+}

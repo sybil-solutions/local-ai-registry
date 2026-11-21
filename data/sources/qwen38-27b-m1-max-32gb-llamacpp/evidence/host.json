@@ -1,0 +1,23 @@
+{
+ "model": "MacBookPro18,2",
+ "chip": "Apple M1 Max",
+ "cpu_cores": {
+  "performance": 8,
+  "efficiency": 2
+ },
+ "gpu_cores": 32,
+ "memory_bytes": 34359738368,
+ "metal_recommended_working_set_bytes": 26800603136,
+ "metal_max_buffer_bytes": 20100448256,
+ "iogpu_wired_limit_mb": 0,
+ "macos": "26.6.2 (25G83)",
+ "power": "Now drawing from 'AC Power'",
+ "measured": {
+  "read_gbs": 352.7,
+  "copy_gbs": 367.6,
+  "fp16_matmul_tflops": 9.53,
+  "tool": "tools/hwbench.py, mlx 0.32.4"
+ },
+ "idle_system_memory_in_use_gib": 14.16,
+ "note": "serial number and host name omitted; ~14 GiB in use by other desktop apps (browser etc.) throughout all runs"
+}
