@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "welp-35b-a3b",
+  "weights": "quaedra/Welp-35B-A3B-GGUF@3e4a3adbda8df07d2889978170d9955c2e59fb7a",
+  "engine": "llama.cpp-welp-35b-a3b-262k@52192a23c7b2",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "5c497efbbda56d7d0c5e60764782867f130b9bef40eae772e15488c5ae01ea8c",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 160.8,
+  "prefill": 1882,
+  "served": "quaedra/Welp-35B-A3B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 861,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "Ivxu9TTS44I6miLwDp38s7IMZkrLxnqm"
+    }
+   ],
+   "reply": "The weather in Paris right now is overcast with a temperature of 17°C. The code provided is f1286962.",
+   "code": "f1286962",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 418
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 113.5,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 19.8,
+   "tokens_in_window": 3182,
+   "tokens_total": 3182,
+   "seconds_total": 20.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 1882,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
