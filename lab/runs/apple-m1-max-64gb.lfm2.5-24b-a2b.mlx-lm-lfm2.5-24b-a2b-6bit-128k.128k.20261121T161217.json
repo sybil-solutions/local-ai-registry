@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm2.5-24b-a2b",
+  "weights": "LiquidAI/LFM2.5-24B-A2B-MLX-6bit@1deec53eb49571e21cdcbf82fd5839248f07ed88",
+  "engine": "mlx-lm-lfm2.5-24b-a2b-6bit-128k@01b0cef40877",
+  "set": {},
+  "card": "apple-m1-max-64gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max 64GB (32-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "Apple M1 Max 64GB (32-core GPU)",
+  "launch_sha256": "d8378a7b9b72fff61b919b7ecb5cc328b054518902a9cd076de1d9d96ae6c94b",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 67.2,
+  "prefill": 440,
+  "served": "models/LFM2.5-24B-A2B-MLX-6bit-1deec53e"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 70,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "id": "9604b0c9-c1c0-494b-a63c-08e8d3050661"
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** with an **overcast** sky.\n\nCode from the tool: `0bdea97a`",
+   "code": "0bdea97a",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 670
+  },
+  "context": {
+   "prompt_tokens": 91882,
+   "seconds": 208.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 2016,
+   "tokens_total": 5085,
+   "seconds_total": 87.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 440,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "7003b19c082de027838540eb23ef5b8f3a15374bfa4361d806b3e8319b95024f"
+}
