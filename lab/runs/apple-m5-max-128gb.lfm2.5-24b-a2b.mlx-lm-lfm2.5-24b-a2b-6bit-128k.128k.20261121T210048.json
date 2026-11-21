@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm2.5-24b-a2b",
+  "weights": "LiquidAI/LFM2.5-24B-A2B-MLX-6bit@1deec53eb49571e21cdcbf82fd5839248f07ed88",
+  "engine": "mlx-lm-lfm2.5-24b-a2b-6bit-128k@01b0cef40877",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "d8378a7b9b72fff61b919b7ecb5cc328b054518902a9cd076de1d9d96ae6c94b",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 115.0,
+  "prefill": 2710,
+  "served": "models/LFM2.5-24B-A2B-MLX-6bit-1deec53e"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "\n\nRed, yellow, blue. (Note: In light-based color mixing, the primaries are red, green, blue; in pigment mixing they are red, yellow, blue. The classic answer is the latter.)",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 72,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "id": "facddfee-b7e9-40f7-a76b-40d0bc6da0f6"
+    }
+   ],
+   "reply": "om the tool:\n\n```json\n{\n  \"city\": \"Paris\",\n  \"temp_c\": 17,\n  \"sky\": \"overcast\",\n  \"code\": \"fe35218b\"\n}\n```\n\n**Weather summary:**\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n- **Code:** fe35218b",
+   "code": "fe35218b",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 451
+  },
+  "context": {
+   "prompt_tokens": 91882,
+   "seconds": 33.9,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 3450,
+   "tokens_total": 7713,
+   "seconds_total": 76.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 2710,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "7003b19c082de027838540eb23ef5b8f3a15374bfa4361d806b3e8319b95024f"
+}
