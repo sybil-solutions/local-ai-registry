@@ -1,0 +1,21 @@
+19:57:40 c1 median 15.37 [21.13, 15.32, 14.63, 15.42, 20.63, 13.92]
+19:57:57 prefill ~4096 189.3 tok/s over 3302 tokens
+{
+ "name": "guide32k-dspark3",
+ "time": "2026-11-21T19:54:27",
+ "ttft_short_ms": 343.3,
+ "c1_decode": 15.37,
+ "c1_all": [
+  21.13,
+  15.32,
+  14.63,
+  15.42,
+  20.63,
+  13.92
+ ],
+ "prefill_4096": 189.3,
+ "prefill_4096_tokens": 3302,
+ "ok": true,
+ "mem_peak_gib": 29.17,
+ "flags": []
+}

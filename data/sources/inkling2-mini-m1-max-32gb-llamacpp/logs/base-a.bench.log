@@ -1,0 +1,24 @@
+18:48:45 c1 median 20.45 [20.46, 20.49, 20.44, 20.45, 20.45, 20.43]
+18:49:02 prefill ~4096 194.7 tok/s over 3302 tokens
+18:51:56 prefill ~32768 146.5 tok/s over 25554 tokens
+{
+ "name": "base-a",
+ "time": "2026-11-21T18:46:09",
+ "ttft_short_ms": 314.9,
+ "c1_decode": 20.45,
+ "c1_all": [
+  20.46,
+  20.49,
+  20.44,
+  20.45,
+  20.45,
+  20.43
+ ],
+ "prefill_4096": 194.7,
+ "prefill_4096_tokens": 3302,
+ "prefill_32768": 146.5,
+ "prefill_32768_tokens": 25554,
+ "ok": true,
+ "mem_peak_gib": 29.65,
+ "flags": []
+}
