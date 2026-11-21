@@ -1,0 +1,79 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "thinkingmachines/Inkling-2-Mini@ed40e7da625f594fc9c4990f5f66be24873c22d7",
+  "engine": "sglang-inkling-2-mini-nvfp4-fp8kv-256k-b390@49b7d2790385",
+  "set": {},
+  "card": "intel-arc-b390-64gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc B390 (Dell XPS 14 DA14260, Core Ultra X7 358H, 64 GB unified LPDDR5X)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "Intel Arc B390 (Dell XPS 14 DA14260, Core Ultra X7 358H, 64 GB unified LPDDR5X)",
+  "launch_sha256": "57dd3d7aca39489a8f6f63652cbf75e91da11bc85299d45fdbd0b41760cd2db0",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 18.8,
+  "prefill": 265,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_7d8bdffcb0e94b42a17ee16b",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is 17°C and overcast right now. Code: abaed0c3",
+   "code": "abaed0c3",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 371
+  },
+  "context": {
+   "prompt_tokens": 184730,
+   "seconds": 696.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 565,
+   "tokens_total": 1250,
+   "seconds_total": 68.0,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 265,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

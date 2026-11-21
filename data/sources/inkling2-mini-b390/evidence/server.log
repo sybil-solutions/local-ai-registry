@@ -1,0 +1,1665 @@
+/opt/venv/lib/python3.12/site-packages/sglang/launch_server.py:71: UserWarning: 'python -m sglang.launch_server' is still supported, but 'sglang serve' is the recommended entrypoint.
+  Example: sglang serve --model-path <model> [options]
+  warnings.warn(
+/opt/venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+EXL3 qsa_xpu installed
+Cannot detect CUDA architecture.
+Ignore import error when loading sglang.srt.models.bailing_moe_linear: No module named 'vllm'
+Ignore import error when loading sglang.srt.models.bailing_moe_nextn: No module named 'vllm'
+Ignore import error when loading sglang.srt.models.bailing_moe_v3: No module named 'vllm'
+Ignore import error when loading sglang.srt.models.inkling: No module named 'cutlass'
+[2026-11-21 05:23:12] server_args={'model_path': '/models', 'tokenizer_path': '/models', 'tokenizer_mode': 'auto', 'tokenizer_backend': 'huggingface', 'tokenizer_worker_num': 1, 'detokenizer_worker_num': 1, 'skip_tokenizer_init': False, 'load_format': 'auto', 'model_loader_extra_config': '{}', 'trust_remote_code': False, 'context_length': 262144, 'is_embedding': False, 'enable_multimodal': None, 'revision': None, 'model_impl': 'auto', 'model_config_parser': 'auto', 'json_model_override_args': '{}', 'dtype': 'bfloat16', 'quantization': None, 'quantization_param_path': None, 'kv_cache_dtype': 'fp8_e4m3', 'enable_fp32_lm_head': False, 'modelopt_quant': None, 'modelopt_checkpoint_restore_path': None, 'modelopt_checkpoint_save_path': None, 'modelopt_export_path': None, 'quantize_and_serve': False, 'rl_quant_profile': None, 'enable_tf32_matmul': False, 'mem_fraction_static': 0.85, 'max_running_requests': 4, 'max_queued_requests': None, 'max_total_tokens': 1052672, 'chunked_prefill_size': 4096, 'prefill_decode_interval': 0, 'enable_dynamic_chunking': False, 'max_prefill_tokens': 4096, 'prefill_max_requests': None, 'schedule_policy': 'fcfs', 'enable_priority_scheduling': False, 'disable_priority_preemption': False, 'default_priority_value': None, 'abort_on_priority_when_disabled': False, 'schedule_low_priority_values_first': False, 'priority_scheduling_preemption_threshold': 10, 'retraction_policy': 'length', 'schedule_conservativeness': 1.0, 'page_size': 128, 'c128_page_size': 16, 'swa_full_tokens_ratio': 0.8, 'disable_hybrid_swa_memory': False, 'radix_eviction_policy': 'lru', 'radix_eviction_policy_config': None, 'prefill_only_disable_kv_cache': False, 'disable_radix_cache': True, 'enable_page_major_kv_layout': False, 'enable_unified_memory': False, 'disable_chunked_prefix_cache': False, 'disable_overlap_schedule': False, 'num_continuous_decode_steps': 1, 'scheduler_recv_interval': 1, 'enable_mixed_chunk': False, 'nccl_port': None, 'dist_timeout': None, 'dist_init_addr': None, 'gated_launch_port': None, 'nnodes': 1, 'node_rank': 0, 'tp_size': 1, 'dcp_size': 1, 'pp_size': 1, 'pp_max_micro_batch_size': None, 'pp_async_batch_depth': 0, 'dp_size': 1, 'load_balance_method': 'round_robin', 'attn_cp_size': 1, 'moe_dp_size': 1, 'dwdp_size': 1, 'dcp_comm_backend': 'ag_rs', 'dcp_replicate_q_proj': None, 'enable_prefill_cp': False, 'cp_strategy': None, 'enable_dsa_cache_layer_split': False, 'enable_cp_decode_attn_tp': False, 'enable_dp_attention': False, 'enable_dp_attention_local_control_broadcast': False, 'enable_dp_lm_head': False, 'enable_tp_lm_head_all_to_all': False, 'enable_attn_tp_input_scattered': False, 'enable_shared_experts_attn_tp': False, 'enable_dense_mlp_attn_tp': False, 'enable_layernorm_sp': False, 'disable_attn_tp_gather': False, 'enable_p2p_check': False, 'device': 'xpu', 'base_gpu_id': 0, 'gpu_id_step': 1, 'random_seed': 289165036, 'mlx_enable_sampling': False, 'watchdog_timeout': 300, 'soft_watchdog_timeout': None, 'sleep_on_idle': False, 'use_ray': False, 'custom_sigquit_handler': None, 'numa_node': None, 'gc_threshold': None, 'host': '0.0.0.0', 'port': 8000, 'fastapi_root_path': '', 'smg_grpc_mode': False, 'grpc_mode': False, 'grpc_port': None, 'grpc_worker_threads': 4, 'sidecar': None, 'sidecar_args': None, 'skip_server_warmup': True, 'warmups': None, 'enable_http2': False, 'http2_max_concurrent_streams': 200, 'http2_initial_connection_window_size': 1048576, 'ssl_keyfile': None, 'ssl_certfile': None, 'ssl_ca_certs': None, 'ssl_keyfile_password': None, 'enable_ssl_refresh': False, 'api_key': None, 'admin_api_key': None, 'served_model_name': 'inkling-2-mini', 'weight_version': 'default', 'chat_template': None, 'hf_chat_template_name': None, 'completion_template': None, 'file_storage_path': 'sglang_storage', 'enable_cache_report': False, 'return_input_ids': False, 'return_output_ids': False, 'reasoning_parser': 'inkling', 'default_chat_template_kwargs': None, 'strip_thinking_cache': False, 'enable_strict_thinking': False, 'tool_call_parser': 'inkling', 'tool_server': None, 'sampling_defaults': 'model', 'asr_max_buffer_seconds': 60, 'asr_max_concurrent_sessions': 32, 'preferred_sampling_params': None, 'allow_auto_truncate': False, 'stream_interval': 1, 'batch_notify_size': 16, 'stream_response_default_include_usage': False, 'incremental_streaming_output': False, 'enable_streaming_session': False, 'enable_session_radix_cache': False, 'log_level': 'info', 'log_level_http': None, 'log_requests': False, 'log_requests_level': 2, 'log_requests_format': 'text', 'log_requests_target': None, 'uvicorn_access_log_exclude_prefixes': [], 'crash_dump_folder': None, 'show_time_cost': False, 'enable_metrics': True, 'smg_http_sidecar_port': None, 'enable_mfu_metrics': False, 'enable_metrics_for_all_schedulers': False, 'load_snapshot_publish_interval': 15, 'tokenizer_metrics_custom_labels_header': 'x-custom-labels', 'tokenizer_metrics_allowed_custom_labels': None, 'extra_metric_labels': None, 'bucket_time_to_first_token': None, 'bucket_inter_token_latency': None, 'bucket_e2e_request_latency': None, 'prompt_tokens_buckets': None, 'generation_tokens_buckets': None, 'gc_warning_threshold_secs': 0.0, 'decode_log_interval': 40, 'enable_request_time_stats_logging': False, 'kv_events_config': None, 'load_publish_endpoint': None, 'enable_forward_pass_metrics': False, 'forward_pass_metrics_worker_id': '', 'forward_pass_metrics_ipc_name': None, 'enable_trace': False, 'trace_modules': 'request', 'otlp_traces_endpoint': 'localhost:4317', 'export_metrics_to_file': False, 'export_metrics_to_file_dir': None, 'stat_loggers': None, 'constrained_json_whitespace_pattern': None, 'constrained_json_disable_any_whitespace': False, 'attention_backend': 'intel_xpu', 'decode_attention_backend': None, 'enable_lean_attention': None, 'prefill_attention_backend': None, 'sampling_backend': 'pytorch', 'grammar_backend': 'xgrammar', 'radix_cache_backend': None, 'mm_attention_backend': None, 'fp8_gemm_runner_backend': 'auto', 'fp4_gemm_runner_backend': 'auto', 'bf16_gemm_backend': 'auto', 'dsa_prefill_backend': None, 'dsv4_prefill_backend': 'auto', 'dsa_decode_backend': None, 'dsa_paged_mqa_logits_backend': 'auto', 'dsa_topk_backend': 'sgl-kernel', 'disable_flashinfer_autotune': False, 'flashinfer_autotune_skip_ops': None, 'mamba_backend': 'triton', 'cuda_graph_config': {'decode': {'backend': 'full', 'max_bs': 4, 'bs': [1, 2, 4], 'tc_compiler': 'eager', 'full_prefill_max_req': None, 'full_prefill_prefix_chunk_tokens': None}, 'prefill': {'backend': 'disabled', 'max_bs': 4096, 'bs': [4, 8, 12, 16, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256, 288, 320, 352, 384, 416, 448, 480, 512, 576, 640, 704, 768, 832, 896, 960, 1024, 1280, 1536, 1792, 2048, 2304, 2560, 2816, 3072, 3328, 3584, 3840, 4096], 'tc_compiler': 'eager', 'full_prefill_max_req': None, 'full_prefill_prefix_chunk_tokens': None}}, 'cuda_graph_backend_decode': 'full', 'cuda_graph_backend_prefill': None, 'cuda_graph_max_bs_decode': None, 'cuda_graph_max_bs_prefill': None, 'cuda_graph_bs_decode': [1, 2, 4], 'cuda_graph_bs_prefill': None, 'cuda_graph_tc_compiler': None, 'disable_prefill_cuda_graph': False, 'disable_decode_cuda_graph': False, 'disable_cuda_graph': False, 'disable_cuda_graph_padding': False, 'enable_profile_cuda_graph': False, 'enable_cudagraph_gc': False, 'debug_cuda_graph': False, 'enable_layerwise_nvtx_marker': False, 'enable_nccl_nvls': False, 'enable_symm_mem': False, 'triton_attention_reduce_in_fp32': False, 'triton_attention_num_kv_splits': 8, 'triton_attention_split_tile_size': None, 'flashinfer_mla_disable_ragged': False, 'enable_fused_qk_norm_rope': False, 'enable_precise_embedding_interpolation': False, 'enable_fused_moe_sum_all_reduce': False, 'enable_deepseek_v4_fp4_indexer': False, 'disable_custom_all_reduce': False, 'enable_mscclpp': False, 'enable_torch_symm_mem': False, 'enable_scattered_sconv': False, 'pre_warm_nccl': False, 'enable_quant_communications': False, 'enable_flashinfer_allreduce_fusion': False, 'enforce_disable_flashinfer_allreduce_fusion': False, 'flashinfer_allreduce_fusion_backend': None, 'enable_aiter_allreduce_fusion': False, 'enable_torch_compile': False, 'enable_torch_compile_debug_mode': False, 'torch_compile_max_bs': 32, 'speculative_algorithm': None, 'uno_lora_path': None, 'speculative_draft_model_path': None, 'speculative_draft_model_revision': None, 'speculative_draft_load_format': None, 'speculative_num_steps': None, 'speculative_eagle_topk': None, 'speculative_num_draft_tokens': None, 'speculative_dflash_block_size': None, 'speculative_dspark_block_size': None, 'speculative_dspark_sps_table_path': None, 'speculative_dspark_confidence_sts_path': None, 'speculative_dspark_align_verify_tokens_to_graph_tier': False, 'speculative_accept_threshold_single': 1.0, 'speculative_accept_threshold_acc': 1.0, 'speculative_use_rejection_sampling': False, 'speculative_token_map': None, 'speculative_attention_mode': 'prefill', 'speculative_draft_attention_backend': None, 'speculative_dsa_topk_backend': 'sgl-kernel', 'speculative_draft_kv_cache_dtype': None, 'speculative_draft_window_size': None, 'speculative_moe_runner_backend': 'auto', 'speculative_moe_a2a_backend': None, 'speculative_draft_model_quantization': None, '_speculative_draft_quantization_explicitly_set': False, 'speculative_skip_dp_mlp_sync': False, 'enable_multi_layer_eagle': False, 'speculative_adaptive': False, 'speculative_adaptive_config': None, 'decoupled_spec_bind_endpoint': None, 'decoupled_spec_connect_endpoints': None, 'decoupled_spec_rank': None, 'decoupled_spec_role': 'null', 'spec_trace_dir': None, 'speculative_ngram_min_bfs_breadth': 1, 'speculative_ngram_max_bfs_breadth': 10, 'speculative_ngram_match_type': 'BFS', 'speculative_ngram_max_trie_depth': 18, 'speculative_ngram_capacity': 10000000, 'speculative_ngram_external_corpus_path': None, 'speculative_ngram_external_sam_budget': 0, 'speculative_ngram_external_corpus_max_tokens': 10000000, 'ep_size': 1, 'moe_a2a_backend': 'none', 'enable_w4a4_mxfp4_megamoe': False, 'deepep_v2_mode': 'direct', 'moe_runner_backend': 'auto', 'flashinfer_mxfp4_moe_precision': 'default', 'deepep_mode': 'auto', 'fuseep_mode': 2, 'deepep_dispatcher_output_dtype': 'auto', 'ep_num_redundant_experts': 0, 'ep_dispatch_algorithm': None, 'init_expert_location': 'trivial', 'enable_eplb': False, 'eplb_algorithm': 'auto', 'eplb_rebalance_num_iterations': 1000, 'eplb_rebalance_layers_per_chunk': None, 'eplb_min_rebalancing_utilization_threshold': 1.0, 'expert_distribution_recorder_mode': None, 'expert_distribution_recorder_buffer_size': 1000, 'expert_balancedness_report_mode': 'off', 'deepep_config': None, 'moe_dense_tp_size': None, 'elastic_ep_backend': None, 'enable_elastic_expert_backup': False, 'mooncake_ib_device': None, 'enable_waterfill': False, 'ep_join_mode': None, 'ep_join_rank_offset': 0, 'elastic_ep_initial_size': None, 'max_ep_size': None, 'elastic_ep_scale_timeout': 600, 'elastic_ep_rejoin': False, 'disable_flashinfer_cutlass_moe_fp4_allgather': False, 'disable_shared_experts_fusion': False, 'enforce_shared_experts_fusion': False, 'max_mamba_cache_size': None, 'mamba_ssm_dtype': None, 'mamba_max_states_per_path': -1, 'enable_mamba_cache_stochastic_rounding': False, 'mamba_cache_philox_rounds': 0, 'mamba_full_memory_ratio': 0.9, 'mamba_radix_cache_strategy': 'auto', 'uses_mamba_radix_cache': False, 'mamba_track_interval': 256, 'enable_int8_mamba_checkpoint': False, 'int8_mamba_ckpt_size': None, 'linear_attn_backend': 'triton', 'linear_attn_decode_backend': None, 'linear_attn_prefill_backend': None, 'linear_attn_verify_backend': None, 'enable_linear_replayssm': False, 'linear_replayssm_cache_len': 16, 'enable_linear_replayssm_spec': False, 'enable_hierarchical_cache': False, 'hicache_host_memory_mode': 'cache', 'hicache_ratio': 2.0, 'hicache_size': 0, 'hicache_write_policy': 'write_through', 'hicache_io_backend': 'kernel', 'hicache_mem_layout': 'page_first', 'hicache_storage_backend': None, 'hicache_storage_prefetch_policy': 'timeout', 'hicache_storage_backend_extra_config': None, 'hicache_storage_prefetch_retry_poll_interval': 8, 'hicache_storage_prefetch_retry_max_attempts': 8, 'enable_unified_cache_external_linker': False, 'unified_cache_external_linker_backend': 'mooncake', 'enable_hisparse': False, 'hisparse_config': None, 'enable_broadcast_mm_inputs_process': False, 'enable_prefix_mm_cache': False, 'mm_enable_dp_encoder': False, 'mm_process_config': {}, 'mm_processor_worker_num': 0, 'mm_io_worker_num': 0, 'allowed_media_domains': [], 'media_url_max_file_size_mb': 64, 'mm_preprocess_cache_size_mb': None, 'trust_mm_content_hashes': False, 'limit_mm_data_per_request': None, 'enable_mm_global_cache': False, 'image_processor_backend': 'auto', 'mm_global_cache_backend': 'mooncake', 'disable_fast_image_processor': False, 'mm_feature_transport': 'cpu', 'keep_mm_feature_on_device': False, 'enable_lora': None, 'enable_lora_overlap_loading': None, 'max_lora_rank': None, 'lora_target_modules': None, 'lora_paths': None, 'max_loaded_loras': None, 'max_loras_per_batch': 8, 'lora_eviction_policy': 'lru', 'lora_backend': 'csgmv', 'max_lora_chunk_size': 16, 'experts_shared_outer_loras': None, 'lora_use_virtual_experts': False, 'lora_strict_loading': False, 'lora_drain_wait_threshold': 0.0, 'enable_two_batch_overlap': False, 'enable_single_batch_overlap': False, 'tbo_token_distribution_threshold': 0.48, 'cpu_offload_gb': 0, 'offload_group_size': -1, 'offload_num_in_group': 1, 'offload_prefetch_step': 1, 'offload_mode': 'cpu', 'enable_lmcache': False, 'lmcache_config_file': None, 'enable_flexkv': False, 'flexkv_config_file': None, 'kt_weight_path': None, 'kt_method': 'AMXINT4', 'kt_cpuinfer': None, 'kt_threadpool_count': 2, 'kt_num_gpu_experts': None, 'kt_max_deferred_experts_per_token': None, 'dllm_algorithm': None, 'dllm_algorithm_config': None, 'dllm_fdfo': True, 'disaggregation_mode': 'null', 'disaggregation_transfer_backend': 'mooncake', 'disaggregation_bootstrap_port': 8998, 'disaggregation_ib_device': None, 'disaggregation_decode_enable_radix_cache': False, 'disaggregation_decode_enable_offload_kvcache': False, 'disaggregation_decode_retraction_backup': None, 'num_reserved_decode_tokens': 512, 'disaggregation_decode_extra_slots': None, 'disaggregation_decode_polling_interval': 1, 'optimistic_prefill_attempts': 0, 'encoder_only': False, 'language_only': False, 'language_model_only': False, 'encoder_transfer_backend': 'zmq_to_scheduler', 'encoder_urls': [], 'encoder_bootstrap_port': 8997, 'encoder_register_urls': [], 'enable_adaptive_dispatch_to_encoder': False, 'enable_pdmux': False, 'pdmux_config_path': None, 'sm_group_num': 8, 'startup_weight_load_mode': 'serial', 'custom_weight_loader': [], 'weight_loader_disable_mmap': False, 'weight_loader_prefetch_checkpoints': False, 'weight_loader_prefetch_num_threads': 4, 'weight_loader_drop_cache_after_load': False, 'remote_instance_weight_loader_seed_instance_ip': None, 'remote_instance_weight_loader_seed_instance_service_port': None, 'remote_instance_weight_loader_send_weights_group_ports': None, 'remote_instance_weight_loader_backend': 'nccl', 'remote_instance_weight_loader_start_seed_via_transfer_engine': False, 'engine_info_bootstrap_port': 6789, 'modelexpress_config': None, 'download_dir': None, 'model_checksum': None, 'delete_ckpt_after_loading': False, 'decrypted_config_file': None, 'decrypted_draft_config_file': None, 'checkpoint_engine_wait_weights_before_ready': False, 'enable_prefill_delayer': False, 'prefill_delayer_max_delay_passes': 30, 'prefill_delayer_token_usage_low_watermark': None, 'prefill_delayer_forward_passes_buckets': None, 'prefill_delayer_wait_seconds_buckets': None, 'prefill_delayer_queue_min_ratio': None, 'prefill_delayer_max_delay_ms': None, 'min_free_slots_delay': None, 'enable_deterministic_inference': False, 'rl_on_policy_target': None, 'kv_canary': 'none', 'kv_canary_real_data': 'none', 'kv_canary_sweep_interval': 0, 'enable_dynamic_batch_tokenizer': False, 'dynamic_batch_tokenizer_batch_size': 32, 'dynamic_batch_tokenizer_batch_timeout': 0.002, 'enable_tokenizer_batch_encode': False, 'disable_tokenizer_batch_decode': False, 'debug_tensor_dump_output_folder': None, 'debug_tensor_dump_layers': None, 'debug_tensor_dump_input_file': None, 'enable_memory_saver': False, 'enable_weights_cpu_backup': False, 'enable_draft_weights_cpu_backup': False, 'enable_custom_logit_processor': False, 'enable_return_hidden_states': False, 'return_hidden_states_mode': None, 'enable_return_routed_experts': False, 'enable_return_indexer_topk': False, 'sampling_mask_max_tokens': 4096, 'disable_outlines_disk_cache': False, 'enable_mis': False, 'weight_cache_mode': 'off', 'weight_cache_socket': None, 'weight_cache_timeout': 1800, 'forward_hooks': None, 'msprobe_dump_config': None, 'ple_offload_embedding': None, 'ple_offload_backend': 'pinned', 'ple_offload_dir': None, 'speculative_domino_candidate_pool_size': 2048, 'flashinfer_a2a_dispatch_type': None, 'dsv4_attn_backend': 'auto', '_radix_eviction_policy_explicitly_set': False, 'enable_response_store': False}
+[2026-11-21 05:23:12] Ignore import error when loading sglang.srt.multimodal.processors.inkling: No module named 'cutlass'
+[2026-11-21 05:23:12] Ignore import error when loading sglang.srt.multimodal.processors.mimo_audio: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-21 05:23:12] Ignore import error when loading sglang.srt.multimodal.processors.mimo_v2: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+/opt/venv/lib/python3.12/site-packages/sglang/srt/environ.py:1917: UserWarning: Environment variable SGL_JIT_TORCH_INCLUDE is deprecated, please use SGLANG_JIT_TORCH_INCLUDE
+  warnings.warn(
+/opt/venv/lib/python3.12/site-packages/sglang/srt/environ.py:1917: UserWarning: Environment variable SGL_JIT_TORCH_LIB is deprecated, please use SGLANG_JIT_TORCH_LIB
+  warnings.warn(
+/opt/venv/lib/python3.12/site-packages/sglang/srt/environ.py:1917: UserWarning: Environment variable SGL_JIT_TORCH_INCLUDE is deprecated, please use SGLANG_JIT_TORCH_INCLUDE
+  warnings.warn(
+/opt/venv/lib/python3.12/site-packages/sglang/srt/environ.py:1917: UserWarning: Environment variable SGL_JIT_TORCH_LIB is deprecated, please use SGLANG_JIT_TORCH_LIB
+  warnings.warn(
+[2026-11-21 05:23:12] Ignore import error when loading sglang.srt.multimodal.processors.mimo_v2_asr: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-21 05:23:16] Multimodal processor concurrency enabled with 2 isolated worker threads (auto).
+[2026-11-21 05:23:16] Using default HuggingFace chat template with detected content format: openai
+/opt/venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+/opt/venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+[transformers] You are using a model of type `inkling2_loop` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+EXL3 qsa_xpu installed
+Cannot detect CUDA architecture.
+Ignore import error when loading sglang.srt.models.bailing_moe_linear: No module named 'vllm'
+Ignore import error when loading sglang.srt.models.bailing_moe_nextn: No module named 'vllm'
+Ignore import error when loading sglang.srt.models.bailing_moe_v3: No module named 'vllm'
+Ignore import error when loading sglang.srt.models.inkling: No module named 'cutlass'
+[transformers] You are using a model of type `inkling2_loop` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[2026-11-21 05:23:20] Ignore import error when loading sglang.srt.multimodal.processors.inkling: No module named 'cutlass'
+[2026-11-21 05:23:20] Ignore import error when loading sglang.srt.multimodal.processors.mimo_audio: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-21 05:23:20] Ignore import error when loading sglang.srt.multimodal.processors.mimo_v2: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-21 05:23:20] Ignore import error when loading sglang.srt.multimodal.processors.mimo_v2_asr: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-21 05:23:21] Init torch distributed begin.
+[2026-11-21 05:23:21] Init torch distributed ends. elapsed=0.02 s, mem usage=0.00 GB
+[2026-11-21 05:23:21] Load weight begin. avail mem=58.12 GB
+Multi-thread loading shards:   0% Completed | 0/1 [00:00<?, ?it/s]Multi-thread loading shards: 100% Completed | 1/1 [00:08<00:00,  8.64s/it]Multi-thread loading shards: 100% Completed | 1/1 [00:08<00:00,  8.64s/it]
+[2026-11-21 05:23:33] inkling2: loaded; 8 global / 40 SWA visits, 6 slots
+[2026-11-21 05:23:33] Using FP8 KV cache but no scaling factors provided. Defaulting to scaling factors of 1.0.
+[2026-11-21 05:23:33] Load weight end. elapsed=12.17 s, type=Inkling2LoopForConditionalGeneration, avail mem=38.53 GB, mem usage=19.59 GB.
+[2026-11-21 05:23:36] Reserving 0.10 GB of the KV budget for post-sizing multimodal allocations (feature-transport pools + embedding cache).
+[2026-11-21 05:23:41] KV Cache is allocated. dtype: torch.float8_e4m3fn, #tokens: 1052672, K size: 8.03 GB, V size: 8.03 GB
+[2026-11-21 05:23:41] Memory pool end. avail mem=22.46 GB
+[2026-11-21 05:23:41] Disable prefill CUDA graph because cuda_graph_config resolved prefill.backend='disabled' (e.g. via --cuda-graph-backend-prefill=disabled or auto-disable rules).
+[2026-11-21 05:23:41] Capture target decode XPU graph begin. backend=full, num_tokens_per_req=1, bs=[1, 2, 4], avail mem=22.42 GB
+  0%|          | 0/3 [00:00<?, ?it/s]Capturing batches (bs=4 avail_mem=22.41 GB):   0%|          | 0/3 [00:00<?, ?it/s]Capturing batches (bs=4 avail_mem=22.41 GB):  33%|███▎      | 1/3 [00:08<00:17,  8.80s/it]Capturing batches (bs=2 avail_mem=22.41 GB):  33%|███▎      | 1/3 [00:08<00:17,  8.80s/it]Capturing batches (bs=2 avail_mem=22.41 GB):  67%|██████▋   | 2/3 [00:09<00:03,  3.91s/it]Capturing batches (bs=1 avail_mem=22.41 GB):  67%|██████▋   | 2/3 [00:09<00:03,  3.91s/it]Capturing batches (bs=1 avail_mem=22.41 GB): 100%|██████████| 3/3 [00:09<00:00,  2.31s/it]Capturing batches (bs=1 avail_mem=22.41 GB): 100%|██████████| 3/3 [00:09<00:00,  3.23s/it]
+[2026-11-21 05:23:51] Capture target decode XPU graph end. elapsed=10.08 s, mem usage=0.00 GB, avail mem=22.41 GB.
+[2026-11-21 05:23:51] max_total_num_tokens=1052672, chunked_prefill_size=4096, max_prefill_tokens=4096, max_running_requests=4, context_len=262144, available_gpu_mem=22.41 GB
+[2026-11-21 05:23:51] Tree cache initialized: source=default impl=ChunkCache hybrid_swa=False hybrid_ssm=False hicache_attached=False streaming_wrapped=False
+[2026-11-21 05:23:52] Engine startup timings (s): load_weight=12.17, kv_cache_allocation=5.06, scheduler_e2e=34.65, cuda_graph={prefill=0.00, decode=10.08, target_verify=0.00, draft_prefill=0.00, draft_decode=0.00, draft_extend=0.00}, tokenizer_e2e=40.06
+[2026-11-21 05:23:52] INFO:     Started server process [1]
+[2026-11-21 05:23:52] INFO:     Waiting for application startup.
+[2026-11-21 05:23:52] Using default chat sampling params from model generation config: {'temperature': 1.0}
+[2026-11-21 05:23:52] INFO:     Application startup complete.
+[2026-11-21 05:23:52] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+[2026-11-21 05:23:52] post-warmup freeze_gc failed
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/connection.py", line 239, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 499, in _make_request
+    conn.request(
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/connection.py", line 567, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1360, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1120, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1064, in send
+    self.connect()
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/connection.py", line 398, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/connection.py", line 254, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /freeze_gc (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/sglang/srt/entrypoints/http_server.py", line 2392, in _freeze_gc_after_server_warmup
+    res = requests.post(
+          ^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/requests/api.py", line 134, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /freeze_gc (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused"))
+[2026-11-21 05:23:52] The server is fired up and ready to roll!
+/opt/venv/lib/python3.12/site-packages/sglang/srt/entrypoints/http_server.py:454: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  return await original_handler(ORJSONRequest(request.scope, request.receive))
+[2026-11-21 05:23:53] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:23:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:23:54] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 0.35
+[2026-11-21 05:23:54] INFO:     172.17.0.1:42268 - "GET /health HTTP/1.1" 200 OK
+[2026-11-21 05:23:54] INFO:     172.17.0.1:42286 - "GET /server_info HTTP/1.1" 200 OK
+[2026-11-21 05:23:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:23:55] INFO:     172.17.0.1:35206 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:23:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:23:57] Prefill batch, #new-seq: 1, #new-token: 48, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 14.40
+[2026-11-21 05:23:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:23:59] Decode batch, #running-req: 1, #token: 128, token usage: 0.00, cuda graph: True, gen throughput (token/s): 4.85, #queue-req: 0
+[2026-11-21 05:24:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:01] INFO:     172.17.0.1:42302 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-21 05:24:01] INFO:     172.17.0.1:35222 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:24:02] Prefill batch, #new-seq: 1, #new-token: 23, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 5.16
+[2026-11-21 05:24:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:03] Decode batch, #running-req: 1, #token: 128, token usage: 0.00, cuda graph: True, gen throughput (token/s): 12.08, #queue-req: 0
+[2026-11-21 05:24:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:24:05] INFO:     172.17.0.1:41738 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:05] Decode batch, #running-req: 1, #token: 128, token usage: 0.00, cuda graph: True, gen throughput (token/s): 19.10, #queue-req: 0
+[2026-11-21 05:24:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:07] Decode batch, #running-req: 1, #token: 128, token usage: 0.00, cuda graph: True, gen throughput (token/s): 19.01, #queue-req: 0
+[2026-11-21 05:24:08] INFO:     172.17.0.1:35224 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-21 05:24:09] Prefill batch, #new-seq: 1, #new-token: 29, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 4.30
+[2026-11-21 05:24:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:10] Decode batch, #running-req: 1, #token: 128, token usage: 0.00, cuda graph: True, gen throughput (token/s): 12.76, #queue-req: 0
+[2026-11-21 05:24:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:11] INFO:     172.17.0.1:41754 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-21 05:24:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:13:   67 |CCL_WARN| did not find MPI-launcher specific variables, switch to ATL/OFI, to force enable ATL/MPI set CCL_ATL_TRANSPORT=mpi
+2026:11:21-05:24:13:   67 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+2026:11:21-05:24:13:  179:[0] |CCL_WARN| no membind support for NUMA node 0, skip thread membind
+2026:11:21-05:24:13:   67:[0] |CCL_WARN| device_family is unknown, topology discovery could be incorrect, it might result in suboptimal performance
+2026:11:21-05:24:13:   67:[0] |CCL_WARN| pidfd is not supported, fallbacks to drmfd exchange mode
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:14] Prefill batch, #new-seq: 1, #new-token: 119, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 23.67
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:14:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:24:15] INFO:     172.17.0.1:44064 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:15] Decode batch, #running-req: 1, #token: 256, token usage: 0.00, cuda graph: True, gen throughput (token/s): 8.81, #queue-req: 0
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:15:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:16:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:17] Decode batch, #running-req: 1, #token: 256, token usage: 0.00, cuda graph: True, gen throughput (token/s): 19.06, #queue-req: 0
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:17:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:18:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:19] Decode batch, #running-req: 1, #token: 256, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.51, #queue-req: 0
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:19:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:20:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:21] Decode batch, #running-req: 1, #token: 384, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.09, #queue-req: 0
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:21:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:21] INFO:     172.17.0.1:41766 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-21 05:24:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:23:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:24] Prefill batch, #new-seq: 1, #new-token: 196, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 19.81
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:24:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:24:25] INFO:     172.17.0.1:41252 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:25] Decode batch, #running-req: 1, #token: 256, token usage: 0.00, cuda graph: True, gen throughput (token/s): 9.52, #queue-req: 0
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:25:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:26:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:27] Decode batch, #running-req: 1, #token: 384, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.63, #queue-req: 0
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:27:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:28:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:29:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:30] Decode batch, #running-req: 1, #token: 384, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.65, #queue-req: 0
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:30:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+2026:11:21-05:24:31:   67:[0] |CCL_WARN| Applying sycl-kernels, but device family is not recognized
+[2026-11-21 05:24:31] INFO:     172.17.0.1:44078 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-21 05:24:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:24:35] INFO:     172.17.0.1:41920 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:24:45] INFO:     172.17.0.1:34160 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:49] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, #pending-token: 180634, cuda graph: False, input throughput (token/s): 158.05
+[2026-11-21 05:24:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:24:55] INFO:     172.17.0.1:44878 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:24:59] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, #pending-token: 176538, cuda graph: False, input throughput (token/s): 450.94
+[2026-11-21 05:24:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:25:05] INFO:     172.17.0.1:54352 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:07] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, #pending-token: 172442, cuda graph: False, input throughput (token/s): 459.30
+[2026-11-21 05:25:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:25:15] INFO:     172.17.0.1:48720 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:17] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, #pending-token: 168346, cuda graph: False, input throughput (token/s): 444.12
+[2026-11-21 05:25:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:25:25] INFO:     172.17.0.1:57146 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:27] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.02, #running-req: 0, #queue-req: 0, #pending-token: 164250, cuda graph: False, input throughput (token/s): 398.16
+[2026-11-21 05:25:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:25:35] INFO:     172.17.0.1:33838 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:37] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.03, #running-req: 0, #queue-req: 0, #pending-token: 160154, cuda graph: False, input throughput (token/s): 406.08
+[2026-11-21 05:25:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:25:45] INFO:     172.17.0.1:58028 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:47] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.03, #running-req: 0, #queue-req: 0, #pending-token: 156058, cuda graph: False, input throughput (token/s): 416.78
+[2026-11-21 05:25:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:25:55] INFO:     172.17.0.1:40284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:25:57] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.04, #running-req: 0, #queue-req: 0, #pending-token: 151962, cuda graph: False, input throughput (token/s): 409.94
+[2026-11-21 05:25:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:26:05] INFO:     172.17.0.1:38990 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:09] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.04, #running-req: 0, #queue-req: 0, #pending-token: 147866, cuda graph: False, input throughput (token/s): 348.67
+[2026-11-21 05:26:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:26:15] INFO:     172.17.0.1:41736 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:19] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.04, #running-req: 0, #queue-req: 0, #pending-token: 143770, cuda graph: False, input throughput (token/s): 384.49
+[2026-11-21 05:26:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:26:25] INFO:     172.17.0.1:36894 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:30] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.05, #running-req: 0, #queue-req: 0, #pending-token: 139674, cuda graph: False, input throughput (token/s): 372.84
+[2026-11-21 05:26:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:26:35] INFO:     172.17.0.1:56686 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:42] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.05, #running-req: 0, #queue-req: 0, #pending-token: 135578, cuda graph: False, input throughput (token/s): 343.13
+[2026-11-21 05:26:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:26:45] INFO:     172.17.0.1:46392 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:54] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.05, #running-req: 0, #queue-req: 0, #pending-token: 131482, cuda graph: False, input throughput (token/s): 339.22
+[2026-11-21 05:26:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:26:55] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:26:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:27:05] INFO:     172.17.0.1:38646 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:06] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.06, #running-req: 0, #queue-req: 0, #pending-token: 127386, cuda graph: False, input throughput (token/s): 347.58
+[2026-11-21 05:27:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:27:15] INFO:     172.17.0.1:57774 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:18] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.06, #running-req: 0, #queue-req: 0, #pending-token: 123290, cuda graph: False, input throughput (token/s): 342.82
+[2026-11-21 05:27:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:27:25] INFO:     172.17.0.1:37044 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:31] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 119194, cuda graph: False, input throughput (token/s): 317.06
+[2026-11-21 05:27:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:27:35] INFO:     172.17.0.1:50164 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:27:45] INFO:     172.17.0.1:40594 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:46] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 115098, cuda graph: False, input throughput (token/s): 276.30
+[2026-11-21 05:27:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:27:55] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:27:59] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 111002, cuda graph: False, input throughput (token/s): 314.26
+[2026-11-21 05:28:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:28:05] INFO:     172.17.0.1:44854 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:12] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.08, #running-req: 0, #queue-req: 0, #pending-token: 106906, cuda graph: False, input throughput (token/s): 305.25
+[2026-11-21 05:28:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:28:15] INFO:     172.17.0.1:35338 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:28:25] INFO:     172.17.0.1:34524 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:26] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.08, #running-req: 0, #queue-req: 0, #pending-token: 102810, cuda graph: False, input throughput (token/s): 299.57
+[2026-11-21 05:28:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:28:35] INFO:     172.17.0.1:52576 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:40] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.09, #running-req: 0, #queue-req: 0, #pending-token: 98714, cuda graph: False, input throughput (token/s): 292.32
+[2026-11-21 05:28:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:28:45] INFO:     172.17.0.1:59502 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:28:55] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:55] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.09, #running-req: 0, #queue-req: 0, #pending-token: 94618, cuda graph: False, input throughput (token/s): 272.42
+[2026-11-21 05:28:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:28:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:29:05] INFO:     172.17.0.1:34706 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:11] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.09, #running-req: 0, #queue-req: 0, #pending-token: 90522, cuda graph: False, input throughput (token/s): 255.84
+[2026-11-21 05:29:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:29:15] INFO:     172.17.0.1:41118 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:29:25] INFO:     172.17.0.1:35038 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:26] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 86426, cuda graph: False, input throughput (token/s): 265.41
+[2026-11-21 05:29:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:29:35] INFO:     172.17.0.1:45032 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:41] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 82330, cuda graph: False, input throughput (token/s): 273.42
+[2026-11-21 05:29:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:29:45] INFO:     172.17.0.1:36706 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:29:55] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:29:58] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.11, #running-req: 0, #queue-req: 0, #pending-token: 78234, cuda graph: False, input throughput (token/s): 246.74
+[2026-11-21 05:29:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:30:05] INFO:     172.17.0.1:35596 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:14] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.11, #running-req: 0, #queue-req: 0, #pending-token: 74138, cuda graph: False, input throughput (token/s): 262.59
+[2026-11-21 05:30:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:30:15] INFO:     172.17.0.1:51488 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:30:25] INFO:     172.17.0.1:33866 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:30] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.11, #running-req: 0, #queue-req: 0, #pending-token: 70042, cuda graph: False, input throughput (token/s): 255.85
+[2026-11-21 05:30:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:30:35] INFO:     172.17.0.1:53242 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:30:45] INFO:     172.17.0.1:56608 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:46] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.12, #running-req: 0, #queue-req: 0, #pending-token: 65946, cuda graph: False, input throughput (token/s): 252.48
+[2026-11-21 05:30:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:30:55] INFO:     172.17.0.1:34986 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:30:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:31:05] INFO:     172.17.0.1:44570 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:06] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.12, #running-req: 0, #queue-req: 0, #pending-token: 61850, cuda graph: False, input throughput (token/s): 200.94
+[2026-11-21 05:31:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:31:15] INFO:     172.17.0.1:43248 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:31:25] INFO:     172.17.0.1:50450 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:27] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.12, #running-req: 0, #queue-req: 0, #pending-token: 57754, cuda graph: False, input throughput (token/s): 197.01
+[2026-11-21 05:31:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:31:35] INFO:     172.17.0.1:51484 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:44] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.13, #running-req: 0, #queue-req: 0, #pending-token: 53658, cuda graph: False, input throughput (token/s): 238.72
+[2026-11-21 05:31:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:31:45] INFO:     172.17.0.1:59488 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:31:55] INFO:     172.17.0.1:55870 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:31:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:02] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.13, #running-req: 0, #queue-req: 0, #pending-token: 49562, cuda graph: False, input throughput (token/s): 229.24
+[2026-11-21 05:32:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:32:05] INFO:     172.17.0.1:34268 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:32:15] INFO:     172.17.0.1:57266 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:20] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.14, #running-req: 0, #queue-req: 0, #pending-token: 45466, cuda graph: False, input throughput (token/s): 222.06
+[2026-11-21 05:32:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:32:25] INFO:     172.17.0.1:55822 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:32:35] INFO:     172.17.0.1:58626 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:39] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.14, #running-req: 0, #queue-req: 0, #pending-token: 41370, cuda graph: False, input throughput (token/s): 221.50
+[2026-11-21 05:32:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:32:45] INFO:     172.17.0.1:49990 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:32:55] INFO:     172.17.0.1:41200 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:32:58] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.14, #running-req: 0, #queue-req: 0, #pending-token: 37274, cuda graph: False, input throughput (token/s): 218.02
+[2026-11-21 05:32:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:33:05] INFO:     172.17.0.1:38880 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:33:15] INFO:     172.17.0.1:57620 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:16] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.15, #running-req: 0, #queue-req: 0, #pending-token: 33178, cuda graph: False, input throughput (token/s): 219.19
+[2026-11-21 05:33:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:33:25] INFO:     172.17.0.1:51910 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:33:35] INFO:     172.17.0.1:32914 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:36] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.15, #running-req: 0, #queue-req: 0, #pending-token: 29082, cuda graph: False, input throughput (token/s): 209.98
+[2026-11-21 05:33:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:33:45] INFO:     172.17.0.1:41008 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:33:55] INFO:     172.17.0.1:49656 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:56] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.16, #running-req: 0, #queue-req: 0, #pending-token: 24986, cuda graph: False, input throughput (token/s): 199.48
+[2026-11-21 05:33:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:33:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:34:05] INFO:     172.17.0.1:53516 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:34:15] INFO:     172.17.0.1:56818 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:16] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.16, #running-req: 0, #queue-req: 0, #pending-token: 20890, cuda graph: False, input throughput (token/s): 211.07
+[2026-11-21 05:34:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:34:25] INFO:     172.17.0.1:37708 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:34:35] INFO:     172.17.0.1:52666 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:42] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.16, #running-req: 0, #queue-req: 0, #pending-token: 16794, cuda graph: False, input throughput (token/s): 156.51
+[2026-11-21 05:34:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:34:45] INFO:     172.17.0.1:45840 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:34:55] INFO:     172.17.0.1:56362 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:34:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:03] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.17, #running-req: 0, #queue-req: 0, #pending-token: 12698, cuda graph: False, input throughput (token/s): 196.45
+[2026-11-21 05:35:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:35:05] INFO:     172.17.0.1:35798 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:35:15] INFO:     172.17.0.1:46612 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:24] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.17, #running-req: 0, #queue-req: 0, #pending-token: 8602, cuda graph: False, input throughput (token/s): 189.12
+[2026-11-21 05:35:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:35:25] INFO:     172.17.0.1:50480 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:35:35] INFO:     172.17.0.1:43500 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:35:45] INFO:     172.17.0.1:46234 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:46] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.18, #running-req: 0, #queue-req: 0, #pending-token: 4506, cuda graph: False, input throughput (token/s): 191.54
+[2026-11-21 05:35:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:50] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, token usage: 0.18, #running-req: 0, #queue-req: 0, #pending-token: 410, cuda graph: False, input throughput (token/s): 1117.30
+[2026-11-21 05:35:50] Prefill batch, #new-seq: 1, #new-token: 410, #cached-token: 0, token usage: 0.18, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 3598.74
+[2026-11-21 05:35:50] Decode batch, #running-req: 1, #token: 184832, token usage: 0.18, cuda graph: True, gen throughput (token/s): 0.06, #queue-req: 0
+[2026-11-21 05:35:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:54] Decode batch, #running-req: 1, #token: 184832, token usage: 0.18, cuda graph: True, gen throughput (token/s): 10.43, #queue-req: 0
+[2026-11-21 05:35:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:35:55] INFO:     172.17.0.1:54530 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:35:58] Decode batch, #running-req: 1, #token: 184832, token usage: 0.18, cuda graph: True, gen throughput (token/s): 10.20, #queue-req: 0
+[2026-11-21 05:35:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:02] Decode batch, #running-req: 1, #token: 184960, token usage: 0.18, cuda graph: True, gen throughput (token/s): 10.32, #queue-req: 0
+[2026-11-21 05:36:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:36:05] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:06] Decode batch, #running-req: 1, #token: 184960, token usage: 0.18, cuda graph: True, gen throughput (token/s): 10.45, #queue-req: 0
+[2026-11-21 05:36:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:08] INFO:     172.17.0.1:41264 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-21 05:36:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:09] Prefill batch, #new-seq: 1, #new-token: 30, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 1.54
+[2026-11-21 05:36:09] INFO:     172.17.0.1:48354 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-21 05:36:10] Decode batch, #running-req: 1, #token: 128, token usage: 0.00, cuda graph: True, gen throughput (token/s): 9.62, #queue-req: 0
+[2026-11-21 05:36:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:12] Decode batch, #running-req: 1, #token: 128, token usage: 0.00, cuda graph: True, gen throughput (token/s): 19.00, #queue-req: 0
+[2026-11-21 05:36:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:14] Decode batch, #running-req: 1, #token: 128, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.92, #queue-req: 0
+[2026-11-21 05:36:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:36:15] INFO:     172.17.0.1:56692 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:16] Decode batch, #running-req: 1, #token: 256, token usage: 0.00, cuda graph: True, gen throughput (token/s): 19.00, #queue-req: 0
+[2026-11-21 05:36:17] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:18] Decode batch, #running-req: 1, #token: 256, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.90, #queue-req: 0
+[2026-11-21 05:36:19] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:21] Decode batch, #running-req: 1, #token: 256, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.52, #queue-req: 0
+[2026-11-21 05:36:21] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:23] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:23] Decode batch, #running-req: 1, #token: 384, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.92, #queue-req: 0
+[2026-11-21 05:36:25] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:36:25] INFO:     172.17.0.1:60968 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:25] Decode batch, #running-req: 1, #token: 384, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.84, #queue-req: 0
+[2026-11-21 05:36:27] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:27] Decode batch, #running-req: 1, #token: 384, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.92, #queue-req: 0
+[2026-11-21 05:36:29] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:29] Decode batch, #running-req: 1, #token: 512, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.81, #queue-req: 0
+[2026-11-21 05:36:31] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:31] Decode batch, #running-req: 1, #token: 512, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.92, #queue-req: 0
+[2026-11-21 05:36:33] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:33] Decode batch, #running-req: 1, #token: 512, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.93, #queue-req: 0
+[2026-11-21 05:36:35] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:36:35] INFO:     172.17.0.1:46998 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:35] Decode batch, #running-req: 1, #token: 640, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.79, #queue-req: 0
+[2026-11-21 05:36:37] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:38] Decode batch, #running-req: 1, #token: 640, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.85, #queue-req: 0
+[2026-11-21 05:36:39] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:40] Decode batch, #running-req: 1, #token: 640, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.78, #queue-req: 0
+[2026-11-21 05:36:41] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:42] Decode batch, #running-req: 1, #token: 768, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.76, #queue-req: 0
+[2026-11-21 05:36:43] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:44] Decode batch, #running-req: 1, #token: 768, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.80, #queue-req: 0
+[2026-11-21 05:36:45] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:36:45] INFO:     172.17.0.1:36502 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:46] Decode batch, #running-req: 1, #token: 768, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.73, #queue-req: 0
+[2026-11-21 05:36:47] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:48] Decode batch, #running-req: 1, #token: 768, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.76, #queue-req: 0
+[2026-11-21 05:36:49] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:50] Decode batch, #running-req: 1, #token: 896, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.48, #queue-req: 0
+[2026-11-21 05:36:51] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:52] Decode batch, #running-req: 1, #token: 896, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.71, #queue-req: 0
+[2026-11-21 05:36:53] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:55] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:36:55] Decode batch, #running-req: 1, #token: 896, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.72, #queue-req: 0
+[2026-11-21 05:36:55] INFO:     172.17.0.1:39256 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:57] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:57] Decode batch, #running-req: 1, #token: 1024, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.63, #queue-req: 0
+[2026-11-21 05:36:59] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:36:59] Decode batch, #running-req: 1, #token: 1024, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.73, #queue-req: 0
+[2026-11-21 05:37:01] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:37:01] Decode batch, #running-req: 1, #token: 1024, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.65, #queue-req: 0
+[2026-11-21 05:37:03] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:37:03] Decode batch, #running-req: 1, #token: 1152, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.65, #queue-req: 0
+[2026-11-21 05:37:05] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:37:05] INFO:     172.17.0.1:57534 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:37:05] Decode batch, #running-req: 1, #token: 1152, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.73, #queue-req: 0
+[2026-11-21 05:37:07] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:37:07] Decode batch, #running-req: 1, #token: 1152, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.64, #queue-req: 0
+[2026-11-21 05:37:09] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:37:10] Decode batch, #running-req: 1, #token: 1280, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.66, #queue-req: 0
+[2026-11-21 05:37:11] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:37:12] Decode batch, #running-req: 1, #token: 1280, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.68, #queue-req: 0
+[2026-11-21 05:37:13] INFO:     172.17.0.1:42284 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:37:14] Decode batch, #running-req: 1, #token: 1280, token usage: 0.00, cuda graph: True, gen throughput (token/s): 18.62, #queue-req: 0
+[2026-11-21 05:37:15] INFO:     172.17.0.1:42284 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-21 05:37:15] INFO:     172.17.0.1:60586 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-21 05:37:16] Decode batch, #running-req: 1, #token: 0, token usage: 0.00, cuda graph: True, gen throughput (token/s): 19.15, #queue-req: 0
+[2026-11-21 05:37:16] INFO:     172.17.0.1:60594 - "POST /v1/token/encode HTTP/1.1" 404 Not Found
+[2026-11-21 05:37:16] INFO:     172.17.0.1:60604 - "POST /tokenize HTTP/1.1" 200 OK
+[2026-11-21 05:37:16] INFO:     172.17.0.1:60616 - "POST /v1/token/encode HTTP/1.1" 404 Not Found
+[2026-11-21 05:37:16] INFO:     172.17.0.1:60624 - "POST /tokenize HTTP/1.1" 200 OK

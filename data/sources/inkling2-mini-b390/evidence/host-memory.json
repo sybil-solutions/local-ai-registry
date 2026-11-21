@@ -1,0 +1,12 @@
+{
+  "baseline_available_bytes": 20677894144,
+  "minimum_available_bytes": 4720308224,
+  "samples": 1568,
+  "peak_gpu_gtt_plus_anon_bytes": 48164171776,
+  "peak_available_drop_bytes": 15957585920,
+  "declared_available_ram_gb": 50,
+  "safety_headroom_bytes": 34042414080,
+  "peak_gpu_gtt_plus_anon_note": "Sum of xe drm-resident-gtt over the container processes plus cgroup anon, sampled every ~5 s: the real footprint on unified memory.",
+  "note": "Host MemAvailable before launch minus lowest sample during startup, vision and Lab gates; 0.5-second samples, conservative declared headroom. Graphics allocations may be absent from cgroup counters.",
+  "local_image_id": "sha256:1fcb953b6d2d8d8cbabe4ca83dde03b37a2ed83235eb1800f0e0ffed29d65ff8"
+}

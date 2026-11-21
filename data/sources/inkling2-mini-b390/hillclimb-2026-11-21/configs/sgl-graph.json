@@ -1,0 +1,50 @@
+{
+ "name": "sgl-graph",
+ "image": "ornith-hc:dev",
+ "mounts": [
+  "/home/sero/Projects/trellis-serve:/opt/trellis-serve"
+ ],
+ "env": {
+  "INKLING2_SLOTS": "8",
+  "OMP_NUM_THREADS": "4",
+  "PYTORCH_ALLOC_CONF": "expandable_segments:True",
+  "TORCHINDUCTOR_COMPILE_THREADS": "1"
+ },
+ "args": [
+  "--device",
+  "xpu",
+  "--dtype",
+  "bfloat16",
+  "--context-length",
+  "262144",
+  "--max-total-tokens",
+  "1052672",
+  "--mem-fraction-static",
+  "0.85",
+  "--max-running-requests",
+  "4",
+  "--chunked-prefill-size",
+  "4096",
+  "--max-prefill-tokens",
+  "4096",
+  "--page-size",
+  "1",
+  "--kv-cache-dtype",
+  "fp8_e4m3",
+  "--disable-radix-cache",
+  "--attention-backend",
+  "intel_xpu",
+  "--skip-server-warmup",
+  "--enable-metrics",
+  "--cuda-graph-backend-decode",
+  "full",
+  "--cuda-graph-bs-decode",
+  "1",
+  "2",
+  "4",
+  "--reasoning-parser",
+  "inkling",
+  "--tool-call-parser",
+  "inkling"
+ ]
+}
