@@ -1,0 +1,81 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "ggml-org/Inkling-2-Mini-GGUF@db61c5b492a6a034d986328d28274af0a439aa6c",
+  "engine": "llama.cpp-metal-inkling-2-mini-iq4-nl-ngram-128k-m1-max-32gb@6fc2e136d4eb",
+  "set": {},
+  "card": "apple-m1-max-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max 32GB (24-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "Apple M1 Max 32GB (24-core GPU)",
+  "launch_sha256": "994a49ce4beb29d8256259c3a45a4092c8451f192ddad03a812bb8c96cbb4a7d",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 20.1,
+  "prefill": 56,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--spec-type",
+   "ngram-mod"
+  ],
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "yPOhPR2eMd5uCkwtNJCmW7x1lds7i311"
+    }
+   ],
+   "reply": "Paris is overcast at 17°C. Code: cc8f8849",
+   "code": "cc8f8849",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 405
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 1646.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 603,
+   "tokens_total": 1289,
+   "seconds_total": 65.7,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 56,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

@@ -1,0 +1,58 @@
+{
+  "id": "llama.cpp-metal-inkling-2-mini-iq4-nl-ngram-128k-m1-max-32gb",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Inkling 2 Mini (GGUF · IQ4_NL, text) on the official llama.cpp b12600 macOS arm64 release (Metal), the first ggml-org release with the Inkling 2 architecture. 131,072 tokens, one slot, q8_0 KV, flash attention. -ub 128: the prompt compute buffer grows with context x ubatch (6.4 GiB at 128K/ub256, 3.2 GiB at ub128), so ub128 is what fits 128K beside the 16.4 GiB of weights under the default Metal budget, with no sysctl change. --spec-type ngram-mod drafts from earlier context (code edits, quoting): byte-identical greedy output, 2.2x decode on a code-rewrite probe, no change on fresh prose. --poll 0 stops the CPU spin-wait. Sampling comes from the GGUF. Measured on an M1 Max 32 GB: about 20.5 GiB peak at 72% of the window.",
+  "command": [
+    "llama-b12600/llama-server",
+    "-m",
+    "models/Inkling-2-Mini-GGUF-db61c5b4/Inkling-2-Mini-IQ4_NL.gguf",
+    "--jinja",
+    "-ngl",
+    "99",
+    "-fa",
+    "on",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-b",
+    "1024",
+    "-ub",
+    "128",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "--poll",
+    "0",
+    "--spec-type",
+    "ngram-mod",
+    "--no-ui",
+    "--alias",
+    "inkling-2-mini",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12600/llama-b12600-bin-macos-arm64.tar.gz#sha256=9ced6f8cbce915968a865ded7718c2c4d14a69876bf9abf544533aec9b76e975",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "ggml-org/Inkling-2-Mini-GGUF",
+      "revision": "db61c5b492a6a034d986328d28274af0a439aa6c",
+      "at": "models/Inkling-2-Mini-GGUF-db61c5b4",
+      "layout": "dir",
+      "files": [
+        "Inkling-2-Mini-IQ4_NL.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal",
+  "source": "https://github.com/ggml-org/llama.cpp/releases/tag/b12600"
+}

@@ -1,0 +1,8 @@
+{
+ "bandwidth_gbs": 359, "peak_tflops": 7.1, "mfu": 0.5,
+ "dense_gb": 1.668, "experts_gb": 31.596, "top_k": 8, "n_experts": 128, "lm_head_gb": 0.492,
+ "active_params_b": 4.76, "attn_layers": 8, "attn_heads": 24, "head_dim": 128,
+ "kv_bytes_per_token": 17408,
+ "spec": [{"drafts": 0, "accept": 1.0}],
+ "contexts": [0, 4096, 32768, 65536, 131072, 262144], "concurrency": [1, 2]
+}

@@ -1,0 +1,23 @@
+{
+  "captured_at_utc": "2026-11-21T09:45:00Z",
+  "machine": {
+    "model_name": "MacBook Pro (14-inch, 2021)",
+    "model_identifier": "MacBookPro18,4",
+    "chip": "Apple M1 Max",
+    "cpu_cores_total": 10,
+    "cpu_cores_performance": 8,
+    "cpu_cores_efficiency": 2,
+    "gpu": "Apple M1 Max (built-in), 24-core GPU",
+    "unified_memory_bytes": 34359738368,
+    "memory_bandwidth_gb_s": 400,
+    "measured_copy_bandwidth_gb_s": 359,
+    "measured_fp16_gemm_tflops": 7.1
+  },
+  "os": {"product": "macOS", "version": "27.2.1", "build": "26B131", "arch": "arm64"},
+  "gpu_wired_limit_mb": 0,
+  "gpu_wired_limit_note": "sysctl iogpu.wired_limit_mb = 0 (system default, not raised); llama.cpp Metal recommendedMaxWorkingSetSize = 26800.60 MB",
+  "power_during_run": "AC, low power mode off",
+  "engine": "llama-b12600-bin-macos-arm64.tar.gz (ggml-org release b12600, commit 29b52d398), sha256 9ced6f8cbce915968a865ded7718c2c4d14a69876bf9abf544533aec9b76e975",
+  "weights_sha256": {"Inkling-2-Mini-IQ4_NL.gguf": "cbdf3fa9dc50a4124977980f37da4f1fa764b0cfe800d275cd43d26ce2a81af4"},
+  "privacy": "Serial number, hardware UUID, and provisioning UDID intentionally omitted."
+}
