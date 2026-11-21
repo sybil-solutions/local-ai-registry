@@ -1,0 +1,37 @@
+{
+ "name": "base",
+ "base_url": "http://127.0.0.1:8080",
+ "model": "models/Inkling-2-Mini-4bit-9856dc53",
+ "launch": [
+  "bash",
+  "tools/launch.sh",
+  "--model",
+  "models/Inkling-2-Mini-4bit-9856dc53",
+  "--max-tokens",
+  "32768",
+  "--host",
+  "127.0.0.1",
+  "--port",
+  "8080"
+ ],
+ "stop": [
+  "bash",
+  "tools/stop.sh"
+ ],
+ "health_timeout_s": 600,
+ "concurrency": 4,
+ "prefill_lengths": [
+  4096,
+  32768
+ ],
+ "temperature": 1.0,
+ "memory": {
+  "cap_gib": 56,
+  "probe": [
+   "bash",
+   "tools/mem_mac.sh"
+  ],
+  "interval_s": 2
+ },
+ "require_ac": true
+}
