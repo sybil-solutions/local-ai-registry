@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "mlx-community/Inkling-2-Mini-oQ4e-mtp@3eea042751cd296b7266628a8342c1749242e1fe",
+  "engine": "omlx-inkling-2-mini-oq4e-m1fast-dspark6-64k-2seq@04362e7c1eb0",
+  "set": {},
+  "card": "apple-m1-max-64gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max (24-core GPU, 64 GiB)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "Apple M1 Max (24-core GPU, 64 GiB)",
+  "launch_sha256": "bfb7f26b71aa65fa4e822315eda055bb5f169a79d877451a8013463919aade32",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 16.6,
+  "prefill": 201,
+  "served": "inkling"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_405a4996",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is 17°C and overcast. Code: 4e151694",
+   "code": "4e151694",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 528
+  },
+  "context": {
+   "prompt_tokens": 45470,
+   "seconds": 226.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.1,
+   "tokens_in_window": 499,
+   "tokens_total": 6139,
+   "seconds_total": 303.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 201,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "f5cd4c29f900bc4837dc91244243591f743c665f1427bc39b4ec5d89cd92b49b"
+}
