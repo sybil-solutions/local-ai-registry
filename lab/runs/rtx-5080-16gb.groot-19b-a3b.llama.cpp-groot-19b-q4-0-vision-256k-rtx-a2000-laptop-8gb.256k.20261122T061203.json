@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "groot-19b-a3b",
+  "weights": "bartowski/GrootTeam_Groot-19B-A3B-261023-GGUF@0025df0d03fb385344394f4e5afd73ce47da0680",
+  "engine": "llama.cpp-groot-19b-q4-0-vision-256k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "5478c37eb0a4497e9d0a5c9262ca57fa6fff262d644f496a1bacd222769e5fd0",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 185.1,
+  "prefill": 3536,
+  "served": "Groot-19B-A3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Green, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 313,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "oEbMhjSXMV6vgmuez3JWgLj60HHyvCSn"
+    }
+   ],
+   "reply": "The weather in Paris right now is:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n\nThe code the tool gave you is: **2a3cb52f**",
+   "code": "2a3cb52f",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 281
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 60.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 28.1,
+   "tokens_in_window": 5198,
+   "tokens_total": 5198,
+   "seconds_total": 28.2,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 3536,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
