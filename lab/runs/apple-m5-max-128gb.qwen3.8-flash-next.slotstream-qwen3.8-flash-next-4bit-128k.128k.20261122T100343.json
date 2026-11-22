@@ -1,0 +1,80 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "carloslfu/Qwen3.8-Flash-Next-MLX-4bit@e9d552f83de4665d243d5c9cf73201a1ca6c16d7",
+  "engine": "slotstream-qwen3.8-flash-next-4bit-128k@ebe62336b179",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max (40-core GPU), 128 GB unified memory"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "Apple M5 Max (40-core GPU), 128 GB unified memory",
+  "launch_sha256": "a603b86215839db479beb6fe1b3bb304121f3422811799a48f8779a0bedc2845",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 18.7,
+  "prefill": 153,
+  "served": "qwen3.8-flash-next:4bit"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "SLOTSTREAM_DRAFT_DEPTH=2"
+  ],
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 116,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "call_7E685A70F0914B3E91821606DE607D15"
+    }
+   ],
+   "reply": "The current weather in Paris is **overcast** with a temperature of **17°C**.\n\nThe code returned by the tool is: `4a1d56cf`",
+   "code": "4a1d56cf",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 192
+  },
+  "context": {
+   "prompt_tokens": 106252,
+   "seconds": 692.5,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 562,
+   "tokens_total": 895,
+   "seconds_total": 48.7,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 153,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "ec7e85aeaff5ea8f99d50015ac7fee2d63e81a05d44101f1548b6691f4b76406"
+}
