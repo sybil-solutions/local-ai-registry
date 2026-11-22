@@ -1,0 +1,83 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "ornith-ai/Ornith-1.5-35B-A3B-GGUF@12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+  "engine": "llama.cpp-ornith-1.5-35b-a3b-q4-k-m-mtp-autofit-256k-rtx-5070-12gb@52192a23c7b2",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "73587a8bb3bd25dd4539c708d65fe21e3f1953478ea243dd6426627dadfd287a",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 41.2,
+  "prefill": 465,
+  "served": "/models/Ornith-1.5-35B-Q4_K_M.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "3"
+  ],
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 213,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "GR84zErwz5b4pEnCwys1Unm66p6XODVp"
+    }
+   ],
+   "reply": "Here's the current weather in **Paris**:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n- **Code:** `23567d8b`\n\nThe weather code it gave you is **23567d8b**.",
+   "code": "23567d8b",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 130
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 459.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 25.2,
+   "tokens_in_window": 1038,
+   "tokens_total": 1038,
+   "seconds_total": 25.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 465,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
