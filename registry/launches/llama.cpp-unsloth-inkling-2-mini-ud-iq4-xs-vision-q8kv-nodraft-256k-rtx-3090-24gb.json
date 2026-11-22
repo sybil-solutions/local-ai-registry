@@ -1,0 +1,78 @@
+{
+  "id": "llama.cpp-unsloth-inkling-2-mini-ud-iq4-xs-vision-q8kv-nodraft-256k-rtx-3090-24gb",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "variant": "nodraft",
+  "about": "Inkling 2 Mini (26B looped MoE, ~3B active, vision, thinking) UD-IQ4_XS with the F16 vision projector on one 24 GB card: the full 262,144-token window with a q8_0 KV cache, no draft model. Unsloth's llama.cpp prebuilt mix (pr-set.json@cfc9ea37, including #386, #400, #401, #402) plus unslothai/llama.cpp#407 (GQA-3 dp4a+half2 banded decode, O(1) contiguous-prefix check, small-batch banded MMA, 128 MiB dense bias cap), #408 (CUDA-graph-safe Q8_1 activation cache + fused RMS_NORM+MUL+Q8_1), and #409 (GGML_OP_ATTN_RES_MIX + Inkling 2 decode kernel fusions). -ub 128, backend sampling (-bs), the vision projector on the CPU to leave room for the cache, one slot, Thinking Machines' recommended sampling. On an RTX 3090 24 GB (including ~1.6 GiB desktop baseline), whole-card VRAM peaked at 21,161 MiB over the 6 gates (92.1 tok/s decode, 772 tok/s prefill).",
+  "command": [
+    "llama.cpp-unsloth/build/bin/llama-server",
+    "-m",
+    "models/Inkling-2-Mini-GGUF-ea0c79b2/Inkling-2-Mini-UD-IQ4_XS.gguf",
+    "--mmproj",
+    "models/Inkling-2-Mini-GGUF-ea0c79b2/mmproj-F16.gguf",
+    "--no-mmproj-offload",
+    "-ngl",
+    "all",
+    "-fa",
+    "on",
+    "--fit",
+    "off",
+    "-c",
+    "262144",
+    "-np",
+    "1",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ub",
+    "128",
+    "-b",
+    "2048",
+    "--cache-ram",
+    "0",
+    "-bs",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "1.0",
+    "--top-k",
+    "0",
+    "--min-p",
+    "0.0",
+    "--jinja",
+    "--alias",
+    "inkling-2-mini",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "Unsloth's llama.cpp prebuilt mix built from source for sm_86 with Inkling 2 CUDA decode optimizations: git clone https://github.com/ggml-org/llama.cpp llama.cpp-unsloth && git -C llama.cpp-unsloth checkout b12606, then git merge --no-ff, in listed order, every PR commit pinned in https://github.com/unslothai/llama.cpp/blob/cfc9ea3709ca048d21aea67cd34be1eb7cd5cd92/scripts/unsloth/pr-set.json (resolving add/add conflicts with that repo's scripts/unsloth/additive_merge.py as its unsloth-prebuilt.yml does), followed by https://github.com/unslothai/llama.cpp/pull/407/commits/7e0186af3577d8595d3042449f8298439c533230, https://github.com/unslothai/llama.cpp/pull/408/commits/7a5c325338092213c0194bd9849b3d9b32028dba, and https://github.com/unslothai/llama.cpp/pull/409/commits/560e7fd389cca812dabf7097476ecc4a03eccb17 (merged tree b301feeb674402f9c0487967a0259c748fd5a7e9); then cmake -S llama.cpp-unsloth -B llama.cpp-unsloth/build -DCMAKE_BUILD_TYPE=Release -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=86 -DGGML_CUDA_FA_ALL_QUANTS=ON -DGGML_CUDA_NCCL=OFF -DLLAMA_CURL=OFF -DLLAMA_OPENSSL=OFF && cmake --build llama.cpp-unsloth/build -j --target llama-server (CUDA 13 toolkit; built in nvidia/cuda:13.3.1-devel-ubuntu22.04 with GCC 11.4)",
+  "env": {
+    "LD_LIBRARY_PATH": "llama.cpp-unsloth/build/bin:cuda13-runtime"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "unsloth/Inkling-2-Mini-GGUF",
+      "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+      "at": "models/Inkling-2-Mini-GGUF-ea0c79b2",
+      "layout": "dir",
+      "files": [
+        "Inkling-2-Mini-UD-IQ4_XS.gguf",
+        "mmproj-F16.gguf"
+      ]
+    }
+  ],
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": true,
+  "backend": "nvidia",
+  "needs": {
+    "host_ram_gb": 3,
+    "disk_gb": 16.37
+  },
+  "setup": "Not Docker; Linux x86-64 with an NVIDIA driver for CUDA 13. Build llama.cpp-unsloth/ as in install, next to models/, and run from that directory (building inside the nvidia/cuda:13.3.1-devel-ubuntu22.04 image works too). If the CUDA 13 runtime is not on the library path, put libcudart.so.13, libcublas.so.13 and libcublasLt.so.13 in cuda13-runtime/ (for example from NVIDIA's cuda_cudart 13.3 and libcublas 13 redistributables). The launch uses most of a 24 GB card; close other GPU programs first.",
+  "source": "https://github.com/unslothai/llama.cpp/pull/407/commits/7e0186af3577d8595d3042449f8298439c533230"
+}
