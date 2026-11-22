@@ -1,0 +1,9 @@
+{"run": 0, "tps": 161.3, "tokens_in_window": 1320, "window_s": 8.2, "tokens_total": 1320, "seconds_total": 8.2, "counted": "tokenizer"}
+{"run": 1, "tps": 161.0, "tokens_in_window": 1388, "window_s": 8.6, "tokens_total": 1388, "seconds_total": 8.7, "counted": "tokenizer"}
+{"run": 2, "tps": 156.4, "tokens_in_window": 3888, "window_s": 24.9, "tokens_total": 3888, "seconds_total": 24.9, "counted": "tokenizer"}
+{"run": 3, "tps": 159.1, "tokens_in_window": 1394, "window_s": 8.8, "tokens_total": 1394, "seconds_total": 8.8, "counted": "tokenizer"}
+{"run": 4, "tps": 158.8, "tokens_in_window": 1370, "window_s": 8.6, "tokens_total": 1370, "seconds_total": 8.7, "counted": "tokenizer"}
+{"run": 5, "tps": 159.0, "tokens_in_window": 1127, "window_s": 7.1, "tokens_total": 1127, "seconds_total": 7.1, "counted": "tokenizer"}
+{"run": 6, "tps": 158.7, "tokens_in_window": 1506, "window_s": 9.5, "tokens_total": 1506, "seconds_total": 9.5, "counted": "tokenizer"}
+{"run": 7, "tps": 159.3, "tokens_in_window": 1182, "window_s": 7.4, "tokens_total": 1182, "seconds_total": 7.5, "counted": "tokenizer"}
+{"median": 159.05, "all": [161.3, 161.0, 156.4, 159.1, 158.8, 159.0, 158.7, 159.3]}

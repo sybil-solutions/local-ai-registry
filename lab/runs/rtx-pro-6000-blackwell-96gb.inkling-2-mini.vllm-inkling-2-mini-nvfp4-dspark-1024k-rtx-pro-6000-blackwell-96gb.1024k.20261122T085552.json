@@ -1,0 +1,81 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "thinkingmachines/Inkling-2-Mini@ed40e7da625f594fc9c4990f5f66be24873c22d7",
+  "engine": "vllm-inkling-2-mini-nvfp4-dspark-1024k-rtx-pro-6000-blackwell-96gb@c2dc759f5984",
+  "set": {},
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Workstation Edition"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Workstation Edition",
+  "launch_sha256": "a8b8aa5d08a7e09479d5a6bef09073f7b7b87196bc2cf107364c369f433c3681",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 156.1,
+  "prefill": 4466,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--speculative-config",
+   "{\"method\":\"dspark\",\"num_speculative_tokens\":7,\"draft_sample_method\":\"probabilistic\",\"num_speculative_tokens_per_batch_size\":[[1,32,7],[33,1024,3]]}"
+  ],
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 137,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-84d1d0d2508dadd2",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is currently 17°C and overcast. The code it gave you is `f492f18a`.",
+   "code": "f492f18a",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 505
+  },
+  "context": {
+   "prompt_tokens": 741790,
+   "seconds": 166.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 8.7,
+   "tokens_in_window": 1355,
+   "tokens_total": 1355,
+   "seconds_total": 8.7,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 4466,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "c354bc3f244c59ff11a26690e6babddfb7c3d50e5c033730e647a65e7d0b320c"
+}

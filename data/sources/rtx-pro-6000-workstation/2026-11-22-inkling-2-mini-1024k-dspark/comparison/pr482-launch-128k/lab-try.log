@@ -1,0 +1,3 @@
+[lab 03:37:05] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 158.6 tok/s, prefill 7922 tok/s; evidence lab/runs/rtx-pro-6000-blackwell-96gb.inkling-2-mini.vllm-inkling-2-mini.128k.20261122T093705.json
+[lab 03:37:05] PASSED: wrote registry/recipes/nvidia/rtx-pro-6000-blackwell-96gb/inkling-2-mini.vllm.128k.json (535 bytes)
+lab exit 0

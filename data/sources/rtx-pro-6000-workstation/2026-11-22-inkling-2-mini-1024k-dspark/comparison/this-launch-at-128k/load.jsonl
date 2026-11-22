@@ -1,0 +1,1 @@
+{"users": 128, "agg_tps": 5060.2, "window_s": 60.3, "running_mean": 127.2, "waiting_mean": 0.0, "per_running_stream_tps": 39.8, "kv_peak": 0.461, "tok_per_step": 2.39, "ttft_p50_s": 0.22, "requests_started_in_window": 325, "errors": 0, "error_sample": [], "gpu_util": 88.8, "power_w": 549, "sm_mhz": 2702, "gpu_mem_max_mib": 89985}
