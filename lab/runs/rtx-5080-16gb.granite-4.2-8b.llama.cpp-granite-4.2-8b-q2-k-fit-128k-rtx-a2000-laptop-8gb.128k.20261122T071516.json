@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "granite-4.2-8b",
+  "weights": "ibm-granite/granite-4.2-8b-GGUF@93f3f6a8938ee922b784cf4e5b4203cd3428df8f",
+  "engine": "llama.cpp-granite-4.2-8b-q2-k-fit-128k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "bddef0c40d801ffa4aede673f2932bd2ec165b936a42c91491adc01b9e7ae322",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 159.9,
+  "prefill": 1096,
+  "served": "Granite-4.2-8B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 1162,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "rwALGchUirHv2dIY5WFMonKY0YzbvhDp"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with overcast skies. The code provided by the tool is **7d4c3a8a**.\n\n(Tool response gave: `{\"city\": \"Paris\", \"temp_c\": 17, \"sky\": \"overcast\", \"code\": \"7d4c3a8a\"}`)",
+   "code": "7d4c3a8a",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 763
+  },
+  "context": {
+   "prompt_tokens": 87246,
+   "seconds": 79.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 10.0,
+   "tokens_in_window": 1593,
+   "tokens_total": 1593,
+   "seconds_total": 10.0,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 1096,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
