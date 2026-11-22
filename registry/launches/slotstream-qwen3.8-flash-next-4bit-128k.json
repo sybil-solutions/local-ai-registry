@@ -1,0 +1,90 @@
+{
+  "id": "slotstream-qwen3.8-flash-next-4bit-128k",
+  "kind": "host",
+  "engine": "slotstream",
+  "about": "Qwen3.8-Flash-Next (original MLX 4-bit) on Slotstream 0.2.28, M5 Max 128 GB, macOS 26. Python 3.11+ is used only by the HTTP adapter.",
+  "command": [
+    "python3",
+    "slotstream_serve.py",
+    "--binary",
+    "./slotstream",
+    "--model",
+    "models/Qwen3.8-Flash-Next-MLX-4bit-e9d552f8",
+    "--memory-gb",
+    "80",
+    "--max-context",
+    "131072",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/carloslfu/slotstream/releases/download/v0.2.28/slotstream-arm64.tar.gz#sha256=1947c1b325f80097f0eac3f86da2ef7b091ced32d50e4487703f683f28b0980b",
+  "pip": [
+    "tokenizers==0.22.2",
+    "huggingface_hub==1.7.1"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "SLOTSTREAM_DRAFT_DEPTH": "2"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "carloslfu/Qwen3.8-Flash-Next-MLX-4bit",
+      "revision": "e9d552f83de4665d243d5c9cf73201a1ca6c16d7",
+      "at": "models/Qwen3.8-Flash-Next-MLX-4bit-e9d552f8",
+      "layout": "dir",
+      "files": [
+        "LICENSE",
+        "README.md",
+        "chat_template.jinja",
+        "config.json",
+        "generation_config.json",
+        "merges.txt",
+        "model-00001.safetensors",
+        "model-00002.safetensors",
+        "model-00003.safetensors",
+        "model-00004.safetensors",
+        "model-00005.safetensors",
+        "model-00006.safetensors",
+        "model-00007.safetensors",
+        "model-00008.safetensors",
+        "model-00009.safetensors",
+        "model-00010.safetensors",
+        "model-00011.safetensors",
+        "model.safetensors.index.json",
+        "preprocessor_config.json",
+        "qwen4_exp.py",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "video_preprocessor_config.json",
+        "vocab.json",
+        "mtp.safetensors"
+      ]
+    },
+    {
+      "repo": "carloslfu/Qwen3.8-Flash-Next-MLX-4bit-Slotpack",
+      "revision": "8c1f9c34e4567e83d46cebe1af432e8eba4f3ea8",
+      "at": "models/Qwen3.8-Flash-Next-MLX-4bit-e9d552f8",
+      "layout": "dir",
+      "files": [
+        "lookahead/tap-correction-attention-rank128-v1.safetensors"
+      ]
+    }
+  ],
+  "config": {
+    "at": "slotstream_serve.py",
+    "file": "slotstream-serve.py"
+  },
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal",
+  "needs": {
+    "host_ram_gb": 80,
+    "disk_gb": 105.4,
+    "fast_storage": "nvme"
+  },
+  "setup": "Use an Apple Silicon Mac on macOS 26, connected to power, with the weights on its internal NVMe SSD. Activate a Python 3.11+ virtual environment before installing. The 80 GB process budget uses the Mac's unified memory; it is not additional to the 128 GB in the hardware entry. Start with at least 85 GB reclaimable memory. The adapter defaults to medium reasoning; explicit client settings take precedence.",
+  "source": "https://github.com/carloslfu/slotstream/tree/71ebedd173aab089260f9085adc581cd9c20f1d4"
+}
