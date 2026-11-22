@@ -2,7 +2,7 @@
  "recipe": {
   "model": "inkling-2-mini",
   "weights": "unsloth/Inkling-2-Mini-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
-  "engine": "llama.cpp-unsloth-inkling-2-mini-ud-iq4-xs-vision-q8kv-nodraft-256k-rtx-3090-24gb@91e583d771eb",
+  "engine": "llama.cpp-unsloth-inkling-2-mini-ud-iq4-xs-vision-q4kv-nodraft-512k-rtx-3090-24gb@13c4a82d074a",
   "set": {},
   "card": "rtx-3090-24gb"
  },
@@ -12,13 +12,13 @@
  },
  "passed": true,
  "proof": {
-  "at": "2026-11-21",
+  "at": "2026-11-22",
   "on": "owner",
   "gpu": "NVIDIA GeForce RTX 3090",
-  "launch_sha256": "7216a19c7858a70c1d3bea661d65761a180c81f08563c1ec7b26aa586a506957",
+  "launch_sha256": "79f29fc37bf732ab0e85dc1e8fd6320b948b8337fce73ea342164025ba51d94a",
   "gates": "load chat reasoning tools context speed",
-  "tps": 57.7,
-  "prefill": 641,
+  "tps": 93.0,
+  "prefill": 627,
   "served": "inkling-2-mini"
  },
  "evidence": {
@@ -36,7 +36,7 @@
    "finish": "stop"
   },
   "reasoning": {
-   "thinking_chars": 124,
+   "thinking_chars": 97,
    "content": "391"
   },
   "tools": {
@@ -47,30 +47,30 @@
       "name": "get_weather",
       "arguments": "{\"city\":\"Paris\"}"
      },
-     "id": "rWaV5KRocnbHgFdlDo1oWekjDZpI5CxN"
+     "id": "MIVAHnFFmWy3zxy8PlpWp5uv1Is7nBbt"
     }
    ],
-   "reply": "Paris right now: 17°C, overcast. Code: 65d19e95",
-   "code": "65d19e95",
+   "reply": "Paris right now: 17°C, overcast. The code it gave is `7579a22d`.",
+   "code": "7579a22d",
    "finish": "stop",
    "calls_again": 0,
-   "thinking_chars": 769
+   "thinking_chars": 523
   },
   "context": {
-   "prompt_tokens": 184730,
-   "seconds": 288.3,
+   "prompt_tokens": 370410,
+   "seconds": 590.5,
    "content": "58213"
   },
   "speed": {
-   "window_s": 30.0,
-   "tokens_in_window": 1730,
-   "tokens_total": 7775,
-   "seconds_total": 136.9,
+   "window_s": 14.0,
+   "tokens_in_window": 1301,
+   "tokens_total": 1301,
+   "seconds_total": 14.2,
    "counted": "tokenizer",
    "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
   },
   "prefill": {
-   "value": 641,
+   "value": 627,
    "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
   }
  },

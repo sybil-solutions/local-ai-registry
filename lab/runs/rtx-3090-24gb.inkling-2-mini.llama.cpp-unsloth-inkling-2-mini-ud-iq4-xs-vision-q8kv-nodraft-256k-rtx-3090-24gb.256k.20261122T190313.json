@@ -2,7 +2,7 @@
  "recipe": {
   "model": "inkling-2-mini",
   "weights": "unsloth/Inkling-2-Mini-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
-  "engine": "llama.cpp-unsloth-inkling-2-mini-ud-iq4-xs-vision-q4kv-cpumoe2-nodraft-512k-rtx-3090-24gb@467a331bd219",
+  "engine": "llama.cpp-unsloth-inkling-2-mini-ud-iq4-xs-vision-q8kv-nodraft-256k-rtx-3090-24gb@101444bccb54",
   "set": {},
   "card": "rtx-3090-24gb"
  },
@@ -12,13 +12,13 @@
  },
  "passed": true,
  "proof": {
-  "at": "2026-11-21",
+  "at": "2026-11-22",
   "on": "owner",
   "gpu": "NVIDIA GeForce RTX 3090",
-  "launch_sha256": "f72239dcbd97157ff8ada9c96b1561ca112828b85b18069fc47a2ff3736a8fd8",
+  "launch_sha256": "b44c3a0e5ed3fc8d4e248d8f62f90559487ced2ece5757b579f3e8224cee1da2",
   "gates": "load chat reasoning tools context speed",
-  "tps": 54.5,
-  "prefill": 383,
+  "tps": 92.1,
+  "prefill": 772,
   "served": "inkling-2-mini"
  },
  "evidence": {
@@ -32,11 +32,11 @@
   },
   "spec": null,
   "chat": {
-   "content": "Red, yellow, blue",
+   "content": "red, yellow, blue",
    "finish": "stop"
   },
   "reasoning": {
-   "thinking_chars": 117,
+   "thinking_chars": 102,
    "content": "391"
   },
   "tools": {
@@ -47,30 +47,30 @@
       "name": "get_weather",
       "arguments": "{\"city\":\"Paris\"}"
      },
-     "id": "KOCMAsrkQn6QvYR8tqiN7EjPLiTIqjlC"
+     "id": "5rtXUzgJIJ7VczdKIwGflwmjuAydZM8d"
     }
    ],
-   "reply": "Paris right now: 17°C, overcast. The code it gives you is: acba813d",
-   "code": "acba813d",
+   "reply": "Paris is overcast at 17°C. The code is 44160272.",
+   "code": "44160272",
    "finish": "stop",
    "calls_again": 0,
-   "thinking_chars": 360
+   "thinking_chars": 655
   },
   "context": {
-   "prompt_tokens": 370410,
-   "seconds": 968.1,
+   "prompt_tokens": 184730,
+   "seconds": 239.3,
    "content": "58213"
   },
   "speed": {
    "window_s": 30.0,
-   "tokens_in_window": 1635,
-   "tokens_total": 8014,
-   "seconds_total": 149.6,
+   "tokens_in_window": 2763,
+   "tokens_total": 16013,
+   "seconds_total": 178.9,
    "counted": "tokenizer",
    "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
   },
   "prefill": {
-   "value": 383,
+   "value": 772,
    "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
   }
  },
