@@ -1,0 +1,70 @@
+{
+ "id": "llama.cpp-inkling-2-mini-ud-iq4-xs-q8kv-336k-rtx-3090-24gb",
+ "kind": "host",
+ "engine": "llama.cpp",
+ "about": "Inkling-2-Mini (GGUF \u00b7 UD-IQ4_XS, F16 mmproj vision, q8_0 KV) at a 344,064-token context on one RTX 3090 24GB: unsloth's llama.cpp release b12588-mix-c0c3de8 plus the hc19 patch (fused Inkling CUDA kernels; banded flash attention reading q8_0 K/V in-kernel; no f16 K/V scratch reserved for it). Single slot.",
+ "command": [
+  "llama.cpp-inkling2-hc19/build/bin/llama-server",
+  "--model",
+  "models/unsloth-Inkling-2-Mini-GGUF-ae9327c5/Inkling-2-Mini-UD-IQ4_XS.gguf",
+  "--mmproj",
+  "models/unsloth-Inkling-2-Mini-GGUF-ae9327c5/mmproj-F16.gguf",
+  "--ctx-size",
+  "344064",
+  "-ctk",
+  "q8_0",
+  "-ctv",
+  "q8_0",
+  "--n-gpu-layers",
+  "99",
+  "--flash-attn",
+  "on",
+  "--parallel",
+  "1",
+  "--batch-size",
+  "2048",
+  "--ubatch-size",
+  "512",
+  "--temp",
+  "1.0",
+  "--top-k",
+  "0",
+  "--top-p",
+  "1.0",
+  "--min-p",
+  "0.0",
+  "--jinja",
+  "--no-webui",
+  "--alias",
+  "inkling-2-mini",
+  "--host",
+  "127.0.0.1",
+  "--port",
+  "18300"
+ ],
+ "install": "https://github.com/unslothai/llama.cpp/releases/download/b12588-mix-c0c3de8/llama.cpp-source-b12588-mix-c0c3de8.tar.gz#sha256=92ee8439f9ae51a40f15c168ac64e1d657bf8b08d301c96f8fb2d58625573607",
+ "setup": "BUILD: extract the pinned unsloth source tarball into llama.cpp-inkling2-hc19/, apply docs/rtx3090-inkling-2-mini-llamacpp-hc19/inkling2-hc19.patch (git apply), then cmake -B build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=86 -DCMAKE_BUILD_TYPE=Release && cmake --build build --target llama-server (docs/rtx3090-inkling-2-mini-llamacpp-hc19/build.sh does all of it and checks the tarball sha256). Measured with CUDA 13.4, driver 615.78. NEEDS: the whole 24 GB card; peak device memory was ~24.1 GB at a 330K-token prompt including ~1.25 GB held by a desktop, so a headless card has ~1 GB more headroom. One slot only: with --parallel > 1 a long concurrent prefill takes llama.cpp's dense attention path, which copies the q8_0 cache to f16 and runs out of memory.",
+ "source": "https://github.com/unslothai/llama.cpp/releases/tag/b12588-mix-c0c3de8",
+ "env": {},
+ "port": 18300,
+ "weights": [
+  {
+   "repo": "unsloth/Inkling-2-Mini-GGUF",
+   "revision": "ae9327c5fbc7333116ba32eee78bb5d2bbefae4f",
+   "at": "models/unsloth-Inkling-2-Mini-GGUF-ae9327c5",
+   "layout": "dir",
+   "files": [
+    "Inkling-2-Mini-UD-IQ4_XS.gguf",
+    "mmproj-F16.gguf"
+   ]
+  }
+ ],
+ "ctx": 344064,
+ "seqs": 1,
+ "vision": true,
+ "backend": "nvidia",
+ "needs": {
+  "host_ram_gb": 7,
+  "disk_gb": 16.373
+ }
+}
