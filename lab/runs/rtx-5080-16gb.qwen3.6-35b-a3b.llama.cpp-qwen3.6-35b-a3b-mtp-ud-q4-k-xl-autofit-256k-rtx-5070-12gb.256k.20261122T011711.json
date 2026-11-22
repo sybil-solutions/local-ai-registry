@@ -1,0 +1,83 @@
+{
+ "recipe": {
+  "model": "qwen3.6-35b-a3b",
+  "weights": "unsloth/Qwen3.6-35B-A3B-MTP-GGUF@5bc3e238d916f48a861bac2f8a1990a0e9b7e98d",
+  "engine": "llama.cpp-qwen3.6-35b-a3b-mtp-ud-q4-k-xl-autofit-256k-rtx-5070-12gb@52192a23c7b2",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "8fc0afadafcdbfbe6ebbe2c6b1a1b043fb2982efe68d8fb30aaa22727ed836e1",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 52.3,
+  "prefill": 534,
+  "served": "/models/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "3"
+  ],
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 846,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "PqIJvLdkO7UD8C2wZ6sQ0YQI2SqSJmdJ"
+    }
+   ],
+   "reply": "The weather in Paris is currently 17°C with overcast skies. The code provided is 960c1220.",
+   "code": "960c1220",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 2213
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 400.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1570,
+   "tokens_total": 4300,
+   "seconds_total": 72.9,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 534,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
