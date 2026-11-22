@@ -1,0 +1,1434 @@
+diff --git a/ggml/src/ggml-cuda/fattn-banded.cu b/ggml/src/ggml-cuda/fattn-banded.cu
+index dd65560..30a3fdd 100644
+--- a/ggml/src/ggml-cuda/fattn-banded.cu
++++ b/ggml/src/ggml-cuda/fattn-banded.cu
+@@ -467,7 +467,8 @@ static __device__ __forceinline__ uint32_t fattn_banded_pack_h2(const float lo,
+ 
+ template<int D, int NW>
+ static __device__ __forceinline__ void fattn_banded_mma_load_tile(
+-        half * __restrict__ tile, const char * __restrict__ src, const uint64_t nb1, const int64_t kv0, const int64_t n_kv) {
++        half * __restrict__ tile, const char * __restrict__ src, const uint64_t nb1, const int64_t kv0, const int64_t n_kv,
++        const bool q8 = false) {
+     constexpr int stride   = D + 8;
+     constexpr int chunks   = D/8;
+     constexpr int nthreads = NW*WARP_SIZE;
+@@ -477,6 +478,29 @@ static __device__ __forceinline__ void fattn_banded_mma_load_tile(
+         const int row = c / chunks;
+         const int col = (c % chunks)*8;
+         half * dst = tile + row*stride + col;
++        if (q8) {
++            // hc: q8_0 K/V dequantized while loading (block = half d + 32 x int8), synchronous smem store
++            if (kv0 + row < n_kv) {
++                const char * blk = src + uint64_t(kv0 + row)*nb1 + uint64_t(col/QK8_0)*sizeof(block_q8_0);
++                const float  d   = __half2float(*(const half *) blk);
++                const int8_t * qs = (const int8_t *) (blk + sizeof(half)) + col % QK8_0;
++                short w[4]; // only 2-byte aligned: offset 2 + multiple of 8 within the 34-byte block
++#pragma unroll
++                for (int j = 0; j < 4; ++j) {
++                    w[j] = ((const short *) qs)[j];
++                }
++                const int8_t * b = (const int8_t *) w;
++                half2 h[4];
++#pragma unroll
++                for (int j = 0; j < 4; ++j) {
++                    h[j] = __floats2half2_rn(d*b[2*j], d*b[2*j + 1]);
++                }
++                *(int4 *) dst = *(const int4 *) h;
++            } else {
++                *(int4 *) dst = make_int4(0, 0, 0, 0);
++            }
++            continue;
++        }
+         if (kv0 + row < n_kv) {
+             const char * s = src + uint64_t(kv0 + row)*nb1 + uint64_t(col)*sizeof(half);
+ #ifdef CP_ASYNC_AVAILABLE
+@@ -580,10 +604,12 @@ static __global__ void flash_attn_ext_banded_mma(
+         uint64_t r_nb3,
+         int64_t rel_ne3,
+         int64_t sinks_s1,
+-        int64_t sinks_s2) {
++        int64_t sinks_s2,
++        int kv_q8) {
+ #ifdef FATTN_BANDED_MMA_AVAILABLE
+     static_assert(D == 64 || D == 128, "banded FA supports head dimensions 64 and 128");
+     constexpr int BK     = fattn_banded_mma_bk;
++    const bool k_q8 = kv_q8 & 1, v_q8 = kv_q8 & 2;
+     constexpr int BQ     = NW*16;
+     constexpr int stride = D + 8; // padding keeps ldmatrix bank-conflict free
+     constexpr int ND     = D/8;
+@@ -658,8 +684,8 @@ static __global__ void flash_attn_ext_banded_mma(
+ 
+     int64_t kt = next_tile(kt_begin);
+     if (kt < kt_end) {
+-        fattn_banded_mma_load_tile<D, NW>(K_s, k_base, k_nb1, kt*BK, n_kv);
+-        fattn_banded_mma_load_tile<D, NW>(V_s, v_base, v_nb1, kt*BK, n_kv);
++        fattn_banded_mma_load_tile<D, NW>(K_s, k_base, k_nb1, kt*BK, n_kv, k_q8);
++        fattn_banded_mma_load_tile<D, NW>(V_s, v_base, v_nb1, kt*BK, n_kv, v_q8);
+     }
+ 
+     while (kt < kt_end) {
+@@ -758,7 +784,7 @@ static __global__ void flash_attn_ext_banded_mma(
+         __syncthreads();
+         const int64_t kt_next = next_tile(kt + 1);
+         if (kt_next < kt_end) {
+-            fattn_banded_mma_load_tile<D, NW>(K_s, k_base, k_nb1, kt_next*BK, n_kv);
++            fattn_banded_mma_load_tile<D, NW>(K_s, k_base, k_nb1, kt_next*BK, n_kv, k_q8);
+             fattn_banded_mma_wait<1>(); // V tile of this iteration landed
+         } else {
+             fattn_banded_mma_wait<0>();
+@@ -779,7 +805,7 @@ static __global__ void flash_attn_ext_banded_mma(
+ 
+         __syncthreads();
+         if (kt_next < kt_end) {
+-            fattn_banded_mma_load_tile<D, NW>(V_s, v_base, v_nb1, kt_next*BK, n_kv);
++            fattn_banded_mma_load_tile<D, NW>(V_s, v_base, v_nb1, kt_next*BK, n_kv, v_q8);
+         }
+         kt = kt_next;
+     }
+@@ -827,6 +853,7 @@ static __global__ void flash_attn_ext_banded_mma(
+         }
+     }
+ #else
++    GGML_UNUSED(kv_q8);
+     GGML_UNUSED_VARS(q, k, v, mask, flags, rel, sinks, dst, part, scale, type_rel, n_q, n_kv, n_head_q, n_head_kv,
+         n_chunks, tiles_per_chunk, rel_extent, mask_ne2, mask_ne3, q_nb1, q_nb2, q_nb3, k_nb1, k_nb2, k_nb3,
+         v_nb1, v_nb2, v_nb3, m_nb1, m_nb2, m_nb3, r_nb0, r_nb1, r_nb2, r_nb3, rel_ne3, sinks_s1, sinks_s2);
+@@ -838,6 +865,11 @@ static bool fattn_banded_type_supported(ggml_type type) {
+     return type == GGML_TYPE_F32 || type == GGML_TYPE_F16 || type == GGML_TYPE_BF16;
+ }
+ 
++// hc: quantized K/V is dequantized to f16 before the MMA kernel (the scalar kernels read f32/f16/bf16 only)
++static bool fattn_banded_quant_kv(ggml_type type) {
++    return type == GGML_TYPE_Q8_0 || type == GGML_TYPE_Q4_0;
++}
++
+ bool ggml_cuda_flash_attn_ext_banded_supported(int device, const ggml_tensor * dst) {
+     GGML_UNUSED(device);
+ #if defined(GGML_USE_MUSA)
+@@ -856,11 +888,15 @@ bool ggml_cuda_flash_attn_ext_banded_supported(int device, const ggml_tensor * d
+     if (!q || !k || !v || !rel || q->type != GGML_TYPE_F32) {
+         return false;
+     }
+-    if (!fattn_banded_type_supported(k->type) ||
+-        !fattn_banded_type_supported(v->type) ||
++    if (!(fattn_banded_type_supported(k->type) || fattn_banded_quant_kv(k->type)) ||
++        !(fattn_banded_type_supported(v->type) || fattn_banded_quant_kv(v->type)) ||
+         !fattn_banded_type_supported(rel->type)) {
+         return false;
+     }
++    if ((fattn_banded_quant_kv(k->type) || fattn_banded_quant_kv(v->type)) &&
++        (!dst->src[4] || !turing_mma_available(ggml_cuda_info().devices[device].cc))) {
++        return false;
++    }
+     if ((q->ne[0] != 64 && q->ne[0] != 128) || v->ne[0] != q->ne[0] || k->ne[0] != q->ne[0]) {
+         return false;
+     }
+@@ -882,7 +918,8 @@ bool ggml_cuda_flash_attn_ext_banded_supported(int device, const ggml_tensor * d
+     if (sinks && (sinks->type != GGML_TYPE_F32 || sinks->nb[0] != sizeof(float))) {
+         return false;
+     }
+-    return !m || (m->type == GGML_TYPE_F16 && ggml_is_contiguous(m) &&
++    return !m || (m->type == GGML_TYPE_F16 && m->nb[0] == sizeof(half) && // hc: strided mask views are fine, every read uses nb
++        q->ne[1] <= m->ne[1] &&
+         q->ne[2] % m->ne[2] == 0 && q->ne[3] % m->ne[3] == 0);
+ #endif
+ }
+@@ -911,6 +948,9 @@ static bool fattn_banded_mma_usable(const int device, const ggml_tensor * dst) {
+         return false;
+     }
+     for (const ggml_tensor * t : {k, v}) {
++        if (fattn_banded_quant_kv(t->type)) {
++            continue;
++        }
+         if (t->type == GGML_TYPE_F16 ? !fattn_banded_mma_aligned(t) : t->type != GGML_TYPE_BF16) {
+             return false;
+         }
+@@ -937,9 +977,10 @@ static void fattn_banded_mma_launch(ggml_backend_cuda_context & ctx, ggml_tensor
+     uint64_t v_nb[4] = {v->nb[0], v->nb[1], v->nb[2], v->nb[3]};
+     ggml_cuda_pool_alloc<half> k_f16(ctx.pool());
+     ggml_cuda_pool_alloc<half> v_f16(ctx.pool());
++    static const bool q8_convert = getenv("GGML_CUDA_HC_BANDED_Q8_CONVERT") != nullptr;
+     auto to_f16 = [&](const ggml_tensor * t, ggml_cuda_pool_alloc<half> & buf, const char *& data, uint64_t (&nb)[4]) {
+-        if (t->type == GGML_TYPE_F16) {
+-            return;
++        if (t->type == GGML_TYPE_F16 || (t->type == GGML_TYPE_Q8_0 && !q8_convert)) {
++            return; // hc: q8_0 is dequantized in the tile loader, no f16 copy of the whole cache
+         }
+         const size_t ts = ggml_type_size(t->type);
+         buf.alloc(ggml_nelements(t));
+@@ -954,6 +995,12 @@ static void fattn_banded_mma_launch(ggml_backend_cuda_context & ctx, ggml_tensor
+     to_f16(k, k_f16, k_data, k_nb);
+     to_f16(v, v_f16, v_data, v_nb);
+ 
++    const int kv_q8 = (k->type == GGML_TYPE_Q8_0 && k_data == (const char *) k->data ? 1 : 0) |
++                      (v->type == GGML_TYPE_Q8_0 && v_data == (const char *) v->data ? 2 : 0);
++    if (getenv("GGML_CUDA_HC_DEBUG")) {
++        static bool once = false;
++        if (!once) { once = true; fprintf(stderr, "hc banded mma: k %s v %s kv_q8 %d n_q %lld n_kv %lld\n", ggml_type_name(k->type), ggml_type_name(v->type), kv_q8, (long long) n_q, (long long) n_kv); }
++    }
+     const int nw = n_q >= 64 ? 4 : (n_q >= 32 ? 2 : 1);
+     const int bq = nw*16;
+     const int64_t n_qt = (n_q + bq - 1)/bq;
+@@ -1011,7 +1058,7 @@ static void fattn_banded_mma_launch(ggml_backend_cuda_context & ctx, ggml_tensor
+         m ? m->ne[2] : 1, m ? m->ne[3] : 1, q->nb[1], q->nb[2], q->nb[3], \
+         k_nb[1], k_nb[2], k_nb[3], v_nb[1], v_nb[2], v_nb[3], \
+         m ? m->nb[1] : 0, m ? m->nb[2] : 0, m ? m->nb[3] : 0, \
+-        rel->nb[0], rel->nb[1], rel->nb[2], rel->nb[3], rel->ne[3], sinks_s1, sinks_s2)
++        rel->nb[0], rel->nb[1], rel->nb[2], rel->nb[3], rel->ne[3], sinks_s1, sinks_s2, kv_q8)
+ #define LAUNCH_BANDED_MMA_NW(DD) \
+     switch (nw) { \
+         case 4:  LAUNCH_BANDED_MMA(DD, 4); break; \
+@@ -1066,6 +1113,7 @@ void ggml_cuda_flash_attn_ext_banded(ggml_backend_cuda_context & ctx, ggml_tenso
+         fattn_banded_mma_launch(ctx, dst, scale, rel_extent);
+         return;
+     }
++    GGML_ASSERT(!fattn_banded_quant_kv(k->type) && !fattn_banded_quant_kv(v->type) && "quantized K/V needs the MMA path (n_q >= 16)");
+ 
+     {
+         constexpr int split_warps   = 4;
+diff --git a/ggml/src/ggml-cuda/ggml-cuda.cu b/ggml/src/ggml-cuda/ggml-cuda.cu
+index efbbb71..37c39ad 100644
+--- a/ggml/src/ggml-cuda/ggml-cuda.cu
++++ b/ggml/src/ggml-cuda/ggml-cuda.cu
+@@ -56,6 +56,7 @@
+ #include "ggml-cuda/softcap.cuh"
+ #include "ggml-cuda/softmax.cuh"
+ #include "ggml-cuda/ssm-conv.cuh"
++#include "ggml-cuda/inkling.cuh"
+ #include "ggml-cuda/ssm-scan.cuh"
+ #include "ggml-cuda/sum.cuh"
+ #include "ggml-cuda/sumrows.cuh"
+@@ -1313,7 +1314,9 @@ static size_t ggml_backend_cuda_buffer_type_get_alignment(ggml_backend_buffer_ty
+ static size_t ggml_backend_cuda_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
+     ggml_backend_cuda_buffer_type_context * buft_ctx = (ggml_backend_cuda_buffer_type_context *) buft->context;
+ 
+-    size_t size = (tensor->op == GGML_OP_FLASH_ATTN_EXT || tensor->op == GGML_OP_FLASH_ATTN_EXT_BANDED)
++    // hc: the banded kernel takes its f16 K/V scratch from the pool (or reads q8_0 in-kernel), never from
++    // the f16 extra data behind dst, so it must not reserve n_kv-sized f16 copies in the compute buffer
++    size_t size = tensor->op == GGML_OP_FLASH_ATTN_EXT
+         ? ggml_cuda_flash_attn_ext_get_alloc_size(buft_ctx->device, tensor)
+         : ggml_nbytes(tensor);
+     int64_t ne0 = tensor->ne[0];
+@@ -3200,6 +3203,12 @@ static bool ggml_cuda_compute_forward(ggml_backend_cuda_context & ctx, struct gg
+         case GGML_OP_FLASH_ATTN_EXT:
+             ggml_cuda_flash_attn_ext(ctx, dst);
+             break;
++        case GGML_OP_CUSTOM:
++            if (!ggml_cuda_inkling_is_relmask(dst)) {
++                return false;
++            }
++            ggml_cuda_op_inkling_relmask(ctx, dst->src[0], dst->src[1], dst->src[2], dst->src[3], dst->src[4], dst);
++            break;
+         case GGML_OP_FLASH_ATTN_EXT_BANDED:
+             ggml_cuda_flash_attn_ext_banded(ctx, dst);
+             break;
+@@ -3601,7 +3610,20 @@ static void ggml_cuda_graph_launch_chunk(ggml_backend_cuda_context * cuda_ctx, g
+     } else {
+         GGML_ASSERT(idx == graph->instances.size());
+         graph->instances.emplace_back();
+-        CUDA_CHECK(cudaGraphInstantiate(&graph->instances[idx].handle, cuda_graph, nullptr, nullptr, 0));
++        cudaError_t err = cudaGraphInstantiate(&graph->instances[idx].handle, cuda_graph, nullptr, nullptr, 0);
++        if (err == cudaErrorMemoryAllocation) {
++            // hc: the graph cache has no eviction and every executable holds device memory: near a full card a new
++            // batch shape fails to instantiate. Drop the other cached graphs and retry once.
++            (void) cudaGetLastError();
++            CUDA_CHECK(cudaStreamSynchronize(cuda_ctx->stream()));
++            size_t n_drop = 0;
++            for (auto it = cuda_ctx->cuda_graphs.begin(); it != cuda_ctx->cuda_graphs.end();) {
++                if (it->second.get() != graph) { it = cuda_ctx->cuda_graphs.erase(it); ++n_drop; } else { ++it; }
++            }
++            GGML_LOG_WARN("%s: CUDA graph instantiate out of memory, dropped %zu cached graphs and retrying\n", __func__, n_drop);
++            err = cudaGraphInstantiate(&graph->instances[idx].handle, cuda_graph, nullptr, nullptr, 0);
++        }
++        CUDA_CHECK(err);
+ #ifdef USE_CUDA_GRAPH_CLUSTER_CHECK
+         graph->instances[idx].clusters = ggml_cuda_graph_get_clusters(cuda_graph, cuda_ctx->device);
+ #endif // USE_CUDA_GRAPH_CLUSTER_CHECK
+@@ -4584,6 +4606,311 @@ static bool ggml_cuda_can_fuse(const struct ggml_cgraph *                cgraph,
+ }
+ 
+ // try and fuse nodes and return the number of nodes to skip
++// hc: Inkling2 elementwise-chain fusions (inkling.cu). GGML_CUDA_HC_DISABLE=1 turns them off.
++static int ggml_cuda_try_fuse_inkling(ggml_backend_cuda_context * cuda_ctx, ggml_cgraph * cgraph, int i) {
++    static const bool off = getenv("GGML_CUDA_HC_DISABLE") != nullptr;
++    // bit mask of enabled fusions: 1 clip, 2 control, 4 conv, 8 mix, 16 situ, 32 add_scale, 64 relmask
++    static const int mask = getenv("GGML_CUDA_HC_MASK") ? atoi(getenv("GGML_CUDA_HC_MASK")) : 0xff;
++    static const int hc_debug = getenv("GGML_CUDA_HC_DEBUG") ? atoi(getenv("GGML_CUDA_HC_DEBUG")) : 0;
++    if (off) {
++        return 0;
++    }
++    ggml_tensor ** nd = cgraph->nodes;
++    const ggml_tensor * node = nd[i];
++    const auto f32c = [](const ggml_tensor * t) { return t && t->type == GGML_TYPE_F32 && ggml_is_contiguous(t); };
++    const auto is_tanh = [](const ggml_tensor * t) { return t->op == GGML_OP_UNARY && ggml_get_unary_op(t) == GGML_UNARY_OP_TANH; };
++
++    // the graph allocator may place a fused output over an input that is dead in the unfused order:
++    // elementwise kernels tolerate an exact alias (same start, same layout), the others need disjoint memory
++    static std::atomic<long> hc_alias_refused { 0 };
++    auto disjoint = [](const ggml_tensor * out, std::initializer_list<const ggml_tensor *> ins, bool exact_ok) {
++        const char * o0 = (const char *) out->data, * o1 = o0 + ggml_nbytes(out);
++        for (const ggml_tensor * t : ins) {
++            if (!t) continue;
++            const char * a0 = (const char *) t->data, * a1 = a0 + ggml_nbytes(t);
++            if (a0 < o1 && o0 < a1 && !(exact_ok && a0 == o0)) {
++                if (hc_debug) fprintf(stderr, "hc: alias %s <- %s\n", out->name, t->name);
++                return false;
++            }
++        }
++        return true;
++    };
++
++    // when the output overlaps an input, run the kernel into scratch and copy back (one D2D copy instead of the unfused chain)
++    struct hc_redirect {
++        ggml_cuda_pool_alloc<char> buf;
++        ggml_tensor * t = nullptr; void * orig = nullptr; cudaStream_t st = nullptr;
++        hc_redirect(ggml_backend_cuda_context * c, ggml_tensor * tt, bool on) : buf(c->pool()) {
++            if (!on) return;
++            t = tt; orig = t->data; st = c->stream();
++            buf.alloc(ggml_nbytes(t));
++            t->data = buf.get();
++        }
++        ~hc_redirect() {
++            if (!t) return;
++            t->data = orig;
++            CUDA_CHECK(cudaMemcpyAsync(orig, buf.get(), ggml_nbytes(t), cudaMemcpyDeviceToDevice, st));
++        }
++    };
++    static const bool hc_no_redirect = getenv("GGML_CUDA_HC_NO_REDIRECT") != nullptr;
++
++    // clip
++    if ((mask & 1) && (node->op == GGML_OP_MUL || node->op == GGML_OP_SQR)) {
++        const int o = node->op == GGML_OP_MUL ? 1 : 0;
++        bool ok = false;
++        if (o) {
++            ok = ggml_can_fuse_subgraph(cgraph, i, { GGML_OP_MUL, GGML_OP_SQR, GGML_OP_SUM_ROWS, GGML_OP_SQRT, GGML_OP_SCALE,
++                                                     GGML_OP_FILL, GGML_OP_DIV, GGML_OP_CLAMP, GGML_OP_MUL }, { i + 8 });
++        } else {
++            ok = ggml_can_fuse_subgraph(cgraph, i, { GGML_OP_SQR, GGML_OP_SUM_ROWS, GGML_OP_SQRT, GGML_OP_SCALE,
++                                                     GGML_OP_FILL, GGML_OP_DIV, GGML_OP_CLAMP, GGML_OP_MUL }, { i + 7 });
++        }
++        if (ok) {
++            const ggml_tensor * y   = o ? node : node->src[0];
++            const ggml_tensor * sqr = nd[i + o];
++            const ggml_tensor * sr  = nd[i + o + 1];
++            const ggml_tensor * sq  = nd[i + o + 2];
++            const ggml_tensor * sc  = nd[i + o + 3];
++            const ggml_tensor * fl  = nd[i + o + 4];
++            const ggml_tensor * dv  = nd[i + o + 5];
++            const ggml_tensor * cl  = nd[i + o + 6];
++            ggml_tensor *       out = nd[i + o + 7];
++            const ggml_tensor * x = o ? node->src[0] : node->src[0];
++            const ggml_tensor * s = o ? node->src[1] : nullptr;
++            ok = sqr->src[0] == y && sr->src[0] == sqr && sq->src[0] == sr && sc->src[0] == sq && fl->src[0] == sc &&
++                 dv->src[0] == fl && dv->src[1] == sc && cl->src[0] == dv && out->src[0] == y && out->src[1] == cl &&
++                 f32c(x) && f32c(out) && ggml_are_same_shape(x, out) && x->ne[0] <= 256 && sr->ne[0] == 1;
++            if (ok && s) {
++                ok = f32c(s) && s->ne[0] == x->ne[0] && s->ne[2] == 1 && s->ne[3] == 1 && s->ne[1] == x->ne[1] &&
++                     ggml_are_same_shape(node, x);
++            }
++            const bool red = ok && !disjoint(out, { x, s }, true);
++            ok = ok && (!red || !hc_no_redirect);
++            if (ok) {
++                hc_redirect r(cuda_ctx, out, red);
++                const float a  = ggml_get_op_params_f32(sc, 0);
++                const float b  = ggml_get_op_params_f32(sc, 1);
++                const float c  = ggml_get_op_params_f32(fl, 0);
++                const float lo = ggml_get_op_params_f32(cl, 0);
++                const float hi = ggml_get_op_params_f32(cl, 1);
++                ggml_cuda_op_inkling_clip(*cuda_ctx, x, s, a, b, c, lo, hi, out);
++                return o + 7;
++            }
++        }
++    }
++
++    // loop controller tail
++    if ((mask & 2) && is_tanh(node) && ggml_can_fuse_subgraph(cgraph, i, { GGML_OP_UNARY, GGML_OP_SCALE, GGML_OP_MUL, GGML_OP_UNARY, GGML_OP_MUL, GGML_OP_ADD }, { i + 5 })) {
++        const ggml_tensor * sc = nd[i + 1];
++        const ggml_tensor * m1 = nd[i + 2];
++        const ggml_tensor * t1 = nd[i + 3];
++        const ggml_tensor * m2 = nd[i + 4];
++        ggml_tensor *       ad = nd[i + 5];
++        if (is_tanh(t1) && sc->src[0] == node && m1->src[0] == sc && m2->src[0] == t1 && ad->src[0] == m1 && ad->src[1] == m2 &&
++            f32c(node->src[0]) && f32c(m1->src[1]) && f32c(t1->src[0]) && f32c(m2->src[1]) && f32c(ad) &&
++            ggml_are_same_shape(node->src[0], ad) && ggml_are_same_shape(m1->src[1], ad) &&
++            ggml_are_same_shape(t1->src[0], ad) && ggml_are_same_shape(m2->src[1], ad) &&
++            (!hc_no_redirect || disjoint(ad, { node->src[0], m1->src[1], t1->src[0], m2->src[1] }, true))) {
++            hc_redirect r(cuda_ctx, ad, !disjoint(ad, { node->src[0], m1->src[1], t1->src[0], m2->src[1] }, true));
++            ggml_cuda_op_inkling_control(*cuda_ctx, node->src[0], m1->src[1], t1->src[0], m2->src[1],
++                    ggml_get_op_params_f32(sc, 0), ggml_get_op_params_f32(sc, 1), ad);
++            return 5;
++        }
++    }
++
++    // short conv + state store + residual + scale
++    if ((mask & 4) && node->op == GGML_OP_CONCAT &&
++        ggml_can_fuse_subgraph(cgraph, i, { GGML_OP_CONCAT, GGML_OP_VIEW, GGML_OP_VIEW, GGML_OP_CPY, GGML_OP_SSM_CONV,
++                                            GGML_OP_RESHAPE, GGML_OP_ADD, GGML_OP_SCALE }, { i + 2, i + 3, i + 7 })) {
++        const ggml_tensor * cc   = node;
++        const ggml_tensor * last = nd[i + 1];
++        const ggml_tensor * cell = nd[i + 2];
++        ggml_tensor *       cpy  = nd[i + 3];
++        const ggml_tensor * conv = nd[i + 4];
++        const ggml_tensor * rs   = nd[i + 5];
++        const ggml_tensor * ad   = nd[i + 6];
++        ggml_tensor *       sc   = nd[i + 7];
++        const ggml_tensor * past = cc->src[0];
++        const ggml_tensor * xt   = cc->src[1];
++        const ggml_tensor * x    = ad->src[0];
++        const ggml_tensor * w    = conv->src[1];
++        const int64_t n_t = cc->ne[0] - 3;
++        bool ok = ggml_get_op_params_i32(cc, 0) == 0 && past->ne[0] == 3 && w && w->ne[0] == 4 && f32c(w) &&
++                  past->type == GGML_TYPE_F32 && past->nb[0] == sizeof(float) &&
++                  last->src[0] == cc && last->ne[0] == 3 && last->view_offs == (size_t) n_t*sizeof(float) &&
++                  cpy->src[0] == last && cpy->src[1] == cell && cell->type == GGML_TYPE_F32 && cell->nb[0] == sizeof(float) &&
++                  conv->src[0] == cc && rs->src[0] == conv && ad->src[1] == rs && sc->src[0] == ad &&
++                  f32c(x) && f32c(sc) && xt->data == x->data && ggml_nelements(xt) == ggml_nelements(x) &&
++                  ggml_nelements(x) == past->ne[1]*n_t*past->ne[2] && ggml_nelements(cell) == 3*past->ne[1]*past->ne[2] &&
++                  (cell->ne[1] == 1 || cell->nb[1] >= (size_t) 3*past->ne[1]*sizeof(float));
++        ok = ok && disjoint(cpy, { x, w }, false);
++        const bool red = ok && !disjoint(sc, { past, x, w, cpy }, false);
++        ok = ok && (!red || !hc_no_redirect);
++        if (ok) {
++            hc_redirect r(cuda_ctx, sc, red);
++            ggml_cuda_op_inkling_conv(*cuda_ctx, past, x, w, ggml_get_op_params_f32(sc, 0), ggml_get_op_params_f32(sc, 1), sc, cpy);
++            return 7;
++        }
++    }
++
++    // depth mix
++    if ((mask & 8) && node->op == GGML_OP_RMS_NORM) {
++        const auto is_view = [](const ggml_tensor * t) {
++            return t->op == GGML_OP_VIEW || t->op == GGML_OP_RESHAPE || t->op == GGML_OP_PERMUTE || t->op == GGML_OP_TRANSPOSE;
++        };
++        int idxs[24]; enum ggml_op ops[24]; int n = 0;
++        const ggml_tensor * cc[2] = { nullptr, nullptr }; int ncc = 0;
++        const ggml_tensor * mm1 = nullptr, * cont = nullptr, * smx = nullptr, * mm2 = nullptr;
++        int k = i;
++        bool ok = true;
++        for (; k < cgraph->n_nodes && n < 24; ++k) {
++            const ggml_tensor * t = nd[k];
++            idxs[n] = k; ops[n] = t->op; n++;
++            if (k == i || is_view(t)) continue;
++            if (t->op == GGML_OP_CONCAT && !mm1 && ncc < 2) { cc[ncc++] = t; continue; }
++            if (t->op == GGML_OP_MUL_MAT && !mm1) { mm1 = t; continue; }
++            if (t->op == GGML_OP_CONT && mm1 && !smx && !cont) { cont = t; continue; }
++            if (t->op == GGML_OP_SOFT_MAX && mm1 && !smx) { smx = t; continue; }
++            if (t->op == GGML_OP_MUL_MAT && smx) { mm2 = t; break; }
++            ok = false; break;
++        }
++        ok = ok && mm2 && (ncc == 0 || ncc == 2);
++        const ggml_tensor * stack = nullptr, * query = nullptr;
++        if (ok) {
++            const ggml_tensor * states  = ncc ? nullptr : node;
++            const ggml_tensor * statesT = nullptr;
++            if (ncc) {
++                // one concat is [E, ns, T] (src1 = rms), the other [ns, E, T] (src1 = reshape(rms))
++                for (int c = 0; c < 2; ++c) {
++                    if (cc[c]->src[1] == node && ggml_get_op_params_i32(cc[c], 0) == 1) { states = cc[c]; stack = cc[c]->src[0]; }
++                    else if (cc[c]->src[1]->op == GGML_OP_RESHAPE && cc[c]->src[1]->src[0] == node && ggml_get_op_params_i32(cc[c], 0) == 0) { statesT = cc[c]; }
++                }
++                ok = states && statesT && stack;
++            }
++            query = mm1->src[0];
++            const ggml_tensor * mm2_a = mm2->src[0];
++            const ggml_tensor * sm_in = smx->src[0];
++            ok = ok && mm1->src[1] == states && f32c(query) && query->ne[0] == node->ne[0] && query->ne[2] == 1 &&
++                 smx->src[1] == nullptr && mm2->src[1] == smx && f32c(mm2) && f32c(node->src[0]) && node->type == GGML_TYPE_F32 &&
++                 (ncc ? mm2_a == statesT : (mm2_a->op == GGML_OP_RESHAPE && mm2_a->src[0] == node)) &&
++                 (stack == nullptr || (f32c(stack) && stack->ne[0] == node->ne[0] && stack->ne[2] == node->ne[2])) &&
++                 ggml_get_op_params_f32(smx, 1) == 0.0f &&
++                 ggml_cuda_inkling_mix_ok(stack ? (int) stack->ne[1] : 0, (int) query->ne[1]) &&
++                 node->ne[1] == 1 && mm2->ne[0] == node->ne[0] && mm2->ne[1] == query->ne[1];
++            if (ok && cont) {
++                ok = sm_in == cont && cont->src[0]->op == GGML_OP_PERMUTE && cont->src[0]->src[0] == mm1;
++            } else if (ok) {
++                ok = sm_in->op == GGML_OP_RESHAPE && sm_in->src[0] == mm1 && query->ne[1] == 1;
++            }
++            int out_idx[1] = { k };
++            ok = ok && ggml_can_fuse_subgraph_ext(cgraph, idxs, n, ops, out_idx, 1);
++        }
++        const bool red = ok && !disjoint(mm2, { node->src[0], stack, query }, false);
++        ok = ok && (!red || !hc_no_redirect);
++        if (ok) {
++            hc_redirect r(cuda_ctx, const_cast<ggml_tensor *>(mm2), red);
++            ggml_cuda_op_inkling_mix(*cuda_ctx, node->src[0], stack, query, ggml_get_op_params_f32(node, 0),
++                    ggml_get_op_params_f32(smx, 0), const_cast<ggml_tensor *>(mm2));
++            return k - i;
++        }
++    }
++
++    // MoE SiTU (+ per-expert scale)
++    if ((mask & 16) && node->op == GGML_OP_MUL &&
++        ggml_can_fuse_subgraph(cgraph, i, { GGML_OP_MUL, GGML_OP_VIEW, GGML_OP_SCALE, GGML_OP_UNARY, GGML_OP_SCALE, GGML_OP_UNARY,
++                                            GGML_OP_MUL, GGML_OP_VIEW, GGML_OP_SCALE, GGML_OP_UNARY, GGML_OP_SCALE, GGML_OP_MUL }, { i + 11 })) {
++        const ggml_tensor * gv = nd[i + 1], * s1 = nd[i + 2], * t1 = nd[i + 3], * s2 = nd[i + 4], * sg = nd[i + 5], * m1 = nd[i + 6];
++        const ggml_tensor * uv = nd[i + 7], * s3 = nd[i + 8], * t2 = nd[i + 9], * s4 = nd[i + 10];
++        ggml_tensor * out = nd[i + 11];
++        const ggml_tensor * gu = node->src[0];
++        const ggml_tensor * es = node->src[1];
++        const int64_t F = gv->ne[0];
++        bool ok = f32c(gu) && f32c(es) && es->ne[0] == 1 && es->ne[1] == gu->ne[1] && es->ne[2] == gu->ne[2] && ggml_are_same_shape(node, gu) &&
++                  gu->ne[0] == 2*F && gv->src[0] == node && gv->view_offs == 0 && uv->src[0] == node && uv->view_offs == (size_t) F*sizeof(float) &&
++                  s1->src[0] == gv && is_tanh(t1) && t1->src[0] == s1 && s2->src[0] == t1 &&
++                  sg->op == GGML_OP_UNARY && ggml_get_unary_op(sg) == GGML_UNARY_OP_SIGMOID && sg->src[0] == gv &&
++                  m1->src[0] == s2 && m1->src[1] == sg && s3->src[0] == uv && is_tanh(t2) && t2->src[0] == s3 && s4->src[0] == t2 &&
++                  out->src[0] == m1 && out->src[1] == s4 && f32c(out) && out->ne[0] == F && ggml_nrows(out) == ggml_nrows(gu);
++        const bool red = ok && !disjoint(out, { gu, es }, false);
++        ok = ok && (!red || !hc_no_redirect);
++        if (ok) {
++            hc_redirect r(cuda_ctx, out, red);
++            const float p[8] = { ggml_get_op_params_f32(s1, 0), ggml_get_op_params_f32(s1, 1), ggml_get_op_params_f32(s2, 0), ggml_get_op_params_f32(s2, 1),
++                                 ggml_get_op_params_f32(s3, 0), ggml_get_op_params_f32(s3, 1), ggml_get_op_params_f32(s4, 0), ggml_get_op_params_f32(s4, 1) };
++            ggml_cuda_op_inkling_situ(*cuda_ctx, gu, es, p, true, out);
++            return 11;
++        }
++    }
++
++    // relative-position bias -> per-head F16 mask (decode / single-chunk path)
++    if ((mask & 64) && node->op == GGML_OP_MUL_MAT &&
++        ggml_can_fuse_subgraph(cgraph, i, { GGML_OP_MUL_MAT, GGML_OP_MUL_MAT, GGML_OP_RESHAPE, GGML_OP_SUB, GGML_OP_PERMUTE, GGML_OP_CONT,
++                                            GGML_OP_GET_ROWS, GGML_OP_RESHAPE, GGML_OP_PERMUTE, GGML_OP_CONT, GGML_OP_CPY, GGML_OP_ADD,
++                                            GGML_OP_CPY }, { i + 1, i + 10, i + 12 })) {
++        const ggml_tensor * tab = node;
++        ggml_tensor *       snk = nd[i + 1];
++        const ggml_tensor * srs = nd[i + 2], * sub = nd[i + 3], * pm1 = nd[i + 4], * ct1 = nd[i + 5], * gr = nd[i + 6];
++        const ggml_tensor * rs2 = nd[i + 7], * pm2 = nd[i + 8], * kqb = nd[i + 9], * mcp = nd[i + 10], * add = nd[i + 11];
++        ggml_tensor *       out = nd[i + 12];
++        const ggml_tensor * pb = tab->src[0], * R = tab->src[1], * rp = gr->src[1], * msk = mcp->src[0];
++        const int64_t H = R->ne[1], T = R->ne[2], n_kv = out->ne[0];
++        bool ok = f32c(pb) && f32c(R) && pb->ne[0] == R->ne[0] && pb->ne[0] == 16 && R->ne[3] == 1 &&
++                  srs->src[0] == snk && sub->src[0] == tab && sub->src[1] == srs && pm1->src[0] == sub && ct1->src[0] == pm1 &&
++                  gr->src[0] == ct1 && rs2->src[0] == gr && pm2->src[0] == rs2 && kqb->src[0] == pm2 &&
++                  add->src[0] == kqb && add->src[1] == mcp && out->src[0] == add && out->type == GGML_TYPE_F16 && ggml_is_contiguous(out) &&
++                  out->ne[1] == T && out->ne[2] == H && out->ne[3] == 1 &&
++                  rp->type == GGML_TYPE_I32 && ggml_is_contiguous(rp) && ggml_nelements(rp) == n_kv*T &&
++                  (msk->type == GGML_TYPE_F16 || msk->type == GGML_TYPE_F32) && msk->ne[0] == n_kv && msk->ne[1] == T &&
++                  msk->ne[2] == 1 && msk->ne[3] == 1 && msk->nb[0] == ggml_element_size(msk) &&
++                  snk->type == GGML_TYPE_F32 && ggml_nelements(snk) == H*T;
++        if (ok && hc_debug > 1) {
++            for (int k = 0; k <= 12; ++k) { const ggml_tensor * t = nd[i + k];
++                fprintf(stderr, "hcn %d %s %s %s [%lld,%lld,%lld,%lld] buf %p data %p vs %s | s0 %s | s1 %s\n", k, ggml_op_name(t->op), t->name, ggml_type_name(t->type),
++                    (long long) t->ne[0], (long long) t->ne[1], (long long) t->ne[2], (long long) t->ne[3], (void*) t->buffer, t->data, t->view_src ? t->view_src->name : "-",
++                    t->src[0] ? t->src[0]->name : "-", t->src[1] ? t->src[1]->name : "-"); }
++        }
++        if (ok && hc_debug) {
++            fprintf(stderr, "hc relmask: pb [%lld,%lld] R [%lld,%lld,%lld] rp %s [%lld,%lld,%lld] msk %s [%lld,%lld,%lld,%lld] nb1 %zu out [%lld,%lld,%lld,%lld] gr [%lld,%lld,%lld]\n",
++                (long long) pb->ne[0], (long long) pb->ne[1], (long long) R->ne[0], (long long) R->ne[1], (long long) R->ne[2],
++                ggml_type_name(rp->type), (long long) rp->ne[0], (long long) rp->ne[1], (long long) rp->ne[2],
++                ggml_type_name(msk->type), (long long) msk->ne[0], (long long) msk->ne[1], (long long) msk->ne[2], (long long) msk->ne[3], msk->nb[1],
++                (long long) out->ne[0], (long long) out->ne[1], (long long) out->ne[2], (long long) out->ne[3],
++                (long long) gr->ne[0], (long long) gr->ne[1], (long long) gr->ne[2]);
++            fprintf(stderr, "hc relmask out nb %zu %zu %zu op %s vsrc %p [%lld,%lld,%lld] R nb %zu %zu %zu rp nb %zu sink [%lld,%lld,%lld] nb %zu %zu\n", out->nb[1], out->nb[2], out->nb[3], ggml_op_name(out->op), (void*) out->view_src,
++                out->view_src ? (long long) out->view_src->ne[0] : -1LL, out->view_src ? (long long) out->view_src->ne[1] : -1LL, out->view_src ? (long long) out->view_src->ne[2] : -1LL,
++                R->nb[1], R->nb[2], R->nb[3], rp->nb[1], (long long) snk->ne[0], (long long) snk->ne[1], (long long) snk->ne[2], snk->nb[1], snk->nb[2]);
++        }
++        // the allocator may place out over tensors that are dead in the unfused order (sink, R, the table):
++        // compute sink into scratch and refuse when out overlaps anything the kernel reads
++        const bool red = ok && !disjoint(out, { pb, R, rp, msk }, false);
++        ok = ok && (!red || !hc_no_redirect);
++        if (ok) {
++            hc_redirect r(cuda_ctx, out, red);
++            ggml_cuda_pool_alloc<float> snk_tmp(cuda_ctx->pool(), ggml_nelements(snk));
++            void * snk_data = snk->data;
++            snk->data = snk_tmp.get();
++            ggml_cuda_compute_forward(*cuda_ctx, snk);
++            ggml_cuda_op_inkling_relmask(*cuda_ctx, pb, R, snk, rp, msk, out);
++            snk->data = snk_data;
++            return 12;
++        }
++    }
++
++    // residual add + scale
++    if ((mask & 32) && node->op == GGML_OP_ADD && ggml_can_fuse_subgraph(cgraph, i, { GGML_OP_ADD, GGML_OP_SCALE }, { i + 1 })) {
++        ggml_tensor * sc = nd[i + 1];
++        if (sc->src[0] == node && f32c(node->src[0]) && f32c(node->src[1]) && f32c(sc) &&
++            ggml_are_same_shape(node->src[0], sc) && ggml_are_same_shape(node->src[1], sc) &&
++            (!hc_no_redirect || disjoint(sc, { node->src[0], node->src[1] }, true))) {
++            hc_redirect r(cuda_ctx, sc, !disjoint(sc, { node->src[0], node->src[1] }, true));
++            ggml_cuda_op_inkling_add_scale(*cuda_ctx, node->src[0], node->src[1],
++                    ggml_get_op_params_f32(sc, 0), ggml_get_op_params_f32(sc, 1), sc);
++            return 1;
++        }
++    }
++    return 0;
++}
++
+ static int ggml_cuda_try_fuse(ggml_backend_cuda_context * cuda_ctx, ggml_cgraph * cgraph, int i) {
+ 
+     if (ggml_cuda_fusion_disabled()) {
+@@ -4592,6 +4919,10 @@ static int ggml_cuda_try_fuse(ggml_backend_cuda_context * cuda_ctx, ggml_cgraph
+ 
+     ggml_tensor * node = cgraph->nodes[i];
+ 
++    if (const int n_hc = ggml_cuda_try_fuse_inkling(cuda_ctx, cgraph, i)) {
++        return n_hc;
++    }
++
+     if (node->op == GGML_OP_MUL_MAT_ID && cuda_ctx->stream_context().concurrent_events.empty() &&
+             ggml_cuda_match_shared_expert(cgraph, i, i + 3) &&
+             ggml_cuda_should_fuse_mul_mat_vec_q(cgraph->nodes[i + 2]->src[1])) {
+@@ -5533,6 +5864,31 @@ static void ggml_cuda_graph_evaluate_and_capture(ggml_backend_cuda_context * cud
+                 stream_ctx.concurrent_events.clear();
+             }
+ 
++            {
++                // hc debug: dump the node order of the first large graph of each batch size class
++                static int dumped_mask = 0;
++                static const char * dump = getenv("GGML_CUDA_DUMP_GRAPH");
++                if (dump && cgraph->n_nodes > 3000) {
++                    // classify by the largest ne[1] among the first nodes (token count of the ubatch)
++                    int64_t nt = 1;
++                    for (int k = 0; k < 64 && k < cgraph->n_nodes; ++k) nt = std::max(nt, cgraph->nodes[k]->ne[1]);
++                    const int cls = nt <= 1 ? 1 : 2;
++                    if (!(dumped_mask & cls)) {
++                        dumped_mask |= cls;
++                        FILE * f = fopen((std::string(dump) + (cls == 1 ? ".tg" : ".pp")).c_str(), "w");
++                        for (int i = 0; f && i < cgraph->n_nodes; i++) {
++                            const ggml_tensor * n = cgraph->nodes[i];
++                            const char * opn = n->op == GGML_OP_UNARY ? ggml_unary_op_name(ggml_get_unary_op(n)) :
++                                               n->op == GGML_OP_GLU ? ggml_glu_op_name(ggml_get_glu_op(n)) : ggml_op_name(n->op);
++                            fprintf(f, "%d\t%s\t%s\t%s\t[%lld,%lld,%lld,%lld]\t%s\t%s\t%s\t%d\n", i, opn, n->name, ggml_type_name(n->type),
++                                    (long long) n->ne[0], (long long) n->ne[1], (long long) n->ne[2], (long long) n->ne[3],
++                                    n->src[0] ? n->src[0]->name : "-", n->src[1] ? n->src[1]->name : "-", n->src[2] ? n->src[2]->name : "-",
++                                    (int) ggml_is_contiguous(n));
++                        }
++                        if (f) fclose(f);
++                    }
++                }
++            }
+             for (int i = 0; i < cgraph->n_nodes; i++) {
+                 ggml_tensor * node = cgraph->nodes[i];
+ #ifdef USE_CUDA_GRAPH
+@@ -6955,6 +7311,8 @@ static bool ggml_backend_cuda_device_supports_op(ggml_backend_dev_t dev, const g
+             return ggml_cuda_flash_attn_ext_supported(dev_ctx->device, op);
+         case GGML_OP_FLASH_ATTN_EXT_BANDED:
+             return ggml_cuda_flash_attn_ext_banded_supported(dev_ctx->device, op);
++        case GGML_OP_CUSTOM:
++            return ggml_cuda_inkling_is_relmask(op);
+         case GGML_OP_CROSS_ENTROPY_LOSS:
+         case GGML_OP_CROSS_ENTROPY_LOSS_BACK:
+         case GGML_OP_OPT_STEP_ADAMW:
+diff --git a/ggml/src/ggml-cuda/inkling.cu b/ggml/src/ggml-cuda/inkling.cu
+new file mode 100644
+index 0000000..fda82d1
+--- /dev/null
++++ b/ggml/src/ggml-cuda/inkling.cu
+@@ -0,0 +1,428 @@
++// hc: fused elementwise chains of the Inkling2 graph (see inkling.cuh for the matched patterns)
++#include "inkling.cuh"
++
++// ---------------------------------------------------------------------------------------------
++// row L2 clip: y = x (* s); n = sqrt(sum(y^2))*a + b; f = clamp(c/n, lo, hi); out = y*f
++// x: contiguous [ne0, ne1, ne2, ne3], s: [ne0, ne1] broadcast over ne2/ne3 (optional)
++template <int NE0>
++static __global__ void k_inkling_clip(const float * __restrict__ x, const float * __restrict__ s, float * __restrict__ dst,
++                                      const int64_t n_rows, const int ne0, const int64_t s_rows,
++                                      const float a, const float b, const float c, const float lo, const float hi) {
++    const int64_t row = (int64_t) blockIdx.x*blockDim.y + threadIdx.y;
++    if (row >= n_rows) {
++        return;
++    }
++    const int lane = threadIdx.x;
++    const float * xr = x + row*ne0;
++    const float * sr = s ? s + (row % s_rows)*ne0 : nullptr;
++    constexpr int PER = NE0 > 0 ? (NE0 + WARP_SIZE - 1)/WARP_SIZE : 8;
++    float v[PER];
++    float sum = 0.0f;
++#pragma unroll
++    for (int k = 0; k < PER; ++k) {
++        const int i = lane + k*WARP_SIZE;
++        float t = 0.0f;
++        if (i < ne0) {
++            t = xr[i];
++            if (sr) {
++                t *= sr[i];
++            }
++        }
++        v[k] = t;
++        sum += t*t;
++    }
++    sum = warp_reduce_sum(sum);
++    const float n = sqrtf(sum)*a + b;
++    const float f = fminf(fmaxf(c/n, lo), hi);
++    float * dr = dst + row*ne0;
++#pragma unroll
++    for (int k = 0; k < PER; ++k) {
++        const int i = lane + k*WARP_SIZE;
++        if (i < ne0) {
++            dr[i] = v[k]*f;
++        }
++    }
++}
++
++void ggml_cuda_op_inkling_clip(ggml_backend_cuda_context & ctx, const ggml_tensor * x, const ggml_tensor * s,
++                               float a, float b, float c, float lo, float hi, ggml_tensor * dst) {
++    const int ne0 = (int) x->ne[0];
++    const int64_t n_rows = ggml_nrows(x);
++    const int64_t s_rows = s ? ggml_nrows(s) : 1;
++    const dim3 block(WARP_SIZE, 4, 1);
++    const dim3 grid((unsigned) ((n_rows + 3)/4), 1, 1);
++    cudaStream_t st = ctx.stream();
++    const float * sp = s ? (const float *) s->data : nullptr;
++    if (ne0 <= 32) {
++        k_inkling_clip<32><<<grid, block, 0, st>>>((const float *) x->data, sp, (float *) dst->data, n_rows, ne0, s_rows, a, b, c, lo, hi);
++    } else if (ne0 <= 128) {
++        k_inkling_clip<128><<<grid, block, 0, st>>>((const float *) x->data, sp, (float *) dst->data, n_rows, ne0, s_rows, a, b, c, lo, hi);
++    } else {
++        k_inkling_clip<256><<<grid, block, 0, st>>>((const float *) x->data, sp, (float *) dst->data, n_rows, ne0, s_rows, a, b, c, lo, hi);
++    }
++}
++
++// ---------------------------------------------------------------------------------------------
++// loop controller tail: out = (tanh(F)*fs + fb)*cur + tanh(G)*msg   (all same shape, contiguous)
++static __global__ void k_inkling_control(const float * __restrict__ F, const float * __restrict__ cur,
++                                         const float * __restrict__ G, const float * __restrict__ msg,
++                                         float * __restrict__ dst, const int64_t n, const float fs, const float fb) {
++    const int64_t i = (int64_t) blockIdx.x*blockDim.x + threadIdx.x;
++    if (i >= n) {
++        return;
++    }
++    dst[i] = (tanhf(F[i])*fs + fb)*cur[i] + tanhf(G[i])*msg[i];
++}
++
++void ggml_cuda_op_inkling_control(ggml_backend_cuda_context & ctx, const ggml_tensor * F, const ggml_tensor * cur,
++                                  const ggml_tensor * G, const ggml_tensor * msg, float fs, float fb, ggml_tensor * dst) {
++    const int64_t n = ggml_nelements(dst);
++    const int bs = 256;
++    k_inkling_control<<<(unsigned) ((n + bs - 1)/bs), bs, 0, ctx.stream()>>>((const float *) F->data, (const float *) cur->data,
++            (const float *) G->data, (const float *) msg->data, (float *) dst->data, n, fs, fb);
++}
++
++// ---------------------------------------------------------------------------------------------
++// out = (a + b)*s + bias   (same shape, contiguous)
++static __global__ void k_inkling_add_scale(const float * __restrict__ a, const float * __restrict__ b, float * __restrict__ dst,
++                                           const int64_t n, const float s, const float bias) {
++    const int64_t i = (int64_t) blockIdx.x*blockDim.x + threadIdx.x;
++    if (i >= n) {
++        return;
++    }
++    dst[i] = (a[i] + b[i])*s + bias;
++}
++
++void ggml_cuda_op_inkling_add_scale(ggml_backend_cuda_context & ctx, const ggml_tensor * a, const ggml_tensor * b,
++                                    float s, float bias, ggml_tensor * dst) {
++    const int64_t n = ggml_nelements(dst);
++    const int bs = 256;
++    k_inkling_add_scale<<<(unsigned) ((n + bs - 1)/bs), bs, 0, ctx.stream()>>>((const float *) a->data, (const float *) b->data,
++            (float *) dst->data, n, s, bias);
++}
++
++// ---------------------------------------------------------------------------------------------
++// causal short conv (d_conv 4) with residual and scale, plus the conv-state store:
++//   win = [past(3) | x(n_t)] per channel; y_t = sum_k w[k]*win[t+k]; out_t = (x_t + y_t)*s + b; state = last 3 of win
++// past: [3, C, S] (strides in floats), x: contiguous [C, n_t, S], w: [4, C] contiguous, out like x, state: contiguous [3, C, S]
++static __global__ void k_inkling_conv(const float * __restrict__ past, const int64_t past_s1, const int64_t past_s2,
++                                      const float * __restrict__ x, const float * __restrict__ w,
++                                      float * __restrict__ out, float * __restrict__ state, const int64_t state_s,
++                                      const int C, const int n_t, const int S, const float s, const float b) {
++    const int c  = blockIdx.x*blockDim.x + threadIdx.x;
++    const int sq = blockIdx.y;
++    if (c >= C || sq >= S) {
++        return;
++    }
++    const float w0 = w[4*c + 0], w1 = w[4*c + 1], w2 = w[4*c + 2], w3 = w[4*c + 3];
++    const float * pp = past + c*past_s1 + sq*past_s2;
++    float p0 = pp[0], p1 = pp[1], p2 = pp[2];
++    const float * xs = x   + (int64_t) sq*n_t*C + c;
++    float       * os = out + (int64_t) sq*n_t*C + c;
++    for (int t = 0; t < n_t; ++t) {
++        const float xv = xs[(int64_t) t*C];
++        const float y  = w0*p0 + w1*p1 + w2*p2 + w3*xv;
++        os[(int64_t) t*C] = (xv + y)*s + b;
++        p0 = p1; p1 = p2; p2 = xv;
++    }
++    float * st = state + sq*state_s + (int64_t) c*3;
++    st[0] = p0; st[1] = p1; st[2] = p2;
++}
++
++void ggml_cuda_op_inkling_conv(ggml_backend_cuda_context & ctx, const ggml_tensor * past, const ggml_tensor * x,
++                               const ggml_tensor * w, float s, float b, ggml_tensor * out, ggml_tensor * state) {
++    const int C   = (int) past->ne[1];
++    const int S   = (int) past->ne[2];
++    const int n_t = (int) (ggml_nelements(x)/((int64_t) C*S));
++    const dim3 block(128, 1, 1);
++    const dim3 grid((C + 127)/128, S, 1);
++    k_inkling_conv<<<grid, block, 0, ctx.stream()>>>((const float *) past->data, past->nb[1]/sizeof(float), past->nb[2]/sizeof(float),
++            (const float *) x->data, (const float *) w->data, (float *) out->data, (float *) state->data,
++            state->ne[1] > 1 ? state->nb[1]/sizeof(float) : (int64_t) 3*C, C, n_t, S, s, b);
++}
++
++// ---------------------------------------------------------------------------------------------
++// depth mix: cur_n = rms_norm(cur); states = [stack(nb) | cur_n]; p = softmax(scale * q^T states); out = states p
++// cur: [E, T] rows contiguous, stack: [E, nb, T] contiguous (may be null when nb == 0), query: [E, nq] contiguous,
++// out: [E, nq, T] contiguous. One block per token.
++#define INKLING_MIX_MAX_S 16
++#define INKLING_MIX_MAX_Q 4
++static __global__ void k_inkling_mix(const float * __restrict__ cur, const float * __restrict__ stack, const float * __restrict__ query,
++                                     float * __restrict__ out, const int E, const int nb, const int nq,
++                                     const float eps, const float scale) {
++    // phase 1: every warp takes (q, j) dot products (j == nb uses the raw cur) or the sum of squares of cur
++    // phase 2: softmax (the cur score gets the rms factor), phase 3: weighted sum
++    __shared__ float p[INKLING_MIX_MAX_Q][INKLING_MIX_MAX_S];
++    __shared__ float rn_s;
++    const int t = blockIdx.x;
++    const int tid = threadIdx.x, nth = blockDim.x;
++    const int lane = tid % WARP_SIZE, wid = tid / WARP_SIZE, nw = nth / WARP_SIZE;
++    const int ns = nb + 1;
++    const int E4 = E/4;
++    const float4 * cr = (const float4 *) (cur + (int64_t) t*E);
++    const float4 * sk = stack ? (const float4 *) (stack + (int64_t) t*nb*E) : nullptr;
++    const int n_task = nq*ns + 1;
++    for (int task = wid; task < n_task; task += nw) {
++        float d0 = 0.0f, d1 = 0.0f;
++        if (task == nq*ns) {
++            for (int e = lane; e < E4; e += 2*WARP_SIZE) {
++                const float4 v = cr[e];
++                d0 += v.x*v.x + v.y*v.y + v.z*v.z + v.w*v.w;
++                if (e + WARP_SIZE < E4) { const float4 u = cr[e + WARP_SIZE]; d1 += u.x*u.x + u.y*u.y + u.z*u.z + u.w*u.w; }
++            }
++            d0 = warp_reduce_sum(d0 + d1);
++            if (lane == 0) rn_s = rsqrtf(d0/E + eps);
++        } else {
++            const int q = task / ns, j = task % ns;
++            const float4 * qv = (const float4 *) (query + (int64_t) q*E);
++            const float4 * sv = j < nb ? sk + (int64_t) j*E4 : cr;
++            for (int e = lane; e < E4; e += 2*WARP_SIZE) {
++                const float4 a = qv[e], b = sv[e];
++                d0 += a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
++                if (e + WARP_SIZE < E4) {
++                    const float4 a2 = qv[e + WARP_SIZE], b2 = sv[e + WARP_SIZE];
++                    d1 += a2.x*b2.x + a2.y*b2.y + a2.z*b2.z + a2.w*b2.w;
++                }
++            }
++            d0 = warp_reduce_sum(d0 + d1);
++            if (lane == 0) p[q][j] = d0;
++        }
++    }
++    __syncthreads();
++    const float rn = rn_s;
++    if (tid < nq) {
++        p[tid][nb] *= rn;
++        float m = -INFINITY;
++        for (int j = 0; j < ns; ++j) { p[tid][j] *= scale; m = fmaxf(m, p[tid][j]); }
++        float sum = 0.0f;
++        for (int j = 0; j < ns; ++j) { const float v = expf(p[tid][j] - m); p[tid][j] = v; sum += v; }
++        const float inv = 1.0f/sum;
++        for (int j = 0; j < nb; ++j) p[tid][j] *= inv;
++        p[tid][nb] *= inv*rn; // applied to the raw cur
++    }
++    __syncthreads();
++    float4 * ot = (float4 *) (out + (int64_t) t*nq*E);
++    for (int e = tid; e < E4; e += nth) {
++        float4 acc[INKLING_MIX_MAX_Q];
++        const float4 c = cr[e];
++#pragma unroll
++        for (int q = 0; q < INKLING_MIX_MAX_Q; ++q) {
++            const float w = q < nq ? p[q][nb] : 0.0f;
++            acc[q] = make_float4(w*c.x, w*c.y, w*c.z, w*c.w);
++        }
++        for (int j = 0; j < nb; ++j) {
++            const float4 v = sk[(int64_t) j*E4 + e];
++#pragma unroll
++            for (int q = 0; q < INKLING_MIX_MAX_Q; ++q) {
++                if (q < nq) { const float w = p[q][j]; acc[q].x += w*v.x; acc[q].y += w*v.y; acc[q].z += w*v.z; acc[q].w += w*v.w; }
++            }
++        }
++#pragma unroll
++        for (int q = 0; q < INKLING_MIX_MAX_Q; ++q) if (q < nq) ot[(int64_t) q*E4 + e] = acc[q];
++    }
++}
++
++// split variant for few tokens (decode): the one-block-per-token kernel runs on T SMs only.
++// k1: grid (T, C) partial dots / sum of squares over an E chunk; k2: grid (T, C) every block reduces the partials,
++// redoes the tiny softmax and writes its E chunk.
++#define INKLING_MIX_CHUNKS 8
++static __global__ void k_inkling_mix_part(const float * __restrict__ cur, const float * __restrict__ stack, const float * __restrict__ query,
++                                          float * __restrict__ part, const int E, const int nb, const int nq) {
++    const int t = blockIdx.x, c = blockIdx.y, C = gridDim.y;
++    const int lane = threadIdx.x % WARP_SIZE, wid = threadIdx.x / WARP_SIZE, nw = blockDim.x / WARP_SIZE;
++    const int ns = nb + 1, n_task = nq*ns + 1;
++    const int E4 = E/4, per = (E4 + C - 1)/C, e0 = c*per, e1 = min(E4, e0 + per);
++    const float4 * cr = (const float4 *) (cur + (int64_t) t*E);
++    const float4 * sk = stack ? (const float4 *) (stack + (int64_t) t*nb*E) : nullptr;
++    for (int task = wid; task < n_task; task += nw) {
++        float d = 0.0f;
++        if (task == nq*ns) {
++            for (int e = e0 + lane; e < e1; e += WARP_SIZE) { const float4 v = cr[e]; d += v.x*v.x + v.y*v.y + v.z*v.z + v.w*v.w; }
++        } else {
++            const int q = task / ns, j = task % ns;
++            const float4 * qv = (const float4 *) (query + (int64_t) q*E);
++            const float4 * sv = j < nb ? sk + (int64_t) j*E4 : cr;
++            for (int e = e0 + lane; e < e1; e += WARP_SIZE) { const float4 a = qv[e], b = sv[e]; d += a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w; }
++        }
++        d = warp_reduce_sum(d);
++        if (lane == 0) part[((int64_t) t*C + c)*n_task + task] = d;
++    }
++}
++
++static __global__ void k_inkling_mix_out(const float * __restrict__ cur, const float * __restrict__ stack, const float * __restrict__ part,
++                                         float * __restrict__ out, const int E, const int nb, const int nq, const float eps, const float scale) {
++    __shared__ float p[INKLING_MIX_MAX_Q][INKLING_MIX_MAX_S];
++    __shared__ float rn_s;
++    const int t = blockIdx.x, c = blockIdx.y, C = gridDim.y;
++    const int tid = threadIdx.x;
++    const int ns = nb + 1, n_task = nq*ns + 1;
++    const float * pt = part + (int64_t) t*C*n_task;
++    for (int task = tid; task < n_task; task += blockDim.x) {
++        float d = 0.0f;
++        for (int k = 0; k < C; ++k) d += pt[k*n_task + task];
++        if (task == nq*ns) rn_s = rsqrtf(d/E + eps); else p[task / ns][task % ns] = d;
++    }
++    __syncthreads();
++    const float rn = rn_s;
++    if (tid < nq) {
++        p[tid][nb] *= rn;
++        float m = -INFINITY;
++        for (int j = 0; j < ns; ++j) { p[tid][j] *= scale; m = fmaxf(m, p[tid][j]); }
++        float sum = 0.0f;
++        for (int j = 0; j < ns; ++j) { const float v = expf(p[tid][j] - m); p[tid][j] = v; sum += v; }
++        const float inv = 1.0f/sum;
++        for (int j = 0; j < nb; ++j) p[tid][j] *= inv;
++        p[tid][nb] *= inv*rn;
++    }
++    __syncthreads();
++    const int E4 = E/4, per = (E4 + C - 1)/C, e0 = c*per, e1 = min(E4, e0 + per);
++    const float4 * cr = (const float4 *) (cur + (int64_t) t*E);
++    const float4 * sk = stack ? (const float4 *) (stack + (int64_t) t*nb*E) : nullptr;
++    float4 * ot = (float4 *) (out + (int64_t) t*nq*E);
++    for (int e = e0 + tid; e < e1; e += blockDim.x) {
++        float4 acc[INKLING_MIX_MAX_Q];
++        const float4 cv = cr[e];
++#pragma unroll
++        for (int q = 0; q < INKLING_MIX_MAX_Q; ++q) {
++            const float w = q < nq ? p[q][nb] : 0.0f;
++            acc[q] = make_float4(w*cv.x, w*cv.y, w*cv.z, w*cv.w);
++        }
++        for (int j = 0; j < nb; ++j) {
++            const float4 v = sk[(int64_t) j*E4 + e];
++#pragma unroll
++            for (int q = 0; q < INKLING_MIX_MAX_Q; ++q) {
++                if (q < nq) { const float w = p[q][j]; acc[q].x += w*v.x; acc[q].y += w*v.y; acc[q].z += w*v.z; acc[q].w += w*v.w; }
++            }
++        }
++#pragma unroll
++        for (int q = 0; q < INKLING_MIX_MAX_Q; ++q) if (q < nq) ot[(int64_t) q*E4 + e] = acc[q];
++    }
++}
++
++bool ggml_cuda_inkling_mix_ok(int nb, int nq) {
++    return nb + 1 <= INKLING_MIX_MAX_S && nq <= INKLING_MIX_MAX_Q;
++}
++
++void ggml_cuda_op_inkling_mix(ggml_backend_cuda_context & ctx, const ggml_tensor * cur, const ggml_tensor * stack,
++                              const ggml_tensor * query, float eps, float scale, ggml_tensor * out) {
++    const int E  = (int) cur->ne[0];
++    const int T  = (int) (ggml_nelements(cur)/E);
++    const int nb = stack ? (int) stack->ne[1] : 0;
++    const int nq = (int) query->ne[1];
++    GGML_ASSERT(E % 4 == 0);
++    static const int split_max_t = getenv("GGML_CUDA_HC_MIX_SPLIT_T") ? atoi(getenv("GGML_CUDA_HC_MIX_SPLIT_T")) : 8;
++    if (T <= split_max_t) {
++        const int C = INKLING_MIX_CHUNKS, n_task = nq*(nb + 1) + 1;
++        ggml_cuda_pool_alloc<float> part(ctx.pool(), (size_t) T*C*n_task);
++        const dim3 grid(T, C, 1);
++        k_inkling_mix_part<<<grid, 256, 0, ctx.stream()>>>((const float *) cur->data, stack ? (const float *) stack->data : nullptr,
++                (const float *) query->data, part.get(), E, nb, nq);
++        k_inkling_mix_out<<<grid, 128, 0, ctx.stream()>>>((const float *) cur->data, stack ? (const float *) stack->data : nullptr,
++                part.get(), (float *) out->data, E, nb, nq, eps, scale);
++        return;
++    }
++    k_inkling_mix<<<T, 1024, 0, ctx.stream()>>>((const float *) cur->data, stack ? (const float *) stack->data : nullptr,
++            (const float *) query->data, (float *) out->data, E, nb, nq, eps, scale);
++}
++
++// ---------------------------------------------------------------------------------------------
++// MoE SiTU with the per-expert scale: gu: [2*F, n_e, T] contiguous, es: [1, n_e, T] contiguous (expert scale per slot)
++//   g = gu[i]*es, u = gu[F+i]*es; out = (s2*tanh(s1*g + b1) + b2)*sigmoid(g) * (s4*tanh(s3*u + b3) + b4)
++static __global__ void k_inkling_situ(const float * __restrict__ gu, const float * __restrict__ es, float * __restrict__ out,
++                                      const int F, const int64_t n_rows,
++                                      const float s1, const float b1, const float s2, const float b2,
++                                      const float s3, const float b3, const float s4, const float b4, const bool has_up) {
++    const int64_t idx = (int64_t) blockIdx.x*blockDim.x + threadIdx.x;
++    if (idx >= n_rows*F) {
++        return;
++    }
++    const int64_t r = idx / F;
++    const int     i = (int) (idx % F);
++    const float sc = es ? es[r] : 1.0f;
++    const float g = gu[r*2*F + i]*sc;
++    float u = gu[r*2*F + F + i]*sc;
++    if (has_up) {
++        u = s4*tanhf(s3*u + b3) + b4;
++    }
++    const float a = (s2*tanhf(s1*g + b1) + b2)/(1.0f + expf(-g));
++    out[idx] = a*u;
++}
++
++void ggml_cuda_op_inkling_situ(ggml_backend_cuda_context & ctx, const ggml_tensor * gu, const ggml_tensor * es,
++                               const float * p, bool has_up, ggml_tensor * out) {
++    const int F = (int) out->ne[0];
++    const int64_t n_rows = ggml_nrows(out);
++    const int64_t n = n_rows*F;
++    const int bs = 256;
++    k_inkling_situ<<<(unsigned) ((n + bs - 1)/bs), bs, 0, ctx.stream()>>>((const float *) gu->data, es ? (const float *) es->data : nullptr,
++            (float *) out->data, F, n_rows, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], has_up);
++}
++
++// ---------------------------------------------------------------------------------------------
++// relative-position bias folded into the per-head F16 flash-attention mask:
++//   out[kv, t, h] = sum_r pb[r, rp[kv, t]]*R[r, h, t] - sink[h, t] + mask[kv, t]
++// pb: [n_rel, n_pos] contiguous, R: [n_rel, H, T] contiguous, sink: [H, T] contiguous, rp: I32 [n_kv, T] contiguous,
++// mask: [n_kv, T] with row stride mask_s1 (elements), F16 or F32; out: F16 [n_kv, T, H] contiguous
++template <typename mask_t, int NREL>
++static __global__ void k_inkling_relmask(const float * __restrict__ pb, const float * __restrict__ R, const float * __restrict__ sink,
++                                         const int32_t * __restrict__ rp, const mask_t * __restrict__ mask, const int64_t mask_s1,
++                                         half * __restrict__ out, const int n_rel, const int n_kv, const int T, const int H) {
++    // one block per (t, h): R row in registers, the table row of each cell read as float4
++    const int t = blockIdx.x;
++    const int h = blockIdx.y;
++    const float4 * rr4 = (const float4 *) (R + ((int64_t) t*H + h)*NREL);
++    float4 rv[NREL/4];
++#pragma unroll
++    for (int k = 0; k < NREL/4; ++k) rv[k] = rr4[k];
++    const float sk = sink[(int64_t) t*H + h];
++    const int32_t * rpt = rp + (int64_t) t*n_kv;
++    const mask_t  * mt  = mask + (int64_t) t*mask_s1;
++    half * ot = out + ((int64_t) h*T + t)*n_kv;
++    for (int kv = threadIdx.x; kv < n_kv; kv += blockDim.x) {
++        const float4 * pr = (const float4 *) (pb + (int64_t) rpt[kv]*NREL);
++        float acc = 0.0f;
++#pragma unroll
++        for (int k = 0; k < NREL/4; ++k) {
++            const float4 a = __ldg(pr + k);
++            acc += a.x*rv[k].x + a.y*rv[k].y + a.z*rv[k].z + a.w*rv[k].w;
++        }
++        ot[kv] = __float2half(acc - sk + (float) mt[kv]);
++    }
++    GGML_UNUSED(n_rel);
++}
++
++void ggml_cuda_op_inkling_relmask(ggml_backend_cuda_context & ctx, const ggml_tensor * pb, const ggml_tensor * R, const ggml_tensor * sink,
++                                  const ggml_tensor * rp, const ggml_tensor * mask, ggml_tensor * out) {
++    const int n_rel = (int) pb->ne[0];
++    const int n_kv  = (int) out->ne[0];
++    const int T     = (int) out->ne[1];
++    const int H     = (int) out->ne[2];
++    GGML_ASSERT(n_rel == 16);
++    const dim3 block(n_kv >= 512 ? 256 : 128, 1, 1);
++    const dim3 grid(T, H, 1);
++    const int64_t ms1 = mask->nb[1]/ggml_element_size(mask);
++    if (mask->type == GGML_TYPE_F16) {
++        k_inkling_relmask<half, 16><<<grid, block, 0, ctx.stream()>>>((const float *) pb->data, (const float *) R->data, (const float *) sink->data,
++                (const int32_t *) rp->data, (const half *) mask->data, ms1, (half *) out->data, n_rel, n_kv, T, H);
++    } else {
++        k_inkling_relmask<float, 16><<<grid, block, 0, ctx.stream()>>>((const float *) pb->data, (const float *) R->data, (const float *) sink->data,
++                (const int32_t *) rp->data, (const float *) mask->data, ms1, (half *) out->data, n_rel, n_kv, T, H);
++    }
++}
++
++bool ggml_cuda_inkling_is_relmask(const ggml_tensor * op) {
++    if (op->op != GGML_OP_CUSTOM || strncmp(op->name, "hc_relmask", 10) != 0 || op->type != GGML_TYPE_F16) {
++        return false;
++    }
++    const ggml_tensor * pb = op->src[0], * R = op->src[1], * sk = op->src[2], * rp = op->src[3], * m = op->src[4];
++    if (!pb || !R || !sk || !rp || !m || op->src[5]) {
++        return false;
++    }
++    const int64_t n_kv = op->ne[0], T = op->ne[1], H = op->ne[2];
++    return pb->type == GGML_TYPE_F32 && ggml_is_contiguous(pb) && pb->ne[0] == 16 &&
++           R->type == GGML_TYPE_F32 && ggml_is_contiguous(R) && R->ne[0] == 16 && R->ne[1] == H && R->ne[2] == T &&
++           sk->type == GGML_TYPE_F32 && ggml_is_contiguous(sk) && ggml_nelements(sk) == H*T &&
++           rp->type == GGML_TYPE_I32 && ggml_is_contiguous(rp) && rp->ne[0] == n_kv && rp->ne[1] == T &&
++           (m->type == GGML_TYPE_F16 || m->type == GGML_TYPE_F32) && m->ne[0] == n_kv && m->ne[1] == T && m->nb[0] == ggml_type_size(m->type) &&
++           ggml_is_contiguous(op) && op->ne[3] == 1;
++}
+diff --git a/ggml/src/ggml-cuda/inkling.cuh b/ggml/src/ggml-cuda/inkling.cuh
+new file mode 100644
+index 0000000..8c18b5b
+--- /dev/null
++++ b/ggml/src/ggml-cuda/inkling.cuh
+@@ -0,0 +1,28 @@
++#pragma once
++#include "common.cuh"
++
++// hc: fused kernels for chains the Inkling2 graph emits many times per token
++//   clip:      [MUL(x,s)], SQR, SUM_ROWS, SQRT, SCALE, FILL, DIV, CLAMP, MUL
++//   control:   TANH(F), SCALE, MUL(.,cur), TANH(G), MUL(.,msg), ADD
++//   add_scale: ADD(a,b), SCALE
++void ggml_cuda_op_inkling_clip(ggml_backend_cuda_context & ctx, const ggml_tensor * x, const ggml_tensor * s,
++                               float a, float b, float c, float lo, float hi, ggml_tensor * dst);
++void ggml_cuda_op_inkling_control(ggml_backend_cuda_context & ctx, const ggml_tensor * F, const ggml_tensor * cur,
++                                  const ggml_tensor * G, const ggml_tensor * msg, float fs, float fb, ggml_tensor * dst);
++void ggml_cuda_op_inkling_add_scale(ggml_backend_cuda_context & ctx, const ggml_tensor * a, const ggml_tensor * b,
++                                    float s, float bias, ggml_tensor * dst);
++//   conv:      CONCAT(past, x^T), VIEW, VIEW, CPY(state), SSM_CONV, RESHAPE, ADD(x, .), SCALE
++//   mix:       RMS_NORM(cur), RESHAPE, CONCAT, CONCAT, MUL_MAT(q, states), RESHAPE | PERMUTE+CONT, SOFT_MAX, MUL_MAT
++//   situ:      MUL(gate_up, expert scale), VIEW, SCALE, TANH, SCALE, SIGMOID, MUL, VIEW, SCALE, TANH, SCALE, MUL
++void ggml_cuda_op_inkling_conv(ggml_backend_cuda_context & ctx, const ggml_tensor * past, const ggml_tensor * x,
++                               const ggml_tensor * w, float s, float b, ggml_tensor * out, ggml_tensor * state);
++bool ggml_cuda_inkling_mix_ok(int nb, int nq);
++void ggml_cuda_op_inkling_mix(ggml_backend_cuda_context & ctx, const ggml_tensor * cur, const ggml_tensor * stack,
++                              const ggml_tensor * query, float eps, float scale, ggml_tensor * out);
++void ggml_cuda_op_inkling_situ(ggml_backend_cuda_context & ctx, const ggml_tensor * gu, const ggml_tensor * es,
++                               const float * p, bool has_up, ggml_tensor * out);
++//   relmask:   MUL_MAT(pad bias, R), MUL_MAT(sink), RESHAPE, SUB, PERMUTE, CONT, GET_ROWS, RESHAPE, PERMUTE, CONT, CPY(mask f32), ADD, CPY(f16)
++void ggml_cuda_op_inkling_relmask(ggml_backend_cuda_context & ctx, const ggml_tensor * pb, const ggml_tensor * R, const ggml_tensor * sink,
++                                  const ggml_tensor * rp, const ggml_tensor * mask, ggml_tensor * out);
++// single-node relmask (GGML_OP_CUSTOM named "hc_relmask*"): srcs pb, R, sink, rp, mask; dst f16 [n_kv, T, H, 1]
++bool ggml_cuda_inkling_is_relmask(const ggml_tensor * op);
+diff --git a/ggml/src/ggml.c b/ggml/src/ggml.c
+index 4754074..1574995 100644
+--- a/ggml/src/ggml.c
++++ b/ggml/src/ggml.c
+@@ -5530,7 +5530,7 @@ struct ggml_tensor * ggml_flash_attn_ext_banded(
+ 
+     if (mask) {
+         GGML_ASSERT(mask->type == GGML_TYPE_F16);
+-        GGML_ASSERT(ggml_is_contiguous(mask));
++        GGML_ASSERT(mask->nb[0] == ggml_type_size(GGML_TYPE_F16)); // hc: strided views allowed, kernels index by nb
+         GGML_ASSERT(q->ne[2] % mask->ne[2] == 0);
+         GGML_ASSERT(q->ne[3] % mask->ne[3] == 0);
+     }
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 2df5510..0f3f857 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -3123,6 +3123,26 @@ ggml_cgraph * llama_context::graph_reserve(
+     this->n_input_tensors = llama_graph_n_input_tensors(gf);
+     this->n_outputs = save_n_outputs;
+ 
++    if (gf && getenv("LLAMA_HC_RESERVE_DUMP")) { // hc: largest non-view tensors of the reserve graph
++        std::vector<std::pair<size_t, const ggml_tensor *>> v;
++        for (int i = 0; i < ggml_graph_n_nodes(gf); ++i) {
++            const ggml_tensor * t = ggml_graph_node(gf, i);
++            if (!t->view_src) v.push_back({ ggml_nbytes(t), t });
++            for (int j = 0; j < GGML_MAX_SRC; ++j) {
++                const ggml_tensor * s = t->src[j];
++                if (s && !s->view_src && (s->flags & GGML_TENSOR_FLAG_INPUT)) v.push_back({ ggml_nbytes(s), s });
++            }
++        }
++        std::sort(v.begin(), v.end(), [](auto & a, auto & b) { return a.first > b.first; });
++        v.erase(std::unique(v.begin(), v.end()), v.end());
++        LLAMA_LOG_WARN("hc reserve: n_tokens %u, %d nodes\n", ubatch.n_tokens, ggml_graph_n_nodes(gf));
++        for (size_t i = 0; i < std::min<size_t>(v.size(), (size_t) atoi(getenv("LLAMA_HC_RESERVE_DUMP"))); ++i) {
++            const ggml_tensor * t = v[i].second;
++            LLAMA_LOG_WARN("hc reserve: %8.1f MiB %s %s %s [%lld,%lld,%lld,%lld]\n", v[i].first/1048576.0, ggml_op_name(t->op), t->name,
++                ggml_type_name(t->type), (long long) t->ne[0], (long long) t->ne[1], (long long) t->ne[2], (long long) t->ne[3]);
++        }
++    }
++
+     // initialize scheduler with the specified graph
+     if (split_only) {
+         if (sizes) {
+diff --git a/src/llama-graph.cpp b/src/llama-graph.cpp
+index b708a46..1449afe 100644
+--- a/src/llama-graph.cpp
++++ b/src/llama-graph.cpp
+@@ -1972,7 +1972,9 @@ ggml_tensor * llm_graph_context::build_lora_mm_id(
+         const int64_t n_expert = w_s->ne[0];
+         const int64_t n_tokens = cur->ne[2];
+         ggml_tensor * s = ggml_reshape_3d(ctx0, w_s, 1, n_expert, 1);
+-        s = ggml_repeat_4d(ctx0, s, 1, n_expert, n_tokens, 1);
++        if (s->ne[2] != n_tokens) { // hc: repeating to one token is a no-op copy
++            s = ggml_repeat_4d(ctx0, s, 1, n_expert, n_tokens, 1);
++        }
+         s = ggml_get_rows(ctx0, s, ids);
+         res = ggml_mul(ctx0, res, s);
+     }
+@@ -4584,6 +4586,10 @@ ggml_tensor * llm_graph_context::build_attn(
+ 
+     // a mask per head, in the dense layout of the input mask, which flash attention takes in F16
+     ggml_tensor * kq_mask = attn_mask.raw;
++    if (kq_b->type == GGML_TYPE_F16 && strncmp(kq_b->name, "hc_relmask", 10) == 0) {
++        // hc: the model built the complete f16 mask (bias - sink + mask) in one node
++        return build_attn_iswa_impl(*this, inp_attn, wo, wo_b, wo_s, q_cur, k_cur, v_cur, nullptr, kq_b, nullptr, sinks, nullptr, kq_scale, il);
++    }
+     if (kq_b->ne[1] != kq_mask->ne[1]) {
+         ggml_tensor *& dev = inp->self_kq_mask_dev[is_swa];
+         if (!dev) {
+diff --git a/src/models/inkling2.cpp b/src/models/inkling2.cpp
+index b820092..27a716d 100644
+--- a/src/models/inkling2.cpp
++++ b/src/models/inkling2.cpp
+@@ -5,7 +5,31 @@
+ #include <vector>
+ 
+ // max elements of the dense relative bias per attention call, and max chunks per layer
+-static constexpr int64_t n_kq_bias_max  = int64_t(1) << 29;
++// hc: with the single-node relmask only the f16 mask is materialized, 2^28 elements = 512 MiB
++static const int64_t n_kq_bias_max = int64_t(1) << (getenv("LLAMA_HC_BIAS_LOG2") ? atoi(getenv("LLAMA_HC_BIAS_LOG2")) : 28);
++static const bool hc_relmask_op = getenv("LLAMA_HC_NO_RELMASK_OP") == nullptr;
++
++// hc: dense mask in one node: out[kv, t, h] = sum_r pb[r, rp[kv, t]] * R[r, h, t] - sink[h, t] + mask[kv, t]  (f16)
++// srcs: pb [n_rel, n_pos], R [n_rel, H, T], sink [H, T], rp i32 [n_kv, T], mask f16/f32 [n_kv, T]
++// the CUDA backend runs it by name ("hc_relmask"); this is the reference for other backends
++static void hc_relmask_cpu(ggml_tensor * dst, int ith, int nth, void * /*userdata*/) {
++    const ggml_tensor * pb = dst->src[0], * R = dst->src[1], * sk = dst->src[2], * rp = dst->src[3], * m = dst->src[4];
++    const int64_t n_kv = dst->ne[0], T = dst->ne[1], H = dst->ne[2], n_rel = pb->ne[0];
++    for (int64_t ht = ith; ht < H*T; ht += nth) {
++        const int64_t h = ht % H, t = ht / H;
++        const float * rr = (const float *) ((const char *) R->data + h*R->nb[1] + t*R->nb[2]);
++        const float   s  = *(const float *) ((const char *) sk->data + h*sk->nb[0] + t*sk->nb[1]);
++        for (int64_t kv = 0; kv < n_kv; ++kv) {
++            const int32_t i = *(const int32_t *) ((const char *) rp->data + kv*rp->nb[0] + t*rp->nb[1]);
++            const float * pr = (const float *) ((const char *) pb->data + i*pb->nb[1]);
++            float acc = 0.0f;
++            for (int64_t r = 0; r < n_rel; ++r) acc += pr[r]*rr[r];
++            const char * mp = (const char *) m->data + kv*m->nb[0] + t*m->nb[1];
++            const float mv = m->type == GGML_TYPE_F16 ? ggml_fp16_to_fp32(*(const ggml_fp16_t *) mp) : *(const float *) mp;
++            *(ggml_fp16_t *) ((char *) dst->data + kv*dst->nb[0] + t*dst->nb[1] + h*dst->nb[2]) = ggml_fp32_to_fp16(acc - s + mv);
++        }
++    }
++}
+ static constexpr int64_t n_kq_chunk_max = 64;
+ // ubatches up to this many tokens keep the dense path
+ static constexpr int64_t n_tokens_banded_min = 32;
+@@ -218,19 +242,66 @@ ggml_tensor * llama_model_inkling2::graph::clip(ggml_tensor * cur, ggml_tensor *
+ }
+ 
+ // attention over the depth: mix the earlier block outputs and cur with learned queries
++// hc: the rms-normalized earlier blocks are stacked once per block set (both layouts), so a mix only appends cur;
++// scores come from query x states (query broadcast over tokens, no repeat), the weighted sum reads the [nb, E, T] stack
++std::pair<ggml_tensor *, ggml_tensor *> llama_model_inkling2::graph::mix_stack(const std::vector<ggml_tensor *> & blocks) {
++    auto it = mix_stacks.find(blocks);
++    if (it != mix_stacks.end()) {
++        return it->second;
++    }
++    ggml_tensor * nb_last = ggml_rms_norm(ctx0, ggml_reshape_3d(ctx0, blocks.back(), n_embd, 1, n_tokens), 1e-6f);
++    ggml_tensor * nb_lastT = ggml_reshape_3d(ctx0, nb_last, 1, n_embd, n_tokens);
++    std::pair<ggml_tensor *, ggml_tensor *> res;
++    if (blocks.size() == 1) {
++        res = { nb_last, nb_lastT };
++    } else {
++        const std::vector<ggml_tensor *> prev(blocks.begin(), blocks.end() - 1);
++        const auto p = mix_stack(prev);
++        res = { ggml_concat(ctx0, p.first, nb_last, 1), ggml_concat(ctx0, p.second, nb_lastT, 0) };
++    }
++    mix_stacks[blocks] = res;
++    return res;
++}
++
+ ggml_tensor * llama_model_inkling2::graph::mix(const std::vector<ggml_tensor *> & blocks, ggml_tensor * cur, ggml_tensor * query) {
+-    ggml_tensor * states = ggml_reshape_3d(ctx0, cur, n_embd, 1, n_tokens);
+-    for (ggml_tensor * block : blocks) {
+-        states = ggml_concat(ctx0, ggml_reshape_3d(ctx0, block, n_embd, 1, n_tokens), states, 1);
++    static const bool legacy = getenv("LLAMA_HC_LEGACY_MIX") != nullptr;
++    if (legacy) {
++        ggml_tensor * states = ggml_reshape_3d(ctx0, cur, n_embd, 1, n_tokens);
++        for (ggml_tensor * block : blocks) {
++            states = ggml_concat(ctx0, ggml_reshape_3d(ctx0, block, n_embd, 1, n_tokens), states, 1);
++        }
++        states = ggml_rms_norm(ctx0, states, 1e-6f);
++
++        ggml_tensor * queries = ggml_repeat(ctx0, query, ggml_new_tensor_3d(ctx0, GGML_TYPE_F32, n_embd, query->ne[1], n_tokens));
++
++        ggml_tensor * scores = ggml_mul_mat(ctx0, states, queries);
++        scores = ggml_soft_max_ext(ctx0, scores, nullptr, 1.0f/sqrtf(n_embd), 0.0f);
++
++        return ggml_mul_mat(ctx0, ggml_cont(ctx0, ggml_transpose(ctx0, states)), scores);
+     }
+-    states = ggml_rms_norm(ctx0, states, 1e-6f);
+ 
+-    ggml_tensor * queries = ggml_repeat(ctx0, query, ggml_new_tensor_3d(ctx0, GGML_TYPE_F32, n_embd, query->ne[1], n_tokens));
++    const int64_t nq = query->ne[1];
++    ggml_tensor * cur_n  = ggml_rms_norm(ctx0, ggml_reshape_3d(ctx0, cur, n_embd, 1, n_tokens), 1e-6f);
++    ggml_tensor * cur_nT = ggml_reshape_3d(ctx0, cur_n, 1, n_embd, n_tokens);
+ 
+-    ggml_tensor * scores = ggml_mul_mat(ctx0, states, queries);
++    ggml_tensor * states  = cur_n;
++    ggml_tensor * statesT = cur_nT;
++    if (!blocks.empty()) {
++        const auto st = mix_stack(blocks);
++        states  = ggml_concat(ctx0, st.first,  cur_n,  1);
++        statesT = ggml_concat(ctx0, st.second, cur_nT, 0);
++    }
++    const int64_t ns = states->ne[1];
++
++    ggml_tensor * scores = ggml_mul_mat(ctx0, query, states); // [nq, ns, T]
++    if (nq == 1) {
++        scores = ggml_reshape_3d(ctx0, scores, ns, 1, n_tokens);
++    } else {
++        scores = ggml_cont(ctx0, ggml_permute(ctx0, scores, 1, 0, 2, 3)); // [ns, nq, T]
++    }
+     scores = ggml_soft_max_ext(ctx0, scores, nullptr, 1.0f/sqrtf(n_embd), 0.0f);
+ 
+-    return ggml_mul_mat(ctx0, ggml_cont(ctx0, ggml_transpose(ctx0, states)), scores);
++    return ggml_mul_mat(ctx0, statesT, scores); // [E, nq, T]
+ }
+ 
+ // loop message controller: (1 - tanh(F h))*cur + tanh(G h)*message, h = D [rms(cur); rms(message)]; module: q, k, v, mlp
+@@ -239,8 +310,14 @@ ggml_tensor * llama_model_inkling2::graph::control(ggml_tensor * cur, ggml_tenso
+     h = ggml_reshape_2d(ctx0, ggml_rms_norm(ctx0, h, 1e-6f), 2*n_embd, n_tokens);
+     h = build_lora_mm(layer.loop_down[module], h);
+ 
+-    ggml_tensor * gain   = ggml_tanh(ctx0, build_lora_mm(layer.loop_gain[module],   h));
+-    ggml_tensor * forget = ggml_tanh(ctx0, build_lora_mm(layer.loop_forget[module], h));
++    // hc: expand both projections first so the elementwise tail is one contiguous, fusable chain
++    ggml_tensor * g_mm = build_lora_mm(layer.loop_gain[module],   h);
++    ggml_tensor * f_mm = build_lora_mm(layer.loop_forget[module], h);
++    ggml_build_forward_expand(gf, g_mm);
++    ggml_build_forward_expand(gf, f_mm);
++    ggml_build_forward_expand(gf, message);
++    ggml_tensor * gain   = ggml_tanh(ctx0, g_mm);
++    ggml_tensor * forget = ggml_tanh(ctx0, f_mm);
+ 
+     return ggml_add(ctx0, ggml_mul(ctx0, ggml_scale_bias(ctx0, forget, -1.0f, 1.0f), cur), ggml_mul(ctx0, gain, message));
+ }
+@@ -288,7 +365,11 @@ ggml_tensor * llama_model_inkling2::graph::convolve(
+         }
+     }
+ 
+-    return ggml_scale(ctx0, ggml_add(ctx0, cur, out), 1.0f/sqrtf((dynamic ? 2 : 1)*n_conv + 1));
++    ggml_tensor * res = ggml_scale(ctx0, ggml_add(ctx0, cur, out), 1.0f/sqrtf((dynamic ? 2 : 1)*n_conv + 1));
++    if (!dynamic) {
++        ggml_build_forward_expand(gf, res); // hc: keep concat/state-store/conv/add/scale adjacent for the fused CUDA kernel
++    }
++    return res;
+ }
+ 
+ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_context(params) {
+@@ -304,7 +385,7 @@ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_
+         const auto * cache = swa ? attn->mctx->get_swa() : attn->mctx->get_base();
+         const int64_t hd = hparams.n_embd_head_k(il);
+         const auto type_ok = [](ggml_type t) {
+-            return t == GGML_TYPE_F32 || t == GGML_TYPE_F16 || t == GGML_TYPE_BF16;
++            return t == GGML_TYPE_F32 || t == GGML_TYPE_F16 || t == GGML_TYPE_BF16 || t == GGML_TYPE_Q8_0 || t == GGML_TYPE_Q4_0; // hc: quantized K/V
+         };
+         if (!(inp->n_kv_banded[swa] > 0 && (hd == 64 || hd == 128) && hparams.n_embd_head_v(il) == hd &&
+                 type_ok(cache->type_k()) && type_ok(cache->type_v()) && !cache->get_k_scale(il) && !cache->get_v_scale(il) &&
+@@ -352,6 +433,8 @@ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_
+     }
+ 
+     std::vector<ggml_tensor *> blocks;
++    ggml_tensor * zero_sinks = nullptr;
++    ggml_tensor * hc_mask_dev[2] = { nullptr, nullptr }; // hc: one device copy of each input mask, viewed per layer
+ 
+     // each pass of the looped core restarts from the prelude state and reads the previous pass's blocks through messages
+     const int64_t n_loop_core = hparams.loop_n_pass > 1 ? hparams.loop_core_end - hparams.loop_core_start : 0;
+@@ -393,8 +476,13 @@ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_
+                 ggml_tensor * m_kv   = mix(bank, bank_last, q_kv);
+ 
+                 for (int j = 0; j < 2; ++j) {
+-                    messages[j == 0 ? 0 : 3] = ggml_cont(ctx0, ggml_view_2d(ctx0, m_attn, n_embd, n_tokens, m_attn->nb[2], j*m_attn->nb[1]));
+-                    messages[j == 0 ? 1 : 2] = ggml_cont(ctx0, ggml_view_2d(ctx0, m_kv,   n_embd, n_tokens, m_kv->nb[2],   j*m_kv->nb[1]));
++                    // hc: one token's message row is already contiguous
++                    messages[j == 0 ? 0 : 3] = ggml_view_2d(ctx0, m_attn, n_embd, n_tokens, m_attn->nb[2], j*m_attn->nb[1]);
++                    messages[j == 0 ? 1 : 2] = ggml_view_2d(ctx0, m_kv,   n_embd, n_tokens, m_kv->nb[2],   j*m_kv->nb[1]);
++                    if (n_tokens > 1) {
++                        messages[j == 0 ? 0 : 3] = ggml_cont(ctx0, messages[j == 0 ? 0 : 3]);
++                        messages[j == 0 ? 1 : 2] = ggml_cont(ctx0, messages[j == 0 ? 1 : 2]);
++                    }
+                 }
+             }
+         }
+@@ -418,7 +506,9 @@ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_
+         if (layer.attn_res_query) {
+             ggml_tensor * mixed = mix(blocks, cur, layer.attn_res_query);
+             for (int j = 0; j < 3; ++j) {
+-                inputs[j] = ggml_cont(ctx0, ggml_view_2d(ctx0, mixed, n_embd, n_tokens, mixed->nb[2], (is_swa ? 0 : j)*mixed->nb[1]));
++                // hc: a single-query mix is already a contiguous [E, T]
++                inputs[j] = mixed->ne[1] == 1 ? ggml_reshape_2d(ctx0, mixed, n_embd, n_tokens) :
++                    ggml_cont(ctx0, ggml_view_2d(ctx0, mixed, n_embd, n_tokens, mixed->nb[2], (is_swa ? 0 : j)*mixed->nb[1]));
+             }
+         }
+ 
+@@ -508,8 +598,9 @@ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_
+                             v_all->nb[1], v_all->nb[2], v_all->nb[3], 0), 0, 2, 1, 3);
+                 }
+                 ggml_tensor * mask = is_swa ? attn->self_attn_mask_swa.raw : attn->self_attn_mask.raw;
+-                ggml_tensor * m = ggml_cont(ctx0, ggml_view_4d(ctx0, mask, n_kv_b, mask->ne[1], mask->ne[2], mask->ne[3],
+-                        mask->nb[1], mask->nb[2], mask->nb[3], 0));
++                // hc: pass the whole input mask (same tensor every layer -> one input copy, no per-layer cont);
++                // the kernel reads only the first n_kv_b columns, by stride
++                ggml_tensor * m = mask;
+                 // exp(s + b)/(exp(t) + sum(exp(s + b))): the dense mask b - t with a zero sink
+                 ggml_tensor * rel_b = ggml_mul_mat(ctx0, layer.attn_rel_bias, Rcur);
+                 rel_b = ggml_reshape_4d(ctx0, rel_b, rel_b->ne[0], n_head, n_tokens, 1);
+@@ -523,14 +614,39 @@ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_
+                     cur = llama_mul_mat_hadamard(ctx0, cur, v_rot);
+                 }
+             } else {
++                ggml_tensor * mask_raw = is_swa ? attn->self_attn_mask_swa.raw : attn->self_attn_mask.raw;
++                ggml_tensor * pb_pad = ggml_pad(ctx0, layer.attn_rel_bias, 0, 1, 0, 0);
++                const bool hc_op = hc_relmask_op && n_stream == 1 && mask_raw->ne[0] == n_kv && mask_raw->ne[2] == 1 &&
++                                   (mask_raw->type == GGML_TYPE_F16 || mask_raw->type == GGML_TYPE_F32) &&
++                                   Rcur->type == GGML_TYPE_F32 && Rcur->ne[1] == n_head && pb_pad->ne[0] == 16 && cparams.flash_attn;
++                ggml_tensor * R3 = nullptr, * sk2 = nullptr;
++                ggml_tensor * table = nullptr;
++                if (hc_op) {
++                    // views of graph inputs are copied to the device one by one: view device copies instead
++                    if (!hc_mask_dev[is_swa]) {
++                        hc_mask_dev[is_swa] = ggml_cont(ctx0, mask_raw);
++                    }
++                    mask_raw = hc_mask_dev[is_swa];
++                    ggml_tensor *& rel_pos_dev = inp->self_rel_pos_dev[is_swa];
++                    if (!rel_pos_dev) {
++                        rel_pos_dev = ggml_cont(ctx0, rel_pos);
++                    }
++                    rel_pos = rel_pos_dev;
++                    R3  = ggml_is_contiguous(Rcur)  ? ggml_reshape_3d(ctx0, Rcur, Rcur->ne[0], n_head, n_tokens) : ggml_cont_3d(ctx0, Rcur, Rcur->ne[0], n_head, n_tokens);
++                    sk2 = ggml_is_contiguous(sinks) ? ggml_reshape_2d(ctx0, sinks, n_head, n_tokens) : ggml_cont_2d(ctx0, sinks, n_head, n_tokens);
++                } else {
+                 // project before gathering: only the gathered bias is n_kv x n_tokens x n_head
+-                ggml_tensor * table = ggml_mul_mat(ctx0, ggml_pad(ctx0, layer.attn_rel_bias, 0, 1, 0, 0), Rcur);
++                table = ggml_mul_mat(ctx0, pb_pad, Rcur);
+ 
+                 // per-query sink t: exp(s - t)/(1 + sum(exp(s - t))) = exp(s)/(exp(t) + sum(exp(s)))
+                 table = ggml_sub(ctx0, table, ggml_reshape_3d(ctx0, sinks, 1, n_head, n_tokens));
+                 table = ggml_cont(ctx0, ggml_permute(ctx0, table, 1, 0, 2, 3));
++                }
+ 
+-                sinks = ggml_fill(ctx0, ggml_new_tensor_1d(ctx0, GGML_TYPE_F32, n_head), 0.0f);
++                if (!zero_sinks || zero_sinks->ne[0] != n_head) { // hc: one zero tensor for every layer
++                    zero_sinks = ggml_fill(ctx0, ggml_new_tensor_1d(ctx0, GGML_TYPE_F32, n_head), 0.0f);
++                }
++                sinks = zero_sinks;
+ 
+                 // dense bias is n_kv x n_tokens x n_head: chunk query rows past the budget
+                 const int64_t n_seq_tokens = n_tokens/n_stream;
+@@ -553,7 +669,20 @@ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_
+                     const bool all = nr == n_seq_tokens;
+                     ggml_tensor * q_c = Qcur;
+                     ggml_tensor * kq_b = nullptr;
+-                    if (all) {
++                    if (hc_op) {
++                        if (!all) {
++                            q_c = ggml_reshape_3d(ctx0, rows(ggml_reshape_4d(ctx0, Qcur, n_embd_head, n_head, n_seq_tokens, n_stream), 2, r0, nr),
++                                    n_embd_head, n_head, nr*n_stream);
++                        }
++                        ggml_tensor * args[5] = {
++                            pb_pad,
++                            ggml_view_3d(ctx0, R3, R3->ne[0], n_head, nr, R3->nb[1], R3->nb[2], r0*R3->nb[2]),
++                            ggml_view_2d(ctx0, sk2, n_head, nr, sk2->nb[1], r0*sk2->nb[1]),
++                            ggml_view_2d(ctx0, rel_pos, n_kv, nr, rel_pos->nb[1], r0*rel_pos->nb[1]),
++                            ggml_view_2d(ctx0, mask_raw, n_kv, nr, mask_raw->nb[1], r0*mask_raw->nb[1]),
++                        };
++                        kq_b = ggml_custom_4d(ctx0, GGML_TYPE_F16, n_kv, nr, n_head, 1, args, 5, hc_relmask_cpu, GGML_N_TASKS_MAX, nullptr);
++                    } else if (all) {
+                         kq_b = ggml_get_rows(ctx0, table, rel_pos);
+                         kq_b = ggml_reshape_4d(ctx0, kq_b, n_head, n_kv, nr, n_stream);
+                         kq_b = ggml_cont(ctx0, ggml_permute(ctx0, kq_b, 2, 0, 1, 3));
+@@ -572,6 +701,9 @@ llama_model_inkling2::graph::graph(const llm_graph_params & params) : llm_graph_
+                         kq_b = ggml_cont(ctx0, ggml_permute(ctx0, ggml_get_rows(ctx0, table_c, rel_pos_c), 2, 0, 1, 3));
+                     }
+                     cb(kq_b, "kq_b", il);
++                    if (hc_op) {
++                        ggml_format_name(kq_b, "hc_relmask-%d", il); // the CUDA backend keys on this name; build_attn takes it as the mask
++                    }
+ 
+                     // only the first chunk stores K and V
+                     ggml_tensor * out = build_attn(inp,
+diff --git a/src/models/models.h b/src/models/models.h
+index 29dc527..7fe6d16 100644
+--- a/src/models/models.h
++++ b/src/models/models.h
+@@ -2563,6 +2563,9 @@ struct llama_model_inkling2 : public llama_model_base {
+     struct graph : public llm_graph_context {
+         graph(const llm_graph_params & params);
+         ggml_tensor * mix(const std::vector<ggml_tensor *> & blocks, ggml_tensor * cur, ggml_tensor * query);
++        // hc: normalized block stacks ([E, nb, T] and [nb, E, T]) shared by every mix over the same blocks
++        std::map<std::vector<ggml_tensor *>, std::pair<ggml_tensor *, ggml_tensor *>> mix_stacks;
++        std::pair<ggml_tensor *, ggml_tensor *> mix_stack(const std::vector<ggml_tensor *> & blocks);
+         ggml_tensor * clip(ggml_tensor * cur, ggml_tensor * scale, float threshold);
+         ggml_tensor * control(ggml_tensor * cur, ggml_tensor * message, const llama_layer & layer, int module);
+         ggml_tensor * convolve(
