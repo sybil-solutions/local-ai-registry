@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "nanbeige4.2-3b",
+  "weights": "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF@17562eefe9752007209148d5f7a6e275fc8d8077",
+  "engine": "llama.cpp-nanbeige4.2-3b-q2-k-fit-ub128-144k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "f8d4a2993d03bbb110cbf8654a98b2675c7e878320ecd1c7018c177623606215",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 124.0,
+  "prefill": 512,
+  "served": "Nanbeige4.2-3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, blue, yellow\n\n**Note:** This answer reflects the **traditional art and education context**, where primary colors are most commonly defined as *red, blue, and yellow* (used to create secondary/tertiary colors through mixing). \n\n⚠️ **Important Context Clarification:**  \nPrimary colors vary by domain—the question lacks specific context, so ambiguity exists:\n- **Art/Painting**: ✅ *red, blue, yellow* (most common reference for \"primary colors\" in general knowledge).\n- **Light/Digital (RGB)**: Primary colors are *red, green, blue* (used in screens, additive color).\n- **Printing/CMY**: Primary colors are *cyan, magenta, yellow* (subtractive color process).\n\nIf your context specified **light**, the answer would be *red, green, blue*. For **printing**, it would be *cyan, magenta, yellow*. However, without explicit context, **red, blue, yellow** is the standard response expected in general/educational settings. 😊",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 636,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "KLw3T0O2MYIGHVKo0bHjLZQ1UbDv3Flq"
+    }
+   ],
+   "reply": "`\n\n---\n\n**Summary:** Right now in Paris, the temperature is **17°C**, the sky is **overcast** (cloudy/grey conditions), and the weather code is `295ab2eb`. It looks like a mild, cloudy day in Paris! 🌥",
+   "code": "295ab2eb",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 160
+  },
+  "context": {
+   "prompt_tokens": 119687,
+   "seconds": 233.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 3721,
+   "tokens_total": 3936,
+   "seconds_total": 32.3,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 512,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
