@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "granite-4.2-3b",
+  "weights": "ibm-granite/granite-4.2-3b-GGUF@c40945d71cd90f249a56985e8155551a9188dc30",
+  "engine": "llama.cpp-granite-4.2-3b-q4-0-128k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "eef667f0b8b3f1e637687f50d85bd05b2d9f1fa468d516f35108267768e5656b",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 241.3,
+  "prefill": 2043,
+  "served": "Granite-4.2-3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 232,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "1Ut2PWKwePODcws1NcVPDTGmeK56iRfN"
+    }
+   ],
+   "reply": "The current weather in Paris is:\n- Temperature: 17°C\n- Sky condition: overcast\n- Code: e5445a14\n\n<code>e5445a14</code>",
+   "code": "e5445a14",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 495
+  },
+  "context": {
+   "prompt_tokens": 87246,
+   "seconds": 42.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 3.6,
+   "tokens_in_window": 869,
+   "tokens_total": 869,
+   "seconds_total": 3.6,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 2043,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
