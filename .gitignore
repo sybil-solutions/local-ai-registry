@@ -6,3 +6,4 @@ lab/runs/*
 
 /site/node_modules
 *.tsbuildinfo
+.aider*
