@@ -1,0 +1,98 @@
+{
+ "gpu": {
+  "name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "driver_version": "620.70.06",
+  "memory.total": "97887 MiB",
+  "power.limit": "600.00 W",
+  "power.max_limit": "600.00 W",
+  "clocks.max.sm": "3090 MHz",
+  "pcie.link.gen.max": "5",
+  "pcie.link.width.max": "16"
+ },
+ "cuda_driver": "13.5 (nvidia-smi -q)",
+ "kernel": "Linux 7.3.3-200.fc44.x86_64",
+ "os": "Fedora Linux 44 (KDE Plasma Desktop Edition)",
+ "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+ "logical_cpus": 32,
+ "memory": {
+  "MemTotal": "98480208 kB",
+  "MemAvailable": "52308108 kB"
+ },
+ "docker": "29.9.3 (rootless: linux)",
+ "container": {
+  "image": "vllm/vllm-openai:inkling-2-mini@sha256:c2dc759f5984f69c1e2418c6af7c26eb756f5ed2a8934c768ae1253645d1449e",
+  "image_id": "sha256:c2dc759f5984f69c1e2418c6af7c26eb756f5ed2a8934c768ae1253645d1449e",
+  "entrypoint": [
+   "vllm"
+  ],
+  "cmd": [
+   "serve",
+   "/models/Inkling-2-Mini-ed40e7da",
+   "--served-model-name",
+   "inkling-2-mini",
+   "--host",
+   "0.0.0.0",
+   "--port",
+   "8000",
+   "--max-model-len",
+   "1048576",
+   "--max-num-seqs",
+   "128",
+   "--gpu-memory-utilization",
+   "0.90",
+   "--enable-auto-tool-choice",
+   "--tool-call-parser",
+   "inkling",
+   "--reasoning-parser",
+   "inkling",
+   "--speculative-config",
+   "{\"method\":\"dspark\",\"num_speculative_tokens\":7,\"draft_sample_method\":\"probabilistic\",\"num_speculative_tokens_per_batch_size\":[[1,32,7],[33,1024,3]]}",
+   "--compilation-config",
+   "{\"max_cudagraph_capture_size\":1024}"
+  ],
+  "env_set": [
+   "HF_HUB_OFFLINE=1",
+   "PYTHONPATH=/opt/sm120-kv-write"
+  ],
+  "mounts": [
+   {
+    "source": "~/models/Inkling-2-Mini-ed40e7da",
+    "destination": "/models/Inkling-2-Mini-ed40e7da",
+    "rw": false
+   },
+   {
+    "source": "$PWD/inkling-2-mini.yml (the launch's config text, as the SDK writes it)",
+    "destination": "/opt/sm120-kv-write/sitecustomize.py",
+    "rw": false
+   }
+  ],
+  "shm_size": 17179869184
+ },
+ "gpu_processes": [
+  {
+   "process": "kwin_wayland",
+   "memory": "324 MiB"
+  },
+  {
+   "process": "chrome",
+   "memory": "602 MiB"
+  },
+  {
+   "process": "kmail",
+   "memory": "35 MiB"
+  },
+  {
+   "process": "kmail",
+   "memory": "35 MiB"
+  },
+  {
+   "process": "kmail",
+   "memory": "35 MiB"
+  },
+  {
+   "process": "VLLM::EngineCore",
+   "memory": "84118 MiB"
+  }
+ ],
+ "gpu_memory_cap_note": "the desktop session (KDE Wayland, a browser, mail) held ~3.2 GiB of the card throughout"
+}

@@ -1,0 +1,1 @@
+{"label": "nodraft-1m", "time": "2026-11-22T04:30:05", "scores": {"ifeval": 91.0, "math500": 98.7, "mmlupro": 82.1}, "n": {"ifeval": 200, "mmlupro": 195, "math500": 150}, "capped": 3, "completion_tokens": 648260, "wall_s": 424.1}

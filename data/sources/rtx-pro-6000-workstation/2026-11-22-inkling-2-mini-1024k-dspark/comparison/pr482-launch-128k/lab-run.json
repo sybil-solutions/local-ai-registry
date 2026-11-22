@@ -1,0 +1,80 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "thinkingmachines/Inkling-2-Mini@ed40e7da625f594fc9c4990f5f66be24873c22d7",
+  "engine": "vllm-inkling-2-mini@c2dc759f5984",
+  "set": {
+   "ctx": 131072
+  },
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Workstation Edition"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-22",
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Workstation Edition",
+  "launch_sha256": "6d72c06451a7fd051cbbe2d2bca54c377c61d783815ded7c0e3ce0fcc498884e",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 158.6,
+  "prefill": 7922,
+  "served": "Inkling-2-Mini-ed40e7da"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 128,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-b2bc7395ade965bd",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is currently 17°C and overcast. The code it gives is: 25794028",
+   "code": "25794028",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 694
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 11.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 4760,
+   "tokens_total": 9397,
+   "seconds_total": 60.9,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 7922,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

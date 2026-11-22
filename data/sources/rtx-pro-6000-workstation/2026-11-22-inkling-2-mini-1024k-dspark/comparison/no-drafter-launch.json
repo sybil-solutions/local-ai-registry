@@ -1,0 +1,48 @@
+{
+ "id": "vllm-inkling-2-mini-nvfp4-1024k-rtx-pro-6000-blackwell-96gb",
+ "engine": "vllm",
+ "about": "Inkling 2 Mini (official NVFP4/MXFP8 checkpoint) on one RTX PRO 6000 Blackwell at 1,048,576 tokens (the model's full window) with bf16 KV and 128 sequences, upstream vllm/vllm-openai:inkling-2-mini image unmodified, CUDA graphs to 1,024 tokens. No drafter.",
+ "image": "vllm/vllm-openai:inkling-2-mini@sha256:c2dc759f5984f69c1e2418c6af7c26eb756f5ed2a8934c768ae1253645d1449e",
+ "backend": "nvidia",
+ "port": 8000,
+ "entrypoint": "vllm",
+ "args": [
+  "serve",
+  "/models/Inkling-2-Mini-ed40e7da",
+  "--served-model-name",
+  "inkling-2-mini",
+  "--host",
+  "0.0.0.0",
+  "--port",
+  "8000",
+  "--max-model-len",
+  "1048576",
+  "--max-num-seqs",
+  "128",
+  "--gpu-memory-utilization",
+  "0.92",
+  "--enable-auto-tool-choice",
+  "--tool-call-parser",
+  "inkling",
+  "--reasoning-parser",
+  "inkling",
+  "--compilation-config",
+  "{\"max_cudagraph_capture_size\":1024}"
+ ],
+ "env": {
+  "HF_HUB_OFFLINE": "1"
+ },
+ "shm": "16g",
+ "weights": [
+  {
+   "repo": "thinkingmachines/Inkling-2-Mini",
+   "revision": "ed40e7da625f594fc9c4990f5f66be24873c22d7",
+   "at": "/models/Inkling-2-Mini-ed40e7da",
+   "layout": "dir"
+  }
+ ],
+ "ctx": 1048576,
+ "seqs": 128,
+ "vision": false,
+ "cards": 1
+}

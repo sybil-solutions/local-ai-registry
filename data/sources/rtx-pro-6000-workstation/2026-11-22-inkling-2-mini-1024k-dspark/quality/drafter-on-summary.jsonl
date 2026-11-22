@@ -1,0 +1,1 @@
+{"label": "dspark-1m", "time": "2026-11-22T04:19:14", "scores": {"ifeval": 93.5, "math500": 98.0, "mmlupro": 82.6}, "n": {"ifeval": 200, "mmlupro": 195, "math500": 150}, "capped": 4, "completion_tokens": 696258, "wall_s": 261.4}

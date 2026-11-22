@@ -1,0 +1,55 @@
+{
+ "id": "vllm-inkling-2-mini-nvfp4-dspark-128k-rtx-pro-6000-blackwell-96gb",
+ "engine": "vllm",
+ "about": "Inkling 2 Mini (official NVFP4/MXFP8 checkpoint) on one RTX PRO 6000 Blackwell at 131,072 tokens with bf16 KV and 128 sequences, upstream vllm/vllm-openai:inkling-2-mini image unmodified, CUDA graphs to 1,024 tokens. With the DSpark drafter: the image's vLLM kernels are built for sm_100/103, so the drafter's KV-cache write has no sm_120 kernel; the config file is a sitecustomize (on PYTHONPATH) that registers a torch version of that one op. Draft width follows the batch (num_speculative_tokens_per_batch_size).",
+ "image": "vllm/vllm-openai:inkling-2-mini@sha256:c2dc759f5984f69c1e2418c6af7c26eb756f5ed2a8934c768ae1253645d1449e",
+ "backend": "nvidia",
+ "port": 8000,
+ "entrypoint": "vllm",
+ "args": [
+  "serve",
+  "/models/Inkling-2-Mini-ed40e7da",
+  "--served-model-name",
+  "inkling-2-mini",
+  "--host",
+  "0.0.0.0",
+  "--port",
+  "8000",
+  "--max-model-len",
+  "131072",
+  "--max-num-seqs",
+  "128",
+  "--gpu-memory-utilization",
+  "0.90",
+  "--enable-auto-tool-choice",
+  "--tool-call-parser",
+  "inkling",
+  "--reasoning-parser",
+  "inkling",
+  "--speculative-config",
+  "{\"method\":\"dspark\",\"num_speculative_tokens\":7,\"draft_sample_method\":\"probabilistic\",\"num_speculative_tokens_per_batch_size\":[[1,32,7],[33,1024,3]]}",
+  "--compilation-config",
+  "{\"max_cudagraph_capture_size\":1024}"
+ ],
+ "env": {
+  "HF_HUB_OFFLINE": "1",
+  "PYTHONPATH": "/opt/sm120-kv-write"
+ },
+ "shm": "16g",
+ "weights": [
+  {
+   "repo": "thinkingmachines/Inkling-2-Mini",
+   "revision": "ed40e7da625f594fc9c4990f5f66be24873c22d7",
+   "at": "/models/Inkling-2-Mini-ed40e7da",
+   "layout": "dir"
+  }
+ ],
+ "config": {
+  "at": "/opt/sm120-kv-write/sitecustomize.py",
+  "text": "# sitecustomize for vllm/vllm-openai:inkling-2-mini@sha256:c2dc759f (Inkling 2 Mini's DSpark drafter on sm_120).\n# That image builds vLLM's own CUDA kernels for sm_100/sm_103 and older, not sm_120 (RTX PRO 6000 Blackwell, RTX 50),\n# so the KV-cache write _C_cache_ops::reshape_and_cache_flash fails with \"no kernel image is available\". Only the\n# DSpark drafter calls it; the target model's attention writes its cache another way. On PYTHONPATH, this registers a\n# torch-indexing version of that one op once vLLM's kernel library loads: the same values in the same slots, bf16/auto\n# cache only. Drop it when an image ships sm_120 kernels.\nimport importlib.abc\nimport importlib.machinery\nimport sys\n\n_LIB = \"vllm._C_stable_libtorch\"\n_keep = []\n\n\ndef _install():\n    import torch\n\n    def reshape_and_cache_flash(key, value, key_cache, value_cache, slot_mapping, kv_cache_dtype, k_scale, v_scale):\n        if kv_cache_dtype not in (\"auto\", \"bfloat16\", \"float16\"):\n            raise NotImplementedError(f\"sm120 kv write: cache dtype {kv_cache_dtype} not handled\")\n        n = slot_mapping.shape[0]  # key/value may be padded; slot_mapping is not\n        s = slot_mapping.clamp(min=0)  # -1 is padding; slot 0 sits in vLLM's null block, never given to a request\n        bs = key_cache.shape[1]\n        b, o = s // bs, s % bs\n        key_cache[b, o] = key[:n].to(key_cache.dtype)\n        value_cache[b, o] = value[:n].to(value_cache.dtype)\n\n    lib = torch.library.Library(\"_C_cache_ops\", \"IMPL\")\n    lib.impl(\"reshape_and_cache_flash\", reshape_and_cache_flash, \"CUDA\")\n    _keep.append(lib)  # the registration lives as long as the Library object\n\n\nclass _Hook(importlib.abc.MetaPathFinder):\n    def find_spec(self, name, path, target=None):\n        if name != _LIB:\n            return None\n        sys.meta_path.remove(self)\n        spec = importlib.machinery.PathFinder.find_spec(name, path)\n        if spec is None:\n            return None\n        run = spec.loader.exec_module\n\n        def exec_module(module):\n            run(module)\n            _install()\n\n        spec.loader.exec_module = exec_module\n        return spec\n\n\nsys.meta_path.insert(0, _Hook())\n"
+ },
+ "ctx": 131072,
+ "seqs": 128,
+ "vision": false,
+ "cards": 1
+}

@@ -1,0 +1,17 @@
+thinkingmachines/Inkling-2-Mini@ed40e7da625f594fc9c4990f5f66be24873c22d7: every file against the Hub's tree API
+(LFS files: sha256; others: git blob sha1). The directory is what the SDK mounts: ~/models/Inkling-2-Mini-ed40e7da
+ok  blob   52373fe24473b1aa44333d318f578ae6bf04b49b         1570 .gitattributes
+ok  blob   93b9f80e70b2b321b24860d76f57673aad34402b        54831 README.md
+ok  blob   cae99e08917fe3d9ff21551a7c9a835981c69032         6868 chat_template.jinja
+ok  blob   e6c170c3fb666c50e3b509493b6b7a8f948b7d15         2722 config.json
+ok  blob   1b5d49d129001d2be58c2f254bfae3221eab6d96           98 generation_config.json
+ok  blob   ec915fa4d2b07bfe26240f71e981d34778022baf        67924 hf_quant_config.json
+ok  sha256 65e60f51aa1284d4fb022584908c315270334d991828bb774af60584523539d1  19526019168 model-00001-of-00001.safetensors
+ok  blob   3b835a38066039133931b604a0734dfae89a644e       109300 model.safetensors.index.json
+ok  sha256 7c3b651317f01f73bcf4e1dceba66ef8b7e1a1eac6bc171e882e690a4b10a1d2    635801416 mtp.safetensors
+ok  blob   0e6df76a75a15f8af795dc08346dad6741f6421e          461 processor_config.json
+ok  blob   e4fe9735b528be1c630eb832d655fc8c4c2c309f          529 special_tokens_map.json
+ok  sha256 7f332727f9a3f093dd452a39cc978e6757627e5dad1b0673aa4e75174f236dd6     26178678 tokenizer.json
+ok  blob   abf8fb60451e6c33d2cfa3c4dfab9f8c1e7516aa        13235 tokenizer_config.json
+ok  sha256 f170372dd655728909228220d77cf6b8104a59f38a91262a7d2c4027906ec0d8      3386494 tiktoken/tokenizer.model
+14 files
