@@ -1,0 +1,70 @@
+{
+  "id": "llama.cpp-inkling2-speed-gz-inkling-2-mini-ud-q2-k-xl-streaming-64k-rtx-5050-8gb",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Inkling 2 Mini (26B looped MoE, thinking) unsloth UD-Q2_K_XL (mainline-compatible file) on one 8 GB RTX 5050, 65,536-token window, text only. Engine: realugbun/llama.cpp inkling2-speed plus two patches, pinned at andyguzmaneth/llama.cpp@6b85c8e: llama.cpp #32740 (compact relative-position bias in flash attention, by pwilkin) and gravy-zeppelin's host-expert offload fixes (dan-el-7/gravy-zeppelin patch 04). #32740 is the big one on 8 GB: without it Inkling materializes its per-head attention bias, a 1.6 GB compute buffer at -ub 128 and 6.5 GB at -ub 512. With it, all twelve looped layers (6-17) fit their experts on the GPU, and only the experts of ten once-run layers (0-5, 18-21) stay in host RAM. Prompts stream those host experts to the GPU in -ub 512 batches (op-offload on, --no-repack), which doubles prefill (405 to 831 tok/s at 4K) with no decode cost; decode still runs host experts on the CPU. --override-kv expert_used_count=6 (of 8): +6% decode over 7 experts on this card; hard MATH-500 level 4-5 29/30 on two runs (the 8-expert setup also scored 29/30), GSM8K 40/40. Measured with no gain or a loss on this card: --cpu-strict 1 --prio 2 (-15%), q4_0 V cache (decode at 47K 37 to 23.5), -t 12, whole once-run layers on CPU including attention (-30%), loop.count 2 (+23% decode but answers ramble to the token cap), --reasoning-budget 256 (MATH 29/30 to 20/30), DSpark speculation (verifying 4 tokens costs 2.5x one with host experts). Host: Ryzen 9 9900X VM, 16 vCPU, 20 GB RAM (65 GB/s measured read bandwidth), model mmapped from NVMe.",
+  "command": [
+    "llama.cpp-inkling2-speed-gz/build/bin/llama-server",
+    "-m",
+    "models/Inkling-2-Mini-GGUF-45fd0876/Mainline_Support/Inkling-2-Mini-UD-Q2_K_XL.gguf_file",
+    "-fit",
+    "off",
+    "-ngl",
+    "99",
+    "--override-kv",
+    "inkling2_loop.expert_used_count=int:6",
+    "-ot",
+    "blk\\.(0|1|2|3|4|5|18|19|20|21)\\.ffn_.*_exps.*=CPU",
+    "-fa",
+    "on",
+    "-ub",
+    "512",
+    "-b",
+    "2048",
+    "--no-repack",
+    "-t",
+    "10",
+    "-np",
+    "1",
+    "-c",
+    "65536",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "--jinja",
+    "--alias",
+    "inkling-2-mini",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "git clone -b inkling2-speed-gz https://github.com/andyguzmaneth/llama.cpp llama.cpp-inkling2-speed-gz && git -C llama.cpp-inkling2-speed-gz checkout 6b85c8e12d78c5d73943df77fe40dd44bd6330ef && cmake -S llama.cpp-inkling2-speed-gz -B llama.cpp-inkling2-speed-gz/build -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=120 -DLLAMA_CURL=OFF -DCMAKE_BUILD_TYPE=Release && cmake --build llama.cpp-inkling2-speed-gz/build --target llama-server -j",
+  "env": {
+    "LD_LIBRARY_PATH": "llama.cpp-inkling2-speed-gz/build/bin"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "unsloth/Inkling-2-Mini-GGUF",
+      "revision": "45fd08764f2b0bf16b03a5483a80e5c7aaec8772",
+      "at": "models/Inkling-2-Mini-GGUF-45fd0876",
+      "layout": "dir",
+      "files": [
+        "Mainline_Support/Inkling-2-Mini-UD-Q2_K_XL.gguf_file"
+      ]
+    }
+  ],
+  "ctx": 65536,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "needs": {
+    "host_ram_gb": 16.0,
+    "disk_gb": 10.0,
+    "fast_storage": "nvme"
+  },
+  "setup": "Not Docker; Linux x86-64, NVIDIA driver for CUDA 12.8+, CUDA 12.8 nvcc and cuBLAS dev packages to build. Build from the pinned commit (install), run from the directory that holds llama.cpp-inkling2-speed-gz/ and models/.",
+  "source": "https://github.com/andyguzmaneth/llama.cpp/tree/6b85c8e12d78c5d73943df77fe40dd44bd6330ef"
+}
