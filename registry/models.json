@@ -885,6 +885,16 @@
       "about": "Nanbeige4.2: a 3B model with looped layers, thinking, tool calls and a 256K window.",
       "good_for": "Agent work and long context on 8 GB cards",
       "hf": "Nanbeige/Nanbeige4.2-3B"
+    },
+    "inkling-2-mini": {
+      "family": "inkling",
+      "name": "Inkling-2-Mini",
+      "released": "2026-11-17",
+      "reasoning": true,
+      "vision": false,
+      "about": "Thinking Machines' Inkling 2 Mini (26B parameters; its middle layers run three times per token).",
+      "good_for": "one agent session at 128K context on one RTX PRO 6000",
+      "logo": "hf"
     }
   },
   "builds": {
