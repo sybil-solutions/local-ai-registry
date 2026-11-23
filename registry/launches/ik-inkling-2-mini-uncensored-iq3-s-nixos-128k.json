@@ -1,0 +1,36 @@
+{
+  "id": "ik-inkling-2-mini-uncensored-iq3-s-nixos-128k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Inkling 2 Mini Uncensored (abliterated), IQ3_S GGUF, pinned Inkling-specific CUDA engine. NixOS GPU-only profile; q4_0 KV, one 128K slot. CPU q4 attention is not qualified.",
+  "command": [
+    "bash",
+    "inkling-nixos-serve.sh"
+  ],
+  "install": "https://github.com/ImLunaHey/nixos-configs/tree/3d4450eb893ead81311a3bce2d809277a1932b66",
+  "env": {
+    "LD_LIBRARY_PATH": "/run/opengl-driver/lib"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "AtomicChat/Inkling-2-Mini-Uncensored-GGUF",
+      "revision": "40886ab636cabb4decf4998224f790b462ab048e",
+      "at": "models/Inkling-2-Mini-Uncensored-GGUF-40886ab6",
+      "layout": "dir",
+      "files": [
+        "Inkling-2-Mini-Uncensored-AD-IQ3_S.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "source": "https://github.com/ImLunaHey/nixos-configs/tree/3d4450eb893ead81311a3bce2d809277a1932b66/benchmarks/tower-inkling/context-128k",
+  "setup": "NixOS x86_64 with Nix flakes, bash, sha256sum, Hugging Face CLI and NVIDIA driver (tested 595.112.07). RTX 5070 Ti 16 GB, tested on 32 GB system RAM at 300W. GPU-only attention: CPU q4 attention fails numerical checks. One 131072-token slot, q4_0 K/V, batch1024/ub128, full vocabulary and three loop passes. Stop existing GPU inference services before launch; port 8080 must be free. Unmaintained pinned research engine; see source for bounded qualification.",
+  "config": {
+    "at": "inkling-nixos-serve.sh",
+    "file": "ik-inkling-nixos-serve.sh"
+  }
+}

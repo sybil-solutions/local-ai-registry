@@ -1,0 +1,69 @@
+{
+  "at": "2026-11-23T12:22:52.083548+00:00",
+  "registry_commit": "e10a785174415c27700416cf7312304077dc7627",
+  "hardware": "GeForce RTX 5070 Ti 16 GB",
+  "on": "owner",
+  "passed_functional_gates": true,
+  "catalog_eligible": false,
+  "eligibility_reason": "32768 KV tokens; current policy requires 131072 for GPU setups over 8 GB",
+  "launch_file_sha256": "c0ea505238070a53317b9411b1d6ab423d8383f3272a06c1c57e7cbcaf3a4013",
+  "proof": {
+    "gates": "load chat reasoning tools context speed",
+    "tps": 125.0,
+    "prefill": 2587,
+    "served": "inkling-2-mini-abliterated"
+  },
+  "evidence": {
+    "ok": {
+      "load": true,
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "context": true,
+      "speed": true
+    },
+    "spec": null,
+    "chat": {
+      "content": "red, yellow, blue",
+      "finish": "stop"
+    },
+    "reasoning": {
+      "thinking_chars": 101,
+      "content": "391"
+    },
+    "tools": {
+      "call": [
+        {
+          "type": "function",
+          "function": {
+            "name": "get_weather",
+            "arguments": "{\"city\":\"Paris\"}"
+          },
+          "id": "5qpEJB1HEUaWNwLDOvzP8AP0q52fGPF1"
+        }
+      ],
+      "reply": "Paris right now: 17\u00b0C, overcast. Code: df34d0d4",
+      "code": "df34d0d4",
+      "finish": "stop",
+      "calls_again": 0,
+      "thinking_chars": 394
+    },
+    "context": {
+      "prompt_tokens": 22250,
+      "seconds": 8.6,
+      "content": "58213"
+    },
+    "speed": {
+      "window_s": 9.0,
+      "tokens_in_window": 1131,
+      "tokens_total": 1131,
+      "seconds_total": 9.9,
+      "counted": "tokenizer",
+      "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+    },
+    "prefill": {
+      "value": 2587,
+      "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+    }
+  }
+}

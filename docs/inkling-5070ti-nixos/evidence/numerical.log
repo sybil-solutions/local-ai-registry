@@ -1,0 +1,23 @@
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA GeForce RTX 5070 Ti, compute capability 12.0, VMM: yes, VRAM: 15839 MiB
+~ggml_backend_cuda_context: have 14 graphs
+backend CUDA0
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=1 q4_0: nmse 1.888e-06 max_abs 1.779e-04 OK
+  hs=128 nh=24/8 kv=512 nb=77 n_rel=1025 rand=0 mode=1 q4_0: nmse 1.740e-06 max_abs 4.330e-04 OK
+  hs=128 nh=24/8 kv=1536 nb=512 n_rel=1025 rand=0 mode=2 q4_0: nmse 1.799e-06 max_abs 2.671e-04 OK
+  hs=128 nh=24/8 kv=256 nb=1 n_rel=1025 rand=0 mode=0 f16: nmse 5.382e-14 max_abs 1.043e-07 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=0 f16: nmse 2.778e-08 max_abs 1.939e-05 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=0 q8_0: nmse 4.286e-09 max_abs 1.068e-05 OK
+  hs=128 nh=24/8 kv=512 nb=3 n_rel=65 rand=1 mode=0 f16: nmse 6.110e-14 max_abs 8.941e-08 OK
+  hs=128 nh=24/8 kv=512 nb=64 n_rel=1025 rand=0 mode=0 f16: nmse 2.601e-07 max_abs 1.695e-04 OK
+  hs=128 nh=24/8 kv=512 nb=77 n_rel=1025 rand=0 mode=0 q8_0: nmse 1.768e-06 max_abs 3.780e-04 OK
+  hs=128 nh=24/8 kv=1536 nb=512 n_rel=1025 rand=0 mode=0 f16: nmse 2.634e-07 max_abs 1.078e-04 OK
+  hs=128 nh=24/6 kv=512 nb=32 n_rel=129 rand=1 mode=0 f16: nmse 2.617e-07 max_abs 1.723e-04 OK
+  hs=128 nh=24/3 kv=512 nb=8 n_rel=129 rand=0 mode=0 f16: nmse 2.278e-07 max_abs 2.684e-04 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=1 q8_0: nmse 4.603e-09 max_abs 9.060e-06 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=2 f16: nmse 3.046e-08 max_abs 2.361e-05 OK
+  hs=128 nh=24/8 kv=512 nb=3 n_rel=65 rand=0 mode=1 f16: nmse 3.447e-14 max_abs 1.341e-07 OK
+  hs=128 nh=24/8 kv=512 nb=77 n_rel=1025 rand=0 mode=1 q8_0: nmse 1.789e-06 max_abs 3.862e-04 OK
+  hs=128 nh=24/8 kv=1536 nb=512 n_rel=1025 rand=0 mode=2 f16: nmse 2.662e-07 max_abs 1.060e-04 OK
+  hs=128 nh=24/6 kv=512 nb=32 n_rel=129 rand=0 mode=1 f16: nmse 2.574e-07 max_abs 3.207e-04 OK
+18 passed, 0 failed
