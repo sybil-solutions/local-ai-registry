@@ -1,0 +1,34 @@
+{
+  "id": "strata-inkling-2-mini-sq-10-k8v4-128k-rtx-3060-12gb",
+  "engine": "strata-inkling",
+  "kind": "host",
+  "backend": "nvidia",
+  "install": "https://github.com/Niko1221/Strata/releases/download/v0.2.20/strata-inkling-0.1.66-linux-x86_64-cuda-cuda13.tar.gz#sha256=fdaa87037918798023bd34b4e2e1e23832418d59b9421f279995b274648847c3",
+  "source": "https://github.com/Niko1221/Strata/releases/tag/v0.2.20",
+  "port": 18735,
+  "ctx": 131072,
+  "seqs": 1,
+  "cards": 1,
+  "vision": false,
+  "weights": [
+    {
+      "repo": "strata-engine/Inkling-2-Mini-Strata",
+      "revision": "04996a1e2c45009b6a04f2af126cb6bdb2ba3587",
+      "at": "weights",
+      "files": [
+        "Inkling-2-Mini-SQ-10.strata",
+        "tokenizer.json",
+        "chat_template.jinja"
+      ]
+    }
+  ],
+  "command": [
+    "bash",
+    "launch-inkling-sq10.sh"
+  ],
+  "config": {
+    "at": "launch-inkling-sq10.sh",
+    "text": "#!/usr/bin/env bash\nset -euo pipefail\nengine=\"$PWD/strata-inkling\"\ncontrol=\"$PWD/control\"\nweights=\"$PWD/weights\"\npack=\"$weights/Inkling-2-Mini-SQ-10.strata\"\ntest -x \"$engine\"\nprintf '%s  %s\\n' ac4d452ad03e4930abd9d46f9c5eec22b2f75a1da45a1e49bd24ccd58b065934 \"$pack\" | sha256sum -c\nif [[ ! -x \"$control/bin/strata\" ]]; then\n    archive=strata-control-0.1.65-linux-x86_64.tar.gz\n    curl -fsSL \"https://github.com/Niko1221/Strata/releases/download/v0.2.19/$archive\" -o \"$archive\"\n    printf '%s  %s\\n' b44caf1980731edf2a0cdf9170cffdd8d240da87663016b6cb04f612582300d3 \"$archive\" | sha256sum -c\n    mkdir -p \"$control\"\n    tar -xzf \"$archive\" -C \"$control\"\nfi\nexport LD_LIBRARY_PATH=\"$PWD${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"\nprintf '%s  %s\\n' 7f332727f9a3f093dd452a39cc978e6757627e5dad1b0673aa4e75174f236dd6 \"$weights/tokenizer.json\" | sha256sum -c\n\"$control/python/bin/python3\" \"$control/tools/inkling_tokenizer.py\" --hf-json \"$weights/tokenizer.json\" \\\n    --template \"$weights/chat_template.jinja\" --out \"$PWD/tokenizer\"\n\"$control/python/bin/python3\" - \"$engine\" \"$pack\" \"$control\" <<'PY'\nimport json\nimport sys\nfrom pathlib import Path\nengine, pack, control = sys.argv[1:]\nroot = Path.cwd()\nprofile = {\n    \"exe\": engine, \"args\": [\"--native\", pack, \"--max-context\", \"131072\",\n                            \"--vram-experts-gb\", \"8.60\", \"--ram-experts-gb\", \"0.00\", \"--kv\", \"k8v4\"],\n    \"cwd\": control, \"tokenizer\": str(root / \"tokenizer\"), \"model_name\": \"inkling-2-mini-sq-10\",\n    \"arch\": \"inkling2_loop\", \"log\": str(root / \"strata-inkling.log\"), \"lib_dirs\": [str(root)],\n    \"port\": 18735, \"drafting\": \"dspark\", \"parallel\": 1, \"gpu\": 0,\n    \"gpus_asked\": True, \"open_browser\": False,\n}\nprofile[\"args_written\"] = profile[\"args\"].copy()\n(root / \"inkling-profile.json\").write_text(json.dumps(profile, indent=2) + \"\\n\", encoding=\"utf-8\")\nPY\nexec \"$control/bin/strata\" serve --offline --profile \"$PWD/inkling-profile.json\" --host 127.0.0.1 --port 18735\n"
+  },
+  "setup": "One RTX 3060 12 GB. K8V4 uses about 1.54 GiB of mapped host KV in addition to other process allocations. The tested system had 32 GiB of RAM. Peak total board use was 11,758 MiB in long-context qualification."
+}
