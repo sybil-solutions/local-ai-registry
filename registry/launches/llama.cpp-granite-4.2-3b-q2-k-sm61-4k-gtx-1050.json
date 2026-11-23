@@ -1,0 +1,55 @@
+{
+  "id": "llama.cpp-granite-4.2-3b-q2-k-sm61-4k-gtx-1050",
+  "engine": "llama.cpp",
+  "about": "Granite 4.2-3B GGUF · Q2_K on Pascal sm_61 at 4K context. Full model on GPU. Measured on GTX 1050 Laptop 3 GB.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:821d0ae4e5d4e82a2ad8d08973b5f9cd5d0b84524b1d2439ed1f3e41ebc6b4c7",
+  "backend": "nvidia",
+  "port": 8095,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/granite-4.2-3b-Q2_K.gguf",
+    "--ctx-size",
+    "4096",
+    "--parallel",
+    "1",
+    "--n-gpu-layers",
+    "999",
+    "--flash-attn",
+    "on",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "1.0",
+    "--top-k",
+    "0",
+    "--min-p",
+    "0.0",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8095"
+  ],
+  "env": {},
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "bartowski/Granite-4.2-3B-GGUF",
+      "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+      "at": "/models",
+      "layout": "file",
+      "files": [
+        "granite-4.2-3b-Q2_K.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 4096,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 2,
+    "disk_gb": 1.6
+  }
+}
