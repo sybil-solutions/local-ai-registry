@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm2.5-24b-a2b",
+  "weights": "LiquidAI/LFM2.5-24B-A2B-GGUF@0912d33141f77e10705345a6732bfd83f0252fdc",
+  "engine": "llama.cpp-unsloth-lfm2.5-24b-a2b-ud-q3-k-xl-sm61-32k-gtx-1050@6f3d7046eab1",
+  "set": {},
+  "card": "gtx-1050-laptop-3gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce GTX 1050"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce GTX 1050",
+  "launch_sha256": "54659afdf3fd903f1f7ec2ca4a3a7a16f3f54e19c718ef898c47a4c734b61cb8",
+  "gates": "load chat reasoning tools context",
+  "tps": 11.8,
+  "prefill": 111,
+  "served": "/home/santiago/ai-models/text-generation/MoE/lfm2.5-24b-a2b/LFM2.5-24B-A2B-UD-Q3_K_XL.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": false
+  },
+  "spec": null,
+  "chat": {
+   "content": "\n\nred, yellow, blue (traditional primary colors; in the additive RGB system they are red, green, blue).",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 145,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "LajZPG3vPR0L2hZC0M2bP1LS8fujiKJ5"
+    }
+   ],
+   "reply": "ture:** 17°C\n- **Sky condition:** Overcast\n- **Code:** fbdfc3da\n\nHere's the JSON code returned by the tool:\n```json\n{\n  \"city\": \"Paris\",\n  \"temp_c\": 17,\n  \"sky\": \"overcast\",\n  \"code\": \"fbdfc3da\"\n}\n```",
+   "code": "fbdfc3da",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 337
+  },
+  "context": {
+   "prompt_tokens": 22242,
+   "seconds": 200.5,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 353,
+   "tokens_total": 3490,
+   "seconds_total": 311.6,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 111,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
