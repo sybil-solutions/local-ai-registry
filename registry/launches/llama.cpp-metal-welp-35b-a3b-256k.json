@@ -1,0 +1,55 @@
+{
+  "id": "llama.cpp-metal-welp-35b-a3b-256k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Welp-35B-A3B (GGUF, text only, q8_0 KV) on official llama.cpp b12588 Metal, all layers on the GPU, 256K context, one sequence",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/quaedra-Welp-35B-A3B-GGUF-3e4a3adb/Welp-35B-A3B.gguf",
+    "-c",
+    "262144",
+    "-np",
+    "1",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--alias",
+    "Welp-35B-A3B-GGUF",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "quaedra/Welp-35B-A3B-GGUF",
+      "revision": "3e4a3adbda8df07d2889978170d9955c2e59fb7a",
+      "at": "models/quaedra-Welp-35B-A3B-GGUF-3e4a3adb",
+      "layout": "dir",
+      "files": [
+        "Welp-35B-A3B.gguf"
+      ]
+    }
+  ],
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
