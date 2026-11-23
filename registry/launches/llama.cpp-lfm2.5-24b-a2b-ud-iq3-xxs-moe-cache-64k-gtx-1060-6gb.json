@@ -2,7 +2,7 @@
   "id": "llama.cpp-lfm2.5-24b-a2b-ud-iq3-xxs-moe-cache-64k-gtx-1060-6gb",
   "engine": "llama.cpp",
   "about": "LFM2.5-24B-A2B UD-IQ3_XXS on one GTX 1060 6GB (Pascal): all 40 layers' experts in host RAM with a 2600 MiB GPU MoE cache (--moe-cache-mib, cpu share 0.8), 64K q8_0 KV, 4 threads.",
-  "image": "ghcr.io/ggml-org/llama.cpp@sha256:4ede2c4bbd36304eab85778b25e0016a290c653a05a12398470bb5ad17af8395",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:f28803153f5ce48a6c8deaef694f58fca09b5dd79baca75fced670ec23b7bd71",
   "backend": "nvidia",
   "port": 8080,
   "entrypoint": "/app/llama-server",
