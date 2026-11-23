@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "lfm3-1.7b",
+  "weights": "LiquidAI/LFM3-1.7B-GGUF@cd0c74c575b5c416f3011b5b4c298077f26ca8c2",
+  "engine": "llama.cpp-lfm3-1.7b-qad-q4-0-8k-cuda12@f28803153f5c",
+  "set": {},
+  "card": "gtx-1050-laptop-3gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce GTX 1050"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce GTX 1050",
+  "launch_sha256": "a37bfdaca5203e3fabc8fe589298699798554601d5558cee39da338c6ce8fcad",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 48.4,
+  "prefill": 332,
+  "served": "LFM3-1.7B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, green, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 241,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "uiDWEnSEcS9VqRqcUIDZV9VqPiroQwbR"
+    }
+   ],
+   "reply": "The current weather in Paris is **overcast** with a temperature of **17°C**.  \nThe tool returned the code: **`2d24a1df`**.",
+   "code": "2d24a1df",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 635
+  },
+  "context": {
+   "prompt_tokens": 5552,
+   "seconds": 16.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1453,
+   "tokens_total": 8167,
+   "seconds_total": 173.3,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}
