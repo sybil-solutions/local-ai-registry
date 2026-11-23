@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "welp-35b-a3b",
+  "weights": "quaedra/Welp-35B-A3B-GGUF@3e4a3adbda8df07d2889978170d9955c2e59fb7a",
+  "engine": "llama.cpp-metal-welp-35b-a3b-256k@c8d9c196fc0c",
+  "set": {},
+  "card": "apple-m1-max-64gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max 64GB (32-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "Apple M1 Max 64GB (32-core GPU)",
+  "launch_sha256": "fef0026ba9f4dcc7903cfc87536721857956f0294b030c2aabe1bbcd41d5a428",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 50.4,
+  "prefill": 133,
+  "served": "Welp-35B-A3B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 713,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "lAWgv0UzqR896C2FRsSMvdAH8U47tv2Q"
+    }
+   ],
+   "reply": "The weather in Paris is currently overcast with a temperature of 17°C.\n\nThe code from the tool is: d39e7b36",
+   "code": "d39e7b36",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 324
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 1608.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1512,
+   "tokens_total": 3986,
+   "seconds_total": 86.2,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 133,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
