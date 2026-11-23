@@ -1,0 +1,23 @@
+{
+  "captured_at_utc": "2026-11-12T02:30:00Z",
+  "machine": {
+    "model_name": "MacBook Pro",
+    "model_identifier": "Mac17,2",
+    "chip": "Apple M5",
+    "cpu_cores_total": 10,
+    "cpu_cores_performance": 4,
+    "cpu_cores_efficiency": 6,
+    "gpu": "Apple M5 (built-in), 10-core GPU",
+    "unified_memory_bytes": 34359738368,
+    "memory_bandwidth_gb_s": 153
+  },
+  "os": {"product": "macOS", "version": "27.2", "build": "26B5091g", "arch": "arm64"},
+  "gpu_wired_limit_mb": 0,
+  "gpu_wired_limit_note": "sysctl iogpu.wired_limit_mb = 0 (system default, not raised)",
+  "power_during_run": "AC",
+  "python": "3.12.13",
+  "python_stack": {"mlx-vlm": "0.7.12", "mlx": "0.32.4", "transformers": "5.22.2", "huggingface_hub": "2.4.0", "tokenizers": "0.23.3"},
+  "full_environment": "pip-freeze.txt",
+  "in_use": "The owner's working laptop: a browser, an editor and several coding agents were running, and other agents compiled Rust and TypeScript during the run, so the 1-minute load average ran from 7 to 118 and 5.3 to 7.9 GB of swap was in use. No other model server was running. memwatch.log records load, free memory and swap every 10 s.",
+  "privacy": "Serial number, hardware UUID, and provisioning UDID intentionally omitted."
+}

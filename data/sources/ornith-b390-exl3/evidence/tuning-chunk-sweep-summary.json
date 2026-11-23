@@ -1,0 +1,25 @@
+{
+  "rows": [
+    {
+      "chunk": 512,
+      "median_ttft": 31.374569490995782,
+      "samples": 1
+    },
+    {
+      "chunk": 1024,
+      "median_ttft": 25.449574752499757,
+      "samples": 2
+    },
+    {
+      "chunk": 2048,
+      "median_ttft": 32.05272417450033,
+      "samples": 2
+    },
+    {
+      "chunk": 4096,
+      "median_ttft": 27.69777862900446,
+      "samples": 2
+    }
+  ],
+  "winner": 1024
+}

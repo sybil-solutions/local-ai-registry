@@ -71,7 +71,8 @@
 
 /* Download: one block for each system */
 .gets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 0 56px; }
-.get { min-width: 0; padding: 24px 0 8px; border-top: 1px solid var(--line); }
+.get { min-width: 0; padding: 24px 0 32px; border-top: 1px solid var(--line); }
+.get.wide { grid-column: 1 / -1; } /* the Linux line gets the full width, so the command is read whole */
 .get h3 { font-size: 15px; font-weight: 500; }
 .get p { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--muted); max-width: 520px; margin: 8px 0 20px !important; }
 .get .cmd { margin-top: 0; }
