@@ -1,0 +1,56 @@
+[
+  {
+    "setting": "DSpark gamma 3",
+    "status": "unsupported",
+    "evidence": "gamma3-startup-excerpt.txt",
+    "reason": "The pinned Inkling2 MTP worker requires the checkpoint block size; changing gamma caused startup failure. Gamma 11 was not completed and no result is claimed for it."
+  },
+  {
+    "setting": "chunked prefill 1024",
+    "status": "rejected_after_completed_output",
+    "evidence": "exploratory-prose-summary.json",
+    "reason": "The first matched prose prompt requested about 2500 words but produced 48284 visible words with extensive repeated paragraphs. Natural stop does not make this a valid speed win."
+  },
+  {
+    "setting": "SGLANG_RAGGED_VERIFY_MODE=compact",
+    "status": "rejected",
+    "evidence": "exploratory-prose-summary.json",
+    "reason": "The first prose request consumed123007 reasoning tokens, finished with length, and produced no final answer. Its token rate is not a successful-answer throughput result."
+  },
+  {
+    "setting": "draft lm_head dtype mxfp8",
+    "status": "pilot_did_not_enable_the_quantized_path",
+    "evidence": "draft-padding-investigation.md",
+    "reason": "The current201024-row projection does not satisfy the helper's128-row divisibility guard; source inspection shows silent fallback to ordinary matmul. The one pilot response is not evidence for an MXFP8 gain."
+  },
+  {
+    "setting": "chunked prefill 4096, initial attempt",
+    "status": "inconclusive_startup_readiness_timeout",
+    "evidence": "exploratory-failures.json",
+    "reason": "The pre-measurement cache flush timed out during kernel warmup. No timing sample was collected. Generation readiness was strengthened; a controlled retry was preregistered."
+  },
+  {
+    "setting": "initial harness tokenizer request",
+    "status": "harness_setup_error",
+    "evidence": "exploratory-failures.json",
+    "reason": "The tokenizer request lacked the explicit served model ID and returned HTTP400 before any timing sample. It was corrected before usable baseline measurements."
+  },
+  {
+    "setting": "persistent compiler caches",
+    "status": "startup_gain_not_adopted",
+    "evidence": "cache-assessment.json",
+    "reason": "Warm startups49.49s/37.45s versus126.69s controls, but both stochastic candidates failed the predeclared combined decode/answer-latency/TTFT gates. Six short greedy outputs were byte-identical across controls/candidates; no universal losslessness or throughput gain claimed."
+  },
+  {
+    "setting": "temperature-zero full panel",
+    "status": "baseline_degenerate_candidates_cancelled",
+    "evidence": "degenerate-story-abort.json and runs-data.tar.gz",
+    "reason": "Baseline600wordstory emitted91805 reasoning tokens with no final answer before explicit abort;87.3% repeated8grams. No useful-answer speed result. First cache candidate canceled during startup; remaining deterministic candidates never measured."
+  },
+  {
+    "setting": "chunked prefill4096 controlled retry",
+    "status": "warmup_cuda_oom_no_measured_samples",
+    "evidence": "runs-data.tar.gz: runs/chunk4096-retry/result.json; telemetry-logs.tar.gz: server.log",
+    "reason": "Generation readiness succeeded; first8K warmup failed attempting138MiB CUDA allocation. No candidate timing samples. Following control not run after infrastructure rejection. Retain2048chunk."
+  }
+]

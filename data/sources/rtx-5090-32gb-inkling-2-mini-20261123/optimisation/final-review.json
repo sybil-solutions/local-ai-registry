@@ -1,0 +1,42 @@
+{
+  "campaign_measurements_complete": true,
+  "additional_serving_change_adopted": false,
+  "retained_128k_profile": "configs/base-launch.json",
+  "daily_48k_profile_unchanged": true,
+  "daily_output_budget": 4096,
+  "extended_all_pass": false,
+  "official_two_waves_passed": true,
+  "daily": {
+    "scope": "Uncapped frozen Daily qualification; public4096 ranking unchanged",
+    "per_repeat": {
+      "1": {
+        "passed": 12,
+        "total": 12
+      },
+      "2": {
+        "passed": 12,
+        "total": 12
+      }
+    },
+    "all_answers_natural_stop": true,
+    "manual_review_complete": true,
+    "repair_grading_complete": true,
+    "source_responses_sha256": "b2e1ef880df6c59d94e13777f51187154b61afd741e3e8ba0ef2eee4a56fca3d"
+  },
+  "panel_manual_review": {
+    "passed": 7,
+    "failed": 5,
+    "scope": "retrospective limited12answerreview"
+  },
+  "soak": {
+    "wall_seconds": 903.288444338832,
+    "request_seconds": 765.7057080771774,
+    "cycles": 34,
+    "recall_passed": 31,
+    "recall_failed_context_exhaustion": 3,
+    "fixed_probe_exact_matches": 34,
+    "probe_drift_percent": -0.0027689845043865624
+  },
+  "source_profile_matches_published_launch": true,
+  "official_speed_text_limitation": "Unmodified lab records token counts, not full speed-story text. No semantic validation or causal gain claimed for310.0 versus163.8 tok/s."
+}

@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/scheduler.py", line 7163, in run_scheduler_process
+    scheduler = Scheduler(server_args, port_args)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/scheduler.py", line 634, in __init__
+    self.init_model_worker()
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/scheduler.py", line 1206, in init_model_worker
+    self.maybe_init_draft_worker()
+  File "/sgl-workspace/sglang/python/sglang/srt/managers/scheduler.py", line 1137, in maybe_init_draft_worker
+    self.draft_worker = DraftWorkerClass(**draft_worker_kwargs)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sgl-workspace/sglang/python/sglang/srt/speculative/inkling2_mtp_worker.py", line 55, in __init__
+    self.draft_model.set_block_size(self.query_token_num)
+  File "/sgl-workspace/sglang/python/sglang/srt/models/inkling2_mtp.py", line 165, in set_block_size
+    raise ValueError("Inkling2 MTP requires the checkpoint's block size")
+ValueError: Inkling2 MTP requires the checkpoint's block size
+
+[2026-11-23 14:56:48] Received sigquit from a child process. It usually means the child failed.
+[2026-11-23 14:56:48] kill_process_tree called: parent_pid=1, include_parent=True, pid=1
+[2026-11-23 14:56:48] kill_process_tree called: parent_pid=1, include_parent=False, pid=1

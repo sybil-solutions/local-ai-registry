@@ -1,0 +1,552 @@
+{
+  "checkpoint_revision": "ed40e7da625f594fc9c4990f5f66be24873c22d7",
+  "config_sha256": "a7a349601f0984c4abf999c480ef775d8567d21f5f84b4e8a3e035b44f288dc2",
+  "source_headers": {
+    "model-00001-of-00001.safetensors": {
+      "header_sha256": "4b1fa8297cb1a0f6484c707bef69e7f0f81d08325ccf2c5b25b86d528f64acf2",
+      "file_bytes": 19526019168,
+      "tensor_payload_bytes": 19525870752,
+      "tensor_count": 1244
+    },
+    "mtp.safetensors": {
+      "header_sha256": "753b21c80ea24bce28d63e40a64e49fc27b4a9c59b855837b99e563868dc4bc1",
+      "file_bytes": 635801416,
+      "tensor_payload_bytes": 635795744,
+      "tensor_count": 54
+    }
+  },
+  "physical": {
+    "main": {
+      "text_global_other": 967680,
+      "routed_experts": 15670464672,
+      "dense_layers": 1365288960,
+      "input_embedding": 926318592,
+      "output_head": 926318592,
+      "vision": 636512256
+    },
+    "draft_payload_bytes": 635795744,
+    "all_dtype_bytes": {
+      "F32": 991392,
+      "BF16": 4490231072,
+      "F8_E4M3": 5350883328,
+      "U8": 10319560704
+    },
+    "expert_dtype_bytes": {
+      "F32": 20640,
+      "F8_E4M3": 5350883328,
+      "U8": 10319560704
+    }
+  },
+  "layer_visits": {
+    "0": 1,
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 1,
+    "19": 1,
+    "20": 1,
+    "21": 1,
+    "22": 1,
+    "23": 1
+  },
+  "physical_full_layer_ids": [
+    5,
+    11,
+    17,
+    23
+  ],
+  "effective_layer_visits": 48,
+  "per_layer_physical_bytes": {
+    "0": {
+      "routed_experts": 573309960,
+      "dense_layers": 54477056
+    },
+    "1": {
+      "routed_experts": 573309960,
+      "dense_layers": 54477056
+    },
+    "2": {
+      "routed_experts": 573309960,
+      "dense_layers": 54477056
+    },
+    "3": {
+      "routed_experts": 573309960,
+      "dense_layers": 54477056
+    },
+    "4": {
+      "routed_experts": 573309960,
+      "dense_layers": 54477056
+    },
+    "5": {
+      "routed_experts": 573309960,
+      "dense_layers": 54781184
+    },
+    "6": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "7": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "8": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "9": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "10": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "11": {
+      "routed_experts": 573309960,
+      "dense_layers": 59499776
+    },
+    "12": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "13": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "14": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "15": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "16": {
+      "routed_experts": 573309960,
+      "dense_layers": 59195648
+    },
+    "17": {
+      "routed_experts": 573309960,
+      "dense_layers": 59499776
+    },
+    "18": {
+      "routed_experts": 573309960,
+      "dense_layers": 54477056
+    },
+    "19": {
+      "routed_experts": 573309960,
+      "dense_layers": 54477056
+    },
+    "20": {
+      "dense_layers": 54477056,
+      "routed_experts": 1051066368
+    },
+    "21": {
+      "dense_layers": 54477056,
+      "routed_experts": 1051066368
+    },
+    "22": {
+      "dense_layers": 54477056,
+      "routed_experts": 1051066368
+    },
+    "23": {
+      "dense_layers": 54781184,
+      "routed_experts": 1051066368
+    }
+  },
+  "kv_bf16": {
+    "target_full_layers": 8,
+    "target_local_layers": 40,
+    "draft_full_layers": 1,
+    "draft_local_layers": 2,
+    "full_bytes_per_token": 36864,
+    "target_full_bytes_per_token": 32768,
+    "draft_full_bytes_per_token": 4096,
+    "local_bytes_per_cached_token": 172032,
+    "actual_local_window": 1024,
+    "allocated_swa_pool_tokens": 4096,
+    "context_tokens": 131072,
+    "full_pool_bytes": 4831838208,
+    "allocated_swa_pool_bytes": 704643072,
+    "decode_local_read_bytes_per_step": 176160768
+  },
+  "weight_traffic_inputs": {
+    "dense_layer_visit_bytes": 2787201024,
+    "expert_all_visit_bytes": 29429903712,
+    "global_other_bytes": 967680,
+    "output_head_bytes": 926318592,
+    "input_embedding_row_bytes": 4608,
+    "draft_payload_scan_once_bytes": 635795744,
+    "draft_output_head_bytes": 926318592
+  },
+  "linear_operation_inputs": {
+    "dense_layer_params_effective": 1304985600,
+    "expert_active_params_effective": 3057647616,
+    "expert_active_params_effective_by_dtype": {
+      "F8_E4M3": 254803968,
+      "U8": 2802843648
+    },
+    "output_head_params": 463159296,
+    "prefill_linear_flops_per_token_excluding_final_head": 8725266432
+  },
+  "expert_routing": {
+    "top_k": 8,
+    "experts": 128
+  },
+  "assumptions": [
+    "Core layer weights are revisited for each of three passes; no whole-core L2 retention is assumed.",
+    "Target input embedding is a row lookup, not a scan of the complete embedding table.",
+    "Input embedding and output head have separate checkpoint storage; the headers alone do not prove numerical equality or runtime parameter aliasing.",
+    "Draft projection reuses the target output head in the baseline runtime; it is read once per block in this model, not seven serial times.",
+    "The complete 635 MB MTP payload is included once per block as a scenario; lookup locality can lower traffic, while Markov recurrence and reloads can raise it.",
+    "Expert overlap and independent routing are scenarios, not guaranteed lower/upper bounds on observed DRAM traffic.",
+    "Full KV is read once per verification block and once by draft attention; kernels may reload it per tile, increasing traffic.",
+    "State read/write, activations, allocation, sampling, dequantization and runtime overhead are excluded from traffic estimates; state is small but nonzero.",
+    "Vision weights are resident but not scanned during text-only decode.",
+    "BF16 KV formula is corroborated by the launch log: target full K/V 2 GiB each, draft 0.25 GiB each; state pools remain additional."
+  ],
+  "measured_hardware": {
+    "hardware_sha256": "b18fedf9e5e5d752caf8905a7860d980d7ca8284c4399390647224d20b4f5e14",
+    "bandwidth_gbs_read_plus_write_median": 1528.8148386397174,
+    "bf16_tflops_median": {
+      "4096": 219.78220913631299,
+      "8192": 230.83490656799307
+    },
+    "fp8_4096_tflops_median": 542.65031951728,
+    "note": "Copy bandwidth counts source read plus destination write. GEMM numbers are measured dense kernels, not NVFP4 grouped-MoE throughput."
+  },
+  "decode_traffic_scenarios": [
+    {
+      "context_tokens": 8192,
+      "mode": "no_spec",
+      "accepted_per_step": 1,
+      "bytes_per_step": 5990068502.0,
+      "traffic_scenario_tps": 255.2249340937032
+    },
+    {
+      "context_tokens": 8192,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 2,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 7594125878.0,
+      "traffic_scenario_tps": 402.6308921395831
+    },
+    {
+      "context_tokens": 8192,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 3,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 7594125878.0,
+      "traffic_scenario_tps": 603.9463382093746
+    },
+    {
+      "context_tokens": 8192,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 4,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 7594125878.0,
+      "traffic_scenario_tps": 805.2617842791662
+    },
+    {
+      "context_tokens": 8192,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 6,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 7594125878.0,
+      "traffic_scenario_tps": 1207.8926764187493
+    },
+    {
+      "context_tokens": 8192,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 2,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 17623263950.013084,
+      "traffic_scenario_tps": 173.4996244709349
+    },
+    {
+      "context_tokens": 8192,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 3,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 17623263950.013084,
+      "traffic_scenario_tps": 260.2494367064023
+    },
+    {
+      "context_tokens": 8192,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 4,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 17623263950.013084,
+      "traffic_scenario_tps": 346.9992489418698
+    },
+    {
+      "context_tokens": 8192,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 6,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 17623263950.013084,
+      "traffic_scenario_tps": 520.4988734128046
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "no_spec",
+      "accepted_per_step": 1,
+      "bytes_per_step": 6795374870.0,
+      "traffic_scenario_tps": 224.97873449028978
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 2,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 8500095542.0,
+      "traffic_scenario_tps": 359.7170951986736
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 3,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 8500095542.0,
+      "traffic_scenario_tps": 539.5756427980103
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 4,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 8500095542.0,
+      "traffic_scenario_tps": 719.4341903973472
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 6,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 8500095542.0,
+      "traffic_scenario_tps": 1079.1512855960207
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 2,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 18529233614.013084,
+      "traffic_scenario_tps": 165.01652151263528
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 3,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 18529233614.013084,
+      "traffic_scenario_tps": 247.52478226895292
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 4,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 18529233614.013084,
+      "traffic_scenario_tps": 330.03304302527056
+    },
+    {
+      "context_tokens": 32768,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 6,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 18529233614.013084,
+      "traffic_scenario_tps": 495.04956453790584
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "no_spec",
+      "accepted_per_step": 1,
+      "bytes_per_step": 9479729430.0,
+      "traffic_scenario_tps": 161.271990928513
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 2,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 11519994422.0,
+      "traffic_scenario_tps": 265.41937133582366
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 3,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 11519994422.0,
+      "traffic_scenario_tps": 398.12905700373545
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 4,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 11519994422.0,
+      "traffic_scenario_tps": 530.8387426716473
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 6,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 11519994422.0,
+      "traffic_scenario_tps": 796.2581140074709
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 2,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 21549132494.013084,
+      "traffic_scenario_tps": 141.89107975130437
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 3,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 21549132494.013084,
+      "traffic_scenario_tps": 212.83661962695655
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 4,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 21549132494.013084,
+      "traffic_scenario_tps": 283.78215950260875
+    },
+    {
+      "context_tokens": 114688,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 6,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 21549132494.013084,
+      "traffic_scenario_tps": 425.6732392539131
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "no_spec",
+      "accepted_per_step": 1,
+      "bytes_per_step": 10016600342.0,
+      "traffic_scenario_tps": 152.62811597157736
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 2,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 12123974198.0,
+      "traffic_scenario_tps": 252.19697991305765
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 3,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 12123974198.0,
+      "traffic_scenario_tps": 378.29546986958644
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 4,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 12123974198.0,
+      "traffic_scenario_tps": 504.3939598261153
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "perfect_expert_overlap",
+      "verify_rows": 8,
+      "accepted_per_step": 6,
+      "expert_union_fraction": 0.0625,
+      "bytes_per_step": 12123974198.0,
+      "traffic_scenario_tps": 756.5909397391729
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 2,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 22153112270.013084,
+      "traffic_scenario_tps": 138.02257849874695
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 3,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 22153112270.013084,
+      "traffic_scenario_tps": 207.0338677481204
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 4,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 22153112270.013084,
+      "traffic_scenario_tps": 276.0451569974939
+    },
+    {
+      "context_tokens": 131072,
+      "mode": "independent_expert_routing",
+      "verify_rows": 8,
+      "accepted_per_step": 6,
+      "expert_union_fraction": 0.4032805261667818,
+      "bytes_per_step": 22153112270.013084,
+      "traffic_scenario_tps": 414.0677354962408
+    }
+  ],
+  "prefill_measured_ceiling": null,
+  "prefill_ceiling_reason": "No measured NVFP4 grouped-MoE throughput or stage profile; applying BF16 or FP8 dense peak to all 4-bit expert FLOPs would manufacture a ceiling."
+}

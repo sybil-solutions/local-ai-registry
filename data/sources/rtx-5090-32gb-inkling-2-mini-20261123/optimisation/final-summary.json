@@ -1,0 +1,2244 @@
+{
+  "decision": "Retain original serving settings; no new configuration passed every preregistered gate.",
+  "scope": "128K c1 experimental profile; daily48K service and4096 output budget unchanged.",
+  "cache_startup": {
+    "control_seconds": [
+      126.69292375305668,
+      126.71078233513981,
+      126.68610085686669
+    ],
+    "control_median_seconds": 126.69292375305668,
+    "candidate_seconds": [
+      49.48921306198463,
+      37.45076168514788
+    ],
+    "adopted": false,
+    "reason": "Both sampled candidates failed combined gates; full temperature-zero follow-up invalidated by degenerate control."
+  },
+  "stochastic_panel": {
+    "method": "Median of six fixed uncapped tasks per run, temperature0.8, approximately8K input, cold prefix; not equivalent to official speed gate.",
+    "control_decode_tps": [
+      238.83525715560125,
+      251.84557920757962,
+      215.6153731243322
+    ],
+    "candidate_decode_tps": [
+      234.36654686918948,
+      212.30532628318474
+    ],
+    "control_32k_ttft_seconds": [
+      2.199461197014898,
+      2.2059472459368408,
+      2.206173581071198
+    ],
+    "candidate_32k_ttft_seconds": [
+      2.19169412413612,
+      2.1936641708016396
+    ]
+  },
+  "qualification": {
+    "name": "retained-profile",
+    "config": {
+      "name": "retained-profile",
+      "cache": false,
+      "replace_args": {}
+    },
+    "config_sha256": "f65ea6854fb446ee484322c785bab30b86d7d2223cad3b057699ac2593630bb0",
+    "sampling_temperature": 0.8,
+    "panel_lengths": [
+      32768,
+      114688
+    ],
+    "recall_lengths": [
+      65536,
+      126000
+    ],
+    "soak_context": 126000,
+    "soak_seconds": 900,
+    "stages_requested": [
+      "panels",
+      "recall",
+      "marker",
+      "smoke",
+      "daily",
+      "soak"
+    ],
+    "completed_stages": [
+      "panels",
+      "recall",
+      "marker",
+      "smoke",
+      "daily",
+      "soak"
+    ],
+    "official_registry_gates": "not_run_here",
+    "cross_run_greedy_equivalence": "separate_gate",
+    "status": "measurements_complete",
+    "environment_before": {
+      "profile": "performance",
+      "governors": [
+        "performance"
+      ],
+      "power_limit_w": 575.0,
+      "display_helpers": [
+        "ChatGPT",
+        "t3code"
+      ],
+      "unknown_compute_pids": [],
+      "ac": true,
+      "load_per_cpu": 0.0364227294921875
+    },
+    "startup_seconds": 126.65586197935045,
+    "marker_passed": true,
+    "smoke": {
+      "exit_code": 0,
+      "environment_valid": true,
+      "memory_cap_tripped": false,
+      "watch_error": null,
+      "passed": true
+    },
+    "daily_replay": {
+      "exit_code": 0,
+      "environment_valid": true,
+      "memory_cap_tripped": false,
+      "watch_error": null,
+      "passed": true
+    },
+    "soak": {
+      "requested_seconds": 900,
+      "wall_seconds": 903.288444338832,
+      "cycles": 34,
+      "requests": 68,
+      "request_seconds": 765.7057080771774,
+      "probe_seed": 90000,
+      "probe_temperature": 0,
+      "probe_output_hashes_equal": true,
+      "probe_output_hash_counts": {
+        "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084": 34
+      },
+      "probe_output_variation": [
+        {
+          "index": 0,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 1,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 2,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 3,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 4,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 5,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 6,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 7,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 8,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 9,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 10,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 11,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 12,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 13,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 14,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 15,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 16,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 17,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 18,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 19,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 20,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 21,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 22,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 23,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 24,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 25,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 26,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 27,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 28,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 29,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 30,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 31,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 32,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        },
+        {
+          "index": 33,
+          "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+          "usage": {
+            "prompt_tokens": 7891,
+            "total_tokens": 9507,
+            "completion_tokens": 1616,
+            "prompt_tokens_details": null,
+            "reasoning_tokens": 1046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1046
+            }
+          }
+        }
+      ],
+      "request_flags": [
+        {
+          "phase": "soak-recall-cold",
+          "seed": 80005,
+          "flags": [
+            "NOT_NATURAL_STOP",
+            "OUTPUT_CHECK_FAILED"
+          ]
+        },
+        {
+          "phase": "soak-recall-cold",
+          "seed": 80010,
+          "flags": [
+            "NOT_NATURAL_STOP",
+            "OUTPUT_CHECK_FAILED"
+          ]
+        },
+        {
+          "phase": "soak-recall-cold",
+          "seed": 80012,
+          "flags": [
+            "NOT_NATURAL_STOP",
+            "OUTPUT_CHECK_FAILED"
+          ]
+        }
+      ],
+      "recall_failures": 3,
+      "probe_drift": {
+        "samples_per_end": 11,
+        "probes_without_valid_rate": 0,
+        "first_tps": 241.15397574503623,
+        "last_tps": 241.14729822881614,
+        "change_percent": -0.0027689845043865624,
+        "identical_outputs": true,
+        "attribution": "matched deterministic outputs",
+        "all_probe_flags": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "passed": false
+    },
+    "environment_after": {
+      "profile": "performance",
+      "governors": [
+        "performance"
+      ],
+      "power_limit_w": 575.0,
+      "display_helpers": [
+        "ChatGPT",
+        "t3code"
+      ],
+      "unknown_compute_pids": [],
+      "ac": true,
+      "load_per_cpu": 0.0362396240234375
+    },
+    "environment_valid": true,
+    "memory_cap_tripped": false,
+    "watch_error": null,
+    "restored": true,
+    "daily_grading": {
+      "responses": 24,
+      "complete_task_set": true,
+      "natural_stops": 24,
+      "repair_attempts": 8,
+      "repair_passed": 8,
+      "grader_exit_code": 0,
+      "manual_review_pending": 16,
+      "overall_score": null
+    },
+    "request_flags": [
+      {
+        "phase": "soak-recall-cold",
+        "kind": "multineedle",
+        "seed": 80005,
+        "flags": [
+          "NOT_NATURAL_STOP",
+          "OUTPUT_CHECK_FAILED"
+        ]
+      },
+      {
+        "phase": "soak-recall-cold",
+        "kind": "multineedle",
+        "seed": 80010,
+        "flags": [
+          "NOT_NATURAL_STOP",
+          "OUTPUT_CHECK_FAILED"
+        ]
+      },
+      {
+        "phase": "soak-recall-cold",
+        "kind": "multineedle",
+        "seed": 80012,
+        "flags": [
+          "NOT_NATURAL_STOP",
+          "OUTPUT_CHECK_FAILED"
+        ]
+      }
+    ],
+    "recall_passed": false,
+    "automated_gates_passed": false,
+    "qualified_for_publication": false,
+    "remaining_review": [
+      "Manual grading of nonrepair Daily responses",
+      "Cross-run greedy equivalence",
+      "Official registry gates on identical published launch",
+      "Semantic review of free-form panel and generated code responses"
+    ]
+  },
+  "semantic_panel_review": {
+    "reviewed_at_utc": "2026-11-23T16:26:55.051789+00:00",
+    "scope": "Retrospective independent semantic review of12 fixed-panel answers, six tasks each at target32K and112K. Not an exhaustive quality benchmark or a causal test of context-length quality degradation.",
+    "rubric": {
+      "code": "Supplied implementation and tests must run unmodified; reference operation checks supplement authored tests.",
+      "backup": "Archive creation and retaining the newest seven must work, including advertised collision handling.",
+      "explanations": "Requested substantive structure and central facts/algorithm conditions must be correct; contextual simplifications are recorded.",
+      "story": "Narrative meets subject and broad length scope; no retrospective numeric word cutoff added.",
+      "history": "Five paragraphs and no material chronological inversion."
+    },
+    "counted_pass": 7,
+    "counted_fail": 5,
+    "reviewed_total": 12,
+    "all_transport_flags_empty": true,
+    "records": [
+      {
+        "task": "lru",
+        "size": 32768,
+        "actual_prompt_tokens": 32467,
+        "outputhash": "c2ef4136c72a67aabf68d2095c2882b0345eae69bc71a3a6257cda4f1b8e3424",
+        "verdict": "fail",
+        "counted_pass": false,
+        "reason": "All eight supplied tests raise TypeError because LRUCache[str, int] subscripts a class that does not inherit Generic and defines no __class_getitem__. The class itself passes a direct-use reference oracle.",
+        "limitations": [
+          "Direct-use implementation passed4000 random operations; a one-line generic inheritance correction would fix the supplied tests, but generated output was not repaired for grading."
+        ],
+        "visible_words": 547,
+        "transport_flags": []
+      },
+      {
+        "task": "tcp",
+        "size": 32768,
+        "actual_prompt_tokens": 32463,
+        "outputhash": "fc2b566a63665f4e66625c82679d86a3e34e2d4ab7b52dfbe179a9bc7dcde0f1",
+        "verdict": "pass_with_limitations",
+        "counted_pass": true,
+        "reason": "Covers congestion window, slow start, congestion avoidance, fast retransmit/recovery and timeout behaviour as a Reno-style introduction.",
+        "limitations": [
+          "Uses cwnd/2 as a simplification where RFC5681 specifies FlightSize/2; not interchangeable on application-limited flows.",
+          "ECN is omitted, and the final generalization to BBR is too broad. This is not a protocol implementation specification."
+        ],
+        "visible_words": 737,
+        "transport_flags": []
+      },
+      {
+        "task": "story",
+        "size": 32768,
+        "actual_prompt_tokens": 32467,
+        "outputhash": "cfda2e18cf74a1643dc3b2686856b98022099a4e8be09d346fd9920465999adc",
+        "verdict": "pass_with_limitations",
+        "counted_pass": true,
+        "reason": "Complete lighthouse-keeper/message-in-bottle narrative with an ending; no transport truncation or obvious repetitive loop.",
+        "limitations": [
+          "885 whitespace-delimited words exceeds the requested approximately600. No precise length tolerance was preregistered, so this is recorded as a scope weakness rather than a new hard cutoff.",
+          "Physical/continuity oddities remain, including warm glass during a storm and reappearing paper after it was stored. Literary quality is subjective."
+        ],
+        "visible_words": 885,
+        "transport_flags": []
+      },
+      {
+        "task": "database",
+        "size": 32768,
+        "actual_prompt_tokens": 32469,
+        "outputhash": "40d3a185803394abba04dd2bd69a8894f2f2c2ac30301b117f8d351d874e1e28",
+        "verdict": "pass_with_limitations",
+        "counted_pass": true,
+        "reason": "Includes the requested comparison table, write-heavy recommendation and relevant read/space/compaction caveats.",
+        "limitations": [
+          "Amplification and throughput rankings depend on workload and engine design.",
+          "Listing strong consistency as a B-tree best-fit attribute is misleading: LSM-based engines can also provide strong consistency."
+        ],
+        "visible_words": 346,
+        "transport_flags": []
+      },
+      {
+        "task": "backup",
+        "size": 32768,
+        "actual_prompt_tokens": 32470,
+        "outputhash": "ca6d95d858f8d44e084fe35fc695a010c0822e43660cae4a2ac34997dc14cffc",
+        "verdict": "fail",
+        "counted_pass": false,
+        "reason": "Distinct-timestamp retention works, but same-second collision handling does not preserve the newest seven. Nine runs retained source versions0,2,3,4,5,6,7 and deleted newly created version8.",
+        "limitations": [
+          "The expected newest versions were2,3,4,5,6,7,8. Lexical ordering of unsuffixed/suffixed filenames and reuse of a pruned suffix breaks chronology.",
+          "No source/destination containment guard; archive path explanation also overlooks GNU tar stripping leading slashes."
+        ],
+        "visible_words": 268,
+        "transport_flags": []
+      },
+      {
+        "task": "history",
+        "size": 32768,
+        "actual_prompt_tokens": 32463,
+        "outputhash": "be4108a45a46b245cdc02583db9bc866e6e1205758c9ee6784085a7668d5b4db",
+        "verdict": "pass_with_limitations",
+        "counted_pass": true,
+        "reason": "Exactly five paragraphs, covers speculation/leverage, monetary conditions, confidence, economic contraction and institutional consequences.",
+        "limitations": [
+          "Broad retrospective causal synthesis, not an exhaustive historiographic fact-check.",
+          "Banking-crisis chronology is compressed, but it explicitly states that the crash alone did not create the entire Depression."
+        ],
+        "visible_words": 414,
+        "transport_flags": []
+      },
+      {
+        "task": "lru",
+        "size": 114688,
+        "actual_prompt_tokens": 114387,
+        "outputhash": "05c426c70789b38b353e8e4dea6e4739f154b4035e5ae2d40f2136e0727a6573",
+        "verdict": "pass_with_limitations",
+        "counted_pass": true,
+        "reason": "All ten supplied unit tests and4000 independent reference operations pass; uses a dictionary and doubly linked list with recency promotion and eviction.",
+        "limitations": [
+          "Dictionary lookup/update bounds are average/expected, not an unconditional worst-case constant-time guarantee.",
+          "Boolean capacities are accepted because bool is an int subclass; the prompt did not require rejecting them."
+        ],
+        "visible_words": 746,
+        "transport_flags": []
+      },
+      {
+        "task": "tcp",
+        "size": 114688,
+        "actual_prompt_tokens": 114383,
+        "outputhash": "c618049b3a0da132a9fc43da3ac52b154d1aaf9abc7aa484eca882b5eefe3ca5",
+        "verdict": "fail",
+        "counted_pass": false,
+        "reason": "The step-by-step algorithm states slow start continues while inflight<ssthresh. The controlling comparison is cwnd versus ssthresh; inflight may be lower than cwnd for an application-limited sender.",
+        "limitations": [
+          "Later prose gives the correct cwnd exit condition, so the answer is internally inconsistent.",
+          "Other Reno details are useful but simplified; modern variants and ECN are not covered adequately."
+        ],
+        "visible_words": 701,
+        "transport_flags": []
+      },
+      {
+        "task": "story",
+        "size": 114688,
+        "actual_prompt_tokens": 114387,
+        "outputhash": "cedffc5e286e316e9da2067c788ec32c95e7655bf4eb496a83a78b1bce5b1930",
+        "verdict": "pass_with_limitations",
+        "counted_pass": true,
+        "reason": "655 words with a lighthouse keeper, bottle message and coherent response/ending; broadly meets approximately600-word scope.",
+        "limitations": [
+          "Some pronoun/backstory details are unclear. No claim of objective literary quality."
+        ],
+        "visible_words": 655,
+        "transport_flags": []
+      },
+      {
+        "task": "database",
+        "size": 114688,
+        "actual_prompt_tokens": 114389,
+        "outputhash": "7ac430945ab2ce3daf05561b66b0b47313e49752eee395f1c74b9a47304963e5",
+        "verdict": "pass_with_limitations",
+        "counted_pass": true,
+        "reason": "Includes table and useful conditional LSM recommendation for sustained writes, with compaction, reads and space caveats.",
+        "limitations": [
+          "Engine-specific amplification rankings are simplified; this is an introductory comparison rather than a performance guarantee."
+        ],
+        "visible_words": 407,
+        "transport_flags": []
+      },
+      {
+        "task": "backup",
+        "size": 114688,
+        "actual_prompt_tokens": 114390,
+        "outputhash": "2f8c3a1b9a20eb1c98580ecd3567c762ac74c97f202dd72a04356f1f9af58632",
+        "verdict": "fail",
+        "counted_pass": false,
+        "reason": "Retention order is reversed: ascending sort followed by tail -n +8 deletes the newest archives. Nine distinct-timestamp runs retain versions0\u20136 rather than2\u20138; the ninth newly created backup is immediately deleted.",
+        "limitations": [
+          "This is a core functional failure on ordinary paths, not merely an exotic filename edge case.",
+          "No source/destination containment or newline-safe retention guarantee."
+        ],
+        "visible_words": 309,
+        "transport_flags": []
+      },
+      {
+        "task": "history",
+        "size": 114688,
+        "actual_prompt_tokens": 114383,
+        "outputhash": "9e4e32780d4959f93e33917da28814588326b0fd185bac46a9897d6e8ead1874",
+        "verdict": "fail",
+        "counted_pass": false,
+        "reason": "The pre-crash causal paragraph includes Hawley-Smoot tariff effects as an existing strain before the late1929 trigger. Smoot-Hawley was signedJune17,1930, so the answer conflates later Depression developments with causes of the1929 crash.",
+        "limitations": [
+          "Exactly five paragraphs and much of the remaining outline is broadly useful.",
+          "Later banking failures and immediate crash consequences are also compressed."
+        ],
+        "visible_words": 419,
+        "transport_flags": []
+      }
+    ],
+    "cpu_test_evidence": {
+      "32768": {
+        "lru_authored_tests": {
+          "count": 8,
+          "errors": 8,
+          "failures": 0,
+          "success": false,
+          "log": "EEEEEEEE\n======================================================================\nERROR: test_capacity_is_enforced (panel_under_test.TestLRUCache.test_capacity_is_enforced)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"32768/lru.py\", line 137, in test_capacity_is_enforced\nTypeError: type 'LRUCache' is not subscriptable\n\n======================================================================\nERROR: test_get_missing_key_returns_none (panel_under_test.TestLRUCache.test_get_missing_key_returns_none)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"32768/lru.py\", line 99, in test_get_missing_key_returns_none\nTypeError: type 'LRUCache' is not subscriptable\n\n======================================================================\nERROR: test_get_refreshes_recency (panel_under_test.TestLRUCache.test_get_refreshes_recency)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"32768/lru.py\", line 117, in test_get_refreshes_recency\nTypeError: type 'LRUCache' is not subscriptable\n\n======================================================================\nERROR: test_invalid_capacity_raises (panel_under_test.TestLRUCache.test_invalid_capacity_raises)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"32768/lru.py\", line 146, in test_invalid_capacity_raises\nTypeError: type 'LRUCache' is not subscriptable\n\n======================================================================\nERROR: test_len_and_clear (panel_under_test.TestLRUCache.test_len_and_clear)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"32768/lru.py\", line 153, in test_len_and_clear\nTypeError: type 'LRUCache' is not subscriptable\n\n======================================================================\nERROR: test_oldest_entry_is_evicted_when_full (panel_under_test.TestLRUCache.test_oldest_entry_is_evicted_when_full)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"32768/lru.py\", line 108, in test_oldest_entry_is_evicted_when_full\nTypeError: type 'LRUCache' is not subscriptable\n\n======================================================================\nERROR: test_put_and_get_roundtrip (panel_under_test.TestLRUCache.test_put_and_get_roundtrip)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"32768/lru.py\", line 103, in test_put_and_get_roundtrip\nTypeError: type 'LRUCache' is not subscriptable\n\n======================================================================\nERROR: test_put_existing_key_updates_value_and_refreshes_recency (panel_under_test.TestLRUCache.test_put_existing_key_updates_value_and_refreshes_recency)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"32768/lru.py\", line 127, in test_put_existing_key_updates_value_and_refreshes_recency\nTypeError: type 'LRUCache' is not subscriptable\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nFAILED (errors=8)\n"
+        },
+        "lru_reference_operations_passed": 4000,
+        "backup_distinct_timestamps": {
+          "runs": 9,
+          "archive_count": 7,
+          "all_succeeded": true,
+          "retained_versions": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "expected_versions": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "keeps_newest_seven": true,
+          "last": {
+            "returncode": 0,
+            "stdout": "Deleted old backup: backup-20261123-000001.tar.gz\nBackup created: /work/32768/distinct/out/backup-20261123-000008.tar.gz\nBackups kept: 7\n",
+            "stderr": "tar: Removing leading `/' from member names\n"
+          }
+        },
+        "backup_same_timestamp": {
+          "runs": 9,
+          "archive_count": 7,
+          "all_succeeded": true,
+          "retained_versions": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "expected_versions": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "keeps_newest_seven": false,
+          "last": {
+            "returncode": 0,
+            "stdout": "Deleted old backup: backup-20261123-000000-1.tar.gz\nBackup created: /work/32768/same/out/backup-20261123-000000-1.tar.gz\nBackups kept: 7\n",
+            "stderr": "tar: Removing leading `/' from member names\n"
+          }
+        }
+      },
+      "114688": {
+        "lru_authored_tests": {
+          "count": 10,
+          "errors": 0,
+          "failures": 0,
+          "success": true,
+          "log": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.000s\n\nOK\n"
+        },
+        "lru_reference_operations_passed": 4000,
+        "backup_distinct_timestamps": {
+          "runs": 9,
+          "archive_count": 7,
+          "all_succeeded": true,
+          "retained_versions": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "expected_versions": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "keeps_newest_seven": false,
+          "last": {
+            "returncode": 0,
+            "stdout": "Created backup: /work/114688/distinct/out/src-20261123-000008.tar.gz\nRemoved old backup: /work/114688/distinct/out/src-20261123-000008.tar.gz\n",
+            "stderr": ""
+          }
+        },
+        "backup_same_timestamp": {
+          "runs": 9,
+          "archive_count": 7,
+          "all_succeeded": true,
+          "retained_versions": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "expected_versions": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "keeps_newest_seven": false,
+          "last": {
+            "returncode": 0,
+            "stdout": "Created backup: /work/114688/same/out/src-20261123-000000.tar.gz\nRemoved old backup: /work/114688/same/out/src-20261123-000000.tar.gz\n",
+            "stderr": ""
+          }
+        }
+      }
+    },
+    "cpu_isolation": {
+      "runtime": "runc",
+      "network": "none",
+      "gpus": false,
+      "host_mounts": false,
+      "read_only_root": true,
+      "memory_mib": 256,
+      "cpus": 0.5,
+      "pids_limit": 64,
+      "cpu_time_limit_seconds": 20,
+      "user": "65534:65534",
+      "image": "vllm/vllm-openai@sha256:c2dc759f5984f69c1e2418c6af7c26eb756f5ed2a8934c768ae1253645d1449e",
+      "harness_sha256": "798f9bb7cd0ed795e520b796f4441bc3b569760da371072dead7b0be3dde4b2b"
+    },
+    "sources": [
+      "https://www.rfc-editor.org/rfc/rfc5681",
+      "https://www.senate.gov/artandhistory/history/minute/Senate_Passes_Smoot_Hawley_Tariff.htm"
+    ]
+  },
+  "daily_review": {
+    "reviewed_at_utc": "2026-11-23T16:34:02.647530+00:00",
+    "method": "Independent reading of each final answer against the unchanged original rubric and relevant original prompt records; all rubric elements required. No repairs were graded by this review.",
+    "scope": "Uncapped qualification copy of Daily, not the public4096-token ranking. Eight nonrepair tasks repeated twice; the16 responses are not16 distinct benchmark tasks.",
+    "digest_method": "SHA256(UTF8(task + NUL + answer))",
+    "task_fixture_sha256": "e765fa21fbfcd33c13656b745d8eb0fc66ec41d23df289f3c02075ba174f4aad",
+    "daily_responses_sha256": "b2e1ef880df6c59d94e13777f51187154b61afd741e3e8ba0ef2eee4a56fca3d",
+    "reviewed": 16,
+    "passed": 16,
+    "failed": 0,
+    "distinct_tasks": 8,
+    "excluded_repair_attempts": 8,
+    "per_repeat": {
+      "1": {
+        "reviewed": 8,
+        "passed": 8,
+        "failed": 0
+      },
+      "2": {
+        "reviewed": 8,
+        "passed": 8,
+        "failed": 0
+      }
+    },
+    "records": [
+      {
+        "task": "route",
+        "repeat": 1,
+        "digest": "2389d09715e193e3673acbd7b2f0c697bc65e0b76143e6b051e96b4982195aa1",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Identifies queue oak and worker archive, and changes only region to east to reach elm/mail while leaving channel blue unchanged.",
+        "original_rubric": "Queue oak, worker archive; change region to east (keep blue)."
+      },
+      {
+        "task": "invoice",
+        "repeat": 1,
+        "digest": "eb8569b4a3e414b67117cfc91304857ae8d08f2c942f11fdb5d21f8cd7f606b0",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Correctly totals198+17=215 units, subtracts200 included for15 excess, and computes1500+15*8-120=1500 pennies.",
+        "original_rubric": "215 metered, 15 excess, 1500 pennies payable."
+      },
+      {
+        "task": "cache",
+        "repeat": 1,
+        "digest": "8daa7dfde9d1dc7cb9f8cb39f8c6493556ccc132cbd06f926fbe9106f6131f45",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives TTL120 from cfg/g.yml and follows APP_ENV=prod through routing to green; explicitly states COLOUR is never read.",
+        "original_rubric": "120, cfg/g.yml, routing follows APP_ENV/prod to green and never reads COLOUR."
+      },
+      {
+        "task": "deploy",
+        "repeat": 1,
+        "digest": "10f62a022b621b43154f9c58fc3b74b33a734944803db5f4cced7e0b65380819",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Correctly refuses deployment, identifies digest approval as the only failing gate, confirms health/freeze pass, and updates beta approval aa2 to cc4 without changing r18.",
+        "original_rubric": "No. Only digest approval fails; update beta approval from aa2 to cc4."
+      },
+      {
+        "task": "launch",
+        "repeat": 1,
+        "digest": "cbe29e99c85465cbb5b2f64d2417bbc6bab1db9d74ad650191bf99d202c678c4",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives Bath,18June,Omar with exact supporting signed records004,049,074, preserving unnamed fields and rejecting proposals025/083.",
+        "original_rubric": "Bath, 18 June, Omar; records 004, 049, 074."
+      },
+      {
+        "task": "freight",
+        "repeat": 1,
+        "digest": "1a53c7e952e8fba38dcc6819f3b0ede64c590bc228a4a87d0a371e8402478f83",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives Hull57 by rail and Leeds18 by road with signed records006,024,068; applies total75 minus fixed Leeds18 and rejects unsigned proposals.",
+        "original_rubric": "Hull 57 by rail; Leeds 18 by road; records 006, 024, 068."
+      },
+      {
+        "task": "budget",
+        "repeat": 1,
+        "digest": "fbb7319fb4b2a915c622516adc8e2195c451cd8297098f315e2b82d841910e4a",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives3300 remaining unreserved credits and chairAda, supported by005,029,063,078; computes7400+500-600-2800-1200 and leaves proposed reserve release ineffective.",
+        "original_rubric": "3300 credits and Ada; records 005, 029, 063, 078."
+      },
+      {
+        "task": "handover",
+        "repeat": 1,
+        "digest": "da6a5c2df299ddd1bf6591156acc4a5218b8c09de46880d02db9b69d2d4d5896",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives Thursday EastSal/WestRen and Friday EastSal/WestPat, cites008,052,071, and correctly treats the handover-date amendment as delaying Pat without changing East.",
+        "original_rubric": "Thursday East Sal/West Ren; Friday East Sal/West Pat; records 008, 052, 071."
+      },
+      {
+        "task": "handover",
+        "repeat": 2,
+        "digest": "762a20ce64041c116c4ea8d17566cf5e8bd3e43865f44cd132b45a5e28480ea5",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives Thursday EastSal/WestRen and Friday EastSal/WestPat, cites008,052,071, and correctly treats the handover-date amendment as delaying Pat without changing East.",
+        "original_rubric": "Thursday East Sal/West Ren; Friday East Sal/West Pat; records 008, 052, 071."
+      },
+      {
+        "task": "budget",
+        "repeat": 2,
+        "digest": "e06ec0b26aa7631a62a2183d8eaa59b6124e8b6a76c9c169c769386ab18b55da",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives3300 remaining unreserved credits and chairAda, supported by005,029,063,078; computes7400+500-600-2800-1200 and leaves proposed reserve release ineffective.",
+        "original_rubric": "3300 credits and Ada; records 005, 029, 063, 078."
+      },
+      {
+        "task": "freight",
+        "repeat": 2,
+        "digest": "1a53c7e952e8fba38dcc6819f3b0ede64c590bc228a4a87d0a371e8402478f83",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives Hull57 by rail and Leeds18 by road with signed records006,024,068; applies total75 minus fixed Leeds18 and rejects unsigned proposals.",
+        "original_rubric": "Hull 57 by rail; Leeds 18 by road; records 006, 024, 068."
+      },
+      {
+        "task": "launch",
+        "repeat": 2,
+        "digest": "cbe29e99c85465cbb5b2f64d2417bbc6bab1db9d74ad650191bf99d202c678c4",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives Bath,18June,Omar with exact supporting signed records004,049,074, preserving unnamed fields and rejecting proposals025/083.",
+        "original_rubric": "Bath, 18 June, Omar; records 004, 049, 074."
+      },
+      {
+        "task": "deploy",
+        "repeat": 2,
+        "digest": "10f62a022b621b43154f9c58fc3b74b33a734944803db5f4cced7e0b65380819",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Correctly refuses deployment, identifies digest approval as the only failing gate, confirms health/freeze pass, and updates beta approval aa2 to cc4 without changing r18.",
+        "original_rubric": "No. Only digest approval fails; update beta approval from aa2 to cc4."
+      },
+      {
+        "task": "cache",
+        "repeat": 2,
+        "digest": "8daa7dfde9d1dc7cb9f8cb39f8c6493556ccc132cbd06f926fbe9106f6131f45",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Gives TTL120 from cfg/g.yml and follows APP_ENV=prod through routing to green; explicitly states COLOUR is never read.",
+        "original_rubric": "120, cfg/g.yml, routing follows APP_ENV/prod to green and never reads COLOUR."
+      },
+      {
+        "task": "invoice",
+        "repeat": 2,
+        "digest": "eb8569b4a3e414b67117cfc91304857ae8d08f2c942f11fdb5d21f8cd7f606b0",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Correctly totals198+17=215 units, subtracts200 included for15 excess, and computes1500+15*8-120=1500 pennies.",
+        "original_rubric": "215 metered, 15 excess, 1500 pennies payable."
+      },
+      {
+        "task": "route",
+        "repeat": 2,
+        "digest": "2389d09715e193e3673acbd7b2f0c697bc65e0b76143e6b051e96b4982195aa1",
+        "grade": "pass",
+        "passed": true,
+        "reason": "Identifies queue oak and worker archive, and changes only region to east to reach elm/mail while leaving channel blue unchanged.",
+        "original_rubric": "Queue oak, worker archive; change region to east (keep blue)."
+      }
+    ]
+  },
+  "cache_reuse": [
+    {
+      "target_input": 65536,
+      "seed": 72001,
+      "prompt_sha256": "c49ae09c4b6989bc515feca8fc3eb4788c11898e9b6aaa64d5e04f7bcf0a8095",
+      "cold_ttft": 5.211739553138614,
+      "warm_ttft": 0.7132648299448192,
+      "cache_hit_observed": true,
+      "evidence": "warm positive/cold zero server counters",
+      "cold_cached_log_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "warm_cached_log_values": [
+        65280
+      ],
+      "warm_direct_cached_tokens": null
+    },
+    {
+      "target_input": 65536,
+      "seed": 72002,
+      "prompt_sha256": "ccfd3babed55881de40ab4d941c75d857cfcee667e629bf37047a1c0ac36882d",
+      "cold_ttft": 5.10822753701359,
+      "warm_ttft": 6.200309280771762,
+      "cache_hit_observed": true,
+      "evidence": "warm positive/cold zero server counters",
+      "cold_cached_log_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "warm_cached_log_values": [
+        65280
+      ],
+      "warm_direct_cached_tokens": null
+    },
+    {
+      "target_input": 126000,
+      "seed": 72001,
+      "prompt_sha256": "f041ca1427476bbc1e23facf9b0057e0c52a028949a40ca1e7108f91c700e117",
+      "cold_ttft": 12.189323206897825,
+      "warm_ttft": 2.602811947930604,
+      "cache_hit_observed": true,
+      "evidence": "warm positive/cold zero server counters",
+      "cold_cached_log_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "warm_cached_log_values": [
+        125696
+      ],
+      "warm_direct_cached_tokens": null
+    },
+    {
+      "target_input": 126000,
+      "seed": 72002,
+      "prompt_sha256": "fe126d1250cd6ec198fdff9dbb0f0453b56dc5c88bb5f0a6e6488db4cf43d54f",
+      "cold_ttft": 12.197504495736212,
+      "warm_ttft": 0.08999761426821351,
+      "cache_hit_observed": true,
+      "evidence": "warm positive/cold zero server counters",
+      "cold_cached_log_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "warm_cached_log_values": [
+        125696
+      ],
+      "warm_direct_cached_tokens": null
+    }
+  ],
+  "soak": {
+    "requested_seconds": 900,
+    "wall_seconds": 903.288444338832,
+    "cycles": 34,
+    "requests": 68,
+    "request_seconds": 765.7057080771774,
+    "probe_seed": 90000,
+    "probe_temperature": 0,
+    "probe_output_hashes_equal": true,
+    "probe_output_hash_counts": {
+      "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084": 34
+    },
+    "probe_output_variation": [
+      {
+        "index": 0,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 1,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 2,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 3,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 4,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 5,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 6,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 7,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 8,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 9,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 10,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 11,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 12,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 13,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 14,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 15,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 16,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 17,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 18,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 19,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 20,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 21,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 22,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 23,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 24,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 25,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 26,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 27,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 28,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 29,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 30,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 31,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 32,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      },
+      {
+        "index": 33,
+        "output_sha256": "7d28b7c9a3f0deb72858f42483d837ac1d7f6506dceeef7df7db3ae2c9bd4084",
+        "usage": {
+          "prompt_tokens": 7891,
+          "total_tokens": 9507,
+          "completion_tokens": 1616,
+          "prompt_tokens_details": null,
+          "reasoning_tokens": 1046,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1046
+          }
+        }
+      }
+    ],
+    "request_flags": [
+      {
+        "phase": "soak-recall-cold",
+        "seed": 80005,
+        "flags": [
+          "NOT_NATURAL_STOP",
+          "OUTPUT_CHECK_FAILED"
+        ]
+      },
+      {
+        "phase": "soak-recall-cold",
+        "seed": 80010,
+        "flags": [
+          "NOT_NATURAL_STOP",
+          "OUTPUT_CHECK_FAILED"
+        ]
+      },
+      {
+        "phase": "soak-recall-cold",
+        "seed": 80012,
+        "flags": [
+          "NOT_NATURAL_STOP",
+          "OUTPUT_CHECK_FAILED"
+        ]
+      }
+    ],
+    "recall_failures": 3,
+    "probe_drift": {
+      "samples_per_end": 11,
+      "probes_without_valid_rate": 0,
+      "first_tps": 241.15397574503623,
+      "last_tps": 241.14729822881614,
+      "change_percent": -0.0027689845043865624,
+      "identical_outputs": true,
+      "attribution": "matched deterministic outputs",
+      "all_probe_flags": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    "passed": false
+  },
+  "official": {
+    "waves": [
+      {
+        "wave": 1,
+        "passed": true,
+        "exit_code": 0,
+        "proof": {
+          "at": "2026-11-23",
+          "on": "owner",
+          "gpu": "NVIDIA GeForce RTX 5090",
+          "launch_sha256": "f51745e81ccacdc701bcb9b9c8de7c3b1cd7282c19c5cde471ef7dde02d481d9",
+          "gates": "load chat reasoning tools context speed",
+          "tps": 310.0,
+          "prefill": 8669,
+          "served": "Inkling-2-Mini"
+        }
+      },
+      {
+        "wave": 2,
+        "passed": true,
+        "exit_code": 0,
+        "proof": {
+          "at": "2026-11-23",
+          "on": "owner",
+          "gpu": "NVIDIA GeForce RTX 5090",
+          "launch_sha256": "f51745e81ccacdc701bcb9b9c8de7c3b1cd7282c19c5cde471ef7dde02d481d9",
+          "gates": "load chat reasoning tools context speed",
+          "tps": 163.8,
+          "prefill": 10685,
+          "served": "Inkling-2-Mini"
+        }
+      }
+    ],
+    "environment_before": {
+      "profile": "performance",
+      "governors": [
+        "performance"
+      ],
+      "power_limit_w": 575.0,
+      "display_helpers": [
+        "ChatGPT",
+        "t3code"
+      ],
+      "unknown_compute_pids": [],
+      "ac": true,
+      "load_per_cpu": 0.050201416015625
+    },
+    "startup_seconds": 126.6425886079669,
+    "environment_after": {
+      "profile": "performance",
+      "governors": [
+        "performance"
+      ],
+      "power_limit_w": 575.0,
+      "display_helpers": [
+        "ChatGPT",
+        "t3code"
+      ],
+      "unknown_compute_pids": [],
+      "ac": true,
+      "load_per_cpu": 0.034393310546875
+    },
+    "environment_valid": true,
+    "completed": true,
+    "memory_cap_tripped": false,
+    "watch_error": null,
+    "restored": true,
+    "qualified": true
+  },
+  "retrieval": {
+    "all_cases": 42,
+    "passed": 39,
+    "initial_cases": [
+      {
+        "size": 65536,
+        "seed": 72001,
+        "label": "cold",
+        "passed": true,
+        "seconds": 5.6792797413654625,
+        "finish": "stop"
+      },
+      {
+        "size": 65536,
+        "seed": 72001,
+        "label": "warm",
+        "passed": true,
+        "seconds": 1.180138607043773,
+        "finish": "stop"
+      },
+      {
+        "size": 65536,
+        "seed": 72002,
+        "label": "cold",
+        "passed": true,
+        "seconds": 334.0690852771513,
+        "finish": "stop"
+      },
+      {
+        "size": 65536,
+        "seed": 72002,
+        "label": "warm",
+        "passed": true,
+        "seconds": 6.805153780151159,
+        "finish": "stop"
+      },
+      {
+        "size": 126000,
+        "seed": 72001,
+        "label": "cold",
+        "passed": true,
+        "seconds": 12.767517257016152,
+        "finish": "stop"
+      },
+      {
+        "size": 126000,
+        "seed": 72001,
+        "label": "warm",
+        "passed": true,
+        "seconds": 3.2682379679754376,
+        "finish": "stop"
+      },
+      {
+        "size": 126000,
+        "seed": 72002,
+        "label": "cold",
+        "passed": true,
+        "seconds": 13.041322707664222,
+        "finish": "stop"
+      },
+      {
+        "size": 126000,
+        "seed": 72002,
+        "label": "warm",
+        "passed": true,
+        "seconds": 0.9376149219460785,
+        "finish": "stop"
+      }
+    ]
+  },
+  "qualification_panels": [
+    {
+      "target_input": 32768,
+      "n": 6,
+      "median_decode_tps": 212.07071447747495,
+      "median_ttft_seconds": 2.204768921248615,
+      "median_answer_seconds": 9.289747996954247,
+      "flags": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "target_input": 114688,
+      "n": 6,
+      "median_decode_tps": 179.5314295361805,
+      "median_ttft_seconds": 10.625175757333636,
+      "median_answer_seconds": 22.43891970673576,
+      "flags": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  ]
+}

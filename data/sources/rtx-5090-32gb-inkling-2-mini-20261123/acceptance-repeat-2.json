@@ -1,0 +1,84 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "thinkingmachines/Inkling-2-Mini@ed40e7da625f594fc9c4990f5f66be24873c22d7",
+  "engine": "sglang-inkling-2-mini-rtx5090-128k@efac853b4681",
+  "set": {},
+  "card": "rtx-5090-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 5090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "launch_sha256": "f51745e81ccacdc701bcb9b9c8de7c3b1cd7282c19c5cde471ef7dde02d481d9",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 163.8,
+  "prefill": 10685,
+  "served": "Inkling-2-Mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--speculative-algorithm",
+   "DSPARK",
+   "--speculative-draft-model-path",
+   "/root/.cache/huggingface/hub/models--thinkingmachines--Inkling-2-Mini/snapshots/ed40e7da625f594fc9c4990f5f66be24873c22d7"
+  ],
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 120,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_92c99d7ac47d41059d8c03d3",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Right now in Paris: overcast, 17°C. Code: e26f6361",
+   "code": "e26f6361",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 585
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 8.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 8.5,
+   "tokens_in_window": 1392,
+   "tokens_total": 1392,
+   "seconds_total": 8.6,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 10685,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

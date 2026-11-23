@@ -1,0 +1,27 @@
+{
+  "weights": {
+    "repo": "thinkingmachines/Inkling-2-Mini",
+    "revision": "ed40e7da625f594fc9c4990f5f66be24873c22d7"
+  },
+  "engine": {
+    "image": "lmsysorg/sglang:inkling-2-mini@sha256:efac853b46811ccb760545b7b29e7119bdf907537ccf6e863fac3011fe8b98de",
+    "reported_version": "0.0.0.dev1+inkling2",
+    "image_label_source_commit": "03fde9cc392a5f84a54a365635ffed0061cdf1b8",
+    "build_url": "https://github.com/sgl-project/sglang/actions/runs/44644189360"
+  },
+  "skill": {
+    "repository": "https://github.com/sybil-solutions/inference-optimisation-skill",
+    "commit": "fda968e7fc1996aa23c67139c755fe541c9d4be0"
+  },
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "driver": "615.78.08",
+    "reported_memory_mib": 32607,
+    "cpu": "AMD Ryzen 9 9950X3D",
+    "system_ram_gb": 128,
+    "power_limit_w": 575,
+    "power_profile": "performance",
+    "concurrency": 1
+  },
+  "scope": "Hardware, theory, exploratory and controlled tuning evidence; qualification results are reported separately."
+}

@@ -1,0 +1,12 @@
+{
+  "selected_screen": "chunk-control-a",
+  "configuration": {
+    "name": "retained-profile",
+    "cache": false,
+    "replace_args": {}
+  },
+  "cache_passed_both": false,
+  "chunk_passed": false,
+  "status": "Existing configuration retained. Extended qualification completed with semantic and context-budget failures; no newly qualified best configuration.",
+  "queue_completed": false
+}

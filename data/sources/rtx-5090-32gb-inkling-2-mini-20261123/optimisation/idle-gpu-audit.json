@@ -1,0 +1,338 @@
+[
+  {
+    "run": "cache-cold",
+    "kind": "lru",
+    "telemetry_points": 6,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-cold",
+    "kind": "tcp",
+    "telemetry_points": 7,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-cold",
+    "kind": "story",
+    "telemetry_points": 15,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-cold",
+    "kind": "database",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-cold",
+    "kind": "backup",
+    "telemetry_points": 3,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-cold",
+    "kind": "history",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-a",
+    "kind": "lru",
+    "telemetry_points": 7,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-a",
+    "kind": "tcp",
+    "telemetry_points": 6,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-a",
+    "kind": "story",
+    "telemetry_points": 9,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-a",
+    "kind": "database",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-a",
+    "kind": "backup",
+    "telemetry_points": 5,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-a",
+    "kind": "history",
+    "telemetry_points": 3,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-a",
+    "kind": "lru",
+    "telemetry_points": 8,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-a",
+    "kind": "tcp",
+    "telemetry_points": 10,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-a",
+    "kind": "story",
+    "telemetry_points": 11,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-a",
+    "kind": "database",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-a",
+    "kind": "backup",
+    "telemetry_points": 7,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-a",
+    "kind": "history",
+    "telemetry_points": 6,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-b",
+    "kind": "lru",
+    "telemetry_points": 13,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-b",
+    "kind": "tcp",
+    "telemetry_points": 8,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-b",
+    "kind": "story",
+    "telemetry_points": 12,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-b",
+    "kind": "database",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-b",
+    "kind": "backup",
+    "telemetry_points": 8,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-b",
+    "kind": "history",
+    "telemetry_points": 5,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-b",
+    "kind": "lru",
+    "telemetry_points": 7,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-b",
+    "kind": "tcp",
+    "telemetry_points": 6,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-b",
+    "kind": "story",
+    "telemetry_points": 6,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-b",
+    "kind": "database",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-b",
+    "kind": "backup",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "cache-warm-b",
+    "kind": "history",
+    "telemetry_points": 3,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-c",
+    "kind": "lru",
+    "telemetry_points": 16,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-c",
+    "kind": "tcp",
+    "telemetry_points": 8,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-c",
+    "kind": "story",
+    "telemetry_points": 11,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-c",
+    "kind": "database",
+    "telemetry_points": 3,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-c",
+    "kind": "backup",
+    "telemetry_points": 3,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "control-c",
+    "kind": "history",
+    "telemetry_points": 3,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "greedy-control-a",
+    "kind": "lru",
+    "telemetry_points": 8,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "greedy-control-a",
+    "kind": "tcp",
+    "telemetry_points": 8,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "greedy-control-a",
+    "kind": "story",
+    "telemetry_points": 111,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "greedy-control-a",
+    "kind": "database",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "greedy-control-a",
+    "kind": "backup",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "greedy-control-a",
+    "kind": "history",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "chunk-control-a",
+    "kind": "lru",
+    "telemetry_points": 7,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "chunk-control-a",
+    "kind": "tcp",
+    "telemetry_points": 14,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "chunk-control-a",
+    "kind": "story",
+    "telemetry_points": 8,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "chunk-control-a",
+    "kind": "database",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "chunk-control-a",
+    "kind": "backup",
+    "telemetry_points": 6,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  },
+  {
+    "run": "chunk-control-a",
+    "kind": "history",
+    "telemetry_points": 4,
+    "gpu_util_median": 100.0,
+    "all_idle": false
+  }
+]

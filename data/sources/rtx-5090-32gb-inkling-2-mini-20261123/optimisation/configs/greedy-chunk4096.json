@@ -1,0 +1,7 @@
+{
+  "name": "greedy-chunk4096",
+  "cache": false,
+  "replace_args": {
+    "--chunked-prefill-size": 4096
+  }
+}
