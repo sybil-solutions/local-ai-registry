@@ -831,7 +831,7 @@ def cmd_check(_):
             assert not r["proof"][0].get("reported") or r["proof"][0].get("src"), "a reported proof names its source"
             assert need <= set(r["proof"][0]["gates"].split()), "latest proof lacks a gate"
             assert f.stat().st_size <= MAX_RECIPE_BYTES, f"{f.stat().st_size} bytes"
-            rel = str(f.relative_to(RECIPES))
+            rel = f.relative_to(RECIPES).as_posix()
             low = not p.get("withdrawn") and below_kv_floor(r, launch)
             if rel in exempt:
                 assert low, f"listed in {KV_FLOOR_EXEMPT} but not below the KV floor; remove it from the list"
