@@ -1,0 +1,52 @@
+{
+ "id": "exllamav3-inkling-2-small-exl3-4.0bpw-380k-4x-rtx-pro-6000",
+ "engine": "exllamav3",
+ "about": "Inkling-2-Small EXL3 4.0 bpw on 4x RTX PRO 6000 Blackwell (one machine, 300 W cap): the owner's production launch (github.com/0xSero/inkling2-exl3, Local Studio recipe inkling-2-small); image built by sybil-solutions/local-ai-images release-image.yml (inkling2-exl3). exllamav3 1.6.6 overlay: TP4 attention + EP2xTP2 experts through the b12x fused Trellis MoE, token-sharded prefill with copy-engine collectives, DSpark speculative decoding (always on) with adaptive verify width, rotated 4-bit global KV, 16 sessions x 380K.",
+ "image": "ghcr.io/sybil-solutions/inkling2-exl3@sha256:7fc0e5f127b9e3aa79faffa40c4f39bf8d920a593d06720cf4de661551addb99",
+ "backend": "nvidia",
+ "port": 8000,
+ "entrypoint": "/opt/inkling2/scripts/entrypoint.sh",
+ "args": [
+  "serve",
+  "--served-name",
+  "inkling-2-small",
+  "--max-model-len",
+  "380000",
+  "--slots",
+  "16",
+  "--reserve-gb",
+  "2.75"
+ ],
+ "env": {
+  "MODEL_DIR": "/model",
+  "PORT": "8000",
+  "NGPU": "4",
+  "HF_HUB_OFFLINE": "1",
+  "I2_B12X": "1",
+  "I2_EP_LAYOUT": "ep2tp2",
+  "I2_DRAFT_FP8": "1",
+  "I2_PC_SHARD": "1",
+  "NCCL_CUMEM_ENABLE": "0",
+  "XDG_CACHE_HOME": "/cache",
+  "TRITON_CACHE_DIR": "/cache/triton"
+ },
+ "shm": "32g",
+ "weights": [
+  {
+   "repo": "0xSero/Inkling-2-Small-EXL3-4bpw",
+   "revision": "996dc404c1feb3abd5330af8a3c52270ffe0008d",
+   "at": "/model",
+   "layout": "dir"
+  }
+ ],
+ "ctx": 380000,
+ "seqs": 16,
+ "vision": false,
+ "cards": 4,
+ "flags": [
+  "--ipc host",
+  "--ulimit memlock=-1:-1",
+  "--ulimit stack=67108864"
+ ],
+ "source": "https://github.com/0xSero/inkling2-exl3/tree/d982916"
+}
