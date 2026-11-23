@@ -1,0 +1,59 @@
+{
+  "id": "llama.cpp-metal-ornith-1.5-35b-a3b-q4-k-m-256k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Ornith-1.5-35B-A3B (GGUF \u00b7 Q4_K_M, text only, q8_0 KV) on official llama.cpp b11671 Metal, all layers on the GPU, 256K context, one sequence",
+  "command": [
+    "llama-b11671/llama-server",
+    "-m",
+    "models/ornith-ai-Ornith-1.5-35B-A3B-GGUF-12393612/Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+    "-c",
+    "262144",
+    "-np",
+    "1",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--no-mmproj",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--alias",
+    "Ornith-1.5-35B-A3B-GGUF",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b11671/llama-b11671-bin-macos-arm64.tar.gz#sha256=0f9c093f77b9c194f2f097df6204d9f5f8758968815e7db0374e98b0485ef9df",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "ornith-ai/Ornith-1.5-35B-A3B-GGUF",
+      "revision": "12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+      "at": "models/ornith-ai-Ornith-1.5-35B-A3B-GGUF-12393612/Q4_K_M",
+      "layout": "dir",
+      "files": [
+        "Ornith-1.5-35B-Q4_K_M.gguf"
+      ]
+    }
+  ],
+  "wired_limit_reserve_mb": 4096,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}

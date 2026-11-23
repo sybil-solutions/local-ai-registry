@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "ornith-ai/Ornith-1.5-35B-A3B-GGUF@12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+  "engine": "llama.cpp-metal-ornith-1.5-35b-a3b-q4-k-m-256k@8aaeb40200ba",
+  "set": {},
+  "card": "apple-m1-max-64gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max 64GB (32-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "Apple M1 Max 64GB (32-core GPU)",
+  "launch_sha256": "69d7569680cf38daf6643440a823c24c85a3eb15596cadebe2daabaf125d21a3",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 55.1,
+  "prefill": 137,
+  "served": "Ornith-1.5-35B-A3B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 220,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "2NPElkJYjW833OrxSn5vT3hMgG5vZoWA"
+    }
+   ],
+   "reply": "Here's the current weather in **Paris**:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n- **Code:** `32c3b761`",
+   "code": "32c3b761",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 90
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 1553.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 20.0,
+   "tokens_in_window": 1100,
+   "tokens_total": 1100,
+   "seconds_total": 20.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 137,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
