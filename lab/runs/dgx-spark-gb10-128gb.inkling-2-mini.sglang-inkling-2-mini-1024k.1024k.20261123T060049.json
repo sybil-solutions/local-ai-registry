@@ -1,0 +1,84 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "thinkingmachines/Inkling-2-Mini@b85c3cfa615fc413cc9af3379f491b963f3b586a",
+  "engine": "sglang-inkling-2-mini-1024k@efac853b4681",
+  "set": {},
+  "card": "dgx-spark-gb10-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GB10"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GB10",
+  "launch_sha256": "043421bfdbf97fd0bf3fbaad8116eeacc47d87cc8071b05b063bb331decabcba",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 32.8,
+  "prefill": 684,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--speculative-algorithm",
+   "DSPARK",
+   "--speculative-draft-model-path",
+   "/model"
+  ],
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 102,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_c80f30ae888c4392bf25bc32",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is overcast with a temperature of 17°C. The code returned by the tool is: 174b05b5",
+   "code": "174b05b5",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 722
+  },
+  "context": {
+   "prompt_tokens": 741790,
+   "seconds": 1083.8,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 986,
+   "tokens_total": 4762,
+   "seconds_total": 99.7,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 684,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
