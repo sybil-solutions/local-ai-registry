@@ -1,0 +1,2 @@
+[lab 18:37:24] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 50.7 tok/s, prefill 189 tok/s; evidence lab/runs/apple-m4-max-36gb.ornith-1.5-35b-a3b.llama.cpp-metal-ornith-1.5-35b-a3b-q4-k-m-256k.256k.20261118T013724.json
+[lab 18:37:24] PASSED: wrote registry/recipes/apple/apple-m4-max-36gb/ornith-1.5-35b-a3b.llama.cpp.256k.json (514 bytes)
