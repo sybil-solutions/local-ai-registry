@@ -1,0 +1,76 @@
+{
+ "recipe": {
+  "model": "lfm2.5-24b-a2b",
+  "weights": "LiquidAI/LFM2.5-24B-A2B-FP8@f54bf39547fd5b7955abb9fe8d1b151e31fbbddb",
+  "engine": "vllm@8a69ffad015f",
+  "set": {
+   "ctx": 131072,
+   "tools": "lfm2",
+   "think": "deepseek_r1"
+  },
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Max-Q WS (300 W)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-08",
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Max-Q WS (300 W)",
+  "launch_sha256": "614988570c14a61f725a0548d416d34c8524448a91d8af729a2f137c508d3b5a",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 243.5,
+  "prefill": 10561,
+  "served": "LFM2.5-24B-A2B-FP8-f54bf395"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nRed, Yellow, Blue.",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 93,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-a2357620e8e26143",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "ris using the weather tool:\n\n**Weather in Paris:**\n- Temperature: 17°C\n- Sky condition: Overcast\n- Code: `e4b551da`\n\nThe code `e4b551da` was included in the tool's response alongside the weather data.",
+   "code": "e4b551da",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 1259
+  },
+  "context": {
+   "prompt_tokens": 91882,
+   "seconds": 8.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 18.8,
+   "tokens_in_window": 4569,
+   "tokens_total": 4569,
+   "seconds_total": 18.9,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

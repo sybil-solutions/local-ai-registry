@@ -1,0 +1,115 @@
+{
+  "processes": [
+    {
+      "pid": 146998,
+      "comm": "python3",
+      "smaps_rollup": {
+        "Rss_bytes": 2551189504,
+        "Pss_bytes": 1954880512,
+        "Shared_Clean_bytes": 906952704,
+        "Shared_Dirty_bytes": 0,
+        "Private_Clean_bytes": 9256960,
+        "Private_Dirty_bytes": 1634979840
+      },
+      "drm_clients": {
+        "720": {
+          "drm-driver": "xe",
+          "drm-client-id": "720",
+          "drm-resident-system": "0",
+          "drm-resident-gtt": "259416 KiB",
+          "drm-resident-stolen": "0"
+        },
+        "721": {
+          "drm-driver": "xe",
+          "drm-client-id": "721",
+          "drm-resident-system": "0",
+          "drm-resident-gtt": "15704 KiB",
+          "drm-resident-stolen": "0"
+        }
+      }
+    },
+    {
+      "pid": 147116,
+      "comm": "python3",
+      "smaps_rollup": {
+        "Rss_bytes": 13770752,
+        "Pss_bytes": 8648704,
+        "Shared_Clean_bytes": 6836224,
+        "Shared_Dirty_bytes": 0,
+        "Private_Clean_bytes": 102400,
+        "Private_Dirty_bytes": 6832128
+      },
+      "drm_clients": {}
+    },
+    {
+      "pid": 147117,
+      "comm": "sglang::schedul",
+      "smaps_rollup": {
+        "Rss_bytes": 5651333120,
+        "Pss_bytes": 5059407872,
+        "Shared_Clean_bytes": 898195456,
+        "Shared_Dirty_bytes": 0,
+        "Private_Clean_bytes": 200159232,
+        "Private_Dirty_bytes": 4552978432
+      },
+      "drm_clients": {
+        "740": {
+          "drm-driver": "xe",
+          "drm-client-id": "740",
+          "drm-resident-system": "0",
+          "drm-resident-gtt": "24084432 KiB",
+          "drm-resident-stolen": "0"
+        },
+        "742": {
+          "drm-driver": "xe",
+          "drm-client-id": "742",
+          "drm-resident-system": "0",
+          "drm-resident-gtt": "22532 KiB",
+          "drm-resident-stolen": "0"
+        }
+      }
+    },
+    {
+      "pid": 147118,
+      "comm": "sglang::detoken",
+      "smaps_rollup": {
+        "Rss_bytes": 1897050112,
+        "Pss_bytes": 1316271104,
+        "Shared_Clean_bytes": 875892736,
+        "Shared_Dirty_bytes": 0,
+        "Private_Clean_bytes": 1896448,
+        "Private_Dirty_bytes": 1019260928
+      },
+      "drm_clients": {
+        "738": {
+          "drm-driver": "xe",
+          "drm-client-id": "738",
+          "drm-resident-system": "0",
+          "drm-resident-gtt": "50552 KiB",
+          "drm-resident-stolen": "0"
+        },
+        "741": {
+          "drm-driver": "xe",
+          "drm-client-id": "741",
+          "drm-resident-system": "0",
+          "drm-resident-gtt": "15704 KiB",
+          "drm-resident-stolen": "0"
+        }
+      }
+    }
+  ],
+  "meminfo": {
+    "MemTotal": "65321528 kB",
+    "MemFree": "6332060 kB",
+    "MemAvailable": "21854556 kB",
+    "Cached": "18797188 kB",
+    "SwapFree": "128101440 kB",
+    "Shmem": "712452 kB"
+  },
+  "totals": {
+    "cpu_process_pss_bytes": 8339208192,
+    "unique_drm_resident_gtt_bytes": 25035100160,
+    "combined_resident_estimate_bytes": 33374308352,
+    "note": "Process PSS plus deduplicated graphics-client residency; an approximate shared-memory footprint, not a cgroup limit."
+  }
+}

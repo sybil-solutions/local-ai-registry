@@ -1,0 +1,18 @@
+{
+ "served": "models/LFM3-1.7B-MLX-4bit-91f34088",
+ "target_tokens": 222822,
+ "prompt_tokens": 222379,
+ "cached_tokens": 0,
+ "seconds": 642.4,
+ "prefill_tps": 346,
+ "server_prompt_tps": 374.4581285420781,
+ "server_decode_tps": 29.173322360775543,
+ "completion_tokens": 1367,
+ "peak_memory_gb": 5.68178658,
+ "peak_gib": 5.29,
+ "code": "62088",
+ "content": "The access code for the vault is 62088.",
+ "pass": true,
+ "finish": "stop",
+ "at": "2026-11-11T18:36:07Z"
+}

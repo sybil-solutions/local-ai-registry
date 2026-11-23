@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "bonsai-2-27b",
+  "weights": "prism-ml/Ternary-Bonsai-2-27B-gguf@6ed5e12bf84b7a63069882c91dd9e9218647d17b",
+  "engine": "llama.cpp-bonsai-2-27b-pq2-0-40k-rtx-a2000-laptop-8gb@9a646183bf0d",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-04",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "b55b3022be5c03aba3e577e4e51fe566c0bf34f57403ebd51971f24dc2524522",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 15.5,
+  "prefill": 210,
+  "served": "Bonsai-2-27B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 150,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "QjLXVX5YXo2tUoGi26oiG3D8VJTQE4Bd"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C and overcast (cloudy).\n\nThe code returned by the tool is: `cbcfab8d`",
+   "code": "cbcfab8d",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 349
+  },
+  "context": {
+   "prompt_tokens": 32486,
+   "seconds": 154.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.1,
+   "tokens_in_window": 465,
+   "tokens_total": 16847,
+   "seconds_total": 1230.2,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

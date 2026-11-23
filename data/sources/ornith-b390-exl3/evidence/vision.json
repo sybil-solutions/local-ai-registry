@@ -1,0 +1,40 @@
+{
+  "id": "1a7132f7a14042e2a12bcd8220b278b1",
+  "object": "chat.completion",
+  "created": 1794850985,
+  "model": "ornith-1.5-35b-a3b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "\n\nred",
+        "reasoning_content": "The user wants me to identify the solid color in the image. Looking at the image, it's a solid red color. The answer should be one color word: \"red\".\n",
+        "tool_calls": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop",
+      "matched_stop": 248046
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 89,
+    "total_tokens": 130,
+    "completion_tokens": 41,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "image_tokens": 64
+    },
+    "reasoning_tokens": 38
+  },
+  "metadata": {
+    "weight_version": "default",
+    "weight_versions": [
+      {
+        "version": "default",
+        "start": 0,
+        "end": 41
+      }
+    ]
+  }
+}

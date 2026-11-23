@@ -1,0 +1,7 @@
+35ca2d4d54f34d21f2dadf6252667aa03ad37899a69e3a5aafa37af364d33031
+Fresh source-built container started
+Fresh source-built server ready; checking image input without an output cap
+Vision passed; running the unmodified Lab six-gate acceptance
+[lab 17:49:13] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 41.0 tok/s, prefill 667 tok/s; evidence lab/runs/intel-arc-b390-64gb.ornith-1.5-35b-a3b.sglang-ornith-1.5-35b-a3b-exl3-4bpw-fp8-mtp-256k-b390.256k.20261116T174913.json
+[lab 17:49:13] PASSED: wrote registry/recipes/intel/intel-arc-b390-64gb/ornith-1.5-35b-a3b.sglang.256k.json (594 bytes)
+Lab exited 0

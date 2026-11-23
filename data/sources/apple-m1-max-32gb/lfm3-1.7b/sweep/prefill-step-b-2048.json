@@ -1,0 +1,181 @@
+{
+ "label": "step2-b-2048-8bit",
+ "served": "models/LFM3-1.7B-MLX-8bit-4d6d94c9",
+ "thinking": false,
+ "started": "2026-11-11T19:48:15Z",
+ "rows": [
+  {
+   "context": "8k",
+   "context_tokens": 8192,
+   "concurrency": 1,
+   "prefill_tps": 1213.1,
+   "decode_total_tps": null,
+   "decode_per_stream_median": null,
+   "peak_memory_gb": 2.919488092,
+   "flags": [],
+   "notes": [],
+   "load_1m": [
+    3.7,
+    3.5
+   ],
+   "waves": [
+    {
+     "load_1m": 3.5,
+     "flags": [],
+     "streams": [
+      {
+       "prompt_tokens": 8209,
+       "completion_tokens": 46,
+       "ttft_s": 7.125,
+       "decode_s": 0.44,
+       "decode_tps": 102.16,
+       "finish": "stop",
+       "thinking_chars": 0,
+       "peak_memory_gb": 2.919435866,
+       "server_prompt_tps": 1163.9891271102679,
+       "server_decode_tps": 98.48687675228817
+      }
+     ],
+     "prefill_tps": 1152.1,
+     "decode_per_stream": [],
+     "decode_total_tps": null,
+     "peak_memory_gb": 2.919435866,
+     "warmup": true
+    },
+    {
+     "load_1m": 3.7,
+     "flags": [],
+     "streams": [
+      {
+       "prompt_tokens": 8215,
+       "completion_tokens": 54,
+       "ttft_s": 6.761,
+       "decode_s": 0.54,
+       "decode_tps": 98.12,
+       "finish": "stop",
+       "thinking_chars": 0,
+       "peak_memory_gb": 2.919488092,
+       "server_prompt_tps": 1222.5850069687292,
+       "server_decode_tps": 95.40352994193748
+      }
+     ],
+     "prefill_tps": 1215.1,
+     "decode_per_stream": [],
+     "decode_total_tps": null,
+     "peak_memory_gb": 2.919488092,
+     "warmup": false
+    },
+    {
+     "load_1m": 3.5,
+     "flags": [],
+     "streams": [
+      {
+       "prompt_tokens": 8209,
+       "completion_tokens": 52,
+       "ttft_s": 6.778,
+       "decode_s": 0.526,
+       "decode_tps": 96.88,
+       "finish": "stop",
+       "thinking_chars": 0,
+       "peak_memory_gb": 2.919488092,
+       "server_prompt_tps": 1217.3075735944935,
+       "server_decode_tps": 94.07907512453737
+      }
+     ],
+     "prefill_tps": 1211.1,
+     "decode_per_stream": [],
+     "decode_total_tps": null,
+     "peak_memory_gb": 2.919488092,
+     "warmup": false
+    }
+   ]
+  },
+  {
+   "context": "32k",
+   "context_tokens": 32768,
+   "concurrency": 1,
+   "prefill_tps": 1020.0,
+   "decode_total_tps": null,
+   "decode_per_stream_median": null,
+   "peak_memory_gb": 3.387804194,
+   "flags": [],
+   "notes": [],
+   "load_1m": [
+    4.8,
+    6.2
+   ],
+   "waves": [
+    {
+     "load_1m": 3.4,
+     "flags": [],
+     "streams": [
+      {
+       "prompt_tokens": 32753,
+       "completion_tokens": 27,
+       "ttft_s": 32.84,
+       "decode_s": 0.305,
+       "decode_tps": 85.33,
+       "finish": "stop",
+       "thinking_chars": 0,
+       "peak_memory_gb": 3.387165218,
+       "server_prompt_tps": 1000.7455113478089,
+       "server_decode_tps": 79.31678740492045
+      }
+     ],
+     "prefill_tps": 997.4,
+     "decode_per_stream": [],
+     "decode_total_tps": null,
+     "peak_memory_gb": 3.387165218,
+     "warmup": true
+    },
+    {
+     "load_1m": 4.8,
+     "flags": [],
+     "streams": [
+      {
+       "prompt_tokens": 32772,
+       "completion_tokens": 27,
+       "ttft_s": 31.089,
+       "decode_s": 0.303,
+       "decode_tps": 85.79,
+       "finish": "stop",
+       "thinking_chars": 0,
+       "peak_memory_gb": 3.387165218,
+       "server_prompt_tps": 1057.7889942852717,
+       "server_decode_tps": 80.97968826785734
+      }
+     ],
+     "prefill_tps": 1054.1,
+     "decode_per_stream": [],
+     "decode_total_tps": null,
+     "peak_memory_gb": 3.387165218,
+     "warmup": false
+    },
+    {
+     "load_1m": 6.2,
+     "flags": [],
+     "streams": [
+      {
+       "prompt_tokens": 32756,
+       "completion_tokens": 30,
+       "ttft_s": 33.226,
+       "decode_s": 0.367,
+       "decode_tps": 79.1,
+       "finish": "stop",
+       "thinking_chars": 0,
+       "peak_memory_gb": 3.387804194,
+       "server_prompt_tps": 988.9298338405723,
+       "server_decode_tps": 75.36822425148272
+      }
+     ],
+     "prefill_tps": 985.9,
+     "decode_per_stream": [],
+     "decode_total_tps": null,
+     "peak_memory_gb": 3.387804194,
+     "warmup": false
+    }
+   ]
+  }
+ ],
+ "finished": "2026-11-11T19:50:17Z"
+}

@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "nanbeige4.2-3b",
+  "weights": "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF@17562eefe9752007209148d5f7a6e275fc8d8077",
+  "engine": "llama.cpp-nanbeige4.2-3b-q2-k-fit-128k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-07",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "2824c53ce0a89f7362ddc57326cc30940df6713aa11cbd31f732538905127b31",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 23.3,
+  "prefill": 142,
+  "served": "Nanbeige4.2-3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "The three primary colors, based on traditional art and color theory (where primary colors cannot be created by mixing other colors), are:\n\n**red, blue, yellow**\n\n⚠️ *Note:* Context matters—this answer reflects the most widely accepted definition in art/education contexts. In other fields:\n- **Light/technology (RGB):** primary colors are *red, green, blue*\n- **Printing (CMYK):** primary colors are *cyan, magenta, yellow*\n\nIf your context specifies a different model (e.g., digital design or printing), clarify for a tailored response! For general purposes, **red, blue, yellow** is the standard answer.",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 598,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "P4E8g99E707clIX35I6fA0tVkZxMBsW8"
+    }
+   ],
+   "reply": " temperature is **17°C** with an **overcast sky** (cloudy/grey conditions). The weather code `e22d1f9c` corresponds to a cloudy, overcast day.\n\nWould you like more details or weather for another city?",
+   "code": "e22d1f9c",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 98
+  },
+  "context": {
+   "prompt_tokens": 106277,
+   "seconds": 748.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 699,
+   "tokens_total": 3264,
+   "seconds_total": 155.3,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

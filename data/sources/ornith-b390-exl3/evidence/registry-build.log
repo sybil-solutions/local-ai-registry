@@ -1,0 +1,92 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.06kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
+#2 DONE 0.8s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
+#4 resolve docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36 0.0s done
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 1.97kB done
+#5 DONE 0.0s
+
+#6 [2/9] RUN git init -q /opt/trellis-serve  && cd /opt/trellis-serve  && git fetch -q --depth 1 https://github.com/sybil-solutions/trellis-serve.git "0fab6452b12a7e3f7a4dddf7c70f9dd7b5f0e7ab"  && git checkout -q --detach FETCH_HEAD  && test "$(git rev-parse HEAD)" = "0fab6452b12a7e3f7a4dddf7c70f9dd7b5f0e7ab"
+#6 DONE 1.1s
+
+#7 [3/9] RUN pip install --no-deps onednn==2026.0.2 onednn-devel==2026.0.2
+#7 0.836 Collecting onednn==2026.0.2
+#7 1.074   Downloading onednn-2026.0.2-py2.py3-none-manylinux_2_28_x86_64.whl.metadata (942 bytes)
+#7 1.170 Collecting onednn-devel==2026.0.2
+#7 1.258   Downloading onednn_devel-2026.0.2-py2.py3-none-manylinux_2_28_x86_64.whl.metadata (920 bytes)
+#7 1.282 Downloading onednn-2026.0.2-py2.py3-none-manylinux_2_28_x86_64.whl (93.2 MB)
+#7 59.97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 93.2/93.2 MB 1.7 MB/s  0:00:58
+#7 61.56 Downloading onednn_devel-2026.0.2-py2.py3-none-manylinux_2_28_x86_64.whl (194 kB)
+#7 61.70 Installing collected packages: onednn-devel, onednn
+#7 62.47 
+#7 62.47 Successfully installed onednn-2026.0.2 onednn-devel-2026.0.2
+#7 DONE 62.5s
+
+#8 [4/9] RUN pip install --no-deps --no-build-isolation -e /opt/trellis-serve/core -e /opt/trellis-serve/xpu
+#8 0.295 Obtaining file:///opt/trellis-serve/core
+#8 0.295   Checking if build backend supports build_editable: started
+#8 0.396   Checking if build backend supports build_editable: finished with status 'done'
+#8 0.396   Preparing editable metadata (pyproject.toml): started
+#8 0.574   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#8 0.578 Obtaining file:///opt/trellis-serve/xpu
+#8 0.578   Checking if build backend supports build_editable: started
+#8 0.658   Checking if build backend supports build_editable: finished with status 'done'
+#8 0.659   Preparing editable metadata (pyproject.toml): started
+#8 0.822   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#8 0.827 Building wheels for collected packages: trellis-core, exl3xpu
+#8 0.827   Building editable for trellis-core (pyproject.toml): started
+#8 1.022   Building editable for trellis-core (pyproject.toml): finished with status 'done'
+#8 1.022   Created wheel for trellis-core: filename=trellis_core-0.1.0-0.editable-py3-none-any.whl size=1368 sha256=84dfd821bb167f89ac9fa5528cf59df6a0df31d03260037f13d66f974a974ded
+#8 1.022   Stored in directory: /tmp/pip-ephem-wheel-cache-ob8hh8l8/wheels/ba/49/ac/18af0a10119c6ce6d395cfe5d915287e04d2b6cb5ae9372102
+#8 1.023   Building editable for exl3xpu (pyproject.toml): started
+#8 1.218   Building editable for exl3xpu (pyproject.toml): finished with status 'done'
+#8 1.219   Created wheel for exl3xpu: filename=exl3xpu-0.1.0-0.editable-py3-none-any.whl size=2993 sha256=775cd95562bd2df1d319feeb6f2d50f0cdcb02cfd40169c124a53ab8b3a04386
+#8 1.219   Stored in directory: /tmp/pip-ephem-wheel-cache-ob8hh8l8/wheels/2f/d9/77/ef43780b442bb9205b16e7bb9516382c6f2471ba2f5e3ed288
+#8 1.220 Successfully built trellis-core exl3xpu
+#8 1.229 Installing collected packages: trellis-core, exl3xpu
+#8 1.238 
+#8 1.249 Successfully installed exl3xpu-0.1.0 trellis-core-0.1.0
+#8 DONE 1.3s
+
+#9 [5/9] WORKDIR /opt/trellis-serve/xpu
+#9 DONE 0.0s
+
+#10 [6/9] RUN rm -f exl3xpu/_C.so exl3xpu/_C_dnnl.so exl3xpu/_moe.so  && EXL3_MOE_FLAGS="-DEXL3_MOE_PREFILL_MB=64" bash scripts/build_moe.sh  && EXL3_NO_DNNL=1 bash scripts/build_ext.sh  && EXL3_DNNL_DIR=/opt/venv EXL3_OUT=exl3xpu/_C_dnnl.so bash scripts/build_ext.sh  && test -s exl3xpu/_C.so && test -s exl3xpu/_C_dnnl.so && test -s exl3xpu/_moe.so  && python3 -c "import torch; torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_C.so'); torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_moe.so')"  && python3 -c "import torch; torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_C_dnnl.so')"
+#10 25.63 -rwxr-xr-x 1 root root 3048864 Nov 16 17:39 exl3xpu/_moe.so
+#10 56.40 -rwxr-xr-x 1 root root 3336488 Nov 16 17:40 exl3xpu/_C.so
+#10 89.34 -rwxr-xr-x 1 root root 3447032 Nov 16 17:40 exl3xpu/_C_dnnl.so
+#10 DONE 91.2s
+
+#11 [7/9] COPY data/sources/ornith-b390-exl3/draft-vocab-256.json /opt/ornith/dv256.json
+#11 DONE 0.0s
+
+#12 [8/9] COPY data/sources/ornith-b390-exl3/entrypoint.sh /opt/ornith-entrypoint.sh
+#12 DONE 0.0s
+
+#13 [9/9] RUN chmod 0755 /opt/ornith-entrypoint.sh
+#13 DONE 0.1s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 4.4s done
+#14 exporting manifest sha256:b9784bdcfa79c369d6b1d9be6324a1470f5621d090484bf262d66860c33bad34 done
+#14 exporting config sha256:f1d5d1fccf847545f48736329c4ae5f844c9b573a37a752e707cb1431365b1c6 done
+#14 exporting attestation manifest sha256:0641c34ac33e879efb24c528cb5e1dce7786dff9f92f287dfd4d577665a7ae6c done
+#14 exporting manifest list sha256:1af418e9583c9257e3e0bf193944b9f489cd3f9ec9db278b6212c513190139e1 done
+#14 naming to docker.io/library/ornith-b390-recipe:registry done
+#14 unpacking to docker.io/library/ornith-b390-recipe:registry
+#14 unpacking to docker.io/library/ornith-b390-recipe:registry 1.2s done
+#14 DONE 5.6s

@@ -1,0 +1,60 @@
+{
+ "recipe": {
+  "model": "lfm2.5-8b-a1b",
+  "weights": "LiquidAI/LFM2.5-8B-A1B-GGUF@49c14831707011e64d70b2ebd8462ba08d608434",
+  "engine": "llama.cpp-lfm2.5-8b-a1b-q4-k-m-128k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-05",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "e5d66e6205054548776a1512f36b93c11dfdde865565518312f4e5a62d240748",
+  "gates": "load chat reasoning context speed",
+  "tps": 102.3,
+  "prefill": 306,
+  "served": "LFM2.5-8B-A1B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": false,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\nred, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 456,
+   "content": "\n391"
+  },
+  "tools": {
+   "call": [],
+   "reply": "",
+   "code": ""
+  },
+  "context": {
+   "prompt_tokens": 89701,
+   "seconds": 293.1,
+   "content": "\n\\boxed{58213}"
+  },
+  "speed": {
+   "window_s": 13.8,
+   "tokens_in_window": 1409,
+   "tokens_total": 1409,
+   "seconds_total": 13.9,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

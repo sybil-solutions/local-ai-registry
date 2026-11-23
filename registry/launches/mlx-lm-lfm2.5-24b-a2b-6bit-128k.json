@@ -1,0 +1,52 @@
+{
+  "id": "mlx-lm-lfm2.5-24b-a2b-6bit-128k",
+  "kind": "host",
+  "engine": "mlx-lm",
+  "about": "LFM2.5-24B-A2B (MLX · 6-bit) on mlx-lm's server at the model's native 128K window, one request at a time",
+  "command": [
+    "python3",
+    "lfm25_mlx_serve.py",
+    "--model",
+    "models/LFM2.5-24B-A2B-MLX-6bit-1deec53e",
+    "--max-tokens",
+    "131072",
+    "--decode-concurrency",
+    "1",
+    "--prompt-concurrency",
+    "1",
+    "--prompt-cache-size",
+    "1",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "python3 -m pip install mlx-lm==0.32.2 mlx==0.32.4 transformers==5.22.1 huggingface_hub==2.4.0 (macOS on Apple silicon, Python >= 3.10)",
+  "pip": [
+    "mlx-lm==0.32.2",
+    "mlx==0.32.4",
+    "transformers==5.22.1",
+    "huggingface_hub==2.4.0"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM2.5-24B-A2B-MLX-6bit",
+      "revision": "1deec53eb49571e21cdcbf82fd5839248f07ed88",
+      "at": "models/LFM2.5-24B-A2B-MLX-6bit-1deec53e",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "lfm25_mlx_serve.py",
+    "file": "mlx-lm-lfm2.5-serve.py"
+  },
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}

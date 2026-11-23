@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "nemotron-3.5-lightning-30b-a3b",
+  "weights": "unsloth/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF@f2d3fe3694501008786e81e5f20360cbf715496a",
+  "engine": "llama.cpp-nemotron-3.5-lightning-30b-a3b-ud-q3-k-xl-autofit-768k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-05",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "645ef0ad90c2569afeeb97c9741739a833a59bef0959cd2d96b279032ee23e58",
+  "gates": "load chat reasoning tools speed",
+  "tps": 23.8,
+  "prefill": 264,
+  "served": "Nemotron-3.5-Lightning-30B-A3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": false,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 547,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "Omti9GWt9Wi4pcZFIe72gQrMw15UkwyP"
+    }
+   ],
+   "reply": "7b8d8056",
+   "code": "7b8d8056",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 222
+  },
+  "context": {
+   "prompt_tokens": 660734,
+   "seconds": 2506.0,
+   "content": ""
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 713,
+   "tokens_total": 2791,
+   "seconds_total": 118.5,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

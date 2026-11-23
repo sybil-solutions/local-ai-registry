@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "lfm2.5-8b-a1b",
+  "weights": "LiquidAI/LFM2.5-8B-A1B-GGUF@49c14831707011e64d70b2ebd8462ba08d608434",
+  "engine": "llama.cpp-lfm2.5-8b-a1b-q4-0-128k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-06",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "683dbf11b8e29d15e8f6ed75cddb5fbfa6a5cf2a6ee51438b3dfe2e8ec61822f",
+  "gates": "load chat reasoning tools speed",
+  "tps": 116.5,
+  "prefill": 1954,
+  "served": "LFM2.5-8B-A1B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": false,
+   "speed": true
+  },
+  "chat": {
+   "content": "\nred, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 283,
+   "content": "\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "6Sd3RViq5hDn90UWkFlmHCioxPLeS0Ru"
+    }
+   ],
+   "reply": "The current weather in Paris is overcast with a temperature of 17°C. The weather code is `fc5e0790`.",
+   "code": "fc5e0790",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 0
+  },
+  "context": {
+   "prompt_tokens": 89701,
+   "seconds": 45.9,
+   "content": "\nI’m sorry, but I don’t have enough information to determine the vault’s access code."
+  },
+  "speed": {
+   "window_s": 9.5,
+   "tokens_in_window": 1108,
+   "tokens_total": 1108,
+   "seconds_total": 9.6,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

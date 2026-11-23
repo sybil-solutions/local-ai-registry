@@ -1,0 +1,109 @@
+{
+  "id": "llama.cpp-bonsai-2-9b-q2-0-256k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Official Bonsai 2 9B Q2_0 packing on one 8 GB laptop card with its full 262,144-token context: upstream llama.cpp b11681 (the Bonsai Hadamard runtime), q4_0 KV (only 8 of 32 layers hold KV), batch 2048 / ubatch 512, everything on the GPU. In 30 s runs of the lab's speed prompt on an RTX A2000 8GB Laptop GPU at 35 W: 32K f16 (the cuda12 launch) 45.0, 64K f16 45.8, 128K q8_0 45.3, 256K q8_0 45.3 (7,867 MiB, too close to the card's 7,893), 256K q4_0 45.4 tok/s at 5,819 MiB. At 256K q4_0 with a 64K-token prompt, ubatch 128 / 256 / 512 prefilled 639 / 676 / 714 tok/s at the same decode speed (6,053 MiB with ubatch 512). Lab run with this launch (all six gates): 44.9 tok/s decode, 459 tok/s prefill, MemAvailable drop 3.96 GB (1 GB in the speed-only runs). An earlier lab during tuning ran 45.3 tok/s and 391 tok/s prefill. Generation and thinking are uncapped.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Ternary-Bonsai-2-9B-Q2_0.gguf",
+    "--alias",
+    "Bonsai-2-9B",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--n-gpu-layers",
+    "999",
+    "--split-mode",
+    "none",
+    "--ctx-size",
+    "262144",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--jinja",
+    "--metrics",
+    "--no-mmproj",
+    "--fit",
+    "off",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "512",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0",
+    "--presence-penalty",
+    "1.0",
+    "--repeat-penalty",
+    "1.0",
+    "--repeat-last-n",
+    "64"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "prism-ml/Ternary-Bonsai-2-9B-gguf",
+      "revision": "5b2abb02362efbed46bbe204014b02837778b2c2",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Ternary-Bonsai-2-9B-Q2_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Bonsai-2-9B",
+    "family": "qwen",
+    "format": "GGUF Q2_0",
+    "engine": "llama.cpp",
+    "servedName": "Bonsai-2-9B",
+    "sizeGb": 2.556640128,
+    "minDriver": "570.124.06",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 262144,
+      "kvTokens": 262144
+    },
+    "asset": null,
+    "weights": [
+      {
+        "dir": "",
+        "files": "Ternary-Bonsai-2-9B-Q2_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 2.556640128
+      }
+    ]
+  },
+  "ids": {},
+  "needs": {
+    "host_ram_gb": 4,
+    "disk_gb": 2.56
+  }
+}

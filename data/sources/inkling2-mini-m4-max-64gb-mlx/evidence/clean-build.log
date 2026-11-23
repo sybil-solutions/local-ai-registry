@@ -1,0 +1,64 @@
+   Updating https://github.com/ml-explore/mlx-lm.git (0c4c99192230f1943dd468d297f0b8a64ae7b7c2)
+    Updated https://github.com/ml-explore/mlx-lm.git (0c4c99192230f1943dd468d297f0b8a64ae7b7c2)
+Resolved 39 packages in 3.44s
+Downloading sentencepiece (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading transformers (12.7MiB)
+Downloading pydantic-core (2.0MiB)
+Downloading pillow (4.6MiB)
+Downloading numpy (5.3MiB)
+Downloading tokenizers (3.0MiB)
+Downloading hf-xet (3.4MiB)
+Downloading mlx-metal (74.5MiB)
+   Building mlx-lm @ git+https://github.com/ml-explore/mlx-lm.git@0c4c99192230f1943dd468d297f0b8a64ae7b7c2
+ Downloaded sentencepiece
+ Downloaded pygments
+ Downloaded pydantic-core
+ Downloaded tokenizers
+ Downloaded hf-xet
+ Downloaded pillow
+ Downloaded numpy
+ Downloaded transformers
+      Built mlx-lm @ git+https://github.com/ml-explore/mlx-lm.git@0c4c99192230f1943dd468d297f0b8a64ae7b7c2
+ Downloaded mlx-metal
+Prepared 38 packages in 2.06s
+Installed 39 packages in 93ms
+ + annotated-doc==0.0.7
+ + annotated-types==0.8.0
+ + anyio==4.16.0
+ + click==8.5.1
+ + filelock==4.2.12
+ + fsspec==2026.9.0
+ + h11==0.16.0
+ + hf-xet==1.8.0
+ + httpcore2==2.16.2
+ + httpx2==2.16.2
+ + huggingface-hub==2.4.0
+ + idna==3.20
+ + jinja2==3.1.6
+ + markdown-it-py==4.3.0
+ + markupsafe==3.0.4
+ + mdurl==0.1.2
+ + mlx==0.32.4
+ + mlx-lm==0.32.3.dev26+g0c4c99192 (from git+https://github.com/ml-explore/mlx-lm.git@0c4c99192230f1943dd468d297f0b8a64ae7b7c2)
+ + mlx-metal==0.32.4
+ + numpy==2.5.5
+ + packaging==26.3
+ + pillow==13.0.0
+ + protobuf==7.36.2
+ + pydantic==2.14.4
+ + pydantic-core==2.50.5
+ + pygments==2.21.0
+ + pyyaml==6.0.4
+ + regex==2026.11.19
+ + rich==15.0.0
+ + safetensors==0.8.0
+ + sentencepiece==0.2.3
+ + shellingham==1.5.4
+ + tokenizers==0.23.3
+ + tqdm==4.70.1
+ + transformers==5.23.0
+ + truststore==0.10.5
+ + typer==0.29.2
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.5

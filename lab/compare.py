@@ -198,7 +198,9 @@ def main():
     if problems:
         raise SystemExit("not a controlled comparison: " + "; ".join(problems))
     tok = tokenizer(ra["weights"])
-    plan = workload([json.loads(l) for l in open(a.replay)], tok, la["ctx"], levels, f"{ra['card']}.{ra['model']}")
+    with open(a.replay, encoding="utf-8") as replay:
+        corpus = [json.loads(line) for line in replay]
+    plan = workload(corpus, tok, la["ctx"], levels, f"{ra['card']}.{ra['model']}")
     args = argparse.Namespace(on="vast", min_inet=a.min_inet, min_cuda=max(la.get("min_cuda") or 12.9, lb.get("min_cuda") or 12.9),
                               max_price=a.max_price, disk=a.disk, proxy_gpu=None, proxy_vram=0, gpu=None, any_host=a.any_host, machine=None)
     samples, hosts = {}, {}

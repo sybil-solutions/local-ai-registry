@@ -11,7 +11,7 @@
     "gen:types": "tsx scripts/generate-types.ts"
   },
   "dependencies": {
-    "next": "16.3.3",
+    "next": "16.4.1",
     "react": "19.2.1",
     "react-dom": "19.2.1"
   },

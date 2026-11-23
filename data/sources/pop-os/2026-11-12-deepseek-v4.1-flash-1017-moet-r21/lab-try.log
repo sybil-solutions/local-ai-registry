@@ -1,0 +1,2 @@
+[lab 13:56:16] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 407.7 tok/s, prefill 13533 tok/s; evidence lab/runs/rtx-pro-6000-blackwell-96gb.deepseek-v4.1-flash.vllm-moet-deepseek-v4.1-flash-1017-512k-tp4-r21.512k.20261112T185616.json
+[lab 13:56:16] PASSED: wrote registry/recipes/nvidia/rtx-pro-6000-blackwell-96gb/deepseek-v4.1-flash.vllm.512k.4x.moet-r21.json (582 bytes)

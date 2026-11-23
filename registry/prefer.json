@@ -146,6 +146,11 @@
   "at": "2026-09-27",
   "why": "owner decision: Qwen runs on SGLang with the 0xSero EXL3 kernels (sglang-exl3-multiarch), 262K context, fp8 KV; each card's recipe is the highest bit rate that passed the six gates (lab/runs/sweep/)"
  },
+ "rtx-pro-6000-blackwell-96gb/deepseek-v4.1-flash": {
+  "recipe": "deepseek-v4.1-flash.vllm.512k.4x.moet-r21",
+  "at": "2026-11-12",
+  "why": "owner decision: the configuration served on the reference host (vLLM-Moet r21, DSpark with 5 draft tokens, 16 sequences, engram_disk v3) is the recommended DeepSeek-V4.1-Flash recipe for four cards; it states what the host needs, which would otherwise keep it behind recipes that state nothing"
+ },
  "rtx-pro-6000-blackwell-96gb/qwen3.5-9b": {
   "engine": "sglang",
   "over": "tabbyapi",

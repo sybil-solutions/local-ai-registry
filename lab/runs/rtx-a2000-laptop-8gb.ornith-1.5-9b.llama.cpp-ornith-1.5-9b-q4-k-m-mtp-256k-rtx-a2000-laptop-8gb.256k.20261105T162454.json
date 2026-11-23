@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-9b",
+  "weights": "ornith-ai/Ornith-1.5-9B-GGUF@abdd624b12ebf020b767fff532ff44fe552b28c3",
+  "engine": "llama.cpp-ornith-1.5-9b-q4-k-m-mtp-256k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-05",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "b3f40720346992890b2a64a41b17b02dd6e857808724a914ef57770bb824e882",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 17.8,
+  "prefill": 242,
+  "served": "Ornith-1.5-9B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 163,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "le2Je0a4xAb5Yn0OE44lU4AUR5MwM1Oj"
+    }
+   ],
+   "reply": "The current weather in Paris is **17°C** and **overcast**.\n\nThe code it gives you is: **ac3cf66f**",
+   "code": "ac3cf66f",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 97
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 881.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.1,
+   "tokens_in_window": 537,
+   "tokens_total": 954,
+   "seconds_total": 55.8,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}
