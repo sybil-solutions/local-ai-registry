@@ -1,0 +1,20 @@
+{
+  "id": "radeon-890m-48gb",
+  "name": "AMD Radeon 890M",
+  "vendor": "amd",
+  "backend": "amd-vulkan",
+  "vram_gb": 48,
+  "bandwidth_gb_s": 102,
+  "match": {
+    "backend": "amd-vulkan",
+    "name": "AMD Radeon(TM) 890M Graphics",
+    "names": [
+      "890m",
+      "890mgraphics",
+      "radeon890m",
+      "gfx1150"
+    ],
+    "vramGb": 48,
+    "unifiedMemory": true
+  }
+}

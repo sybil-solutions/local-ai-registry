@@ -1,0 +1,83 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "ornith-ai/Ornith-1.5-35B-A3B-GGUF@12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+  "engine": "llama.cpp-vulkan-ornith-1.5-35b-a3b-q4-k-m-128k-radeon-890m-48gb@e541f5af9385",
+  "set": {},
+  "card": "radeon-890m-48gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "AMD Radeon 890M (GMKtec EVO-X1 Pro, Ryzen AI 9 HX 470, 64 GB LPDDR5X-6400, 48 GB UMA, Windows 11, Vulkan b12613)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "AMD Radeon 890M (GMKtec EVO-X1 Pro, Ryzen AI 9 HX 470, 64 GB LPDDR5X-6400, 48 GB UMA, Windows 11, Vulkan b12613)",
+  "launch_sha256": "ae7905a991ae6773515b6c8864e717d495080477ae452361756551cabaa2e791",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 16.5,
+  "prefill": 153,
+  "served": "Ornith-1.5-35B-A3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "3"
+  ],
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 145,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "7b6J7chiHeaYca54C58GLFF0N4SXAqz0"
+    }
+   ],
+   "reply": "Here's the current weather in **Paris**:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n- **Code:** `37e56f3e`\n\nAs requested, the code returned by the tool is: **37e56f3e**",
+   "code": "37e56f3e",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 86
+  },
+  "context": {
+   "prompt_tokens": 106252,
+   "seconds": 692.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 495,
+   "tokens_total": 1052,
+   "seconds_total": 74.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 153,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

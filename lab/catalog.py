@@ -43,11 +43,11 @@ def build(today=None):
         old = 2 if r["proof"][0].get("reported") else 1 if r["proof"][0].get("legacy") else 0
         if old != 1 and (not m or m["family"] not in fam or (today - dt.date.fromisoformat(m["released"])).days > meta["max_age_days"]):
             continue
-        key = str(f.relative_to(lab.RECIPES).with_suffix(""))
+        key = f.relative_to(lab.RECIPES).with_suffix("").as_posix()
         launch = lab.render(r)
         if launch.get("companion"):
             continue  # a second container on a card of another kind: a registry candidate, never a one-card recipe
-        recipes[key] = {**r, "launch": launch, "profile": str(lab.profile_file(r["engine"].split("@")[0] + ".json").relative_to(ROOT))}
+        recipes[key] = {**r, "launch": launch, "profile": lab.profile_file(r["engine"].split("@")[0] + ".json").relative_to(ROOT).as_posix()}
         # a lab recipe ranks above a legacy one, and a legacy one above one reported by its publisher
         mf = (fam.get(m["family"], len(fam)), -dt.date.fromisoformat(m["released"]).toordinal()) if m else (len(fam), 0)
         gguf = r["engine"].startswith("llama") or "gguf" in r["weights"].lower()  # GGUF only where nothing else runs yet
