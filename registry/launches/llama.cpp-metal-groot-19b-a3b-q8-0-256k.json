@@ -1,0 +1,61 @@
+{
+  "id": "llama.cpp-metal-groot-19b-a3b-q8-0-256k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Groot-19B-A3B (GGUF Q8_0, text only, q8_0 KV) on official llama.cpp b12588 Metal, all layers on the GPU, 256K context, one sequence",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/bartowski-GrootTeam_Groot-19B-A3B-261023-GGUF-0025df0d/GrootTeam_Groot-19B-A3B-261023-Q8_0.gguf",
+    "-c",
+    "262144",
+    "-np",
+    "1",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--jinja",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0.0",
+    "--alias",
+    "Groot-19B-A3B",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "bartowski/GrootTeam_Groot-19B-A3B-261023-GGUF",
+      "revision": "0025df0d03fb385344394f4e5afd73ce47da0680",
+      "at": "models/bartowski-GrootTeam_Groot-19B-A3B-261023-GGUF-0025df0d",
+      "layout": "dir",
+      "files": [
+        "GrootTeam_Groot-19B-A3B-261023-Q8_0.gguf"
+      ]
+    }
+  ],
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
