@@ -1,0 +1,27 @@
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA GeForce RTX 5070 Ti, compute capability 12.0, VMM: yes, VRAM: 15839 MiB
+~ggml_backend_cuda_context: have 16 graphs
+backend CUDA0
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=-1 q4_0: nmse 2.228e-06 max_abs 5.148e-05 OK
+  hs=128 nh=24/8 kv=32768 nb=1 n_rel=1025 rand=0 mode=-1 q4_0: nmse 5.043e-06 max_abs 3.138e-05 OK
+  hs=128 nh=24/8 kv=131072 nb=1 n_rel=1025 rand=0 mode=-1 q4_0: nmse 1.515e-05 max_abs 2.575e-05 OK
+  hs=128 nh=24/8 kv=1536 nb=4 n_rel=1025 rand=0 mode=1 q4_0: nmse 1.768e-06 max_abs 2.185e-04 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=1 q4_0: nmse 1.690e-06 max_abs 1.634e-04 OK
+  hs=128 nh=24/8 kv=512 nb=77 n_rel=1025 rand=0 mode=1 q4_0: nmse 1.774e-06 max_abs 4.318e-04 OK
+  hs=128 nh=24/8 kv=1536 nb=512 n_rel=1025 rand=0 mode=2 q4_0: nmse 1.801e-06 max_abs 2.644e-04 OK
+  hs=128 nh=24/8 kv=256 nb=1 n_rel=1025 rand=0 mode=0 f16: nmse 5.627e-14 max_abs 8.941e-08 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=0 f16: nmse 2.814e-08 max_abs 2.075e-05 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=0 q8_0: nmse 4.107e-09 max_abs 1.214e-05 OK
+  hs=128 nh=24/8 kv=512 nb=3 n_rel=65 rand=1 mode=0 f16: nmse 5.936e-14 max_abs 9.686e-08 OK
+  hs=128 nh=24/8 kv=512 nb=64 n_rel=1025 rand=0 mode=0 f16: nmse 2.605e-07 max_abs 1.718e-04 OK
+  hs=128 nh=24/8 kv=512 nb=77 n_rel=1025 rand=0 mode=0 q8_0: nmse 1.790e-06 max_abs 4.018e-04 OK
+  hs=128 nh=24/8 kv=1536 nb=512 n_rel=1025 rand=0 mode=0 f16: nmse 2.619e-07 max_abs 1.078e-04 OK
+  hs=128 nh=24/6 kv=512 nb=32 n_rel=129 rand=1 mode=0 f16: nmse 2.655e-07 max_abs 1.681e-04 OK
+  hs=128 nh=24/3 kv=512 nb=8 n_rel=129 rand=0 mode=0 f16: nmse 2.202e-07 max_abs 2.679e-04 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=1 q8_0: nmse 2.472e-09 max_abs 8.814e-06 OK
+  hs=128 nh=24/8 kv=4096 nb=1 n_rel=1025 rand=0 mode=2 f16: nmse 3.077e-08 max_abs 2.041e-05 OK
+  hs=128 nh=24/8 kv=512 nb=3 n_rel=65 rand=0 mode=1 f16: nmse 3.959e-14 max_abs 1.490e-07 OK
+  hs=128 nh=24/8 kv=512 nb=77 n_rel=1025 rand=0 mode=1 q8_0: nmse 1.781e-06 max_abs 4.825e-04 OK
+  hs=128 nh=24/8 kv=1536 nb=512 n_rel=1025 rand=0 mode=2 f16: nmse 2.649e-07 max_abs 1.025e-04 OK
+  hs=128 nh=24/6 kv=512 nb=32 n_rel=129 rand=0 mode=1 f16: nmse 2.570e-07 max_abs 3.645e-04 OK
+22 passed, 0 failed
