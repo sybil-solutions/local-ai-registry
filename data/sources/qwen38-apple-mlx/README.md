@@ -1,7 +1,7 @@
 # Qwen3.8-27B on Apple silicon (mlx-vlm 0.7.3)
 
 > **Pre-lab evidence (2026-09-25/26).** Measured before the recipe lab existed, with an earlier version of the
-> launcher now at `registry/engines/mlx-vlm-qwen3.8-long-prefill.py`. The two memory patches (fused prefill
+> launcher now at `registry/launches/mlx-vlm-qwen3.8-long-prefill.py`. The two memory patches (fused prefill
 > attention, segmented prompt embeddings) are unchanged in the current launcher, which adds `/v1/token/encode`,
 > a served-model-only `/v1/models` and the model's sampling defaults. The recipes themselves come from
 > `lab/lab.py try` runs (see `data/lab-runs/apple-*`). This folder keeps what the lab gates do not cover:

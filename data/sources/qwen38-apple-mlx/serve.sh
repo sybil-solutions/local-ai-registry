@@ -24,7 +24,7 @@ ARGS=(--model "$TARGET_DIR" --draft-model "$DRAFT_DIR" --draft-kind mtp
       --kv-bits 4 --kv-quant-scheme uniform --kv-group-size 64
       --max-kv-size 200000 --max-num-seqs 1 --prefill-step-size 128
       --host 127.0.0.1 --port "$PORT")
-LAUNCHER=../../../registry/engines/mlx-vlm-qwen3.8-long-prefill.py
+LAUNCHER=../../../registry/launches/mlx-vlm-qwen3.8-long-prefill.py
 if [ -n "${MEMLOG:-}" ]; then
   LAUNCHER="$LAUNCHER" exec .venv/bin/python memserve.py "${ARGS[@]}"
 fi
