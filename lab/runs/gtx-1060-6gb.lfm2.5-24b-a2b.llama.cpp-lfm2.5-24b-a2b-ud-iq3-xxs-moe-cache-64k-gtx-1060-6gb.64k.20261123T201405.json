@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "lfm2.5-24b-a2b",
+  "weights": "unsloth/LFM2.5-24B-A2B-GGUF@aacc77834f6aa568c93b4dbd6d295059736be98c",
+  "engine": "llama.cpp-lfm2.5-24b-a2b-ud-iq3-xxs-moe-cache-64k-gtx-1060-6gb@f28803153f5c",
+  "set": {},
+  "card": "gtx-1060-6gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "GTX 1060 6GB"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "GTX 1060 6GB",
+  "launch_sha256": "25e4f9556b33656e04497738375c563f572b235671d11ce292b115cd12fd1ebf",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 24.7,
+  "prefill": 218,
+  "served": "LFM2.5-24B-A2B-UD-IQ3_XXS"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nRed, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 69,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "V9T7rvA5Hx06LDOholW9HS481Y0voblc"
+    }
+   ],
+   "reply": "h **overcast** skies.\n\nThe code provided by the weather service is: **98628854**\n\nThis code typically represents a specific weather condition or observation identifier from the meteorological service.",
+   "code": "98628854",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 229
+  },
+  "context": {
+   "prompt_tokens": 45462,
+   "seconds": 208.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 741,
+   "tokens_total": 8902,
+   "seconds_total": 350.6,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}
