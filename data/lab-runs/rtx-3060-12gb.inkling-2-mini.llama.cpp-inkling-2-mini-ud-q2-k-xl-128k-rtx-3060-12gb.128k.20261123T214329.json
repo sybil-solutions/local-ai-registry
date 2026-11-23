@@ -1,0 +1,69 @@
+{
+  "recipe": {
+    "model": "inkling-2-mini",
+    "weights": "unsloth/Inkling-2-Mini-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+    "engine": "llama.cpp-inkling-2-mini-ud-q2-k-xl-128k-rtx-3060-12gb@05b0827cc6df",
+    "set": {},
+    "card": "rtx-3060-12gb"
+  },
+  "where": {
+    "on": "owner",
+    "gpu": "NVIDIA GeForce RTX 3060"
+  },
+  "passed": true,
+  "proof": {
+    "at": "2026-11-23",
+    "on": "owner",
+    "gpu": "NVIDIA GeForce RTX 3060",
+    "launch_sha256": "5f059a155a90fb939416fe3d2692bbaaa0c5e45c6cc36412ca2578ef71141a1f",
+    "gates": "load chat reasoning tools context speed",
+    "tps": 45.7,
+    "prefill": 527,
+    "served": "inkling-2-mini-ud-q2-k-xl"
+  },
+  "launch_config_sha256": "a4e935205cbf3a19cd28033589e619b1f5544efe5ae62e6a936dfdc6a546e320",
+  "evidence": {
+    "ok": {
+      "load": true,
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "context": true,
+      "speed": true
+    },
+    "context": {
+      "prompt_tokens": 91888,
+      "seconds": 174.4
+    },
+    "speed": {
+      "window_s": 25.1,
+      "tokens_in_window": 1147,
+      "tokens_total": 1147,
+      "seconds_total": 25.7,
+      "counted": "tokenizer"
+    },
+    "prefill_tok_s": 527
+  },
+  "local_decode_tok_s": {
+    "baseline": [
+      22.246647538811075,
+      22.21122578260818,
+      22.263553074774954
+    ],
+    "candidate": [
+      49.81908048230623,
+      49.786797489495655
+    ]
+  },
+  "local_retrieval": [
+    {
+      "input_tokens": 65468,
+      "passed": true
+    },
+    {
+      "input_tokens": 129048,
+      "passed": true,
+      "prefix_cache_reused": true
+    }
+  ]
+}

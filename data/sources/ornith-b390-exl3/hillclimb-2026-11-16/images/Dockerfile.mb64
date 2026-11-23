@@ -1,0 +1,2 @@
+FROM ornith-b390-exl3:best
+COPY _moe.so /opt/trellis-serve/xpu/exl3xpu/_moe.so
