@@ -1,0 +1,76 @@
+{
+ "host": {
+  "kernel": "Microsoft Windows 11 Pro 10.0.26300 build 26300",
+  "cpu": "AMD Ryzen AI 9 HX 470 w/ Radeon 890M            ",
+  "cpus": 24,
+  "cores": 12,
+  "avx512": null
+ },
+ "ram": {
+  "total_gb": 59.75,
+  "available_gb": 32.41,
+  "swap_total_gb": 16.38,
+  "swap_used_gb": 3.47,
+  "modules": [
+   {
+    "capacity_gb": 17.18,
+    "speed_mt_s": 6400,
+    "part": "RS4G32LO5D8FDB-31BT "
+   },
+   {
+    "capacity_gb": 17.18,
+    "speed_mt_s": 6400,
+    "part": "RS4G32LO5D8FDB-31BT "
+   },
+   {
+    "capacity_gb": 17.18,
+    "speed_mt_s": 6400,
+    "part": "RS4G32LO5D8FDB-31BT "
+   },
+   {
+    "capacity_gb": 17.18,
+    "speed_mt_s": 6400,
+    "part": "RS4G32LO5D8FDB-31BT "
+   }
+  ]
+ },
+ "storage": {
+  "path": "D:\\work\\local-ai-890m\\run\\models",
+  "free_gb": 28.43,
+  "total_gb": 285.03,
+  "device": "D:",
+  "fstype": "ntfs",
+  "physical_disks": [],
+  "all_nvme": null
+ },
+ "gpus": [
+  {
+   "vendor": "nvidia",
+   "index": 0,
+   "name": "SudoMaker Virtual Display Adapter",
+   "driver": "1.10.9.289",
+   "vram_gb": null,
+   "vram_mib": 0,
+   "unified_memory": false
+  },
+  {
+   "vendor": "amd",
+   "index": 1,
+   "name": "AMD Radeon(TM) 890M Graphics",
+   "driver": "32.0.23027.2005",
+   "vram_gb": 48,
+   "vram_mib": 48792,
+   "unified_memory": true,
+   "vram_free_mib": 46353,
+   "engine_reported_name": "AMD Radeon(TM) 890M Graphics"
+  }
+ ],
+ "physical_disks": [
+  {
+   "model": "Samsung SSD 970 EVO Plus 500GB",
+   "size_gb": 500.11,
+   "interface": "SCSI",
+   "media": "Fixed hard disk media"
+  }
+ ]
+}
