@@ -1,0 +1,83 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "unsloth/Inkling-2-Mini-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+  "engine": "llama.cpp-unsloth-inkling-2-mini-ud-q4-k-xl-dspark-vision-128k-rtx-3090-24gb@99fd0c80c12e",
+  "set": {},
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "launch_sha256": "44ee7962db8157ecff7559db4975a121230442d3da4b4fc7ee65d672612db011",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 36.6,
+  "prefill": 446,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--spec-type",
+   "draft-dspark",
+   "--spec-draft-n-max",
+   "3"
+  ],
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 102,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "0eBfReztLlZDw4WV2xSjAkpiYiWCONKf"
+    }
+   ],
+   "reply": "Paris right now: 17°C, overcast. Code: ef2fefd5",
+   "code": "ef2fefd5",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 504
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 206.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1098,
+   "tokens_total": 2580,
+   "seconds_total": 57.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 446,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

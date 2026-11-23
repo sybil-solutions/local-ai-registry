@@ -1,0 +1,50 @@
+{
+  "id": "strata-metal-qwen3.8-flash-next-coder-iq1-m-128k-m5-pro-48gb",
+  "kind": "host",
+  "engine": "strata-iq1m",
+  "about": "Qwen3.8-Flash-Next Coder (ISTA-DASLab GSQ-RCO IQ1_M: 256 of each layer's 512 experts kept) on an Apple M5 Pro 48 GB with a tuned fork of Strata's Metal engine (github.com/betizzel/Strata, branch m5pro-coder: upstream's 256-expert Metal support plus direct uncached expert reads, an expert arena wired as it fills, prompt buffers inside the arena and a GPU keep-warm). The most-used routed experts live in a wired unified-memory arena (up to 20 GB, sized at start from free memory); the rest are read from the GGUF on the internal SSD. MTP speculative decoding from the base model's native MTP layer (Q2_0), 4 drafts with an early stop below 0.5 confidence, 128K window, stock weights (no refusal projection).",
+  "command": [
+    ".venv/bin/python",
+    "serve/server.py",
+    "--engine",
+    "strata",
+    "--config",
+    "../strata-coder-iq1_m.json",
+    "--port",
+    "8181"
+  ],
+  "install": "hf download baytizzel/Qwen3.8-Flash-Next-Coder-IQ1_M-Strata-M5Pro-48gb --revision dce2d75789659272271094b99f689e8a5951b49c --local-dir coder-recipe && bash coder-recipe/scripts/fetch-upstream.sh models && bash coder-recipe/scripts/build-engine.sh Strata && (cd Strata && python3 -m venv .venv && .venv/bin/pip install -r requirements.txt) && python3 coder-recipe/scripts/render-config.py --engine Strata --models models --out strata-coder-iq1_m.json --max-context 131072 --no-projection --server-home Strata --port 8181 && cd Strata (macOS on Apple silicon; Xcode Command Line Tools, cmake and ninja; Python >= 3.10; the recipe's scripts pin the GGUF revision and sha256, and build engine commit 29ad43ca; render-config.py writes a random API key into the config)",
+  "env": {},
+  "port": 8181,
+  "weights": [
+    {
+      "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+      "revision": "bba88856f8c3c0c9e40e45f82d05e228b814ac43",
+      "at": "../models",
+      "layout": "dir",
+      "files": [
+        "IQ1_M/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf",
+        "IQ1_M/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00002-of-00002.gguf"
+      ]
+    },
+    {
+      "repo": "baytizzel/Qwen3.8-Flash-Next-Coder-IQ1_M-Strata-M5Pro-48gb",
+      "revision": "dce2d75789659272271094b99f689e8a5951b49c",
+      "at": "../coder-recipe",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "wired_limit_reserve_mb": 6144,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal",
+  "needs": {
+    "host_ram_gb": 31,
+    "disk_gb": 61.2,
+    "fast_storage": "nvme"
+  },
+  "setup": "NEEDS: an Apple silicon Mac with 48 GB on macOS 26, on power, the weights on its internal NVMe SSD (58.4 GB of GGUF + 2.4 GB pack and MTP layer; no expert sidecar to write). The engine sizes its expert arena at start from free memory, keeping 8 GB for macOS, up to 20 GB: a busier Mac gets a smaller arena and decodes slower. host_ram_gb is the measured fall in available memory (free + purgeable + reclaimable file cache) from before the start through the gates, plus documented headroom: 26.96 GB with a 17.2 GB arena (33.8 GB available before the start) and 28.91 GB with an 18.4 GB arena (35.0 GB available); 31 adds the remaining 1.6 GB to the 20 GB arena cap. The 128K window's KV cache takes 1.8 GB at load. Keep the Strata checkout with the binary: the engine compiles its Metal kernels at start. The server needs the API key from the config (Authorization: Bearer).",
+  "source": "https://github.com/betizzel/Strata/tree/29ad43ca146350a72a7fbc0add57ae8aaf6e6ed6"
+}

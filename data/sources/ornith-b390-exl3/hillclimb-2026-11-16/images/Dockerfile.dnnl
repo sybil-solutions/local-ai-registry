@@ -1,0 +1,4 @@
+FROM ornith-b390-exl3:local
+RUN pip install --no-deps onednn-devel==2026.0.2 onednn==2026.0.2 2>&1 | tail -2 || pip install --no-deps onednn-devel onednn | tail -2
+WORKDIR /opt/trellis-serve/xpu
+RUN EXL3_DNNL_DIR=/opt/venv EXL3_OUT=exl3xpu/_C_dnnl.so bash scripts/build_ext.sh && ls -la exl3xpu/
