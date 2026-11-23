@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "ornith-ai/Ornith-1.5-35B-A3B-GGUF@12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+  "engine": "llama.cpp-metal-ornith-1.5-35b-a3b-q4-k-m-256k@8aaeb40200ba",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "72833c9b56316b004b73e072f4519f944f36a89517bbccdd4ce10cc2df62d786",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 114.5,
+  "prefill": 727,
+  "served": "Ornith-1.5-35B-A3B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 197,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "2mITNydsfFCDylGq7prakZ5KvIw4Gasa"
+    }
+   ],
+   "reply": "Here's the current weather in Paris:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n- **Code:** `272f87f4`\n\nThe code returned by the tool is **`272f87f4`**.",
+   "code": "272f87f4",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 109
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 293.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 8.3,
+   "tokens_in_window": 946,
+   "tokens_total": 946,
+   "seconds_total": 8.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 727,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
