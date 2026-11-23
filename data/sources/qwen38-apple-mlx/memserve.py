@@ -1,7 +1,7 @@
 """Run the recipe launcher in-process and log MLX GPU memory once a second.
 
 Measurement wrapper only; the recipe launches the launcher directly.
-MEMLOG=<path.jsonl> is required (values in GiB). LAUNCHER=<path> is the launcher (registry/engines/).
+MEMLOG=<path.jsonl> is required (values in GiB). LAUNCHER=<path> is the launcher (registry/launches/).
 Touch <MEMLOG>.reset to reset the peak counter.
 """
 
@@ -31,7 +31,7 @@ def monitor(path):
             time.sleep(1)
 
 
-sys.dont_write_bytecode = True  # keep registry/engines/ free of __pycache__
+sys.dont_write_bytecode = True  # keep registry/launches/ free of __pycache__
 spec = importlib.util.spec_from_file_location("qwen38_mlx_serve", os.environ["LAUNCHER"])
 launcher = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(launcher)
