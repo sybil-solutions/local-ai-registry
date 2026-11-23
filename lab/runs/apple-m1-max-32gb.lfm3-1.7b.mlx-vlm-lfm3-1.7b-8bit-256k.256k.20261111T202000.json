@@ -1,0 +1,80 @@
+{
+ "recipe": {
+  "model": "lfm3-1.7b",
+  "weights": "LiquidAI/LFM3-1.7B-MLX-8bit@4d6d94c9c2c2f249f1f740f4f08e071b0dbfe099",
+  "engine": "mlx-vlm-lfm3-1.7b-8bit-256k@122c66fdb191",
+  "set": {},
+  "card": "apple-m1-max-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max 32GB (32-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-11",
+  "on": "owner",
+  "gpu": "Apple M1 Max 32GB (32-core GPU)",
+  "launch_sha256": "d451e1a6df21bf1cba8ce0ca5670cdf54a5b3775fe26bbba0491ef7c94dfdedd",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 101.2,
+  "prefill": 508,
+  "served": "models/LFM3-1.7B-MLX-8bit-4d6d94c9"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 240,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "index": 0,
+     "id": "11057631-ad4a-431e-aaea-86b423ee8a83",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "The current weather in **Paris** is:\n\n- Temperature: **17 °C**\n- Sky condition: **overcast**\n- Code: **`2a4fbb1b`**\n\n(Repeated code from the tool: `2a4fbb1b`).",
+   "code": "2a4fbb1b",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 520
+  },
+  "context": {
+   "prompt_tokens": 184722,
+   "seconds": 363.4,
+   "content": "58213",
+   "peak_gib": 5.38
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 3037,
+   "tokens_total": 6254,
+   "seconds_total": 61.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 508,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "291fa7d3743b07ee46a89345640afb3eb81f5a40caf4255890e731fb0074e935"
+}

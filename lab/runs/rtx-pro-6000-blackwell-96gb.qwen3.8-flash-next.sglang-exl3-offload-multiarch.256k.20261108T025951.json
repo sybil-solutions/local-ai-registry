@@ -1,0 +1,85 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "turboderp/Qwen3.8-Flash-Next-exl3@69e33439ae950f17bcbe95c98f117d80f759ab6d",
+  "engine": "sglang-exl3-offload-multiarch@fc147f4dd42b",
+  "set": {
+   "ctx": 262144,
+   "chunk": 8192,
+   "mem": "0.88",
+   "mamba": 5,
+   "graphs": 1,
+   "alloc": "expandable_segments:True",
+   "cpu_tier": 1,
+   "ngram_ram": 2,
+   "ram": 55,
+   "disk": 86,
+   "cache": 48
+  },
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Max-Q WS (300 W)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-08",
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Max-Q WS (300 W)",
+  "launch_sha256": "5190eaca8b4a6ca3dba4fac142ee62064b2bc18005e9e888154d99297d616c33",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 103.5,
+  "prefill": 6396,
+  "served": "Qwen3.8-Flash-Next-exl3-69e33439"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_18799cb40f114108aa3221b5",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nParis right now: **17°C, overcast**.\n\nThe code returned by the tool is: `5ee7d8bd`",
+   "code": "5ee7d8bd",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 508
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 33.4,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 3107,
+   "tokens_total": 19561,
+   "seconds_total": 181.2,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

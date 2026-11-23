@@ -1,0 +1,16 @@
+{
+  "id": "rtx-a2000-laptop-8gb",
+  "name": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 8,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "nvidia",
+    "name": "NVIDIA RTX A2000 8GB Laptop GPU",
+    "names": [
+      "rtxa2000laptopgpu"
+    ],
+    "vramGb": 8
+  }
+}

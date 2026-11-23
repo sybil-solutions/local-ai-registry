@@ -1,0 +1,25 @@
+r21-exact 0 C1 wave 0 (warm-up): prefill None decode 212.62 per-stream [212.62] peak None GB load 7.6 
+r21-exact 0 C1 wave 1: prefill None decode 226.6 per-stream [226.6] peak None GB load 7.8 
+r21-exact 0 C1 wave 2: prefill None decode 230.98 per-stream [230.98] peak None GB load 8.2 
+r21-exact 0 C1 wave 3: prefill None decode 209.88 per-stream [209.88] peak None GB load 8.0 
+r21-exact 8k C1 wave 0 (warm-up): prefill 13137.2 decode 160.15 per-stream [160.15] peak None GB load 7.7 
+r21-exact 8k C1 wave 1: prefill 14489.5 decode 220.47 per-stream [220.47] peak None GB load 8.2 
+r21-exact 8k C1 wave 2: prefill 12310.9 decode 227.93 per-stream [227.93] peak None GB load 7.7 
+r21-exact 8k C1 wave 3: prefill 14457.1 decode 246.62 per-stream [246.62] peak None GB load 8.0 
+r21-exact 8k C2 wave 0 (warm-up): prefill 14473.6 decode 270.64 per-stream [129.52, 151.72] peak None GB load 7.8 
+r21-exact 8k C2 wave 1: prefill 14587.6 decode 296.41 per-stream [149.99, 150.51] peak None GB load 8.0 
+r21-exact 8k C2 wave 2: prefill 14377.7 decode 323.64 per-stream [167.33, 159.37] peak None GB load 9.0 
+r21-exact 8k C2 wave 3: prefill 14251.7 decode 285.37 per-stream [159.72, 144.0] peak None GB load 9.1 
+r21-exact 8k C4 wave 0 (warm-up): prefill 13800.0 decode 452.61 per-stream [116.34, 127.12, 101.72, 110.03] peak None GB load 10.4 
+r21-exact 8k C4 wave 1: prefill 13791.1 decode 478.16 per-stream [122.84, 120.76, 121.49, 113.53] peak None GB load 9.0 
+r21-exact 8k C4 wave 2: prefill 13758.3 decode 484.7 per-stream [117.15, 123.26, 118.12, 126.43] peak None GB load 8.8 
+r21-exact 8k C4 wave 3: prefill 13956.4 decode 480.04 per-stream [116.0, 112.83, 124.47, 120.02] peak None GB load 8.2 
+r21-exact 32k C1 wave 0 (warm-up): prefill 14508.8 decode 258.58 per-stream [258.58] peak None GB load 8.8 
+r21-exact 32k C1 wave 1: prefill 14950.8 decode 260.33 per-stream [260.33] peak None GB load 8.5 
+r21-exact 32k C1 wave 2: prefill 14919.5 decode 242.41 per-stream [242.41] peak None GB load 8.6 
+r21-exact 32k C1 wave 3: prefill 14898.2 decode 239.15 per-stream [239.15] peak None GB load 8.3 
+r21-exact 32k C2 wave 0 (warm-up): prefill 14915.4 decode 310.42 per-stream [143.8, 159.95] peak None GB load 8.6 
+r21-exact 32k C2 wave 1: prefill 14859.6 decode 311.55 per-stream [141.08, 181.76] peak None GB load 8.8 
+r21-exact 32k C2 wave 2: prefill 14819.4 decode 316.7 per-stream [147.79, 163.25] peak None GB load 8.8 
+r21-exact 32k C2 wave 3: prefill 14790.9 decode 300.32 per-stream [144.51, 156.19] peak None GB load 8.8 
+sweep exit 0

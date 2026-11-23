@@ -1,0 +1,82 @@
+{
+ "recipe": {
+  "model": "deepseek-v4.1-flash",
+  "weights": "deepseek-ai/DeepSeek-V4.1-Flash-1017@1bae0e1088993b9b82de08f59de5be5a34e42170",
+  "engine": "vllm-moet-deepseek-v4.1-flash-1017-512k-tp4-r21@21d8fcb5deb6",
+  "set": {},
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "4x RTX PRO 6000 Blackwell Workstation Edition (pop-os, 300 W)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-12",
+  "on": "owner",
+  "gpu": "4x RTX PRO 6000 Blackwell Workstation Edition (pop-os, 300 W)",
+  "launch_sha256": "58290e262d14e643b7d41a1071d3daf0dc2ef5fef786c8e165bf6c23ea17209d",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 407.7,
+  "prefill": 13533,
+  "served": "deepseek-v4.1-flash-1017"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--speculative-config",
+   "{\"method\":\"dspark\",\"num_speculative_tokens\":5,\"draft_sample_method\":\"probabilistic\",\"rejection_sample_method\":\"block\",\"enable_adaptive_verification\":false,\"moe_backend\":\"b12x\"}",
+   "VLLM_MOET_SWA_DRAFT_BUILD=1"
+  ],
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 38,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-aa7d2c6e100a905f",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Here's the current weather in Paris:\n\n- **Temperature:** 17 °C\n- **Sky:** Overcast\n- **Code:** `54fd8e62`",
+   "code": "54fd8e62",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 113
+  },
+  "context": {
+   "prompt_tokens": 351853,
+   "seconds": 26.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 8.9,
+   "tokens_in_window": 3624,
+   "tokens_total": 3624,
+   "seconds_total": 12.4,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 13533,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

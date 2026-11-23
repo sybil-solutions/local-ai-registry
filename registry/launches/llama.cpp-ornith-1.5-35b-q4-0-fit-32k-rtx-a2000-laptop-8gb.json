@@ -1,0 +1,106 @@
+{
+  "id": "llama.cpp-ornith-1.5-35b-q4-0-fit-32k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Ornith-1.5-35B-A3B GGUF · Q4_0, text only (experts in RAM) at a 32,768-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 33.2 tok/s decode, 370 tok/s prefill, RAM drop 13.39 GB.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Ornith-1.5-35B-A3B-Q4_0.gguf",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--load-mode",
+    "none",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "32768",
+    "--fit-target",
+    "256",
+    "--flash-attn",
+    "on",
+    "--threads",
+    "12",
+    "--cpu-range",
+    "0-11",
+    "--cpu-strict",
+    "1",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--no-mmproj",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "0.6",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0.0"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "16g",
+  "weights": [
+    {
+      "repo": "bartowski/Ornith-1.5-35B-A3B-GGUF",
+      "revision": "64b0493d34a5ca4c1b4ad67bb99b41d74b4f07d6",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Ornith-1.5-35B-A3B-Q4_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 32768,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 15,
+    "disk_gb": 20.42,
+    "fast_storage": "nvme",
+    "cpus": 12
+  },
+  "plugin": {
+    "name": "Ornith 1.5 35B A3B",
+    "family": "ornith",
+    "format": "GGUF · Q4_0, text only (experts in RAM)",
+    "engine": "llama.cpp",
+    "servedName": "/models/Ornith-1.5-35B-A3B-Q4_0.gguf",
+    "sizeGb": 20.42,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 32768,
+      "kvTokens": 32768
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Ornith-1.5-35B-A3B-Q4_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 20.42
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}

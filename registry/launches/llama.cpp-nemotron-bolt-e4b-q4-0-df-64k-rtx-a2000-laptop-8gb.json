@@ -1,0 +1,121 @@
+{
+  "id": "llama.cpp-nemotron-bolt-e4b-q4-0-df-64k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Nemotron 3.5 Bolt E4B GGUF · Q4_0 + DFlash at a 65,536-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 50.9 tok/s decode, 1,089 tok/s prefill, RAM drop 1.20 GB.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/NVIDIA-Nemotron-3.5-Bolt-E4B-Q4_0.gguf",
+    "--alias",
+    "Nemotron-3.5-Bolt-E4B",
+    "--spec-type",
+    "draft-dflash",
+    "--model-draft",
+    "/draft/Nemotron-3.5-Bolt-E4B-DFlash-BF16.gguf",
+    "--spec-draft-n-max",
+    "2",
+    "--spec-draft-ngl",
+    "999",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--n-gpu-layers",
+    "999",
+    "--fit",
+    "off",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "65536",
+    "--flash-attn",
+    "on",
+    "--ubatch-size",
+    "512",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "64"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "bartowski/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+      "revision": "7a243bc11b80212594a71d2ecddde5798a43e265",
+      "at": "/models",
+      "layout": "dir",
+      "files": "NVIDIA-Nemotron-3.5-Bolt-E4B-Q4_0.gguf"
+    },
+    {
+      "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-DFlash",
+      "revision": "0949a2eb7152ec6fda1a91ff9302aecbcd464fbf",
+      "at": "/draft",
+      "layout": "dir",
+      "files": "Nemotron-3.5-Bolt-E4B-DFlash-BF16.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 65536,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 3,
+    "disk_gb": 5.96
+  },
+  "plugin": {
+    "name": "Nemotron 3.5 Bolt E4B",
+    "family": "nemotron",
+    "format": "GGUF · Q4_0 + DFlash",
+    "engine": "llama.cpp",
+    "servedName": "Nemotron-3.5-Bolt-E4B",
+    "sizeGb": 5.96,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 65536,
+      "kvTokens": 65536
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "NVIDIA-Nemotron-3.5-Bolt-E4B-Q4_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 5.22
+      },
+      {
+        "dir": "",
+        "files": "Nemotron-3.5-Bolt-E4B-DFlash-BF16.gguf",
+        "layout": "dir",
+        "mountPath": "/draft",
+        "sizeGb": 0.74
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}

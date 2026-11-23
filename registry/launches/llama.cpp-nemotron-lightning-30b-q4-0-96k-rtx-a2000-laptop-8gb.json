@@ -1,0 +1,106 @@
+{
+  "id": "llama.cpp-nemotron-lightning-30b-q4-0-96k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Nemotron 3.5 Lightning 30B-A3B GGUF · Q4_0, experts in RAM at a 98,304-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 29.6 tok/s decode, 552 tok/s prefill, RAM drop 13.16 GB. Context probes on the earlier UD-Q3_K_XL file, code in the answer: 64K 10 of 10, 80K 9 of 10, 96K 7 of 10, 128K 7 of 14, 160K 0 of 10. The Q3_K_S file failed the context gate in a 96K lab, so a rerun at this window can fail it.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf",
+    "--alias",
+    "Nemotron-3.5-Lightning-30B-A3B",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--load-mode",
+    "none",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "98304",
+    "--fit-target",
+    "256",
+    "--flash-attn",
+    "on",
+    "--threads",
+    "12",
+    "--cpu-range",
+    "0-11",
+    "--cpu-strict",
+    "1",
+    "--ubatch-size",
+    "1024",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
+      "revision": "8cd082170ed313484be1cf44f256a5caa2cfdad3",
+      "at": "/models",
+      "layout": "dir",
+      "files": "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 98304,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 15,
+    "disk_gb": 18.9,
+    "cpus": 12
+  },
+  "plugin": {
+    "name": "Nemotron 3.5 Lightning 30B A3B",
+    "family": "nemotron",
+    "format": "GGUF · Q4_0, experts in RAM",
+    "engine": "llama.cpp",
+    "servedName": "Nemotron-3.5-Lightning-30B-A3B",
+    "sizeGb": 18.9,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 98304,
+      "kvTokens": 98304
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 18.9
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "rtx-a2000-laptop-8gb": "nemotron-3.5-lightning-30b-a3b.llama.cpp.96k.a2000-laptop-8gb"
+  }
+}

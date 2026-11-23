@@ -37,6 +37,7 @@ LAUNCHES = REG / "launches"  # launches frozen exactly as they were validated, o
 GATES = ["load", "chat", "reasoning", "tools", "context", "speed"]
 MIN_TPS = 15.0
 MAX_RECIPE_BYTES = 1024
+SPEC = re.compile(r"(speculative|dspark|spec[_-]|draft|mtp)", re.I)  # matched against flag and env names, never values
 # The KV floor: a setup with more than KV_FLOOR_ABOVE_VRAM_GB of GPU memory (the card's vram_gb x cards x machines)
 # must hold at least KV_FLOOR_TOKENS (128k) of KV cache. `try` refuses a launch below it, `check` fails a new recipe
 # below it, and the plugin export leaves every recipe below it out. Recipes accepted before the floor are listed in
@@ -360,6 +361,20 @@ def stream_rate(endpoint, model, prompt, window=30.0):
     return (n / span if span else 0), total, time.monotonic() - t0, n, round(span, 1), source
 
 
+def speculation(launch):
+    """The launch's speculative-decoding settings as it runs them, or None. Evidence only: a proof's tps is
+    counted from client deltas, so it is true throughput whether or not any draft was accepted."""
+    args = [str(a) for part in ("args", "command") if isinstance(launch.get(part), list) for a in launch[part]]
+    hits = []
+    for i, arg in enumerate(args):
+        if arg.startswith("-") and SPEC.search(arg.split("=", 1)[0]):
+            hits.append(arg)
+            if "=" not in arg and i + 1 < len(args) and not args[i + 1].startswith("-"):
+                hits.append(args[i + 1])  # the flag's value: NEXTN, draft-mtp, 5, or a speculative-config object
+    hits += [f"{k}={v}" for k, v in (launch.get("env") or {}).items() if SPEC.search(k)]
+    return hits or None
+
+
 def gates(endpoint, launch, ev=None):
     """Run every gate; returns (passed, proof, evidence). `ev` is filled as the gates run, so a gate that blows up
     leaves the evidence of the gates that ran: a failed run is still evidence."""
@@ -384,6 +399,7 @@ def gates(endpoint, launch, ev=None):
 
 def run_gates(endpoint, launch, ev, ok):
     """The gates themselves; `gates` keeps the evidence when one of them blows up."""
+    ev["spec"] = speculation(launch)  # first, so a run that blows up still says what it ran
     models, _ = call(endpoint, "/v1/models", timeout=30)
     served = models["data"][0]["id"]
     ok["load"] = True
@@ -466,6 +482,9 @@ def run_gates(endpoint, launch, ev, ok):
     # number out rather than publish a cached rate (the run can be repeated for a real prefill measurement)
     prefill = None if dropped else (round(got / ev["context"]["seconds"]) if got and ev["context"]["seconds"] else None)
     proof = {"gates": " ".join(g for g in GATES if ok.get(g)), "tps": round(tps, 1), "prefill": prefill, "served": served}
+    ev["speed"]["accounting"] = "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+    ev["prefill"] = {"value": prefill,
+                     "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"}
     return all(ok.get(g) for g in GATES), proof, {"ok": ok, **ev}
 
 

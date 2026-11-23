@@ -1,0 +1,59 @@
+{
+ "recipe": {
+  "model": "gemma-4-12b",
+  "weights": "unsloth/gemma-4-12b-it-GGUF@fc034cfff751157913579611efad8462ac1be606",
+  "engine": "llama.cpp-gemma-4-12b-nonqat-iq3-xxs-mtp-252k-rtx-a2000-laptop-8gb@52192a23c7b2",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-08",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "6bab71fb1101a3329a7ad4cafc2d8aaa14ab8b598528996ae9d3718c1d035adc",
+  "gates": "",
+  "tps": 0,
+  "prefill": null,
+  "served": null
+ },
+ "evidence": {
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 264,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "4ukZthOYlmQKXGgWhLywwwv79suKiYpM"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with an overcast sky.\n\nThe code is: ac037293",
+   "code": "ac037293",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 237
+  },
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true
+  },
+  "error": "SystemExit('context gate: the server refused the prompt: 500 Internal Server Error')"
+ },
+ "launch_config_sha256": null
+}

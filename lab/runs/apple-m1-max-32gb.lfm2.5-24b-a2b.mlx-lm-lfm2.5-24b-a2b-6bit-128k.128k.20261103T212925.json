@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "lfm2.5-24b-a2b",
+  "weights": "LiquidAI/LFM2.5-24B-A2B-MLX-6bit@1deec53eb49571e21cdcbf82fd5839248f07ed88",
+  "engine": "mlx-lm-lfm2.5-24b-a2b-6bit-128k@01b0cef40877",
+  "set": {},
+  "card": "apple-m1-max-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max 32GB (24-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-03",
+  "on": "owner",
+  "gpu": "Apple M1 Max 32GB (24-core GPU)",
+  "launch_sha256": "d8378a7b9b72fff61b919b7ecb5cc328b054518902a9cd076de1d9d96ae6c94b",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 62.8,
+  "prefill": 412,
+  "served": "models/LFM2.5-24B-A2B-MLX-6bit-1deec53e"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nred, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 145,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "id": "e530fc39-76a1-4459-bbd7-b77f5147cacc"
+    }
+   ],
+   "reply": " follows:\n\n- **Temperature:** 17°C\n- **Sky condition:** Overcast\n- **Code:** 732a845d\n\nThe tool returned the data in this JSON format. If you need more details or a different format, just let me know!",
+   "code": "732a845d",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 416
+  },
+  "context": {
+   "prompt_tokens": 91882,
+   "seconds": 223.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1884,
+   "tokens_total": 3305,
+   "seconds_total": 62.7,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": "7003b19c082de027838540eb23ef5b8f3a15374bfa4361d806b3e8319b95024f"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "llama.cpp-lfm2.5-8b-a1b-q4-0-64k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "LFM2.5-8B-A1B GGUF · Q4_0 at a 65,536-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 117.6 tok/s decode, 2,431 tok/s prefill, RAM drop 0.70 GB. Faster than the 125K Q4_K_M recipe for a shorter window. Context probes on this file: 64K 3 of 4, 80K 3 of 4, 96K 3 of 4, 128K 1 of 4; two labs at 128K failed.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/LFM2.5-8B-A1B-Q4_0.gguf",
+    "--alias",
+    "LFM2.5-8B-A1B",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--n-gpu-layers",
+    "999",
+    "--fit",
+    "off",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "65536",
+    "--flash-attn",
+    "on",
+    "--ubatch-size",
+    "1024",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "0.1",
+    "--top-k",
+    "50",
+    "--repeat-penalty",
+    "1.05"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM2.5-8B-A1B-GGUF",
+      "revision": "49c14831707011e64d70b2ebd8462ba08d608434",
+      "at": "/models",
+      "layout": "dir",
+      "files": "LFM2.5-8B-A1B-Q4_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 65536,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 2,
+    "disk_gb": 4.84
+  },
+  "plugin": {
+    "name": "LFM2.5 8B A1B",
+    "family": "lfm",
+    "format": "GGUF · Q4_0",
+    "engine": "llama.cpp",
+    "servedName": "LFM2.5-8B-A1B",
+    "sizeGb": 4.84,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 65536,
+      "kvTokens": 65536
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "LFM2.5-8B-A1B-Q4_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 4.84
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}

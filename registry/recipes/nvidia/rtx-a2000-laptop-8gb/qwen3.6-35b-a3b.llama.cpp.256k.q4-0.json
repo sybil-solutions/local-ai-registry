@@ -1,0 +1,20 @@
+{
+  "model": "qwen3.6-35b-a3b",
+  "weights": "bartowski/Qwen_Qwen3.6-35B-A3B-GGUF@5c2410d71524f4f72b023ce8daf7a80528226d5f",
+  "engine": "llama.cpp-qwen3.6-35b-q4-0-mtp-fit-256k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb",
+  "proof": [
+    {
+      "at": "2026-11-06",
+      "on": "owner",
+      "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+      "launch_sha256": "fa9088b60f48002cfa772b3c52723bc2190811b58387be7b86e86c556c53508b",
+      "gates": "load chat reasoning tools context speed",
+      "tps": 33.9,
+      "prefill": 239,
+      "served": "/models/Qwen_Qwen3.6-35B-A3B-Q4_0.gguf",
+      "log": "sha256:05f5c42d8d2f133e"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "id": "llama.cpp-lfm2.5-8b-a1b-q4-k-m-128k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "LFM2.5-8B-A1B (LiquidAI's Q4_K_M GGUF, 5.16 GB) on an RTX A2000 8GB Laptop GPU (35 W): llama.cpp b11681, the whole model and its full 128,000-token context on the GPU, f16 KV (only 6 of 24 layers hold KV), ubatch 1024, Liquid AI's sampling (temp 0.1, top-k 50, repeat penalty 1.05). Measured on a ThinkPad P1 Gen 5 (i7-12700H, 32 GB single-channel DDR5, display on the Intel GPU), 30 s decode runs: 102.6 tok/s and 2,379 tok/s prefill with f16 KV on a 16K prompt, 101.3 with q8_0, 100.7 with q4_0, 101.1 with ubatch 1024; over a 90K-token prompt the engine log shows 2,108 tok/s prefill. Tool calls: at temperature 0.6 the model made a parsed call in 26 of 30 lab-style requests, and each of those used the result on the next turn. The other 4 wrote the call as plain <tool_call> JSON in the content, so about one tools request in eight needs a retry. Long prompts are unreliable too: asked for a code planted at the end of a 90K-token prompt, it gave the code in 13 of 20 answers; the others said it had too little information or gave a wrong number. Earlier lab runs of this launch failed once on the tools check and once on the context check.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/LFM2.5-8B-A1B-Q4_K_M.gguf",
+    "--alias",
+    "LFM2.5-8B-A1B",
+    "--cache-type-k",
+    "f16",
+    "--cache-type-v",
+    "f16",
+    "--n-gpu-layers",
+    "999",
+    "--fit",
+    "off",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "128000",
+    "--flash-attn",
+    "on",
+    "--ubatch-size",
+    "1024",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "0.1",
+    "--top-k",
+    "50",
+    "--repeat-penalty",
+    "1.05"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM2.5-8B-A1B-GGUF",
+      "revision": "49c14831707011e64d70b2ebd8462ba08d608434",
+      "at": "/models",
+      "layout": "dir",
+      "files": "LFM2.5-8B-A1B-Q4_K_M.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 128000,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 2,
+    "disk_gb": 5.16
+  },
+  "plugin": {
+    "name": "LFM2.5 8B A1B",
+    "family": "lfm",
+    "format": "GGUF · Q4_K_M",
+    "engine": "llama.cpp",
+    "servedName": "LFM2.5-8B-A1B",
+    "sizeGb": 5.156,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 128000,
+      "kvTokens": 128000
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "LFM2.5-8B-A1B-Q4_K_M.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 5.156
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}

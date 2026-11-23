@@ -1,0 +1,73 @@
+{
+ "recipe": {
+  "model": "qwen3.5-9b",
+  "weights": "TheMelonGod/Qwen3.5-9B-exl3@22ef1303062e0f6d0b282440f8c1f685947f4938",
+  "engine": "tabbyapi-exl3-turing-qwen3.5-9b-64k2-q4@9213b8b94873",
+  "set": {},
+  "card": "rtx-2080-ti-11gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 2080 Ti"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-05",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 2080 Ti",
+  "launch_sha256": "ffa71852285c1a70d0188db56778cc950ef7a1f199ba50d28f08a5d830b04d1c",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 77.4,
+  "prefill": 4045,
+  "served": "Qwen3.5-9B-exl3-22ef1303"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\n\nRed, Blue, Yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 775,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_3f4947ebc5464d75b91c3b77",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "index": 0
+    }
+   ],
+   "reply": "\n\nThe weather in Paris right now is 17°C, overcast.\n\nThe code is: 355f60e9",
+   "code": "355f60e9",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 99
+  },
+  "context": {
+   "prompt_tokens": 52583,
+   "seconds": 13.0,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 2323,
+   "tokens_total": 3259,
+   "seconds_total": 38.7,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": "73a6fb4a617d60d07050af9382c85b01a4d963a3d40edd28a2ba4bba559f9aec"
+}

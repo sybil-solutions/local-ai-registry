@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "granite-4.2-8b",
+  "weights": "ibm-granite/granite-4.2-8b-GGUF@93f3f6a8938ee922b784cf4e5b4203cd3428df8f",
+  "engine": "llama.cpp-granite-4.2-8b-q3-k-l-fit-96k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-07",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "a9b88bae2eb05d2f51438fb056e6e0a46ba9a3c2667c309109db27350fb98179",
+  "gates": "load chat reasoning context speed",
+  "tps": 19.1,
+  "prefill": 268,
+  "served": "Granite-4.2-8B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": false,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 294,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "FTO4j3HWmByDoxnko76El9oVpq6YW6Kn"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with an overcast sky. Let me know if you need further details!",
+   "code": "87ff35e0",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 515
+  },
+  "context": {
+   "prompt_tokens": 65187,
+   "seconds": 242.8,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 574,
+   "tokens_total": 1332,
+   "seconds_total": 71.4,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

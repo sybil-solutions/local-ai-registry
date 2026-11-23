@@ -1,0 +1,10 @@
+{
+  "baseline_available_bytes": 46637301760,
+  "minimum_available_bytes": 22253457408,
+  "samples": 2046,
+  "peak_available_drop_bytes": 24383844352,
+  "declared_available_ram_gb": 48,
+  "safety_headroom_bytes": 23616155648,
+  "note": "Host MemAvailable before launch minus lowest sample during startup, vision and Lab gates; 0.5-second samples, conservative declared headroom. Graphics allocations may be absent from cgroup counters.",
+  "local_image_id": "sha256:73ea516183da857b8d44b955e6ef0350bf82f66e50d10bfd87ba9eecc8bb3117"
+}

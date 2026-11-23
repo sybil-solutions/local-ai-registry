@@ -1,0 +1,76 @@
+{
+ "recipe": {
+  "model": "granite-4.2-30b",
+  "weights": "ibm-granite/granite-4.2-30b-nvfp4@bddf34bc6db17e5c4f586e49c1668c8e97610446",
+  "engine": "vllm@8a69ffad015f",
+  "set": {
+   "ctx": 131072,
+   "kv": "fp8",
+   "think": "deepseek_r1"
+  },
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Max-Q WS (300 W)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-08",
+  "on": "owner",
+  "gpu": "RTX PRO 6000 Blackwell Max-Q WS (300 W)",
+  "launch_sha256": "1e1ce723f97bf4fbe96edea8c9aa61732b8de1e77529eccf1198b1bc667e9957",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 73.7,
+  "prefill": 3116,
+  "served": "granite-4.2-30b-nvfp4-bddf34bc"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "\nred, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 290,
+   "content": "\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-961518c3c9d9fc85",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\nThe current weather in Paris is 17°C with overcast skies. The tool response code is `7bff8d0f`.",
+   "code": "7bff8d0f",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 520
+  },
+  "context": {
+   "prompt_tokens": 87246,
+   "seconds": 28.0,
+   "content": "\n58213"
+  },
+  "speed": {
+   "window_s": 20.2,
+   "tokens_in_window": 1491,
+   "tokens_total": 1491,
+   "seconds_total": 20.3,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

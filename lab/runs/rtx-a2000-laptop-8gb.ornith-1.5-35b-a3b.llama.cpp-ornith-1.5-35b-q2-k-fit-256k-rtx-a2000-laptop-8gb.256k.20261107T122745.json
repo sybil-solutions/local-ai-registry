@@ -1,0 +1,72 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "bartowski/Ornith-1.5-35B-A3B-GGUF@64b0493d34a5ca4c1b4ad67bb99b41d74b4f07d6",
+  "engine": "llama.cpp-ornith-1.5-35b-q2-k-fit-256k-rtx-a2000-laptop-8gb@53bec65a6120",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-07",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "a83f58ecc6a2fdb86bc32bc5d143f0009a61bc132b34be3bf881b41a63469e9e",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 39.2,
+  "prefill": 291,
+  "served": "/models/Ornith-1.5-35B-A3B-Q2_K.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 213,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "lAQPyDtLUvRaOjpjI0Kk44MtnCjoN4OP"
+    }
+   ],
+   "reply": "Here's the current weather in **Paris**:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n\nThe code returned by the tool is: **046a8c97**",
+   "code": "046a8c97",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 153
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 735.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 28.9,
+   "tokens_in_window": 1133,
+   "tokens_total": 1133,
+   "seconds_total": 29.1,
+   "counted": "tokenizer"
+  }
+ },
+ "launch_config_sha256": null
+}

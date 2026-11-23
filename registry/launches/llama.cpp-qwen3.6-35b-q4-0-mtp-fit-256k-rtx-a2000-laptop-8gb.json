@@ -1,0 +1,111 @@
+{
+  "id": "llama.cpp-qwen3.6-35b-q4-0-mtp-fit-256k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Qwen3.6-35B-A3B GGUF · Q4_0 + MTP, text only (experts in RAM) at a 262,144-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 33.9 tok/s decode, 239 tok/s prefill, RAM drop 18.07 GB.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Qwen_Qwen3.6-35B-A3B-Q4_0.gguf",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--load-mode",
+    "none",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "262144",
+    "--fit-target",
+    "256",
+    "--flash-attn",
+    "on",
+    "--threads",
+    "12",
+    "--cpu-range",
+    "0-11",
+    "--cpu-strict",
+    "1",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--no-mmproj",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--spec-type",
+    "draft-mtp",
+    "--spec-draft-n-max",
+    "1",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0.0"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "16g",
+  "weights": [
+    {
+      "repo": "bartowski/Qwen_Qwen3.6-35B-A3B-GGUF",
+      "revision": "5c2410d71524f4f72b023ce8daf7a80528226d5f",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Qwen_Qwen3.6-35B-A3B-Q4_0.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 20,
+    "disk_gb": 20.84,
+    "fast_storage": "nvme",
+    "cpus": 12
+  },
+  "plugin": {
+    "name": "Qwen3.6-35B-A3B",
+    "family": "qwen",
+    "format": "GGUF · Q4_0 + MTP, text only (experts in RAM)",
+    "engine": "llama.cpp",
+    "servedName": "/models/Qwen_Qwen3.6-35B-A3B-Q4_0.gguf",
+    "sizeGb": 20.84,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": false,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 262144,
+      "kvTokens": 262144
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "Qwen_Qwen3.6-35B-A3B-Q4_0.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 20.84
+      }
+    ],
+    "asset": null
+  },
+  "ids": {},
+  "variant": "q4-0"
+}

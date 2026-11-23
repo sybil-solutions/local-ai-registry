@@ -23,6 +23,12 @@ def label(hw, n, machines):
     return f"{n} × {name} (one machine)" if n > 1 else name
 
 
+def owner_pick(prefer, recipe, stem, old):
+    """True for the recipe an owner decision names for its card and model, once it is lab-proven (old == 0): a
+    reported or legacy recipe is never put first by a decision alone."""
+    return old == 0 and (prefer.get(f"{recipe['card']}/{recipe['model']}") or {}).get("recipe") == stem
+
+
 def build(today=None):
     today = today or dt.date.today()
     meta = json.loads((ROOT / "registry" / "models.json").read_text(encoding="utf-8"))
@@ -53,7 +59,9 @@ def build(today=None):
         demoted = (won and kind != won and kind in ("sglang", "tabbyapi", "exllamav3")) or (not won and r["engine"].startswith("sglang-exl3@"))
         # a recipe that needs more of the host than the card (RAM, disk: `needs`) never leads a card: it follows the ones
         # every machine with the card can run, and the plugin offers it only where the host has what it needs
-        rank = (gguf, bool(launch.get("needs")), old, *mf, bool(demoted), not exl3)
+        # an owner decision that names one recipe (prefer.json `recipe`) puts it first in its setup once it has a lab
+        # proof, ahead of the `needs` rule: the owner serves it and has measured what the host must have
+        rank = (not owner_pick(prefer, r, f.stem, old), gguf, bool(launch.get("needs")), old, *mf, bool(demoted), not exl3)
         setup = (launch.get("cards") or 1, launch.get("machines") or 1)
         cards.setdefault(r["card"], {}).setdefault(setup, []).append((*rank, -(r["proof"][0]["tps"] or 0), r["model"], key))
     out_cards = {}

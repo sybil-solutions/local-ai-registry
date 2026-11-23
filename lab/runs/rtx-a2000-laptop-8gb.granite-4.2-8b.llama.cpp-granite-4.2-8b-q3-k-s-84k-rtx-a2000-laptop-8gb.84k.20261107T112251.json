@@ -1,0 +1,62 @@
+{
+ "recipe": {
+  "model": "granite-4.2-8b",
+  "weights": "ibm-granite/granite-4.2-8b-GGUF@93f3f6a8938ee922b784cf4e5b4203cd3428df8f",
+  "engine": "llama.cpp-granite-4.2-8b-q3-k-s-84k-rtx-a2000-laptop-8gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-a2000-laptop-8gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-07",
+  "on": "owner",
+  "gpu": "NVIDIA RTX A2000 8GB Laptop GPU",
+  "launch_sha256": "1e6cbf1edcc72207018b5a2ea113f63accf27d263c3b50bfb6a7173369e6cb96",
+  "gates": "load chat reasoning tools",
+  "tps": 0,
+  "prefill": null,
+  "served": null
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": false
+  },
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 267,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "CqzomzPaAnXTEQ4A4WReH5Kdz1svxkuv"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with overcast skies. The weather code is \"4cc8b00e\". Let me know if you need further details!",
+   "code": "4cc8b00e",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 430
+  },
+  "context": {
+   "error": "URLError(ConnectionRefusedError(111, 'Connection refused'))"
+  }
+ },
+ "launch_config_sha256": null
+}

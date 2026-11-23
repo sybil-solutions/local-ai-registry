@@ -1,0 +1,126 @@
+{
+  "id": "llama.cpp-groot-19b-q2-k-vision-256k-rtx-a2000-laptop-8gb",
+  "engine": "llama.cpp",
+  "about": "Groot 19B-A3B GGUF · Q2_K, vision (experts in RAM) at a 262,144-token context on an RTX A2000 8GB Laptop GPU (35 W). Lab: 43.9 tok/s decode, 410 tok/s prefill, RAM drop 4.41 GB.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/GrootTeam_Groot-19B-A3B-261023-Q2_K.gguf",
+    "--mmproj",
+    "/extra/mmproj-Groot-19B-A3B-261023-BF16.gguf",
+    "--no-mmproj-offload",
+    "--alias",
+    "Groot-19B-A3B",
+    "--cache-type-k",
+    "q4_0",
+    "--cache-type-v",
+    "q4_0",
+    "--load-mode",
+    "none",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "262144",
+    "--fit-target",
+    "64",
+    "--flash-attn",
+    "on",
+    "--threads",
+    "12",
+    "--cpu-range",
+    "0-11",
+    "--cpu-strict",
+    "1",
+    "--parallel",
+    "1",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0.0"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "16g",
+  "weights": [
+    {
+      "repo": "bartowski/GrootTeam_Groot-19B-A3B-261023-GGUF",
+      "revision": "0025df0d03fb385344394f4e5afd73ce47da0680",
+      "at": "/models",
+      "layout": "dir",
+      "files": "GrootTeam_Groot-19B-A3B-261023-Q2_K.gguf"
+    },
+    {
+      "repo": "GrootTeam/Groot-19B-A3B-261023-GGUF",
+      "revision": "2fa1ec958e3bbf7312cf0af97802ff26bfdc5260",
+      "at": "/extra",
+      "layout": "dir",
+      "files": [
+        "mmproj-Groot-19B-A3B-261023-BF16.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 6,
+    "disk_gb": 8.78,
+    "fast_storage": "nvme",
+    "cpus": 12
+  },
+  "plugin": {
+    "name": "Groot 19B-A3B",
+    "family": "qwen",
+    "format": "GGUF · Q2_K, vision (experts in RAM)",
+    "engine": "llama.cpp",
+    "servedName": "Groot-19B-A3B",
+    "sizeGb": 8.78,
+    "minDriver": "535.0",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "vision": true,
+      "video": false
+    },
+    "serving": {
+      "ctxTokens": 262144,
+      "kvTokens": 262144
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "GrootTeam_Groot-19B-A3B-261023-Q2_K.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 7.88
+      },
+      {
+        "dir": "",
+        "files": "mmproj-Groot-19B-A3B-261023-BF16.gguf",
+        "layout": "dir",
+        "mountPath": "/extra",
+        "sizeGb": 0.9
+      }
+    ],
+    "asset": null
+  },
+  "ids": {}
+}
