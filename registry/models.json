@@ -316,8 +316,9 @@
       "reasoning": true,
       "vision": true,
       "about": "Thinking Machines' Inkling 2 Mini (26B looped MoE, NVFP4 + FP8 experts, 1M context).",
-      "good_for": "Million-token context on one Spark",
-      "logo": "hf"
+      "good_for": "Million-token context on one Spark; 256K with vision and DSpark on one or two Arc Pro B70",
+      "logo": "hf",
+      "hf": "thinkingmachines/Inkling-2-Mini"
     },
     "inkling-2-small": {
       "family": "inkling",
@@ -1414,6 +1415,10 @@
     "ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw@6507c778b466b78eaaad0d7d552f98625bd97881": {
       "format": "EXL3 · 4 bpw",
       "size_gb": 19.76
+    },
+    "thinkingmachines/Inkling-2-Mini@ed40e7da625f594fc9c4990f5f66be24873c22d7": {
+      "format": "NVFP4/MXFP8 MoE · DSpark MTP",
+      "size_gb": 20.19
     }
   }
 }
