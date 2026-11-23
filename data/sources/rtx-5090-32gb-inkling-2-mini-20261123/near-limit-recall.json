@@ -1,0 +1,14 @@
+{
+  "seconds": 48.58698001969606,
+  "usage": {
+    "prompt_tokens": 126048,
+    "total_tokens": 126239,
+    "completion_tokens": 191,
+    "prompt_tokens_details": null,
+    "reasoning_tokens": 180,
+    "completion_tokens_details": {
+      "reasoning_tokens": 180
+    }
+  },
+  "content": "apricot-lighthouse-7319"
+}

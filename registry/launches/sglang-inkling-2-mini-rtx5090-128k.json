@@ -1,0 +1,76 @@
+{
+  "id": "sglang-inkling-2-mini-rtx5090-128k",
+  "engine": "sglang",
+  "about": "Inkling 2 Mini on one RTX 5090 32GB. DSpark, bf16 KV, bounded 128K token pool and single-request decode graphs; prefill graph capture disabled by batch limit to preserve memory headroom. Window cache is capped to 4096 tokens and prefill chunks to 2048 for one request; Eight Mamba states preserve decode/speculative state without overallocating hundreds of unused slots.",
+  "image": "lmsysorg/sglang:inkling-2-mini@sha256:efac853b46811ccb760545b7b29e7119bdf907537ccf6e863fac3011fe8b98de",
+  "backend": "nvidia",
+  "port": 30000,
+  "entrypoint": [
+    "python3"
+  ],
+  "args": [
+    "-m",
+    "sglang.launch_server",
+    "--model-path",
+    "/root/.cache/huggingface/hub/models--thinkingmachines--Inkling-2-Mini/snapshots/ed40e7da625f594fc9c4990f5f66be24873c22d7",
+    "--served-model-name",
+    "Inkling-2-Mini",
+    "--trust-remote-code",
+    "--context-length",
+    "131072",
+    "--mem-fraction-static",
+    "0.95",
+    "--max-total-tokens",
+    "131072",
+    "--cuda-graph-max-bs-decode",
+    "1",
+    "--cuda-graph-max-bs-prefill",
+    "1",
+    "--max-running-requests",
+    "1",
+    "--enable-multimodal",
+    "--reasoning-parser",
+    "inkling",
+    "--tool-call-parser",
+    "inkling2",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "30000",
+    "--speculative-algorithm",
+    "DSPARK",
+    "--speculative-draft-model-path",
+    "/root/.cache/huggingface/hub/models--thinkingmachines--Inkling-2-Mini/snapshots/ed40e7da625f594fc9c4990f5f66be24873c22d7",
+    "--swa-full-tokens-ratio",
+    "0.03125",
+    "--chunked-prefill-size",
+    "2048",
+    "--max-mamba-cache-size",
+    "8"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "TORCH_CUDA_ARCH_LIST": "12.0"
+  },
+  "shm": "32g",
+  "weights": [
+    {
+      "repo": "thinkingmachines/Inkling-2-Mini",
+      "revision": "ed40e7da625f594fc9c4990f5f66be24873c22d7",
+      "at": "/root/.cache/huggingface/hub",
+      "layout": "hub"
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "flags": [
+    "--gpus all",
+    "--ipc host",
+    "--security-opt no-new-privileges",
+    "--cap-drop ALL"
+  ],
+  "source": "https://huggingface.co/thinkingmachines/Inkling-2-Mini/tree/ed40e7da625f594fc9c4990f5f66be24873c22d7"
+}
