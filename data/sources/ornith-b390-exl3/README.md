@@ -4,13 +4,16 @@
 
 [Editable results card](results-card.html). Layout and dotted-hand artwork follow
 [the supplied Sybil AI reference](https://x.com/0xSero/status/2121718629104545980);
-the artwork credit to @samdape is retained. Main metrics are the uncapped Lab
-result and actual KV allocation; footer rates are the separately labeled
-thinking-off, 256-output-token exploratory context sweep.
+the artwork credit to @samdape is retained. Card metrics come from the hill-climb
+harness (thinking off, medians of interleaved runs, cold prefill with retrieval
+markers; see [hillclimb-2026-11-16](hillclimb-2026-11-16/README.md)), not from the
+Lab gates; the Lab proof is below.
 
 Ornith-1.5-35B-A3B, EXL3 4 bpw, FP8 E4M3 KV, 262,144-token context,
-one NEXTN/MTP speculative draft, 1,024-token prefill chunks, image input,
-Qwen reasoning/tool parsers and prefix caching. One concurrent request.
+one NEXTN/MTP speculative draft with a pruned 256-block draft vocabulary,
+on-GPU sampling, INT8 + oneDNN prefill with 4,096-token chunks, image input,
+Qwen reasoning/tool parsers and prefix caching. Up to four concurrent requests,
+each up to 262,144 tokens (KV pool 1,052,672 tokens).
 
 Test machine: Dell XPS 14 DA14260, Core Ultra X7 358H, Intel Arc B390 (Xe3),
 64 GB LPDDR5X-9600. CPU and GPU share the same RAM; capacities are not additive.
@@ -32,12 +35,19 @@ recipes; publishing an attested OCI image and rerunning acceptance on that
 digest is required before plugin distribution.
 
 The Dockerfile fetches trellis-serve at
-`72fd2d4ca8e8de3fce03ab09e3ed1692957c2f8c`, applies the included patch and
-compiles both SYCL libraries against the pinned SGLang XPU base's Torch 2.13.
-The patch adds K4 grouped MoE decode and XMX/DPAS prefill, handles even-K
-expert layout, limits K4 GEMV MR to 2 on B390 and samples speculative target
-distributions on CPU to avoid an extremely slow first XPU top-k call.
-The included independent CPU-reference kernel checks passed all 24 cases.
+`0fab6452b12a7e3f7a4dddf7c70f9dd7b5f0e7ab` (branch `ornith-b390-exl3`), installs
+oneDNN 2026.0.2 and compiles three SYCL libraries against the pinned SGLang XPU
+base's Torch 2.13: `_C.so`, `_C_dnnl.so` (INT8 prefill GEMMs and oneDNN SDPA) and
+`_moe.so` built with 64-row prefill M-blocks (`-DEXL3_MOE_PREFILL_MB=64`, K4 only,
+bit-exact against 32-row blocks). That commit contains the K4 grouped MoE decode
+and XMX/DPAS prefill kernels that the previous recipe applied as a patch, plus the
+`xpu2` GPU sampler (staged top-k with inputs no wider than 2K, since XPU `torch.topk`
+crashes on wide inputs) and the pruned draft-vocabulary support.
+`draft-vocab-256.json` restricts the MTP draft head to the 256 most-used
+128-token vocabulary blocks (32,768 of 248,320 tokens), cutting draft LM-head reads ~7.6x;
+the target model still verifies every token against its full vocabulary.
+How each setting was chosen, and what was rejected, is in
+[hillclimb-2026-11-16](hillclimb-2026-11-16/README.md).
 
 Weights: `ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw` at
 `6507c778b466b78eaaad0d7d552f98625bd97881`. All routed experts are K4;
@@ -45,15 +55,18 @@ the vision encoder remains BF16 and MTP weights are present.
 
 ## Memory and operational limits
 
-The 264,192-token pool allocates 2,705,326,080 bytes of target KV and
-270,532,608 bytes of MTP KV: 2.771484375 GiB combined, versus 5.54296875 GiB
-for the equivalent BF16 pool. Recurrent state, weights and runtime buffers
-are separate. Driver-owned XPU allocations are not fully reflected in the
-container's cgroup memory. Process PSS plus unique DRM residency was about
-31.1 GiB during the original sweep; this is an approximate combined footprint.
+The 1,052,672-token pool allocates 10.04 GB of target KV and 1.00 GB of MTP KV
+(server log), enough for four requests at the full 262,144-token context. Recurrent
+state (40 Mamba slots), weights and runtime buffers are separate. Driver-owned XPU
+allocations are not reflected in the container's cgroup memory, so the Lab runner
+also sampled xe `drm-resident-gtt` over the container's processes plus cgroup anon
+memory: peak 39,866,564,608 bytes (37.1 GiB) during the Lab. A separate hill-climb
+soak with four concurrent ~248K-token prompts (989,879 prompt tokens) peaked at
+36.8 GiB and retrieved all markers in all four streams.
 
 All context tokens, including image tokens and generated output, share the
-262,144-token limit. Long cold prefill is slow. Prefix caching avoids repeated
+262,144-token limit. Long cold prefill is slow, and while one request runs a long
+cold prefill, other requests' decoding slows to about one step per 4,096-token chunk. Prefix caching avoids repeated
 work for matching document prefixes, but does not make a new document cheap.
 Image input is tested separately from the maximum-length text test.
 
@@ -73,23 +86,23 @@ proof: synthetic repeated-word documents, three retrieval markers, thinking
 disabled and 256 output tokens per cell. They do not establish general model
 quality or controlled FP8-versus-BF16 speed differences.
 
-Acceptance on 2026-11-15 passed all six gates on the source-built image:
-**28.6 tok/s decode**, counted with the server tokenizer over the first 30 s
-of an uncapped answer, and **255 tok/s prefill**, measured by the Lab as
-213,570 prompt tokens divided by the complete context request's 838.3 seconds.
-The context answer was `58213`; chat, separated reasoning and both halves of
-the tool round-trip passed. The additional image test returned `Red` and EOS.
+Acceptance on 2026-11-16 passed all six gates on the source-built image:
+**41.0 tok/s decode** (previous recipe 28.6), counted with the server tokenizer over
+the first 30 s of an uncapped answer, and **667 tok/s prefill** (previous 255),
+measured by the Lab as 213,570 prompt tokens divided by the complete context
+request's 320.0 seconds (previous 838.3). The context answer was `58213`; chat,
+separated reasoning and both halves of the tool round-trip passed. The additional
+image test returned `red` and EOS.
 
 - [Generated recipe](../../../registry/recipes/intel/intel-arc-b390-64gb/ornith-1.5-35b-a3b.sglang.256k.json)
-- [Lab run](evidence/lab-run.json), log hash `sha256:8ab539d49c675b32`
+- [Lab run](evidence/lab-run.json), log hash `sha256:108f2fc71ec82e1b`
 - [Accepted launch](evidence/accepted-launch.json), SHA256
-  `198cf489e9cb2191c1cf436acd14f825213b6427bae68b1bb5296a3a906aec28`
+  `ca655dc5b24142cf5bc42ee4e96edd680f972a8b77777de71c121b1ee112d69e`
 - [Vision response](evidence/vision.json)
 - [Host memory](evidence/host-memory.json): MemAvailable fell from
-  46,637,301,760 to 22,253,457,408 bytes, a 24,383,844,352-byte peak drop.
-  The declared 48 GB available-RAM budget includes 23,616,155,648 bytes of
-  conservative headroom above that measured drop. This measurement differs
-  from the process-PSS-plus-graphics-residency estimate above.
+  34,885,373,952 to 13,147,111,424 bytes, a 21,738,262,528-byte peak drop
+  (GPU residency is only partly visible to MemAvailable; see the GTT figure above).
+  The declared 48 GB available-RAM budget covers the 37.1 GiB (39.9 GB) GTT-plus-anon peak.
 - [Build log](evidence/registry-build.log) and [server log](evidence/server.log)
 - Files beginning `tuning-` retain the earlier exploratory runs, which were
   made before clean-build Lab acceptance and are not the recipe's gate proof.
