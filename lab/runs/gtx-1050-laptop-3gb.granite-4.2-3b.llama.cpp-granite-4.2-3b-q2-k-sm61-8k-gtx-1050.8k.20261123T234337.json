@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "granite-4.2-3b",
+  "weights": "bartowski/Granite-4.2-3B-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+  "engine": "llama.cpp-granite-4.2-3b-q2-k-sm61-8k-gtx-1050@821d0ae4e5d4",
+  "set": {},
+  "card": "gtx-1050-laptop-3gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce GTX 1050"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce GTX 1050",
+  "launch_sha256": "13f824a26218d89e9650b9a96e17b69d9b73b77676b7948dfcf5ae315797fa7b",
+  "gates": "load chat reasoning tools speed",
+  "tps": 21.9,
+  "prefill": 15,
+  "served": "/home/santiago/granite-test/granite-4.2-3b-Q2_K.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": false,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 156,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "IJ2iaU3zr82rmy3ZQMknbHiejq5fPakW"
+    }
+   ],
+   "reply": "The weather in Paris right now is:  \n- Temperature: 17°C  \n- Sky: overcast  \n- Weather code: fa88adc3  \n\nThis code is from the tool response.",
+   "code": "fa88adc3",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 787
+  },
+  "context": {
+   "prompt_tokens": 5268,
+   "seconds": 340.4,
+   "content": ""
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 658,
+   "tokens_total": 1819,
+   "seconds_total": 96.6,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 15,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
