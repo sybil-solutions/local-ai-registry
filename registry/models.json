@@ -885,6 +885,17 @@
       "about": "Nanbeige4.2: a 3B model with looped layers, thinking, tool calls and a 256K window.",
       "good_for": "Agent work and long context on 8 GB cards",
       "hf": "Nanbeige/Nanbeige4.2-3B"
+    },
+    "inkling-2-mini": {
+      "family": "inkling",
+      "name": "Inkling-2-Mini",
+      "released": "2026-11-20",
+      "reasoning": true,
+      "vision": true,
+      "about": "Thinking Machines' Inkling 2 Mini (26.4B MoE, 3.4B active, looped layers), text and image input.",
+      "good_for": "Vision, reasoning and tool calls at 256K context on one or two Arc Pro B70",
+      "logo": "hf",
+      "hf": "thinkingmachines/Inkling-2-Mini"
     }
   },
   "builds": {
@@ -1414,6 +1425,10 @@
     "ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw@6507c778b466b78eaaad0d7d552f98625bd97881": {
       "format": "EXL3 · 4 bpw",
       "size_gb": 19.76
+    },
+    "thinkingmachines/Inkling-2-Mini@ed40e7da625f594fc9c4990f5f66be24873c22d7": {
+      "format": "NVFP4/MXFP8 MoE · DSpark MTP",
+      "size_gb": 20.19
     }
   }
 }
