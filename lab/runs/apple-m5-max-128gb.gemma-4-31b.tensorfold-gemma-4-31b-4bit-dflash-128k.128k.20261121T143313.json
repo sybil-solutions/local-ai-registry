@@ -1,0 +1,81 @@
+{
+ "recipe": {
+  "model": "gemma-4-31b",
+  "weights": "mlx-community/gemma-4-31b-it-4bit@696d436c404745a59f30e4939a658162b0a9e57f",
+  "engine": "tensorfold-gemma-4-31b-4bit-dflash-128k@6d28a3cfb996",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-21",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "c7db237d956f7f5256e1f9668cf5ab63c933e8b181eade38600bc8ff39414edd",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 35.7,
+  "prefill": 348,
+  "served": "gemma-4-31b"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--drafter",
+   "models/gemma-4-31B-it-DFlash-eabd6483"
+  ],
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 280,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_77ec70986e9165d290653ba3",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "The weather in Paris is currently 17°C and overcast. The code is 13657c1b.",
+   "code": "13657c1b",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 299
+  },
+  "context": {
+   "prompt_tokens": 106258,
+   "seconds": 305.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1072,
+   "tokens_total": 1206,
+   "seconds_total": 34.0,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 348,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
