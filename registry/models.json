@@ -316,7 +316,7 @@
       "released": "2026-11-17",
       "reasoning": true,
       "vision": true,
-      "about": "Thinking Machines' Inkling 2 Mini (26B looped MoE, NVFP4 + FP8 experts, 1M context).",
+      "about": "Thinking Machines' Inkling 2 Mini (26.4B looped MoE, 5.4B active, NVFP4 + FP8 experts, 1M context). The GGUF stores 24 blocks and runs the middle 12 three times, so a pass visits 48 layers on 24 sets of weights: 15.7 GB of 4-bit weights carries quality that normally needs a much larger model.",
       "good_for": "Million-token context on one Spark",
       "logo": "hf",
       "hf": "thinkingmachines/Inkling-2-Mini"
