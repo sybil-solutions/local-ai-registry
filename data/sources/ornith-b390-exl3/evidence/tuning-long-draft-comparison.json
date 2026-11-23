@@ -1,0 +1,21 @@
+{
+  "winner": 1,
+  "criterion": "128K decode rate; prefer one draft within 3%",
+  "prefill_chunk": 1024,
+  "rows": [
+    {
+      "draft_steps": 1,
+      "prompt_tokens": 131020,
+      "decode_tokens_per_second": 29.612189399693936,
+      "ttft_seconds": 251.58686177099298,
+      "retrieval_passed": true
+    },
+    {
+      "draft_steps": 3,
+      "prompt_tokens": 131020,
+      "decode_tokens_per_second": 15.504633139010409,
+      "ttft_seconds": 252.29668737199972,
+      "retrieval_passed": true
+    }
+  ]
+}

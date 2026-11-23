@@ -1,0 +1,2 @@
+[lab 18:29:21] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 28.5 tok/s, prefill 244 tok/s; evidence lab/runs/apple-m1-8gb.lfm3-1.7b.mlx-vlm-lfm3-1.7b-8bit-128k.128k.20261111T232921.json
+[lab 18:29:21] PASSED: wrote registry/recipes/apple/apple-m1-8gb/lfm3-1.7b.mlx-vlm.128k.json (499 bytes)

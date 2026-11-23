@@ -4,3 +4,4 @@ next-env.d.ts
 .vercel
 public/api/
 out/
+.wrangler/

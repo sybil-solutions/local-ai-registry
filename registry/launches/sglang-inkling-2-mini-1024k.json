@@ -1,0 +1,64 @@
+{
+  "id": "sglang-inkling-2-mini-1024k",
+  "engine": "sglang",
+  "about": "Inkling-2-Mini (official NVFP4/FP8 checkpoint) on one DGX Spark with SGLang's own inkling-2-mini image: FA4 attention, bf16 KV (1.1M tokens at mem 0.80), DSpark speculative decoding from the checkpoint's MTP head, 1M context, vision, reasoning and tools. Tuned in campaign 2026-11-22-inkling-hy4 (spark-2822).",
+  "image": "lmsysorg/sglang:inkling-2-mini@sha256:efac853b46811ccb760545b7b29e7119bdf907537ccf6e863fac3011fe8b98de",
+  "backend": "nvidia",
+  "port": 30000,
+  "entrypoint": [
+    "python3"
+  ],
+  "args": [
+    "-m",
+    "sglang.launch_server",
+    "--model-path",
+    "/model",
+    "--served-model-name",
+    "inkling-2-mini",
+    "--trust-remote-code",
+    "--context-length",
+    "1048576",
+    "--mem-fraction-static",
+    "0.80",
+    "--speculative-algorithm",
+    "DSPARK",
+    "--speculative-draft-model-path",
+    "/model",
+    "--enable-multimodal",
+    "--reasoning-parser",
+    "inkling",
+    "--tool-call-parser",
+    "inkling2",
+    "--enable-metrics",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "30000"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "shm": "32g",
+  "weights": [
+    {
+      "repo": "thinkingmachines/Inkling-2-Mini",
+      "revision": "b85c3cfa615fc413cc9af3379f491b963f3b586a",
+      "at": "/model",
+      "layout": "dir"
+    }
+  ],
+  "config": null,
+  "ctx": 1048576,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "flags": [
+    "--gpus all",
+    "--shm-size 32g",
+    "--ipc host",
+    "--ulimit memlock=-1",
+    "--ulimit stack=67108864"
+  ],
+  "source": "https://huggingface.co/thinkingmachines/Inkling-2-Mini/tree/b85c3cfa615fc413cc9af3379f491b963f3b586a"
+}

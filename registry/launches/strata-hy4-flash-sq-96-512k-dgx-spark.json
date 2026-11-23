@@ -1,0 +1,47 @@
+{
+  "id": "strata-hy4-flash-sq-96-512k-dgx-spark",
+  "kind": "host",
+  "engine": "strata-hy4",
+  "about": "Tencent Hy4-Flash (220B-A12B incl. a 64B Engram lookup) as Strata's SQ-96 pack + Engram-Q8 + Vision on one DGX Spark, with Strata 0.2.20 (control 0.1.66, engine strata-hy4 0.1.66 linux-aarch64 CUDA 13; github.com/Niko1221/Strata). Q8 MLA KV (HY4_KV_Q8=1), 512K window, built-in DFly2 speculative decoding (adaptive width), CUDA graphs, session reuse, images in. One request at a time.",
+  "command": [
+    "strata",
+    "serve",
+    "--config",
+    "strata-hy4-flash-sq-96.json",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8090",
+    "--parallel",
+    "1"
+  ],
+  "install": "curl -fsSL https://github.com/Niko1221/Strata/releases/download/v0.2.20/install.sh -o install.sh && sh install.sh (Strata control 0.1.66: strata-control-0.1.66-linux-aarch64.tar.gz sha256 4d53d7cf560373b277762f15b0119ce53eeec08fcf628fce0c2a8ffc6aa23ff4; engine strata-hy4-0.1.66-linux-aarch64-cuda-cuda13.tar.gz sha256 69981deb045e577c9285c8045e603de4b23c6f44914371c94b09f5ea90f92bfc, binary strata-hy4 sha256 2c5e04653a300f3e5dace9708508b07a6e822d99b3c748e0437e12970b92cbeb), then strata install -- --setup --family hy4-flash --model SQ-96 --context 524288 --vision yes --yes --no-start --gguf-dir <folder with the three .strata files>; setup verifies the pack SHA-256 and writes ~/.local/share/strata/install/strata-hy4-flash-sq-96.json. Run the command from ~/.local/share/strata/install.",
+  "env": {
+    "HY4_KV_Q8": "1"
+  },
+  "port": 8090,
+  "weights": [
+    {
+      "repo": "strata-engine/Hy4-Flash-Strata",
+      "revision": "995bac227ab7e0d221772be641e2b5954a9fac06",
+      "at": "models/hy4-flash",
+      "layout": "dir",
+      "files": [
+        "Hy4-Flash-SQ-96.strata",
+        "Hy4-Flash-Engram-Q8.strata",
+        "Hy4-Flash-Vision.strata"
+      ]
+    }
+  ],
+  "ctx": 524288,
+  "seqs": 1,
+  "vision": true,
+  "backend": "nvidia",
+  "source": "https://github.com/Niko1221/Strata/releases/tag/v0.2.20",
+  "needs": {
+    "host_ram_gb": 108.0,
+    "disk_gb": 158.1,
+    "fast_storage": "nvme"
+  },
+  "setup": "NEEDS: one DGX Spark (GB10, 128 GB unified memory), ~158 GB on the local NVMe (SQ-96 89.58 GB + Engram-Q8 67.58 GB + Vision 0.93 GB, sha256 3b1c5755\u2026 / ab0cf9b3\u2026 / ef09bcef\u2026), nothing else large on the GPU. The engine loads 89.5 GB of weights (trunk 6.58 + experts 82.93) in ~12 s, then a Q8 KV of 4.30 GB for 524,288 tokens; MemAvailable stays at 15.8-19 GB while serving. Do not run 1M on this pack: at --context 1048576 with Q8 KV, MemAvailable sits at ~7.7 GB before any request. strata-hy4 does not batch: --parallel above 1 queues requests. host_ram_gb is the measured MemAvailable drop (124 GB idle to 15.8 GB minimum during the gates)."
+}

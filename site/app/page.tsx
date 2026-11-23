@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Copy from "@/components/Copy";
 import Dots from "@/components/Dots";
 import Find, { type Item } from "@/components/Find";
@@ -56,6 +57,7 @@ export default function Landing() {
           <code title={INSTALL}>{copy.sCmd}</code>
           <Copy text={INSTALL} event="install_copied" props={{ from: "landing" }} />
         </div>
+        <div className={s.heroGet}><Link href="/download/" className={`${s.btn} ${s.dl}`}>{copy.sGet}</Link></div>
       </section>
 
       <div className={s.art}>
