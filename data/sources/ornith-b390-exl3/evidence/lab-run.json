@@ -1,0 +1,88 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw@6507c778b466b78eaaad0d7d552f98625bd97881",
+  "engine": "sglang-ornith-1.5-35b-a3b-exl3-4bpw-fp8-mtp-256k-b390@46430a0ed08b",
+  "set": {},
+  "card": "intel-arc-b390-64gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc B390 (Dell XPS 14 DA14260, Core Ultra X7 358H, 64 GB unified LPDDR5X)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-15",
+  "on": "owner",
+  "gpu": "Intel Arc B390 (Dell XPS 14 DA14260, Core Ultra X7 358H, 64 GB unified LPDDR5X)",
+  "launch_sha256": "198cf489e9cb2191c1cf436acd14f825213b6427bae68b1bb5296a3a906aec28",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 28.6,
+  "prefill": 255,
+  "served": "ornith-1.5-35b-a3b"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--speculative-algorithm",
+   "NEXTN",
+   "--speculative-num-steps",
+   "1",
+   "--speculative-eagle-topk",
+   "1",
+   "--speculative-num-draft-tokens",
+   "2"
+  ],
+  "chat": {
+   "content": "\n\nRed, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 196,
+   "content": "\n\n391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_a3e704147d5b404d8326d1c4",
+     "index": 0,
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "\n\nHere's the current weather in **Paris**:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n- **Weather code:** `fc743089`\n\nThe weather code returned by the tool is **fc743089**.",
+   "code": "fc743089",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 79
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 838.3,
+   "content": "\n\n58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 859,
+   "tokens_total": 1028,
+   "seconds_total": 35.7,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 255,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

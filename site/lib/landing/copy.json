@@ -1,7 +1,7 @@
 {
  "word": "Sybil AI",
  "credit": "art · @samdape",
- "sNav": "Models, Hardware, Videos, Docs, GitHub",
+ "sNav": "Download, Models, Hardware, Videos, Docs, GitHub",
  "sFollow": "Follow",
  "sHead": "Run AI at home.",
  "sSub": "Tested open models for your GPU, running on your machine, used by your coding agent.",
@@ -47,5 +47,17 @@
  "fModels": "Models",
  "fModelsQ": "Search a model",
  "fModelsAll": "All models",
- "cUrl": "https://github.com/sybil-solutions/local-ai-registry/issues?q=is%3Aissue+is%3Aopen+label%3Abounty"
+ "cUrl": "https://github.com/sybil-solutions/local-ai-registry/issues?q=is%3Aissue+is%3Aopen+label%3Abounty",
+ "dHead": "Download",
+ "dAll": "All versions →",
+ "dLede": "Local AI is the desktop app. It lists the tested models for your GPU, starts one with a click, shows it running, and opens your coding agent on it.",
+ "dMac": "Mac",
+ "dMacNote": "Apple silicon, macOS 12 or later. Signed with a Developer ID and notarized by Apple. Open the file and drag Local AI to Applications. Starting a model needs Python 3.11 or newer.",
+ "dMacBtn": "Download for Mac",
+ "dWin": "Windows",
+ "dWinNote": "Windows 10 or 11, 64-bit. Run the file to install Local AI for your account. It is not signed yet, so Windows asks before it runs: choose More info, then Run anyway. Starting a model needs Docker Desktop and an NVIDIA GPU.",
+ "dWinBtn": "Download for Windows",
+ "dLinux": "Linux and Omarchy",
+ "dLinuxNote": "One line installs it for your user, keeps it running and adds Local AI to the app menu. Run the line again to update. Starting a model needs Docker and an NVIDIA or Intel Arc GPU.",
+ "sGet": "Download the app"
 }
