@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "unsloth/Inkling-2-Mini-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+  "engine": "llama.cpp-inkling-2-mini-ud-q2-k-xl-128k-rtx-3060-12gb@e83c304041d3",
+  "set": {},
+  "card": "rtx-3060-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3060"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3060",
+  "launch_sha256": "95ee9b31e41ce20505eb00418294e6f51a5a48ca4b0422b91aa0ba9ff72dcd88",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 21.6,
+  "prefill": 175,
+  "served": "inkling-2-mini-ud-q2-k-xl"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 101,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "mcJHzUsJs3ttyvZJpWQkld3b05S0QcxR"
+    }
+   ],
+   "reply": "Paris is overcast at 17°C. Code: c69c7b19",
+   "code": "c69c7b19",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 418
+  },
+  "context": {
+   "prompt_tokens": 91888,
+   "seconds": 524.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 648,
+   "tokens_total": 3707,
+   "seconds_total": 176.6,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 175,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "a4e935205cbf3a19cd28033589e619b1f5544efe5ae62e6a936dfdc6a546e320"
+}
