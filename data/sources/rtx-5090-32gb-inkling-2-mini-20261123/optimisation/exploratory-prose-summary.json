@@ -1,0 +1,167 @@
+[
+  {
+    "profile": "baseline",
+    "phase": "screen",
+    "kind": "prose",
+    "target_input": 8192,
+    "seed": 1000,
+    "prompt_sha256": "545aefa7cb7f8564c7dc1919b78677d207cd72d65eda56666b741d609a840671",
+    "seconds": 38.401312987785786,
+    "ttft": 6.098750255070627,
+    "accepted_text_tokens": 6852,
+    "accepted_text_tps": 212.11939302451938,
+    "window_tokens": 6074,
+    "window_seconds": 30.007117942906916,
+    "window_tps": 202.4186398559403,
+    "usage": {
+      "prompt_tokens": 7922,
+      "total_tokens": 14781,
+      "completion_tokens": 6859,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 2860,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2860
+      }
+    },
+    "finish": "stop",
+    "done": true,
+    "visible_word_count": 2516,
+    "output_sha256": "649d1de37eb970fcea190892a3eebb9c158652205c899d7f27fae73673d483cf",
+    "repeated_8gram_fraction": 0.10863444392304078,
+    "visible_paragraphs": 143,
+    "duplicate_visible_paragraph_occurrences": 29,
+    "qualification_status": "exploratory_only_not_an_interleaved_control_comparison"
+  },
+  {
+    "profile": "baseline",
+    "phase": "screen",
+    "kind": "prose",
+    "target_input": 8192,
+    "seed": 1010,
+    "prompt_sha256": "afec5fb98fb6bcf861e95610effe67f8233138cc583a13675ac6b01da7a05d2b",
+    "seconds": 41.87478561280295,
+    "ttft": 0.4949705437757075,
+    "accepted_text_tokens": 9117,
+    "accepted_text_tps": 220.3248125877698,
+    "window_tokens": 5961,
+    "window_seconds": 30.010372111108154,
+    "window_tps": 198.63132579397683,
+    "usage": {
+      "prompt_tokens": 7922,
+      "total_tokens": 17046,
+      "completion_tokens": 9124,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 5485,
+      "completion_tokens_details": {
+        "reasoning_tokens": 5485
+      }
+    },
+    "finish": "stop",
+    "done": true,
+    "visible_word_count": 2614,
+    "output_sha256": "68ffebf3baa1570f0bb4b4ac82c9e4fa40a2f30bdd780dc852ca8c4cdd90e626",
+    "repeated_8gram_fraction": 0.14777759553878955,
+    "visible_paragraphs": 92,
+    "duplicate_visible_paragraph_occurrences": 12,
+    "qualification_status": "exploratory_only_not_an_interleaved_control_comparison"
+  },
+  {
+    "profile": "chunk1024",
+    "phase": "screen",
+    "kind": "prose",
+    "target_input": 8192,
+    "seed": 1000,
+    "prompt_sha256": "545aefa7cb7f8564c7dc1919b78677d207cd72d65eda56666b741d609a840671",
+    "seconds": 157.54808905068785,
+    "ttft": 5.422019493766129,
+    "accepted_text_tokens": 73206,
+    "accepted_text_tps": 481.2192953726986,
+    "window_tokens": 6627,
+    "window_seconds": 30.000716716982424,
+    "window_tps": 220.89472270003043,
+    "usage": {
+      "prompt_tokens": 7922,
+      "total_tokens": 81135,
+      "completion_tokens": 73213,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 3559,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3559
+      }
+    },
+    "finish": "stop",
+    "done": true,
+    "visible_word_count": 48284,
+    "output_sha256": "7d465ffc16b523dc5e7bf0a15c4dec9468b3fa05960b4b5aae2604fdaea63110",
+    "repeated_8gram_fraction": 0.9215923516344018,
+    "visible_paragraphs": 1439,
+    "duplicate_visible_paragraph_occurrences": 1360,
+    "qualification_status": "exploratory_only_not_an_interleaved_control_comparison"
+  },
+  {
+    "profile": "compact",
+    "phase": "screen",
+    "kind": "prose",
+    "target_input": 8192,
+    "seed": 1000,
+    "prompt_sha256": "545aefa7cb7f8564c7dc1919b78677d207cd72d65eda56666b741d609a840671",
+    "seconds": 288.1921335379593,
+    "ttft": 6.149023379664868,
+    "accepted_text_tokens": 123005,
+    "accepted_text_tps": 436.12127213802324,
+    "window_tokens": 7502,
+    "window_seconds": 30.006445193197578,
+    "window_tps": 250.0129539403319,
+    "usage": {
+      "prompt_tokens": 7922,
+      "total_tokens": 130929,
+      "completion_tokens": 123007,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 123007,
+      "completion_tokens_details": {
+        "reasoning_tokens": 123007
+      }
+    },
+    "finish": "length",
+    "done": true,
+    "visible_word_count": 0,
+    "output_sha256": "e55b498b8a228cd46c8a5b29ce09e2ae806bd6c479d8f5613bc33d735d7c26dc",
+    "repeated_8gram_fraction": 0.8792678854662326,
+    "visible_paragraphs": 0,
+    "duplicate_visible_paragraph_occurrences": 0,
+    "qualification_status": "exploratory_only_not_an_interleaved_control_comparison"
+  },
+  {
+    "profile": "draft-mxfp8",
+    "phase": "screen",
+    "kind": "prose",
+    "target_input": 8192,
+    "seed": 1000,
+    "prompt_sha256": "545aefa7cb7f8564c7dc1919b78677d207cd72d65eda56666b741d609a840671",
+    "seconds": 47.32384769106284,
+    "ttft": 6.148050512652844,
+    "accepted_text_tokens": 8916,
+    "accepted_text_tps": 216.53496983599365,
+    "window_tokens": 6719,
+    "window_seconds": 30.011704875156283,
+    "window_tps": 223.8793173513443,
+    "usage": {
+      "prompt_tokens": 7922,
+      "total_tokens": 16845,
+      "completion_tokens": 8923,
+      "prompt_tokens_details": null,
+      "reasoning_tokens": 6086,
+      "completion_tokens_details": {
+        "reasoning_tokens": 6086
+      }
+    },
+    "finish": "stop",
+    "done": true,
+    "visible_word_count": 1906,
+    "output_sha256": "0bbad16839b292e19a7da5c8ac3286b36c7ada0af1d8e1e351f0c110619b886f",
+    "repeated_8gram_fraction": 0.11266390614216704,
+    "visible_paragraphs": 91,
+    "duplicate_visible_paragraph_occurrences": 9,
+    "qualification_status": "exploratory_only_not_an_interleaved_control_comparison"
+  }
+]

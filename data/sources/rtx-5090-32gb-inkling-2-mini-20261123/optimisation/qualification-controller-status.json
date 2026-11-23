@@ -1,0 +1,15 @@
+{
+  "exit_code": 1,
+  "selection": {
+    "selected_screen": "chunk-control-a",
+    "configuration": {
+      "name": "retained-profile",
+      "cache": false,
+      "replace_args": {}
+    },
+    "cache_passed_both": false,
+    "chunk_passed": false,
+    "status": "selected for qualification; not yet adopted",
+    "queue_completed": false
+  }
+}

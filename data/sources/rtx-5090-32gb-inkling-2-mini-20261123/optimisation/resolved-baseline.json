@@ -1,0 +1,36 @@
+{
+  "version": "0.0.0.dev1+inkling2",
+  "context_length": 131072,
+  "mem_fraction_static": 0.95,
+  "max_total_tokens": 131072,
+  "max_total_num_tokens": 131072,
+  "max_running_requests": 1,
+  "chunked_prefill_size": 2048,
+  "page_size": 128,
+  "swa_full_tokens_ratio": 0.03125,
+  "max_mamba_cache_size": 8,
+  "disable_overlap_schedule": false,
+  "speculative_algorithm": "DSPARK",
+  "speculative_num_draft_tokens": 8,
+  "speculative_num_steps": 1,
+  "speculative_eagle_topk": 1,
+  "speculative_dspark_lm_head_dtype": null,
+  "cuda_graph_max_bs_decode": 1,
+  "cuda_graph_max_bs_prefill": 1,
+  "inkling2_loop_num_passes": null,
+  "disable_radix_cache": false,
+  "disable_chunked_prefix_cache": false,
+  "kv_cache_dtype": "auto",
+  "source_note": "Top-level fields are frontend get_server_info values; worker differences are listed explicitly. Allocation sizes are corroborated separately from server logs.",
+  "worker_overrides": [
+    {
+      "worker_index": 0,
+      "differences": {
+        "disable_chunked_prefix_cache": {
+          "frontend": false,
+          "worker": true
+        }
+      }
+    }
+  ]
+}

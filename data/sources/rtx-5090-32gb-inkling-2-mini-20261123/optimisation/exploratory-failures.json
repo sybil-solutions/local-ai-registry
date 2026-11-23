@@ -1,0 +1,18 @@
+[
+  {
+    "profile": "baseline",
+    "error": "<HTTPError 400: 'Bad Request'>"
+  },
+  {
+    "profile": "gamma3",
+    "error": "RuntimeError('inkling-extended-trial exited')"
+  },
+  {
+    "profile": "chunk4096",
+    "error": "TimeoutError('timed out')"
+  },
+  {
+    "profile": "compact",
+    "error": "RuntimeError('Screen request failed')"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "phase": "exploratory stress tests, before skill-guided qualifying A/B runs",
+  "temperature": 0.8,
+  "output_token_limit": "not supplied",
+  "thinking_mode": "native model reasoning; not forcibly disabled",
+  "served_model": "Inkling-2-Mini",
+  "panel_context_target": 8192,
+  "actual_prose_prompt_tokens": 7922,
+  "prose_instruction": "Write a complete, original story of about 2500 words about a lighthouse keeper and a cartographer discovering that their maps disagree. Include dialogue, a genuine disagreement resolved through evidence, and a definite ending. Write the story itself, not an outline.",
+  "background": "Seeded synthetic word document, trimmed using the server tokenizer before timing; model seed and prompt SHA256 recorded per row. Prefix cache flushed before each request.",
+  "timing": "Wall latency includes prefill and all reasoning/content. TTFT is first nonempty reasoning or content delta. Window rate re-tokenizes accepted text over first30s after that delta, or whole answer if shorter; no speculative proposal counts.",
+  "output_sanity": "Post-generation scope/repetition grading; failed or looping outputs are retained and excluded from speed-win claims. Eight-word repeated-shingle fraction follows skill helper.",
+  "raw_outputs": "exploratory-prose.jsonl.gz contains complete recorded synthetic response objects. Summary hashes bind reasoning+content.",
+  "comparability": "Exploratory profiles were not interleaved with adjacent controls; these rows must not establish a configuration gain."
+}

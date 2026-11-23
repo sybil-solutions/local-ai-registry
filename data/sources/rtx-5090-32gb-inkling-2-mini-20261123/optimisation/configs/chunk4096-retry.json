@@ -1,0 +1,7 @@
+{
+  "name": "chunk4096-retry",
+  "cache": false,
+  "replace_args": {
+    "--chunked-prefill-size": 4096
+  }
+}

@@ -1,0 +1,78 @@
+[
+  {
+    "candidate": "cache-warm-a",
+    "controls": [
+      "control-a",
+      "control-b"
+    ],
+    "qualified_inputs": true,
+    "sanity_correction": "Terminal period in unquoted exact-string prompt is ambiguous; both readings accepted, raw flags preserved.",
+    "comparisons": {
+      "control-a": {
+        "paired_median_ratio": 1.0613944778014566,
+        "bootstrap95": [
+          0.9815438597224342,
+          1.1130851952527396
+        ],
+        "startup_ratio": 0.39062334024626705,
+        "decode_median_ratio": 0.9812895703103818,
+        "answer_latency_ratio": 1.299135234114912,
+        "prefill_ttft_ratio": 0.996468647462697,
+        "greedy_exact_matches": 6,
+        "greedy_cases": 6
+      },
+      "control-b": {
+        "paired_median_ratio": 1.0157690366875791,
+        "bootstrap95": [
+          0.933576248763892,
+          1.0808588651015705
+        ],
+        "startup_ratio": 0.3905682859023761,
+        "decode_median_ratio": 0.9305962312565219,
+        "answer_latency_ratio": 0.8439726784664975,
+        "prefill_ttft_ratio": 0.9935387748610155,
+        "greedy_exact_matches": 6,
+        "greedy_cases": 6
+      }
+    },
+    "startup_candidate_pass": false
+  },
+  {
+    "candidate": "cache-warm-b",
+    "controls": [
+      "control-b",
+      "control-c"
+    ],
+    "qualified_inputs": true,
+    "sanity_correction": "Terminal period in unquoted exact-string prompt is ambiguous; both readings accepted, raw flags preserved.",
+    "comparisons": {
+      "control-b": {
+        "paired_median_ratio": 0.9447797067896511,
+        "bootstrap95": [
+          0.7407983207151113,
+          1.0294101473607635
+        ],
+        "startup_ratio": 0.2955609695952601,
+        "decode_median_ratio": 0.842998026612949,
+        "answer_latency_ratio": 0.6304279918848005,
+        "prefill_ttft_ratio": 0.9944318364104919,
+        "greedy_exact_matches": 6,
+        "greedy_cases": 6
+      },
+      "control-c": {
+        "paired_median_ratio": 0.9593268556076013,
+        "bootstrap95": [
+          0.8366674656973785,
+          1.0539689152121139
+        ],
+        "startup_ratio": 0.29561855193144465,
+        "decode_median_ratio": 0.9846483727334286,
+        "answer_latency_ratio": 0.925017835346692,
+        "prefill_ttft_ratio": 0.9943298159415522,
+        "greedy_exact_matches": 6,
+        "greedy_cases": 6
+      }
+    },
+    "startup_candidate_pass": false
+  }
+]

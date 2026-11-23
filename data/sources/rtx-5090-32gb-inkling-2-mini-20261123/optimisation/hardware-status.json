@@ -1,0 +1,16 @@
+{
+  "resident_display_helpers": [
+    "ChatGPT",
+    "t3code"
+  ],
+  "power_profile": "performance",
+  "loadavg": [
+    1.087890625,
+    1.1494140625,
+    1.15869140625
+  ],
+  "cpu_count": 32,
+  "completed": true,
+  "power_profile_after": "performance",
+  "restored": true
+}

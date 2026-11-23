@@ -1,0 +1,84 @@
+{
+  "reason": "Invalid deterministic baseline; do not repeat degenerate panel",
+  "baseline": {
+    "name": "greedy-control-a",
+    "config": {
+      "name": "greedy-control-a",
+      "cache": false,
+      "replace_args": {}
+    },
+    "core_sha256": "715532564d468fd7de5d3de83afd3cf015909d62fcc9deaacba4f962b605174b",
+    "runner_sha256": "110f35dd52699478ef23e58db6f47b1cd858ababb2f272ea897ec2a1806796fd",
+    "started_unix": 1795449693.3397224,
+    "environment_before": {
+      "profile": "performance",
+      "governors": [
+        "performance"
+      ],
+      "power_limit_w": 575.0,
+      "display_helpers": [
+        "ChatGPT",
+        "t3code"
+      ],
+      "unknown_compute_pids": [],
+      "ac": true,
+      "load_per_cpu": 0.0373687744140625
+    },
+    "startup_seconds": 126.65533772530034,
+    "warmup_seconds": 20.03426386322826,
+    "warmup_flags": [],
+    "startup_plus_warmup_seconds": 146.6896015885286,
+    "environment_after": {
+      "profile": "performance",
+      "governors": [
+        "performance"
+      ],
+      "power_limit_w": 575.0,
+      "display_helpers": [
+        "ChatGPT",
+        "t3code"
+      ],
+      "unknown_compute_pids": [],
+      "ac": true,
+      "load_per_cpu": 0.0377655029296875
+    },
+    "environment_valid": true,
+    "panel_flags": [
+      {
+        "kind": "story",
+        "flags": [
+          "LOOP",
+          "NOT_NATURAL_STOP",
+          "OUTPUT_CHECK_FAILED",
+          "SCOPE"
+        ]
+      }
+    ],
+    "all_measured_flags": [
+      {
+        "phase": "panel",
+        "kind": "story",
+        "flags": [
+          "LOOP",
+          "NOT_NATURAL_STOP",
+          "OUTPUT_CHECK_FAILED",
+          "SCOPE"
+        ]
+      },
+      {
+        "phase": "greedy",
+        "kind": "exact",
+        "flags": [
+          "GREEDY_SANITY_FAILED"
+        ]
+      }
+    ],
+    "decode_median": 262.0458508720625,
+    "answer_seconds_median": 12.057542581344023,
+    "prefill_ttft_median": 2.2132876459509134,
+    "qualified_screen": false,
+    "completed": true,
+    "memory_cap_tripped": false,
+    "watch_error": null
+  }
+}
