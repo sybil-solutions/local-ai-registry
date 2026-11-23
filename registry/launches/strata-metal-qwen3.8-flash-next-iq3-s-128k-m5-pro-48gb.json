@@ -1,0 +1,51 @@
+{
+  "id": "strata-metal-qwen3.8-flash-next-iq3-s-128k-m5-pro-48gb",
+  "kind": "host",
+  "engine": "strata",
+  "about": "Qwen3.8-Flash-Next (ISTA-DASLab GSQ-RCO IQ3_S: all 512 experts) on an Apple M5 Pro 48 GB with a tuned fork of Strata's Metal engine (github.com/betizzel/Strata, branch m5pro-iq3s: direct uncached expert reads, freed host weight copies, an expert arena wired as it fills, prompt buffers inside the arena and a GPU keep-warm). The 54.8 GB model does not fit: the most-used routed experts live in a wired unified-memory arena (up to 17.5 GB, sized at start from free memory) and the rest are read from a contiguous expert sidecar on the internal SSD, one read per expert. MTP speculative decoding from the base model's native MTP layer (Q2_0), 4 drafts, 128K window, text only, stock weights (no refusal projection).",
+  "command": [
+    ".venv/bin/python",
+    "serve/server.py",
+    "--engine",
+    "strata",
+    "--config",
+    "../strata-iq3_s.json",
+    "--port",
+    "8181"
+  ],
+  "install": "hf download baytizzel/Qwen3.8-Flash-Next-IQ3_S-Strata-M5Pro-48gb --revision 7e6a335c672b6d7e59c945125ea6f9d5c76b3116 --local-dir iq3s-recipe && bash iq3s-recipe/scripts/fetch-upstream.sh models && bash iq3s-recipe/scripts/build-engine.sh Strata && bash iq3s-recipe/scripts/make-experts.sh Strata models && (cd Strata && python3 -m venv .venv && .venv/bin/pip install -r requirements.txt) && python3 iq3s-recipe/scripts/render-config.py --engine Strata --models models --out strata-iq3_s.json --max-context 131072 --no-vision --no-projection --server-home Strata --port 8181 && cd Strata (macOS on Apple silicon; Xcode Command Line Tools, cmake and ninja; Python >= 3.10; the recipe's scripts pin the GGUF revision and sha256, and build engine commit be08d32a; make-experts.sh writes the 50.3 GB expert sidecar once and checks it against the GGUF; render-config.py writes a random API key into the config)",
+  "env": {},
+  "port": 8181,
+  "weights": [
+    {
+      "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+      "at": "../models",
+      "layout": "dir",
+      "files": [
+        "IQ3_S/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00001-of-00002.gguf",
+        "IQ3_S/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00002-of-00002.gguf",
+        "mmproj-Qwen3.8-Flash-Next-BF16.gguf"
+      ]
+    },
+    {
+      "repo": "baytizzel/Qwen3.8-Flash-Next-IQ3_S-Strata-M5Pro-48gb",
+      "revision": "7e6a335c672b6d7e59c945125ea6f9d5c76b3116",
+      "at": "../iq3s-recipe",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "wired_limit_reserve_mb": 6144,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal",
+  "needs": {
+    "host_ram_gb": 31,
+    "disk_gb": 137.2,
+    "fast_storage": "nvme"
+  },
+  "setup": "NEEDS: an Apple silicon Mac with 48 GB on macOS 26, on power, about 140 GB on its internal NVMe SSD (84.5 GB of GGUF and vision projector, the 50.3 GB expert sidecar written once, 2.4 GB pack and MTP layer). The engine sizes its expert arena at start from free memory, keeping 8 GB for macOS, up to 17.5 GB: a busier Mac gets a smaller arena and decodes slower. host_ram_gb is the measured fall in available memory (free + purgeable + reclaimable file cache) from before the start through the gates, plus documented headroom: 22.97 GB with an 8.5 GB arena and 28.73 GB with a 16.2 GB arena; 31 adds the remaining 1.3 GB to the 17.5 GB arena cap. The 128K window's KV cache takes about 1.8 GB at load. Keep the Strata checkout with the binary: the engine compiles its Metal kernels at start. The server needs the API key from the config (Authorization: Bearer).",
+  "source": "https://github.com/betizzel/Strata/tree/be08d32a993fb6dcb93e824e6b1d8706543c2da0"
+}

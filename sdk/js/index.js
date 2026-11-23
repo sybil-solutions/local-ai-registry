@@ -16,12 +16,17 @@ export async function catalog(url = URL) {
 }
 
 const norm = (s) => s.toLowerCase().replace(/\((r|tm)\)/g, "").replace(/geforce|nvidia|amd|radeon|intel|graphics|[^a-z0-9]/g, "");
+const mobile = (s) => /laptop|mobile|maxq/.test(s);
 const names = (id, c) => [norm(c.name), norm(id), ...(c.match?.names ?? [])];
 /** The card id for a GPU as the driver names it (nvidia-smi, amd-smi, lspci) and its memory in GB. */
+const matches = (id, c, n) => {
+  const mob = mobile(n);
+  return names(id, c).filter((x) => x && mobile(x) === mob && n.includes(x));
+};
 export function detect(cat, gpu, vram) {
   const n = norm(gpu);
-  const hits = Object.entries(cat.cards).filter(([id, c]) => names(id, c).some((x) => x && n.includes(x)) && (!vram || Math.abs(c.vram_gb - vram) <= 2));
-  const best = ([id, c]) => Math.max(...names(id, c).filter((x) => n.includes(x)).map((x) => x.length));
+  const hits = Object.entries(cat.cards).filter(([id, c]) => matches(id, c, n).length > 0 && (!vram || Math.abs(c.vram_gb - vram) <= 2));
+  const best = ([id, c]) => Math.max(...matches(id, c, n).map((x) => x.length));
   return hits.sort((a, b) => best(b) - best(a) ||
     (vram ? Math.abs(a[1].vram_gb - vram) - Math.abs(b[1].vram_gb - vram) : 0))[0]?.[0] ?? null;
 }
