@@ -7,9 +7,10 @@
     "bash",
     "inkling-nixos-serve.sh"
   ],
-  "install": "https://github.com/ImLunaHey/nixos-configs/tree/3d4450eb893ead81311a3bce2d809277a1932b66",
+  "install": "https://github.com/ImLunaHey/nixos-configs/tree/99fddb86e988989e28a058ecbb3d93100947128b",
   "env": {
-    "LD_LIBRARY_PATH": "/run/opengl-driver/lib"
+    "LD_LIBRARY_PATH": "/run/opengl-driver/lib",
+    "INKLING_Q4_VEC": "1"
   },
   "port": 8080,
   "weights": [
@@ -27,8 +28,8 @@
   "seqs": 1,
   "vision": false,
   "backend": "nvidia",
-  "source": "https://github.com/ImLunaHey/nixos-configs/tree/3d4450eb893ead81311a3bce2d809277a1932b66/benchmarks/tower-inkling/context-128k",
-  "setup": "NixOS x86_64 with Nix flakes, bash, sha256sum, Hugging Face CLI and NVIDIA driver (tested 595.112.07). RTX 5070 Ti 16 GB, tested on 32 GB system RAM at 300W. GPU-only attention: CPU q4 attention fails numerical checks. One 131072-token slot, q4_0 K/V, batch1024/ub128, full vocabulary and three loop passes. Stop existing GPU inference services before launch; port 8080 must be free. Unmaintained pinned research engine; see source for bounded qualification.",
+  "source": "https://github.com/ImLunaHey/nixos-configs/tree/99fddb86e988989e28a058ecbb3d93100947128b/benchmarks/tower-inkling/context-128k/tuning",
+  "setup": "NixOS x86_64 with Nix flakes, bash, sha256sum, Hugging Face CLI and NVIDIA driver (tested 595.112.07). RTX 5070 Ti 16 GB, tested on 32 GB system RAM at 300W. GPU-only attention: CPU q4 attention fails numerical checks. One 131072-token slot, q4_0 K/V, batch1024/ub224, INKLING_Q4_VEC=1, full vocabulary and three loop passes. Stop existing GPU inference services before launch; port 8080 must be free. Unmaintained pinned research engine; see source for bounded qualification.",
   "config": {
     "at": "inkling-nixos-serve.sh",
     "file": "ik-inkling-nixos-serve.sh"

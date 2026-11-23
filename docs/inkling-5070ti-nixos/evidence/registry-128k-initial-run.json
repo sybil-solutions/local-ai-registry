@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "AtomicChat/Inkling-2-Mini-Uncensored-GGUF@40886ab636cabb4decf4998224f790b462ab048e",
+  "engine": "ik-inkling-2-mini-uncensored-iq3-s-nixos-128k@dac99416d9e9",
+  "set": {},
+  "card": "rtx-5070-ti-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "launch_sha256": "c81539679d87ff3faac7f1f537c2a444f8bd1ec70b984a57134f3396e604ce2f",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 103.4,
+  "prefill": 986,
+  "served": "inkling-2-mini-abliterated"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 86,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "Fvwj7PMy091EQfY7eFQR3KZLGagcZcQ6"
+    }
+   ],
+   "reply": "Paris is overcast at 17°C. Code: a335bd2f",
+   "code": "a335bd2f",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 488
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 93.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 24.3,
+   "tokens_in_window": 2511,
+   "tokens_total": 2511,
+   "seconds_total": 25.1,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 986,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "ac018e504c5684e0458d7d3b141788410497ed8abbc8d030682ce2563df21e4d"
+}

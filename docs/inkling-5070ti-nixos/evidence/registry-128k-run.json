@@ -2,7 +2,7 @@
  "recipe": {
   "model": "inkling-2-mini",
   "weights": "AtomicChat/Inkling-2-Mini-Uncensored-GGUF@40886ab636cabb4decf4998224f790b462ab048e",
-  "engine": "ik-inkling-2-mini-uncensored-iq3-s-nixos-128k@dac99416d9e9",
+  "engine": "ik-inkling-2-mini-uncensored-iq3-s-nixos-128k@ca08c7099fbb",
   "set": {},
   "card": "rtx-5070-ti-16gb"
  },
@@ -15,10 +15,10 @@
   "at": "2026-11-23",
   "on": "owner",
   "gpu": "NVIDIA GeForce RTX 5070 Ti",
-  "launch_sha256": "c81539679d87ff3faac7f1f537c2a444f8bd1ec70b984a57134f3396e604ce2f",
+  "launch_sha256": "8730dd247a97d914d554e9b71acb1d994c208356a6010f101b3451cac927e84c",
   "gates": "load chat reasoning tools context speed",
-  "tps": 103.4,
-  "prefill": 986,
+  "tps": 111.2,
+  "prefill": 1449,
   "served": "inkling-2-mini-abliterated"
  },
  "evidence": {
@@ -36,7 +36,7 @@
    "finish": "stop"
   },
   "reasoning": {
-   "thinking_chars": 86,
+   "thinking_chars": 99,
    "content": "391"
   },
   "tools": {
@@ -47,32 +47,32 @@
       "name": "get_weather",
       "arguments": "{\"city\":\"Paris\"}"
      },
-     "id": "Fvwj7PMy091EQfY7eFQR3KZLGagcZcQ6"
+     "id": "qUlQodT5aFdEMjjm20jA3pAfj0dePyx4"
     }
    ],
-   "reply": "Paris is overcast at 17°C. Code: a335bd2f",
-   "code": "a335bd2f",
+   "reply": "Paris is currently 17°C and overcast. The code it gave you is: 980ddc6e",
+   "code": "980ddc6e",
    "finish": "stop",
    "calls_again": 0,
-   "thinking_chars": 488
+   "thinking_chars": 466
   },
   "context": {
    "prompt_tokens": 91890,
-   "seconds": 93.2,
+   "seconds": 63.4,
    "content": "58213"
   },
   "speed": {
-   "window_s": 24.3,
-   "tokens_in_window": 2511,
-   "tokens_total": 2511,
-   "seconds_total": 25.1,
+   "window_s": 22.5,
+   "tokens_in_window": 2498,
+   "tokens_total": 2498,
+   "seconds_total": 23.2,
    "counted": "tokenizer",
    "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
   },
   "prefill": {
-   "value": 986,
+   "value": 1449,
    "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
   }
  },
- "launch_config_sha256": "ac018e504c5684e0458d7d3b141788410497ed8abbc8d030682ce2563df21e4d"
+ "launch_config_sha256": "8b8a34cd90caf27b1fe08738b4cd70afad3682f769990ee6011926f61040e097"
 }

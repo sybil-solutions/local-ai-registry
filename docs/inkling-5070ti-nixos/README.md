@@ -16,7 +16,7 @@ The tested host has a Ryzen 7 9700X, 32 GB RAM, NVIDIA 595.112.07 and a 300 W
 GPU power limit. Stop other GPU inference servers and free port 8080 first.
 
 The launcher verifies the GGUF SHA256 and builds the engine from public Nix
-configuration commit `3d4450eb893ead81311a3bce2d809277a1932b66`. Its Nix
+configuration commit `99fddb86e988989e28a058ecbb3d93100947128b`. Its Nix
 expression was evaluated on the measured host and resolves to the exact
 qualified server store path. The Nix package was built there. A clean-host
 reproduction has not been run. This is a native NixOS launch, not Docker.
@@ -28,8 +28,9 @@ reproduction has not been run. This is a native NixOS launch, not Docker.
 - Engine: `Mcniiby/ik_llama.cpp-mcniiby` at
   `46b11f422d42ce4eb7cf8d92386cf36f60a1af86`, CUDA 12.8, sm_120, plus recursive
   Jinja JSON sorting and socket-reuse fixes. Q4_0 KV CUDA kernels enabled.
+- Direct q4 decode enabled with `INKLING_Q4_VEC=1` (same pinned q4 precision).
 - One **131072-token slot**, q4_0 K/V, all GPU layers, SWA compression,
-  logical batch 1024 / physical batch 128, full vocabulary, three loop passes.
+  logical batch 1024 / physical batch 224, full vocabulary, three loop passes.
 - GPU-only attention: CPU q4 attention fails the numerical tests in this build.
   Do not use CPU attention/offload for this profile. Q8 CPU/CUDA tests pass.
 
@@ -52,7 +53,8 @@ above when running the lab on the serving machine. No API gateway or adapters.
 Raw lab output is `evidence/registry-128k-run.json`; the recipe's proof hash
 binds that original lab record (excluding the final newline).
 
-The lab measured **103.4 tok/s** decode and **986 prompt tok/s**. Its prefill
+The tuned profile measured **111.2 tok/s** decode and **1,449 prompt tok/s**.
+The initial profile measured 103.4 and 986 respectively; its raw run is retained. Its prefill
 metric includes queue time, prefill and the answer; it is not the server's
 pure prompt-processing rate. Its speed gate uses tokenizer-counted output.
 All six gates passed, including reasoning and the tool result round trip.
@@ -60,21 +62,22 @@ All six gates passed, including reasoning and the tool result round trip.
 ## Additional qualification and tradeoffs
 
 A separate Go harness recovered all three codes placed at 10%, 50%, 90% of
-**130816 input tokens**, with no truncation. Cold TTFT was 96.796s; decode at
-that depth was 29.87 tok/s. Peak sampled GPU memory was **14554 MiB** of
+**130816 input tokens**, with no truncation. Repeated cold TTFT was 87.344–87.417s; decode at
+that depth was 60.10–60.15 tok/s. Peak sampled GPU memory was **14704 MiB** of
 16303 MiB, below a 14750 MiB watchdog cap. Sampling once per second can miss
-shorter peaks. Short-context median decode was 111.35 tok/s and cold 4K TTFT
-2.397s. These are different workloads from the registry gate; do not combine
+shorter peaks. Short-context median decode was 115.09 tok/s and cold 4K TTFT
+1.984s. These are different workloads from the registry gate; do not combine
 their numbers. Raw requests/results and exact reproduction tools are in the
-[pinned source report](https://github.com/ImLunaHey/nixos-configs/tree/3d4450eb893ead81311a3bce2d809277a1932b66/benchmarks/tower-inkling/context-128k).
+[pinned source report](https://github.com/ImLunaHey/nixos-configs/tree/99fddb86e988989e28a058ecbb3d93100947128b/benchmarks/tower-inkling/context-128k).
 
-All 18 CUDA attention cases passed, including three q4 cases; 1439 Jinja
+All 22 CUDA attention cases passed with direct-q4 dispatch off and on; 1439 Jinja
 assertions and separate chat/reasoning/tool checks passed. The full numerical
 log includes the three CPU q4 failures, not just the passing CUDA subset.
 
 At 128K, q8 KV loaded at 15662 MiB and was rejected before requests. Q4 with
 larger physical batches was also rejected during long requests. Reducing the
-physical batch to 128 kept the near-full request within the cap. The old
+physical batch to 128 initially kept the near-full request within the cap;
+a controlled follow-up found 224 also fits and improves prefill. The old
 32K/q8 measurements are retained as historical evidence, not this recipe's
 proof; the owner restored that production profile after these experiments.
 
@@ -83,3 +86,23 @@ Reduced KV precision can affect quality. These numerical/functional/retrieval
 checks do not prove broad q4/q8 accuracy equivalence or a long production
 soak. This profile is text-only and does not prune vocabulary, alter the
 abliterated model weights, reduce loops or enable speculative decoding.
+
+## Tuned q4 attention dispatch
+
+The previous MMA path converted the cache to f16 for single-token decode.
+The opt-in patch routes q4 full attention and small relative-bias batches to
+existing direct-q4 vector kernels. Kernel-only interleaved controls at batch224
+measured 30.001/30.011 tok/s versus 60.103/60.146 on near-full retrieval.
+Prefill was unchanged; the separate batch change supplies its improvement.
+The three retrieved codes are identical, but greedy short-prompt outputs can
+differ. This is not a bit-exact or broad quality-equivalence claim. The speed
+figure is based on two short 28-token retrieval answers, not long prose.
+
+A half-context (65536-token) three-needle test also passed. The original
+registry run remains in `evidence/registry-128k-initial-run.json`; current
+acceptance remains in `evidence/registry-128k-run.json`. Detailed controlled
+results and numerical comparisons are under `evidence/tuning/`.
+
+Keep the `perf/tower-inkling-128k` source branch reachable while this recipe
+pins its pre-merge commit. New source, environment or launcher changes require
+fresh acceptance rather than carrying the old proof forward.

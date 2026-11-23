@@ -1,0 +1,34 @@
+[
+  {
+    "tag": "off-a",
+    "short_decode": 111.7756137350007,
+    "cold4k_ttft_ms": 1979.05,
+    "full_decode": 30.001133376149767,
+    "full_ttft_ms": 87357.905,
+    "peak_vram_mib": 14704
+  },
+  {
+    "tag": "on-a",
+    "short_decode": 115.15967050701067,
+    "cold4k_ttft_ms": 1983.511,
+    "full_decode": 60.1027088513482,
+    "full_ttft_ms": 87417.065,
+    "peak_vram_mib": 14704
+  },
+  {
+    "tag": "off-b",
+    "short_decode": 111.62902782046535,
+    "cold4k_ttft_ms": 1983.221,
+    "full_decode": 30.01137097500275,
+    "full_ttft_ms": 87369.783,
+    "peak_vram_mib": 14704
+  },
+  {
+    "tag": "on-b",
+    "short_decode": 115.0157490679221,
+    "cold4k_ttft_ms": 1983.769,
+    "full_decode": 60.14582019963957,
+    "full_ttft_ms": 87343.587,
+    "peak_vram_mib": 14704
+  }
+]
