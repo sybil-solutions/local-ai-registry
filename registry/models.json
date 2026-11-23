@@ -22,6 +22,15 @@
   ],
   "max_age_days": 240,
   "models": {
+    "l0xre-v2-27b-low": {
+      "family": "qwen",
+      "name": "L0xRE V2 27B Low",
+      "released": "2026-11-18",
+      "reasoning": true,
+      "vision": true,
+      "about": "Qwen3.8-27B GGUF served with BeeLLama Low, DFlash2 and a sparse attention map.",
+      "hf": "YourHighnessLA/L0xRE-V2-27b-Low"
+    },
     "underdog-saluki-27b-1.0": {
       "family": "qwen",
       "name": "Underdog Saluki 27B 1.0",

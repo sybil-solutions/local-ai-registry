@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "l0xre-v2-27b-low",
+  "weights": "YourHighnessLA/L0xRE-V2-27b-Low@54f6a3f9700071a9343d19a166e0e0e4f29cdf7f",
+  "engine": "beellama-l0xre-v2-27b-low-256k-rtx-3060-12gb@b9424a5e6a96",
+  "set": {},
+  "card": "rtx-3060-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3060"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3060",
+  "launch_sha256": "b9a61fed8bebc7d954d1be8609cc18d715d62eacc0c0b2483ce89a76543263c9",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 61.5,
+  "prefill": 566,
+  "served": "L0xRE-27b-Low"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 92,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "mSpx8Sp6F44bqDk9wAtDppb5NtpjCz3i"
+    }
+   ],
+   "reply": "The current weather in Paris is **overcast** with a temperature of **17°C**.\n\nThe code provided by the tool is: `31020c68`",
+   "code": "31020c68",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 217
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 377.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 29.6,
+   "tokens_in_window": 1819,
+   "tokens_total": 1819,
+   "seconds_total": 31.4,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 566,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "ec7372380a363344d5746ce6f8c3cd6af261e8631daa88d1d3a3169edc200313"
+}
