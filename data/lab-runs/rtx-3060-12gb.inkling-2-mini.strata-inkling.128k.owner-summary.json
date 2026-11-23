@@ -1,0 +1,46 @@
+{
+  "hardware": {
+    "gpu": "RTX 3060 12 GB",
+    "driver": "615.78.08",
+    "cpu": "Ryzen 7 5800",
+    "ram_gib": 32
+  },
+  "launch_sha256": "c5e48a12fefd31ca3d42f965cbaa7c6165081c5c7ccbb774eba1eb6af9b994b3",
+  "context_tokens": 131072,
+  "slots": 1,
+  "timing": "Single-user engine clock, greedy, six requests per arm, default reasoning behavior, DSpark enabled",
+  "decode_tok_s": {
+    "baseline_0.1.65": [
+      1.8,
+      1.8,
+      1.8
+    ],
+    "candidate_0.1.66": [
+      56.6,
+      56.15
+    ]
+  },
+  "visible_answers_equal": 6,
+  "prefill_baseline": "unavailable after legacy prefill failure",
+  "qualification": {
+    "load": true,
+    "chat": true,
+    "arithmetic": true,
+    "tools": true,
+    "peak_board_mib": 11758,
+    "exact_retrieval": [
+      {
+        "input_tokens": 65433,
+        "passed": true,
+        "decode_tok_s": 9.9,
+        "prefill_tok_s": 585.9
+      },
+      {
+        "input_tokens": 128996,
+        "passed": true,
+        "decode_tok_s": 5.6,
+        "prefill_tok_s": 459.4
+      }
+    ]
+  }
+}
