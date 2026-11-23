@@ -1,0 +1,62 @@
+{
+  "id": "llama.cpp-unsloth-lfm2.5-24b-a2b-ud-q3-k-xl-sm61-32k-gtx-1050",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "LFM2.5-24B-A2B (24B MoE, 2B active) UD-Q3_K_XL on Pascal sm_61 with Unsloth b12649-mix-c7059d6 cuda12-legacy. 24 layers on GPU, MoE on CPU (--cpu-moe). 32K context, 6 threads. Measured on GTX 1050 Laptop 3 GB.",
+  "command": [
+    "llama-cpp-unsloth-legacy/llama-server",
+    "--model",
+    "models/LFM2.5-24B-A2B-UD-Q3_K_XL.gguf",
+    "-ngl",
+    "24",
+    "--cpu-moe",
+    "--flash-attn",
+    "on",
+    "--no-kv-offload",
+    "-c",
+    "32768",
+    "-t",
+    "6",
+    "--parallel",
+    "1",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "1.0",
+    "--top-k",
+    "0",
+    "--min-p",
+    "0.0",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8095"
+  ],
+  "install": "https://github.com/unslothai/llama.cpp/releases/download/b12649-mix-c7059d6/app-b12649-mix-c7059d6-linux-x64-cuda12-legacy-portable.tar.gz#sha256:PLACEHOLDER",
+  "env": {
+    "LD_LIBRARY_PATH": "llama-cpp-unsloth-legacy"
+  },
+  "port": 8095,
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM2.5-24B-A2B-GGUF",
+      "revision": "0912d33141f77e10705345a6732bfd83f0252fdc",
+      "at": "models",
+      "layout": "file",
+      "files": [
+        "LFM2.5-24B-A2B-UD-Q3_K_XL.gguf"
+      ]
+    }
+  ],
+  "ctx": 32768,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "cards": 1,
+  "setup": "Unpack the Unsloth cuda12-legacy portable tarball next to models/. The build supports sm_50–sm_61 (Pascal). 24 layers + KV cache use ~1.5 GiB of 3 GiB.",
+  "needs": {
+    "host_ram_gb": 8,
+    "disk_gb": 11.5
+  },
+  "source": "https://github.com/unslothai/llama.cpp/releases/tag/b12649-mix-c7059d6"
+}
