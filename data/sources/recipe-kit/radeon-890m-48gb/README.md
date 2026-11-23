@@ -11,7 +11,14 @@ six-gate `lab.py try` run.
 - `2026-11-23-radeon-890m-memwatch.csv`: the Windows port of `tools/memwatch.sh`, the same four columns,
   one sample per line while the server prefilled 32687 tokens and decoded. GPU in use 30757 to 30793 MiB,
   host memory available 15.26 to 15.78 GB, pagefile 3.52 to 3.72 GB: flat, nothing swapped out.
-- `2026-11-23-radeon-890m-gates.json`: the `lab.py try` record the recipe's proof came from.
+- `2026-11-23-radeon-890m-gates.json`: the `lab.py try` record behind the recipe's second proof
+  (16.5 tok/s, prefill 153, LF-normalised log `sha256:c65086f6de59dcdf`).
+- `2026-11-23-radeon-890m-gates-rerun.json`: the record behind the recipe's first proof (17.8 tok/s,
+  prefill 145, `sha256:3f5c8f6bdc8645dc`). The first run's client was killed by its harness at a 600 s
+  timeout between writing its record and writing the recipe, so a second identical run was already in
+  flight. It finished at 14:49, passed the same six gates on the same launch hash, and wrote the recipe
+  with its own proof first and the earlier passing proof kept behind it. Both runs used the same command,
+  build and weights. The difference between their numbers is run-to-run variance.
 
 No `validate.py` submission file is included. It needs the reference panel and the speed sweep, the sweep
 posts to an SGLang/vLLM `/generate` endpoint that llama.cpp does not serve, and no reference panel exists
