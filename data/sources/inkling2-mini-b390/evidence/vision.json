@@ -1,0 +1,40 @@
+{
+  "id": "365c02a948bf49d2b27106ada49ff649",
+  "object": "chat.completion",
+  "created": 1795238641,
+  "model": "inkling-2-mini",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "red",
+        "reasoning_content": "The user is asking what solid color fills the image. Looking at the image, it's a solid red square. Need answer with one color word. Ensure no extra. The image appears pure red (maybe #ff0000). Answer: red.",
+        "tool_calls": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop",
+      "matched_stop": 200006
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 48,
+    "total_tokens": 110,
+    "completion_tokens": 62,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "image_tokens": 16
+    },
+    "reasoning_tokens": 57
+  },
+  "metadata": {
+    "weight_version": "default",
+    "weight_versions": [
+      {
+        "version": "default",
+        "start": 0,
+        "end": 62
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+python3 lab/catalog.py
+wrote dist/catalog.json: 990940 bytes
+python3 lab/hardware.py
+dist/hardware.json: 118 records
+python3 lab/export_plugin.py
+wrote plugin/v2/recipes.json: 300539 bytes
+wrote plugin/v3/recipes.json: 318033 bytes
+python3 -m unittest discover -s lab
+.............................................fatal: Not a valid object name missing-base
+.........................[lab 05:37:32] rtx-3070-8gb: 1 recipe(s) from rtx-4060-8gb, marked proxy
+.............../usr/lib/python3.14/socketserver.py:818: ResourceWarning: unclosed <socket.socket [closed] fd=4, family=2, type=1, proto=6>
+  self.wfile = _SocketWriter(self.connection)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 400: 'Bad Request'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+...../usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 40569)>
+  for index, test in enumerate(self):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 41089)>
+  for index, test in enumerate(self):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./usr/lib/python3.14/unittest/suite.py:84: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 34133)>
+  return self.run(*args, **kwds)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+...
+----------------------------------------------------------------------
+Ran 95 tests in 3.841s
+
+OK
+python3 lab/lab.py check
+recipes ok: 441
+python3 lab/catalog.py --check
+dist/catalog.json is current
+python3 lab/hardware.py --check
+python3 lab/export_plugin.py --check
+plugin/v2/recipes.json is current
+plugin/v3/recipes.json is current
+sdk/test.sh
+sdk ok: 71 cards, 357 recipes, js and python agree
+sdk ok: catalog cache retries failures and keys by URL
