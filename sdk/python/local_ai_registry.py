@@ -27,16 +27,25 @@ def _norm(s):
     return re.sub(r"geforce|nvidia|amd|radeon|intel|graphics|[^a-z0-9]", "", s)
 
 
+def _mobile(s):
+    return any(m in s for m in ("laptop", "mobile", "maxq"))
+
+
 def _names(i, c):
     return [_norm(c["name"]), _norm(i)] + list((c.get("match") or {}).get("names") or [])
+
+
+def _matches(i, c, n):
+    mob = _mobile(n)
+    return [x for x in _names(i, c) if x and _mobile(x) == mob and x in n]
 
 
 def detect(cat, gpu, vram=None):
     """The card id for a GPU as the driver names it, and its memory in GB."""
     n = _norm(gpu)
     hits = [(i, c) for i, c in cat["cards"].items()
-            if any(x and x in n for x in _names(i, c)) and (not vram or abs(c["vram_gb"] - vram) <= 2)]
-    hits.sort(key=lambda x: (-max(len(y) for y in _names(*x) if y and y in n),
+            if _matches(i, c, n) and (not vram or abs(c["vram_gb"] - vram) <= 2)]
+    hits.sort(key=lambda x: (-max(len(y) for y in _matches(*x, n)),
                              abs(x[1]["vram_gb"] - vram) if vram else 0))
     return hits[0][0] if hits else None
 

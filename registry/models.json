@@ -282,6 +282,16 @@
         "at": "2026-10-05"
       }
     },
+    "hy4-flash": {
+      "family": "hunyuan",
+      "name": "Hy4-Flash",
+      "released": "2026-11-17",
+      "reasoning": true,
+      "vision": true,
+      "about": "Tencent's Hy4 Flash (220B MoE, 12B active, 64B Engram lookup, 1M context).",
+      "good_for": "A 220B model on one Spark at 512K context",
+      "logo": "hf"
+    },
     "hy3": {
       "family": "hunyuan",
       "name": "Hy3-295B",
@@ -298,6 +308,16 @@
         "estimated": false,
         "at": "2026-10-05"
       }
+    },
+    "inkling-2-mini": {
+      "family": "inkling",
+      "name": "Inkling-2-Mini",
+      "released": "2026-11-17",
+      "reasoning": true,
+      "vision": true,
+      "about": "Thinking Machines' Inkling 2 Mini (26B looped MoE, NVFP4 + FP8 experts, 1M context).",
+      "good_for": "Million-token context on one Spark",
+      "logo": "hf"
     },
     "inkling-2-small": {
       "family": "inkling",

@@ -1,123 +1,77 @@
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.45kB done
+#1 transferring dockerfile: 2.06kB done
 #1 DONE 0.0s
 
 #2 [internal] load metadata for docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#2 DONE 0.7s
+#2 DONE 0.8s
 
 #3 [internal] load .dockerignore
 #3 transferring context: 2B done
 #3 DONE 0.0s
 
-#4 [internal] load build context
-#4 transferring context: 15.40kB done
-#4 DONE 0.0s
+#4 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
+#4 resolve docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36 0.0s done
+#4 CACHED
 
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 resolve docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36 0.0s done
-#5 DONE 0.2s
+#5 [internal] load build context
+#5 transferring context: 1.97kB done
+#5 DONE 0.0s
 
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:2f7571f14c6ff1d57c690bd1924fd1e125936eb144dc51eb20b4172776a5c743
-#5 extracting sha256:2f7571f14c6ff1d57c690bd1924fd1e125936eb144dc51eb20b4172776a5c743 0.5s done
-#5 DONE 0.7s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:f87c91059fe985d15f654beedd3111454f40095367365202d2bd5fb27a0dc04a
-#5 extracting sha256:f87c91059fe985d15f654beedd3111454f40095367365202d2bd5fb27a0dc04a 2.6s done
-#5 DONE 3.3s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:cb39511a87f65b723aa86c27a1592674e1dcf64671880d7d3c7413eb75fec472 0.0s done
-#5 extracting sha256:299127755530ac1ead224ae352dab40abb7a08ab145abdb589bb5faec4592ba2
-#5 extracting sha256:299127755530ac1ead224ae352dab40abb7a08ab145abdb589bb5faec4592ba2 0.4s done
-#5 DONE 3.7s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:c00c268f5343ac7211141e549ff1135f287c20a8a4527f08271d037e04475312
-#5 extracting sha256:c00c268f5343ac7211141e549ff1135f287c20a8a4527f08271d037e04475312 22.5s done
-#5 extracting sha256:0f1362709550367beff23e9c3b6480dd78e543129cfa3408d48b5acac392590b
-#5 extracting sha256:0f1362709550367beff23e9c3b6480dd78e543129cfa3408d48b5acac392590b 2.9s done
-#5 DONE 29.1s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:41a27261061c0c706c9303e01df2bcd958b35c2e8a70aa25510727fe26fb74d5
-#5 extracting sha256:41a27261061c0c706c9303e01df2bcd958b35c2e8a70aa25510727fe26fb74d5 0.7s done
-#5 DONE 29.8s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:b62a92db89e35cd863d1df60d3e9652358998f4b3a034ef9534f501014fc9999
-#5 extracting sha256:b62a92db89e35cd863d1df60d3e9652358998f4b3a034ef9534f501014fc9999 0.3s done
-#5 DONE 30.1s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:e600a6ed806446037b9bfff42c06e452857ed528c3a6b057ad375c77c5510118
-#5 extracting sha256:e600a6ed806446037b9bfff42c06e452857ed528c3a6b057ad375c77c5510118 2.8s done
-#5 DONE 32.9s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:d1c3c79a6744c5c03e697ded17dfdabf88bd2d3a895d917c966226f9eadf6100 0.1s done
-#5 DONE 33.0s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:3e03a34e91d2920bc41b63384ae614b7c548f9bd3f2cf01c724fc7803e7a4fbd done
-#5 extracting sha256:5e5d8fc46b47c6d8e784f6c962f68e42b69d0b28d478a2090845bfbc59ca7245
-#5 extracting sha256:5e5d8fc46b47c6d8e784f6c962f68e42b69d0b28d478a2090845bfbc59ca7245 26.6s done
-#5 DONE 59.6s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:7879a045b5e741763851c00a8d366fe023145dd708d9a693db036a1cbdcfc107
-#5 extracting sha256:7879a045b5e741763851c00a8d366fe023145dd708d9a693db036a1cbdcfc107 33.9s done
-#5 DONE 93.4s
-
-#5 [1/9] FROM docker.io/lmsysorg/sglang@sha256:e4e10d66de374e6e8cc88136e8dbfc3182787070df8a48e581fb007cc7a51c36
-#5 extracting sha256:5c894493b52339955e3592ebe5c3557034493be17dda0dedaa73e30c49ff46cf 0.0s done
-#5 DONE 93.5s
-
-#6 [2/9] RUN git init -q /opt/trellis-serve  && cd /opt/trellis-serve  && git fetch -q --depth 1 https://github.com/sybil-solutions/trellis-serve.git "72fd2d4ca8e8de3fce03ab09e3ed1692957c2f8c"  && git checkout -q --detach FETCH_HEAD  && test "$(git rev-parse HEAD)" = "72fd2d4ca8e8de3fce03ab09e3ed1692957c2f8c"
+#6 [2/9] RUN git init -q /opt/trellis-serve  && cd /opt/trellis-serve  && git fetch -q --depth 1 https://github.com/sybil-solutions/trellis-serve.git "0fab6452b12a7e3f7a4dddf7c70f9dd7b5f0e7ab"  && git checkout -q --detach FETCH_HEAD  && test "$(git rev-parse HEAD)" = "0fab6452b12a7e3f7a4dddf7c70f9dd7b5f0e7ab"
 #6 DONE 1.1s
 
-#7 [3/9] COPY data/sources/ornith-b390-exl3/k4-moe.patch /tmp/k4-moe.patch
-#7 DONE 0.0s
+#7 [3/9] RUN pip install --no-deps onednn==2026.0.2 onednn-devel==2026.0.2
+#7 0.836 Collecting onednn==2026.0.2
+#7 1.074   Downloading onednn-2026.0.2-py2.py3-none-manylinux_2_28_x86_64.whl.metadata (942 bytes)
+#7 1.170 Collecting onednn-devel==2026.0.2
+#7 1.258   Downloading onednn_devel-2026.0.2-py2.py3-none-manylinux_2_28_x86_64.whl.metadata (920 bytes)
+#7 1.282 Downloading onednn-2026.0.2-py2.py3-none-manylinux_2_28_x86_64.whl (93.2 MB)
+#7 59.97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 93.2/93.2 MB 1.7 MB/s  0:00:58
+#7 61.56 Downloading onednn_devel-2026.0.2-py2.py3-none-manylinux_2_28_x86_64.whl (194 kB)
+#7 61.70 Installing collected packages: onednn-devel, onednn
+#7 62.47 
+#7 62.47 Successfully installed onednn-2026.0.2 onednn-devel-2026.0.2
+#7 DONE 62.5s
 
-#8 [4/9] RUN cd /opt/trellis-serve && git apply --check /tmp/k4-moe.patch && git apply /tmp/k4-moe.patch
-#8 DONE 0.2s
+#8 [4/9] RUN pip install --no-deps --no-build-isolation -e /opt/trellis-serve/core -e /opt/trellis-serve/xpu
+#8 0.295 Obtaining file:///opt/trellis-serve/core
+#8 0.295   Checking if build backend supports build_editable: started
+#8 0.396   Checking if build backend supports build_editable: finished with status 'done'
+#8 0.396   Preparing editable metadata (pyproject.toml): started
+#8 0.574   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#8 0.578 Obtaining file:///opt/trellis-serve/xpu
+#8 0.578   Checking if build backend supports build_editable: started
+#8 0.658   Checking if build backend supports build_editable: finished with status 'done'
+#8 0.659   Preparing editable metadata (pyproject.toml): started
+#8 0.822   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#8 0.827 Building wheels for collected packages: trellis-core, exl3xpu
+#8 0.827   Building editable for trellis-core (pyproject.toml): started
+#8 1.022   Building editable for trellis-core (pyproject.toml): finished with status 'done'
+#8 1.022   Created wheel for trellis-core: filename=trellis_core-0.1.0-0.editable-py3-none-any.whl size=1368 sha256=84dfd821bb167f89ac9fa5528cf59df6a0df31d03260037f13d66f974a974ded
+#8 1.022   Stored in directory: /tmp/pip-ephem-wheel-cache-ob8hh8l8/wheels/ba/49/ac/18af0a10119c6ce6d395cfe5d915287e04d2b6cb5ae9372102
+#8 1.023   Building editable for exl3xpu (pyproject.toml): started
+#8 1.218   Building editable for exl3xpu (pyproject.toml): finished with status 'done'
+#8 1.219   Created wheel for exl3xpu: filename=exl3xpu-0.1.0-0.editable-py3-none-any.whl size=2993 sha256=775cd95562bd2df1d319feeb6f2d50f0cdcb02cfd40169c124a53ab8b3a04386
+#8 1.219   Stored in directory: /tmp/pip-ephem-wheel-cache-ob8hh8l8/wheels/2f/d9/77/ef43780b442bb9205b16e7bb9516382c6f2471ba2f5e3ed288
+#8 1.220 Successfully built trellis-core exl3xpu
+#8 1.229 Installing collected packages: trellis-core, exl3xpu
+#8 1.238 
+#8 1.249 Successfully installed exl3xpu-0.1.0 trellis-core-0.1.0
+#8 DONE 1.3s
 
-#9 [5/9] RUN pip install --no-deps --no-build-isolation -e /opt/trellis-serve/core -e /opt/trellis-serve/xpu
-#9 0.923 Obtaining file:///opt/trellis-serve/core
-#9 0.924   Checking if build backend supports build_editable: started
-#9 1.061   Checking if build backend supports build_editable: finished with status 'done'
-#9 1.062   Preparing editable metadata (pyproject.toml): started
-#9 1.287   Preparing editable metadata (pyproject.toml): finished with status 'done'
-#9 1.294 Obtaining file:///opt/trellis-serve/xpu
-#9 1.294   Checking if build backend supports build_editable: started
-#9 1.389   Checking if build backend supports build_editable: finished with status 'done'
-#9 1.389   Preparing editable metadata (pyproject.toml): started
-#9 1.590   Preparing editable metadata (pyproject.toml): finished with status 'done'
-#9 1.595 Building wheels for collected packages: trellis-core, exl3xpu
-#9 1.596   Building editable for trellis-core (pyproject.toml): started
-#9 1.833   Building editable for trellis-core (pyproject.toml): finished with status 'done'
-#9 1.834   Created wheel for trellis-core: filename=trellis_core-0.1.0-0.editable-py3-none-any.whl size=1368 sha256=7aeecc64818358d805d44f99c84da7c1724abba09993f4c8baa82ee28c626d9b
-#9 1.834   Stored in directory: /tmp/pip-ephem-wheel-cache-typ06xra/wheels/ba/49/ac/18af0a10119c6ce6d395cfe5d915287e04d2b6cb5ae9372102
-#9 1.838   Building editable for exl3xpu (pyproject.toml): started
-#9 2.077   Building editable for exl3xpu (pyproject.toml): finished with status 'done'
-#9 2.077   Created wheel for exl3xpu: filename=exl3xpu-0.1.0-0.editable-py3-none-any.whl size=2993 sha256=fe374aa47f0f0f8c2215af87da5773cd8cb5888a24a91a2c74ff6be32cb4b070
-#9 2.077   Stored in directory: /tmp/pip-ephem-wheel-cache-typ06xra/wheels/2f/d9/77/ef43780b442bb9205b16e7bb9516382c6f2471ba2f5e3ed288
-#9 2.078 Successfully built trellis-core exl3xpu
-#9 2.092 Installing collected packages: trellis-core, exl3xpu
-#9 2.101
-#9 2.113 Successfully installed exl3xpu-0.1.0 trellis-core-0.1.0
-#9 DONE 2.2s
+#9 [5/9] WORKDIR /opt/trellis-serve/xpu
+#9 DONE 0.0s
 
-#10 [6/9] WORKDIR /opt/trellis-serve/xpu
-#10 DONE 0.0s
+#10 [6/9] RUN rm -f exl3xpu/_C.so exl3xpu/_C_dnnl.so exl3xpu/_moe.so  && EXL3_MOE_FLAGS="-DEXL3_MOE_PREFILL_MB=64" bash scripts/build_moe.sh  && EXL3_NO_DNNL=1 bash scripts/build_ext.sh  && EXL3_DNNL_DIR=/opt/venv EXL3_OUT=exl3xpu/_C_dnnl.so bash scripts/build_ext.sh  && test -s exl3xpu/_C.so && test -s exl3xpu/_C_dnnl.so && test -s exl3xpu/_moe.so  && python3 -c "import torch; torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_C.so'); torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_moe.so')"  && python3 -c "import torch; torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_C_dnnl.so')"
+#10 25.63 -rwxr-xr-x 1 root root 3048864 Nov 16 17:39 exl3xpu/_moe.so
+#10 56.40 -rwxr-xr-x 1 root root 3336488 Nov 16 17:40 exl3xpu/_C.so
+#10 89.34 -rwxr-xr-x 1 root root 3447032 Nov 16 17:40 exl3xpu/_C_dnnl.so
+#10 DONE 91.2s
 
-#11 [7/9] RUN rm -f exl3xpu/_C.so exl3xpu/_moe.so  && bash scripts/build_moe.sh && bash scripts/build_ext.sh  && test -s exl3xpu/_C.so && test -s exl3xpu/_moe.so  && python3 -c "import torch; torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_C.so'); torch.ops.load_library('/opt/trellis-serve/xpu/exl3xpu/_moe.so')"
-#11 31.15 -rwxr-xr-x 1 root root 3048864 Nov 15 05:53 exl3xpu/_moe.so
-#11 69.16 -rwxr-xr-x 1 root root 3324200 Nov 15 05:54 exl3xpu/_C.so
-#11 DONE 70.3s
+#11 [7/9] COPY data/sources/ornith-b390-exl3/draft-vocab-256.json /opt/ornith/dv256.json
+#11 DONE 0.0s
 
 #12 [8/9] COPY data/sources/ornith-b390-exl3/entrypoint.sh /opt/ornith-entrypoint.sh
 #12 DONE 0.0s
@@ -127,11 +81,12 @@
 
 #14 exporting to image
 #14 exporting layers
-#14 exporting layers 0.2s done
-#14 exporting manifest sha256:161fa341960a1e8c49b3b1e2bbc8a90f2353a62dbc11be4443e58af149ddc577 done
-#14 exporting config sha256:4668aa321e7d8633622f1f1c5036fa07e502a519269f57a5f4ee63bea9119141 done
-#14 exporting attestation manifest sha256:fcef37777d806d7fe3a42c8a4f72bf0639e0857301ae24746e5d1c67d3b19d29 0.0s done
-#14 exporting manifest list sha256:73ea516183da857b8d44b955e6ef0350bf82f66e50d10bfd87ba9eecc8bb3117 done
+#14 exporting layers 4.4s done
+#14 exporting manifest sha256:b9784bdcfa79c369d6b1d9be6324a1470f5621d090484bf262d66860c33bad34 done
+#14 exporting config sha256:f1d5d1fccf847545f48736329c4ae5f844c9b573a37a752e707cb1431365b1c6 done
+#14 exporting attestation manifest sha256:0641c34ac33e879efb24c528cb5e1dce7786dff9f92f287dfd4d577665a7ae6c done
+#14 exporting manifest list sha256:1af418e9583c9257e3e0bf193944b9f489cd3f9ec9db278b6212c513190139e1 done
 #14 naming to docker.io/library/ornith-b390-recipe:registry done
-#14 unpacking to docker.io/library/ornith-b390-recipe:registry 0.1s done
-#14 DONE 0.4s
+#14 unpacking to docker.io/library/ornith-b390-recipe:registry
+#14 unpacking to docker.io/library/ornith-b390-recipe:registry 1.2s done
+#14 DONE 5.6s
