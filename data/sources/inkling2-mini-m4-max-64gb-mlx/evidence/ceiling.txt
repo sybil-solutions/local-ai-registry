@@ -1,0 +1,21 @@
+bandwidth 467 GB/s, peak 14.8 TFLOPS, MFU 0.5
+
+Decode ceiling, concurrency 1 (aggregate tok/s):
+  drafts accept       4K      32K     128K     256K
+       0    1.0      146      113       63       40
+
+Decode ceiling, concurrency 2 (aggregate tok/s):
+  drafts accept       4K      32K     128K     256K
+       0    1.0      370      269      140       85
+
+Decode ceiling, concurrency 4 (aggregate tok/s):
+  drafts accept       4K      32K     128K     256K
+       0    1.0      884      612      298      177
+
+Prefill ceiling (tok/s, practical):
+     4K      753
+    32K      659
+   128K      461
+   256K      329
+
+KV: 8.59 GB per 256K-token stream

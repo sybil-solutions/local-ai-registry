@@ -318,7 +318,8 @@
       "vision": true,
       "about": "Thinking Machines' Inkling 2 Mini (26B looped MoE, NVFP4 + FP8 experts, 1M context).",
       "good_for": "Million-token context on one Spark",
-      "logo": "hf"
+      "logo": "hf",
+      "hf": "thinkingmachines/Inkling-2-Mini"
     },
     "inkling-2-small": {
       "family": "inkling",
@@ -1430,6 +1431,10 @@
     "ggml-org/Flint-GGUF@b6763353f6f47bb4ae94f9f57d2d36906d2e4543": {
       "format": "GGUF · Q4_K_M (experts in RAM)",
       "size_gb": 23.388
+    },
+    "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2": {
+      "format": "MLX · 4-bit attention (g64), NVFP4/MXFP8 experts",
+      "size_gb": 17.31
     }
   }
 }
