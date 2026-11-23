@@ -316,8 +316,9 @@
       "reasoning": true,
       "vision": true,
       "about": "Thinking Machines' Inkling 2 Mini (26B looped MoE, NVFP4 + FP8 experts, 1M context).",
-      "good_for": "Million-token context on one Spark",
-      "logo": "hf"
+      "good_for": "Million-token context on one Spark; 256K with vision and DSpark on one or two Arc Pro B70",
+      "logo": "hf",
+      "hf": "thinkingmachines/Inkling-2-Mini"
     },
     "inkling-2-small": {
       "family": "inkling",
@@ -885,17 +886,6 @@
       "about": "Nanbeige4.2: a 3B model with looped layers, thinking, tool calls and a 256K window.",
       "good_for": "Agent work and long context on 8 GB cards",
       "hf": "Nanbeige/Nanbeige4.2-3B"
-    },
-    "inkling-2-mini": {
-      "family": "inkling",
-      "name": "Inkling-2-Mini",
-      "released": "2026-11-20",
-      "reasoning": true,
-      "vision": true,
-      "about": "Thinking Machines' Inkling 2 Mini (26.4B MoE, 3.4B active, looped layers), text and image input.",
-      "good_for": "Vision, reasoning and tool calls at 256K context on one or two Arc Pro B70",
-      "logo": "hf",
-      "hf": "thinkingmachines/Inkling-2-Mini"
     }
   },
   "builds": {
