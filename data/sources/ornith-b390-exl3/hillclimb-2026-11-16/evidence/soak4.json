@@ -1,0 +1,40 @@
+{
+ "name": "soak4x256k",
+ "time": "2026-11-15T21:42:05",
+ "streams": [
+  {
+   "stream": 0,
+   "prompt_tokens": 247948,
+   "ttft_s": 392.8,
+   "decode": 0.2,
+   "retrieval": 3
+  },
+  {
+   "stream": 1,
+   "prompt_tokens": 246741,
+   "ttft_s": 781.3,
+   "decode": 0.2,
+   "retrieval": 3
+  },
+  {
+   "stream": 2,
+   "prompt_tokens": 248799,
+   "ttft_s": 1162.6,
+   "decode": 0.3,
+   "retrieval": 3
+  },
+  {
+   "stream": 3,
+   "prompt_tokens": 246391,
+   "ttft_s": 1552.1,
+   "decode": 20.5,
+   "retrieval": 3
+  }
+ ],
+ "wall_s": 1558.4,
+ "total_prompt_tokens": 989879,
+ "agg_prefill_tok_s": 635.2,
+ "ram_peak_gib": 36.81,
+ "ram_cap_ok": true,
+ "on_ac": true
+}

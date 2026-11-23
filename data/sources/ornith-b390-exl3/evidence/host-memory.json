@@ -1,10 +1,12 @@
 {
-  "baseline_available_bytes": 46637301760,
-  "minimum_available_bytes": 22253457408,
-  "samples": 2046,
-  "peak_available_drop_bytes": 24383844352,
+  "baseline_available_bytes": 34885373952,
+  "minimum_available_bytes": 13147111424,
+  "samples": 900,
+  "peak_gpu_gtt_plus_anon_bytes": 39866564608,
+  "peak_available_drop_bytes": 21738262528,
   "declared_available_ram_gb": 48,
-  "safety_headroom_bytes": 23616155648,
+  "safety_headroom_bytes": 26261737472,
+  "peak_gpu_gtt_plus_anon_note": "Sum of xe drm-resident-gtt over the container processes plus cgroup anon, sampled every ~5 s: the real footprint on unified memory.",
   "note": "Host MemAvailable before launch minus lowest sample during startup, vision and Lab gates; 0.5-second samples, conservative declared headroom. Graphics allocations may be absent from cgroup counters.",
-  "local_image_id": "sha256:73ea516183da857b8d44b955e6ef0350bf82f66e50d10bfd87ba9eecc8bb3117"
+  "local_image_id": "sha256:1af418e9583c9257e3e0bf193944b9f489cd3f9ec9db278b6212c513190139e1"
 }
