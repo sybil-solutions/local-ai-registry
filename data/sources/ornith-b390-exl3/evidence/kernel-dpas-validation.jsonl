@@ -1,0 +1,42 @@
+reference expert 0
+reconstruct 0/gate
+reconstruct 0/up
+reconstruct 0/down
+reference expert 1
+reconstruct 1/gate
+reconstruct 1/up
+reconstruct 1/down
+reference expert 2
+reconstruct 2/gate
+reconstruct 2/up
+reconstruct 2/down
+reference expert 3
+reconstruct 3/gate
+reconstruct 3/up
+reconstruct 3/down
+allocate expert store
+{"placement": "host", "dtype": "torch.float16", "M": 1, "relative_rms": 0.0009548201924189925, "deterministic": true}
+{"placement": "host", "dtype": "torch.float16", "M": 2, "relative_rms": 0.00090603536227718, "deterministic": true}
+{"placement": "host", "dtype": "torch.float16", "M": 5, "relative_rms": 0.0009209478739649057, "deterministic": true}
+{"placement": "host", "dtype": "torch.float16", "M": 16, "relative_rms": 0.0009396392269991338, "deterministic": true}
+{"placement": "host", "dtype": "torch.float16", "M": 257, "relative_rms": 0.0007789535447955132, "deterministic": true}
+{"placement": "host", "dtype": "torch.float16", "M": 512, "relative_rms": 0.0007793020340614021, "deterministic": true}
+{"placement": "host", "dtype": "torch.bfloat16", "M": 1, "relative_rms": 0.0018794797360897064, "deterministic": true}
+{"placement": "host", "dtype": "torch.bfloat16", "M": 2, "relative_rms": 0.0018841137643903494, "deterministic": true}
+{"placement": "host", "dtype": "torch.bfloat16", "M": 5, "relative_rms": 0.0018918747082352638, "deterministic": true}
+{"placement": "host", "dtype": "torch.bfloat16", "M": 16, "relative_rms": 0.0018772331532090902, "deterministic": true}
+{"placement": "host", "dtype": "torch.bfloat16", "M": 257, "relative_rms": 0.0018542709294706583, "deterministic": true}
+{"placement": "host", "dtype": "torch.bfloat16", "M": 512, "relative_rms": 0.0018543630139902234, "deterministic": true}
+{"placement": "device", "dtype": "torch.float16", "M": 1, "relative_rms": 0.0009309460874646902, "deterministic": true}
+{"placement": "device", "dtype": "torch.float16", "M": 2, "relative_rms": 0.0009268891881220043, "deterministic": true}
+{"placement": "device", "dtype": "torch.float16", "M": 5, "relative_rms": 0.0009496718412265182, "deterministic": true}
+{"placement": "device", "dtype": "torch.float16", "M": 16, "relative_rms": 0.0009267766727134585, "deterministic": true}
+{"placement": "device", "dtype": "torch.float16", "M": 257, "relative_rms": 0.0007808221853338182, "deterministic": true}
+{"placement": "device", "dtype": "torch.float16", "M": 512, "relative_rms": 0.0007785880006849766, "deterministic": true}
+{"placement": "device", "dtype": "torch.bfloat16", "M": 1, "relative_rms": 0.0018094240222126245, "deterministic": true}
+{"placement": "device", "dtype": "torch.bfloat16", "M": 2, "relative_rms": 0.001872908789664507, "deterministic": true}
+{"placement": "device", "dtype": "torch.bfloat16", "M": 5, "relative_rms": 0.0018806878942996264, "deterministic": true}
+{"placement": "device", "dtype": "torch.bfloat16", "M": 16, "relative_rms": 0.0018654830055311322, "deterministic": true}
+{"placement": "device", "dtype": "torch.bfloat16", "M": 257, "relative_rms": 0.0018537126015871763, "deterministic": true}
+{"placement": "device", "dtype": "torch.bfloat16", "M": 512, "relative_rms": 0.0018530443776398897, "deterministic": true}
+{"status": "pass", "cases": 24}

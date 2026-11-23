@@ -282,6 +282,16 @@
         "at": "2026-10-05"
       }
     },
+    "hy4-flash": {
+      "family": "hunyuan",
+      "name": "Hy4-Flash",
+      "released": "2026-11-17",
+      "reasoning": true,
+      "vision": true,
+      "about": "Tencent's Hy4 Flash (220B MoE, 12B active, 64B Engram lookup, 1M context).",
+      "good_for": "A 220B model on one Spark at 512K context",
+      "logo": "hf"
+    },
     "hy3": {
       "family": "hunyuan",
       "name": "Hy3-295B",
@@ -298,6 +308,26 @@
         "estimated": false,
         "at": "2026-10-05"
       }
+    },
+    "inkling-2-mini": {
+      "family": "inkling",
+      "name": "Inkling-2-Mini",
+      "released": "2026-11-17",
+      "reasoning": true,
+      "vision": true,
+      "about": "Thinking Machines' Inkling 2 Mini (26B looped MoE, NVFP4 + FP8 experts, 1M context).",
+      "good_for": "Million-token context on one Spark",
+      "logo": "hf"
+    },
+    "inkling-2-small": {
+      "family": "inkling",
+      "name": "Inkling-2-Small",
+      "released": "2026-11-04",
+      "reasoning": true,
+      "vision": false,
+      "about": "Thinking Machines' Inkling 2 Small (594B MoE, 17B active).",
+      "good_for": "16 agent sessions at 380K context on 4x RTX PRO 6000",
+      "logo": "hf"
     },
     "inkling-small": {
       "family": "inkling",
@@ -436,7 +466,7 @@
       "name": "Ornith-1.5-35B-A3B",
       "released": "2026-08-18",
       "reasoning": true,
-      "vision": false,
+      "vision": true,
       "about": "Ornith 1.5, a 35B mixture-of-experts with built-in MTP.",
       "good_for": "Fast serving on one Spark",
       "logo": "hf"
@@ -1380,6 +1410,10 @@
     "unsloth/gemma-4-12b-it-GGUF@fc034cfff751157913579611efad8462ac1be606": {
       "format": "GGUF · IQ3_XXS",
       "size_gb": 4.64
+    },
+    "ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw@6507c778b466b78eaaad0d7d552f98625bd97881": {
+      "format": "EXL3 · 4 bpw",
+      "size_gb": 19.76
     }
   }
 }

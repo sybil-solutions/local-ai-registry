@@ -5,14 +5,12 @@ import { RELEASES, SiteFoot, SiteNav } from "@/components/SiteNav";
 import copy from "@/lib/landing/copy.json";
 import s from "../landing.module.css";
 
-// Where the desktop app is downloaded. The Mac button and the Linux line go through /download/mac and /install.sh,
-// which public/_redirects sends to the newest release, so this page names no version and needs no change for a new one.
+// Where the desktop app is downloaded. The two buttons and the Linux line go through /download/mac, /download/windows
+// and /install.sh, which public/_redirects sends to the newest release, so this page names no version and needs no
+// change for a new one. Every release holds all three (the app's publish script refuses to make one that does not).
 // The words are in lib/landing/copy.json (d…).
 export const metadata: Metadata = { title: copy.dHead, description: copy.dLede };
 const INSTALL = "curl -fsSL https://local.sybilsolutions.ai/install.sh | bash";
-// Whether the newest release holds the Mac app (Local-AI-mac-arm64.dmg). It does not yet: no notarized build of the
-// app has been published. Until it does, a button here would lead nowhere, so the Mac block is left out.
-const MAC = false;
 
 export default function DownloadPage() {
   return (
@@ -22,14 +20,17 @@ export default function DownloadPage() {
         <div className={s.head}><span className={s.label}>{copy.dHead}</span><a href={`${RELEASES}/releases`} className={s.more}>{copy.dAll}</a></div>
         <p className={s.lede}>{copy.dLede}</p>
         <div className={s.gets}>
-          {MAC && (
-            <div className={s.get}>
-              <h3>{copy.dMac}</h3>
-              <p>{copy.dMacNote}</p>
-              <Download href="/download/mac" os="mac" from="download">{copy.dMacBtn}</Download>
-            </div>
-          )}
           <div className={s.get}>
+            <h3>{copy.dMac}</h3>
+            <p>{copy.dMacNote}</p>
+            <Download href="/download/mac" os="mac" from="download">{copy.dMacBtn}</Download>
+          </div>
+          <div className={s.get}>
+            <h3>{copy.dWin}</h3>
+            <p>{copy.dWinNote}</p>
+            <Download href="/download/windows" os="windows" from="download">{copy.dWinBtn}</Download>
+          </div>
+          <div className={`${s.get} ${s.wide}`}>
             <h3>{copy.dLinux}</h3>
             <p>{copy.dLinuxNote}</p>
             <div className={s.cmd}>

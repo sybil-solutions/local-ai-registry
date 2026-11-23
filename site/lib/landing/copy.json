@@ -54,7 +54,10 @@
  "dMac": "Mac",
  "dMacNote": "Apple silicon, macOS 12 or later. Signed with a Developer ID and notarized by Apple. Open the file and drag Local AI to Applications. Starting a model needs Python 3.11 or newer.",
  "dMacBtn": "Download for Mac",
+ "dWin": "Windows",
+ "dWinNote": "Windows 10 or 11, 64-bit. Run the file to install Local AI for your account. It is not signed yet, so Windows asks before it runs: choose More info, then Run anyway. Starting a model needs Docker Desktop and an NVIDIA GPU.",
+ "dWinBtn": "Download for Windows",
  "dLinux": "Linux and Omarchy",
- "dLinuxNote": "One line installs it for your user and keeps it running. On Omarchy it also adds Local AI to the app menu. Run the line again to update. Starting a model needs Docker and an NVIDIA GPU.",
+ "dLinuxNote": "One line installs it for your user, keeps it running and adds Local AI to the app menu. Run the line again to update. Starting a model needs Docker and an NVIDIA or Intel Arc GPU.",
  "sGet": "Download the app"
 }
