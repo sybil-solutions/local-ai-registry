@@ -2,7 +2,7 @@
   "id": "llama.cpp-unsloth-b12649-inkling-2-mini-ud-q4-k-xl-dspark-vision-128k-rtx-3090-24gb",
   "kind": "host",
   "engine": "llama.cpp",
-  "about": "Inkling 2 Mini (26B looped MoE, ~3B active, vision, thinking) UD-Q4_K_XL with the F16 vision projector and the DSpark Q8_0 draft model (--spec-type draft-dspark, 3 drafted tokens) on one 24 GB card, everything on the GPU. llama.cpp from Unsloth's prebuilt b12649-mix-c7059d6 (CUDA 12 'newer' build; the 2026-11-23 Unsloth update that speeds up the looped layers ~1.4x on this card), with the GGUFs as re-published on 2026-11-23. CUDA graphs stay ON: with this build the full 131,072-token window fits at -ub 512 with q8_0 KV and survives back-to-back ~117k-token prompts (the b12572 launch needed -ub 128 and GGML_CUDA_DISABLE_GRAPHS=1). Do not use the cuda13 archives on a CUDA 12 driver: they fall back to the CPU silently. Thinking Machines' recommended sampling, one slot. Measured on one RTX 3090 24GB: ~23.1 GB VRAM.",
+  "about": "Inkling 2 Mini (26B looped MoE, ~3B active, vision, thinking) UD-Q4_K_XL with the F16 vision projector and the DSpark Q8_0 draft model (--spec-type draft-dspark, 3 drafted tokens) on one 24 GB card, everything on the GPU. llama.cpp from Unsloth's prebuilt b12649-mix-c7059d6 (CUDA 12 'newer' build; the 2026-11-23 Unsloth update that speeds up the looped layers ~1.4x on this card), with the GGUFs as re-published on 2026-11-23. CUDA graphs stay ON: with this build the full 131,072-token window fits at -ub 512 with q8_0 KV and survives back-to-back ~117k-token prompts (the b12572 launch needed -ub 128 and GGML_CUDA_DISABLE_GRAPHS=1). The archive does not bundle the CUDA runtime: libggml-cuda.so links libcudart.so.12 / libcublas.so.12 from the system. If they are missing (for example only a CUDA 13 toolkit, or none, is installed), the CUDA backend does not load and llama-server falls back to the CPU without an error (~8 tok/s); check with `ldd libggml-cuda.so`. The cuda13 archives behave the same way with libcudart.so.13. Thinking Machines' recommended sampling, one slot. Measured on one RTX 3090 24GB: ~23.1 GB VRAM.",
   "command": [
     "llama-b12649-mix-c7059d6/llama-server",
     "-m",
@@ -73,6 +73,6 @@
   "seqs": 1,
   "vision": true,
   "backend": "nvidia",
-  "setup": "Not Docker; Linux x86-64 with an NVIDIA driver for CUDA 12.x. Unpack the archive into llama-b12649-mix-c7059d6/ next to models/ and run from that directory. Keep the card otherwise empty: at 131,072 tokens the launch takes ~23.1 of 24.5 GB.",
+  "setup": "Not Docker; Linux x86-64 with an NVIDIA driver and the CUDA 12 runtime libraries installed (libcudart.so.12, libcublas.so.12, libcublasLt.so.12; measured with toolkit 12.9 and driver 580). Unpack the archive into llama-b12649-mix-c7059d6/ next to models/ and run from that directory. Keep the card otherwise empty: at 131,072 tokens the launch takes ~23.1 of 24.5 GB.",
   "source": "https://github.com/unslothai/llama.cpp/releases/tag/b12649-mix-c7059d6"
 }
