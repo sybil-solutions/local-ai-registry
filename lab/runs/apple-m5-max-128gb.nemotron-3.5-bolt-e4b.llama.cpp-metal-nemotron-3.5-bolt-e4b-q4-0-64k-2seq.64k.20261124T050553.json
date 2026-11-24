@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "nemotron-3.5-bolt-e4b",
+  "weights": "bartowski/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF@7a243bc11b80212594a71d2ecddde5798a43e265",
+  "engine": "llama.cpp-metal-nemotron-3.5-bolt-e4b-q4-0-64k-2seq@97d07866cb37",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "3c547c97910a0f292a1436b3ff3f9dd2f60824b2ead1edf1a08fa3cce0b340bc",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 95.3,
+  "prefill": 4346,
+  "served": "Nemotron-3.5-Bolt-E4B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 166,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "KUVf89xqaN9JnFgdRoi018iEYWT4sgNC"
+    }
+   ],
+   "reply": "The weather in Paris right now is 17°C and overcast.\n\nThe code is: 194ea742",
+   "code": "194ea742",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 546
+  },
+  "context": {
+   "prompt_tokens": 52589,
+   "seconds": 12.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 9.4,
+   "tokens_in_window": 896,
+   "tokens_total": 896,
+   "seconds_total": 9.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 4346,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

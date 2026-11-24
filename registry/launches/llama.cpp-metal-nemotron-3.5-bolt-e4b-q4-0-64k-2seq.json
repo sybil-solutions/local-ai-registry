@@ -1,0 +1,62 @@
+{
+  "id": "llama.cpp-metal-nemotron-3.5-bolt-e4b-q4-0-64k-2seq",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Nemotron 3.5 Bolt E4B (GGUF \u00b7 Q4_0, text only, q8_0 KV) on official llama.cpp b12588 Metal, all layers on the GPU, 65,536-token context, 2 sequences (llama-server -c 131072 -np 2, KV not unified, so each holds the trained 65,536)",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/bartowski-NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF-7a243bc1/NVIDIA-Nemotron-3.5-Bolt-E4B-Q4_0.gguf",
+    "-c",
+    "131072",
+    "-np",
+    "2",
+    "--no-kv-unified",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--jinja",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "64",
+    "--alias",
+    "Nemotron-3.5-Bolt-E4B",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "bartowski/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+      "revision": "7a243bc11b80212594a71d2ecddde5798a43e265",
+      "at": "models/bartowski-NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF-7a243bc1",
+      "layout": "dir",
+      "files": [
+        "NVIDIA-Nemotron-3.5-Bolt-E4B-Q4_0.gguf"
+      ]
+    }
+  ],
+  "ctx": 65536,
+  "seqs": 2,
+  "vision": false,
+  "backend": "metal"
+}
