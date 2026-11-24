@@ -1,0 +1,16 @@
+{
+  "id": "rtx-5050-8gb",
+  "name": "NVIDIA GeForce RTX 5050",
+  "vendor": "nvidia",
+  "backend": "nvidia",
+  "vram_gb": 8,
+  "bandwidth_gb_s": 320,
+  "match": {
+    "backend": "nvidia",
+    "name": "NVIDIA GeForce RTX 5050",
+    "names": [
+      "rtx5050"
+    ],
+    "vramGb": 8
+  }
+}
