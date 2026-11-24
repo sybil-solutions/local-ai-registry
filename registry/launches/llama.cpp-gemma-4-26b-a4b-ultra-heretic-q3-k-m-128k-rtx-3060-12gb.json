@@ -1,0 +1,30 @@
+{
+  "id": "llama.cpp-gemma-4-26b-a4b-ultra-heretic-q3-k-m-128k-rtx-3060-12gb",
+  "engine": "llama.cpp",
+  "kind": "host",
+  "backend": "nvidia",
+  "install": "https://github.com/professorpalmer/llama.cpp-ada-mirai/tree/8381d3a4586c8c2ed0a17da88b8fe590783f9e22",
+  "port": 18392,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "weights": [
+    {
+      "repo": "llmfan46/gemma-4-26B-A4B-it-ultra-uncensored-heretic-GGUF",
+      "revision": "aa470d4de039982e1924be4541bc4b45a3e8486d",
+      "at": "weights",
+      "files": [
+        "gemma-4-26B-A4B-it-ultra-uncensored-heretic-Q3_K_M.gguf"
+      ]
+    }
+  ],
+  "command": [
+    "bash",
+    "launch-gemma.sh"
+  ],
+  "config": {
+    "at": "launch-gemma.sh",
+    "text": "#!/usr/bin/env bash\nset -euo pipefail\n: \"${CUDA_HOME:=/usr/local/cuda}\"\nexport PATH=\"$CUDA_HOME/bin:$PATH\"\nexport LD_LIBRARY_PATH=\"$CUDA_HOME/lib:$CUDA_HOME/lib64:${LD_LIBRARY_PATH:-}\"\nif [[ ! -x registry-build/bin/llama-server ]]; then\n    cmake -S . -B registry-build -G Ninja \\\n        -DCMAKE_BUILD_TYPE=Release -DCMAKE_CUDA_ARCHITECTURES=86 \\\n        -DCMAKE_C_COMPILER=\"${CC:-gcc}\" -DCMAKE_CXX_COMPILER=\"${CXX:-g++}\" \\\n        -DCMAKE_CUDA_COMPILER=\"$CUDA_HOME/bin/nvcc\" \\\n        -DCMAKE_CUDA_HOST_COMPILER=\"${CXX:-g++}\" \\\n        -DGGML_CUDA=ON -DLLAMA_CURL=OFF -DLLAMA_BUILD_MTMD=OFF\n    cmake --build registry-build --target llama-server -j \"${BUILD_JOBS:-6}\"\nfi\nexec ./registry-build/bin/llama-server -m weights/gemma-4-26B-A4B-it-ultra-uncensored-heretic-Q3_K_M.gguf --alias gemma4-26b-ultra-heretic-q3_k_m --host 127.0.0.1 --port 18392 -c 131072 -np 1 -ub 1024 -b 1024 -fa on -ctk q8_0 -ctv q8_0 --jinja --cors-origins localhost\n"
+  }
+}

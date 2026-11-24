@@ -602,6 +602,16 @@
         "at": "2026-10-05"
       }
     },
+    "gemma-4-26b-a4b-ultra-heretic": {
+      "family": "gemma",
+      "name": "Gemma 4 26B-A4B Ultra Heretic",
+      "released": "2026-04-07",
+      "reasoning": true,
+      "vision": false,
+      "about": "The Ultra Heretic Q3_K_M GGUF variant of Gemma 4 26B-A4B, served here as text.",
+      "logo": "hf",
+      "hf": "llmfan46/gemma-4-26B-A4B-it-ultra-uncensored-heretic-GGUF"
+    },
     "gemma-4-26b-a4b-it-awq-4bit": {
       "family": "gemma",
       "name": "gemma-4-26B-A4B-it-AWQ-4bit",

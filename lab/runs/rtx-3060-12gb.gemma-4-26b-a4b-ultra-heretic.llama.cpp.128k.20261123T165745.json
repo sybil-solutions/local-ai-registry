@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "gemma-4-26b-a4b-ultra-heretic",
+  "weights": "llmfan46/gemma-4-26B-A4B-it-ultra-uncensored-heretic-GGUF@aa470d4de039982e1924be4541bc4b45a3e8486d",
+  "engine": "llama.cpp-gemma-4-26b-a4b-ultra-heretic-q3-k-m-128k-rtx-3060-12gb@8587d89eb153",
+  "set": {},
+  "card": "rtx-3060-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3060"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3060",
+  "launch_sha256": "f2ad968a2c2c78b2be6bc6fd8bb776941eeda551a712a6c252168abaf9b742a6",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 45.0,
+  "prefill": 812,
+  "served": "gemma4-26b-ultra-heretic-q3_k_m"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 605,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "O7113xMT62qsgwIBsDAw23d9Zclip4UV"
+    }
+   ],
+   "reply": "The weather in Paris is currently 17°C and overcast. \n\nCode: f2827d15",
+   "code": "f2827d15",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 413
+  },
+  "context": {
+   "prompt_tokens": 106258,
+   "seconds": 130.9,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1350,
+   "tokens_total": 1740,
+   "seconds_total": 39.9,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 812,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "6bfa3a874da292fb111259f61289061b4ebfbdc45c5e1b064615491d2ab6dfc7"
+}
