@@ -1,0 +1,14 @@
+[tokenizer] Loaded 199998 vocab + 424413 merges + 60 special tokens in 108.2ms (arena=1.20 MiB)
+[weights] Embed table pinned in zero-copy host RAM (saved 0.86 GiB VRAM)
+[dspark] Draft vocab size=200058 (full)
+[weights] Loaded mode=nvfp4 in 16.61s | VRAM=13.59 GiB (1 arena, 995 tensors) | MTP=on | Ablation=off
+[engine] Initialized max_ctx=131072 | kv=q4 | runtime VRAM=1.38 GiB (1 arena, 401 slices) | graphs=on
+[cache] Prefix KV cache enabled (4 checkpoints + 4096-tok side-request shield, host RAM=869.6 MiB, extra VRAM=0.0 MiB)
+[server] TigerStyle Zig OpenAI API listening on http://127.0.0.1:8000/v1 (model=inkling-2-mini, ctx=131072, mtp=7, zero-malloc=on)
+[http] POST /v1/chat/completions prompt=21 (cached=0) gen=90 temp=0.60 prefill=135.3ms decode=607.8ms (146.4 tok/s, dl=2.54)
+[http] POST /v1/chat/completions prompt=27 (cached=0) gen=49 temp=0.60 prefill=80.7ms decode=267.0ms (179.7 tok/s, dl=3.00)
+[http] POST /v1/chat/completions prompt=117 (cached=0) gen=78 temp=0.60 prefill=194.4ms decode=374.6ms (205.5 tok/s, dl=4.05)
+[http] POST /v1/chat/completions prompt=194 (cached=0) gen=109 temp=0.60 prefill=357.5ms decode=699.9ms (154.3 tok/s, dl=2.45)
+[http] POST /v1/chat/completions prompt=91888 (cached=0) gen=177 temp=0.60 prefill=98338.2ms decode=1494.1ms (117.8 tok/s, dl=2.41)
+[http] POST /v1/chat/completions (stream) prompt=28 (cached=0) gen=1160 temp=0.80 prefill=81.8ms decode=10728.5ms (108.0 tok/s, dl=1.51)
+[server] Shutdown complete.

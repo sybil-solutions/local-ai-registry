@@ -1,0 +1,83 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "thinkingmachines/Inkling-2-Mini@7a67ae2314b44ef05c87fd1d4d311c58aaeb18f6",
+  "engine": "squid5060ti-inkling-2-mini-128k@a3ac956e4bf8",
+  "set": {},
+  "card": "rtx-5060-ti-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 5060 Ti"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "launch_sha256": "1a66becbd321d1d67be8fbc2f7282c64f6565db67207163763466b36f80bd93e",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 107.4,
+  "prefill": 920,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--mtp",
+   "7",
+   "--spec-threshold",
+   "0.90"
+  ],
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_18a9e13c9388",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is currently 17°C and overcast. Code: 0f3613ae",
+   "code": "0f3613ae",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 305
+  },
+  "context": {
+   "prompt_tokens": 91888,
+   "seconds": 99.9,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 10.7,
+   "tokens_in_window": 1153,
+   "tokens_total": 1153,
+   "seconds_total": 10.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 920,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

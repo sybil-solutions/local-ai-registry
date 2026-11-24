@@ -1,0 +1,47 @@
+{
+  "id": "squid5060ti-inkling-2-mini-128k",
+  "kind": "host",
+  "engine": "squid5060ti",
+  "about": "Inkling-2-Mini (26.4B looped MoE, 3.4B active, NVFP4 weights + Q4 global KV + adaptive {2,4,8} DSpark MTP) on squid5060ti (16 GB zero-spill fork of tensorfish/squid5090, Zig 0.17.1 + Blackwell sm_120a CUDA 13.3). Host-pins embed.weight (-0.86 GiB), markov_w1 (-98 MiB), and load staging (-879 MiB peak spike), sizes prefill scratch to B=128 (-660 MiB vs 2048), caps DSpark global KV at 16K (-112 MiB), and uses --spec-threshold 0.90 tuned for 376.4 GB/s GDDR7. Fits full 131,072-token (128K) context in ~14.9 GiB engine VRAM on a 16 GB Blackwell card.",
+  "command": [
+    "./zig-out/bin/squid5060ti",
+    "serve",
+    "models/Inkling-2-Mini-7a67ae23",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8000",
+    "--mode",
+    "nvfp4",
+    "--kv",
+    "q4",
+    "--ctx",
+    "131072",
+    "--mtp",
+    "7",
+    "--spec-threshold",
+    "0.90",
+    "--model-name",
+    "inkling-2-mini"
+  ],
+  "env": {
+    "LD_LIBRARY_PATH": "/usr/local/cuda/lib64"
+  },
+  "install": "git clone https://github.com/omerdikyol/squid5060ti.git && cd squid5060ti && git checkout 5945ebb53aedde8a77bec657509a9a51a35fa470 && zig build -Doptimize=ReleaseFast (Linux x86_64 or WSL2, CUDA 13.1+ nvcc/cublas, Zig 0.17.1+, Blackwell sm_120a GPU; add -Dccbin=g++-14 on Ubuntu 26.04)",
+  "port": 8000,
+  "weights": [
+    {
+      "repo": "thinkingmachines/Inkling-2-Mini",
+      "revision": "7a67ae2314b44ef05c87fd1d4d311c58aaeb18f6",
+      "at": "models/Inkling-2-Mini-7a67ae23",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "source": "https://github.com/omerdikyol/squid5060ti/tree/5945ebb53aedde8a77bec657509a9a51a35fa470",
+  "setup": "Not Docker; native Linux x86_64 or Windows 11 + WSL2 Ubuntu binary (zero Python at runtime). Requires NVIDIA Blackwell GPU (sm_120a, >=16 GB VRAM: RTX 5060 Ti 16 GB, RTX 5070 Ti, RTX 5080, RTX 5090), driver 580+, CUDA Toolkit 13.1+, and Zig 0.17.1+. Host-pins ~1.0 GiB (embed + markov_w1) + ~950 MiB prefix cache checkpoints in system RAM."
+}
