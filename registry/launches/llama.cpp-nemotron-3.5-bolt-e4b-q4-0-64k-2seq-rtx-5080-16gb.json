@@ -1,0 +1,66 @@
+{
+  "id": "llama.cpp-nemotron-3.5-bolt-e4b-q4-0-64k-2seq-rtx-5080-16gb",
+  "engine": "llama.cpp",
+  "about": "Nemotron 3.5 Bolt E4B GGUF · Q4_0, q8_0 KV, two sequences of its trained 65,536-token context (--ctx-size 131072 --parallel 2, KV not unified) on one RTX 5080 16GB, llama.cpp build 11681, no draft model",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:53bec65a6120e8ab8cb76af725c3b05a7f098b5308c96e5d9f8dad98f1f1f639",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/NVIDIA-Nemotron-3.5-Bolt-E4B-Q4_0.gguf",
+    "--alias",
+    "Nemotron-3.5-Bolt-E4B",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--n-gpu-layers",
+    "999",
+    "--fit",
+    "off",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "131072",
+    "--parallel",
+    "2",
+    "--no-kv-unified",
+    "--flash-attn",
+    "on",
+    "--ubatch-size",
+    "512",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "64"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "bartowski/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+      "revision": "7a243bc11b80212594a71d2ecddde5798a43e265",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "NVIDIA-Nemotron-3.5-Bolt-E4B-Q4_0.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 65536,
+  "seqs": 2,
+  "vision": false,
+  "cards": 1
+}
