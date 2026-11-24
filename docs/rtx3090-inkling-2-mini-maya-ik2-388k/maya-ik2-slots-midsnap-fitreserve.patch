@@ -1,0 +1,372 @@
+diff --git a/src/ik2/ik2_draft.cu b/src/ik2/ik2_draft.cu
+index 41f6eff..ea6b070 100644
+--- a/src/ik2/ik2_draft.cu
++++ b/src/ik2/ik2_draft.cu
+@@ -473,6 +473,36 @@ void write_context(Drafter* d, const float* taps, int ld, int r0, int m, int pos
+     }
+ }
+ 
++// (a ring's rows of positions 0 .. P - 1: rows 0 .. min(P, cap) - 1 hold them, whatever the order)
++void save_state(Drafter* d, int P, std::vector<uint8_t>& blob) {
++    const size_t KD = (size_t) d->KV * 128;
++    size_t tot = (size_t) d->C * 4;
++    for (auto& l : d->L) tot += (size_t) std::min(P, l.cap) * KD * (l.kc16 ? 2 : 4) * 2;
++    blob.resize(tot);
++    uint8_t* o = blob.data();
++    for (auto& l : d->L) {
++        const size_t b = (size_t) std::min(P, l.cap) * KD * (l.kc16 ? 2 : 4);
++        cu(cudaMemcpyAsync(o, l.kc16 ? (void*) l.kc16 : (void*) l.kc, b, cudaMemcpyDeviceToHost, d->s), "save");
++        cu(cudaMemcpyAsync(o + b, l.kc16 ? (void*) l.vc16 : (void*) l.vc, b, cudaMemcpyDeviceToHost, d->s), "save");
++        o += 2 * b;
++    }
++    cu(cudaMemcpyAsync(o, d->f_rnn, (size_t) d->C * 4, cudaMemcpyDeviceToHost, d->s), "save");
++    cu(cudaStreamSynchronize(d->s), "save");
++}
++
++void load_state(Drafter* d, int P, const std::vector<uint8_t>& blob) {
++    const size_t KD = (size_t) d->KV * 128;
++    const uint8_t* o = blob.data();
++    for (auto& l : d->L) {
++        const size_t b = (size_t) std::min(P, l.cap) * KD * (l.kc16 ? 2 : 4);
++        cu(cudaMemcpyAsync(l.kc16 ? (void*) l.kc16 : (void*) l.kc, o, b, cudaMemcpyHostToDevice, d->s), "load");
++        cu(cudaMemcpyAsync(l.kc16 ? (void*) l.vc16 : (void*) l.vc, o + b, b, cudaMemcpyHostToDevice, d->s), "load");
++        o += 2 * b;
++    }
++    cu(cudaMemcpyAsync(d->f_rnn, o, (size_t) d->C * 4, cudaMemcpyHostToDevice, d->s), "load");
++    cu(cudaStreamSynchronize(d->s), "load");
++}
++
+ void set_f_rnn(Drafter* d, const float* taps, int ld, int row) {
+     k::mix_rms(taps + (size_t) row * d->C, d->taps, (size_t) ld * d->C, 1, d->C, d->alpha + d->L.size() * d->taps, d->mk_dflare,
+                d->eps, d->f_rnn, d->s);
+diff --git a/src/ik2/ik2_draft.hpp b/src/ik2/ik2_draft.hpp
+index 296da57..16178af 100644
+--- a/src/ik2/ik2_draft.hpp
++++ b/src/ik2/ik2_draft.hpp
+@@ -45,6 +45,10 @@ void propose(Drafter* d, int anchor, const float* anchor_h, int P, const uint16_
+ /// The base logits through the target's head kept as planar Q8_0 (int8 [n_rows][C], FP16 scales [n_rows][C / 32]):
+ /// propose's lm_f16 is not read then (the FP16 copy is fold()'s only).
+ void set_head_q8(Drafter* d, const int8_t* q8, const uint16_t* q8d);
++/// The context caches' rows of positions 0 .. P - 1 (the last ones each ring holds) and f_rnn, to host (save) or
++/// back from host (load: `blob` as save left it for the same P).  IK2_SLOTS: a conversation set aside and resumed.
++void save_state(Drafter* d, int P, std::vector<uint8_t>& blob);
++void load_state(Drafter* d, int P, const std::vector<uint8_t>& blob);
+ /// VRAM it holds, bytes.
+ size_t bytes(const Drafter* d);
+ 
+diff --git a/src/ik2/ik2_main.cu b/src/ik2/ik2_main.cu
+index 5a1033f..663ada5 100644
+--- a/src/ik2/ik2_main.cu
++++ b/src/ik2/ik2_main.cu
+@@ -4754,6 +4754,9 @@ int main(int argc, char** argv) {
+         size_t fr0 = 0, tot0 = 0;
+         CU(cudaMemGetInfo(&fr0, &tot0));
+         const size_t reserve = (size_t) 3 << 29;   // (the work buffers and a quarter of a GiB of room: 1.5 GiB)
++        // local: IK2_FIT_RESERVE_MIB / IK2_FIT_MARGIN_MIB override the 1536 / 512 MiB the estimate keeps free
++        const size_t fit_reserve = getenv("IK2_FIT_RESERVE_MIB") ? (size_t) std::max(0, atoi(getenv("IK2_FIT_RESERVE_MIB"))) << 20 : reserve;
++        const size_t fit_margin = getenv("IK2_FIT_MARGIN_MIB") ? (size_t) std::max(0, atoi(getenv("IK2_FIT_MARGIN_MIB"))) << 20 : ((size_t) 1 << 29);
+         // the drafter (--draft, loaded before the expert cache): its weights as FP16 (the file's BF16 bytes), its
+         // global layer's FP16 K / V for IK2_DRAFT_CTX positions (default the context), its windowed layers' F32 rings
+         // and its work buffers - left out, a context that fit without it pushed experts out of VRAM with it
+@@ -4783,7 +4786,7 @@ int main(int argc, char** argv) {
+             const size_t conv_slot = (size_t) c.n_visit * 3 * (2 * (size_t) c.KV * c.D + 2 * (size_t) c.C) * 4;
+             par_fixed = (size_t) (g_parallel - 1) * (conv_slot + (g_graph ? (48ULL << 20) : 0));
+         }
+-        const bool fits = exp_b + dense_b + kv_b + par_fixed + draft_b + (size_t) ctx * draft_tok + reserve <= fr0 &&
++        const bool fits = exp_b + dense_b + kv_b + par_fixed + draft_b + (size_t) ctx * draft_tok + fit_reserve <= fr0 &&
+                           exp_b <= (size_t) (cache_gb * 1073741824.0);
+         if (fits && !getenv("IK2_DENSE")) g_dense_q8 = true;
+         g_fast_want = fits && g_dense_q8 && !(getenv("IK2_FAST") && !std::atoi(getenv("IK2_FAST")));
+@@ -4797,7 +4800,7 @@ int main(int argc, char** argv) {
+             // the largest context (a multiple of 4096) that would keep every expert in VRAM, if any
+             // (half a GiB more than the estimate: what the dense weights, the work buffers and the drafter take in the
+             //  end ran up to a quarter of a GiB past it on a 3090 with another process holding 1 GB of it)
+-            const size_t fixed = exp_b + dense_b + kv_fixed + par_fixed + draft_b + reserve + ((size_t) 1 << 29), per = kv_tok + draft_tok;
++            const size_t fixed = exp_b + dense_b + kv_fixed + par_fixed + draft_b + fit_reserve + fit_margin, per = kv_tok + draft_tok;
+             const long fit_ctx = fr0 > fixed && per ? (long) ((fr0 - fixed) / per) / 4096 * 4096 : 0;
+             char m[400];
+             if (fit_ctx >= 4096)
+@@ -5638,7 +5641,9 @@ int main(int argc, char** argv) {
+             int snap_next = 0;
+         };
+         const size_t kv_elem_b = g_kv_fp8 ? 1 : 2;
+-        const int snaps_per_slot = 4;
++        // local patch: IK2_MULTI_SNAPS snapshots per slot (upstream 4), IK2_SNAP_EVERY mid-prompt ones (0: off)
++        const int snaps_per_slot = getenv("IK2_MULTI_SNAPS") ? std::clamp(atoi(getenv("IK2_MULTI_SNAPS")), 1, 64) : 12;
++        const int multi_snap_every = getenv("IK2_SNAP_EVERY") ? std::max(0, atoi(getenv("IK2_SNAP_EVERY"))) : 32768;
+         std::vector<Slot> slots((size_t) g_parallel);
+         for (int s = 0; s < g_parallel; ++s) {
+             slots[s].snaps.resize((size_t) snaps_per_slot);
+@@ -6175,6 +6180,19 @@ int main(int argc, char** argv) {
+                         }
+                     }
+                     r.prefill_pos = p0 + n;
++                    // IK2_SNAP_EVERY (local patch): a snapshot also inside a long prompt, so the same document with a
++                    // new last question restarts from the latest one instead of prefilling it all again.
++                    if (!last_c && multi_snap_every > 0 && (p0 + n) / multi_snap_every > p0 / multi_snap_every) {
++                        Slot& sl = slots[r.slot];
++                        const size_t P = (size_t) (p0 + n);
++                        sl.hist.assign(r.ids.begin(), r.ids.begin() + P);
++                        sl.hist_sig.assign(r.sig.begin(), r.sig.begin() + std::min(P, r.sig.size()));
++                        sl.last_logits.clear();
++                        Snap& sn = sl.snaps[sl.snap_next];
++                        sl.snap_next = (sl.snap_next + 1) % (int) sl.snaps.size();
++                        sn.pos = (int) P;
++                        snap_copy(r.slot, sn, true);
++                    }
+                     if ((int) r.ids.size() - r.cached > chunk) {
+                         const double ms = (now() - r.t0) * 1e3;
+                         std::printf("PP %d %d %zu %.0f %.1f %d\n", r.rid, r.prefill_pos, r.ids.size(), ms,
+@@ -6447,7 +6465,18 @@ int main(int argc, char** argv) {
+             std::vector<std::vector<uint8_t>> kv_k, kv_v;
+         };
+         const size_t kv_elem_b = g_kv_fp8 ? 1 : 2;
+-        std::vector<Snap> snaps(8);
++        // IK2_SLOTS=N: up to N conversations set aside in host RAM (the full layers' KV rows, the live and the latest
++        // snapshots, the drafter's context) when a request does not continue the one held, and brought back when a
++        // later request continues one of them (an agent's side requests - a title, a summary - then cost nothing)
++        const int n_slots = getenv("IK2_SLOTS") ? std::max(0, atoi(getenv("IK2_SLOTS"))) : 0;
++        const int slot_min = getenv("IK2_SLOT_MIN") ? std::max(1, atoi(getenv("IK2_SLOT_MIN"))) : 1024;
++        const size_t slot_cap = (size_t) (getenv("IK2_SLOT_GB") ? std::max(1.0, atof(getenv("IK2_SLOT_GB"))) : 16.0) * 1073741824.0;
++        if (n_slots && g_kv_managed) die("IK2_SLOTS needs the KV cache in VRAM (not IK2_KV_MANAGED)");
++        constexpr int kSnaps = 16;
++        // IK2_SNAP_EVERY: a snapshot also every this many prompt tokens of a long prompt (0: only at its end), so a
++        // later prompt that leaves this one part way (the same document, another question) starts from there
++        const int snap_every = getenv("IK2_SNAP_EVERY") ? std::max(0, atoi(getenv("IK2_SNAP_EVERY"))) : 32768;
++        std::vector<Snap> snaps(kSnaps + (n_slots ? 1 : 0));
+         for (auto& sn : snaps) {
+             sn.kv_k.resize(M.V.size());
+             sn.kv_v.resize(M.V.size());
+@@ -6514,6 +6543,152 @@ int main(int argc, char** argv) {
+             hist_sig.clear();
+             last.clear();
+         };
++        const bool spec_on = drafter && g_fast && g_block;
++        struct HostSnap {
++            int pos = -1;
++            std::vector<float> h;
++            std::vector<std::vector<uint8_t>> kv_k, kv_v;
++        };
++        struct Saved {
++            std::vector<int> hist;
++            std::vector<uint64_t> sig;
++            std::vector<std::vector<uint8_t>> kv_k, kv_v;   // a visit's full-layer rows 0 .. P - 1
++            std::vector<HostSnap> sn;                       // [0]: the live state at P, then snapshots
++            std::vector<uint8_t> draft;
++            uint64_t used = 0;
++            size_t bytes = 0;
++        };
++        std::vector<Saved> saved(n_slots);
++        uint64_t slot_tick = 0;
++        const size_t cc4[4] = {KD, KD, C, C};
++        auto snap_host = [&](const Snap& d, HostSnap& h) {   // (d's device histories to host; its windows are host)
++            h.pos = d.pos;
++            size_t n = 0;
++            for (size_t l = 0; l < M.V.size(); ++l)
++                for (int i = 0; i < 4; ++i) n += 3 * cc4[i];
++            h.h.resize(n);
++            float* o = h.h.data();
++            for (size_t l = 0; l < M.V.size(); ++l)
++                for (int i = 0; i < 4; ++i) {
++                    use_dev(M.L[M.V[l].l].dev);
++                    CU(cudaMemcpy(o, d.h[l * 4 + i], 3 * cc4[i] * 4, cudaMemcpyDeviceToHost));
++                    o += 3 * cc4[i];
++                }
++            h.kv_k = d.kv_k, h.kv_v = d.kv_v;
++        };
++        auto snap_dev = [&](const HostSnap& h, Snap& d) {
++            d.pos = h.pos;
++            const float* o = h.h.data();
++            for (size_t l = 0; l < M.V.size(); ++l)
++                for (int i = 0; i < 4; ++i) {
++                    use_dev(M.L[M.V[l].l].dev);
++                    CU(cudaMemcpy(d.h[l * 4 + i], o, 3 * cc4[i] * 4, cudaMemcpyHostToDevice));
++                    o += 3 * cc4[i];
++                }
++            for (size_t l = 0; l < d.kv_k.size(); ++l)
++                if (!d.kv_k[l].empty()) d.kv_k[l] = h.kv_k[l], d.kv_v[l] = h.kv_v[l];
++        };
++        auto common = [](const std::vector<int>& a, const std::vector<uint64_t>& as, const std::vector<int>& b,
++                         const std::vector<uint64_t>& bs) {
++            size_t n = 0;
++            auto sg = [](const std::vector<uint64_t>& v, size_t i) { return i < v.size() ? v[i] : (uint64_t) 0; };
++            while (n < a.size() && n < b.size() && a[n] == b[n] && sg(as, n) == sg(bs, n)) ++n;
++            return n;
++        };
++        // the conversation held, to a slot: one with an earlier state of it, else a free one, else the least recently
++        // used; then the least recently used others go while the slots pass IK2_SLOT_GB
++        auto slot_save = [&]() {
++            if (!n_slots || (int) hist.size() < slot_min) return;
++            const double ts = now();
++            const int P = (int) hist.size();
++            int v = -1, free_i = -1, lru = -1;
++            for (int i = 0; i < n_slots; ++i) {
++                Saved& S = saved[i];
++                if (S.hist.empty()) {
++                    if (free_i < 0) free_i = i;
++                    continue;
++                }
++                const size_t m = common(S.hist, S.sig, hist, hist_sig);
++                if (m * 2 > S.hist.size() && (int) m >= slot_min && v < 0) v = i;
++                if (lru < 0 || S.used < saved[lru].used) lru = i;
++            }
++            if (v < 0) v = free_i >= 0 ? free_i : lru;
++            Saved& S = saved[v];
++            S = Saved{};
++            S.hist = hist, S.sig = hist_sig;
++            S.kv_k.resize(M.V.size()), S.kv_v.resize(M.V.size());
++            const size_t row_b = (size_t) KD * kv_elem_b;
++            for (size_t l = 0; l < M.V.size(); ++l) {
++                Layer& Ly = bind_visit(M, (int) l);
++                if (Ly.sliding && Ly.kv_cap < ctx) continue;
++                use_dev(Ly.dev);
++                S.kv_k[l].resize((size_t) P * row_b), S.kv_v[l].resize((size_t) P * row_b);
++                CU(cudaMemcpy(S.kv_k[l].data(), g_kv_fp8 ? (void*) Ly.kc8 : (void*) Ly.kc, (size_t) P * row_b, cudaMemcpyDeviceToHost));
++                CU(cudaMemcpy(S.kv_v[l].data(), g_kv_fp8 ? (void*) Ly.vc8 : (void*) Ly.vc, (size_t) P * row_b, cudaMemcpyDeviceToHost));
++                S.bytes += 2 * (size_t) P * row_b;
++            }
++            Snap& lv = snaps[kSnaps];
++            lv.pos = P;
++            snap_copy(lv, true);
++            S.sn.emplace_back();
++            snap_host(lv, S.sn.back());
++            lv.pos = -1;
++            std::vector<int> order;   // (the 2 latest snapshots inside the conversation)
++            for (int i = 0; i < kSnaps; ++i)
++                if (snaps[i].pos > 0 && snaps[i].pos < P) order.push_back(i);
++            std::sort(order.begin(), order.end(), [&](int a, int b) { return snaps[a].pos > snaps[b].pos; });
++            for (size_t k = 0; k < order.size() && k < 2; ++k) {
++                S.sn.emplace_back();
++                snap_host(snaps[order[k]], S.sn.back());
++            }
++            for (auto& h : S.sn) {
++                S.bytes += h.h.size() * 4;
++                for (auto& x : h.kv_k) S.bytes += 2 * x.size();
++            }
++            if (drafter && spec_on) ik2::draft::save_state(drafter, P, S.draft), S.bytes += S.draft.size();
++            S.used = ++slot_tick;
++            for (;;) {
++                size_t tot = 0;
++                int old = -1;
++                for (int i = 0; i < n_slots; ++i)
++                    if (!saved[i].hist.empty()) {
++                        tot += saved[i].bytes;
++                        if (i != v && (old < 0 || saved[i].used < saved[old].used)) old = i;
++                    }
++                if (tot <= slot_cap) break;
++                if (old < 0) {   // (this one alone passes the cap)
++                    S = Saved{};
++                    break;
++                }
++                saved[old] = Saved{};
++            }
++            std::fprintf(stderr, "slots: saved %d tokens to slot %d (%.2f GiB) in %.0f ms\n", P, v, S.bytes / 1073741824.0,
++                         (now() - ts) * 1e3);
++        };
++        auto slot_load = [&](Saved& S) {
++            const double ts = now();
++            const int P = (int) S.hist.size();
++            const size_t row_b = (size_t) KD * kv_elem_b;
++            for (size_t l = 0; l < M.V.size(); ++l) {
++                if (S.kv_k[l].empty()) continue;
++                Layer& Ly = bind_visit(M, (int) l);
++                use_dev(Ly.dev);
++                CU(cudaMemcpy(g_kv_fp8 ? (void*) Ly.kc8 : (void*) Ly.kc, S.kv_k[l].data(), (size_t) P * row_b, cudaMemcpyHostToDevice));
++                CU(cudaMemcpy(g_kv_fp8 ? (void*) Ly.vc8 : (void*) Ly.vc, S.kv_v[l].data(), (size_t) P * row_b, cudaMemcpyHostToDevice));
++            }
++            for (auto& sn : snaps) sn.pos = -1;
++            Snap& lv = snaps[kSnaps];
++            snap_dev(S.sn[0], lv);
++            snap_copy(lv, false);
++            lv.pos = -1;
++            for (size_t k = 1; k < S.sn.size(); ++k) snap_dev(S.sn[k], snaps[k - 1]);
++            snap_next = (int) (S.sn.size() - 1) % kSnaps;
++            if (drafter && spec_on && !S.draft.empty()) ik2::draft::load_state(drafter, P, S.draft);
++            hist = std::move(S.hist), hist_sig = std::move(S.sig);
++            last.clear();
++            S = Saved{};
++            std::fprintf(stderr, "slots: resumed %d tokens in %.0f ms\n", P, (now() - ts) * 1e3);
++        };
+         auto parse_ints = [](const std::string& t) {
+             std::vector<int> v;
+             for (const char* p = t.c_str(); *p;) {
+@@ -6577,7 +6752,6 @@ int main(int argc, char** argv) {
+         // speculative decoding (--draft, the resident path): the controller decides each step; IK2_DRAFT_WIDTH the
+         // widest window, IK2_DRAFT_ADAPT=0 always that wide
+         SpecCtl sctl;
+-        const bool spec_on = drafter && g_fast && g_block;
+         sctl.wmax = getenv("IK2_DRAFT_WIDTH") ? std::clamp(atoi(getenv("IK2_DRAFT_WIDTH")), 2, kBlockMax) : 5;
+         sctl.adapt = !(getenv("IK2_DRAFT_ADAPT") && !atoi(getenv("IK2_DRAFT_ADAPT")));
+         while (next_line(line)) {
+@@ -6654,6 +6828,24 @@ int main(int argc, char** argv) {
+             size_t L = 0;   // (a picture's position is the same only with the same rows: its hash beside its token)
+             auto hsig = [&](size_t i) { return i < hist_sig.size() ? hist_sig[i] : (uint64_t) 0; };
+             while (L < hist.size() && L < ids.size() && hist[L] == ids[L] && hsig(L) == sig[L]) ++L;
++            if (n_slots) {
++                int best = -1;
++                size_t bl = L;
++                for (int i = 0; i < n_slots; ++i)
++                    if (!saved[i].hist.empty()) {
++                        const size_t m = common(saved[i].hist, saved[i].sig, ids, sig);
++                        if (m > bl + 256) best = i, bl = m;
++                    }
++                if (best >= 0 || L + 512 < hist.size()) {
++                    Saved back;
++                    if (best >= 0) std::swap(back, saved[best]);
++                    slot_save();
++                    if (best >= 0) {
++                        slot_load(back);
++                        L = common(hist, hist_sig, ids, sig);
++                    }
++                }
++            }
+             if (L < hist.size() || L == ids.size()) {
+                 // back to the latest snapshot at or before L that leaves a token to run (one past it is dropped:
+                 // its position's state follows from a prefix the request does not share)
+@@ -6678,6 +6870,7 @@ int main(int argc, char** argv) {
+                 }
+             }
+             const int cached = (int) L;
++            int mid_at = (int) L;
+             const double t0 = now();
+             const uint64_t miss0 = dev_cache(0).misses, bytes0 = dev_cache(0).bytes_up;
+             for (auto& v : g_cnt_hist) v = 0;
+@@ -6700,6 +6893,14 @@ int main(int argc, char** argv) {
+                         std::vector<float> lo;
+                         forward_prefill_sup(M, ids.data() + p0, n, (int) p0, sub_chunk,
+                                             last_c ? OutMode::kLogits : OutMode::kNone, lo, nullptr, t_exp);
++                        if (!last_c && snap_every > 0 && (int) (p0 + n) - mid_at >= snap_every &&
++                            ids.size() - (p0 + n) >= 1024) {
++                            Snap& msn = snaps[snap_next];
++                            snap_next = (snap_next + 1) % kSnaps;
++                            msn.pos = (int) (p0 + n);
++                            snap_copy(msn, true);
++                            mid_at = (int) (p0 + n);
++                        }
+                         if (last_c) last = std::move(lo);
+                         if (serve_maya) {   // (read, total, ms, tok/s, reused)
+                             const double ms = (now() - t0) * 1e3;
+@@ -6725,6 +6926,14 @@ int main(int argc, char** argv) {
+                             ik2::draft::write_context(drafter, g_taps, g_taps_ld, 0, n, (int) p0);
+                             if (last_c) ik2::draft::set_f_rnn(drafter, g_taps, g_taps_ld, n - 1);
+                         }
++                        if (!last_c && snap_every > 0 && (int) (p0 + n) - mid_at >= snap_every &&
++                            ids.size() - (p0 + n) >= 1024) {
++                            Snap& msn = snaps[snap_next];
++                            snap_next = (snap_next + 1) % kSnaps;
++                            msn.pos = (int) (p0 + n);
++                            snap_copy(msn, true);
++                            mid_at = (int) (p0 + n);
++                        }
+                         if (serve_maya && ids.size() - L > (size_t)chunk) {
+                             const double ms = (now() - t0) * 1e3;
+                             std::printf("PP %zu %zu %.0f %.1f %d\n", p0 + n, ids.size(), ms,
+@@ -6746,7 +6955,7 @@ int main(int argc, char** argv) {
+                 hist = ids;
+                 hist_sig = sig;
+                 Snap& sn = snaps[snap_next];
+-                snap_next = (snap_next + 1) % (int) snaps.size();
++                snap_next = (snap_next + 1) % kSnaps;
+                 sn.pos = (int) hist.size();
+                 snap_copy(sn, true);
+             }

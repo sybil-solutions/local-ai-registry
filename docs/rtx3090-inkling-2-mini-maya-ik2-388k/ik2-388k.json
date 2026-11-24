@@ -1,0 +1,37 @@
+{
+ "cwd": ".",
+ "exe": "build/maya-ik2",
+ "args": [
+  "--model",
+  "models/Inkling-2-Mini-UD-Q4_K_XL-nvfp4tail.gguf",
+  "--max-context",
+  "397312",
+  "--draft",
+  "models/Inkling-2-Mini-Maya-GGUF-37027719/drafter/mtp.safetensors"
+ ],
+ "env": {
+  "IK2_KV": "fp8",
+  "IK2_GATE_TILE": "64",
+  "IK2_GATE_BF16": "1",
+  "IK2_Q8_UNROLL": "1",
+  "IK2_BATCH_PREFILL": "1",
+  "IK2_SNAP_EVERY": "8192",
+  "IK2_FIT_RESERVE_MIB": "1280",
+  "IK2_FIT_MARGIN_MIB": "0",
+  "IK2_DRAFT_CTX": "16384",
+  "IK2_DRAFT_WIDTH": "8",
+  "IK2_SLOTS": "4",
+  "IK2_SLOT_GB": "16"
+ },
+ "tokenizer": "ik2/tokenizer",
+ "model_name": "inkling-2-mini",
+ "vision": {
+  "exe": "build-vision/bin/maya-vision",
+  "mmproj": "models/Inkling-2-Mini-Maya-GGUF-7ab64bac/vision/mmproj-Inkling-2-Mini-BF16.gguf",
+  "model": "models/Inkling-2-Mini-GGUF-ae9327c5/Inkling-2-Mini-UD-Q4_K_XL.gguf",
+  "gpu": false,
+  "resident": true,
+  "threads": 6,
+  "max_tokens": 2048
+ }
+}
