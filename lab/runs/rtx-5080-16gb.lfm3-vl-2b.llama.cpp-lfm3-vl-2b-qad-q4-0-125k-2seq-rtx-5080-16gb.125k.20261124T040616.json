@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm3-vl-2b",
+  "weights": "LiquidAI/LFM3-VL-2B-GGUF@1add221a5ea6c047fcf1eaaf2d247939d7cf8849",
+  "engine": "llama.cpp-lfm3-vl-2b-qad-q4-0-125k-2seq-rtx-5080-16gb@821d0ae4e5d4",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "e9dba6bd00d5dee76cb03c8de092bdbff05e2f1abbacb866972dd32e77f0dba2",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 287.5,
+  "prefill": 14468,
+  "served": "LFM3-VL-2B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Blue, Yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 214,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "3SlNcf0BAfSBVBjpwJOXw1HWmj04VDm0"
+    }
+   ],
+   "reply": "The current weather in **Paris** is:\n\n- **Temperature:** 17 °C  \n- **Sky condition:** Overcast  \n\nAnd here’s the exact code returned by the tool: **3d859048**.",
+   "code": "3d859048",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 398
+  },
+  "context": {
+   "prompt_tokens": 89702,
+   "seconds": 6.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 8626,
+   "tokens_total": 30518,
+   "seconds_total": 110.4,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 14468,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
