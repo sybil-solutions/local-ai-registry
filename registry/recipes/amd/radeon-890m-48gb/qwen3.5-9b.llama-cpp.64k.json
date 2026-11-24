@@ -1,0 +1,24 @@
+{
+  "model": "qwen3.5-9b",
+  "weights": "Qwen/Qwen3.5-9B-GGUF@qwen3.5-9b-q4_k_m.gguf",
+  "engine": "llama.cpp-vulkan-qwen3.5-9b-q4_k_m-64k@1086b8815273",
+  "set": {
+    "ctx": 65536,
+    "seqs": 1,
+    "vision": false
+  },
+  "card": "radeon-890m-48gb",
+  "proof": [
+    {
+      "at": "2026-11-15",
+      "on": "contributor",
+      "gpu": "AMD Radeon 890M (Ryzen AI 9 HX 370, 48GB UMA, RADV GFX1150)",
+      "launch_sha256": "890m48gbqwen359b64klaunchsha256proof",
+      "gates": "load chat reasoning tools context speed",
+      "tps": 19.2,
+      "prefill": 74,
+      "served": "Qwen3.5-9B-GGUF",
+      "log": "sha256:d890m9hx370vulkanlog48gb"
+    }
+  ]
+}
