@@ -1,0 +1,114 @@
+{
+  "id": "llama.cpp-vulkan-qwen3.6-35b-a3b-ud-q4-k-xl-mtp-vision-128k-2x",
+  "engine": "llama.cpp",
+  "about": "Qwen3.6-35B-A3B UD-Q4_K_XL with its built-in MTP head and F16 vision projector across two RX 9060 XT 16 GB cards. llama.cpp b12679 upstream Vulkan image; Vulkan0,Vulkan1 tensor split, q8_0 KV, flash attention, ubatch 2048, MTP draft 3 and Qwen's low reasoning-effort sampling. Tested at 131,072 tokens on dual RX 9060 XT with the desktop running.",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:5766735f77edf02ca179264e71e18ed1466e9332912e30f88f7a4ccd0dc6d5b6",
+  "backend": "amd-vulkan",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf",
+    "--mmproj",
+    "/models/mmproj-F16.gguf",
+    "--device",
+    "Vulkan0,Vulkan1",
+    "--split-mode",
+    "tensor",
+    "-ngl",
+    "all",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ub",
+    "2048",
+    "--spec-type",
+    "draft-mtp",
+    "--spec-draft-n-max",
+    "3",
+    "--spec-draft-p-min",
+    "0.0",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--chat-template-kwargs",
+    "{\"reasoning_effort\":\"low\"}",
+    "--temp",
+    "0.6",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--min-p",
+    "0",
+    "--alias",
+    "qwen3.6-35b-a3b",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--metrics"
+  ],
+  "env": {},
+  "shm": "16g",
+  "weights": [
+    {
+      "repo": "unsloth/Qwen3.6-35B-A3B-MTP-GGUF",
+      "revision": "5bc3e238d916f48a861bac2f8a1990a0e9b7e98d",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf",
+        "mmproj-F16.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": true,
+  "cards": 2,
+  "plugin": {
+    "name": "Qwen3.6-35B-A3B",
+    "family": "qwen",
+    "format": "GGUF · UD-Q4_K_XL + MTP",
+    "engine": "llama.cpp",
+    "servedName": "qwen3.6-35b-a3b",
+    "sizeGb": 23.749,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "video": false,
+      "vision": true
+    },
+    "serving": {
+      "ctxTokens": 131072,
+      "kvTokens": 0
+    },
+    "weights": [
+      {
+        "sizeGb": 23.749,
+        "layout": "dir",
+        "mountPath": "/models",
+        "files": "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf,mmproj-F16.gguf"
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "rx-9060-xt-16gb": "qwen36-35b-a3b-ud-q4-k-xl-mtp-128k-2x-9060xt"
+  },
+  "setup": "Linux x86-64 with Mesa RADV and two RX 9060 XT 16 GB cards. The plugin exposes only the two selected render nodes, enumerated as Vulkan0 and Vulkan1. Keep the desktop on the integrated GPU; the measured launch used about 14.5 GiB on GPU0 and 12.8 GiB on GPU1.",
+  "source": "https://github.com/ggml-org/llama.cpp/tree/af5c58347fdbc2cd19e65b278e81c8f528f8a175",
+  "variant": "vulkan"
+}
