@@ -10,7 +10,7 @@ TAIL_SHA=ee205a600be110910ae0b94d88a5b3671d2f2440dda36f5d282e7c82311db651
 git clone https://github.com/alesha-pro/maya-inkling-mini
 cd maya-inkling-mini
 git checkout "$ENGINE_COMMIT"
-git apply "$HERE/maya-ik2-slots-midsnap-fitreserve.patch"
+git apply "$HERE/maya-ik2-session2-k13-full.patch"
 python3 -m venv .venv
 .venv/bin/pip install -q numpy jinja2 regex pyyaml tqdm requests pillow psutil "jsonschema>=4.18,<5" huggingface_hub
 # engine (sm_86)
