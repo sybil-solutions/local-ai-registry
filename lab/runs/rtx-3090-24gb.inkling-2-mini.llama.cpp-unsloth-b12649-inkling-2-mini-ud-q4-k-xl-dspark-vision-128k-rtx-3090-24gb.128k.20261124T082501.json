@@ -1,0 +1,83 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "unsloth/Inkling-2-Mini-GGUF@8078d149286eec7193795413b9e0643da6d11fa1",
+  "engine": "llama.cpp-unsloth-b12649-inkling-2-mini-ud-q4-k-xl-dspark-vision-128k-rtx-3090-24gb@9458abcf6ea5",
+  "set": {},
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "launch_sha256": "a667c925974784bd679c99203c015eb8eecc6479f5816bb1fd0a709c18a9621e",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 55.6,
+  "prefill": 1313,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--spec-type",
+   "draft-dspark",
+   "--spec-draft-n-max",
+   "3"
+  ],
+  "chat": {
+   "content": "Red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 102,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "teHW4bCkJg7HXr1kLsGa0vEsTVvFnJA0"
+    }
+   ],
+   "reply": "Paris right now: 17°C, overcast. Code: e048a775",
+   "code": "e048a775",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 430
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 70.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1669,
+   "tokens_total": 2629,
+   "seconds_total": 40.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 1313,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
