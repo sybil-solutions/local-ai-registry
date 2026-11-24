@@ -1,0 +1,59 @@
+{
+  "id": "llama.cpp-metal-nemotron-3.5-lightning-30b-a3b-q4-0-128k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Nemotron 3.5 Lightning 30B-A3B (GGUF \u00b7 Q4_0, text only, q8_0 KV) on official llama.cpp b12588 Metal, all layers on the GPU, 131,072-token context, one sequence",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/ggml-org-NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF-8cd08217/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--jinja",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--alias",
+    "Nemotron-3.5-Lightning-30B-A3B",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
+      "revision": "8cd082170ed313484be1cf44f256a5caa2cfdad3",
+      "at": "models/ggml-org-NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF-8cd08217",
+      "layout": "dir",
+      "files": [
+        "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
