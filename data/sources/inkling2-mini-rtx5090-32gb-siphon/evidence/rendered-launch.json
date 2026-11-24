@@ -1,0 +1,39 @@
+{
+  "image": "ghcr.io/hxyulin/siphon-engine@sha256:3831a21ed89f4870539d66462c93377e317f8e39fbf29571dfc1e9641886c8ad",
+  "entrypoint": "siphon-serve",
+  "args": [
+    "/models/inkling-2-mini",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000",
+    "--context",
+    "131072",
+    "--weights",
+    "fp8",
+    "--kv",
+    "fp8",
+    "--name",
+    "inkling-2-mini"
+  ],
+  "port": 8000,
+  "shm": null,
+  "setup": "Needs an RTX 5090 (sm_120a, 32 GB) and a driver for CUDA 13.5 or later. Plans GPU memory before loading: 23.7 GiB at this context, 23.7 GiB in use after warmup. Weights load with mmap and are not kept in system RAM.",
+  "source": "https://github.com/hxyulin/siphon-engine/tree/cc362139e69267bb82c9c7e876d784b5fe18f7c7",
+  "env": {},
+  "weights": [
+    {
+      "repo": "thinkingmachines/Inkling-2-Mini",
+      "revision": "7a67ae2314b44ef05c87fd1d4d311c58aaeb18f6",
+      "at": "/models/inkling-2-mini",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "cards": 1
+}
