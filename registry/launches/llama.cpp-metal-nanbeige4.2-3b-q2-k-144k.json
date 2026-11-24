@@ -1,0 +1,61 @@
+{
+  "id": "llama.cpp-metal-nanbeige4.2-3b-q2-k-144k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Nanbeige4.2-3B (GGUF \u00b7 Q2_K, text only, q8_0 KV) on official llama.cpp b12588 Metal, all layers on the GPU, 147,456-token context, one sequence",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/bartowski-Nanbeige_Nanbeige4.2-3B-GGUF-17562eef/Nanbeige_Nanbeige4.2-3B-Q2_K.gguf",
+    "-c",
+    "147456",
+    "-np",
+    "1",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--jinja",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--top-k",
+    "20",
+    "--alias",
+    "Nanbeige4.2-3B",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF",
+      "revision": "17562eefe9752007209148d5f7a6e275fc8d8077",
+      "at": "models/bartowski-Nanbeige_Nanbeige4.2-3B-GGUF-17562eef",
+      "layout": "dir",
+      "files": [
+        "Nanbeige_Nanbeige4.2-3B-Q2_K.gguf"
+      ]
+    }
+  ],
+  "ctx": 147456,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}

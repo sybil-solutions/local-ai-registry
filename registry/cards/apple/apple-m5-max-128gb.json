@@ -1,0 +1,16 @@
+{
+  "id": "apple-m5-max-128gb",
+  "name": "Apple M5 Max",
+  "vendor": "apple",
+  "backend": "metal",
+  "vram_gb": 128,
+  "bandwidth_gb_s": 614,
+  "match": {
+    "backend": "metal",
+    "name": "Apple M5 Max",
+    "names": [
+      "applem5max"
+    ],
+    "vramGb": 128
+  }
+}

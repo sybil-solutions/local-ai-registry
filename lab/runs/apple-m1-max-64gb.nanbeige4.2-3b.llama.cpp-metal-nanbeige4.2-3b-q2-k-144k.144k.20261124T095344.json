@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "nanbeige4.2-3b",
+  "weights": "bartowski/Nanbeige_Nanbeige4.2-3B-GGUF@17562eefe9752007209148d5f7a6e275fc8d8077",
+  "engine": "llama.cpp-metal-nanbeige4.2-3b-q2-k-144k@fdee2e172937",
+  "set": {},
+  "card": "apple-m1-max-64gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M1 Max 64GB (32-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "Apple M1 Max 64GB (32-core GPU)",
+  "launch_sha256": "82b4d67701a9b1d065bb07e31745efd8a6e406767c9fd59e7ef9fdc886fc7c58",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 36.1,
+  "prefill": 44,
+  "served": "Nanbeige4.2-3B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 629,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "i7xB2WosqHXu1q7tSc0EKCw8TFAaZZjS"
+    }
+   ],
+   "reply": " \"Paris\", \"temp_c\": 17, \"sky\": \"overcast\", \"code\": \"11d76d1b\"}\n```\n\n**Summary:** Paris currently has an overcast sky with a temperature of 17°C — it looks like cloudy/rainy conditions at the moment. 🌥",
+   "code": "11d76d1b",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 188
+  },
+  "context": {
+   "prompt_tokens": 119687,
+   "seconds": 2738.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1085,
+   "tokens_total": 2174,
+   "seconds_total": 62.3,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 44,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
