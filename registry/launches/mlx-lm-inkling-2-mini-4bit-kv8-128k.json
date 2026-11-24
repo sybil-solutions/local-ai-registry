@@ -1,0 +1,57 @@
+{
+  "id": "mlx-lm-inkling-2-mini-4bit-kv8-128k",
+  "kind": "host",
+  "engine": "mlx-lm",
+  "about": "Inkling 2 Mini (MLX · 4-bit) on mlx-lm with the inkling2-mini-mac speed patch (github.com/nedcut/inkling2-mini-mac @ d4986f92) at a 131K window: BF16 KV through 65,536 tokens, then 8-bit for the eight full-attention visits; one request at a time",
+  "command": [
+    "python3",
+    "inkling2_mini_serve.py",
+    "--model",
+    "models/Inkling-2-Mini-4bit-9856dc53",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080",
+    "--prefill-step",
+    "512",
+    "--max-context",
+    "131072",
+    "--kv-bits",
+    "8",
+    "--kv-start",
+    "65536",
+    "--prompt-cache-max-tokens",
+    "16384"
+  ],
+  "install": "python3 -m pip install mlx==0.32.4 mlx-metal==0.32.4 'mlx-lm @ git+https://github.com/nedcut/mlx-lm@84517389532b5cbb1a05da941cca8442dd6ed631' transformers==5.24.0 tokenizers==0.23.3 huggingface_hub==2.4.0 (macOS on Apple silicon, Python 3.11-3.13)",
+  "pip": [
+    "mlx==0.32.4",
+    "mlx-metal==0.32.4",
+    "mlx-lm @ git+https://github.com/nedcut/mlx-lm@84517389532b5cbb1a05da941cca8442dd6ed631",
+    "transformers==5.24.0",
+    "tokenizers==0.23.3",
+    "huggingface_hub==2.4.0"
+  ],
+  "env": {
+    "HF_HUB_OFFLINE": "1"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "mlx-community/Inkling-2-Mini-4bit",
+      "revision": "9856dc53edead71405f8348930937c3638ff21a2",
+      "at": "models/Inkling-2-Mini-4bit-9856dc53",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "inkling2_mini_serve.py",
+    "file": "mlx-lm-inkling-2-mini-serve.py"
+  },
+  "wired_limit_reserve_mb": 3072,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}

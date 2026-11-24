@@ -1,0 +1,79 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2",
+  "engine": "mlx-lm-inkling-2-mini-4bit-kv8-128k@0045b40875bf",
+  "set": {},
+  "card": "apple-m4-pro-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M4 Pro 24GB (20-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "Apple M4 Pro 24GB (20-core GPU)",
+  "launch_sha256": "31d53489587101896f44a2f193500db4c5bea2b9d1f908113dab54e3057e6b1d",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 44.5,
+  "prefill": 180,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_a4b7dfcd64644c8286f4ec4f",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is overcast with a temperature of 17°C. Code: 06660e42",
+   "code": "06660e42",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 493
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 510.9,
+   "content": "58213",
+   "peak_gib": 18.83
+  },
+  "speed": {
+   "window_s": 28.5,
+   "tokens_in_window": 1268,
+   "tokens_total": 1268,
+   "seconds_total": 29.4,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 180,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "dd1eaf89d18235a56a5314842f5c1c9da7fc92d2b086f08d5d3b41773515553c"
+}

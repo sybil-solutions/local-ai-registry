@@ -1,0 +1,16 @@
+{
+  "id": "apple-m4-pro-24gb",
+  "name": "Apple M4 Pro",
+  "vendor": "apple",
+  "backend": "metal",
+  "vram_gb": 24,
+  "bandwidth_gb_s": 273,
+  "match": {
+    "backend": "metal",
+    "name": "Apple M4 Pro",
+    "names": [
+      "applem4pro"
+    ],
+    "vramGb": 24
+  }
+}
