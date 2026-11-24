@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "l0xre-v2-27b-low",
+  "weights": "YourHighnessLA/L0xRE-V2-27b-Low@54f6a3f9700071a9343d19a166e0e0e4f29cdf7f",
+  "engine": "beellama-l0xre-v2-27b-low-256k-rtx-3060-12gb@ce34517cd890",
+  "set": {},
+  "card": "rtx-3060-12gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3060"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GeForce RTX 3060",
+  "launch_sha256": "83903ff0e3e7f7eff6170bd738f5f39787a94d04b2392f4f2bbdcd119ba614ea",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 69.3,
+  "prefill": 568,
+  "served": "L0xRE-27b-Low"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 120,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "zwU1f7UW8F8NGOgZJcrot4oSxCDvElTn"
+    }
+   ],
+   "reply": "The weather in Paris right now is **17°C** and **overcast**.\n\nThe code provided by the tool is: **4c69f413**",
+   "code": "4c69f413",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 202
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 376.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 2078,
+   "tokens_total": 9586,
+   "seconds_total": 116.4,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 568,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "0c90cd154829f70144c10ee193a102d4460fa940bc8754e9252dbcf50975bd62"
+}
