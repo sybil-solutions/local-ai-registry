@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-9b",
+  "weights": "bartowski/Ornith-1.5-9B-GGUF@1fc60d6805eaa18bbed4088391db9336eb9581c4",
+  "engine": "llama.cpp-metal-ornith-1.5-9b-q4-0-256k@a35c2c86d214",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "2970174b5a8bbe705ce9c9b4286544185e8c0d43da75bab08b5b63453f6c001b",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 76.0,
+  "prefill": 750,
+  "served": "Ornith-1.5-9B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 125,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "jcifrf7GmqU7oOfx6Ue4RNsJz80uIqK2"
+    }
+   ],
+   "reply": "Here's the current weather in Paris:\n\n- **Temperature:** 17°C\n- **Sky condition:** Overcast\n- **Code:** 201985cf",
+   "code": "201985cf",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 96
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 284.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 2281,
+   "tokens_total": 7016,
+   "seconds_total": 93.3,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 750,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
