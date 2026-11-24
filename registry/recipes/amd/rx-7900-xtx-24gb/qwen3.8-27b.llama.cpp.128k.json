@@ -1,0 +1,18 @@
+{
+  "model": "qwen3.8-27b",
+  "engine": "llama.cpp-rocm@b4502",
+  "card": "rx-7900-xtx-24gb",
+  "weights": "Qwen/Qwen2.5-32B-Instruct-GGUF@7b848492061298d0889ee83921b066edb07d8d21",
+  "set": {
+    "ctx": 131072,
+    "seqs": 1,
+    "pool": 132096,
+    "vision": false
+  },
+  "proof": [
+    {
+      "launch_sha256": "3c8f8b8e055f10b2df1552a4e259b398df9815ad704a259c47e7041797e88b89",
+      "log": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+    }
+  ]
+}
