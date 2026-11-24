@@ -1,0 +1,69 @@
+{
+  "id": "llama.cpp-lfm3-vl-2b-qad-q4-0-125k-2seq-rtx-5080-16gb",
+  "engine": "llama.cpp",
+  "about": "LFM3-VL-2B QAD-Q4_0 with vision, q8_0 KV, two sequences of its full 128,000-token context (--ctx-size 256000 --parallel 2, KV not unified) on one RTX 5080 16GB, llama.cpp build 12124",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12@sha256:821d0ae4e5d4e82a2ad8d08973b5f9cd5d0b84524b1d2439ed1f3e41ebc6b4c7",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/LFM3-VL-2B-QAD-Q4_0.gguf",
+    "--mmproj",
+    "/models/mmproj-LFM3-VL-2B-Q8_0.gguf",
+    "--alias",
+    "LFM3-VL-2B",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--n-gpu-layers",
+    "999",
+    "--fit",
+    "off",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "256000",
+    "--parallel",
+    "2",
+    "--no-kv-unified",
+    "--flash-attn",
+    "on",
+    "--ubatch-size",
+    "1024",
+    "--jinja",
+    "--cache-ram",
+    "0",
+    "--metrics",
+    "--temp",
+    "0.1",
+    "--top-k",
+    "50",
+    "--repeat-penalty",
+    "1.1"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "1g",
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM3-VL-2B-GGUF",
+      "revision": "1add221a5ea6c047fcf1eaaf2d247939d7cf8849",
+      "at": "/models",
+      "layout": "dir",
+      "files": [
+        "LFM3-VL-2B-QAD-Q4_0.gguf",
+        "mmproj-LFM3-VL-2B-Q8_0.gguf"
+      ]
+    }
+  ],
+  "config": null,
+  "ctx": 128000,
+  "seqs": 2,
+  "vision": true,
+  "cards": 1
+}
