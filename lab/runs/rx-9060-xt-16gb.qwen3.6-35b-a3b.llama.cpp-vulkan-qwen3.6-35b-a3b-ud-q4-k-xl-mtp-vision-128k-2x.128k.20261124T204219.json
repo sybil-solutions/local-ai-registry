@@ -1,0 +1,83 @@
+{
+ "recipe": "registry/recipes/amd/rx-9060-xt-16gb/qwen3.6-35b-a3b.llama.cpp.128k.2x.vulkan.json",
+ "started_at": "2026-11-24T20:42:19.785878+00:00",
+ "where": {
+  "on": "owner",
+  "gpu": "2x AMD Radeon RX 9060 XT 16GB (Vulkan0,Vulkan1)",
+  "host": "Linux x86-64, Mesa RADV 26.2.5, llama.cpp b12679",
+  "endpoint": "http://127.0.0.1:18080/v1",
+  "mem_available_before_gib": 30.4
+ },
+ "passed": true,
+ "proof": {
+  "gates": "load chat reasoning tools context speed",
+  "tps": 17.5,
+  "prefill": 815,
+  "served": "qwen3.6-35b-a3b",
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "2x AMD Radeon RX 9060 XT 16GB (Vulkan0,Vulkan1)",
+  "launch_sha256": "7b90e8f39aa645c111e1522158ed9cdd563b27bca6521289e9a8afcaa3e8812b"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--spec-type",
+   "draft-mtp",
+   "--spec-draft-n-max",
+   "3",
+   "--spec-draft-p-min",
+   "0.0"
+  ],
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 545,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "tUJywuXJkYOhuzzENcI70PMMT788UbMz"
+    }
+   ],
+   "reply": "The weather in Paris right now is overcast with a temperature of 17°C.\n\nThe code provided is: **83cba8e7**",
+   "code": "83cba8e7",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 1587
+  },
+  "context": {
+   "prompt_tokens": 106252,
+   "seconds": 130.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.7,
+   "tokens_in_window": 537,
+   "tokens_total": 4029,
+   "seconds_total": 202.3,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 815,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

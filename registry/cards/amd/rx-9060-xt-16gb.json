@@ -1,0 +1,16 @@
+{
+  "id": "rx-9060-xt-16gb",
+  "name": "AMD Radeon RX 9060 XT",
+  "vendor": "amd",
+  "backend": "amd-vulkan",
+  "vram_gb": 16,
+  "bandwidth_gb_s": 640,
+  "match": {
+    "backend": "amd-vulkan",
+    "name": "AMD Radeon RX 9060 XT",
+    "names": [
+      "rx9060xt"
+    ],
+    "vramGb": 16
+  }
+}
