@@ -1,0 +1,59 @@
+{
+  "id": "llama.cpp-metal-granite-4.2-3b-q4-0-128k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Granite 4.2 3B (GGUF \u00b7 Q4_0, text only, q8_0 KV) on official llama.cpp b12588 Metal, all layers on the GPU, 131,072-token context, one sequence",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/ibm-granite-granite-4.2-3b-GGUF-c40945d7/granite-4.2-3b-Q4_0.gguf",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--jinja",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--alias",
+    "Granite-4.2-3B",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "ibm-granite/granite-4.2-3b-GGUF",
+      "revision": "c40945d71cd90f249a56985e8155551a9188dc30",
+      "at": "models/ibm-granite-granite-4.2-3b-GGUF-c40945d7",
+      "layout": "dir",
+      "files": [
+        "granite-4.2-3b-Q4_0.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
