@@ -1,0 +1,41 @@
+{
+  "id": "inkmax-inkling-2-mini-oq4e-mtp-256k",
+  "kind": "host",
+  "engine": "inkmax",
+  "about": "Inkling-2-Mini (mlx-community/Inkling-2-Mini-oQ4e-mtp: NVFP4 layers 0-19 + affine 4-bit layers 20-23 + affine 8-bit attention/embed/head + BF16 DSpark MTP) on inkmax (zero-dependency Zig 0.17.1 + Metal 3.2/4 engine) at a 262,144-token (256K) window with Q4 global KV (gs=32) and adaptive lossless DSpark 7-draft speculative decoding on Apple M5 Ultra 256 GB. Single-MTLCommandBuffer draft + verify execution (200/200 bit-exact greedy parity via metal::precise::fma), page-aligned zero-copy mmap weight cache (15.14 GiB, ~283 ms warm start) + 2.25 GiB 256K Q4 full-attention KV + 0.04 GiB 40-visit sliding ring KV = ~17.5 GiB total footprint (scales to 1M context in 24.18 GiB).",
+  "command": [
+    "./zig-out/bin/inkmax",
+    "serve",
+    "--model",
+    "models/Inkling-2-Mini-oQ4e-mtp-3eea0427",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080",
+    "--ctx",
+    "262144",
+    "--kv",
+    "q4",
+    "--draft-depth",
+    "auto"
+  ],
+  "install": "git clone https://github.com/chillerno1/inkmax.git && cd inkmax && git checkout bd8ec38a2a5996ae95965b57b94500f0db6c70a6 && zig build -Doptimize=ReleaseFast (macOS 15+ on Apple Silicon, Xcode Metal Toolchain xcrun metal, Zig 0.17.1)",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "mlx-community/Inkling-2-Mini-oQ4e-mtp",
+      "revision": "3eea042751cd296b7266628a8342c1749242e1fe",
+      "at": "models/Inkling-2-Mini-oQ4e-mtp-3eea0427",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal",
+  "source": "https://github.com/chillerno1/inkmax/tree/bd8ec38a2a5996ae95965b57b94500f0db6c70a6",
+  "setup": "macOS 15+ on Apple Silicon (tested on Apple M5 Ultra, 64-core GPU, 256 GB unified memory), Xcode Command Line Tools + Metal Toolchain (xcrun metal), Zig 0.17.1. First start packs the safetensors shards into a page-aligned 15.14 GiB inkmax.weights file inside the model directory (stripping the 0.64 GB vision tower in text mode); subsequent starts zero-copy mmap it in ~283 ms. 262,144-token Q4 KV cache + weights takes ~17.5 GiB unified memory (no iogpu.wired_limit_mb change needed)."
+}

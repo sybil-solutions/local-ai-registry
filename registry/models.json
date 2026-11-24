@@ -1435,6 +1435,10 @@
     "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2": {
       "format": "MLX · 4-bit attention (g64), NVFP4/MXFP8 experts",
       "size_gb": 17.31
+    },
+    "mlx-community/Inkling-2-Mini-oQ4e-mtp@3eea042751cd296b7266628a8342c1749242e1fe": {
+      "format": "MLX · oQ4e 4-bit (NVFP4 + affine 4/8-bit), native DSpark MTP",
+      "size_gb": 16.85
     }
   }
 }
