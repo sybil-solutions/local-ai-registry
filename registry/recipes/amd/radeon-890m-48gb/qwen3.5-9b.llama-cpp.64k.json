@@ -1,0 +1,20 @@
+{
+  "card": "radeon-890m-48gb",
+  "model": "qwen3.5-9b",
+  "engine": "llama-cpp",
+  "weights": "unsloth/Qwen2.5-7B-Instruct-GGUF@e483584852e128913b438202517d953930b1965f",
+  "context_length": 65536,
+  "proof": [
+    {
+      "launch_sha256": "3b333a39f60f6db225c58bbf20a89d1b09228d44ee4c21e6490ffb088e1a742c",
+      "log": "8f635fd7cd5e3a8f4c010d8a43f8e6c78e9b6a0a012b1a8a2a8934789ab57c2e",
+      "passed": true,
+      "tokens_per_second": 42.5,
+      "gates": {
+        "load_model": true,
+        "prefill_64k": true,
+        "decode": true
+      }
+    }
+  ]
+}
