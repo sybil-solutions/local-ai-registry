@@ -2,7 +2,7 @@ import json
 import unittest
 
 import lab
-from export_plugin import build, exportable
+from export_plugin import build, eligible, exportable
 
 
 class ExportFlagsTest(unittest.TestCase):
@@ -11,6 +11,12 @@ class ExportFlagsTest(unittest.TestCase):
         self.assertTrue(exportable({"flags": []}))
         self.assertTrue(exportable({"flags": ["--device /dev/kfd"]}))
         self.assertTrue(exportable({"flags": ["--device /dev/kfd", "--device /dev/dri"]}))
+
+    def test_eligible_allows_only_known_device_flags(self):
+        base = recipe("nvidia/rtx-3090-24gb/gemma-4-12b.tabbyapi.128k.json")
+        r = {**base, "launch": {**lab.render(base), "flags": ["--device /dev/dri"]}}
+        self.assertTrue(eligible(r, 2))
+        self.assertFalse(eligible({**r, "launch": {**r["launch"], "flags": ["--device /dev/mem"]}}, 2))
 
     def test_privileged_flag_launches_stay_out(self):
         for flag in ("--ipc host", "--security-opt seccomp=unconfined", "--ulimit memlock=-1:-1",
