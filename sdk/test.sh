@@ -16,7 +16,10 @@ cases = [["NVIDIA GeForce RTX 3080", 10, "rtx-3080-10gb"],
          ["NVIDIA GeForce RTX 3080", 12, "rtx-3080-12gb"],
          ["NVIDIA GeForce RTX 3080", 11.8, "rtx-3080-12gb"],
          ["NVIDIA GeForce RTX 3080 Ti", 12, "rtx-3080-ti-12gb"],
-         ["NVIDIA GeForce RTX 3080", None, "rtx-3080-10gb"]]
+         ["NVIDIA GeForce RTX 3080", None, "rtx-3080-10gb"],
+         ["NVIDIA GeForce RTX 3080 Laptop GPU", 12, None],
+         ["NVIDIA GeForce RTX 3080 Mobile", 10, None],
+         ["NVIDIA GeForce RTX 3080 Max-Q", 10, None]]
 for gpu, memory, expected in cases:
     assert L.detect(variants, gpu, memory) == expected, (gpu, memory, expected)
 variant_js = subprocess.run(["node", "--input-type=module", "-e", '''

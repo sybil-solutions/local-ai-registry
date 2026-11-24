@@ -25,17 +25,17 @@
     "--context-length",
     "262144",
     "--max-total-tokens",
-    "264192",
+    "1052672",
     "--mem-fraction-static",
     "0.35",
     "--max-running-requests",
-    "1",
+    "4",
     "--chunked-prefill-size",
-    "1024",
+    "4096",
     "--max-prefill-tokens",
-    "1024",
+    "4096",
     "--max-mamba-cache-size",
-    "8",
+    "40",
     "--mamba-ssm-dtype",
     "float16",
     "--dtype",
@@ -72,13 +72,17 @@
     "EXL3_MOE_SLOTS": "0",
     "EXL3_MOE_CACHE": "0",
     "EXL3_MOE_STAGE_MIN_M": "0",
-    "EXL3_INT8_PREFILL": "0",
-    "EXL3_ONEDNN_ATTN": "0",
+    "EXL3_INT8_PREFILL": "1",
+    "EXL3_ONEDNN_ATTN": "1",
     "TORCHINDUCTOR_COMPILE_THREADS": "1",
     "OMP_NUM_THREADS": "4",
-    "EXL3_SGL_SAMPLE_DEVICE": "cpu",
+    "EXL3_SGL_SAMPLE_DEVICE": "xpu2",
     "VLLM_WORKER_MULTIPROC_METHOD": "spawn",
-    "PYTORCH_ALLOC_CONF": "expandable_segments:True"
+    "PYTORCH_ALLOC_CONF": "expandable_segments:True",
+    "EXL3_DRAFT_VOCAB": "/opt/ornith/dv256.json",
+    "EXL3_LIB": "/opt/trellis-serve/xpu/exl3xpu/_C_dnnl.so",
+    "EXL3_TARGET_THREADS": "256",
+    "EXL3_TARGET_THREADS_MB16": "256"
   },
   "shm": "2g",
   "weights": [
@@ -91,7 +95,7 @@
   ],
   "config": null,
   "ctx": 262144,
-  "seqs": 1,
+  "seqs": 4,
   "vision": true,
   "cards": 1,
   "needs": {
@@ -101,9 +105,9 @@
   },
   "build": {
     "repo": "sybil-solutions/local-ai-registry",
-    "commit": "46430a0ed08b20c1257ea7a37b68821343222e10",
+    "commit": "17b1862f0ba977c360060b964a8da25ae0022804",
     "dockerfile": "data/sources/ornith-b390-exl3/Dockerfile"
   },
-  "setup": "Intel Arc B390 with 64 GB unified RAM; requires 48 GB available system RAM including conservative headroom. CPU and GPU share RAM. Build the pinned source first (SYCL compiler is included in the base image). EXL3 K4 weights, FP8 E4M3 KV, one NEXTN/MTP draft, image input, tool/reasoning parsers and prefix caching. One request at a time. Long cold prefill takes minutes; drain active requests before stopping. Source-build recipes are available through the registry/SDK, not the plugin until an attested image is published and requalified.",
-  "source": "https://github.com/sybil-solutions/local-ai-registry/tree/46430a0ed08b20c1257ea7a37b68821343222e10/data/sources/ornith-b390-exl3"
+  "setup": "Intel Arc B390 with 64 GB unified RAM; requires 48 GB available system RAM including conservative headroom. CPU and GPU share RAM. Build the pinned source first (SYCL compiler is included in the base image). EXL3 K4 weights, FP8 E4M3 KV, one NEXTN/MTP draft with a pruned 256-block draft vocabulary, on-GPU sampling, INT8 + oneDNN prefill, image input, tool/reasoning parsers and prefix caching. Up to 4 concurrent requests, each up to 262,144 tokens (KV pool 1,052,672 tokens). A long cold prefill slows concurrent decoders; drain active requests before stopping. Source-build recipes are available through the registry/SDK, not the plugin until an attested image is published and requalified.",
+  "source": "https://github.com/sybil-solutions/local-ai-registry/tree/17b1862f0ba977c360060b964a8da25ae0022804/data/sources/ornith-b390-exl3"
 }
