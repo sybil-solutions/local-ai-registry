@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "unsloth/Inkling-2-Mini-GGUF@ae9327c5fbc7333116ba32eee78bb5d2bbefae4f",
+  "engine": "maya-ik2-inkling-2-mini-nvfp4tail-388k-rtx-3090-24gb@9479be5d5061",
+  "set": {},
+  "card": "rtx-3090-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 3090"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "RTX 3090",
+  "launch_sha256": "861247ae5b0585b8fd1ce96072378b83de8c87e5f41a07e1b4a997cb5b850150",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 123.7,
+  "prefill": 1393,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_661a82588ecd42d0a8958362",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is currently 17°C and overcast. The code it returned was: `51ce9245`",
+   "code": "51ce9245",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 592
+  },
+  "context": {
+   "prompt_tokens": 280470,
+   "seconds": 201.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 10.8,
+   "tokens_in_window": 1331,
+   "tokens_total": 1331,
+   "seconds_total": 11.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 1393,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
