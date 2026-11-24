@@ -1,0 +1,2 @@
+[lab 13:45:30] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 107.4 tok/s, prefill 920 tok/s; evidence lab/runs/rtx-5060-ti-16gb.inkling-2-mini.squid5060ti-inkling-2-mini-128k.128k.20261124T104530.json
+[lab 13:45:30] PASSED: wrote registry/recipes/nvidia/rtx-5060-ti-16gb/inkling-2-mini.squid5060ti.128k.json (498 bytes)
