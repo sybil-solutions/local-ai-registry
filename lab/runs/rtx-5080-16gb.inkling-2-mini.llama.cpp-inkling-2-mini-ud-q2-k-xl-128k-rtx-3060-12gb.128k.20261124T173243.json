@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "unsloth/Inkling-2-Mini-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+  "engine": "llama.cpp-inkling-2-mini-ud-q2-k-xl-128k-rtx-3060-12gb@05b0827cc6df",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "5f059a155a90fb939416fe3d2692bbaaa0c5e45c6cc36412ca2578ef71141a1f",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 93.6,
+  "prefill": 1875,
+  "served": "inkling-2-mini-ud-q2-k-xl"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "srHmspT4n2nwTDWYk4hNJBbjR45Q06VT"
+    }
+   ],
+   "reply": "Paris is currently 17°C and overcast. The code the tool gave you is: 088f4cd8",
+   "code": "088f4cd8",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 506
+  },
+  "context": {
+   "prompt_tokens": 91888,
+   "seconds": 49.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 12.0,
+   "tokens_in_window": 1124,
+   "tokens_total": 1124,
+   "seconds_total": 12.4,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 1875,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "a4e935205cbf3a19cd28033589e619b1f5544efe5ae62e6a936dfdc6a546e320"
+}

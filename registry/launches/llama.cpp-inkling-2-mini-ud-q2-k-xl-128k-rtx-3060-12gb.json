@@ -1,0 +1,32 @@
+{
+  "id": "llama.cpp-inkling-2-mini-ud-q2-k-xl-128k-rtx-3060-12gb",
+  "engine": "llama.cpp",
+  "kind": "host",
+  "backend": "nvidia",
+  "install": "https://github.com/unslothai/llama.cpp/releases/download/b12649-mix-c7059d6/app-b12649-mix-c7059d6-linux-x64-cuda12-portable.tar.gz#sha256=63f031751927fb06894928e18bf46e7f164c555b8807c8ac4e963e6a37c6d42c",
+  "source": "https://github.com/unslothai/llama.cpp/tree/189f431bf58f433d376d718c7788b1bf4467fa72",
+  "port": 18392,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "weights": [
+    {
+      "repo": "unsloth/Inkling-2-Mini-GGUF",
+      "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+      "at": "weights",
+      "files": [
+        "Inkling-2-Mini-UD-Q2_K_XL.gguf",
+        "mmproj-F16.gguf"
+      ]
+    }
+  ],
+  "command": [
+    "bash",
+    "launch-inkling.sh"
+  ],
+  "config": {
+    "at": "launch-inkling.sh",
+    "text": "#!/usr/bin/env bash\nset -euo pipefail\nif [[ ! -f cuda/cudart-llama-b12242-bin-ubuntu-cuda-12.8-x64/libcudart.so.12 ]]; then\n    curl -fsSL https://github.com/ggml-org/llama.cpp/releases/download/b12242/cudart-llama-b12242-bin-ubuntu-cuda-12.8-x64.tar.gz -o cudart-llama-b12242-bin-ubuntu-cuda-12.8-x64.tar.gz\n    printf '%s\\n' 'fc33b4280968cb645f98fa78ae6377e40911ff08292161b3aa02df3c6a94ee57  cudart-llama-b12242-bin-ubuntu-cuda-12.8-x64.tar.gz' | sha256sum -c\n    mkdir -p cuda\n    tar xzf cudart-llama-b12242-bin-ubuntu-cuda-12.8-x64.tar.gz -C cuda\nfi\nexport LD_LIBRARY_PATH=\"$PWD:$PWD/cuda/cudart-llama-b12242-bin-ubuntu-cuda-12.8-x64\"\nexec ./llama-server -m weights/Inkling-2-Mini-UD-Q2_K_XL.gguf --alias inkling-2-mini-ud-q2-k-xl --host 127.0.0.1 --port 18392 -c 131072 -np 1 -ub 512 -b 512 -fa on -ctk q4_0 -ctv q4_0 --jinja --cors-origins localhost --mmproj weights/mmproj-F16.gguf --no-mmproj-offload --reasoning-effort none\n"
+  }
+}
