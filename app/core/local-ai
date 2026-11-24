@@ -86,7 +86,7 @@ toolkit() {
   fi
 }
 valid_id() { [[ $1 =~ ^[a-z0-9][a-z0-9.-]{0,63}$ ]]; }
-valid_key() { [[ $1 =~ ^(nvidia|intel-xpu|amd-rocm):[0-9]{1,2}$ ]]; }
+valid_key() { [[ $1 =~ ^(nvidia|intel-xpu|amd-rocm|amd-vulkan):[0-9]{1,2}$ ]]; }
 dir_of() { printf '%s/deploy/%s' "$STATE" "$1"; }
 
 # status <id> <state> [detail] [percent] [error]: what the widget shows; the log gets each new step once
@@ -184,12 +184,19 @@ amd() {
 # Every GPU, with the card kind the recipes know it as ("" when none) and a key like nvidia:0.
 gpus() {
   jq -c --argjson g "$(jq -nc --argjson a "$(nvidia)" --argjson b "$(intel)" --argjson c "$(amd)" '$a + $b + $c')" '
-    def norm: ascii_downcase | gsub("nvidia|geforce|intel|amd|radeon|generation|workstation|edition|[0-9]+gb|[^a-z0-9]"; "");
-    . as $r | [$g[] | . as $x
-      | ([$r.hardware | to_entries[] | select(.value.match.backend == $x.backend
+    . as $r
+    | def norm: ascii_downcase | gsub("nvidia|geforce|intel|amd|radeon|generation|workstation|edition|[0-9]+gb|[^a-z0-9]"; "");
+    # AMD-SMI reports the kernel/ROCm view. A card with a Vulkan registry entry is served through Vulkan instead,
+    # so keep the telemetry but expose the backend its recipes and container device selection actually use.
+    [$g[] | . as $x
+      | (if .backend == "amd-rocm" and any($r.hardware[];
+          .match.backend == "amd-vulkan" and (.match.names | index($x.product | norm)) != null
+          and (((.match.vramGb * 1024) - $x.totalMiB) | fabs) <= 1024)
+        then "amd-vulkan" else .backend end) as $backend
+      | ([$r.hardware | to_entries[] | select(.value.match.backend == $backend
           and (.value.match.names | index($x.product | norm)) != null
           and (((.value.match.vramGb * 1024) - $x.totalMiB) | fabs) <= 1024) | .key][0] // "") as $hw
-      | $x + {key: ($x.backend + ":" + ($x.index | tostring)), hw: $hw, vramGb: (($x.totalMiB / 1024) | round),
+      | $x + {backend: $backend, key: ($backend + ":" + ($x.index | tostring)), hw: $hw, vramGb: (($x.totalMiB / 1024) | round),
           name: ($x.product | gsub("^(NVIDIA GeForce |NVIDIA |Intel |AMD Radeon |AMD )"; ""))}]' "$RECIPES"
 }
 
