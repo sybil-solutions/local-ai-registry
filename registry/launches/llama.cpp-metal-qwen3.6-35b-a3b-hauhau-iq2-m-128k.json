@@ -1,0 +1,43 @@
+{
+  "id": "llama.cpp-metal-qwen3.6-35b-a3b-hauhau-iq2-m-128k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Hauhau (HauhauCS Aggressive uncensored) Qwen3.6-35B-A3B GGUF IQ2_M on llama.cpp b11182 Metal. Stock defaults are the measured optimum on an M4 Max: in an interleaved hill-climb, flash-attn and q8_0 KV both regressed decode, so the launch is plain defaults at the full 131072 context, one slot.",
+  "command": [
+    "llama-b11182/llama-server",
+    "-m",
+    "models/hauhau-qwen36-uncensored-007d4f0c/Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-IQ2_M.gguf",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-ngl",
+    "99",
+    "--jinja",
+    "--alias",
+    "hauhau-qwen3.6-35b-a3b",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b11182/llama-b11182-bin-macos-arm64.tar.gz#sha256=ca2000b4037c3a467ec0758538af7e6f2b4dc2904f593bbedf4b28a97b6c444a",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "ordlibrary/hauhau-qwen36-uncensored",
+      "revision": "007d4f0ccbea6236d954d0079fa7c7ea03e5f111",
+      "at": "models/hauhau-qwen36-uncensored-007d4f0c",
+      "layout": "dir",
+      "files": [
+        "Qwen3.6-35B-A3B-Uncensored-HauhauCS-Aggressive-IQ2_M.gguf"
+      ]
+    }
+  ],
+  "wired_limit_reserve_mb": 4096,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}

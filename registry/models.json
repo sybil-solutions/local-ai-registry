@@ -205,6 +205,17 @@
       "logo": "qwen",
       "hf": "quaedra/Welp-35B-A3B-GGUF"
     },
+    "hauhau-qwen3.6-35b-a3b": {
+      "family": "qwen",
+      "name": "Hauhau-35B-A3B",
+      "released": "2026-04-17",
+      "reasoning": true,
+      "vision": false,
+      "about": "HauhauCS's uncensored (Aggressive) fine-tune of Qwen3.6-35B-A3B, served as the 11.7 GB IQ2_M GGUF; re-hosted on Hugging Face by ordlibrary.",
+      "good_for": "Fast uncensored general work",
+      "logo": "qwen",
+      "hf": "ordlibrary/hauhau-qwen36-uncensored"
+    },
     "deepseek-v4-flash": {
       "family": "deepseek",
       "name": "DeepSeek-V4-Flash",
