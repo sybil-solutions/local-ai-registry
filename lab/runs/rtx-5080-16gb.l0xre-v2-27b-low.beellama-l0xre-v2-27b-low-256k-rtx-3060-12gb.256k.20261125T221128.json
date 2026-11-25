@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "l0xre-v2-27b-low",
+  "weights": "YourHighnessLA/L0xRE-V2-27b-Low@54f6a3f9700071a9343d19a166e0e0e4f29cdf7f",
+  "engine": "beellama-l0xre-v2-27b-low-256k-rtx-3060-12gb@ce34517cd890",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-25",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "83903ff0e3e7f7eff6170bd738f5f39787a94d04b2392f4f2bbdcd119ba614ea",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 187.2,
+  "prefill": 1541,
+  "served": "L0xRE-27b-Low"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 108,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "84S4Gjy1oWlurve0pkfpxYfDvd1huUbd"
+    }
+   ],
+   "reply": "The weather in Paris right now is **17°C** with **overcast** skies.\n\nThe code provided by the tool is: **4d9932bd**",
+   "code": "4d9932bd",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 166
+  },
+  "context": {
+   "prompt_tokens": 213612,
+   "seconds": 138.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 5618,
+   "tokens_total": 16657,
+   "seconds_total": 86.2,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 1541,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "0c90cd154829f70144c10ee193a102d4460fa940bc8754e9252dbcf50975bd62"
+}
