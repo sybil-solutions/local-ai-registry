@@ -1,7 +1,7 @@
 {
   "id": "llama.cpp-qwen3.5-9b-defiant-fable-heretic-q6-k-128k-rtx-3060-12gb",
   "engine": "llama.cpp",
-  "about": "DavidAU's Qwen3.5-9B The Defiant Fable Uncensored Heretic, his NEO-imatrix Q6_K with a BF16 output head, all in VRAM at 131,072 tokens with q8_0 KV. The file carries an MTP head, but with the BF16 head the card holds 64k with MTP and 128k only without it, so this 128k launch decodes without speculation (MTP n=2 gives 1.6x at 64k). --no-mmproj. The card's thinking settings (temp 1.0, top-p 0.95, top-k 20, min-p 0, no penalties). Measured on one RTX 3060 12GB (PCIe 4.0 x16), i5-12500, 62 GiB RAM, with about 1 GB of the card held by the desktop.",
+  "about": "DavidAU's Qwen3.5-9B The Defiant Fable Uncensored Heretic, his NEO-imatrix Q6_K with a BF16 output head, all in VRAM at 131,072 tokens with q8_0 KV. The file carries an MTP head, but with the BF16 output head and q8_0 KV the card holds 96k with MTP and 128k only without it, so this 128k launch decodes without speculation (MTP n=2 with f16 KV gives 1.6x at 64k). --no-mmproj. The card's thinking settings (temp 1.0, top-p 0.95, top-k 20, min-p 0, no penalties). Measured on one RTX 3060 12GB (PCIe 4.0 x16), i5-12500, 62 GiB RAM, with about 1 GB of the card held by the desktop.",
   "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12-b12627@sha256:f46a7938f84a62f7c2eba2dfc985d921cb54fb3ec7b4e729cec2cee2cbace609",
   "backend": "nvidia",
   "port": 8080,
