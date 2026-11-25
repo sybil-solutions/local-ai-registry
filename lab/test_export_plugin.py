@@ -2,7 +2,7 @@ import json
 import unittest
 
 import lab
-from export_plugin import build, exportable
+from export_plugin import PLUGIN_ENTRYPOINT, build, exportable, mounts_ok, plugin_launch
 
 
 class ExportFlagsTest(unittest.TestCase):
@@ -59,6 +59,38 @@ class KvFloorTest(unittest.TestCase):
                     kv = e["serving"]["kvTokens"] or e["serving"]["ctxTokens"]
                     if vram * e["cards"] > lab.KV_FLOOR_ABOVE_VRAM_GB:
                         self.assertGreaterEqual(kv, lab.KV_FLOOR_TOKENS, f"v{version} {card} {e['id']}")
+
+
+class EntrypointTest(unittest.TestCase):
+    L = {"env": {}, "port": 8000, "shm": None}
+
+    def test_list_entrypoint_becomes_one_program_and_the_same_argv(self):
+        got = plugin_launch({**self.L, "entrypoint": ["vllm", "serve"]}, ["/models", "--port", "8000"])
+        self.assertEqual(got["entrypoint"], "vllm")
+        self.assertEqual(got["arguments"], ["serve", "/models", "--port", "8000"])
+        got = plugin_launch({**self.L, "entrypoint": ["python3", "-m", "sglang.launch_server"]}, None)
+        self.assertEqual((got["entrypoint"], got["arguments"]), ("python3", ["-m", "sglang.launch_server"]))
+
+    def test_string_and_missing_entrypoints_are_unchanged(self):
+        got = plugin_launch({**self.L, "entrypoint": "/bin/bash"}, ["-c", "x"])
+        self.assertEqual((got["entrypoint"], got["arguments"]), ("/bin/bash", ["-c", "x"]))
+        got = plugin_launch({**self.L, "entrypoint": None}, None)
+        self.assertEqual((got["entrypoint"], got["arguments"]), (None, None))
+
+    def test_export_only_hands_the_plugin_entrypoints_it_accepts(self):
+        # the plugin refuses the whole catalog for one entrypoint that is not a single program path
+        for version in (2, 3):
+            for card, hw in json.loads(build(version))["hardware"].items():
+                for e in hw["recipes"]:
+                    ep = e["launch"]["entrypoint"]
+                    self.assertTrue(ep is None or (isinstance(ep, str) and PLUGIN_ENTRYPOINT.fullmatch(ep)),
+                                    f"v{version} {card} {e['id']}: {ep!r}")
+
+    def test_mounts_ok_refuses_an_entrypoint_the_plugin_would_refuse(self):
+        e = {"id": "x", "weights": [], "launch": {"entrypoint": "bash -lc"}}
+        self.assertFalse(mounts_ok(e))
+        self.assertTrue(mounts_ok({**e, "launch": {"entrypoint": "/usr/local/bin/vllm"}}))
+        self.assertTrue(mounts_ok({**e, "launch": {"entrypoint": None}}))
 
 
 if __name__ == "__main__":
