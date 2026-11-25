@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2",
+  "engine": "mlx-lm-inkling-2-mini-4bit-256k@0077c21118d9",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "f3c71133a2e3a347d7d33223e1acddb97e86906df06ba300cdc1b0309222d5a9",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 44.1,
+  "prefill": 647,
+  "served": "models/Inkling-2-Mini-4bit-9856dc53"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     },
+     "type": "function",
+     "id": "3b0d8bfb-9ac5-4787-b04f-1b3ea0b87ff6"
+    }
+   ],
+   "reply": "Paris right now: 17°C, overcast. Code: ab8cca19",
+   "code": "ab8cca19",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 1181
+  },
+  "context": {
+   "prompt_tokens": 184730,
+   "seconds": 285.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1322,
+   "tokens_total": 1641,
+   "seconds_total": 62.0,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 647,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "e04fd3dd49a092f6784d769532e689a3383463ea6337ba84df2e730652e59f32"
+}
