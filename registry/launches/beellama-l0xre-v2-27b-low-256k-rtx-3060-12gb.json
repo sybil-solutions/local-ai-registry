@@ -1,0 +1,41 @@
+{
+  "id": "beellama-l0xre-v2-27b-low-256k-rtx-3060-12gb",
+  "engine": "llama.cpp",
+  "kind": "host",
+  "backend": "nvidia",
+  "install": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.6",
+  "port": 8187,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": true,
+  "cards": 1,
+  "weights": [
+    {
+      "repo": "YourHighnessLA/L0xRE-V2-27b-Low",
+      "revision": "54f6a3f9700071a9343d19a166e0e0e4f29cdf7f",
+      "at": "models",
+      "files": [
+        "L0xRE-V2-27b-Low.gguf",
+        "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+        "qwen38-dlsa-d2048.l0xmap"
+      ]
+    },
+    {
+      "repo": "HermiHg/Qwen3.8-27B-mmproj-Q5_K-MIX-GGUF",
+      "revision": "dbf78ac52891f19cf175abb8813997267adb0e92",
+      "at": "models",
+      "files": [
+        "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf"
+      ]
+    }
+  ],
+  "command": [
+    "bash",
+    "launch-beellama.sh"
+  ],
+  "config": {
+    "at": "launch-beellama.sh",
+    "text": "#!/usr/bin/env bash\nset -euo pipefail\nif [[ ! -d L0xRE-v0.1.6-linux-sm86 ]]; then\n    if [[ ! -f L0xRE-v0.1.6-linux-sm86.tar.zst ]]; then\n        curl -fsSL https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.6/L0xRE-v0.1.6-linux-sm86.tar.zst -o L0xRE-v0.1.6-linux-sm86.tar.zst\n    fi\n    printf '%s\\n' '0d94b4e0729a26d761f1c6e59fb0dc088a657c6e67dcc0b09d03297ccb821adf  L0xRE-v0.1.6-linux-sm86.tar.zst' | sha256sum -c\n    tar --zstd -xf L0xRE-v0.1.6-linux-sm86.tar.zst\nfi\npython3 L0xRE-v0.1.6-linux-sm86/architectures/sm86/launch.py \\\n    --profile sm86 --ctx 262144 --host 127.0.0.1 --port 8187 \\\n    --model models/L0xRE-V2-27b-Low.gguf --draft models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf \\\n    --sparse-map models/qwen38-dlsa-d2048.l0xmap --mmproj models/mmproj-Qwen3.8-27B-Q5_K-MIX.gguf \\\n    --print-json -- -b 256 -ub 256 --reasoning on --reasoning-effort default --reasoning-format deepseek | python3 -c 'import json, os, sys\nspec = json.load(sys.stdin)\nargv = spec[\"argv\"]\nassert argv.count(\"--reasoning-budget\") == 1\ni = argv.index(\"--reasoning-budget\")\nassert argv[i + 1] == \"0\"\ndel argv[i:i + 2]\nassert argv[-4:] == [\"--reasoning-effort\", \"default\", \"--reasoning-format\", \"deepseek\"]\nassert argv[-6:-4] == [\"--reasoning\", \"on\"]\nprefixes = (\"L0XRE_\", \"ESCHA_\", \"GGML_\", \"LLAMA_\", \"LD_\")\nenv = {k: v for k, v in os.environ.items() if not k.startswith(prefixes)}\nos.execve(argv[0], argv, env | spec[\"env\"])\n'\n"
+  },
+  "about": "With reasoning enabled and no output-length cap, the registry speed prompt can generate several thousand tokens and take substantially longer than the 30-second measurement window."
+}
