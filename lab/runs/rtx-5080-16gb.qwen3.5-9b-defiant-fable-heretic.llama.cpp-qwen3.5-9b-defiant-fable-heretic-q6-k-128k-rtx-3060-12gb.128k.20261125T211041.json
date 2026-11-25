@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "qwen3.5-9b-defiant-fable-heretic",
+  "weights": "DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF@4d47954f2ef8277567a20508dd3f88def5404455",
+  "engine": "llama.cpp-qwen3.5-9b-defiant-fable-heretic-q6-k-128k-rtx-3060-12gb@f46a7938f84a",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-25",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "1f5d6b94631ad85ce3ef3caf802135ef8e2269cbf91cf723234c51109dc5aae9",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 95.2,
+  "prefill": 4040,
+  "served": "/models/Qwen3.5-9B-The-Defiant-Fable-Uncnr-Heretic-NEO-MAX-MTP-Q6_K.gguf"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Blue, Yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 1034,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "rzPTyuPAnxoBAez8oeD66mpJwhAYsgmP"
+    }
+   ],
+   "reply": "The weather in Paris is currently 17°C and overcast. The code provided is: 1f0ba9de",
+   "code": "1f0ba9de",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 63
+  },
+  "context": {
+   "prompt_tokens": 106252,
+   "seconds": 26.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 2857,
+   "tokens_total": 3178,
+   "seconds_total": 34.2,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 4040,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

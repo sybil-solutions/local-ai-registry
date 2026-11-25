@@ -898,6 +898,20 @@
       "good_for": "Coding agents and tool calls on a 12 GB card with experts in system RAM",
       "logo": "hf",
       "hf": "RecursiveSI/flint"
+    },
+    "qwen3.5-9b-defiant-fable-heretic": {
+      "family": "qwen",
+      "name": "Qwen3.5-9B The Defiant Fable Heretic",
+      "released": "2026-07-19",
+      "reasoning": true,
+      "vision": true,
+      "about": "DavidAU's uncensored (Heretic) Qwen3.5-9B, published as NEO-imatrix GGUFs with a BF16 output head and the MTP head.",
+      "good_for": "Uncensored chat and writing that fits whole on a 12 GB card",
+      "logo": "qwen",
+      "hf": "DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP",
+      "aa": {
+        "of": "qwen3.5-9b"
+      }
     }
   },
   "builds": {
@@ -1435,6 +1449,10 @@
     "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2": {
       "format": "MLX · 4-bit attention (g64), NVFP4/MXFP8 experts",
       "size_gb": 17.31
+    },
+    "DavidAU/Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF@4d47954f2ef8277567a20508dd3f88def5404455": {
+      "format": "GGUF · Q6_K, BF16 head",
+      "size_gb": 8.759
     }
   }
 }
