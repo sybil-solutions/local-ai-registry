@@ -1,0 +1,68 @@
+{
+  "id": "mlx-dspark-inkling-2-mini-8bit-32k",
+  "kind": "host",
+  "engine": "mlx-dspark",
+  "about": "Inkling-2-Mini (Thinking Machines' own checkpoint) on mlx-dspark with MTP-head and prompt-lookup speculative decoding. The attention projections and output head are quantized to 8-bit at load (--target-bits 8; about 1.6% of next-token choices differ from the released bf16, all near-ties; the experts stay as released). 32,768-token window (enforced with --context-window), up to 4 concurrent requests, text only. The fork's kernels and flags (FP16 activations, NVFP4 NAMP, MMA shared-prefix attention, snapshot certificate) are env-gated and pinned in this launch; mlx is built from ml-explore/mlx@5c89894 (0.32.5 dev, after v0.32.4). Measured on an M2 Max 64 GB (30-core GPU, AC power): 47.6 tok/s on gBench serving (512 in, 128 out), 43.1 tok/s single-request agent decode, 50.0 tok/s aggregate across 4 streams at a 23.5K shared prefix (33-34 GiB). A 50,019-token needle was found 3/3 at 43.0 GiB peak, beyond the 32K window this recipe declares. HumanEval+ against the same engine's stock baseline: 92.1% vs 93.3% (164 problems, greedy, 4,096-token cap, one run) with 40.9% faster decode.",
+  "command": [
+    "sh",
+    "inkling2_dspark_serve.sh",
+    "--model",
+    "models/Inkling-2-Mini-7a67ae23",
+    "--target-bits",
+    "8",
+    "--max-batch",
+    "4",
+    "--lookup-drafts",
+    "--context-window",
+    "32768",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "python3 -m pip install 'mlx-dspark @ git+https://github.com/maxmilneaus/mlx-dspark.git@8778b25296943f3f835fa28e38536efd4dcbf064' 'mlx @ git+https://github.com/ml-explore/mlx.git@5c89894465a9a010bc81109b646207bbfed84c4d' mlx-lm==0.32.2 'mlx-vlm @ git+https://github.com/Blaizzy/mlx-vlm.git@d998a6207b7dc613b52618646dbea13a4799f7ca' transformers==5.24.0 huggingface_hub==2.4.0 numpy==2.5.5 (macOS on Apple silicon, Python >= 3.10; building mlx needs the Xcode command line tools, cmake and the Metal toolchain)",
+  "pip": [
+    "mlx-dspark @ git+https://github.com/maxmilneaus/mlx-dspark.git@8778b25296943f3f835fa28e38536efd4dcbf064",
+    "mlx @ git+https://github.com/ml-explore/mlx.git@5c89894465a9a010bc81109b646207bbfed84c4d",
+    "mlx-lm==0.32.2",
+    "mlx-vlm @ git+https://github.com/Blaizzy/mlx-vlm.git@d998a6207b7dc613b52618646dbea13a4799f7ca",
+    "transformers==5.24.0",
+    "huggingface_hub==2.4.0",
+    "numpy==2.5.5"
+  ],
+  "env": {
+    "MLX_DSPARK_INKLING_FP16": "1",
+    "MLX_DSPARK_INKLING_FP16_FUSED": "1",
+    "MLX_DSPARK_NVFP4_FP16_SCALE": "1",
+    "MLX_DSPARK_NVFP4_NIBBLE": "half2",
+    "MLX_DSPARK_BOUNDARY_SNAPSHOT": "1",
+    "MLX_DSPARK_HEAD_Q8_FP16": "1",
+    "MLX_DSPARK_HEAD_Q8_MAX_ROWS": "2",
+    "MLX_DSPARK_SMALL_M_FP16": "1",
+    "MLX_DSPARK_PARKED_SAMPLED": "1",
+    "MLX_DSPARK_NVFP4_NAMP": "1",
+    "MLX_DSPARK_SHARED_PREFIX_KV": "1",
+    "MLX_DSPARK_SHARED_PREFIX_MMA": "1",
+    "MLX_DSPARK_SHARED_CERT": "1",
+    "MLX_DSPARK_DROP_RAW_HEAD": "1",
+    "HF_HUB_OFFLINE": "1"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "thinkingmachines/Inkling-2-Mini",
+      "revision": "7a67ae2314b44ef05c87fd1d4d311c58aaeb18f6",
+      "at": "models/Inkling-2-Mini-7a67ae23",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "inkling2_dspark_serve.sh",
+    "file": "mlx-dspark-inkling-2-mini-serve.sh"
+  },
+  "ctx": 32768,
+  "seqs": 4,
+  "vision": false,
+  "backend": "metal"
+}
