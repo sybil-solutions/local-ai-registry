@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm3-vl-2b",
+  "weights": "LiquidAI/LFM3-VL-2B-GGUF@1add221a5ea6c047fcf1eaaf2d247939d7cf8849",
+  "engine": "llama.cpp-metal-lfm3-vl-2b-qad-q4-0-125k-2seq@e7dfdcb68438",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-25",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "d87f56b616db58593ade07c7c1b145f3dbd0f071335462e6a0d6b70a5cc782f1",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 237.7,
+  "prefill": 4419,
+  "served": "LFM3-VL-2B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 225,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "8Pz8WGEUBTrNpmgymUZVnEj5AvxcIKkQ"
+    }
+   ],
+   "reply": "The current weather in **Paris** is:\n\n- **Temperature:** 17 °C  \n- **Sky condition:** Overcast  \n\nThe code returned by the tool for this query is **`c23a2e5a`**.",
+   "code": "c23a2e5a",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 781
+  },
+  "context": {
+   "prompt_tokens": 89702,
+   "seconds": 20.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 7132,
+   "tokens_total": 14465,
+   "seconds_total": 64.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 4419,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
