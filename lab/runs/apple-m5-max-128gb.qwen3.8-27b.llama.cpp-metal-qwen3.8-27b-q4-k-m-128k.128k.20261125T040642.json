@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "qwen3.8-27b",
+  "weights": "ggml-org/Qwen3.8-27B-GGUF@0669b98607d47046c7c2b3f801011d54a08cfccf",
+  "engine": "llama.cpp-metal-qwen3.8-27b-q4-k-m-128k@13310d589af7",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-25",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "7a7fb4d8a3972f471f054aa99fe24616cc212198d8073f58ac8e0661a9403007",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 23.6,
+  "prefill": 332,
+  "served": "Qwen3.8-27B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 64,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "mxwivNpNqpTJ2mivobmUyof4rQTOI7t2"
+    }
+   ],
+   "reply": "The current weather in Paris is 17°C with overcast skies.\n\nThe code from the tool: **52264631**",
+   "code": "52264631",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 168
+  },
+  "context": {
+   "prompt_tokens": 106294,
+   "seconds": 320.4,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 709,
+   "tokens_total": 8215,
+   "seconds_total": 353.7,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 332,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
