@@ -1,0 +1,58 @@
+{
+  "id": "llama.cpp-metal-qwen3.8-27b-q4-k-m-128k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Qwen3.8-27B (GGUF \u00b7 Q4_K_M, text only, q8_0 KV) on official llama.cpp b12588 Metal, all layers on the GPU, 131,072-token context, one sequence",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/ggml-org-Qwen3.8-27B-GGUF-0669b986/Qwen3.8-27B-Q4_K_M.gguf",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--jinja",
+    "--no-mmproj",
+    "--reasoning-format",
+    "deepseek",
+    "--alias",
+    "Qwen3.8-27B-GGUF",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "ggml-org/Qwen3.8-27B-GGUF",
+      "revision": "0669b98607d47046c7c2b3f801011d54a08cfccf",
+      "at": "models/ggml-org-Qwen3.8-27B-GGUF-0669b986",
+      "layout": "dir",
+      "files": [
+        "Qwen3.8-27B-Q4_K_M.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
