@@ -1435,6 +1435,10 @@
     "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2": {
       "format": "MLX · 4-bit attention (g64), NVFP4/MXFP8 experts",
       "size_gb": 17.31
+    },
+    "thinkingmachines/Inkling-2-Mini@7a67ae2314b44ef05c87fd1d4d311c58aaeb18f6": {
+      "format": "safetensors · NVFP4/MXFP8 experts, bf16 attention, MTP head",
+      "size_gb": 20.16
     }
   }
 }

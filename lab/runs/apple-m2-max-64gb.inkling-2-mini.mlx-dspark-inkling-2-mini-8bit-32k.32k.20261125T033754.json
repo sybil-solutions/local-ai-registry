@@ -1,0 +1,94 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "thinkingmachines/Inkling-2-Mini@7a67ae2314b44ef05c87fd1d4d311c58aaeb18f6",
+  "engine": "mlx-dspark-inkling-2-mini-8bit-32k@028c1a69171a",
+  "set": {},
+  "card": "apple-m2-max-64gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M2 Max (30-core GPU, 64 GB)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-25",
+  "on": "owner",
+  "gpu": "Apple M2 Max (30-core GPU, 64 GB)",
+  "launch_sha256": "da3a7a63202340175bdc60bf61e23fa16fcdbdf90b8883c48fc1f0f486ff3766",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 33.0,
+  "prefill": 288,
+  "served": "Inkling-2-Mini-7a67ae23"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--lookup-drafts",
+   "MLX_DSPARK_INKLING_FP16=1",
+   "MLX_DSPARK_INKLING_FP16_FUSED=1",
+   "MLX_DSPARK_NVFP4_FP16_SCALE=1",
+   "MLX_DSPARK_NVFP4_NIBBLE=half2",
+   "MLX_DSPARK_BOUNDARY_SNAPSHOT=1",
+   "MLX_DSPARK_HEAD_Q8_FP16=1",
+   "MLX_DSPARK_HEAD_Q8_MAX_ROWS=2",
+   "MLX_DSPARK_SMALL_M_FP16=1",
+   "MLX_DSPARK_PARKED_SAMPLED=1",
+   "MLX_DSPARK_NVFP4_NAMP=1",
+   "MLX_DSPARK_SHARED_PREFIX_KV=1",
+   "MLX_DSPARK_SHARED_PREFIX_MMA=1",
+   "MLX_DSPARK_SHARED_CERT=1",
+   "MLX_DSPARK_DROP_RAW_HEAD=1"
+  ],
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 102,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_0fe495d609604872916a178d",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "Paris is currently 17°C and overcast. The code it returned is `fcc5c01f`.",
+   "code": "fcc5c01f",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 603
+  },
+  "context": {
+   "prompt_tokens": 22250,
+   "seconds": 77.3,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 989,
+   "tokens_total": 1526,
+   "seconds_total": 47.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 288,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "7b455c0e24cb81a38f99a506730fa6a6433c26a933d9d93cd9b7b9fe043f3aa8"
+}
