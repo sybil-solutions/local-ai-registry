@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "hy4-flash",
+  "weights": "strata-engine/Hy4-Flash-Strata@995bac227ab7e0d221772be641e2b5954a9fac06",
+  "engine": "strata-hy4-flash-sq-96-512k-dgx-spark@d158e1fce1d9",
+  "set": {},
+  "card": "dgx-spark-gb10-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA GB10"
+ },
+ "passed": false,
+ "proof": {
+  "at": "2026-11-23",
+  "on": "owner",
+  "gpu": "NVIDIA GB10",
+  "launch_sha256": "fe41820887d14c147ce19643ff2861a905101ede0754352ca7cccd8e9f76e7b1",
+  "gates": "load chat reasoning tools context",
+  "tps": 21.8,
+  "prefill": 594,
+  "served": "hy4-flash-sq-96"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": false
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 195,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_673825b070284c0a9504b8a7",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "It’s 17°C and overcast in Paris. Code: d0a907ab",
+   "code": "d0a907ab",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 243
+  },
+  "context": {
+   "prompt_tokens": 351844,
+   "seconds": 592.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 654,
+   "tokens_total": 10350,
+   "seconds_total": 280.8,
+   "counted": "estimate",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 594,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

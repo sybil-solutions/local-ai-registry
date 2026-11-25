@@ -28,7 +28,9 @@ BUILDERS["ghcr.io/sybil-solutions/gateway"] = (
 # vllm/vllm-openai-rocm from Buildkite, and gh attestation verify returns 404.
 # Approval is the image name. The tag is stripped before this check, and a
 # digest pin is still required. https://github.com/sybil-solutions/local-ai-registry/issues/297
+# lmsysorg/sglang (SGLang's own Docker Hub release, e.g. the inkling-2-mini tag) has no attestation either.
 OFFICIAL = {
+    "lmsysorg/sglang",
     "vllm/vllm-openai-rocm",
 }
 PATHS = ["registry/engines", "registry/launches", "plugin/v2/recipes.json", "plugin/v3/recipes.json"]

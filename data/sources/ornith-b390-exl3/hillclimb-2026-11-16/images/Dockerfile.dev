@@ -1,0 +1,9 @@
+# context: /home/sero/Projects/trellis-serve/xpu
+FROM ornith-hc:dnnl
+COPY csrc /opt/trellis-serve/xpu/csrc
+COPY exl3xpu /opt/trellis-serve/xpu/exl3xpu
+COPY scripts /opt/trellis-serve/xpu/scripts
+WORKDIR /opt/trellis-serve/xpu
+RUN rm -f exl3xpu/_C.so exl3xpu/_C_dnnl.so exl3xpu/_moe.so \
+ && bash scripts/build_moe.sh && EXL3_NO_DNNL=1 bash scripts/build_ext.sh \
+ && EXL3_DNNL_DIR=/opt/venv EXL3_OUT=exl3xpu/_C_dnnl.so bash scripts/build_ext.sh && ls -la exl3xpu/*.so
