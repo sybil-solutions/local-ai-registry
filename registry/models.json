@@ -1435,6 +1435,10 @@
     "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2": {
       "format": "MLX · 4-bit attention (g64), NVFP4/MXFP8 experts",
       "size_gb": 17.31
+    },
+    "ggml-org/Inkling-2-Mini-GGUF@e8a2cecf0e78914f07cc27b9be711a9b2c7561d9": {
+      "format": "GGUF · IQ4_NL (experts in RAM)",
+      "size_gb": 17.628
     }
   }
 }

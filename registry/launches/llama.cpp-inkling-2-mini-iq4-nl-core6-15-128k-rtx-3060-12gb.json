@@ -1,0 +1,70 @@
+{
+  "id": "llama.cpp-inkling-2-mini-iq4-nl-core6-15-128k-rtx-3060-12gb",
+  "engine": "llama.cpp",
+  "about": "Inkling-2-Mini (Thinking Machines' 26B looped MoE), ggml-org's IQ4_NL, at 131,072 tokens with q8_0 KV. Layers 6-17 are the loop core and run three times per token, so their experts go on the GPU first; at 128k only the experts of core layers 6-15 fit, and those of layers 0-5 and 16-23 stay in system RAM (--override-tensor). --no-op-offload: with a core layer's experts in RAM and op offload on, prompts of 32+ tokens come out NaN on master. -ub 64: the per-head relative-bias mask (n_kv x ubatch x 24 heads) is what limits 128k on 12 GB. This image is master 225a5345b; on that commit plus two F16-mask patches, with the same layout, it decoded 26.4 tok/s empty and 14.6 after a 124k prompt, needles 3/3 at 124k. The stock image itself passed the lab at 25.7 tok/s. Measured on one RTX 3060 12GB (PCIe 4.0 x16), i5-12500, 62 GiB RAM, with about 1 GB of the card held by the desktop.",
+  "image": "ghcr.io/ggml-org/llama.cpp:server-cuda12-b12627@sha256:f46a7938f84a62f7c2eba2dfc985d921cb54fb3ec7b4e729cec2cee2cbace609",
+  "backend": "nvidia",
+  "port": 8080,
+  "entrypoint": "/app/llama-server",
+  "args": [
+    "--model",
+    "/models/Inkling-2-Mini-IQ4_NL.gguf",
+    "--n-gpu-layers",
+    "99",
+    "--override-tensor",
+    "blk\\.([0-5]|1[6-9]|2[0-3])\\.ffn_.*_exps=CPU",
+    "--fit",
+    "off",
+    "--ctx-size",
+    "131072",
+    "--parallel",
+    "1",
+    "--threads",
+    "6",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "64",
+    "--flash-attn",
+    "on",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--no-op-offload",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--reasoning",
+    "on",
+    "--temp",
+    "1.0",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080"
+  ],
+  "env": {
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID"
+  },
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "ggml-org/Inkling-2-Mini-GGUF",
+      "revision": "e8a2cecf0e78914f07cc27b9be711a9b2c7561d9",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Inkling-2-Mini-IQ4_NL.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 12,
+    "disk_gb": 17.63,
+    "fast_storage": "nvme"
+  }
+}
