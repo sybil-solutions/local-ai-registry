@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm3-1.7b",
+  "weights": "LiquidAI/LFM3-1.7B-NVFP4@cfe4b5eabe33e828256f760f72c0af600ceff0ad",
+  "engine": "vllm-lfm3-1.7b-nvfp4-256k-rtx-5070-12gb@cfa6d27bfe58",
+  "set": {},
+  "card": "rtx-5080-16gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "RTX 5080"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-25",
+  "on": "owner",
+  "gpu": "RTX 5080",
+  "launch_sha256": "fb7d259f93ca3f5f356dfc1737b35ccaa94344faa9ffba93235765f924740884",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 332.2,
+  "prefill": 13683,
+  "served": "LFM3-1.7B-NVFP4-cfe4b5ea"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Blue, Yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 249,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "chatcmpl-tool-993a226f546ec66c",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "The current weather in **Paris** is:\n\n- Temperature: **17 °C**\n- Sky condition: **overcast**\n- Code: **f6e17146**\n\n(As requested, I’ve included the code returned by the tool.)",
+   "code": "f6e17146",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 1113
+  },
+  "context": {
+   "prompt_tokens": 184722,
+   "seconds": 13.5,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 9966,
+   "tokens_total": 12965,
+   "seconds_total": 39.4,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 13683,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
