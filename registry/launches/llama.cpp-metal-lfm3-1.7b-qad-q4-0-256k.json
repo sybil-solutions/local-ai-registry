@@ -1,0 +1,61 @@
+{
+  "id": "llama.cpp-metal-lfm3-1.7b-qad-q4-0-256k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "LFM3-1.7B (GGUF \u00b7 QAD_Q4_0, text only, q8_0 KV) on official llama.cpp b12588 Metal, all layers on the GPU, 262,144-token context, one sequence",
+  "command": [
+    "llama-b12588/llama-server",
+    "-m",
+    "models/LiquidAI-LFM3-1.7B-GGUF-cd0c74c5/LFM3-1.7B-QAD-Q4_0.gguf",
+    "-c",
+    "262144",
+    "-np",
+    "1",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "99",
+    "-b",
+    "2048",
+    "-ub",
+    "2048",
+    "--jinja",
+    "--temp",
+    "0.1",
+    "--top-k",
+    "50",
+    "--repeat-penalty",
+    "1.1",
+    "--alias",
+    "LFM3-1.7B",
+    "--metrics",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12588/llama-b12588-bin-macos-arm64.tar.gz#sha256=bce95d28432c35e600215591c02cc9fdd741e1f6aca2162753d51af92fe52850",
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "LiquidAI/LFM3-1.7B-GGUF",
+      "revision": "cd0c74c575b5c416f3011b5b4c298077f26ca8c2",
+      "at": "models/LiquidAI-LFM3-1.7B-GGUF-cd0c74c5",
+      "layout": "dir",
+      "files": [
+        "LFM3-1.7B-QAD-Q4_0.gguf"
+      ]
+    }
+  ],
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
