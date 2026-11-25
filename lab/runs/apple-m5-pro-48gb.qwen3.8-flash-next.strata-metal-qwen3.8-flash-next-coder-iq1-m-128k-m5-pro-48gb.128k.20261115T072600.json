@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "qwen3.8-flash-next",
+  "weights": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF@bba88856f8c3c0c9e40e45f82d05e228b814ac43",
+  "engine": "strata-metal-qwen3.8-flash-next-coder-iq1-m-128k-m5-pro-48gb@6c2242c93b9d",
+  "set": {},
+  "card": "apple-m5-pro-48gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Pro (20-core GPU), 48 GB unified memory"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-15",
+  "on": "owner",
+  "gpu": "Apple M5 Pro (20-core GPU), 48 GB unified memory",
+  "launch_sha256": "78a9609cd09d789f887935bb7735215648f8bf5986a40aaf6295d136efbd5536",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 36.3,
+  "prefill": 648,
+  "served": "qwen3.8-flash-next-coder-iq1_m"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, blue, yellow",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 143,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_0977e58365264c1aa772f3fa",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     }
+    }
+   ],
+   "reply": "The weather in Paris right now is 17°C with an overcast sky. The code the tool gave me is: 69a9e6a1",
+   "code": "69a9e6a1",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 105
+  },
+  "context": {
+   "prompt_tokens": 106294,
+   "seconds": 164.1,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1091,
+   "tokens_total": 14204,
+   "seconds_total": 330.1,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 648,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

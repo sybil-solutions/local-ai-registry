@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "lfm3-1.7b",
+  "weights": "LiquidAI/LFM3-1.7B-GGUF@cd0c74c575b5c416f3011b5b4c298077f26ca8c2",
+  "engine": "llama.cpp-lfm3-1.7b-qad-q4-0-32k-cpu-docker@c0a11067c72b",
+  "set": {},
+  "card": "x86-64-avx2-cpu"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Core Ultra 9 285 CPU, eight threads, 10 GiB container cap, no GPU"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-13",
+  "on": "owner",
+  "gpu": "Intel Core Ultra 9 285 CPU, eight threads, 10 GiB container cap, no GPU",
+  "launch_sha256": "ea9bdafd19d224b61987e76f7833e94c5dd8a6440b39414548c3c24c8440439d",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 49.6,
+  "prefill": 252,
+  "served": "LFM3-1.7B"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 219,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "Pnv73jxJt31g6CYmsL6RrhEiU2UxHFfW"
+    }
+   ],
+   "reply": "The current weather in Paris is **overcast** with a temperature of **17°C**.  \nThe code provided by the tool is: **056e4507**.",
+   "code": "056e4507",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 445
+  },
+  "context": {
+   "prompt_tokens": 22242,
+   "seconds": 88.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 1488,
+   "tokens_total": 7839,
+   "seconds_total": 174.6,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 252,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

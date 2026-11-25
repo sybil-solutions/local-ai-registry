@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "ornith-1.5-35b-a3b",
+  "weights": "ornith-ai/Ornith-1.5-35B-A3B-GGUF@12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+  "engine": "llama.cpp-metal-ornith-1.5-35b-a3b-q4-k-m-256k@8aaeb40200ba",
+  "set": {},
+  "card": "apple-m4-max-36gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M4 Max"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-18",
+  "on": "owner",
+  "gpu": "Apple M4 Max",
+  "launch_sha256": "ea14b94859e4b7db2a25b868a58dd806c3f26d0ed49fa08d9783c0625fae781f",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 50.7,
+  "prefill": 189,
+  "served": "Ornith-1.5-35B-A3B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 14,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "r2unJgBo4USiRfgXyfiJ9BshWQuY8C2V"
+    }
+   ],
+   "reply": "Here's the current weather in **Paris**:\n\n- **Temperature:** 17°C\n- **Conditions:** Overcast\n- **Code:** `755732c9`\n\nThe code the tool returned is: **755732c9**",
+   "code": "755732c9",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 85
+  },
+  "context": {
+   "prompt_tokens": 213570,
+   "seconds": 1129.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 22.3,
+   "tokens_in_window": 1131,
+   "tokens_total": 1131,
+   "seconds_total": 23.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 189,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

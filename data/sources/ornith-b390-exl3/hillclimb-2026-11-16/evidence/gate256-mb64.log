@@ -1,0 +1,1297 @@
+[2026-11-15 20:41:57] INFO:     172.17.0.1:58878 - "GET /health HTTP/1.1" 503 Service Unavailable
+[2026-11-15 20:41:58] INFO:     127.0.0.1:37264 - "GET /model_info HTTP/1.1" 200 OK
+[2026-11-15 20:41:59] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:41:59] INFO:     172.17.0.1:58904 - "GET /health HTTP/1.1" 503 Service Unavailable
+[2026-11-15 20:41:59] INFO:     172.17.0.1:58906 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:00] INFO:     172.17.0.1:52538 - "GET /health HTTP/1.1" 503 Service Unavailable
+[2026-11-15 20:42:00] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:00] INFO:     127.0.0.1:37278 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:01] INFO:     127.0.0.1:41512 - "POST /freeze_gc HTTP/1.1" 200 OK
+[2026-11-15 20:42:02] INFO:     172.17.0.1:52544 - "GET /health HTTP/1.1" 200 OK
+[2026-11-15 20:42:02] INFO:     172.17.0.1:52548 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:02] INFO:     172.17.0.1:52558 - "GET /server_info HTTP/1.1" 200 OK
+[2026-11-15 20:42:02] INFO:     172.17.0.1:52566 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:03] INFO:     172.17.0.1:52580 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:05] INFO:     172.17.0.1:52592 - "POST /flush_cache?timeout=30 HTTP/1.1" 200 OK
+[2026-11-15 20:42:05] INFO:     172.17.0.1:52608 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:05] INFO:     172.17.0.1:52612 - "POST /flush_cache?timeout=30 HTTP/1.1" 200 OK
+[2026-11-15 20:42:05] INFO:     172.17.0.1:52614 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:05] INFO:     172.17.0.1:52618 - "POST /flush_cache?timeout=30 HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:52622 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:52632 - "POST /flush_cache?timeout=30 HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:52640 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:52648 - "POST /flush_cache?timeout=30 HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:52658 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:52674 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:52678 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:42:06] INFO:     172.17.0.1:52684 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:10] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:16] INFO:     172.17.0.1:33078 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:42:16] INFO:     172.17.0.1:33080 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:20] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:42:26] INFO:     172.17.0.1:51184 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:27] INFO:     172.17.0.1:51186 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:28] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:30] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:32] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:34] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:36] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:42:36] INFO:     172.17.0.1:51384 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:37] INFO:     172.17.0.1:51400 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:38] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:40] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:42] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:44] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:46] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:42:46] INFO:     172.17.0.1:34654 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:47] INFO:     172.17.0.1:34664 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:48] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:50] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:52] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:54] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:56] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:42:56] INFO:     172.17.0.1:40012 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:42:57] INFO:     172.17.0.1:40022 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:42:58] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:00] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:43:06] INFO:     172.17.0.1:48230 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:07] INFO:     172.17.0.1:48238 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:07] INFO:     172.17.0.1:48240 - "POST /flush_cache?timeout=30 HTTP/1.1" 200 OK
+[2026-11-15 20:43:07] INFO:     172.17.0.1:48246 - "POST /tokenize HTTP/1.1" 200 OK
+[2026-11-15 20:43:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:09] INFO:     172.17.0.1:48254 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:43:09] INFO:     172.17.0.1:48262 - "POST /flush_cache?timeout=30 HTTP/1.1" 200 OK
+[2026-11-15 20:43:09] INFO:     172.17.0.1:59334 - "POST /tokenize HTTP/1.1" 200 OK
+[2026-11-15 20:43:10] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:43:16] INFO:     172.17.0.1:59358 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:20] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:43:26] INFO:     172.17.0.1:47754 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:28] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:29] INFO:     172.17.0.1:59342 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:43:29] INFO:     172.17.0.1:47758 - "POST /flush_cache?timeout=30 HTTP/1.1" 200 OK
+[2026-11-15 20:43:29] INFO:     172.17.0.1:47760 - "POST /tokenize HTTP/1.1" 200 OK
+[2026-11-15 20:43:30] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:32] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:34] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:36] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:43:36] INFO:     172.17.0.1:33372 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:38] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:40] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:42] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:44] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:46] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:43:46] INFO:     172.17.0.1:45306 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:48] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:50] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:52] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:54] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:56] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:43:56] INFO:     172.17.0.1:49888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:43:58] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:00] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:44:06] INFO:     172.17.0.1:38724 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:10] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:44:16] INFO:     172.17.0.1:55976 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:20] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:44:26] INFO:     172.17.0.1:44758 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:28] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:30] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:32] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:34] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:36] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:44:36] INFO:     172.17.0.1:54846 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:38] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:40] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:42] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:44] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:46] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:44:46] INFO:     172.17.0.1:56746 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:48] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:50] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:52] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:54] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:56] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:44:56] INFO:     172.17.0.1:42228 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:44:58] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:00] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:45:06] INFO:     172.17.0.1:44354 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:10] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:45:16] INFO:     172.17.0.1:53348 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:20] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:45:26] INFO:     172.17.0.1:56124 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:28] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:30] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:32] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:34] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:36] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:45:36] INFO:     172.17.0.1:56448 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:38] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:40] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:42] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:44] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:46] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:45:46] INFO:     172.17.0.1:53298 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:48] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:50] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:52] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:54] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:56] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:45:56] INFO:     172.17.0.1:57360 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:45:58] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:00] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:46:06] INFO:     172.17.0.1:55520 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:10] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:46:16] INFO:     172.17.0.1:58384 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:20] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:46:26] INFO:     172.17.0.1:55626 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:28] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:30] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:32] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:34] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:36] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:46:36] INFO:     172.17.0.1:55328 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:38] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:40] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:42] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:44] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:46] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:46:46] INFO:     172.17.0.1:58400 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:48] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:50] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:52] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:54] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:56] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:46:56] INFO:     172.17.0.1:42316 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:46:58] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:00] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:47:06] INFO:     172.17.0.1:38700 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:10] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:47:16] INFO:     172.17.0.1:35358 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:20] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:47:26] INFO:     172.17.0.1:59704 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:28] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:30] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:32] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:34] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:36] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:47:36] INFO:     172.17.0.1:38190 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:38] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:40] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:42] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:44] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:46] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:47:46] INFO:     172.17.0.1:48976 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:48] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:50] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:52] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:54] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:56] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:47:56] INFO:     172.17.0.1:45710 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:47:58] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:00] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:48:06] INFO:     172.17.0.1:52886 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:10] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:48:16] INFO:     172.17.0.1:53244 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:20] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:48:26] INFO:     172.17.0.1:40716 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:28] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:30] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:32] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:34] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:36] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:48:36] INFO:     172.17.0.1:56700 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:38] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:40] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:42] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:44] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:46] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:48:46] INFO:     172.17.0.1:42662 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:48] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:50] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:52] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:54] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:56] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:48:56] INFO:     172.17.0.1:40554 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:48:58] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:00] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:49:06] INFO:     172.17.0.1:39476 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:10] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:49:16] INFO:     172.17.0.1:59594 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:20] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:49:26] INFO:     172.17.0.1:55040 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:28] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:30] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:32] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:34] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:36] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:49:36] INFO:     172.17.0.1:39954 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:38] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:40] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:42] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:44] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:46] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:49:46] INFO:     172.17.0.1:54138 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:48] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:51] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:52] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:54] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:56] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:49:56] INFO:     172.17.0.1:56730 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:49:58] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:01] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:02] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:04] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:06] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:50:06] INFO:     172.17.0.1:41204 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:08] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:11] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:12] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:14] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:16] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:50:16] INFO:     172.17.0.1:37590 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:18] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:20] INFO:     172.17.0.1:47772 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-11-15 20:50:21] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:22] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:24] INFO:     172.17.0.1:58888 - "GET /metrics HTTP/1.1" 200 OK
+[2026-11-15 20:50:26] INFO:     172.17.0.1:58888 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-11-15 20:50:26] INFO:     172.17.0.1:60526 - "GET /metrics HTTP/1.1" 200 OK
+/opt/venv/lib/python3.12/site-packages/sglang/launch_server.py:71: UserWarning: 'python -m sglang.launch_server' is still supported, but 'sglang serve' is the recommended entrypoint.
+  Example: sglang serve --model-path <model> [options]
+  warnings.warn(
+/opt/venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+EXL3 qsa_xpu installed
+[2026-11-15 20:41:24] exl3 quantization is not fully optimized yet. The speed can be slower than non-quantized models.
+[2026-11-15 20:41:24] Intel XPU attention backend only supports page_sizes of [64, 128], changing page_size from None to 128.
+[2026-11-15 20:41:24] server_args={'model_path': '/models', 'tokenizer_path': '/models', 'tokenizer_mode': 'auto', 'tokenizer_backend': 'huggingface', 'tokenizer_worker_num': 1, 'detokenizer_worker_num': 1, 'skip_tokenizer_init': False, 'load_format': 'auto', 'model_loader_extra_config': '{}', 'trust_remote_code': True, 'context_length': 262144, 'is_embedding': False, 'enable_multimodal': None, 'revision': None, 'model_impl': 'auto', 'model_config_parser': 'auto', 'json_model_override_args': '{}', 'dtype': 'bfloat16', 'quantization': 'exl3', 'quantization_param_path': None, 'kv_cache_dtype': 'fp8_e4m3', 'enable_fp32_lm_head': False, 'modelopt_quant': None, 'modelopt_checkpoint_restore_path': None, 'modelopt_checkpoint_save_path': None, 'modelopt_export_path': None, 'quantize_and_serve': False, 'rl_quant_profile': None, 'enable_tf32_matmul': False, 'mem_fraction_static': 0.35, 'max_running_requests': 4, 'max_queued_requests': None, 'max_total_tokens': 1048576, 'chunked_prefill_size': 4096, 'prefill_decode_interval': 0, 'enable_dynamic_chunking': False, 'max_prefill_tokens': 4096, 'prefill_max_requests': None, 'schedule_policy': 'fcfs', 'enable_priority_scheduling': False, 'disable_priority_preemption': False, 'default_priority_value': None, 'abort_on_priority_when_disabled': False, 'schedule_low_priority_values_first': False, 'priority_scheduling_preemption_threshold': 10, 'retraction_policy': 'length', 'schedule_conservativeness': 1.0, 'page_size': 128, 'c128_page_size': 16, 'swa_full_tokens_ratio': 0.8, 'disable_hybrid_swa_memory': False, 'radix_eviction_policy': 'lru', 'radix_eviction_policy_config': None, 'prefill_only_disable_kv_cache': False, 'disable_radix_cache': False, 'enable_page_major_kv_layout': False, 'enable_unified_memory': False, 'disable_chunked_prefix_cache': False, 'disable_overlap_schedule': False, 'num_continuous_decode_steps': 1, 'scheduler_recv_interval': 1, 'enable_mixed_chunk': False, 'nccl_port': None, 'dist_timeout': None, 'dist_init_addr': None, 'gated_launch_port': None, 'nnodes': 1, 'node_rank': 0, 'tp_size': 1, 'dcp_size': 1, 'pp_size': 1, 'pp_max_micro_batch_size': None, 'pp_async_batch_depth': 0, 'dp_size': 1, 'load_balance_method': 'round_robin', 'attn_cp_size': 1, 'moe_dp_size': 1, 'dwdp_size': 1, 'dcp_comm_backend': 'ag_rs', 'dcp_replicate_q_proj': None, 'enable_prefill_cp': False, 'cp_strategy': None, 'enable_dsa_cache_layer_split': False, 'enable_cp_decode_attn_tp': False, 'enable_dp_attention': False, 'enable_dp_attention_local_control_broadcast': False, 'enable_dp_lm_head': False, 'enable_tp_lm_head_all_to_all': False, 'enable_attn_tp_input_scattered': False, 'enable_shared_experts_attn_tp': False, 'enable_dense_mlp_attn_tp': False, 'enable_layernorm_sp': False, 'disable_attn_tp_gather': False, 'enable_p2p_check': False, 'device': 'xpu', 'base_gpu_id': 0, 'gpu_id_step': 1, 'random_seed': 435229671, 'mlx_enable_sampling': False, 'watchdog_timeout': 300, 'soft_watchdog_timeout': None, 'sleep_on_idle': False, 'use_ray': False, 'custom_sigquit_handler': None, 'numa_node': None, 'gc_threshold': None, 'host': '0.0.0.0', 'port': 8000, 'fastapi_root_path': '', 'smg_grpc_mode': False, 'grpc_mode': False, 'grpc_port': None, 'grpc_worker_threads': 4, 'sidecar': None, 'sidecar_args': None, 'skip_server_warmup': False, 'warmups': None, 'enable_http2': False, 'http2_max_concurrent_streams': 200, 'http2_initial_connection_window_size': 1048576, 'ssl_keyfile': None, 'ssl_certfile': None, 'ssl_ca_certs': None, 'ssl_keyfile_password': None, 'enable_ssl_refresh': False, 'api_key': None, 'admin_api_key': None, 'served_model_name': 'ornith-1.5-35b-a3b', 'weight_version': 'default', 'chat_template': None, 'hf_chat_template_name': None, 'completion_template': None, 'file_storage_path': 'sglang_storage', 'enable_cache_report': True, 'return_input_ids': False, 'return_output_ids': False, 'reasoning_parser': 'qwen3', 'default_chat_template_kwargs': None, 'strip_thinking_cache': False, 'enable_strict_thinking': False, 'tool_call_parser': 'qwen3_coder', 'tool_server': None, 'sampling_defaults': 'model', 'asr_max_buffer_seconds': 60, 'asr_max_concurrent_sessions': 32, 'preferred_sampling_params': None, 'allow_auto_truncate': False, 'stream_interval': 1, 'batch_notify_size': 16, 'stream_response_default_include_usage': False, 'incremental_streaming_output': False, 'enable_streaming_session': False, 'enable_session_radix_cache': False, 'log_level': 'info', 'log_level_http': None, 'log_requests': False, 'log_requests_level': 2, 'log_requests_format': 'text', 'log_requests_target': None, 'uvicorn_access_log_exclude_prefixes': [], 'crash_dump_folder': None, 'show_time_cost': False, 'enable_metrics': True, 'smg_http_sidecar_port': None, 'enable_mfu_metrics': False, 'enable_metrics_for_all_schedulers': False, 'load_snapshot_publish_interval': 15, 'tokenizer_metrics_custom_labels_header': 'x-custom-labels', 'tokenizer_metrics_allowed_custom_labels': None, 'extra_metric_labels': None, 'bucket_time_to_first_token': None, 'bucket_inter_token_latency': None, 'bucket_e2e_request_latency': None, 'prompt_tokens_buckets': None, 'generation_tokens_buckets': None, 'gc_warning_threshold_secs': 0.0, 'decode_log_interval': 40, 'enable_request_time_stats_logging': False, 'kv_events_config': None, 'load_publish_endpoint': None, 'enable_forward_pass_metrics': False, 'forward_pass_metrics_worker_id': '', 'forward_pass_metrics_ipc_name': None, 'enable_trace': False, 'trace_modules': 'request', 'otlp_traces_endpoint': 'localhost:4317', 'export_metrics_to_file': False, 'export_metrics_to_file_dir': None, 'stat_loggers': None, 'constrained_json_whitespace_pattern': None, 'constrained_json_disable_any_whitespace': False, 'attention_backend': 'intel_xpu', 'decode_attention_backend': None, 'enable_lean_attention': None, 'prefill_attention_backend': None, 'sampling_backend': 'pytorch', 'grammar_backend': 'xgrammar', 'radix_cache_backend': None, 'mm_attention_backend': None, 'fp8_gemm_runner_backend': 'auto', 'fp4_gemm_runner_backend': 'auto', 'bf16_gemm_backend': 'auto', 'dsa_prefill_backend': None, 'dsv4_prefill_backend': 'auto', 'dsa_decode_backend': None, 'dsa_paged_mqa_logits_backend': 'auto', 'dsa_topk_backend': 'sgl-kernel', 'disable_flashinfer_autotune': False, 'flashinfer_autotune_skip_ops': None, 'mamba_backend': 'triton', 'cuda_graph_config': {'decode': {'backend': 'full', 'max_bs': 4, 'bs': [1, 2, 4], 'tc_compiler': 'eager', 'full_prefill_max_req': None, 'full_prefill_prefix_chunk_tokens': None}, 'prefill': {'backend': 'disabled', 'max_bs': 4096, 'bs': [4, 8, 12, 16, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256, 288, 320, 352, 384, 416, 448, 480, 512, 576, 640, 704, 768, 832, 896, 960, 1024, 1280, 1536, 1792, 2048, 2304, 2560, 2816, 3072, 3328, 3584, 3840, 4096], 'tc_compiler': 'eager', 'full_prefill_max_req': None, 'full_prefill_prefix_chunk_tokens': None}}, 'cuda_graph_backend_decode': 'full', 'cuda_graph_backend_prefill': None, 'cuda_graph_max_bs_decode': None, 'cuda_graph_max_bs_prefill': None, 'cuda_graph_bs_decode': [1, 2, 4], 'cuda_graph_bs_prefill': None, 'cuda_graph_tc_compiler': None, 'disable_prefill_cuda_graph': False, 'disable_decode_cuda_graph': False, 'disable_cuda_graph': False, 'disable_cuda_graph_padding': False, 'enable_profile_cuda_graph': False, 'enable_cudagraph_gc': False, 'debug_cuda_graph': False, 'enable_layerwise_nvtx_marker': False, 'enable_nccl_nvls': False, 'enable_symm_mem': False, 'triton_attention_reduce_in_fp32': False, 'triton_attention_num_kv_splits': 8, 'triton_attention_split_tile_size': None, 'flashinfer_mla_disable_ragged': False, 'enable_fused_qk_norm_rope': False, 'enable_precise_embedding_interpolation': False, 'enable_fused_moe_sum_all_reduce': False, 'enable_deepseek_v4_fp4_indexer': False, 'disable_custom_all_reduce': False, 'enable_mscclpp': False, 'enable_torch_symm_mem': False, 'enable_scattered_sconv': False, 'pre_warm_nccl': False, 'enable_quant_communications': False, 'enable_flashinfer_allreduce_fusion': False, 'enforce_disable_flashinfer_allreduce_fusion': False, 'flashinfer_allreduce_fusion_backend': None, 'enable_aiter_allreduce_fusion': False, 'enable_torch_compile': False, 'enable_torch_compile_debug_mode': False, 'torch_compile_max_bs': 32, 'speculative_algorithm': 'EAGLE', 'uno_lora_path': None, 'speculative_draft_model_path': None, 'speculative_draft_model_revision': None, 'speculative_draft_load_format': None, 'speculative_num_steps': 1, 'speculative_eagle_topk': 1, 'speculative_num_draft_tokens': 2, 'speculative_dflash_block_size': None, 'speculative_dspark_block_size': None, 'speculative_dspark_sps_table_path': None, 'speculative_dspark_confidence_sts_path': None, 'speculative_dspark_align_verify_tokens_to_graph_tier': False, 'speculative_accept_threshold_single': 1.0, 'speculative_accept_threshold_acc': 1.0, 'speculative_use_rejection_sampling': False, 'speculative_token_map': None, 'speculative_attention_mode': 'prefill', 'speculative_draft_attention_backend': None, 'speculative_dsa_topk_backend': 'sgl-kernel', 'speculative_draft_kv_cache_dtype': None, 'speculative_draft_window_size': None, 'speculative_moe_runner_backend': 'auto', 'speculative_moe_a2a_backend': None, 'speculative_draft_model_quantization': 'exl3', '_speculative_draft_quantization_explicitly_set': False, 'speculative_skip_dp_mlp_sync': False, 'enable_multi_layer_eagle': False, 'speculative_adaptive': False, 'speculative_adaptive_config': None, 'decoupled_spec_bind_endpoint': None, 'decoupled_spec_connect_endpoints': None, 'decoupled_spec_rank': None, 'decoupled_spec_role': 'null', 'spec_trace_dir': None, 'speculative_ngram_min_bfs_breadth': 1, 'speculative_ngram_max_bfs_breadth': 10, 'speculative_ngram_match_type': 'BFS', 'speculative_ngram_max_trie_depth': 18, 'speculative_ngram_capacity': 10000000, 'speculative_ngram_external_corpus_path': None, 'speculative_ngram_external_sam_budget': 0, 'speculative_ngram_external_corpus_max_tokens': 10000000, 'ep_size': 1, 'moe_a2a_backend': 'none', 'enable_w4a4_mxfp4_megamoe': False, 'deepep_v2_mode': 'direct', 'moe_runner_backend': 'auto', 'flashinfer_mxfp4_moe_precision': 'default', 'deepep_mode': 'auto', 'fuseep_mode': 2, 'deepep_dispatcher_output_dtype': 'auto', 'ep_num_redundant_experts': 0, 'ep_dispatch_algorithm': None, 'init_expert_location': 'trivial', 'enable_eplb': False, 'eplb_algorithm': 'auto', 'eplb_rebalance_num_iterations': 1000, 'eplb_rebalance_layers_per_chunk': None, 'eplb_min_rebalancing_utilization_threshold': 1.0, 'expert_distribution_recorder_mode': None, 'expert_distribution_recorder_buffer_size': 1000, 'expert_balancedness_report_mode': 'off', 'deepep_config': None, 'moe_dense_tp_size': None, 'elastic_ep_backend': None, 'enable_elastic_expert_backup': False, 'mooncake_ib_device': None, 'enable_waterfill': False, 'ep_join_mode': None, 'ep_join_rank_offset': 0, 'elastic_ep_initial_size': None, 'max_ep_size': None, 'elastic_ep_scale_timeout': 600, 'elastic_ep_rejoin': False, 'disable_flashinfer_cutlass_moe_fp4_allgather': False, 'disable_shared_experts_fusion': True, 'enforce_shared_experts_fusion': False, 'max_mamba_cache_size': 40, 'mamba_ssm_dtype': 'float16', 'mamba_max_states_per_path': -1, 'enable_mamba_cache_stochastic_rounding': False, 'mamba_cache_philox_rounds': 0, 'mamba_full_memory_ratio': 0.9, 'mamba_radix_cache_strategy': 'extra_buffer', 'uses_mamba_radix_cache': True, 'mamba_track_interval': 256, 'enable_int8_mamba_checkpoint': False, 'int8_mamba_ckpt_size': None, 'linear_attn_backend': 'triton', 'linear_attn_decode_backend': None, 'linear_attn_prefill_backend': None, 'linear_attn_verify_backend': None, 'enable_linear_replayssm': False, 'linear_replayssm_cache_len': 16, 'enable_linear_replayssm_spec': False, 'enable_hierarchical_cache': False, 'hicache_host_memory_mode': 'cache', 'hicache_ratio': 2.0, 'hicache_size': 0, 'hicache_write_policy': 'write_through', 'hicache_io_backend': 'kernel', 'hicache_mem_layout': 'page_first', 'hicache_storage_backend': None, 'hicache_storage_prefetch_policy': 'timeout', 'hicache_storage_backend_extra_config': None, 'hicache_storage_prefetch_retry_poll_interval': 8, 'hicache_storage_prefetch_retry_max_attempts': 8, 'enable_unified_cache_external_linker': False, 'unified_cache_external_linker_backend': 'mooncake', 'enable_hisparse': False, 'hisparse_config': None, 'enable_broadcast_mm_inputs_process': False, 'enable_prefix_mm_cache': False, 'mm_enable_dp_encoder': False, 'mm_process_config': {}, 'mm_processor_worker_num': 0, 'mm_io_worker_num': 0, 'allowed_media_domains': [], 'media_url_max_file_size_mb': 64, 'mm_preprocess_cache_size_mb': None, 'trust_mm_content_hashes': False, 'limit_mm_data_per_request': None, 'enable_mm_global_cache': False, 'image_processor_backend': 'auto', 'mm_global_cache_backend': 'mooncake', 'disable_fast_image_processor': False, 'mm_feature_transport': 'cpu', 'keep_mm_feature_on_device': False, 'enable_lora': None, 'enable_lora_overlap_loading': None, 'max_lora_rank': None, 'lora_target_modules': None, 'lora_paths': None, 'max_loaded_loras': None, 'max_loras_per_batch': 8, 'lora_eviction_policy': 'lru', 'lora_backend': 'csgmv', 'max_lora_chunk_size': 16, 'experts_shared_outer_loras': None, 'lora_use_virtual_experts': False, 'lora_strict_loading': False, 'lora_drain_wait_threshold': 0.0, 'enable_two_batch_overlap': False, 'enable_single_batch_overlap': False, 'tbo_token_distribution_threshold': 0.48, 'cpu_offload_gb': 0, 'offload_group_size': -1, 'offload_num_in_group': 1, 'offload_prefetch_step': 1, 'offload_mode': 'cpu', 'enable_lmcache': False, 'lmcache_config_file': None, 'enable_flexkv': False, 'flexkv_config_file': None, 'kt_weight_path': None, 'kt_method': 'AMXINT4', 'kt_cpuinfer': None, 'kt_threadpool_count': 2, 'kt_num_gpu_experts': None, 'kt_max_deferred_experts_per_token': None, 'dllm_algorithm': None, 'dllm_algorithm_config': None, 'dllm_fdfo': True, 'disaggregation_mode': 'null', 'disaggregation_transfer_backend': 'mooncake', 'disaggregation_bootstrap_port': 8998, 'disaggregation_ib_device': None, 'disaggregation_decode_enable_radix_cache': False, 'disaggregation_decode_enable_offload_kvcache': False, 'disaggregation_decode_retraction_backup': None, 'num_reserved_decode_tokens': 512, 'disaggregation_decode_extra_slots': None, 'disaggregation_decode_polling_interval': 1, 'optimistic_prefill_attempts': 0, 'encoder_only': False, 'language_only': False, 'language_model_only': False, 'encoder_transfer_backend': 'zmq_to_scheduler', 'encoder_urls': [], 'encoder_bootstrap_port': 8997, 'encoder_register_urls': [], 'enable_adaptive_dispatch_to_encoder': False, 'enable_pdmux': False, 'pdmux_config_path': None, 'sm_group_num': 8, 'startup_weight_load_mode': 'serial', 'custom_weight_loader': [], 'weight_loader_disable_mmap': False, 'weight_loader_prefetch_checkpoints': False, 'weight_loader_prefetch_num_threads': 4, 'weight_loader_drop_cache_after_load': False, 'remote_instance_weight_loader_seed_instance_ip': None, 'remote_instance_weight_loader_seed_instance_service_port': None, 'remote_instance_weight_loader_send_weights_group_ports': None, 'remote_instance_weight_loader_backend': 'nccl', 'remote_instance_weight_loader_start_seed_via_transfer_engine': False, 'engine_info_bootstrap_port': 6789, 'modelexpress_config': None, 'download_dir': None, 'model_checksum': None, 'delete_ckpt_after_loading': False, 'decrypted_config_file': None, 'decrypted_draft_config_file': None, 'checkpoint_engine_wait_weights_before_ready': False, 'enable_prefill_delayer': False, 'prefill_delayer_max_delay_passes': 30, 'prefill_delayer_token_usage_low_watermark': None, 'prefill_delayer_forward_passes_buckets': None, 'prefill_delayer_wait_seconds_buckets': None, 'prefill_delayer_queue_min_ratio': None, 'prefill_delayer_max_delay_ms': None, 'min_free_slots_delay': None, 'enable_deterministic_inference': False, 'rl_on_policy_target': None, 'kv_canary': 'none', 'kv_canary_real_data': 'none', 'kv_canary_sweep_interval': 0, 'enable_dynamic_batch_tokenizer': False, 'dynamic_batch_tokenizer_batch_size': 32, 'dynamic_batch_tokenizer_batch_timeout': 0.002, 'enable_tokenizer_batch_encode': False, 'disable_tokenizer_batch_decode': False, 'debug_tensor_dump_output_folder': None, 'debug_tensor_dump_layers': None, 'debug_tensor_dump_input_file': None, 'enable_memory_saver': False, 'enable_weights_cpu_backup': False, 'enable_draft_weights_cpu_backup': False, 'enable_custom_logit_processor': False, 'enable_return_hidden_states': False, 'return_hidden_states_mode': None, 'enable_return_routed_experts': False, 'enable_return_indexer_topk': False, 'sampling_mask_max_tokens': 4096, 'disable_outlines_disk_cache': False, 'enable_mis': False, 'weight_cache_mode': 'off', 'weight_cache_socket': None, 'weight_cache_timeout': 1800, 'forward_hooks': None, 'msprobe_dump_config': None, 'ple_offload_embedding': None, 'ple_offload_backend': 'pinned', 'ple_offload_dir': None, 'speculative_domino_candidate_pool_size': 2048, 'flashinfer_a2a_dispatch_type': None, 'dsv4_attn_backend': 'auto', '_radix_eviction_policy_explicitly_set': False, 'enable_response_store': False}
+[2026-11-15 20:41:24] exl3 quantization is not fully optimized yet. The speed can be slower than non-quantized models.
+/opt/venv/lib/python3.12/site-packages/sglang/srt/environ.py:1917: UserWarning: Environment variable SGL_JIT_TORCH_INCLUDE is deprecated, please use SGLANG_JIT_TORCH_INCLUDE
+  warnings.warn(
+/opt/venv/lib/python3.12/site-packages/sglang/srt/environ.py:1917: UserWarning: Environment variable SGL_JIT_TORCH_INCLUDE is deprecated, please use SGLANG_JIT_TORCH_INCLUDE
+  warnings.warn(
+/opt/venv/lib/python3.12/site-packages/sglang/srt/environ.py:1917: UserWarning: Environment variable SGL_JIT_TORCH_LIB is deprecated, please use SGLANG_JIT_TORCH_LIB
+  warnings.warn(
+/opt/venv/lib/python3.12/site-packages/sglang/srt/environ.py:1917: UserWarning: Environment variable SGL_JIT_TORCH_LIB is deprecated, please use SGLANG_JIT_TORCH_LIB
+  warnings.warn(
+[2026-11-15 20:41:25] Cannot detect CUDA architecture.
+[2026-11-15 20:41:25] Ignore import error when loading sglang.srt.multimodal.processors.inkling: No module named 'cutlass'
+[2026-11-15 20:41:25] Ignore import error when loading sglang.srt.multimodal.processors.mimo_audio: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-15 20:41:25] Ignore import error when loading sglang.srt.multimodal.processors.mimo_v2: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-15 20:41:25] Ignore import error when loading sglang.srt.multimodal.processors.mimo_v2_asr: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-15 20:41:26] Ignore import error when loading sglang.srt.models.bailing_moe_linear: No module named 'vllm'
+[2026-11-15 20:41:26] Ignore import error when loading sglang.srt.models.bailing_moe_nextn: No module named 'vllm'
+[2026-11-15 20:41:26] Ignore import error when loading sglang.srt.models.bailing_moe_v3: No module named 'vllm'
+[2026-11-15 20:41:26] Ignore import error when loading sglang.srt.models.inkling: No module named 'cutlass'
+[2026-11-15 20:41:26] Multimodal data loading enabled with 16 worker threads (auto).
+[2026-11-15 20:41:26] Using default HuggingFace chat template with detected content format: openai
+[2026-11-15 20:41:26] Auto-detected template features: reasoning_config=ReasoningToggleConfig(toggle_param='enable_thinking', default_enabled=True, special_case=None, effort_kwarg=None), reasoning_parser=qwen3, tool_call_parser=qwen3_coder
+/opt/venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+/opt/venv/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+  warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+EXL3 qsa_xpu installed
+[2026-11-15 20:41:29] exl3 quantization is not fully optimized yet. The speed can be slower than non-quantized models.
+[2026-11-15 20:41:30] Cannot detect CUDA architecture.
+[2026-11-15 20:41:30] Ignore import error when loading sglang.srt.multimodal.processors.inkling: No module named 'cutlass'
+[2026-11-15 20:41:30] Ignore import error when loading sglang.srt.multimodal.processors.mimo_audio: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-15 20:41:30] Ignore import error when loading sglang.srt.multimodal.processors.mimo_v2: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-15 20:41:30] Ignore import error when loading sglang.srt.multimodal.processors.mimo_v2_asr: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.13.0+xpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.60: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core8.so
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.59: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core7.so
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core6.so
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core5.so
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1516, in load_library
+    ctypes.CDLL(path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libavutil.so.56: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.12/site-packages/torchcodec/_internally_replaced_utils.py", line 93, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+  File "/opt/venv/lib/python3.12/site-packages/torch/_ops.py", line 1518, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: /opt/venv/lib/python3.12/site-packages/torchcodec/libtorchcodec_core4.so
+[end of libtorchcodec loading traceback].
+[2026-11-15 20:41:30] Multimodal data loading enabled with 16 worker threads (auto).
+[2026-11-15 20:41:30] exl3 quantization is not fully optimized yet. The speed can be slower than non-quantized models.
+[2026-11-15 20:41:30] Init torch distributed begin.
+[2026-11-15 20:41:30] Init torch distributed ends. elapsed=0.02 s, mem usage=0.00 GB
+[2026-11-15 20:41:30] Ignore import error when loading sglang.srt.models.bailing_moe_linear: No module named 'vllm'
+[2026-11-15 20:41:30] Ignore import error when loading sglang.srt.models.bailing_moe_nextn: No module named 'vllm'
+[2026-11-15 20:41:30] Ignore import error when loading sglang.srt.models.bailing_moe_v3: No module named 'vllm'
+[2026-11-15 20:41:30] Ignore import error when loading sglang.srt.models.inkling: No module named 'cutlass'
+[2026-11-15 20:41:31] Load weight begin. avail mem=58.10 GB
+[2026-11-15 20:41:31] exl3xpu: /models: 31747 EXL3 linears, by bits {4: 31746, 6: 1}, 776 in the MTP head
+[2026-11-15 20:41:31] Multimodal attention backend not set. Use exl3_sdpa.
+[2026-11-15 20:41:31] Using exl3_sdpa as multimodal attention backend.
+[2026-11-15 20:41:31] using attn output gate!
+
+Multi-thread loading shards:   0% Completed | 0/3 [00:00<?, ?it/s][2026-11-15 20:41:36] exl3xpu: expert store: 0 device slots x 1588224 B (0.00 GB)
+
+Multi-thread loading shards:  33% Completed | 1/3 [00:08<00:17,  8.83s/it]
+Multi-thread loading shards:  67% Completed | 2/3 [00:13<00:06,  6.34s/it]
+Multi-thread loading shards: 100% Completed | 3/3 [00:14<00:00,  4.04s/it]
+Multi-thread loading shards: 100% Completed | 3/3 [00:14<00:00,  4.91s/it]
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.0.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.1.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.2.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.3.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.4.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.5.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.6.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.7.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.8.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.9.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.10.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.11.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.12.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.13.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.14.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.15.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.16.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.17.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.18.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.19.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.20.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.21.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.22.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.23.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.24.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.25.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.26.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.27.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.28.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.29.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.30.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.31.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.32.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.33.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.34.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.35.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.36.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.37.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:46] exl3xpu: model.language_model.layers.38.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:47] exl3xpu: model.language_model.layers.39.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:47] exl3xpu: pruned draft head: 256 of 1940 vocab blocks
+[2026-11-15 20:41:47] Using FP8 KV cache but no scaling factors provided. Defaulting to scaling factors of 1.0.
+[2026-11-15 20:41:47] Load weight end. elapsed=15.89 s, type=Qwen3_5MoeForConditionalGeneration, quant=exl3, bits=4.0, avail mem=55.15 GB, mem usage=2.95 GB.
+[2026-11-15 20:41:47] exl3 quantization is not fully optimized yet. The speed can be slower than non-quantized models.
+[2026-11-15 20:41:47] Init torch distributed begin.
+[2026-11-15 20:41:47] Init torch distributed ends. elapsed=0.00 s, mem usage=0.00 GB
+[2026-11-15 20:41:47] Load weight begin. avail mem=55.11 GB
+[2026-11-15 20:41:47] exl3xpu: /models: 31747 EXL3 linears, by bits {4: 31746, 6: 1}, 776 in the MTP head
+[2026-11-15 20:41:48] exl3xpu: MTP fc served as an EXL3 linear (4096, 2048, 4, 2)
+
+Multi-thread loading shards:   0% Completed | 0/3 [00:00<?, ?it/s]
+Multi-thread loading shards:  33% Completed | 1/3 [00:02<00:05,  2.68s/it]
+Multi-thread loading shards:  67% Completed | 2/3 [00:02<00:01,  1.17s/it]
+Multi-thread loading shards: 100% Completed | 3/3 [00:03<00:00,  1.32it/s]
+Multi-thread loading shards: 100% Completed | 3/3 [00:03<00:00,  1.02s/it]
+[2026-11-15 20:41:51] exl3xpu: mtp.layers.0.mlp.experts: 256 experts K=4 packed to host USM (0.407 GB), 0 resident in device slots (0 slots free)
+[2026-11-15 20:41:51] exl3xpu: lm_head: no EXL3 tensors delivered (shared from the target?)
+[2026-11-15 20:41:51] Using FP8 KV cache but no scaling factors provided. Defaulting to scaling factors of 1.0.
+[2026-11-15 20:41:51] Load weight end. elapsed=3.81 s, type=Qwen3_5ForCausalLMMTP, quant=exl3, bits=4.0, avail mem=55.09 GB, mem usage=0.02 GB.
+[2026-11-15 20:41:51] Reserving 0.10 GB of the KV budget for post-sizing multimodal allocations (feature-transport pools + embedding cache).
+[2026-11-15 20:41:51] Mamba Cache is allocated. max_mamba_cache_size: 40, conv_state size: 0.06GB, ssm_state size: 1.20GB intermediate_ssm_state_cache size: 0.29GB intermediate_conv_window_cache size: 0.01GB 
+[2026-11-15 20:41:54] KV Cache is allocated. dtype: torch.float8_e4m3fn, #tokens: 1048576, K size: 5.00 GB, V size: 5.00 GB
+[2026-11-15 20:41:54] Memory pool end. avail mem=43.53 GB
+[2026-11-15 20:41:54] KV Cache is allocated. dtype: torch.float8_e4m3fn, #tokens: 1048576, K size: 0.50 GB, V size: 0.50 GB
+[2026-11-15 20:41:54] Memory pool end. avail mem=42.53 GB
+[2026-11-15 20:41:54] exl3xpu: MTP draft proposes from the pruned head (256 vocab blocks)
+[2026-11-15 20:41:54] Linear attention kernel backend: decode=triton, prefill=triton, verify=triton
+[2026-11-15 20:41:54] Using hybrid linear attention backend for hybrid GDN models.
+[2026-11-15 20:41:54] GDN kernel dispatcher: decode=TritonGDNKernel, extend=TritonGDNKernel, verify=TritonGDNKernel packed_decode=True
+[2026-11-15 20:41:54] Linear attention kernel backend: decode=triton, prefill=triton, verify=triton
+[2026-11-15 20:41:54] Using hybrid linear attention backend for hybrid GDN models.
+[2026-11-15 20:41:54] GDN kernel dispatcher: decode=TritonGDNKernel, extend=TritonGDNKernel, verify=TritonGDNKernel packed_decode=True
+[2026-11-15 20:41:54] Disable prefill CUDA graph because cuda_graph_config resolved prefill.backend='disabled' (e.g. via --cuda-graph-backend-prefill=disabled or auto-disable rules).
+[2026-11-15 20:41:54] Capture target verify XPU graph begin. backend=full, num_tokens_per_req=2, bs=[1, 2, 4], avail mem=42.48 GB
+
+  0%|          | 0/3 [00:00<?, ?it/s]
+Capturing batches (bs=4 avail_mem=42.47 GB):   0%|          | 0/3 [00:00<?, ?it/s][2026-11-15 20:41:55] exl3xpu: 2-query verify attention served as 8 decode queries
+
+Capturing batches (bs=4 avail_mem=42.47 GB):  33%|███▎      | 1/3 [00:00<00:01,  1.16it/s]
+Capturing batches (bs=2 avail_mem=42.50 GB):  33%|███▎      | 1/3 [00:00<00:01,  1.16it/s]
+Capturing batches (bs=2 avail_mem=42.50 GB):  67%|██████▋   | 2/3 [00:01<00:00,  2.19it/s]
+Capturing batches (bs=1 avail_mem=42.50 GB):  67%|██████▋   | 2/3 [00:01<00:00,  2.19it/s]
+Capturing batches (bs=1 avail_mem=42.50 GB): 100%|██████████| 3/3 [00:01<00:00,  3.15it/s]
+Capturing batches (bs=1 avail_mem=42.50 GB): 100%|██████████| 3/3 [00:01<00:00,  2.53it/s]
+[2026-11-15 20:41:56] Capture target verify XPU graph end. elapsed=1.59 s, mem usage=-0.02 GB, avail mem=42.50 GB.
+[2026-11-15 20:41:56] Disable prefill CUDA graph because cuda_graph_config resolved prefill.backend='disabled' (e.g. via --cuda-graph-backend-prefill=disabled or auto-disable rules).
+[2026-11-15 20:41:56] Capture draft extend CUDA graph begin. backend=full, num_tokens_per_req=2, bs=[1, 2, 4], avail mem=42.50 GB
+
+  0%|          | 0/3 [00:00<?, ?it/s]
+Capturing batches (bs=4 avail_mem=42.50 GB):   0%|          | 0/3 [00:00<?, ?it/s]
+Capturing batches (bs=2 avail_mem=42.50 GB):   0%|          | 0/3 [00:00<?, ?it/s]
+Capturing batches (bs=1 avail_mem=42.50 GB):   0%|          | 0/3 [00:00<?, ?it/s]
+Capturing batches (bs=1 avail_mem=42.50 GB): 100%|██████████| 3/3 [00:00<00:00, 36.52it/s]
+[2026-11-15 20:41:57] Capture draft extend CUDA graph end. elapsed=0.44 s, mem usage=0.00 GB, avail mem=42.50 GB.
+[2026-11-15 20:41:57] max_total_num_tokens=1048576, chunked_prefill_size=4096, max_prefill_tokens=4096, max_running_requests=4, context_len=262144, available_gpu_mem=42.50 GB
+[2026-11-15 20:41:57] Init Unified Radix Cache. Components: (<ComponentType.FULL: 0>, <ComponentType.MAMBA: 2>). Tree Core: UnifiedTreeCore
+[2026-11-15 20:41:57] Tree cache initialized: source=default impl=UnifiedRadixCache hybrid_swa=False hybrid_ssm=True hicache_attached=False streaming_wrapped=False
+[2026-11-15 20:41:57] exl3 quantization is not fully optimized yet. The speed can be slower than non-quantized models.
+[2026-11-15 20:41:57] Engine startup timings (s): load_weight=19.70, kv_cache_allocation=3.61, scheduler_e2e=27.55, cuda_graph={prefill=0.00, decode=0.00, target_verify=1.59, draft_prefill=0.00, draft_decode=0.00, draft_extend=0.44}, tokenizer_e2e=32.44
+[2026-11-15 20:41:57] INFO:     Started server process [1]
+[2026-11-15 20:41:57] INFO:     Waiting for application startup.
+[2026-11-15 20:41:57] Using default chat sampling params from model generation config: {'temperature': 1.0, 'top_k': 20, 'top_p': 0.95}
+[2026-11-15 20:41:57] INFO:     Application startup complete.
+[2026-11-15 20:41:57] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+/opt/venv/lib/python3.12/site-packages/sglang/srt/entrypoints/http_server.py:454: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  return await original_handler(ORJSONRequest(request.scope, request.receive))
+[2026-11-15 20:42:00] Prefill batch, #new-seq: 1, #new-token: 80, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 21.30
+[2026-11-15 20:42:01] The server is fired up and ready to roll!
+[2026-11-15 20:42:01] Prefill batch, #new-seq: 1, #new-token: 1, #cached-token: 0, full token usage: 0.00, mamba usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 1.95
+[2026-11-15 20:42:02] Prefill batch, #new-seq: 1, #new-token: 15, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 10.76
+[2026-11-15 20:42:02] Prefill batch, #new-seq: 1, #new-token: 19, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 84.43
+[2026-11-15 20:42:03] Prefill batch, #new-seq: 1, #new-token: 41, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 62.93
+[2026-11-15 20:42:03] Decode batch, #running-req: 1, #full token: 128, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.62, accept rate: 0.62, cuda graph: True, gen throughput (token/s): 9.33, #queue-req: 0
+[2026-11-15 20:42:05] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.68, accept rate: 0.68, cuda graph: True, gen throughput (token/s): 56.21, #queue-req: 0
+[2026-11-15 20:42:05] Reset HybridReqToTokenPool
+[2026-11-15 20:42:05] Cache flushed successfully!
+[2026-11-15 20:42:05] Prefill batch, #new-seq: 1, #new-token: 21, #cached-token: 0, full token usage: 0.00, mamba usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9.06
+[2026-11-15 20:42:05] Reset HybridReqToTokenPool
+[2026-11-15 20:42:05] Cache flushed successfully!
+[2026-11-15 20:42:05] Prefill batch, #new-seq: 1, #new-token: 21, #cached-token: 0, full token usage: 0.00, mamba usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 174.38
+[2026-11-15 20:42:05] Reset HybridReqToTokenPool
+[2026-11-15 20:42:05] Cache flushed successfully!
+[2026-11-15 20:42:06] Prefill batch, #new-seq: 1, #new-token: 21, #cached-token: 0, full token usage: 0.00, mamba usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 168.22
+[2026-11-15 20:42:06] Reset HybridReqToTokenPool
+[2026-11-15 20:42:06] Cache flushed successfully!
+[2026-11-15 20:42:06] Prefill batch, #new-seq: 1, #new-token: 21, #cached-token: 0, full token usage: 0.00, mamba usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 167.62
+[2026-11-15 20:42:06] Reset HybridReqToTokenPool
+[2026-11-15 20:42:06] Cache flushed successfully!
+[2026-11-15 20:42:06] Prefill batch, #new-seq: 1, #new-token: 21, #cached-token: 0, full token usage: 0.00, mamba usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 169.08
+[2026-11-15 20:42:06] Prefill batch, #new-seq: 1, #new-token: 41, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 232.32
+[2026-11-15 20:42:07] Decode batch, #running-req: 1, #full token: 128, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.70, accept rate: 0.70, cuda graph: True, gen throughput (token/s): 25.30, #queue-req: 0
+[2026-11-15 20:42:09] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.75, accept rate: 0.75, cuda graph: True, gen throughput (token/s): 51.58, #queue-req: 0
+[2026-11-15 20:42:10] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.57, accept rate: 0.57, cuda graph: True, gen throughput (token/s): 46.40, #queue-req: 0
+[2026-11-15 20:42:11] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.73, accept rate: 0.72, cuda graph: True, gen throughput (token/s): 50.83, #queue-req: 0
+[2026-11-15 20:42:13] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.95, accept rate: 0.95, cuda graph: True, gen throughput (token/s): 57.36, #queue-req: 0
+[2026-11-15 20:42:14] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.95, accept rate: 0.95, cuda graph: True, gen throughput (token/s): 57.03, #queue-req: 0
+[2026-11-15 20:42:16] Decode batch, #running-req: 1, #full token: 640, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.70, accept rate: 0.70, cuda graph: True, gen throughput (token/s): 50.60, #queue-req: 0
+[2026-11-15 20:42:16] Prefill batch, #new-seq: 1, #new-token: 42, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 4.19
+[2026-11-15 20:42:17] Decode batch, #running-req: 1, #full token: 128, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.60, accept rate: 0.60, cuda graph: True, gen throughput (token/s): 42.55, #queue-req: 0
+[2026-11-15 20:42:18] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.60, accept rate: 0.60, cuda graph: True, gen throughput (token/s): 48.16, #queue-req: 0
+[2026-11-15 20:42:20] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.62, accept rate: 0.62, cuda graph: True, gen throughput (token/s): 48.79, #queue-req: 0
+[2026-11-15 20:42:21] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.57, accept rate: 0.57, cuda graph: True, gen throughput (token/s): 46.68, #queue-req: 0
+[2026-11-15 20:42:22] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.60, accept rate: 0.60, cuda graph: True, gen throughput (token/s): 47.36, #queue-req: 0
+[2026-11-15 20:42:24] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.65, accept rate: 0.65, cuda graph: True, gen throughput (token/s): 49.33, #queue-req: 0
+[2026-11-15 20:42:25] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.52, accept rate: 0.53, cuda graph: True, gen throughput (token/s): 45.11, #queue-req: 0
+[2026-11-15 20:42:26] Decode batch, #running-req: 1, #full token: 640, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.50, accept rate: 0.50, cuda graph: True, gen throughput (token/s): 44.35, #queue-req: 0
+[2026-11-15 20:42:27] Prefill batch, #new-seq: 1, #new-token: 39, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 3.54
+[2026-11-15 20:42:28] Decode batch, #running-req: 1, #full token: 128, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.80, accept rate: 0.80, cuda graph: True, gen throughput (token/s): 47.50, #queue-req: 0
+[2026-11-15 20:42:29] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.77, accept rate: 0.78, cuda graph: True, gen throughput (token/s): 53.07, #queue-req: 0
+[2026-11-15 20:42:31] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.75, accept rate: 0.75, cuda graph: True, gen throughput (token/s): 52.19, #queue-req: 0
+[2026-11-15 20:42:32] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.88, accept rate: 0.88, cuda graph: True, gen throughput (token/s): 56.44, #queue-req: 0
+[2026-11-15 20:42:33] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.85, accept rate: 0.85, cuda graph: True, gen throughput (token/s): 55.82, #queue-req: 0
+[2026-11-15 20:42:35] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.88, accept rate: 0.88, cuda graph: True, gen throughput (token/s): 55.97, #queue-req: 0
+[2026-11-15 20:42:36] Decode batch, #running-req: 1, #full token: 640, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.73, accept rate: 0.72, cuda graph: True, gen throughput (token/s): 50.10, #queue-req: 0
+[2026-11-15 20:42:37] Prefill batch, #new-seq: 1, #new-token: 41, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 4.23
+[2026-11-15 20:42:37] Decode batch, #running-req: 1, #full token: 128, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.85, accept rate: 0.85, cuda graph: True, gen throughput (token/s): 49.49, #queue-req: 0
+[2026-11-15 20:42:39] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.57, accept rate: 0.57, cuda graph: True, gen throughput (token/s): 47.50, #queue-req: 0
+[2026-11-15 20:42:40] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.82, accept rate: 0.82, cuda graph: True, gen throughput (token/s): 54.77, #queue-req: 0
+[2026-11-15 20:42:41] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.90, accept rate: 0.90, cuda graph: True, gen throughput (token/s): 56.69, #queue-req: 0
+[2026-11-15 20:42:43] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.90, accept rate: 0.90, cuda graph: True, gen throughput (token/s): 56.84, #queue-req: 0
+[2026-11-15 20:42:44] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.82, accept rate: 0.82, cuda graph: True, gen throughput (token/s): 51.21, #queue-req: 0
+[2026-11-15 20:42:46] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.73, accept rate: 0.72, cuda graph: True, gen throughput (token/s): 51.59, #queue-req: 0
+[2026-11-15 20:42:47] Prefill batch, #new-seq: 1, #new-token: 42, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 4.30
+[2026-11-15 20:42:47] Decode batch, #running-req: 1, #full token: 128, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.75, accept rate: 0.75, cuda graph: True, gen throughput (token/s): 46.80, #queue-req: 0
+[2026-11-15 20:42:48] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.57, accept rate: 0.57, cuda graph: True, gen throughput (token/s): 47.37, #queue-req: 0
+[2026-11-15 20:42:50] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.45, accept rate: 0.45, cuda graph: True, gen throughput (token/s): 43.45, #queue-req: 0
+[2026-11-15 20:42:51] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.62, accept rate: 0.62, cuda graph: True, gen throughput (token/s): 48.55, #queue-req: 0
+[2026-11-15 20:42:52] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.57, accept rate: 0.57, cuda graph: True, gen throughput (token/s): 47.45, #queue-req: 0
+[2026-11-15 20:42:54] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.68, accept rate: 0.68, cuda graph: True, gen throughput (token/s): 50.27, #queue-req: 0
+[2026-11-15 20:42:55] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.57, accept rate: 0.57, cuda graph: True, gen throughput (token/s): 47.16, #queue-req: 0
+[2026-11-15 20:42:56] Decode batch, #running-req: 1, #full token: 640, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.68, accept rate: 0.68, cuda graph: True, gen throughput (token/s): 50.29, #queue-req: 0
+[2026-11-15 20:42:57] Prefill batch, #new-seq: 1, #new-token: 39, #cached-token: 0, full token usage: 0.00, mamba usage: 0.07, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 3.61
+[2026-11-15 20:42:58] Decode batch, #running-req: 1, #full token: 128, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.75, accept rate: 0.75, cuda graph: True, gen throughput (token/s): 46.76, #queue-req: 0
+[2026-11-15 20:42:59] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.70, accept rate: 0.70, cuda graph: True, gen throughput (token/s): 50.88, #queue-req: 0
+[2026-11-15 20:43:01] Decode batch, #running-req: 1, #full token: 256, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.48, accept rate: 0.47, cuda graph: True, gen throughput (token/s): 44.21, #queue-req: 0
+[2026-11-15 20:43:02] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.80, accept rate: 0.80, cuda graph: True, gen throughput (token/s): 54.21, #queue-req: 0
+[2026-11-15 20:43:03] Decode batch, #running-req: 1, #full token: 384, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.98, accept rate: 0.97, cuda graph: True, gen throughput (token/s): 59.11, #queue-req: 0
+[2026-11-15 20:43:05] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.85, accept rate: 0.85, cuda graph: True, gen throughput (token/s): 55.27, #queue-req: 0
+[2026-11-15 20:43:06] Decode batch, #running-req: 1, #full token: 512, full token usage: 0.00, mamba num: 3, mamba usage: 0.07, accept len: 1.93, accept rate: 0.93, cuda graph: True, gen throughput (token/s): 58.10, #queue-req: 0
+[2026-11-15 20:43:07] Reset HybridReqToTokenPool
+[2026-11-15 20:43:07] Cache flushed successfully!
+[2026-11-15 20:43:09] Prefill batch, #new-seq: 1, #new-token: 3994, #cached-token: 0, full token usage: 0.00, mamba usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 336.50
+[2026-11-15 20:43:09] Reset HybridReqToTokenPool
+[2026-11-15 20:43:09] Cache flushed successfully!
+[2026-11-15 20:43:10] exl3xpu: oneDNN fused SDPA serving a 4096-query prefill chunk at 4096 keys
+[2026-11-15 20:43:13] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.01, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 28113, cuda graph: False, input throughput (token/s): 956.54
+[2026-11-15 20:43:16] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.01, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 24017, cuda graph: False, input throughput (token/s): 1829.08
+[2026-11-15 20:43:18] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.02, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 19921, cuda graph: False, input throughput (token/s): 1723.67
+[2026-11-15 20:43:21] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.02, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 15825, cuda graph: False, input throughput (token/s): 1634.02
+[2026-11-15 20:43:23] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.02, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 11729, cuda graph: False, input throughput (token/s): 1552.32
+[2026-11-15 20:43:26] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.03, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 7633, cuda graph: False, input throughput (token/s): 1447.78
+[2026-11-15 20:43:29] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.03, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 3537, cuda graph: False, input throughput (token/s): 1542.81
+[2026-11-15 20:43:29] Prefill batch, #new-seq: 1, #new-token: 3537, #cached-token: 0, full token usage: 0.00, mamba usage: 0.00, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 81175.40
+[2026-11-15 20:43:29] Reset HybridReqToTokenPool
+[2026-11-15 20:43:29] Cache flushed successfully!
+[2026-11-15 20:43:34] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.01, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 254321, cuda graph: False, input throughput (token/s): 807.31
+[2026-11-15 20:43:36] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.01, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 250225, cuda graph: False, input throughput (token/s): 1832.75
+[2026-11-15 20:43:38] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.02, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 246129, cuda graph: False, input throughput (token/s): 1734.29
+[2026-11-15 20:43:41] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.02, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 242033, cuda graph: False, input throughput (token/s): 1604.48
+[2026-11-15 20:43:44] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.02, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 237937, cuda graph: False, input throughput (token/s): 1553.12
+[2026-11-15 20:43:46] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.03, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 233841, cuda graph: False, input throughput (token/s): 1448.26
+[2026-11-15 20:43:49] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.03, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 229745, cuda graph: False, input throughput (token/s): 1402.44
+[2026-11-15 20:43:52] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.04, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 225649, cuda graph: False, input throughput (token/s): 1330.29
+[2026-11-15 20:43:56] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.04, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 221553, cuda graph: False, input throughput (token/s): 1270.45
+[2026-11-15 20:43:59] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.04, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 217457, cuda graph: False, input throughput (token/s): 1220.83
+[2026-11-15 20:44:03] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.05, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 213361, cuda graph: False, input throughput (token/s): 1164.32
+[2026-11-15 20:44:06] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.05, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 209265, cuda graph: False, input throughput (token/s): 1116.23
+[2026-11-15 20:44:10] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.05, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 205169, cuda graph: False, input throughput (token/s): 1076.57
+[2026-11-15 20:44:14] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.06, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 201073, cuda graph: False, input throughput (token/s): 1029.72
+[2026-11-15 20:44:18] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.06, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 196977, cuda graph: False, input throughput (token/s): 997.72
+[2026-11-15 20:44:22] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.07, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 192881, cuda graph: False, input throughput (token/s): 965.98
+[2026-11-15 20:44:27] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.07, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 188785, cuda graph: False, input throughput (token/s): 917.57
+[2026-11-15 20:44:31] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.07, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 184689, cuda graph: False, input throughput (token/s): 891.05
+[2026-11-15 20:44:36] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.08, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 180593, cuda graph: False, input throughput (token/s): 875.51
+[2026-11-15 20:44:41] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.08, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 176497, cuda graph: False, input throughput (token/s): 854.27
+[2026-11-15 20:44:46] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.09, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 172401, cuda graph: False, input throughput (token/s): 828.44
+[2026-11-15 20:44:51] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.09, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 168305, cuda graph: False, input throughput (token/s): 801.78
+[2026-11-15 20:44:56] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.09, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 164209, cuda graph: False, input throughput (token/s): 779.55
+[2026-11-15 20:45:02] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.10, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 160113, cuda graph: False, input throughput (token/s): 759.07
+[2026-11-15 20:45:07] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.10, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 156017, cuda graph: False, input throughput (token/s): 730.13
+[2026-11-15 20:45:13] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.11, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 151921, cuda graph: False, input throughput (token/s): 714.62
+[2026-11-15 20:45:19] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.11, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 147825, cuda graph: False, input throughput (token/s): 698.32
+[2026-11-15 20:45:25] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.11, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 143729, cuda graph: False, input throughput (token/s): 683.73
+[2026-11-15 20:45:31] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.12, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 139633, cuda graph: False, input throughput (token/s): 664.63
+[2026-11-15 20:45:37] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.12, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 135537, cuda graph: False, input throughput (token/s): 651.40
+[2026-11-15 20:45:44] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.12, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 131441, cuda graph: False, input throughput (token/s): 633.66
+[2026-11-15 20:45:50] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.13, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 127345, cuda graph: False, input throughput (token/s): 620.64
+[2026-11-15 20:45:57] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.13, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 123249, cuda graph: False, input throughput (token/s): 607.24
+[2026-11-15 20:46:04] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.14, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 119153, cuda graph: False, input throughput (token/s): 596.27
+[2026-11-15 20:46:11] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.14, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 115057, cuda graph: False, input throughput (token/s): 584.74
+[2026-11-15 20:46:18] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.14, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 110961, cuda graph: False, input throughput (token/s): 568.91
+[2026-11-15 20:46:25] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.15, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 106865, cuda graph: False, input throughput (token/s): 557.56
+[2026-11-15 20:46:33] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.15, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 102769, cuda graph: False, input throughput (token/s): 546.37
+[2026-11-15 20:46:41] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.16, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 98673, cuda graph: False, input throughput (token/s): 537.88
+[2026-11-15 20:46:48] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.16, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 94577, cuda graph: False, input throughput (token/s): 528.74
+[2026-11-15 20:46:56] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.16, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 90481, cuda graph: False, input throughput (token/s): 518.81
+[2026-11-15 20:47:04] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.17, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 86385, cuda graph: False, input throughput (token/s): 509.97
+[2026-11-15 20:47:12] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.17, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 82289, cuda graph: False, input throughput (token/s): 499.70
+[2026-11-15 20:47:21] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.18, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 78193, cuda graph: False, input throughput (token/s): 490.31
+[2026-11-15 20:47:29] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.18, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 74097, cuda graph: False, input throughput (token/s): 481.92
+[2026-11-15 20:47:38] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.18, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 70001, cuda graph: False, input throughput (token/s): 464.71
+[2026-11-15 20:47:47] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.19, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 65905, cuda graph: False, input throughput (token/s): 458.25
+[2026-11-15 20:47:56] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.19, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 61809, cuda graph: False, input throughput (token/s): 457.77
+[2026-11-15 20:48:05] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.20, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 57713, cuda graph: False, input throughput (token/s): 451.15
+[2026-11-15 20:48:14] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.20, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 53617, cuda graph: False, input throughput (token/s): 441.94
+[2026-11-15 20:48:24] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.20, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 49521, cuda graph: False, input throughput (token/s): 434.83
+[2026-11-15 20:48:33] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.21, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 45425, cuda graph: False, input throughput (token/s): 424.86
+[2026-11-15 20:48:43] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.21, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 41329, cuda graph: False, input throughput (token/s): 421.21
+[2026-11-15 20:48:53] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.21, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 37233, cuda graph: False, input throughput (token/s): 397.18
+[2026-11-15 20:49:03] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.22, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 33137, cuda graph: False, input throughput (token/s): 409.99
+[2026-11-15 20:49:14] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.22, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 29041, cuda graph: False, input throughput (token/s): 402.99
+[2026-11-15 20:49:24] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.23, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 24945, cuda graph: False, input throughput (token/s): 395.49
+[2026-11-15 20:49:35] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.23, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 20849, cuda graph: False, input throughput (token/s): 387.52
+[2026-11-15 20:49:45] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.23, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 16753, cuda graph: False, input throughput (token/s): 377.95
+[2026-11-15 20:49:56] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.24, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 12657, cuda graph: False, input throughput (token/s): 373.91
+[2026-11-15 20:50:07] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.24, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 8561, cuda graph: False, input throughput (token/s): 375.89
+[2026-11-15 20:50:18] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.25, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 4465, cuda graph: False, input throughput (token/s): 371.67
+[2026-11-15 20:50:20] Prefill batch, #new-seq: 1, #new-token: 4096, #cached-token: 0, full token usage: 0.25, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 369, cuda graph: False, input throughput (token/s): 2284.26
+[2026-11-15 20:50:20] Prefill batch, #new-seq: 1, #new-token: 369, #cached-token: 0, full token usage: 0.25, mamba usage: 0.10, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 4121.24
+[2026-11-15 20:50:23] Decode batch, #running-req: 1, #full token: 258560, full token usage: 0.25, mamba num: 4, mamba usage: 0.10, accept len: 1.68, accept rate: 0.68, cuda graph: True, gen throughput (token/s): 0.15, #queue-req: 0
+[2026-11-15 20:50:26] Decode batch, #running-req: 1, #full token: 258560, full token usage: 0.25, mamba num: 4, mamba usage: 0.10, accept len: 1.52, accept rate: 0.53, cuda graph: True, gen throughput (token/s): 21.60, #queue-req: 0
