@@ -24,6 +24,21 @@ NO_PROVENANCE = {
 }
 
 
+# The plugin's own entrypoint rule (omarchy-local-ai policy()): one optional program path, which it hands to
+# `docker run --entrypoint`; a launch that cannot meet it would make the plugin refuse the whole catalog.
+PLUGIN_ENTRYPOINT = re.compile(r"[A-Za-z0-9_./-]*")
+
+
+def plugin_launch(L, args):
+    """The launch in the plugin's shape. Docker's --entrypoint takes one program, so an entrypoint the lab ran as a
+    list (["vllm", "serve"]) becomes its first word, the rest going in front of the arguments: the container runs
+    the same argv."""
+    ep = L["entrypoint"]
+    if isinstance(ep, list):
+        ep, args = (ep[0], ep[1:] + list(args or [])) if ep else (None, args)
+    return {"entrypoint": ep, "arguments": args, "environment": L["env"], "port": L["port"], "shm": L["shm"]}
+
+
 def exportable(launch):
     """A launch the plugin may run: one plain container whose flags are at most the GPU device nodes."""
     return (not any(launch.get(x) for x in ("kind", "machines", "build"))
@@ -50,8 +65,7 @@ def entry(key, r, meta):
         return {"id": rid, "name": x["name"], "family": x["family"], "format": x["format"], "engine": x["engine"], "servedName": x["servedName"],
                 "sizeGb": x["sizeGb"], "cards": L.get("cards", 1), "image": L["image"], "minDriver": x["minDriver"], "weights": weights,
                 "asset": {"name": x["asset"], "mountPath": L["config"]["at"], "text": L["config"]["text"]} if L["config"] else None,
-                "scratch": x["scratch"], "launch": {"entrypoint": L["entrypoint"], "arguments": L["args"], "environment": L["env"], "port": L["port"], "shm": L["shm"],
-                                                    **({"flags": L["flags"]} if L.get("flags") else {})},
+                "scratch": x["scratch"], "launch": {**plugin_launch(L, L["args"]), **({"flags": L["flags"]} if L.get("flags") else {})},
                 "serving": x["serving"], "capabilities": {**x["capabilities"], **{k: v for k, v in caps.items() if v}},
                 **({"needs": L["needs"]} if L.get("needs") else {}),
                 **({"prepare": L["prepare"]} if L.get("prepare") else {}),
@@ -66,7 +80,7 @@ def entry(key, r, meta):
             "weights": [{"repository": L["weights"]["repo"], "revision": L["weights"]["revision"], "sizeGb": b["size_gb"], "layout": "dir",
                          "mountPath": L["weights"]["at"].rsplit("/", 1)[0], "dir": name, "files": ""}],
             "asset": {"name": f"{Path(key).name}.config.yml", "mountPath": L["config"]["at"], "text": L["config"]["text"]} if L["config"] else None,
-            "scratch": None, "launch": {"entrypoint": L["entrypoint"], "arguments": L["args"], "environment": L["env"], "port": L["port"], "shm": L["shm"]},
+            "scratch": None, "launch": plugin_launch(L, L["args"]),
             "serving": {"ctxTokens": L["ctx"], "kvTokens": lab.kv_tokens(r, L)}, "capabilities": caps,
             # a template profile's host needs (RAM for offloaded experts, NVMe) reach the plugin like a frozen launch's
             **({"needs": L["needs"]} if L.get("needs") else {})}
@@ -95,7 +109,7 @@ def derived(key, r, meta, p, L, caps):
             "servedName": served, "sizeGb": b["size_gb"], "cards": L.get("cards", 1), "image": L["image"], "minDriver": MIN_DRIVER.get(p["engine"], ""),
             "weights": weights,
             "asset": {"name": f"{Path(key).name}.config.yml", "mountPath": L["config"]["at"], "text": L["config"]["text"]} if L["config"] else None,
-            "scratch": None, "launch": {"entrypoint": L["entrypoint"], "arguments": args, "environment": L["env"], "port": L["port"], "shm": L["shm"]},
+            "scratch": None, "launch": plugin_launch(L, args),
             "serving": {"ctxTokens": L["ctx"], "kvTokens": lab.kv_tokens(r, L)}, "capabilities": caps,
             **({"needs": L["needs"]} if L.get("needs") else {})}
 
@@ -112,9 +126,12 @@ def aa(r, meta):
 
 
 def mounts_ok(e):
-    """The plugin's own rules: an id it accepts (a-z, 0-9, dots and dashes, at most 64), and no input mounted at, or
-    above, where a prepared pack is mounted."""
+    """The plugin's own rules: an id it accepts (a-z, 0-9, dots and dashes, at most 64), an entrypoint it accepts
+    (PLUGIN_ENTRYPOINT, or none), and no input mounted at, or above, where a prepared pack is mounted."""
     if not re.fullmatch(r"[a-z0-9][a-z0-9.-]{0,63}", e["id"]):
+        return False
+    ep = e["launch"].get("entrypoint")
+    if ep is not None and not (isinstance(ep, str) and PLUGIN_ENTRYPOINT.fullmatch(ep)):
         return False
     out = (e.get("prepare") or {}).get("at")
     return not out or not any(out == w["mountPath"] or out.startswith(w["mountPath"].rstrip("/") + "/") for w in e["weights"])
