@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "flint-40b-a2.5b",
+  "weights": "ggml-org/Flint-GGUF@b6763353f6f47bb4ae94f9f57d2d36906d2e4543",
+  "engine": "llama.cpp-metal-flint-q4-k-m-64k-2seq@638bd4904f2f",
+  "set": {},
+  "card": "apple-m5-max-128gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-24",
+  "on": "owner",
+  "gpu": "Apple M5 Max 128GB (40-core GPU)",
+  "launch_sha256": "3a71813a1b570b4af065570b5a393a741bf1bb94b48d8886cef532617279f762",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 105.1,
+  "prefill": 1875,
+  "served": "Flint"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, Yellow, Blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 80,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "y0MhV4IDSs0YHVrql8d45z3ZUYcDaF5v"
+    }
+   ],
+   "reply": "ris:\n\n- **City:** Paris\n- **Temperature:** 17°C\n- **Sky:** Overcast\n\nAnd here's the code the tool gave me:\n\n```json\n{\n  \"city\": \"Paris\",\n  \"temp_c\": 17,\n  \"sky\": \"overcast\",\n  \"code\": \"9d3377b7\"\n}\n```",
+   "code": "9d3377b7",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 295
+  },
+  "context": {
+   "prompt_tokens": 43132,
+   "seconds": 23.0,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 13.2,
+   "tokens_in_window": 1387,
+   "tokens_total": 1387,
+   "seconds_total": 13.3,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 1875,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
