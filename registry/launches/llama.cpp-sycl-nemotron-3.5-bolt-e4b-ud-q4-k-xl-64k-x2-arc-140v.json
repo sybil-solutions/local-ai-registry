@@ -1,0 +1,89 @@
+{
+  "id": "llama.cpp-sycl-nemotron-3.5-bolt-e4b-ud-q4-k-xl-64k-x2-arc-140v",
+  "engine": "llama.cpp",
+  "about": "Nemotron 3.5 Bolt E4B (GGUF · UD-Q4_K_XL) on SYCL (official server-intel image, b12767), Intel Arc 140V iGPU sharing 32 GB of system memory: two slots at the model's 65,536-token maximum, flash attention on, the model card's sampling (temperature 1.0, top-p 0.95), all layers on the GPU",
+  "image": "ghcr.io/ggml-org/llama.cpp@sha256:cb375b2eea76311dad6d91b6d2437a9a724726f56b15d467acd7bd8d87d02214",
+  "backend": "intel-xpu",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/NVIDIA-Nemotron-3.5-Bolt-E4B-UD-Q4_K_XL.gguf",
+    "--alias",
+    "NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "131072",
+    "--parallel",
+    "2",
+    "--n-gpu-layers",
+    "999",
+    "--flash-attn",
+    "on",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "0.95",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--no-mmproj",
+    "--metrics"
+  ],
+  "env": {
+    "ONEAPI_DEVICE_SELECTOR": "level_zero:0",
+    "UR_L0_ENABLE_RELAXED_ALLOCATION_LIMITS": "1"
+  },
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+      "revision": "b738967d6da3441a7d1c71fcec15e49e32e16ecd",
+      "at": "/models",
+      "layout": "dir",
+      "files": "NVIDIA-Nemotron-3.5-Bolt-E4B-UD-Q4_K_XL.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 65536,
+  "seqs": 2,
+  "vision": false,
+  "cards": 1,
+  "plugin": {
+    "name": "Nemotron 3.5 Bolt E4B",
+    "family": "nemotron",
+    "format": "GGUF · UD-Q4_K_XL",
+    "engine": "llama.cpp",
+    "servedName": "NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+    "sizeGb": 5.06,
+    "minDriver": "",
+    "scratch": null,
+    "capabilities": {
+      "chat": true,
+      "reasoning": true,
+      "tools": true,
+      "video": false,
+      "vision": false
+    },
+    "serving": {
+      "ctxTokens": 65536,
+      "kvTokens": 131072
+    },
+    "weights": [
+      {
+        "dir": "",
+        "files": "NVIDIA-Nemotron-3.5-Bolt-E4B-UD-Q4_K_XL.gguf",
+        "layout": "dir",
+        "mountPath": "/models",
+        "sizeGb": 5.06
+      }
+    ],
+    "asset": null
+  },
+  "ids": {
+    "intel-arc-140v-32gb": "nemotron35-bolt-e4b-ud-q4kxl-64kx2-arc140v-llamacpp-sycl"
+  }
+}

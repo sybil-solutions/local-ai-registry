@@ -1,0 +1,17 @@
+{
+  "id": "intel-arc-140v-32gb",
+  "name": "Intel Arc 140V",
+  "vendor": "intel",
+  "backend": "intel-xpu",
+  "vram_gb": 32,
+  "bandwidth_gb_s": null,
+  "match": {
+    "backend": "intel-xpu",
+    "name": "Intel Arc 140V",
+    "names": [
+      "arc140v"
+    ],
+    "vramGb": 32,
+    "unifiedMemory": true
+  }
+}

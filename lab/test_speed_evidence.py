@@ -58,9 +58,9 @@ class Engine(BaseHTTPRequestHandler):
         if "three primary colors" in last:
             self._json(200, {"choices": [{"index": 0, "message": {"role": "assistant", "content": "Red, green, blue."},
                                           "finish_reason": "stop"}]})
-        elif "17 * 23" in last:
-            self._json(200, {"choices": [{"index": 0, "message": {"role": "assistant", "reasoning_content": "391",
-                                                                  "content": "391"}, "finish_reason": "stop"}]})
+        elif "second train" in last:
+            self._json(200, {"choices": [{"index": 0, "message": {"role": "assistant", "reasoning_content": "130",
+                                                                  "content": "130"}, "finish_reason": "stop"}]})
         elif "weather in Paris" in last:
             self._json(200, {"choices": [{"index": 0, "message": {"role": "assistant", "content": "", "tool_calls": [
                 {"id": "t1", "type": "function", "function": {"name": "get_weather", "arguments": "{\"city\": \"Paris\"}"}}]},
