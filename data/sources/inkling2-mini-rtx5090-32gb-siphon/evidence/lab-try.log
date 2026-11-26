@@ -1,0 +1,2 @@
+[lab 15:47:57] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 511.0 tok/s, prefill 13318 tok/s; evidence lab/runs/rtx-5090-32gb.inkling-2-mini.siphon-inkling-2-mini-128k.128k.20261126T074757.json
+[lab 15:47:57] PASSED: wrote registry/recipes/nvidia/rtx-5090-32gb/inkling-2-mini.siphon.128k.json (489 bytes)

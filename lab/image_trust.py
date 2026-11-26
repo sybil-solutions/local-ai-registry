@@ -13,6 +13,8 @@ BUILDERS = {
     **{f"ghcr.io/0xsero/{name}": ("0xSero/local-ai-images", "release-image.yml", "refs/heads/main")
        for name in ("deepseek-v4.1-flash-spark", "dsv41-flash-offload", "gateway", "glm53-flash-offload", "sglang-exl3", "sglang-exl3-flashnext", "sglang-exl3-xpu-flashnext", "step-5-preview-spark", "tabbyapi-exl3")},
 }
+# Siphon publishes its image from the engine repo's own workflow, run on main or a release tag.
+BUILDERS["ghcr.io/hxyulin/siphon-engine"] = ("hxyulin/siphon-engine", "image.yml", "refs/(?:heads/main|tags/v[0-9.]+)")
 # Org successors must be built by the canonical publisher. Historical namespaces retain
 # their original certificate identities; repository redirects do not rewrite signatures.
 BUILDERS.update({f"ghcr.io/sybil-solutions/{name}":

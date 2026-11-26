@@ -1,0 +1,42 @@
+{
+  "id": "siphon-inkling-2-mini-128k",
+  "engine": "siphon",
+  "about": "Inkling-2-Mini on Siphon, a Rust and CUDA engine written for this model on one RTX 5090 (sm_120a). The official checkpoint as published (NVFP4 and MXFP8 routed experts), with FP8 copies of the dense weights and an FP8 global KV cache. One request decodes with speculation from the bundled DSpark draft. Sampling runs on the GPU, with the checkpoint's generation_config for fields a request leaves out (temperature 1). Sampled speculation keeps the model's filtered distribution exactly, and greedy speculation returns exactly the tokens of plain greedy decode. A prefix cache keeps the last prompt's state, so a follow-up turn prefills only its new tokens. 131,072-token context, one stream. The image is built from siphon-engine cc36213 by its image workflow, with a build provenance attestation.",
+  "image": "ghcr.io/hxyulin/siphon-engine@sha256:3831a21ed89f4870539d66462c93377e317f8e39fbf29571dfc1e9641886c8ad",
+  "backend": "nvidia",
+  "port": 8000,
+  "entrypoint": "siphon-serve",
+  "args": [
+    "/models/inkling-2-mini",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000",
+    "--context",
+    "131072",
+    "--weights",
+    "fp8",
+    "--kv",
+    "fp8",
+    "--name",
+    "inkling-2-mini"
+  ],
+  "env": {},
+  "shm": null,
+  "weights": [
+    {
+      "repo": "thinkingmachines/Inkling-2-Mini",
+      "revision": "7a67ae2314b44ef05c87fd1d4d311c58aaeb18f6",
+      "at": "/models/inkling-2-mini",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": null,
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "source": "https://github.com/hxyulin/siphon-engine/tree/cc362139e69267bb82c9c7e876d784b5fe18f7c7",
+  "setup": "Needs an RTX 5090 (sm_120a, 32 GB) and a driver for CUDA 13.5 or later. Plans GPU memory before loading: 23.7 GiB at this context, 23.7 GiB in use after warmup. Weights load with mmap and are not kept in system RAM."
+}

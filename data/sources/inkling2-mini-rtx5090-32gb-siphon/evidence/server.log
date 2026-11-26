@@ -1,0 +1,15 @@
+memory plan: 21.32 GiB for 131072 positions (weights 15.88, FP8 copies 1.06, KV 2.00, rings 0.16, prefill 0.85, verify 0.14, draft 0.68, draft KV 0.25, prefix 0.17, runtime 0.12)
+memory budget 29.96 GiB: 30.46 GiB free less a 0.50 GiB margin
+loaded in 4.3 s
+round ms by width: 1: 3.729, 2: 4.183, 3: 4.747, 4: 5.630, 5: 6.222, 6: 6.748, 7: 7.203, 8: 7.784; plain step 2.724, probe 0.568
+prefix cache: 1 entries, 171 MiB of copies, 600 s to live
+memory check: 21.25 GiB of a planned 21.32 GiB in use after warmup (21.22 GiB in buffers, peak 21.22 GiB; 0.03 GiB in modules and graphs)
+warning: listening on 0.0.0.0:8000 without SIPHON_API_KEY
+serving inkling-2-mini on http://0.0.0.0:8000
+job: 24 prompt tokens (0 cached), prefill 18 ms, 121 tokens in 0.26 s (464.6 tok/s, 123 speculated, 0 batched steps, last speculated 120 tokens in 0.26 s (460.7 tok/s, 2.73 tokens per round, 0 plain steps, 0 probes, draft 0.519 ms per round, acceptance by position [66.7%, 40.0%, 24.4%, 15.6%, 11.1%, 8.9%, 6.7%])), Stop
+memory check: peak 21790 MiB of a planned 21831 MiB after a job
+job: 30 prompt tokens (0 cached), prefill 18 ms, 44 tokens in 0.08 s (557.8 tok/s, 45 speculated, 0 batched steps, last speculated 43 tokens in 0.08 s (545.1 tok/s, 3.46 tokens per round, 0 plain steps, 0 probes, draft 0.515 ms per round, acceptance by position [92.3%, 53.8%, 38.5%, 30.8%, 23.1%, 7.7%, 0.0%])), Stop
+job: 120 prompt tokens (0 cached), prefill 26 ms, 90 tokens in 0.13 s (708.2 tok/s, 91 speculated, 0 batched steps, last speculated 89 tokens in 0.13 s (700.4 tok/s, 4.33 tokens per round, 0 plain steps, 0 probes, draft 0.526 ms per round, acceptance by position [90.5%, 61.9%, 47.6%, 38.1%, 33.3%, 33.3%, 28.6%])), Stop
+job: 197 prompt tokens (0 cached), prefill 32 ms, 153 tokens in 0.26 s (580.2 tok/s, 155 speculated, 0 batched steps, last speculated 152 tokens in 0.26 s (576.4 tok/s, 3.37 tokens per round, 0 plain steps, 0 probes, draft 0.527 ms per round, acceptance by position [69.6%, 65.2%, 37.0%, 28.3%, 21.7%, 10.9%, 4.3%])), Stop
+job: 91891 prompt tokens (0 cached), prefill 6570 ms, 123 tokens in 0.26 s (474.2 tok/s, 125 speculated, 0 batched steps, last speculated 122 tokens in 0.26 s (470.4 tok/s, 3.57 tokens per round, 0 plain steps, 0 probes, draft 0.836 ms per round, acceptance by position [71.4%, 57.1%, 34.3%, 31.4%, 28.6%, 22.9%, 11.4%])), Stop
+job: 31 prompt tokens (0 cached), prefill 18 ms, 3070 tokens in 6.01 s (511.1 tok/s, 3072 speculated, 0 batched steps, last speculated 3069 tokens in 6.01 s (510.9 tok/s, 2.87 tokens per round, 0 plain steps, 0 probes, draft 0.530 ms per round, acceptance by position [63.0%, 39.0%, 24.2%, 20.5%, 17.1%, 13.9%, 9.6%])), Stop
