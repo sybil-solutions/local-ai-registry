@@ -408,12 +408,12 @@ def run_gates(endpoint, launch, ev, ok):
     ok["chat"] = bool((c["message"].get("content") or "").strip()) and c.get("finish_reason") == "stop"
     ev["chat"] = {"content": c["message"].get("content"), "finish": c.get("finish_reason")}
     # reasoning: thinking comes back separately, and the answer is right
-    c, u, _ = chat(endpoint, served, [{"role": "user", "content": "What is 17 * 23? Reply with only the number."}])
+    c, u, _ = chat(endpoint, served, [{"role": "user", "content": "A train departs at 14:35 and arrives at 17:10. A second train on the same route is 25 minutes faster. How many minutes does the second train take? Reply with only the number."}])
     thinking = c["message"].get("reasoning_content") or c["message"].get("reasoning") or ""
     content = c["message"].get("content") or ""
-    # the answer must be the number itself: "3910" or "the 391st shipment" do not answer 17 x 23
+    # the answer must be the number itself: "1300" or "the 130th train" do not answer the question
     numbers = {int(n) for n in re.findall(r"\b\d+\b", content)}
-    ok["reasoning"] = bool(thinking.strip()) and 391 in numbers and "<think>" not in content
+    ok["reasoning"] = bool(thinking.strip()) and 130 in numbers and "<think>" not in content
     ev["reasoning"] = {"thinking_chars": len(thinking), "content": content[-200:]}
     # tools: a call with the right arguments, then the result used in the reply
     tool = {"type": "function", "function": {"name": "get_weather", "description": "Current weather for a city",

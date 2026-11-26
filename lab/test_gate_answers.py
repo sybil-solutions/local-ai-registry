@@ -35,8 +35,8 @@ class Engine(BaseHTTPRequestHandler):
             return
         if any(m.get("role") == "tool" for m in messages):  # the tool result is in the conversation
             return self.reply(self.answer(messages))
-        if "17 * 23" in said:
-            return self.reply({"content": self.config["reasoning"], "reasoning_content": "17 times 23"})
+        if "second train" in said:
+            return self.reply({"content": self.config["reasoning"], "reasoning_content": "155 minutes, less 25"})
         if "weather in Paris" in said:
             call = {"id": "call_1", "type": "function", "function": {"name": "get_weather", "arguments": '{"city": "Paris"}'}}
             return self.reply({"content": "", "tool_calls": [call]})
@@ -69,7 +69,7 @@ class Engine(BaseHTTPRequestHandler):
 
 class GateAnswerTests(unittest.TestCase):
     def setUp(self):
-        self.config = {"reasoning": "391", "tools": "use"}
+        self.config = {"reasoning": "130", "tools": "use"}
         owner = self
 
         class Handler(Engine):
@@ -86,13 +86,13 @@ class GateAnswerTests(unittest.TestCase):
         return lab.gates(f"http://127.0.0.1:{self.server.server_port}", {"ctx": 32768})[2]
 
     def test_reasoning_gate_needs_the_number_itself(self):
-        for answer in ("3910", "13915", "The 391st shipment"):
+        for answer in ("1300", "21305", "The 130th train"):
             with self.subTest(answer=answer):
                 self.config["reasoning"] = answer
                 self.assertFalse(self.gates()["ok"]["reasoning"])
 
     def test_reasoning_gate_accepts_the_number(self):
-        for answer in ("391", "391.", "17 * 23 = 391"):
+        for answer in ("130", "130.", "155 - 25 = 130"):
             with self.subTest(answer=answer):
                 self.config["reasoning"] = answer
                 self.assertTrue(self.gates()["ok"]["reasoning"])
