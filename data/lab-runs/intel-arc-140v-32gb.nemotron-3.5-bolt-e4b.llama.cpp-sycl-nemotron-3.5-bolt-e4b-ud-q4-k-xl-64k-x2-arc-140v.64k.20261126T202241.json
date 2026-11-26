@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "nemotron-3.5-bolt-e4b",
+  "weights": "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF@b738967d6da3441a7d1c71fcec15e49e32e16ecd",
+  "engine": "llama.cpp-sycl-nemotron-3.5-bolt-e4b-ud-q4-k-xl-64k-x2-arc-140v@cb375b2eea76",
+  "set": {},
+  "card": "intel-arc-140v-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc 140V iGPU (Core Ultra 7 258V, 32 GB shared; on AC, balanced power profile)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-26",
+  "on": "owner",
+  "gpu": "Intel Arc 140V iGPU (Core Ultra 7 258V, 32 GB shared; on AC, balanced power profile)",
+  "launch_sha256": "edd70c055f76ffa0e24083e990c62a755780a1fc0bf660d65b4729167a385c38",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 17.1,
+  "prefill": 661,
+  "served": "NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 571,
+   "content": "130"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "ftIm5C6b0REdPxmIyXu5xMOipuEZZECw"
+    }
+   ],
+   "reply": "The weather in Paris right now is 17°C and overcast.\n0ebb3148",
+   "code": "0ebb3148",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 1422
+  },
+  "context": {
+   "prompt_tokens": 52589,
+   "seconds": 79.6,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 513,
+   "tokens_total": 868,
+   "seconds_total": 51.8,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 661,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}
