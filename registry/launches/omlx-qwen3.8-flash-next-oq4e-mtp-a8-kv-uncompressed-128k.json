@@ -1,0 +1,54 @@
+{
+  "id": "omlx-qwen3.8-flash-next-oq4e-mtp-a8-kv-uncompressed-128k",
+  "kind": "host",
+  "engine": "omlx",
+  "about": "Qwen3.8-Flash-Next (oQ4e, mtp-a8-kv-uncompressed, 128K) on oMLX 0.8.0",
+  "command": [
+    "omlx",
+    "serve",
+    "--base-path",
+    "omlx/state/a8-kv-uncompressed",
+    "--model-dir",
+    "models/omlx",
+    "--no-hf-cache",
+    "--no-cache",
+    "--headless",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18080",
+    "--max-concurrent-requests",
+    "1"
+  ],
+  "install": "Use a Python 3.13 virtual environment on Apple silicon macOS (15 or later)",
+  "pip": [
+    "omlx @ https://github.com/jundot/omlx/releases/download/v0.8.0/omlx-0.8.0-cp313-cp313-macosx_15_0_universal2.whl#sha256=b6f579145b5b982bd877f321b9718d74e9ce57264138346ca6850c4e75250c8c"
+  ],
+  "env": {
+    "HF_HOME": "omlx/state/a8-kv-uncompressed/hf",
+    "HF_HUB_OFFLINE": "1",
+    "OMLX_MARKITDOWN_ENABLED": "false",
+    "OMLX_MARKITDOWN_EXPOSE_MODEL": "false",
+    "PYTHONNOUSERSITE": "1",
+    "XDG_CACHE_HOME": "omlx/state/a8-kv-uncompressed/cache"
+  },
+  "port": 18080,
+  "weights": [
+    {
+      "repo": "Jundot/Qwen3.8-Flash-Next-oQ4e-mtp",
+      "revision": "b1fed839da5132038abb0e09ebf626064b7f8e21",
+      "at": "models/omlx/Qwen3.8-Flash-Next-oQ4e-mtp",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "omlx/state/a8-kv-uncompressed/model_settings.json",
+    "text": "{\n  \"version\": 2,\n  \"models\": {\n    \"Qwen3.8-Flash-Next-oQ4e-mtp\": {\n      \"max_context_window\": 131072,\n      \"max_tokens\": 131072,\n      \"temperature\": 0.8,\n      \"top_p\": 0.8,\n      \"top_k\": 42,\n      \"force_sampling\": false,\n      \"enable_thinking\": true,\n      \"thinking_budget_enabled\": false,\n      \"turboquant_kv_enabled\": false,\n      \"turboquant_kv_scheme\": \"turboquant\",\n      \"turboquant_kv_bits\": 4,\n      \"turboquant_skip_last\": true,\n      \"a8_prefill_enabled\": true,\n      \"qwen4_ple_ssd_offload\": true,\n      \"moe_expert_offload_enabled\": false,\n      \"mtp_enabled\": true,\n      \"mtp_adaptive_max_depth\": 6,\n      \"is_pinned\": true,\n      \"is_default\": true,\n      \"qwen35_ane_prefill_enabled\": false\n    }\n  }\n}\n"
+  },
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal",
+  "variant": "a8-kv-uncompressed"
+}
