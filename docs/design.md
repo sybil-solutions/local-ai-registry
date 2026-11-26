@@ -22,7 +22,7 @@ The registry answers one question for a program: on this GPU, which model should
 |---|---|
 | load | The server lists the model within an hour |
 | chat | A plain question gets an answer that ends on its own |
-| reasoning | The thinking comes back separately and 17 × 23 is answered 391 |
+| reasoning | The thinking comes back separately and a two-step train question is answered 130 |
 | tools | A weather tool is called with the right city, and its result is used in the reply |
 | context | A code planted in a prompt filling ~85% of the window is recalled |
 | speed | Decode over the first 30 seconds of an answer is at least 15 tok/s |
