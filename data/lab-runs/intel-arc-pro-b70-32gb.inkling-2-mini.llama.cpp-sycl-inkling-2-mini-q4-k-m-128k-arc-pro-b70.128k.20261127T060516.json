@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "lmstudio-community/Inkling-2-Mini-GGUF@23c938b028945d4b0fa9f71fb603b5cd1a683e71",
+  "engine": "llama.cpp-sycl-inkling-2-mini-q4-k-m-128k-arc-pro-b70@20fa6fdf5f98",
+  "set": {},
+  "card": "intel-arc-pro-b70-32gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner)"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-27",
+  "on": "owner",
+  "gpu": "Intel Arc Pro B70 32 GB (owner)",
+  "launch_sha256": "f420e94c7fc2bc57c7ff7bcccff6b2dfef45d66f6ddee75732d7bd37ec8254b7",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 82.3,
+  "prefill": 3378,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "Red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 123,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "iWtKI7gIzKji0rJWBrlOWoSf8X5QBRpD"
+    }
+   ],
+   "reply": "Paris is overcast at 17°C. Code: `0c291cf9`",
+   "code": "0c291cf9",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 574
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 27.2,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 19.2,
+   "tokens_in_window": 1578,
+   "tokens_total": 1578,
+   "seconds_total": 20.9,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 3378,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

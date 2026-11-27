@@ -1,0 +1,3 @@
+[lab 22:05:16] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 82.3 tok/s, prefill 3378 tok/s; evidence lab/runs/intel-arc-pro-b70-32gb.inkling-2-mini.llama.cpp-sycl-inkling-2-mini-q4-k-m-128k-arc-pro-b70.128k.20261127T060516.json
+[lab 22:05:16] PASSED: wrote registry/recipes/intel/intel-arc-pro-b70-32gb/inkling-2-mini.llama.cpp.128k.json (538 bytes)
+lab exit 0

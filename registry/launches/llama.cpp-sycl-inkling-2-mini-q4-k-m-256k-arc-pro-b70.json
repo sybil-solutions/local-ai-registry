@@ -1,0 +1,70 @@
+{
+  "id": "llama.cpp-sycl-inkling-2-mini-q4-k-m-256k-arc-pro-b70",
+  "engine": "llama.cpp",
+  "about": "Inkling-2-Mini (GGUF · Q4_K_M) on SYCL (Thotheris/llama.cpp inkling2-b70, built from source), Intel Arc Pro B70 32 GB: flash attention on, batch and micro-batch 2048, all layers on the GPU, one slot",
+  "image": null,
+  "backend": "intel-xpu",
+  "port": 8080,
+  "entrypoint": null,
+  "args": [
+    "-m",
+    "/models/Inkling-2-Mini-Q4_K_M.gguf",
+    "--alias",
+    "inkling-2-mini",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "262144",
+    "--n-gpu-layers",
+    "999",
+    "--parallel",
+    "1",
+    "--flash-attn",
+    "on",
+    "--batch-size",
+    "2048",
+    "--ubatch-size",
+    "2048",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "1.0",
+    "--top-k",
+    "0",
+    "--min-p",
+    "0.0",
+    "--no-mmproj",
+    "--metrics"
+  ],
+  "env": {
+    "ONEAPI_DEVICE_SELECTOR": "level_zero:0",
+    "GGML_SYCL_ENABLE_GRAPH": "1"
+  },
+  "shm": "8g",
+  "weights": [
+    {
+      "repo": "lmstudio-community/Inkling-2-Mini-GGUF",
+      "revision": "23c938b028945d4b0fa9f71fb603b5cd1a683e71",
+      "at": "/models",
+      "layout": "dir",
+      "files": "Inkling-2-Mini-Q4_K_M.gguf"
+    }
+  ],
+  "config": null,
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "cards": 1,
+  "build": {
+    "repo": "Thotheris/llama.cpp",
+    "commit": "20fa6fdf5f98dfe830db17acb2296699fd7bfb63",
+    "dockerfile": ".devops/intel-b70.Dockerfile"
+  },
+  "setup": "Build the image from the pinned commit with .devops/intel-b70.Dockerfile. The first start compiles the GPU kernels, which takes about 60 s. Mount a volume at /root/.cache to keep them between starts. Do not set SYCL_CACHE_PERSISTENT=1.",
+  "source": "https://github.com/Thotheris/llama.cpp/blob/20fa6fdf5f98dfe830db17acb2296699fd7bfb63/docs/backend/SYCL-Inkling2-B70.md"
+}
