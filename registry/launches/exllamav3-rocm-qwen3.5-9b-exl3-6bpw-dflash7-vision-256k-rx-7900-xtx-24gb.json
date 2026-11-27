@@ -1,0 +1,43 @@
+{
+  "id": "exllamav3-rocm-qwen3.5-9b-exl3-6bpw-dflash7-vision-256k-rx-7900-xtx-24gb",
+  "kind": "host",
+  "engine": "exllamav3",
+  "about": "Qwen3.5-9B EXL3 6.00 bpw with the matched BF16 DFlash draft, seven proposed tokens, FP16 caches and GPU vision on one RX 7900 XTX.",
+  "command": [
+    "serve/run.sh"
+  ],
+  "install": "https://github.com/kamm3r/exl3-rdna3-recipe/tree/7b1005395a4d7f48c964d8cda1a859d944444a7a",
+  "env": {
+    "HIP_VISIBLE_DEVICES": "0"
+  },
+  "port": 5092,
+  "weights": [
+    {
+      "repo": "turboderp/Qwen3.5-9B-exl3",
+      "revision": "12be39d7c7e43be1c7ce5aaebb210869be1586bb",
+      "at": "models/Qwen3.5-9B-exl3-6.00bpw",
+      "layout": "dir"
+    },
+    {
+      "repo": "z-lab/Qwen3.5-9B-DFlash",
+      "revision": "5fc3b3d474760f18c516db87d84c37edbfd3ede6",
+      "at": "draft-models/Qwen3.5-9B-DFlash",
+      "layout": "dir"
+    }
+  ],
+  "config": {
+    "at": "serve/config.yml",
+    "text": "network:\n  host: 127.0.0.1\n  port: 5092\n  disable_auth: true\n  allowed_origins: []\nlogging:\n  log_prompt: false\n  log_requests: false\nmodel:\n  model_dir: ../models\n  model_name: Qwen3.5-9B-exl3-6.00bpw\n  backend: exllamav3\n  max_seq_len: 262144\n  cache_size: 262144\n  cache_mode: FP16\n  max_batch_size: 1\n  chunk_size: 8192\n  vision: true\n  vision_offload: false\n  reasoning: true\n  tool_format: qwen3_coder\ndraft_model:\n  draft_mode: model\n  draft_model_dir: ../draft-models\n  draft_model_name: Qwen3.5-9B-DFlash\n  draft_cache_mode: FP16\n  draft_num_tokens: 7\nsampling:\n  override_preset: null\n  temperature:\n    override: 1.0\n    force: false\n  top_p:\n    override: 0.95\n    force: false\n  top_k:\n    override: 20\n    force: false\n  min_p:\n    override: 0.0\n    force: false\n  presence_penalty:\n    override: 1.5\n    force: false\n  repetition_penalty:\n    override: 1.0\n    force: false\n"
+  },
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": true,
+  "backend": "amd-rocm",
+  "needs": {
+    "host_ram_gb": 8,
+    "disk_gb": 11.53
+  },
+  "setup": "Linux gfx1100; host amdgpu driver and uv. Run setup/install.sh from the pinned install repository, download the pinned weights to the stated directory, and replace serve/config.yml with this launch config. Python 3.12, TabbyAPI e086a65, ExLlamaV3 1.6.3 and PyTorch 2.13.0 ROCm 10.0.0 are pinned by its package lock. No transformer-layer or vision-encoder offload; upstream keeps the unquantized token embedding table in host RAM. Disable the Ryzen iGPU with HIP_VISIBLE_DEVICES=0. Loopback port 5091. Host launch; not offered by the Docker-only plugin. Download the second pinned weights repository as well. DFlash uses the original BF16 weights and a seven-token draft window; no server or kernel patches. The draft shares the target vocabulary/head through upstream ExLlamaV3. General thinking defaults follow the Qwen model card (temperature 1.0, top_p 0.95, top_k 20, min_p 0, presence_penalty 1.5, repetition_penalty 1); clients can override them. For precise coding, send temperature 0.6 and presence_penalty 0. Keep the draft in draft-models/, separate from target models/, so /v1/models advertises only the target and acceptance records its correct served name.",
+  "source": "https://github.com/kamm3r/exl3-rdna3-recipe/tree/7b1005395a4d7f48c964d8cda1a859d944444a7a",
+  "variant": "dflash"
+}
