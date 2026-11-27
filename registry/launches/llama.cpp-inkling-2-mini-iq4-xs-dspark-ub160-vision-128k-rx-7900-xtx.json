@@ -1,8 +1,8 @@
 {
-  "id": "llama.cpp-inkling-2-mini-iq4-xs-dspark-ub128-vision-128k-rx-7900-xtx",
+  "id": "llama.cpp-inkling-2-mini-iq4-xs-dspark-ub160-vision-128k-rx-7900-xtx",
   "kind": "host",
   "engine": "llama.cpp",
-  "about": "Inkling 2 Mini UD-IQ4_XS with the F16 vision projector at 131,072 tokens on one RX 7900 XTX. Uses llama.cpp ROCm, q8_0 KV, flash attention, DSpark draft depth 3, a microbatch of 128, and one slot.",
+  "about": "Inkling 2 Mini UD-IQ4_XS with the F16 vision projector at 131,072 tokens on one RX 7900 XTX. Uses llama.cpp ROCm, q8_0 KV, flash attention, DSpark draft depth 3 and draft microbatch 128, a microbatch of 160, and one slot.",
   "command": [
     "bin/llama-server",
     "-m",
@@ -24,7 +24,7 @@
     "-ctv",
     "q8_0",
     "-ub",
-    "128",
+    "160",
     "--cache-ram",
     "0",
     "--temp",
@@ -55,7 +55,9 @@
     "-ctkd",
     "q8_0",
     "-ctvd",
-    "q8_0"
+    "q8_0",
+    "--spec-draft-n-ubatch",
+    "128"
   ],
   "install": "https://github.com/unslothai/llama.cpp/releases/download/b12572-mix-8eebad4/app-b12572-mix-8eebad4-linux-x64-rocm-gfx110X.tar.gz#sha256=a5c5f510eb6811a5567985f93669cce6931fc221926606691746ccf09d87a71f",
   "env": {

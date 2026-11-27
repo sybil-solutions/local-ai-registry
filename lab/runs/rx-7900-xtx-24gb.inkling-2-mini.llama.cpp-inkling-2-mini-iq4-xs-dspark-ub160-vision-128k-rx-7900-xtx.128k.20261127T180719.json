@@ -2,7 +2,7 @@
  "recipe": {
   "model": "inkling-2-mini",
   "weights": "unsloth/Inkling-2-Mini-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
-  "engine": "llama.cpp-inkling-2-mini-iq4-xs-dspark-ub128-vision-128k-rx-7900-xtx@d59d1351424e",
+  "engine": "llama.cpp-inkling-2-mini-iq4-xs-dspark-ub160-vision-128k-rx-7900-xtx@f7e9ab80ec3b",
   "set": {},
   "card": "rx-7900-xtx-24gb"
  },
@@ -15,10 +15,10 @@
   "at": "2026-11-27",
   "on": "owner",
   "gpu": "AMD Radeon RX 7900 XTX",
-  "launch_sha256": "fd288d4b085155e3860da3ba45eaac882f466e3a9238c39277b58f67173dfa0b",
+  "launch_sha256": "6e4e7d604e09326dafe21a2300462e809e37e3afff5ff0a9e7e3b31bba48f83a",
   "gates": "load chat reasoning tools context speed",
-  "tps": 33.6,
-  "prefill": 335,
+  "tps": 33.7,
+  "prefill": 347,
   "served": "inkling-2-mini"
  },
  "evidence": {
@@ -34,14 +34,16 @@
    "--spec-type",
    "draft-dspark",
    "--spec-draft-n-max",
-   "3"
+   "3",
+   "--spec-draft-n-ubatch",
+   "128"
   ],
   "chat": {
    "content": "Red, yellow, blue",
    "finish": "stop"
   },
   "reasoning": {
-   "thinking_chars": 97,
+   "thinking_chars": 102,
    "content": "391"
   },
   "tools": {
@@ -52,30 +54,30 @@
       "name": "get_weather",
       "arguments": "{\"city\":\"Paris\"}"
      },
-     "id": "xLx0Nf1VpTOFO5coFUjR1LeQqIIjzwNd"
+     "id": "YARhEBw9Quy58cTf5C2a3pNupKgKdlFx"
     }
    ],
-   "reply": "Paris right now: 17°C, overcast. Code: `9d85cec3`",
-   "code": "9d85cec3",
+   "reply": "Paris right now: 17°C, overcast. Code: 5c3639ed",
+   "code": "5c3639ed",
    "finish": "stop",
    "calls_again": 0,
-   "thinking_chars": 503
+   "thinking_chars": 397
   },
   "context": {
    "prompt_tokens": 91890,
-   "seconds": 274.2,
+   "seconds": 264.9,
    "content": "58213"
   },
   "speed": {
    "window_s": 30.0,
-   "tokens_in_window": 1009,
-   "tokens_total": 1245,
-   "seconds_total": 37.3,
+   "tokens_in_window": 1013,
+   "tokens_total": 1237,
+   "seconds_total": 37.4,
    "counted": "tokenizer",
    "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
   },
   "prefill": {
-   "value": 335,
+   "value": 347,
    "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
   }
  },
