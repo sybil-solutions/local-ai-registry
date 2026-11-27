@@ -1,8 +1,8 @@
 {
-  "id": "llama.cpp-inkling-2-mini-iq4-xs-128k-rx-7900-xtx",
+  "id": "llama.cpp-inkling-2-mini-iq4-xs-dspark-ub128-vision-128k-rx-7900-xtx",
   "kind": "host",
   "engine": "llama.cpp",
-  "about": "Inkling 2 Mini UD-IQ4_XS at 128K on one RX 7900 XTX using llama.cpp ROCm. Text serving with q8_0 KV, flash attention and one slot.",
+  "about": "Inkling 2 Mini UD-IQ4_XS with the F16 vision projector at 131,072 tokens on one RX 7900 XTX. Uses llama.cpp ROCm, q8_0 KV, flash attention, DSpark draft depth 3, a microbatch of 128, and one slot.",
   "command": [
     "bin/llama-server",
     "-m",
@@ -41,7 +41,21 @@
     "--host",
     "127.0.0.1",
     "--port",
-    "18080"
+    "18080",
+    "--mmproj",
+    "models/Inkling-2-Mini-GGUF-ea0c79b2/mmproj-F16.gguf",
+    "-md",
+    "models/Inkling-2-Mini-GGUF-ea0c79b2/dspark-Inkling-2-Mini-Q8_0.gguf",
+    "--spec-type",
+    "draft-dspark",
+    "--spec-draft-n-max",
+    "3",
+    "-ngld",
+    "all",
+    "-ctkd",
+    "q8_0",
+    "-ctvd",
+    "q8_0"
   ],
   "install": "https://github.com/unslothai/llama.cpp/releases/download/b12572-mix-8eebad4/app-b12572-mix-8eebad4-linux-x64-rocm-gfx110X.tar.gz#sha256=a5c5f510eb6811a5567985f93669cce6931fc221926606691746ccf09d87a71f",
   "env": {
@@ -55,13 +69,15 @@
       "at": "models/Inkling-2-Mini-GGUF-ea0c79b2",
       "layout": "dir",
       "files": [
-        "Inkling-2-Mini-UD-IQ4_XS.gguf"
+        "Inkling-2-Mini-UD-IQ4_XS.gguf",
+        "mmproj-F16.gguf",
+        "dspark-Inkling-2-Mini-Q8_0.gguf"
       ]
     }
   ],
   "ctx": 131072,
   "seqs": 1,
-  "vision": false,
+  "vision": true,
   "backend": "amd-rocm",
   "setup": "On Linux x86-64 with AMDGPU and access to /dev/kfd and the render node, unpack the ROCm archive into bin/ next to models/. Use ROCm0 for the RX 7900 XTX, as reported by llama-server --list-devices.",
   "source": "https://github.com/unslothai/llama.cpp/releases/tag/b12572-mix-8eebad4"

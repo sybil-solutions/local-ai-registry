@@ -1,0 +1,44 @@
+{
+  "prompt": "What is the dominant color in this image? Reply with one word.",
+  "image": "256\u00d7256 solid RGB(231,15,23)",
+  "profile": "llama.cpp-inkling-2-mini-iq4-xs-dspark-ub128-vision-128k-rx-7900-xtx",
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Red",
+          "reasoning_content": "The user is asking about the dominant color in the image. The image appears to be a solid red square with maybe some artifacts. Dominant color is red. Need to reply with one word."
+        }
+      }
+    ],
+    "created": 1795791617,
+    "model": "inkling-2-mini",
+    "system_fingerprint": "b12572-a5ba2dd76",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 47,
+      "prompt_tokens": 81,
+      "total_tokens": 128,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-g2oUXoKF6Sf8Zy2lEOByZ1X0u7Kx1Uaq",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 81,
+      "prompt_ms": 708.423,
+      "prompt_per_token_ms": 8.745962962962963,
+      "prompt_per_second": 114.33846727167243,
+      "predicted_n": 47,
+      "predicted_ms": 1008.268,
+      "predicted_per_token_ms": 21.918869565217392,
+      "predicted_per_second": 45.62279076594715,
+      "draft_n": 57,
+      "draft_n_accepted": 27
+    }
+  }
+}
