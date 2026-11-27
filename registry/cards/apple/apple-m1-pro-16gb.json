@@ -1,0 +1,16 @@
+{
+  "id": "apple-m1-pro-16gb",
+  "name": "Apple M1 Pro",
+  "vendor": "apple",
+  "backend": "metal",
+  "vram_gb": 16,
+  "bandwidth_gb_s": 200,
+  "match": {
+    "backend": "metal",
+    "name": "Apple M1 Pro",
+    "names": [
+      "applem1pro"
+    ],
+    "vramGb": 16
+  }
+}
