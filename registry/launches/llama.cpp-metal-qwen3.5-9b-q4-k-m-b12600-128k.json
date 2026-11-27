@@ -1,0 +1,63 @@
+{
+  "id": "llama.cpp-metal-qwen3.5-9b-q4-k-m-b12600-128k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Qwen3.5-9B (Q4_K_M, 100% GPU resident, q8_0 KV, 128K) on llama.cpp b12600 Metal",
+  "command": [
+    "llama-b12600/llama-server",
+    "-m",
+    "models/unsloth-Qwen3.5-9B-GGUF-3885219b/Qwen3.5-9B-Q4_K_M.gguf",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ngl",
+    "999",
+    "-b",
+    "2048",
+    "-ub",
+    "512",
+    "--no-mmproj",
+    "--cache-ram",
+    "0",
+    "--poll",
+    "0",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--alias",
+    "Qwen3.5-9B-Q4_K_M",
+    "--metrics",
+    "--no-ui",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18090"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12600/llama-b12600-bin-macos-arm64.tar.gz#sha256=9ced6f8cbce915968a865ded7718c2c4d14a69876bf9abf544533aec9b76e975",
+  "env": {},
+  "port": 18090,
+  "weights": [
+    {
+      "repo": "unsloth/Qwen3.5-9B-GGUF",
+      "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+      "at": "models/unsloth-Qwen3.5-9B-GGUF-3885219b",
+      "layout": "dir",
+      "files": [
+        "Qwen3.5-9B-Q4_K_M.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
