@@ -1,0 +1,54 @@
+{
+  "id": "omlx-glm-5.3-flash-oq2e-mtp-offload90-tq4-mtp6-128k",
+  "kind": "host",
+  "engine": "omlx",
+  "about": "GLM-5.3-Flash (oQ2e, Lightning MTP, 128K) on oMLX 0.8.0 (offload90-tq4-mtp6)",
+  "command": [
+    "omlx",
+    "serve",
+    "--base-path",
+    "omlx/state/glm-offload90-tq4-mtp6-128k",
+    "--model-dir",
+    "models/glm",
+    "--no-hf-cache",
+    "--no-cache",
+    "--headless",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18080",
+    "--max-concurrent-requests",
+    "1"
+  ],
+  "install": "Use a Python 3.13 virtual environment on Apple silicon macOS (15 or later)",
+  "pip": [
+    "omlx @ https://github.com/jundot/omlx/releases/download/v0.8.0/omlx-0.8.0-cp313-cp313-macosx_15_0_universal2.whl#sha256=b6f579145b5b982bd877f321b9718d74e9ce57264138346ca6850c4e75250c8c"
+  ],
+  "env": {
+    "HF_HOME": "omlx/state/glm-offload90-tq4-mtp6-128k/hf",
+    "HF_HUB_OFFLINE": "1",
+    "OMLX_MARKITDOWN_ENABLED": "false",
+    "OMLX_MARKITDOWN_EXPOSE_MODEL": "false",
+    "PYTHONNOUSERSITE": "1",
+    "XDG_CACHE_HOME": "omlx/state/glm-offload90-tq4-mtp6-128k/cache"
+  },
+  "port": 18080,
+  "weights": [
+    {
+      "repo": "Jundot/GLM-5.3-Flash-oQ2e-mtp",
+      "revision": "1ded42263305c0389534aa9a0f8905d373ef1e19",
+      "at": "models/glm/GLM-5.3-Flash-oQ2e-mtp",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "omlx/state/glm-offload90-tq4-mtp6-128k/model_settings.json",
+    "text": "{\n  \"version\": 2,\n  \"models\": {\n    \"GLM-5.3-Flash-oQ2e-mtp\": {\n      \"max_context_window\": 131072,\n      \"max_tokens\": 32768,\n      \"temperature\": 1.0,\n      \"top_p\": 0.95,\n      \"force_sampling\": false,\n      \"thinking_budget_enabled\": false,\n      \"guided_grammar_enabled\": false,\n      \"turboquant_kv_enabled\": true,\n      \"activation_fp16_enabled\": false,\n      \"moe_expert_offload_enabled\": true,\n      \"specprefill_enabled\": false,\n      \"dflash_enabled\": false,\n      \"vlm_mtp_enabled\": false,\n      \"a8_prefill_enabled\": false,\n      \"qwen35_ane_prefill_enabled\": false,\n      \"mtp_enabled\": true,\n      \"mtp_adaptive_max_depth\": 6,\n      \"is_pinned\": true,\n      \"is_default\": true,\n      \"moe_expert_offload_resident_fraction\": 0.9,\n      \"turboquant_kv_scheme\": \"turboquant\",\n      \"turboquant_kv_bits\": 4,\n      \"turboquant_skip_last\": true\n    }\n  }\n}\n"
+  },
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal",
+  "variant": "offload90-tq4-mtp6"
+}
