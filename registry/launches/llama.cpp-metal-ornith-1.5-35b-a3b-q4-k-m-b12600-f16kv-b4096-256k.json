@@ -1,0 +1,60 @@
+{
+  "id": "llama.cpp-metal-ornith-1.5-35b-a3b-q4-k-m-b12600-f16kv-b4096-256k",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Ornith-1.5-35B-A3B (Q4_K_M, f16 KV, b4096) on llama.cpp b12600 Metal, 256K",
+  "command": [
+    "llama-b12600/llama-server",
+    "-m",
+    "models/ornith-ai-Ornith-1.5-35B-A3B-GGUF-12393612/Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+    "-c",
+    "262144",
+    "-np",
+    "1",
+    "-fit",
+    "off",
+    "-fa",
+    "on",
+    "-ctk",
+    "f16",
+    "-ctv",
+    "f16",
+    "-ngl",
+    "99",
+    "-b",
+    "4096",
+    "-ub",
+    "2048",
+    "--no-mmproj",
+    "--jinja",
+    "--reasoning-format",
+    "deepseek",
+    "--alias",
+    "Ornith-1.5-35B-A3B-GGUF",
+    "--metrics",
+    "--no-ui",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18084"
+  ],
+  "install": "https://github.com/ggml-org/llama.cpp/releases/download/b12600/llama-b12600-bin-macos-arm64.tar.gz#sha256=9ced6f8cbce915968a865ded7718c2c4d14a69876bf9abf544533aec9b76e975",
+  "env": {},
+  "port": 18084,
+  "weights": [
+    {
+      "repo": "ornith-ai/Ornith-1.5-35B-A3B-GGUF",
+      "revision": "12393612fd4f730ff5aadc23e9b8f9648aa49ceb",
+      "at": "models/ornith-ai-Ornith-1.5-35B-A3B-GGUF-12393612/Q4_K_M",
+      "layout": "dir",
+      "files": [
+        "Ornith-1.5-35B-Q4_K_M.gguf"
+      ]
+    }
+  ],
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal",
+  "variant": "f16kv-b4096"
+}
