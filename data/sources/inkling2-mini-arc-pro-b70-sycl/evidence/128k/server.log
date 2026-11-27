@@ -1,0 +1,338 @@
+warn: LLAMA_ARG_HOST environment variable is set, but will be overwritten by command line argument --host
+warn: LLAMA_ARG_PORT environment variable is set, but will be overwritten by command line argument --port
+0.00.356.180 I srv  llama_server: initializing ...
+0.00.356.200 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.357.511 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.359.664 I srv    load_model: loading model '/models/Inkling-2-Mini-Q4_K_M.gguf'
+0.00.783.216 W load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+0.00.806.790 W model has unused tensor blk.0.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.806.804 W model has unused tensor blk.0.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.806.810 W model has unused tensor blk.0.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.806.812 W model has unused tensor blk.0.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.806.864 W model has unused tensor blk.1.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.806.878 W model has unused tensor blk.1.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.806.884 W model has unused tensor blk.1.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.806.886 W model has unused tensor blk.1.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.806.936 W model has unused tensor blk.2.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.806.948 W model has unused tensor blk.2.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.806.954 W model has unused tensor blk.2.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.806.957 W model has unused tensor blk.2.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.007 W model has unused tensor blk.3.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.019 W model has unused tensor blk.3.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.025 W model has unused tensor blk.3.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.027 W model has unused tensor blk.3.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.075 W model has unused tensor blk.4.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.086 W model has unused tensor blk.4.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.094 W model has unused tensor blk.4.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.098 W model has unused tensor blk.4.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.147 W model has unused tensor blk.5.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.158 W model has unused tensor blk.5.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.164 W model has unused tensor blk.5.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.167 W model has unused tensor blk.5.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.252 W model has unused tensor blk.6.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.263 W model has unused tensor blk.6.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.268 W model has unused tensor blk.6.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.270 W model has unused tensor blk.6.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.319 W model has unused tensor blk.7.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.332 W model has unused tensor blk.7.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.338 W model has unused tensor blk.7.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.341 W model has unused tensor blk.7.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.390 W model has unused tensor blk.8.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.401 W model has unused tensor blk.8.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.407 W model has unused tensor blk.8.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.410 W model has unused tensor blk.8.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.460 W model has unused tensor blk.9.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.472 W model has unused tensor blk.9.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.478 W model has unused tensor blk.9.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.481 W model has unused tensor blk.9.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.529 W model has unused tensor blk.10.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.543 W model has unused tensor blk.10.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.549 W model has unused tensor blk.10.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.553 W model has unused tensor blk.10.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.604 W model has unused tensor blk.11.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.616 W model has unused tensor blk.11.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.622 W model has unused tensor blk.11.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.626 W model has unused tensor blk.11.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.693 W model has unused tensor blk.12.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.706 W model has unused tensor blk.12.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.713 W model has unused tensor blk.12.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.715 W model has unused tensor blk.12.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.765 W model has unused tensor blk.13.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.780 W model has unused tensor blk.13.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.786 W model has unused tensor blk.13.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.791 W model has unused tensor blk.13.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.844 W model has unused tensor blk.14.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.856 W model has unused tensor blk.14.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.863 W model has unused tensor blk.14.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.865 W model has unused tensor blk.14.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.921 W model has unused tensor blk.15.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.807.933 W model has unused tensor blk.15.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.807.940 W model has unused tensor blk.15.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.807.943 W model has unused tensor blk.15.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.807.995 W model has unused tensor blk.16.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.808.009 W model has unused tensor blk.16.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.808.015 W model has unused tensor blk.16.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.808.018 W model has unused tensor blk.16.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.808.070 W model has unused tensor blk.17.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.808.083 W model has unused tensor blk.17.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.808.090 W model has unused tensor blk.17.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.808.092 W model has unused tensor blk.17.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.808.163 W model has unused tensor blk.18.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.808.175 W model has unused tensor blk.18.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.808.182 W model has unused tensor blk.18.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.808.184 W model has unused tensor blk.18.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.808.243 W model has unused tensor blk.19.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.808.257 W model has unused tensor blk.19.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.808.263 W model has unused tensor blk.19.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.808.268 W model has unused tensor blk.19.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.808.320 W model has unused tensor blk.20.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.808.333 W model has unused tensor blk.20.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.808.341 W model has unused tensor blk.20.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.808.345 W model has unused tensor blk.20.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.808.399 W model has unused tensor blk.21.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.808.412 W model has unused tensor blk.21.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.808.418 W model has unused tensor blk.21.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.808.422 W model has unused tensor blk.21.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.808.476 W model has unused tensor blk.22.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.808.491 W model has unused tensor blk.22.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.808.498 W model has unused tensor blk.22.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.808.501 W model has unused tensor blk.22.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.808.560 W model has unused tensor blk.23.attn_q.weight (size = 3981312 bytes) -- ignoring
+0.00.808.574 W model has unused tensor blk.23.attn_gate.weight (size = 3981312 bytes) -- ignoring
+0.00.808.581 W model has unused tensor blk.23.attn_sink_proj.weight (size = 31104 bytes) -- ignoring
+0.00.808.586 W model has unused tensor blk.23.attn_rel.weight (size = 497664 bytes) -- ignoring
+0.00.808.677 W model has unused tensor blk.6.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.681 W model has unused tensor blk.6.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.683 W model has unused tensor blk.6.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.686 W model has unused tensor blk.6.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.688 W model has unused tensor blk.6.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.690 W model has unused tensor blk.6.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.693 W model has unused tensor blk.6.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.695 W model has unused tensor blk.6.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.698 W model has unused tensor blk.6.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.708 W model has unused tensor blk.6.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.712 W model has unused tensor blk.6.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.735 W model has unused tensor blk.7.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.738 W model has unused tensor blk.7.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.740 W model has unused tensor blk.7.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.743 W model has unused tensor blk.7.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.745 W model has unused tensor blk.7.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.747 W model has unused tensor blk.7.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.750 W model has unused tensor blk.7.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.752 W model has unused tensor blk.7.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.755 W model has unused tensor blk.7.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.764 W model has unused tensor blk.7.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.767 W model has unused tensor blk.7.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.788 W model has unused tensor blk.8.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.791 W model has unused tensor blk.8.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.793 W model has unused tensor blk.8.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.796 W model has unused tensor blk.8.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.798 W model has unused tensor blk.8.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.800 W model has unused tensor blk.8.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.806 W model has unused tensor blk.8.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.809 W model has unused tensor blk.8.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.812 W model has unused tensor blk.8.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.822 W model has unused tensor blk.8.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.826 W model has unused tensor blk.8.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.847 W model has unused tensor blk.9.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.850 W model has unused tensor blk.9.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.852 W model has unused tensor blk.9.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.855 W model has unused tensor blk.9.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.857 W model has unused tensor blk.9.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.859 W model has unused tensor blk.9.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.862 W model has unused tensor blk.9.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.864 W model has unused tensor blk.9.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.866 W model has unused tensor blk.9.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.875 W model has unused tensor blk.9.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.878 W model has unused tensor blk.9.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.901 W model has unused tensor blk.10.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.904 W model has unused tensor blk.10.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.907 W model has unused tensor blk.10.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.910 W model has unused tensor blk.10.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.912 W model has unused tensor blk.10.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.915 W model has unused tensor blk.10.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.918 W model has unused tensor blk.10.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.920 W model has unused tensor blk.10.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.923 W model has unused tensor blk.10.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.932 W model has unused tensor blk.10.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.935 W model has unused tensor blk.10.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.957 W model has unused tensor blk.11.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.960 W model has unused tensor blk.11.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.963 W model has unused tensor blk.11.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.965 W model has unused tensor blk.11.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.968 W model has unused tensor blk.11.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.970 W model has unused tensor blk.11.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.973 W model has unused tensor blk.11.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.808.976 W model has unused tensor blk.11.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.978 W model has unused tensor blk.11.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.808.990 W model has unused tensor blk.11.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.808.993 W model has unused tensor blk.11.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.016 W model has unused tensor blk.12.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.020 W model has unused tensor blk.12.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.022 W model has unused tensor blk.12.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.025 W model has unused tensor blk.12.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.027 W model has unused tensor blk.12.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.030 W model has unused tensor blk.12.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.032 W model has unused tensor blk.12.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.035 W model has unused tensor blk.12.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.037 W model has unused tensor blk.12.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.046 W model has unused tensor blk.12.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.049 W model has unused tensor blk.12.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.073 W model has unused tensor blk.13.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.076 W model has unused tensor blk.13.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.079 W model has unused tensor blk.13.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.082 W model has unused tensor blk.13.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.084 W model has unused tensor blk.13.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.087 W model has unused tensor blk.13.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.089 W model has unused tensor blk.13.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.092 W model has unused tensor blk.13.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.095 W model has unused tensor blk.13.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.104 W model has unused tensor blk.13.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.107 W model has unused tensor blk.13.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.130 W model has unused tensor blk.14.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.134 W model has unused tensor blk.14.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.137 W model has unused tensor blk.14.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.139 W model has unused tensor blk.14.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.142 W model has unused tensor blk.14.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.145 W model has unused tensor blk.14.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.147 W model has unused tensor blk.14.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.150 W model has unused tensor blk.14.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.152 W model has unused tensor blk.14.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.163 W model has unused tensor blk.14.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.167 W model has unused tensor blk.14.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.196 W model has unused tensor blk.15.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.200 W model has unused tensor blk.15.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.203 W model has unused tensor blk.15.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.205 W model has unused tensor blk.15.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.208 W model has unused tensor blk.15.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.210 W model has unused tensor blk.15.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.213 W model has unused tensor blk.15.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.216 W model has unused tensor blk.15.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.218 W model has unused tensor blk.15.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.230 W model has unused tensor blk.15.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.233 W model has unused tensor blk.15.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.256 W model has unused tensor blk.16.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.260 W model has unused tensor blk.16.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.262 W model has unused tensor blk.16.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.265 W model has unused tensor blk.16.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.267 W model has unused tensor blk.16.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.270 W model has unused tensor blk.16.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.272 W model has unused tensor blk.16.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.275 W model has unused tensor blk.16.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.277 W model has unused tensor blk.16.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.287 W model has unused tensor blk.16.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.291 W model has unused tensor blk.16.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.314 W model has unused tensor blk.17.loop_q_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.317 W model has unused tensor blk.17.loop_q_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.320 W model has unused tensor blk.17.loop_q_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.324 W model has unused tensor blk.17.loop_k_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.326 W model has unused tensor blk.17.loop_k_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.329 W model has unused tensor blk.17.loop_k_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.331 W model has unused tensor blk.17.loop_v_ctrl_down.weight (size = 1179648 bytes) -- ignoring
+0.00.809.334 W model has unused tensor blk.17.loop_v_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.336 W model has unused tensor blk.17.loop_v_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.00.809.346 W model has unused tensor blk.17.loop_ffn_ctrl_gain.weight (size = 589824 bytes) -- ignoring
+0.00.809.349 W model has unused tensor blk.17.loop_ffn_ctrl_forget.weight (size = 589824 bytes) -- ignoring
+0.02.983.610 I cmn          init: llama threadpool init, n_threads = 16
+0.56.206.260 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 131072, kv_unified = 'false'
+0.56.243.517 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)
+0.56.243.556 I srv  server_run_i: model loaded
+0.56.243.669 I srv  server_on_li: listening on http://0.0.0.0:8080
+0.57.247.682 I slot       select: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.57.247.737 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+1.35.941.440 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =     12, progress = 0.52, t =  38.69 s / 0.31 tokens per second
+1.35.996.078 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =     19, progress = 0.83, t =  38.75 s / 0.49 tokens per second
+1.37.243.936 I slot print_timing: id  0 | task 0 | prompt eval time =   38787.54 ms /    23 tokens ( 1686.41 ms per token,     0.59 tokens per second)
+1.37.243.940 I slot print_timing: id  0 | task 0 |        eval time =    1208.63 ms /   108 tokens (   11.30 ms per token,    88.53 tokens per second)
+1.37.243.941 I slot print_timing: id  0 | task 0 |       total time =   39996.18 ms /   131 tokens
+1.37.243.943 I slot print_timing: id  0 | task 0 |    graphs reused =        106
+1.37.243.943 I slot print_timing: id  0 | task 0 |   graph reallocs =          1    /     0        (same size) / (changed size)
+1.37.243.964 I slot      release: id  0 | task 0 | stop processing: n_tokens = 130, truncated = 0
+1.37.247.301 I slot       select: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.483 (> 0.100 thold), f_keep = 0.108
+1.37.252.165 I slot launch_slot_: id  0 | task 111 | processing task, is_child = 0
+1.37.897.107 I slot print_timing: id  0 | task 111 | prompt eval time =     116.53 ms /    17 tokens (    6.85 ms per token,   145.89 tokens per second)
+1.37.897.111 I slot print_timing: id  0 | task 111 |        eval time =     528.40 ms /    49 tokens (   11.01 ms per token,    90.84 tokens per second)
+1.37.897.112 I slot print_timing: id  0 | task 111 |       total time =     644.93 ms /    66 tokens
+1.37.897.112 I slot print_timing: id  0 | task 111 |    graphs reused =        155
+1.37.897.113 I slot print_timing: id  0 | task 111 |   graph reallocs =          1    /     0        (same size) / (changed size)
+1.37.897.125 I slot      release: id  0 | task 111 | stop processing: n_tokens = 77, truncated = 0
+1.37.902.279 I slot       select: id  0 | task -1 | selected slot by LRU, n_tokens = 77, t_last = 2846908556939
+1.37.906.803 I slot launch_slot_: id  0 | task 162 | processing task, is_child = 0
+2.54.028.973 I slot print_timing: id  0 | task 162 | prompt processing, n_tokens =     95, progress = 0.80, t =  76.12 s / 1.25 tokens per second
+2.54.638.533 I slot print_timing: id  0 | task 162 | prompt processing, n_tokens =    115, progress = 0.97, t =  76.73 s / 1.50 tokens per second
+2.55.793.013 I slot print_timing: id  0 | task 162 | prompt eval time =   76776.34 ms /   119 tokens (  645.18 ms per token,     1.55 tokens per second)
+2.55.793.017 I slot print_timing: id  0 | task 162 |        eval time =    1109.86 ms /    98 tokens (   11.44 ms per token,    87.40 tokens per second)
+2.55.793.018 I slot print_timing: id  0 | task 162 |       total time =   77886.20 ms /   217 tokens
+2.55.793.018 I slot print_timing: id  0 | task 162 |    graphs reused =        253
+2.55.793.019 I slot print_timing: id  0 | task 162 |   graph reallocs =          1    /     0        (same size) / (changed size)
+2.55.793.034 I slot      release: id  0 | task 162 | stop processing: n_tokens = 216, truncated = 0
+2.55.801.012 I slot       select: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.612 (> 0.100 thold), f_keep = 0.556
+2.55.801.124 I slot launch_slot_: id  0 | task 263 | processing task, is_child = 0
+2.58.219.774 I slot print_timing: id  0 | task 263 | prompt eval time =     123.65 ms /    81 tokens (    1.53 ms per token,   655.08 tokens per second)
+2.58.219.778 I slot print_timing: id  0 | task 263 |        eval time =    2294.99 ms /   204 tokens (   11.31 ms per token,    88.45 tokens per second)
+2.58.219.779 I slot print_timing: id  0 | task 263 |       total time =    2418.64 ms /   285 tokens
+2.58.219.779 I slot print_timing: id  0 | task 263 |    graphs reused =        456
+2.58.219.780 I slot print_timing: id  0 | task 263 |   graph reallocs =          2    /     0        (same size) / (changed size)
+2.58.219.800 I slot      release: id  0 | task 263 | stop processing: n_tokens = 399, truncated = 0
+2.58.366.985 I slot       select: id  0 | task -1 | selected slot by LRU, n_tokens = 399, t_last = 2846988879614
+2.58.378.040 I slot launch_slot_: id  0 | task 469 | processing task, is_child = 0
+3.01.573.980 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  16396, progress = 0.18, t =   3.20 s / 5130.31 tokens per second
+3.01.952.773 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  18444, progress = 0.20, t =   3.57 s / 5159.60 tokens per second
+3.02.341.899 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  20492, progress = 0.22, t =   3.96 s / 5169.75 tokens per second
+3.02.738.599 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  22540, progress = 0.25, t =   4.36 s / 5169.10 tokens per second
+3.03.142.221 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  24588, progress = 0.27, t =   4.76 s / 5161.05 tokens per second
+3.03.554.373 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  26636, progress = 0.29, t =   5.18 s / 5145.76 tokens per second
+3.03.973.717 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  28684, progress = 0.31, t =   5.60 s / 5126.13 tokens per second
+3.04.403.375 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  30732, progress = 0.33, t =   6.03 s / 5100.49 tokens per second
+3.04.845.484 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  32780, progress = 0.36, t =   6.47 s / 5068.49 tokens per second
+3.05.287.999 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  34828, progress = 0.38, t =   6.91 s / 5040.29 tokens per second
+3.05.743.838 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  36876, progress = 0.40, t =   7.37 s / 5006.41 tokens per second
+3.06.209.529 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  38924, progress = 0.42, t =   7.83 s / 4970.21 tokens per second
+3.06.679.981 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  40972, progress = 0.45, t =   8.30 s / 4935.25 tokens per second
+3.07.160.145 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  43020, progress = 0.47, t =   8.78 s / 4898.62 tokens per second
+3.07.646.722 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  45068, progress = 0.49, t =   9.27 s / 4862.41 tokens per second
+3.08.143.520 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  47116, progress = 0.51, t =   9.77 s / 4824.77 tokens per second
+3.08.648.101 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  49164, progress = 0.54, t =  10.27 s / 4787.13 tokens per second
+3.09.165.534 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  51212, progress = 0.56, t =  10.79 s / 4747.36 tokens per second
+3.09.687.510 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  53260, progress = 0.58, t =  11.31 s / 4709.34 tokens per second
+3.10.222.957 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  55308, progress = 0.60, t =  11.84 s / 4669.36 tokens per second
+3.10.764.280 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  57356, progress = 0.62, t =  12.39 s / 4630.63 tokens per second
+3.11.317.064 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  59404, progress = 0.65, t =  12.94 s / 4591.08 tokens per second
+3.11.878.853 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  61452, progress = 0.67, t =  13.50 s / 4551.74 tokens per second
+3.12.442.287 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  63500, progress = 0.69, t =  14.06 s / 4515.01 tokens per second
+3.13.016.565 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  65548, progress = 0.71, t =  14.64 s / 4477.78 tokens per second
+3.13.604.852 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  67596, progress = 0.74, t =  15.23 s / 4439.28 tokens per second
+3.14.200.660 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  69644, progress = 0.76, t =  15.82 s / 4401.56 tokens per second
+3.14.810.930 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  71692, progress = 0.78, t =  16.43 s / 4362.72 tokens per second
+3.15.421.684 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  73740, progress = 0.80, t =  17.04 s / 4326.55 tokens per second
+3.16.046.138 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  75788, progress = 0.82, t =  17.67 s / 4289.55 tokens per second
+3.16.679.632 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  77836, progress = 0.85, t =  18.30 s / 4252.97 tokens per second
+3.17.318.599 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  79884, progress = 0.87, t =  18.94 s / 4217.62 tokens per second
+3.17.971.916 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  81932, progress = 0.89, t =  19.59 s / 4181.52 tokens per second
+3.18.635.004 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  83980, progress = 0.91, t =  20.26 s / 4145.74 tokens per second
+3.19.301.003 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  86028, progress = 0.94, t =  20.92 s / 4111.66 tokens per second
+3.19.985.516 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  88076, progress = 0.96, t =  21.61 s / 4076.19 tokens per second
+3.20.623.365 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  89842, progress = 0.98, t =  22.25 s / 4038.70 tokens per second
+3.21.288.492 I slot print_timing: id  0 | task 469 | prompt processing, n_tokens =  91886, progress = 1.00, t =  22.91 s / 4010.66 tokens per second
+3.24.945.733 I slot print_timing: id  0 | task 469 | n_gen =    174, tg =  57.56 t/s, tg_3s =  57.89 t/s
+3.25.376.856 I slot print_timing: id  0 | task 469 | prompt eval time =   23562.04 ms / 91890 tokens (    0.26 ms per token,  3899.92 tokens per second)
+3.25.376.861 I slot print_timing: id  0 | task 469 |        eval time =    3436.76 ms /   199 tokens (   17.36 ms per token,    57.61 tokens per second)
+3.25.376.862 I slot print_timing: id  0 | task 469 |       total time =   26998.80 ms / 92089 tokens
+3.25.376.862 I slot print_timing: id  0 | task 469 |    graphs reused =        653
+3.25.376.863 I slot print_timing: id  0 | task 469 |   graph reallocs =         46    /     1        (same size) / (changed size)
+3.25.379.020 I slot      release: id  0 | task 469 | stop processing: n_tokens = 92088, truncated = 0
+3.25.382.911 I slot       select: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 0.467 (> 0.100 thold), f_keep = 0.000
+3.26.376.160 I slot launch_slot_: id  0 | task 715 | processing task, is_child = 0
+3.30.059.575 I slot print_timing: id  0 | task 715 | n_gen =    261, tg =  86.63 t/s, tg_3s =  86.96 t/s
+3.33.061.845 I slot print_timing: id  0 | task 715 | n_gen =    522, tg =  86.78 t/s, tg_3s =  86.93 t/s
+3.36.065.122 I slot print_timing: id  0 | task 715 | n_gen =    768, tg =  85.16 t/s, tg_3s =  81.91 t/s
+3.39.071.708 I slot print_timing: id  0 | task 715 | n_gen =   1007, tg =  83.74 t/s, tg_3s =  79.49 t/s
+3.42.079.906 I slot print_timing: id  0 | task 715 | n_gen =   1251, tg =  83.21 t/s, tg_3s =  81.11 t/s
+3.45.087.328 I slot print_timing: id  0 | task 715 | n_gen =   1491, tg =  82.64 t/s, tg_3s =  79.80 t/s
+3.46.299.244 I slot print_timing: id  0 | task 715 | prompt eval time =     682.09 ms /    18 tokens (   37.89 ms per token,    26.39 tokens per second)
+3.46.299.250 I slot print_timing: id  0 | task 715 |        eval time =   19240.96 ms /  1585 tokens (   12.15 ms per token,    82.32 tokens per second)
+3.46.299.251 I slot print_timing: id  0 | task 715 |       total time =   19923.05 ms /  1603 tokens
+3.46.299.252 I slot print_timing: id  0 | task 715 |    graphs reused =       2230
+3.46.299.253 I slot print_timing: id  0 | task 715 |   graph reallocs =         52    /     1        (same size) / (changed size)
+3.46.299.272 I slot      release: id  0 | task 715 | stop processing: n_tokens = 1614, truncated = 0
+3.46.453.871 I srv    operator(): operator(): cleaning up before exit...

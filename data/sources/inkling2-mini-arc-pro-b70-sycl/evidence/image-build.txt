@@ -1,0 +1,11 @@
+podman build -f .devops/intel-b70.Dockerfile --target server -t llama-inkling-b70:20fa6fd .  (Thotheris/llama.cpp at 20fa6fdf5f98dfe830db17acb2296699fd7bfb63)
+
+[6/6] STEP 8/8: ENTRYPOINT [ "/app/llama-server" ]
+--> Using cache bba88be999fa74671d37bbd66280658e3106b1ff37253bbde5a6619cbd73f76f
+[6/6] COMMIT localhost/llama-inkling-b70:20fa6fd
+--> bba88be999fa
+Successfully tagged localhost/llama-inkling-b70:20fa6fd
+Successfully tagged localhost/llama-inkling-b70:02b5228
+bba88be999fa74671d37bbd66280658e3106b1ff37253bbde5a6619cbd73f76f
+
+image id bba88be999fa74671d37bbd66280658e3106b1ff37253bbde5a6619cbd73f76f  size 9690231025 bytes
