@@ -1,0 +1,36 @@
+{
+  "id": "exllamav3-rocm-qwen3.5-9b-exl3-6bpw-vision-128k-rx-7900-xtx-24gb",
+  "kind": "host",
+  "engine": "exllamav3",
+  "about": "Qwen3.5-9B EXL3 6.00 bpw with GPU vision on one RX 7900 XTX. 128K variant of the accepted 256K launch; only the context window differs.",
+  "command": [
+    "serve/run.sh"
+  ],
+  "install": "https://github.com/kamm3r/exl3-rdna3-recipe/tree/7b1005395a4d7f48c964d8cda1a859d944444a7a",
+  "env": {
+    "HIP_VISIBLE_DEVICES": "0"
+  },
+  "port": 5091,
+  "weights": [
+    {
+      "repo": "turboderp/Qwen3.5-9B-exl3",
+      "revision": "12be39d7c7e43be1c7ce5aaebb210869be1586bb",
+      "at": "models/Qwen3.5-9B-exl3-6.00bpw",
+      "layout": "dir"
+    }
+  ],
+  "config": {
+    "at": "serve/config.yml",
+    "text": "network:\n  host: 127.0.0.1\n  port: 5091\n  disable_auth: true\n  allowed_origins: []\nlogging:\n  log_prompt: false\n  log_requests: false\nmodel:\n  model_dir: ../models\n  model_name: Qwen3.5-9B-exl3-6.00bpw\n  backend: exllamav3\n  max_seq_len: 131072\n  cache_size: 131072\n  cache_mode: FP16\n  max_batch_size: 1\n  chunk_size: 8192\n  vision: true\n  vision_offload: false\n  reasoning: true\n  tool_format: qwen3_coder\ndraft_model:\n  draft_mode: disabled\n  draft_num_tokens: 0\n"
+  },
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": true,
+  "backend": "amd-rocm",
+  "needs": {
+    "host_ram_gb": 8,
+    "disk_gb": 8.94
+  },
+  "setup": "Linux gfx1100; host amdgpu driver and uv. Run setup/install.sh from the pinned install repository, download the pinned weights to the stated directory, and replace serve/config.yml with this launch config. Python 3.12, TabbyAPI e086a65, ExLlamaV3 1.6.3 and PyTorch 2.13.0 ROCm 10.0.0 are pinned by its package lock. No transformer-layer or vision-encoder offload; upstream keeps the unquantized token embedding table in host RAM. Disable the Ryzen iGPU with HIP_VISIBLE_DEVICES=0. Loopback port 5091. Host launch; not offered by the Docker-only plugin.",
+  "source": "https://github.com/kamm3r/exl3-rdna3-recipe/tree/7b1005395a4d7f48c964d8cda1a859d944444a7a"
+}
