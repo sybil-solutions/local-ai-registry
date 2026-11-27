@@ -1,0 +1,81 @@
+{
+ "recipe": {
+  "model": "hy4-flash",
+  "weights": "turboderp/Hy4-flash-exl3@f4b66a88b4d8937fec21ad695f6baa405105ee12",
+  "engine": "exllamav3-hy4-flash-exl3-4.0bpw-1024k-rtx-pro-6000-blackwell-96gb@c6f97949e8f2",
+  "set": {},
+  "card": "rtx-pro-6000-blackwell-96gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-27",
+  "on": "owner",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+  "launch_sha256": "7607a4bb765c194180e28bfb535db9210ad33d78f9d894089f6919817a268950",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 158.9,
+  "prefill": 3164,
+  "served": "hy4-flash"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": [
+   "--mtp",
+   "EXL3_CONC_DRAFT_CAP=2"
+  ],
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 139,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "id": "call_a25b09f78658417e9ebd1af9",
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\": \"Paris\"}"
+     }
+    }
+   ],
+   "reply": "It’s 17°C and overcast in Paris.\n\nCode: `17c8b9fd`",
+   "code": "17c8b9fd",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 280
+  },
+  "context": {
+   "prompt_tokens": 704655,
+   "seconds": 222.7,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 4770,
+   "tokens_total": 7984,
+   "seconds_total": 46.5,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 3164,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": "6f29679986f8a4b5ebbfc2c4ae7e79de8981c86a8e3fc553a80a4c5a34566c8a"
+}
