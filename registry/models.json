@@ -1435,6 +1435,10 @@
     "mlx-community/Inkling-2-Mini-4bit@9856dc53edead71405f8348930937c3638ff21a2": {
       "format": "MLX · 4-bit attention (g64), NVFP4/MXFP8 experts",
       "size_gb": 17.31
+    },
+    "turboderp/Hy4-flash-exl3@f4b66a88b4d8937fec21ad695f6baa405105ee12": {
+      "format": "EXL3 · SC 4.00bpw",
+      "size_gb": 148.2
     }
   }
 }

@@ -1,0 +1,71 @@
+{
+  "id": "exllamav3-hy4-flash-exl3-4.0bpw-1024k-rtx-pro-6000-blackwell-96gb",
+  "kind": "host",
+  "engine": "exllamav3",
+  "about": "Tencent Hy4-Flash (220B-A12B MoE + 64B Engram lookup) EXL3 SC 4.00 bpw on one RTX PRO 6000 Blackwell 96 GB at full 1,048,576-token context, vision, tools and reasoning (default high). 64.7 GB Engram table lives in host RAM (-ngr); 12 DSA global layers use Q8 KV while 30 sliding-window MLA layers share a 128-page ring cache (EXL3_MLA_RING_PAGES=128). Runs on sybil-solutions/exllamav3@0c1e400b with batched bsz 1..4 whole-model overlapped CUDA graphs, custom SM120 non-coop K=8 and 3-way fused multi-GEMV (MMODE=2 shape-gated), single-pass DSA kpool, DFly2 MTP speculative decoding with 16K dynamic sparse draft head (-ndt 3, capped to 2 at concurrency >= 3) and exact Leviathan probabilistic rejection sampling via a fused 2-kernel CUDA verifier (T>0) + graphed Gumbel-max drafting. Up to 4 concurrent sequences.",
+  "command": [
+    "python3",
+    "serve_hy4.py",
+    "-m",
+    "models/Hy4-flash-exl3-f4b66a88",
+    "-cs",
+    "1048576",
+    "-cq",
+    "8,8",
+    "--mtp",
+    "-ndt",
+    "3",
+    "-sdh",
+    "16384",
+    "-ngr",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "30200",
+    "--served-name",
+    "hy4-flash"
+  ],
+  "install": "Requires Linux x86_64 with NVIDIA Blackwell GPU (96 GB VRAM, driver 580+/615+), CUDA toolkit (12.8+/13.2) and PyTorch with CUDA pre-installed (tested on torch 2.15.0+cu132, driver 615.78.08). Build/install exllamav3 from sybil-solutions/exllamav3@0c1e400bef270fb4197bbee9e2772b6d9a34b834 with TORCH_CUDA_ARCH_LIST=12.0, plus fastapi, uvicorn, jinja2, pillow, huggingface_hub.",
+  "pip": [
+    "exllamav3 @ git+https://github.com/sybil-solutions/exllamav3.git@0c1e400bef270fb4197bbee9e2772b6d9a34b834",
+    "fastapi==0.165.0",
+    "uvicorn==0.54.0",
+    "jinja2==3.1.6",
+    "pillow==13.0.0",
+    "huggingface_hub==0.36.2"
+  ],
+  "env": {
+    "EXL3_MLA_RING_PAGES": "128",
+    "EXL3_DSA_QC_STAGE_MAX_ENTRIES": "524288",
+    "EXL3_MOE_COOP_WIDE": "1",
+    "EXL3_GEMV_K8": "6",
+    "EXL3_HY4_WHOLE_GRAPH": "1",
+    "EXL3_PROB_SPEC": "1",
+    "EXL3_CONC_DRAFT_CAP": "2"
+  },
+  "port": 30200,
+  "weights": [
+    {
+      "repo": "turboderp/Hy4-flash-exl3",
+      "revision": "f4b66a88b4d8937fec21ad695f6baa405105ee12",
+      "at": "models/Hy4-flash-exl3-f4b66a88",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "serve_hy4.py",
+    "file": "exllamav3-hy4-flash-serve.py"
+  },
+  "ctx": 1048576,
+  "seqs": 4,
+  "vision": true,
+  "backend": "nvidia",
+  "cards": 1,
+  "needs": {
+    "host_ram_gb": 76.0,
+    "disk_gb": 148.2
+  },
+  "setup": "NEEDS: 1x RTX PRO 6000 Blackwell 96 GB (uses ~91.1 GiB VRAM at ready with 1M Q8 DSA KV + 128-page MLA ring + vision tower; nothing else large on the GPU), >=76 GB free host RAM (64.7 GB Engram table kept in RAM via -ngr; measured MemAvailable drop 67.2 GB at ready and 68.3 GB peak during the 6-gate lab run including 704K context), and 148.2 GB disk for turboderp/Hy4-flash-exl3@f4b66a88 (sc_4.00bpw). Install CUDA-enabled PyTorch first (tested on torch 2.15.0+cu132, CUDA 13.2, driver 615.78.08, EPYC 7443P, 503 GiB DDR4), then pip-install the pinned exllamav3 commit with TORCH_CUDA_ARCH_LIST=12.0. Non-greedy blended benchmark (T=0.9, top_p=1.0, reasoning=high): C1 120.5 tok/s in-process / 131.2 tok/s live HTTP, C4 245.4 tok/s aggregate live HTTP (61-62 tok/s/stream), 8K 129.4 tok/s, 128K 135.0 tok/s; greedy 137.2 short / 110.5 tok/s at 920K (619K needle 3/3, vision PASS). Prefer sc_4.00bpw over sc_3.50bpw on SM120: 4.00 bpw is both higher quality and ~20% faster because half-integer 3.5 bpw falls off tile_reg<4>() onto smem-staged dq8_half.",
+  "source": "https://github.com/sybil-solutions/exllamav3/tree/0c1e400bef270fb4197bbee9e2772b6d9a34b834"
+}
