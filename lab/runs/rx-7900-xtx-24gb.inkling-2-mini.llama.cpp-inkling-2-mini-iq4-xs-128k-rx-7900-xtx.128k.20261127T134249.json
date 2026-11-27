@@ -1,0 +1,78 @@
+{
+ "recipe": {
+  "model": "inkling-2-mini",
+  "weights": "unsloth/Inkling-2-Mini-GGUF@ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+  "engine": "llama.cpp-inkling-2-mini-iq4-xs-128k-rx-7900-xtx@55d4d99134c5",
+  "set": {},
+  "card": "rx-7900-xtx-24gb"
+ },
+ "where": {
+  "on": "owner",
+  "gpu": "AMD Radeon RX 7900 XTX"
+ },
+ "passed": true,
+ "proof": {
+  "at": "2026-11-27",
+  "on": "owner",
+  "gpu": "AMD Radeon RX 7900 XTX",
+  "launch_sha256": "e875b41d4a5e04025a501534ce31d931b74448a5cb0a18a9ec93b394ee6c63be",
+  "gates": "load chat reasoning tools context speed",
+  "tps": 32.2,
+  "prefill": 339,
+  "served": "inkling-2-mini"
+ },
+ "evidence": {
+  "ok": {
+   "load": true,
+   "chat": true,
+   "reasoning": true,
+   "tools": true,
+   "context": true,
+   "speed": true
+  },
+  "spec": null,
+  "chat": {
+   "content": "red, yellow, blue",
+   "finish": "stop"
+  },
+  "reasoning": {
+   "thinking_chars": 117,
+   "content": "391"
+  },
+  "tools": {
+   "call": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "arguments": "{\"city\":\"Paris\"}"
+     },
+     "id": "bENGL10vgvKQQFhWeeT3LJARPFHEs1Lh"
+    }
+   ],
+   "reply": "Paris right now: 17°C, overcast. Code: 45343c32",
+   "code": "45343c32",
+   "finish": "stop",
+   "calls_again": 0,
+   "thinking_chars": 770
+  },
+  "context": {
+   "prompt_tokens": 91890,
+   "seconds": 270.8,
+   "content": "58213"
+  },
+  "speed": {
+   "window_s": 30.0,
+   "tokens_in_window": 967,
+   "tokens_total": 1915,
+   "seconds_total": 59.7,
+   "counted": "tokenizer",
+   "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
+  },
+  "prefill": {
+   "value": 339,
+   "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
+  }
+ },
+ "launch_config_sha256": null
+}

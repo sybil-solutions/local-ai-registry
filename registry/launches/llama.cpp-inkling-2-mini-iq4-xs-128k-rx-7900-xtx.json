@@ -1,0 +1,68 @@
+{
+  "id": "llama.cpp-inkling-2-mini-iq4-xs-128k-rx-7900-xtx",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Inkling 2 Mini UD-IQ4_XS at 128K on one RX 7900 XTX using llama.cpp ROCm. Text serving with q8_0 KV, flash attention and one slot.",
+  "command": [
+    "bin/llama-server",
+    "-m",
+    "models/Inkling-2-Mini-GGUF-ea0c79b2/Inkling-2-Mini-UD-IQ4_XS.gguf",
+    "--device",
+    "ROCm0",
+    "-ngl",
+    "all",
+    "-fa",
+    "on",
+    "--fit",
+    "off",
+    "-c",
+    "131072",
+    "-np",
+    "1",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-ub",
+    "128",
+    "--cache-ram",
+    "0",
+    "--temp",
+    "1.0",
+    "--top-p",
+    "1.0",
+    "--top-k",
+    "0",
+    "--min-p",
+    "0.0",
+    "--jinja",
+    "--alias",
+    "inkling-2-mini",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "18080"
+  ],
+  "install": "https://github.com/unslothai/llama.cpp/releases/download/b12572-mix-8eebad4/app-b12572-mix-8eebad4-linux-x64-rocm-gfx110X.tar.gz#sha256=a5c5f510eb6811a5567985f93669cce6931fc221926606691746ccf09d87a71f",
+  "env": {
+    "LD_LIBRARY_PATH": "./bin"
+  },
+  "port": 18080,
+  "weights": [
+    {
+      "repo": "unsloth/Inkling-2-Mini-GGUF",
+      "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+      "at": "models/Inkling-2-Mini-GGUF-ea0c79b2",
+      "layout": "dir",
+      "files": [
+        "Inkling-2-Mini-UD-IQ4_XS.gguf"
+      ]
+    }
+  ],
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "amd-rocm",
+  "setup": "On Linux x86-64 with AMDGPU and access to /dev/kfd and the render node, unpack the ROCm archive into bin/ next to models/. Use ROCm0 for the RX 7900 XTX, as reported by llama-server --list-devices.",
+  "source": "https://github.com/unslothai/llama.cpp/releases/tag/b12572-mix-8eebad4"
+}
