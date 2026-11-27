@@ -1,0 +1,42 @@
+{
+  "prompt": "What is the dominant color in this image? Reply with one word.",
+  "image": "256\u00d7256 solid RGB(231,15,23)",
+  "profile": "llama.cpp-inkling-2-mini-iq4-xs-vision-192k-rx-7900-xtx",
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Red",
+          "reasoning_content": "The user wants the dominant color in the image. Looking at the image, it's predominantly red (a vivid red/crimson). The answer should be one word: red."
+        }
+      }
+    ],
+    "created": 1795788944,
+    "model": "inkling-2-mini",
+    "system_fingerprint": "b12572-a5ba2dd76",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 47,
+      "prompt_tokens": 81,
+      "total_tokens": 128,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-y2DUDZEJVGDStGU0J0Gn6WTGZSiiGLIm",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 81,
+      "prompt_ms": 630.006,
+      "prompt_per_token_ms": 7.777851851851851,
+      "prompt_per_second": 128.57020409329436,
+      "predicted_n": 47,
+      "predicted_ms": 1446.895,
+      "predicted_per_token_ms": 31.454239130434782,
+      "predicted_per_second": 31.792217127020276
+    }
+  }
+}
