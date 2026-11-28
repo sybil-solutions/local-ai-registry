@@ -1,0 +1,21 @@
+19:54:08 c1 median 20.95 [20.99, 21.31, 21.57, 20.88, 20.9, 20.91]
+19:54:24 prefill ~4096 207.0 tok/s over 3302 tokens
+{
+ "name": "guide32k-nodraft-a",
+ "time": "2026-11-21T19:51:37",
+ "ttft_short_ms": 307.8,
+ "c1_decode": 20.95,
+ "c1_all": [
+  20.99,
+  21.31,
+  21.57,
+  20.88,
+  20.9,
+  20.91
+ ],
+ "prefill_4096": 207.0,
+ "prefill_4096_tokens": 3302,
+ "ok": true,
+ "mem_peak_gib": 27.96,
+ "flags": []
+}

@@ -1,0 +1,22 @@
+{
+  "_note": "Inkling-2-Mini UD-Q4_K_XL on M1 Max 32GB. Sizes from the GGUF header (tools/gguf_meta.py). Looping: 24 stored layers, 48 applications per token (layers 6-17 run 3x), so per-token reads count dense and expert weights per application: dense 0.836 GB x 48/24 = 1.672; experts 15.798 GB x 48/24 = 31.596 at top-8 of 128. Bandwidth = measured MLX read (tools/hwbench.py). KV: 8 global-attention applications x 8 KV heads x 128 x (K+V) x 2 B (f16) = 32768 B/token; the 40 sliding-window applications cap at 1024 tokens and are left out. Draft rows are illustrative: DSpark drafter (0.40 GB Q8_0, borrows the target LM head), acceptance unknown until measured.",
+  "bandwidth_gbs": 353,
+  "peak_tflops": 9.53,
+  "mfu": 0.5,
+  "dense_gb": 1.672,
+  "experts_gb": 31.596,
+  "top_k": 8,
+  "n_experts": 128,
+  "lm_head_gb": 0.492,
+  "active_params_b": 5.4,
+  "attn_layers": 8,
+  "attn_heads": 24,
+  "head_dim": 128,
+  "extra_flops_per_token": 251658240,
+  "kv_bytes_per_token": 32768,
+  "draft_layer_gb": 0.4,
+  "draft_head_gb": 0.0,
+  "spec": [{"drafts": 0, "accept": 1.0}, {"drafts": 1, "accept": 1.6}, {"drafts": 3, "accept": 2.4}],
+  "contexts": [4096, 32768, 111411, 131072],
+  "concurrency": [1]
+}
