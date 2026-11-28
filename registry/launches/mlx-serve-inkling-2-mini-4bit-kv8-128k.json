@@ -19,7 +19,7 @@
     "--no-plugins",
     "--warmup-full"
   ],
-  "install": "curl -LO https://github.com/ddalcu/mlx-serve/releases/download/v26.11.4/mlx-serve-bin-macos-arm64.tar.gz && echo '2079e8649b4a25aed267bf43117ef23b026c833453f0cdd0eff2d328aa1e0832  mlx-serve-bin-macos-arm64.tar.gz' | shasum -a 256 -c && tar xzf mlx-serve-bin-macos-arm64.tar.gz (macOS on Apple silicon; tag v26.11.4 = 45df50e9adf7975bf31ee198c7440ec511c6162e)",
+  "install": "https://github.com/ddalcu/mlx-serve/releases/download/v26.11.4/mlx-serve-bin-macos-arm64.tar.gz#sha256=2079e8649b4a25aed267bf43117ef23b026c833453f0cdd0eff2d328aa1e0832",
   "pip": [],
   "env": {},
   "port": 8080,

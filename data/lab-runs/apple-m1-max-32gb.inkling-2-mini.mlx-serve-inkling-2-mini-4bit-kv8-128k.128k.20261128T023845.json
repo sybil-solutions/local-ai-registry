@@ -2,7 +2,7 @@
  "recipe": {
   "model": "inkling-2-mini",
   "weights": "mlx-community/Inkling-2-Mini-4bit@9c0e2960609ba7cb40daf92c6f7bf8ed56e1dd62",
-  "engine": "mlx-serve-inkling-2-mini-4bit-kv8-128k@6a89cec4844a",
+  "engine": "mlx-serve-inkling-2-mini-4bit-kv8-128k@3755f705412f",
   "set": {},
   "card": "apple-m1-max-32gb"
  },
@@ -15,10 +15,10 @@
   "at": "2026-11-28",
   "on": "owner",
   "gpu": "Apple M1 Max",
-  "launch_sha256": "061c583967b26aed107131ca22f891b67301efb8bb9d598611d527ea70e4e17b",
+  "launch_sha256": "e37dfaffab39ee05ad2a1a07869896e825ca6a93ab4d53a233481603edfc8ac7",
   "gates": "load chat reasoning tools context speed",
   "tps": 43.0,
-  "prefill": 285,
+  "prefill": 281,
   "served": "Inkling-2-Mini-4bit-9c0e2960"
  },
  "evidence": {
@@ -36,13 +36,13 @@
    "finish": "stop"
   },
   "reasoning": {
-   "thinking_chars": 102,
+   "thinking_chars": 123,
    "content": "391"
   },
   "tools": {
    "call": [
     {
-     "id": "call_Al5WSnp2n3q1uW2gWpJi-QHn",
+     "id": "call_Eg_gH3ixarwZec4qthCUY2oT",
      "type": "function",
      "function": {
       "name": "get_weather",
@@ -50,27 +50,27 @@
      }
     }
    ],
-   "reply": "Paris is currently 17°C and overcast. Code: 89ef1254",
-   "code": "89ef1254",
+   "reply": "Paris right now: 17°C, overcast. Code: 049186ac",
+   "code": "049186ac",
    "finish": "stop",
    "calls_again": 0,
-   "thinking_chars": 405
+   "thinking_chars": 342
   },
   "context": {
    "prompt_tokens": 91888,
-   "seconds": 322.3,
+   "seconds": 327.4,
    "content": "58213"
   },
   "speed": {
-   "window_s": 29.5,
-   "tokens_in_window": 1268,
-   "tokens_total": 1268,
-   "seconds_total": 29.7,
+   "window_s": 30.0,
+   "tokens_in_window": 1290,
+   "tokens_total": 1290,
+   "seconds_total": 30.3,
    "counted": "tokenizer",
    "accounting": "client tokens over the first 30 s after the first token; speculative drafts are not counted as accepted"
   },
   "prefill": {
-   "value": 285,
+   "value": 281,
    "source": "context gate: prompt tokens / the whole request's seconds (queue + prefill + the short answer), cold unique filler"
   }
  },

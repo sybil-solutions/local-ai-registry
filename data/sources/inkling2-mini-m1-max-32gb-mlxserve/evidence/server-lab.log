@@ -9,12 +9,12 @@ mlx-serve 26.11.4 (MLX 0.32.5)
 Metal GPU: true
 Model: inkling2_loop (48 layers, 2304-dim, head_dim=128, 24h/8kv, 4-bit affine quant)
 Loading tokenizer...
-  parsed tokenizer (24 MB) in 95ms
+  parsed tokenizer (24 MB) in 94ms
   loaded 199998 vocab entries in 6ms
   loaded 424413 merges in 20ms
 Tokenizer loaded: 200058 vocab, 424413 merges, 60 special tokens (byte-level BPE)
 [registry] max_resident_models=3, max_resident_mem=25.0 GB
-[preflight] weights ~16.12 GB, available 23.72 GB
+[preflight] weights ~16.12 GB, available 23.66 GB
 Loading model-00004-of-00004.safetensors...
 Loading model-00001-of-00004.safetensors...
 Loading model-00003-of-00004.safetensors...
@@ -25,47 +25,9 @@ Loaded 1559 weights from 4 file(s)
 [suppress] suppress_cjk ready: 31863 CJK tokens of 200058
 [wired] mode=max limit=25559 MB
 [simd_qmm] batched projections of 8..16 rows
-Warmup complete (8349 ms).
+Warmup complete (2889 ms).
 Prefill chunk: 512 tokens (memory-sized down from 8192; --prefill-chunk overrides)
 [hot-cache] budget clamped 2563 -> 0 MB (weights + ctx KV + prefill reserve vs GPU ceiling)
-First load of this build with this model: compiling its kernels before it reports ready.
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 44 (24 prompt + 20 generated)
-  [hot-cache] trim inputs: tokens=44 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[23,44] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (44 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 257 (256 prompt + 1 generated)
-  [hot-cache] trim inputs: tokens=257 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[225,257] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (257 tokens, 58.31 MB > 0.00 MB budget): no restorable prefix fits the budget
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 284 (264 prompt + 20 generated)
-  [hot-cache] trim inputs: tokens=284 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[233,284] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (284 tokens, 58.31 MB > 0.00 MB budget): no restorable prefix fits the budget
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 260 (259 prompt + 1 generated)
-  [hot-cache] trim inputs: tokens=260 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[228,260] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (260 tokens, 58.31 MB > 0.00 MB budget): no restorable prefix fits the budget
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 261 (260 prompt + 1 generated)
-  [hot-cache] trim inputs: tokens=261 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[229,261] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (261 tokens, 58.31 MB > 0.00 MB budget): no restorable prefix fits the budget
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 262 (261 prompt + 1 generated)
-  [hot-cache] trim inputs: tokens=262 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[230,262] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (262 tokens, 58.31 MB > 0.00 MB budget): no restorable prefix fits the budget
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 769 (768 prompt + 1 generated)
-  [hot-cache] trim inputs: tokens=769 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[737,769] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (769 tokens, 113.56 MB > 0.00 MB budget): no restorable prefix fits the budget
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 1537 (1536 prompt + 1 generated)
-  [hot-cache] trim inputs: tokens=1537 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[1505,1537] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (1537 tokens, 211.31 MB > 0.00 MB budget): no restorable prefix fits the budget
-  spec=disabled (inkling2_loop serves serial-only)
-  [hot-cache] decode-end checkpoint at 2049 (2048 prompt + 1 generated)
-  [hot-cache] trim inputs: tokens=2049 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[2017,2049] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (2049 tokens, 262.31 MB > 0.00 MB budget): no restorable prefix fits the budget
-Warm requests complete (9 of 20, 17666 ms).
 Model ready (loaded on inference thread).
 Hot prefix cache: ENABLED (capacity=32, mem-cap=0.0 MB) [hybrid: SSM checkpoints]
   ssm-checkpoint-stride=256 tokens, max=16/entry
@@ -92,49 +54,51 @@ Server listening on http://127.0.0.1:8080
   POST /tokenize
   POST /detokenize
 
-RSS: 15.5G  Mem: 78%  CPU: 4%  GPU: 99%
+RSS: 15.5G  Mem: 78%  CPU: 4%  GPU: 84%
 POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=43b, tools=0b, tool_msgs=0) 
   > "Name three primary colors, comma separated."
-[admission] needed=1089 MB available=8086 MB reclaimable=0 MB width=512 verdict=admit
+[admission] needed=1089 MB available=7207 MB reclaimable=0 MB width=512 verdict=admit
   prompt=21 tokens, max_gen=131051, ctx=131072
-  [hot-cache] decode-end checkpoint at 128 (21 prompt + 107 generated)
-  [hot-cache] trim inputs: tokens=128 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[20,128] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (128 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
-  <- 21+107 tokens (2473ms) [prefill: 118.0 tok/s, decode: 46.8 tok/s] [stop]
+  [hot-cache] decode-end checkpoint at 109 (21 prompt + 88 generated)
+  [hot-cache] trim inputs: tokens=109 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[20,109] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (109 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 21+88 tokens (2064ms) [prefill: 118.7 tok/s, decode: 46.8 tok/s] [stop]
 POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=44b, tools=0b, tool_msgs=0) 
   > "What is 17 * 23? Reply with only the number."
   prompt=27 tokens, max_gen=131045, ctx=131072
-  [hot-cache] decode-end checkpoint at 71 (27 prompt + 44 generated)
-  [hot-cache] trim inputs: tokens=71 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[26,71] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (71 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
-  <- 27+44 tokens (1147ms) [prefill: 152.0 tok/s, decode: 45.6 tok/s] [stop]
+  [hot-cache] decode-end checkpoint at 75 (27 prompt + 48 generated)
+  [hot-cache] trim inputs: tokens=75 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[26,75] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (75 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 27+48 tokens (1229ms) [prefill: 150.8 tok/s, decode: 46.0 tok/s] [stop]
 POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=85b, tools=204b, tool_msgs=0) 
   > "What's the weather in Paris right now? Use the tool and repeat the code it gives..."
   prompt=117 tokens, max_gen=130955, ctx=131072
-  [hot-cache] decode-end checkpoint at 197 (117 prompt + 80 generated)
-  [hot-cache] trim inputs: tokens=197 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[86,197] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (197 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
-  <- 117+80 tokens (2314ms) [prefill: 207.5 tok/s, decode: 45.9 tok/s] [tool_calls: 1]
+  [hot-cache] decode-end checkpoint at 201 (117 prompt + 84 generated)
+  [hot-cache] trim inputs: tokens=201 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[86,201] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (201 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 117+84 tokens (2420ms) [prefill: 200.7 tok/s, decode: 45.9 tok/s] [tool_calls: 1]
 POST /v1/chat/completions (3 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=85b, tools=204b, tool_msgs=1) 
-  > "{"city": "Paris", "temp_c": 17, "sky": "overcast", "code": "89ef1254"}"
-  prompt=193 tokens, max_gen=130879, ctx=131072
-  [hot-cache] decode-end checkpoint at 331 (193 prompt + 138 generated)
-  [hot-cache] trim inputs: tokens=331 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[162,331] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (331 tokens, 58.31 MB > 0.00 MB budget): no restorable prefix fits the budget
-  <- 193+138 tokens (3811ms) [prefill: 254.0 tok/s, decode: 45.4 tok/s] [stop]
+  > "{"city": "Paris", "temp_c": 17, "sky": "overcast", "code": "049186ac"}"
+  prompt=192 tokens, max_gen=130880, ctx=131072
+  [hot-cache] decode-end checkpoint at 306 (192 prompt + 114 generated)
+  [hot-cache] trim inputs: tokens=306 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[161,306] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (306 tokens, 58.31 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 192+114 tokens (3269ms) [prefill: 252.8 tok/s, decode: 45.6 tok/s] [stop]
 POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=333796b, tools=0b, tool_msgs=0) 
   > "Line 0: the archive notes that shipment 0 left dock 0 on schedule. Line 1: the a..."
   prompt=91888 tokens, max_gen=39184, ctx=131072
 [kv-attn] decode kernel (simdgroup matrix) engaged: bits=8 gs=64 DK=128 DV=128 Hq=24 Hkv=8 splits=32 mask=2 sinks=true
 [kv-attn] fused engaged: bits=8 gs=64 Hq=24 Hkv=8 Tq=1 (--kv-attn-mode dense restores dense reads)
-  [hot-cache] decode-end checkpoint at 91993 (91888 prompt + 105 generated)
-  [hot-cache] trim inputs: tokens=91993 row_bytes=104448 budget=0.00 MB list_len=13 arm=all_lower survivors=[8192,16384,24576,32768,40960,49152,57344,65536,73728,81920,90112,91857,91993] (13 of 13) chosen=none
-  [hot-cache] skipped oversized entry (91993 tokens, 1943.03 MB > 0.00 MB budget): no restorable prefix fits the budget
-  <- 91888+105 tokens (322303ms) [prefill: 288.6 tok/s, decode: 27.1 tok/s] [stop]
+  [hot-cache] decode-end checkpoint at 92141 (91888 prompt + 253 generated)
+  [hot-cache] trim inputs: tokens=92141 row_bytes=104448 budget=0.00 MB list_len=13 arm=all_lower survivors=[8192,16384,24576,32768,40960,49152,57344,65536,73728,81920,90112,91857,92141] (13 of 13) chosen=none
+  [hot-cache] skipped oversized entry (92141 tokens, 1943.03 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 91888+253 tokens (327423ms) [prefill: 288.5 tok/s, decode: 28.4 tok/s] [stop]
 POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.80, top_p=1.00, top_k=0, stream=true, thinking=false, sys=0b, user=58b, tools=0b, tool_msgs=0) 
   > "Write a detailed 600-word story about a lighthouse keeper."
   prompt=28 tokens, max_gen=131044, ctx=131072
-  [hot-cache] decode-end checkpoint at 1302 (28 prompt + 1274 generated)
-  [hot-cache] trim inputs: tokens=1302 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[27,1302] (2 of 2) chosen=none
-  [hot-cache] skipped oversized entry (1302 tokens, 185.81 MB > 0.00 MB budget): no restorable prefix fits the budget
-  <- 28+1274 tokens streamed [prefill: 149.2 tok/s, decode: 43.2 tok/s] [stop]
+  [hot-cache] decode-end checkpoint at 1324 (28 prompt + 1296 generated)
+  [hot-cache] trim inputs: tokens=1324 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[27,1324] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (1324 tokens, 185.81 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 28+1296 tokens streamed [prefill: 148.1 tok/s, decode: 43.1 tok/s] [stop]
+
+Shutting down gracefully...
