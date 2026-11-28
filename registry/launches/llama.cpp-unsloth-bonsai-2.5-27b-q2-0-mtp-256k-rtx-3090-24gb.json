@@ -1,0 +1,68 @@
+{
+  "id": "llama.cpp-unsloth-bonsai-2.5-27b-q2-0-mtp-256k-rtx-3090-24gb",
+  "kind": "host",
+  "engine": "llama.cpp",
+  "about": "Prism ML's Ternary Bonsai 2.5 27B (Qwen3.8-27B architecture, ternary weights, thinking, tools) as the official Q2_0 packing with its built-in multi-token-prediction head, at the full 262,144-token window on one 24 GB card with everything on the GPU. Q2_0 is the packing that runs on stock llama.cpp; Prism's faster PTQ1_0 needs their fork and is not covered here. --spec-type draft-mtp drafts up to 3 tokens per step with Prism's suggested cut-off (n-min 0, p-min 0.1) and Bonsai verifies each one. q8_0 KV: only 16 of the 64 layers hold KV, so the full window takes about 9 GB. On an RTX 3090 that was also driving a desktop (about 1.1 GB) the whole card peaked at 20,738 of 24,576 MiB in a gate run, so about 3.8 GB stays free. On that machine the lab's speed gate read 95.6 tok/s with the draft and 69.1 tok/s with the four --spec flags removed; on short mixed answers the draft gained only 6 to 8% (median 74 to 76 against 69 to 70 tok/s). Text only: the repo's vision projector was not tested. llama.cpp from Unsloth's prebuilt b12588-mix-c0c3de8 (unslothai/llama.cpp, CUDA 13 portable), the build this was tested on. One slot, flash attention at its default, temperature 1.0, top-k 20, top-p 0.95, min-p 0 (the card's settings). Measured under WSL2 (Ubuntu 24.04 on Windows 11), not bare-metal Linux.",
+  "command": [
+    "llama-b12588-mix-c0c3de8/llama-server",
+    "-m",
+    "models/Ternary-Bonsai-2.5-27B-GGUF-28a7093c/Ternary-Bonsai-2.5-27B-Q2_0-mtp.gguf",
+    "-ngl",
+    "all",
+    "--fit",
+    "off",
+    "-c",
+    "262144",
+    "-np",
+    "1",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--spec-type",
+    "draft-mtp",
+    "--spec-draft-n-min",
+    "0",
+    "--spec-draft-n-max",
+    "3",
+    "--spec-draft-p-min",
+    "0.1",
+    "--temp",
+    "1.0",
+    "--top-k",
+    "20",
+    "--top-p",
+    "0.95",
+    "--min-p",
+    "0.0",
+    "--jinja",
+    "--alias",
+    "bonsai-2.5-27b",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080"
+  ],
+  "install": "https://github.com/unslothai/llama.cpp/releases/download/b12588-mix-c0c3de8/app-b12588-mix-c0c3de8-linux-x64-cuda13-portable.tar.gz#sha256=6c1985d2d75c9cc6b299891d557aca70843ba5ccb68f14863a50687048cfdd48",
+  "env": {
+    "LD_LIBRARY_PATH": "llama-b12588-mix-c0c3de8:cuda13-runtime"
+  },
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "prism-ml/Ternary-Bonsai-2.5-27B-GGUF",
+      "revision": "28a7093cc25bc151cc2b284c5570f12ce343fdcf",
+      "at": "models/Ternary-Bonsai-2.5-27B-GGUF-28a7093c",
+      "layout": "dir",
+      "files": [
+        "Ternary-Bonsai-2.5-27B-Q2_0-mtp.gguf"
+      ]
+    }
+  ],
+  "ctx": 262144,
+  "seqs": 1,
+  "vision": false,
+  "backend": "nvidia",
+  "setup": "Not Docker; Linux x86-64 with an NVIDIA driver for CUDA 13. Unpack the archive into llama-b12588-mix-c0c3de8/ next to models/ and run from that directory. The archive does not bundle the CUDA runtime: put libcudart.so.13, libcublas.so.13 and libcublasLt.so.13 (PyPI nvidia-cuda-runtime 13.3.29 and nvidia-cublas 13.5.1.27) in cuda13-runtime/ and install libgomp1, or the server fails to load its CUDA backend.",
+  "source": "https://github.com/unslothai/llama.cpp/releases/tag/b12588-mix-c0c3de8"
+}

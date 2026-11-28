@@ -194,6 +194,17 @@
       "logo": "qwen",
       "hf": "prism-ml/Ternary-Bonsai-2-27B-gguf"
     },
+    "bonsai-2.5-27b": {
+      "family": "qwen",
+      "name": "Ternary Bonsai 2.5 27B",
+      "released": "2026-11-24",
+      "reasoning": true,
+      "vision": true,
+      "about": "Prism ML's agentic release of the ternary Bonsai 27B line, on the Qwen3.8-27B hybrid-attention architecture: weights in {-1, 0, +1} with one FP16 scale per 128, about 1.76 bits per weight, so the whole 27B model is a 6 to 8 GB file. Ships with a multi-token-prediction draft head. Q2_0 runs on stock llama.cpp; PTQ1_0 and PQ2_0 need Prism's fork.",
+      "good_for": "A 27B agent with the full 262K window on one 24 GB card",
+      "logo": "qwen",
+      "hf": "prism-ml/Ternary-Bonsai-2.5-27B-GGUF"
+    },
     "welp-35b-a3b": {
       "family": "qwen",
       "name": "Welp-35B-A3B",
