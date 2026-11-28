@@ -1,0 +1,104 @@
+[mem] MLX buffer-pool cap 2048 MB (was 31129 MB)
+Logging to /Users/bamikem/.mlx-serve/logs/mlx-serve-8080.log (rotates at 32 MB)
+mlx-serve 26.11.4 (MLX 0.32.5)
+[args] model: /Users/bamikem/lai-work/mlxserve/launchdir/models/Inkling-2-Mini-4bit-9c0e2960
+[args] drafter: <none>
+[args] serve: 127.0.0.1:8080, ctx-size=131072, pld=off, no-vision=false, prevent-sleep=true
+[args] kv-quant: affine 8-bit (group=64)
+[args] kv-attn-mode: auto
+Metal GPU: true
+Model: inkling2_loop (48 layers, 2304-dim, head_dim=128, 24h/8kv, 4-bit affine quant)
+Loading tokenizer...
+  parsed tokenizer (24 MB) in 94ms
+  loaded 199998 vocab entries in 6ms
+  loaded 424413 merges in 20ms
+Tokenizer loaded: 200058 vocab, 424413 merges, 60 special tokens (byte-level BPE)
+[registry] max_resident_models=3, max_resident_mem=25.0 GB
+[preflight] weights ~16.12 GB, available 23.66 GB
+Loading model-00004-of-00004.safetensors...
+Loading model-00001-of-00004.safetensors...
+Loading model-00003-of-00004.safetensors...
+Loading model-00002-of-00004.safetensors...
+Loaded 1559 weights from 4 file(s)
+[plugin] inkling2 serves inkling2_loop (48 layers)
+[suppress] 47 of 60 flagged specials masked from sampling (template + eos exempt); 0 padding rows past id 200058 of 200058
+[suppress] suppress_cjk ready: 31863 CJK tokens of 200058
+[wired] mode=max limit=25559 MB
+[simd_qmm] batched projections of 8..16 rows
+Warmup complete (2889 ms).
+Prefill chunk: 512 tokens (memory-sized down from 8192; --prefill-chunk overrides)
+[hot-cache] budget clamped 2563 -> 0 MB (weights + ctx KV + prefill reserve vs GPU ceiling)
+Model ready (loaded on inference thread).
+Hot prefix cache: ENABLED (capacity=32, mem-cap=0.0 MB) [hybrid: SSM checkpoints]
+  ssm-checkpoint-stride=256 tokens, max=16/entry
+Concurrency: --max-concurrent=1, batched decode on
+Context size: 131072 tokens (manual)
+Request timeout: 300s
+Model context length: 1048576 tokens
+Reasoning budget: unlimited
+
+Server listening on http://127.0.0.1:8080
+  GET  /
+  GET  /health
+  GET  /props
+  GET  /v1/models
+  POST /v1/chat/completions
+  POST /v1/completions
+  POST /v1/embeddings
+  POST /v1/decisions, /v1/systemone (Laya, Kev, D1, Clef)
+  POST /v1/messages (Anthropic)
+  POST /v1/responses (OpenAI Responses)
+  POST /v1/responses/compact
+  GET  /v1/responses/{id}
+  DEL  /v1/responses/{id}
+  POST /tokenize
+  POST /detokenize
+
+RSS: 15.5G  Mem: 78%  CPU: 4%  GPU: 84%
+POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=43b, tools=0b, tool_msgs=0) 
+  > "Name three primary colors, comma separated."
+[admission] needed=1089 MB available=7207 MB reclaimable=0 MB width=512 verdict=admit
+  prompt=21 tokens, max_gen=131051, ctx=131072
+  [hot-cache] decode-end checkpoint at 109 (21 prompt + 88 generated)
+  [hot-cache] trim inputs: tokens=109 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[20,109] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (109 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 21+88 tokens (2064ms) [prefill: 118.7 tok/s, decode: 46.8 tok/s] [stop]
+POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=44b, tools=0b, tool_msgs=0) 
+  > "What is 17 * 23? Reply with only the number."
+  prompt=27 tokens, max_gen=131045, ctx=131072
+  [hot-cache] decode-end checkpoint at 75 (27 prompt + 48 generated)
+  [hot-cache] trim inputs: tokens=75 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[26,75] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (75 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 27+48 tokens (1229ms) [prefill: 150.8 tok/s, decode: 46.0 tok/s] [stop]
+POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=85b, tools=204b, tool_msgs=0) 
+  > "What's the weather in Paris right now? Use the tool and repeat the code it gives..."
+  prompt=117 tokens, max_gen=130955, ctx=131072
+  [hot-cache] decode-end checkpoint at 201 (117 prompt + 84 generated)
+  [hot-cache] trim inputs: tokens=201 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[86,201] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (201 tokens, 32.81 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 117+84 tokens (2420ms) [prefill: 200.7 tok/s, decode: 45.9 tok/s] [tool_calls: 1]
+POST /v1/chat/completions (3 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=85b, tools=204b, tool_msgs=1) 
+  > "{"city": "Paris", "temp_c": 17, "sky": "overcast", "code": "049186ac"}"
+  prompt=192 tokens, max_gen=130880, ctx=131072
+  [hot-cache] decode-end checkpoint at 306 (192 prompt + 114 generated)
+  [hot-cache] trim inputs: tokens=306 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[161,306] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (306 tokens, 58.31 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 192+114 tokens (3269ms) [prefill: 252.8 tok/s, decode: 45.6 tok/s] [stop]
+POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.60, top_p=1.00, top_k=0, stream=false, thinking=false, sys=0b, user=333796b, tools=0b, tool_msgs=0) 
+  > "Line 0: the archive notes that shipment 0 left dock 0 on schedule. Line 1: the a..."
+  prompt=91888 tokens, max_gen=39184, ctx=131072
+[kv-attn] decode kernel (simdgroup matrix) engaged: bits=8 gs=64 DK=128 DV=128 Hq=24 Hkv=8 splits=32 mask=2 sinks=true
+[kv-attn] fused engaged: bits=8 gs=64 Hq=24 Hkv=8 Tq=1 (--kv-attn-mode dense restores dense reads)
+  [hot-cache] decode-end checkpoint at 92141 (91888 prompt + 253 generated)
+  [hot-cache] trim inputs: tokens=92141 row_bytes=104448 budget=0.00 MB list_len=13 arm=all_lower survivors=[8192,16384,24576,32768,40960,49152,57344,65536,73728,81920,90112,91857,92141] (13 of 13) chosen=none
+  [hot-cache] skipped oversized entry (92141 tokens, 1943.03 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 91888+253 tokens (327423ms) [prefill: 288.5 tok/s, decode: 28.4 tok/s] [stop]
+POST /v1/chat/completions (1 msgs, max_tokens=auto, temp=0.80, top_p=1.00, top_k=0, stream=true, thinking=false, sys=0b, user=58b, tools=0b, tool_msgs=0) 
+  > "Write a detailed 600-word story about a lighthouse keeper."
+  prompt=28 tokens, max_gen=131044, ctx=131072
+  [hot-cache] decode-end checkpoint at 1324 (28 prompt + 1296 generated)
+  [hot-cache] trim inputs: tokens=1324 row_bytes=104448 budget=0.00 MB list_len=2 arm=all_lower survivors=[27,1324] (2 of 2) chosen=none
+  [hot-cache] skipped oversized entry (1324 tokens, 185.81 MB > 0.00 MB budget): no restorable prefix fits the budget
+  <- 28+1296 tokens streamed [prefill: 148.1 tok/s, decode: 43.1 tok/s] [stop]
+
+Shutting down gracefully...

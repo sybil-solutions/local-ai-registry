@@ -1,0 +1,2 @@
+[lab 10:38:45] gates: {'load': True, 'chat': True, 'reasoning': True, 'tools': True, 'context': True, 'speed': True}  decode 43.0 tok/s, prefill 281 tok/s; evidence lab/runs/apple-m1-max-32gb.inkling-2-mini.mlx-serve-inkling-2-mini-4bit-kv8-128k.128k.20261128T023845.json
+[lab 10:38:45] PASSED: wrote registry/recipes/apple/apple-m1-max-32gb/inkling-2-mini.mlx-serve.128k.json (507 bytes)
