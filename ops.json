@@ -1,0 +1,1490 @@
+{
+ "updated": "2026-11-28T03:59:13Z",
+ "bounty": {
+  "month": "2026-11",
+  "cap": 1000,
+  "owed": 50,
+  "accepted": 1,
+  "open": 3,
+  "openValue": 150,
+  "claims": 36,
+  "prsOpen": 8,
+  "months": {
+   "2026-11": {
+    "accepted": 1,
+    "owed": 50
+   },
+   "2026-10": {
+    "accepted": 4,
+    "owed": 200
+   }
+  },
+  "list": [
+   {
+    "issue": 216,
+    "device": "Intel Arc B580 12 GB",
+    "amount": 50,
+    "state": "open",
+    "claims": [
+     {
+      "by": "abdallah038",
+      "at": "2026-10-13T16:54:01Z"
+     },
+     {
+      "by": "Hung2124",
+      "at": "2026-10-13T17:02:47Z"
+     },
+     {
+      "by": "Johanxd43",
+      "at": "2026-10-15T21:59:08Z"
+     },
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-16T06:17:51Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 283,
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:00:10Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 418,
+      "by": "rafagil11",
+      "at": "2026-11-09T03:11:41Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 452,
+      "by": "benny1232123",
+      "at": "2026-11-16T09:51:48Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 518,
+      "by": "ahteshamhassan7933-gif",
+      "at": "2026-11-23T04:05:26Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": null,
+    "pr": null,
+    "month": null
+   },
+   {
+    "issue": 217,
+    "device": "RTX 2080 Ti 11 GB",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "lizulin848-gif",
+      "at": "2026-10-13T04:01:27Z"
+     },
+     {
+      "by": "maebahesioru",
+      "at": "2026-10-13T08:13:17Z"
+     },
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-16T06:22:15Z"
+     },
+     {
+      "by": "ArtyormSatori",
+      "at": "2026-10-16T08:33:56Z"
+     },
+     {
+      "by": "dalisoft",
+      "at": "2026-10-16T08:44:19Z"
+     },
+     {
+      "by": "balckwell",
+      "at": "2026-11-03T14:29:13Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 243,
+      "by": "Angelel02",
+      "at": "2026-10-13T08:22:44Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 245,
+      "by": "maebahesioru",
+      "at": "2026-10-13T09:02:50Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 248,
+      "by": "lizulin848-gif",
+      "at": "2026-10-13T12:41:37Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 364,
+      "by": "mjneuroart",
+      "at": "2026-10-25T14:03:28Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 394,
+      "by": "rafagil11",
+      "at": "2026-11-03T14:24:03Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 398,
+      "by": "mxouiyavong-sys",
+      "at": "2026-11-04T12:58:19Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 407,
+      "by": "ArtyormSatori",
+      "at": "2026-11-05T11:43:37Z",
+      "state": "merged",
+      "mergedAt": "2026-11-10T00:47:40Z",
+      "checks": "none"
+     }
+    ],
+    "paidTo": "ArtyormSatori",
+    "pr": 407,
+    "month": "2026-11"
+   },
+   {
+    "issue": 218,
+    "device": "GTX 1080 Ti 11 GB",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "pythonyx135793",
+      "at": "2026-10-12T13:51:56Z"
+     },
+     {
+      "by": "Hung2124",
+      "at": "2026-10-13T17:02:49Z"
+     },
+     {
+      "by": "celestial-fix",
+      "at": "2026-10-14T01:48:04Z"
+     },
+     {
+      "by": "maebahesioru",
+      "at": "2026-10-15T07:27:57Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 226,
+      "by": "yakejkl",
+      "at": "2026-10-12T13:59:34Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 244,
+      "by": "Angelel02",
+      "at": "2026-10-13T08:23:05Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 255,
+      "by": "celestial-fix",
+      "at": "2026-10-14T02:00:53Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 275,
+      "by": "maebahesioru",
+      "at": "2026-10-15T08:53:12Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 276,
+      "by": "pythonyx135793",
+      "at": "2026-10-15T11:02:05Z",
+      "state": "merged",
+      "mergedAt": "2026-10-17T05:46:53Z",
+      "checks": "passing"
+     },
+     {
+      "pr": 302,
+      "by": "LuciferMornigstar7",
+      "at": "2026-10-16T22:17:01Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": "pythonyx135793",
+    "pr": 276,
+    "month": "2026-10"
+   },
+   {
+    "issue": 219,
+    "device": "RX 7900 XTX 24 GB",
+    "amount": 50,
+    "state": "open",
+    "claims": [
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-13T06:01:40Z"
+     },
+     {
+      "by": "Hung2124",
+      "at": "2026-10-13T17:02:45Z"
+     },
+     {
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:13:18Z"
+     },
+     {
+      "by": "kamm3r",
+      "at": "2026-10-20T06:02:25Z"
+     },
+     {
+      "by": "MrGeorgeOwl",
+      "at": "2026-10-28T19:50:38Z"
+     },
+     {
+      "by": "nghoang1288",
+      "at": "2026-10-29T15:37:11Z"
+     },
+     {
+      "by": "fei36bot",
+      "at": "2026-11-03T02:08:41Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 284,
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:13:33Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 329,
+      "by": "kamm3r",
+      "at": "2026-10-20T06:02:37Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 375,
+      "by": "nghoang1288",
+      "at": "2026-10-29T15:12:54Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 381,
+      "by": "Dungsky",
+      "at": "2026-10-31T13:46:36Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 389,
+      "by": "fei36bot",
+      "at": "2026-11-03T02:08:17Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 419,
+      "by": "rafagil11",
+      "at": "2026-11-09T03:51:54Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 451,
+      "by": "benny1232123",
+      "at": "2026-11-16T09:51:31Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 494,
+      "by": "ahteshamhassan7933-gif",
+      "at": "2026-11-22T04:05:15Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": null,
+    "pr": null,
+    "month": null
+   },
+   {
+    "issue": 220,
+    "device": "a 27B model on a 16 GB AMD card",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "Vmarcelo49",
+      "at": "2026-10-12T16:15:16Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 232,
+      "by": "Vmarcelo49",
+      "at": "2026-10-12T16:31:58Z",
+      "state": "merged",
+      "mergedAt": "2026-10-16T18:18:25Z",
+      "checks": "passing"
+     }
+    ],
+    "paidTo": "Vmarcelo49",
+    "pr": 232,
+    "month": "2026-10"
+   },
+   {
+    "issue": 221,
+    "device": "RTX 4060 Ti 16 GB",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-13T06:02:51Z"
+     },
+     {
+      "by": "hirschga",
+      "at": "2026-10-14T11:01:07Z"
+     },
+     {
+      "by": "Yuvi1192p",
+      "at": "2026-10-14T12:16:22Z"
+     },
+     {
+      "by": "dalisoft",
+      "at": "2026-10-16T08:44:44Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 242,
+      "by": "mjneuroart",
+      "at": "2026-10-13T08:21:08Z",
+      "state": "merged",
+      "mergedAt": "2026-10-16T13:35:38Z",
+      "checks": "passing"
+     },
+     {
+      "pr": 246,
+      "by": "tim777z",
+      "at": "2026-10-13T10:02:20Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "failing"
+     },
+     {
+      "pr": 259,
+      "by": "Yuvi1192p",
+      "at": "2026-10-14T12:16:53Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "failing"
+     },
+     {
+      "pr": 278,
+      "by": "Johanxd43",
+      "at": "2026-10-15T14:20:09Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 310,
+      "by": "dalisoft",
+      "at": "2026-10-17T13:43:24Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": "mjneuroart",
+    "pr": 242,
+    "month": "2026-10"
+   },
+   {
+    "issue": 222,
+    "device": "RTX 5060 Ti 16 GB",
+    "amount": 50,
+    "state": "closed",
+    "claims": [
+     {
+      "by": "bookpranwat",
+      "at": "2026-10-12T13:08:43Z"
+     },
+     {
+      "by": "adelmhmdhassan",
+      "at": "2026-10-12T19:36:45Z"
+     },
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-15T06:56:05Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 241,
+      "by": "bookpranwat",
+      "at": "2026-10-13T07:53:55Z",
+      "state": "merged",
+      "mergedAt": "2026-10-16T18:31:18Z",
+      "checks": "passing"
+     },
+     {
+      "pr": 272,
+      "by": "app/",
+      "at": "2026-10-15T07:06:01Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 274,
+      "by": "app/",
+      "at": "2026-10-15T08:08:56Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": "bookpranwat",
+    "pr": 241,
+    "month": "2026-10"
+   },
+   {
+    "issue": 223,
+    "device": "Ryzen AI 890M (Radeon 890M iGPU)",
+    "amount": 50,
+    "state": "open",
+    "claims": [
+     {
+      "by": "satyamshrivastav955-dotcom",
+      "at": "2026-10-13T12:09:38Z"
+     },
+     {
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:13:35Z"
+     },
+     {
+      "by": "mjneuroart",
+      "at": "2026-10-16T06:17:59Z"
+     },
+     {
+      "by": "1132dadf",
+      "at": "2026-10-18T07:35:40Z"
+     },
+     {
+      "by": "Darshan3690",
+      "at": "2026-11-16T01:32:42Z"
+     },
+     {
+      "by": "JoshOsborne1",
+      "at": "2026-11-23T14:55:34Z"
+     },
+     {
+      "by": "jdjioe5-cpu",
+      "at": "2026-11-27T16:58:41Z"
+     }
+    ],
+    "prs": [
+     {
+      "pr": 285,
+      "by": "Johanxd43",
+      "at": "2026-10-15T22:13:49Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 294,
+      "by": "satyamshrivastav955-dotcom",
+      "at": "2026-10-16T18:31:43Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "passing"
+     },
+     {
+      "pr": 447,
+      "by": "rafagil11",
+      "at": "2026-11-15T10:24:32Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 450,
+      "by": "benny1232123",
+      "at": "2026-11-16T09:51:11Z",
+      "state": "closed",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 462,
+      "by": "ahteshamhassan7933-gif",
+      "at": "2026-11-21T04:05:08Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     },
+     {
+      "pr": 527,
+      "by": "JoshOsborne1",
+      "at": "2026-11-23T14:54:47Z",
+      "state": "open",
+      "mergedAt": null,
+      "checks": "none"
+     }
+    ],
+    "paidTo": null,
+    "pr": null,
+    "month": null
+   }
+  ]
+ },
+ "plugin": {
+  "prs": 11,
+  "drafts": 2,
+  "passing": 2,
+  "failing": 0,
+  "issues": 5,
+  "list": [
+   {
+    "n": 194,
+    "title": "docs: fix the supported list link (registry moved it under data/)",
+    "by": "itsMattGuenther",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 193,
+    "title": "Detect the Arc 140V and 130V (Lunar Lake) iGPUs",
+    "by": "volfpeter",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 192,
+    "title": "Serve Snapdragon X Adreno GPUs with llama.cpp Vulkan",
+    "by": "lonelyworks0",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 191,
+    "title": "Add Inkling 2 Mini ROCm recipe for Strix Halo",
+    "by": "hjanuschka",
+    "draft": true,
+    "checks": "failing"
+   },
+   {
+    "n": 187,
+    "title": "Plugin: show a model's cache share and average reasoning tokens",
+    "by": "IlyaasK",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 186,
+    "title": "Panel: read the theme's Color through a named import, so Qt 6.12 does not hide it",
+    "by": "IlyaasK",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 184,
+    "title": "A llama.cpp model on an AMD card with Resizable BAR off keeps its buffers in card memory",
+    "by": "rndaom",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 183,
+    "title": "The panel reads Omarchy's colours again on Qt 6.12",
+    "by": "rndaom",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 181,
+    "title": "Your own recipes outlast updates: recipes.local.json, and sysNice",
+    "by": "diverseau",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 176,
+    "title": "Local AI 8 UI: connect, hardware tree, model, main, settings (draft, not for release)",
+    "by": "0xSero",
+    "draft": true,
+    "checks": "failing"
+   },
+   {
+    "n": 172,
+    "title": "Add WorkBuddy as an agent",
+    "by": "cheurteen",
+    "draft": false,
+    "checks": "passing"
+   }
+  ],
+  "devAhead": 7,
+  "version": "6.24.0"
+ },
+ "registry": {
+  "prs": 110,
+  "drafts": 1,
+  "passing": 9,
+  "failing": 1,
+  "issues": 30,
+  "list": [
+   {
+    "n": 580,
+    "title": "Inkling 2 Mini on Apple M1 Max 32 GB: mlx-serve 26.11.4 MLX 4-bit, q8 KV, 128k (lab 6/6, 4",
+    "by": "jellydn",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 579,
+    "title": "Apple M1 Pro 16 GB: Add card and 7 qualified llama.cpp Metal recipes",
+    "by": "natefriedman",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 577,
+    "title": "Apple M5 Max 128 GB: Ornith-1.5-35B-A3B, Qwen3.8-27B (A16 & A8), and GLM-5.3-Flash 320B 12",
+    "by": "natefriedman",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 576,
+    "title": "recipe: add Inkling 2 Mini with vision at 192K on the RX 7900 XTX",
+    "by": "kamm3r",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 575,
+    "title": "recipe: add Qwen3.5-9B EXL3 on the RX 7900 XTX",
+    "by": "kamm3r",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 574,
+    "title": "Hy4-Flash on one RTX PRO 6000 Blackwell 96GB: EXL3 SC 4.00bpw, 1M ctx, DFly2 + vision (lab",
+    "by": "0xSero",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 573,
+    "title": "Inkling-2-Mini on Intel Arc Pro B70 32 GB (llama.cpp SYCL)",
+    "by": "Thotheris",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 571,
+    "title": "Nemotron 3.5 Bolt E4B on Intel Arc 140V 32 GB (llama.cpp SYCL, 2 \u00d7 64K)",
+    "by": "volfpeter",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 570,
+    "title": "fix(lab): give the reasoning gate a probe that needs reasoning",
+    "by": "volfpeter",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 568,
+    "title": "Apple M5 Max 128 GB: Qwen3.8-Flash-Next (oMLX 0.8.0 128K/256K & Slotstream 0.2.28)",
+    "by": "natefriedman",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 567,
+    "title": "Inkling-2-Mini on RTX 5090 32 GB: Siphon (Rust + CUDA, FP8 weights and KV, DSpark), 128K (",
+    "by": "hxyulin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 566,
+    "title": "L0xRE-V2-27B-Low on RTX 5080 16GB: BeeLLama-Low v0.1.6 + DFlash2 + vision, 256K (lab 6/6, ",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 565,
+    "title": "LFM3-1.7B NVFP4 on RTX 5080 16GB: vLLM nightly, full 262K context (lab 6/6, 332.2 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 564,
+    "title": "Qwen3.5-9B Defiant Fable Heretic on RTX 5080 16GB: llama.cpp b12627 Q6_K, 128k (lab 6/6, 9",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 563,
+    "title": "export_plugin: hand the plugin a one-program entrypoint (unblocks plugin recipe sync)",
+    "by": "caioniehues",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 562,
+    "title": "Inkling-2-Mini IQ4_NL on one RTX 3060 12GB: llama.cpp, loop-core experts on the GPU, 128k",
+    "by": "davidghatley",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 561,
+    "title": "recipe: RTX 5060 Laptop GPU 8 GB proxy recipes (#370)",
+    "by": "johnson251718-Agent",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 560,
+    "title": "Qwen3.5-9B Defiant Fable Heretic Q6_K on one RTX 3060 12GB: llama.cpp, all in VRAM, 128k",
+    "by": "davidghatley",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 559,
+    "title": "Qwen3.8-27B on an Apple M5 Max 128 GB: llama.cpp b12588 Metal, Q4_K_M, 128k (lab 6/6, 23.6",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 558,
+    "title": "Swift-1.5-Qwen3.8-27B on an Apple M5 Max 128 GB: llama.cpp b12588 Metal, IQ3_S + MTP, 128k",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 557,
+    "title": "Flint 40B-A2.5B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, Q4_",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 556,
+    "title": "Inkling-2-Mini on an Apple M5 Max 128 GB and an M1 Max 64 GB: MLX 4-bit on mlx-lm, 256k (l",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 555,
+    "title": "LFM3-1.7B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, QAD Q4_0,",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 554,
+    "title": "LFM3-VL-2B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, QAD Q4_0",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 553,
+    "title": "Inkling-2-Mini on Apple M2 Max 64 GB (mlx-dspark, 32K)",
+    "by": "maxmilneaus",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 552,
+    "title": "Inkling-2-Mini on Apple M5 Ultra 256 GB: inkmax (Zig + Metal 4, oQ4e + Q4 KV + DSpark), 25",
+    "by": "chillerno1",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 551,
+    "title": "feat(recipe): Qwen3.6-35B-A3B on dual RX 9060 XT Vulkan",
+    "by": "santiago200031",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 550,
+    "title": "feat(app): distinguish AMD Vulkan cards from ROCm cards",
+    "by": "santiago200031",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 549,
+    "title": "Inkling-2-Mini on one RTX 5080 16GB: llama.cpp CUDA, UD-Q2_K_XL + vision, 128K (lab 6/6, 9",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 548,
+    "title": "Nemotron-3.5-Lightning-30B-A3B on an Apple M1 Max 64 GB: llama.cpp b12588 Metal, Q4_0, 128",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 547,
+    "title": "Nanbeige4.2-3B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, Q2_K",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 546,
+    "title": "Granite 4.2 3B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, Q4_0",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 545,
+    "title": "Granite 4.2 8B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, Q2_K",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 544,
+    "title": "Nemotron-3.5-Bolt-E4B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Meta",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 543,
+    "title": "Ornith-1.5-9B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, Q4_0,",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 542,
+    "title": "Flint 40B-A2.5B on one RTX 5080 16GB: llama.cpp CUDA, Q4_K_M + MoE cache, 2x64k (lab 6/6, ",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 541,
+    "title": "LFM3-VL-2B on one RTX 5080 16GB: llama.cpp CUDA, QAD Q4_0 + vision, 2x125k (lab 6/6, 287.5",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 540,
+    "title": "Nemotron-3.5-Bolt-E4B on one RTX 5080 16GB: llama.cpp CUDA, Q4_0, 2x64k (lab 6/6, 155.1 to",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 539,
+    "title": "Inkling-2-Mini on RTX 5060 Ti 16 GB: squid5060ti (Zig + sm_120a NVFP4 + Q4 KV + DSpark), 1",
+    "by": "omerdikyol",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 538,
+    "title": "Inkling-2-Mini on RTX 3090 24GB: maya-ik2, 388K context, all experts in VRAM",
+    "by": "drzewkoKamil",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 537,
+    "title": "Inkling-2-Mini on RTX 3090: Unsloth b12649 + DSpark + vision, 128K, CUDA graphs on (lab 6/",
+    "by": "RafTurek",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 536,
+    "title": "feat(registry): Granite 4.2-3B Q2_K (legacy) on GTX 1050 3 GB",
+    "by": "santiago200031",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 535,
+    "title": "feat(registry): LFM2.5-24B-A2B (legacy) on GTX 1050 3 GB",
+    "by": "santiago200031",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 533,
+    "title": "models: inkling-2-mini \u2014 spell out 5.4B active and the looped execution",
+    "by": "dailybarid",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 532,
+    "title": "Add Strata Inkling 2 Mini SQ-10 128K recipe for RTX 3060",
+    "by": "discochuck",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 531,
+    "title": "qwen38-apple-mlx: fix stale launcher path and speed_probe unpacking",
+    "by": "nimast",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 530,
+    "title": "Add Gemma 4 26B-A4B Ultra Heretic 128K recipe for RTX 3060 12 GB",
+    "by": "discochuck",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 529,
+    "title": "Add Inkling 2 Mini 128K recipe for RTX 3060 12 GB",
+    "by": "discochuck",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 528,
+    "title": "Add BeeLLama Low 256K recipe for RTX 3060 12 GB",
+    "by": "discochuck",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 527,
+    "title": "add: Radeon 890M 48 GB card with Ornith 1.5 35B-A3B at 128k",
+    "by": "JoshOsborne1",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 526,
+    "title": "Inkling-2-Mini on one RTX 5090: SGLang + DSpark, 128K context (lab 6/6)",
+    "by": "kkarimi",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 525,
+    "title": "Groot-19B-A3B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, Q8_0,",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 524,
+    "title": "Welp-35B-A3B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b12588 Metal, 256k (",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 523,
+    "title": "Ornith-1.5-35B-A3B on an Apple M5 Max 128 GB and an M1 Max 64 GB: llama.cpp b11671 Metal, ",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 522,
+    "title": "feat(registry): add tested Inkling 128k recipe for RTX 5070 Ti",
+    "by": "ImLunaHey",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 521,
+    "title": "Inkling-2-Mini on Arc Pro B70: TP1 + TP2, SGLang XPU, 256K, fp8 KV, vision, DSpark (lab 6/",
+    "by": "0xSero",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 518,
+    "title": "fix: Bounty $50: recipe for Intel Arc B580 12 GB",
+    "by": "ahteshamhassan7933-gif",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 516,
+    "title": "lab: count tokens through /v1/messages/count_tokens, so mtplx and oMLX can pass the speed ",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 515,
+    "title": "Inkling 2 Mini on an Apple M4 Pro 24 GB: MLX 4-bit on patched mlx-lm at a 131,072 window",
+    "by": "nedcut",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 509,
+    "title": "Inkling 2 Mini on RTX 3090 24GB: +60\u201371% decode & 100% GPU 512K via unslothai/llama.cpp#40",
+    "by": "danbunnell",
+    "draft": true,
+    "checks": "passing"
+   },
+   {
+    "n": 506,
+    "title": "Inkling 2 Mini on one RTX 5050 8GB: compact attention bias + prefill streaming, UD-Q2_K_XL",
+    "by": "andyguzmaneth",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 505,
+    "title": "Qwen3.8-Flash-Next on an Apple M5 Max 128 GB: Slotstream 0.2.28, MLX 4-bit, 128k (lab 6/6,",
+    "by": "amsterdamboomer",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 504,
+    "title": "Inkling 2 Mini on one RTX PRO 6000: vLLM, full 1M context, DSpark drafter on sm_120 (lab 6",
+    "by": "dallassnyder",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 502,
+    "title": "Nanbeige4.2-3B on one RTX 5080 16GB: llama.cpp CUDA, Q2_K, 144k (lab 6/6, 124.0 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 501,
+    "title": "Granite 4.2 3B on one RTX 5080 16GB: llama.cpp CUDA, Q4_0, 128k (lab 6/6, 241.3 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 500,
+    "title": "Granite 4.2 8B on one RTX 5080 16GB: llama.cpp CUDA, Q2_K, 128k (lab 6/6, 159.9 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 499,
+    "title": "Ornith-1.5-9B on one RTX 5080 16GB: llama.cpp CUDA, Q4_0, 262k (lab 6/6, 130.1 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 498,
+    "title": "Ternary-Bonsai-2-9B on one RTX 5080 16GB: llama.cpp CUDA, Q2_0, 262k (lab 6/6, 128.6 tok/s",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 497,
+    "title": "LFM3-1.7B on one RTX 5080 16GB: llama.cpp CUDA, QAD Q4_0, 262k (lab 6/6, 297.6 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 496,
+    "title": "Groot-19B-A3B on one RTX 5080 16GB: llama.cpp CUDA, Q4_0 + vision, 262k (lab 6/6, 185.1 to",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 495,
+    "title": "Inkling-2-Mini UD-IQ4_XS + vision, 336K context on one RTX 3090 24GB (patched llama.cpp)",
+    "by": "drzewkoKamil",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 494,
+    "title": "fix: Bounty $50: recipe for RX 7900 XTX 24 GB",
+    "by": "ahteshamhassan7933-gif",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 493,
+    "title": "Gemma 4 12B on one RTX 5080 16GB: llama.cpp b11146 CUDA, QAT Q4_0 + vision, 128k (lab 6/6,",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 492,
+    "title": "Ornith-1.5-35B-A3B on one RTX 5080 16GB: llama.cpp b11146 CUDA, Q4_K_M + MTP + vision, 262",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 491,
+    "title": "Qwen3.6-35B-A3B on one RTX 5080 16GB: llama.cpp b11146 CUDA, UD-Q4_K_XL + MTP, 262k (lab 6",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 489,
+    "title": "Inkling 2 Mini on one RTX 3090 24GB: llama.cpp UD-IQ4_XS + vision, no draft, 256k (q8_0 KV",
+    "by": "danbunnell",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 488,
+    "title": "Add Hauhau Qwen3.6-35B-A3B recipe for Apple M4 Max 48GB",
+    "by": "Solizardking",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 487,
+    "title": "LFM3-1.7B on an Apple M5 Max 128 GB: MLX 8-bit on mlx-vlm, 256k (lab 6/6, 180.6 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 486,
+    "title": "LFM2.5-24B-A2B on an Apple M5 Max 128 GB: MLX 6-bit on mlx-lm, 128k (lab 6/6, 115.0 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 485,
+    "title": "Arete 27B on one RTX 3090 24GB: llama.cpp Q4_K_M + MTP draft + vision, 128k (84 tok/s)",
+    "by": "eightyFJ",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 482,
+    "title": "Inkling 2 Mini on RTX PRO 6000: vLLM, 128K, 6/6, 154.8 tok/s",
+    "by": "franciscocordobaotalora",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 481,
+    "title": "Welp-35B-A3B on one RTX 5080 16GB: llama.cpp b11146 CUDA, q4_0 KV, 262k (lab 6/6, 160.8 to",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 477,
+    "title": "LFM2.5-24B-A2B on an Apple M1 Max 64 GB: MLX 6-bit on mlx-lm, 128k (lab 6/6, 67.2 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 476,
+    "title": "LFM3-1.7B on an Apple M1 Max 64 GB: MLX 8-bit on mlx-vlm, 256k (lab 6/6, 107.4 tok/s)",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 475,
+    "title": "LFM2.5-24B-A2B on Apple M1 Max 32 GB: second proof on a 32-core GPU (lab 6/6, 67.0 tok/s, ",
+    "by": "jellydn",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 474,
+    "title": "Qwen3.8-27B on an Apple M5 Max 128 GB: MLX 4-bit + MTP on mlx-vlm, 200k (lab 6/6, 36.0 tok",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 473,
+    "title": "inkling-2-mini: Apple M2 Max 32GB, 128K on mlx-vlm, 6/6 gates (owner run)",
+    "by": "akramshehadi",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 472,
+    "title": "Gemma 4 31B on an Apple M5 Max 128 GB: llama.cpp b12588 Metal, Q4_K_M, 128k (lab 6/6, 21.0",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 471,
+    "title": "Gemma 4 31B on an Apple M5 Max 128 GB: TensorFold 1.3.2, MLX 4-bit + DFlash, 128k (lab 6/6",
+    "by": "Biblejustin",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 470,
+    "title": "Qwen3.8-27B on Apple M1 Max 32 GB: llama.cpp Metal UD-Q4_K_XL + MTP 3, 128k (lab 6/6, 17.6",
+    "by": "jellydn",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 469,
+    "title": "Add LFM3-VL-2B on apple-m1-max-32gb \u2014 first vision recipe for the card (MLX 8-bit, 125k)",
+    "by": "ahmadalzaro1",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 468,
+    "title": "recipe: Inkling 2 Mini on Apple M1 Max 32GB (llama.cpp b12600 Metal, IQ4_NL, 128K)",
+    "by": "ignoxx",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 467,
+    "title": "Inkling 2 Mini on one RTX 4090 24GB: llama.cpp UD-Q4_K_XL + vision, backend sampling, 128k",
+    "by": "JohnBoydBI",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 466,
+    "title": "Inkling 2 Mini on Apple M1 Max 32 GB: llama.cpp Metal UD-Q4_K_XL, 128k (lab 6/6, 20.1 tok/",
+    "by": "jellydn",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 465,
+    "title": "Qualify Inkling 2 Mini on a 64 GB M1 Max (stock + M1-fast Metal kernels)",
+    "by": "nerveband",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 464,
+    "title": "Inkling 2 Mini on one RTX 3090 24GB: llama.cpp UD-Q4_K_XL + vision, no draft, 128k (52 tok",
+    "by": "eightyFJ",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 463,
+    "title": "Inkling-2-Mini on Intel Arc B390: SGLang-XPU source-build recipe (Lab 6/6, 4\u00d7256K)",
+    "by": "0xSero",
+    "draft": false,
+    "checks": "passing"
+   },
+   {
+    "n": 462,
+    "title": "fix: Bounty $50: recipe for Ryzen AI 890M (Radeon 890M iGPU)",
+    "by": "ahteshamhassan7933-gif",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 458,
+    "title": "fix: Bounty $50: recipe for RTX 3070 Ti Laptop GPU",
+    "by": "ahteshamhassan7933-gif",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 447,
+    "title": "fix: Bounty $50: recipe for Ryzen AI 890M (Radeon 890M iGPU) (closes #223)",
+    "by": "rafagil11",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 437,
+    "title": "LFM3-1.7B NVFP4 on RTX 5070 12GB: vLLM, full 262K context",
+    "by": "IlyaasK",
+    "draft": false,
+    "checks": "failing"
+   },
+   {
+    "n": 434,
+    "title": "fix(catalog): extend max_age_days to 300 to restore Qwen3.5-9B on NVIDIA cards (#422)",
+    "by": "Johanxd43",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 433,
+    "title": "fix(lab): enforce fail-closed proof log binding and recipe context checks (#334)",
+    "by": "Johanxd43",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 432,
+    "title": "fix(lab): enforce fail-closed served weights verification in load gate (#331)",
+    "by": "Johanxd43",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 426,
+    "title": "fix: Bounty ledger: claims, submissions and payouts (closes #262)",
+    "by": "rafagil11",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 424,
+    "title": "Add GTX 1060 6GB and LFM2.5-24B-A2B on llama.cpp at 64K",
+    "by": "ash-eriga",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 423,
+    "title": "feat(registry): GTX 1050 3 GB with LFM3-1.7B on CUDA 12 llama.cpp",
+    "by": "santiago200031",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 419,
+    "title": "fix: Bounty $50: recipe for RX 7900 XTX 24 GB (closes #219)",
+    "by": "rafagil11",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 418,
+    "title": "fix: Bounty $50: recipe for Intel Arc B580 12 GB (closes #216)",
+    "by": "rafagil11",
+    "draft": false,
+    "checks": "none"
+   },
+   {
+    "n": 389,
+    "title": "feat(recipe): RX 7900 XTX 24GB qwen3.8-27b llama.cpp 128k (closes #219)",
+    "by": "fei36bot",
+    "draft": false,
+    "checks": "none"
+   }
+  ]
+ },
+ "marketplace": {
+  "verify": {
+   "issue": 11207,
+   "state": "closed",
+   "labels": [
+    "validated",
+    "security-review-required",
+    "plugin-update"
+   ],
+   "target": "55b2342b06d0b4aa3ff1c6563d9008ac856893cf",
+   "lastBy": "0xSero",
+   "lastAt": "2026-10-16T14:25:30Z"
+  },
+  "migration": {
+   "pr": 11412,
+   "state": "closed",
+   "mergeable": "conflicting"
+  },
+  "listing": {
+   "version": "6.24.0",
+   "verificationStatus": "unverified",
+   "verificationCommit": "43371ba5395f58d569b67275504e0fa22be9309f",
+   "installAvailable": false,
+   "repo": "https://github.com/0xSero/omarchy-local-ai"
+  }
+ },
+ "devices": {
+  "kinds": 50,
+  "recipes": 183
+ }
+}
