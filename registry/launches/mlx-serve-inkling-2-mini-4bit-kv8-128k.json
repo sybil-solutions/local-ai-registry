@@ -1,0 +1,43 @@
+{
+  "id": "mlx-serve-inkling-2-mini-4bit-kv8-128k",
+  "kind": "host",
+  "engine": "mlx-serve",
+  "about": "Inkling 2 Mini (MLX \u00b7 4-bit) on mlx-serve 26.11.4 with an 8-bit KV cache at 128K, serial decode (the plugin turns drafting off below M3), one request at a time",
+  "command": [
+    "sh",
+    "mlx-serve-inkling.sh",
+    "--serve",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8080",
+    "--ctx-size",
+    "131072",
+    "--kv-quant",
+    "8",
+    "--no-pld",
+    "--no-plugins",
+    "--warmup-full"
+  ],
+  "install": "curl -LO https://github.com/ddalcu/mlx-serve/releases/download/v26.11.4/mlx-serve-bin-macos-arm64.tar.gz && echo '2079e8649b4a25aed267bf43117ef23b026c833453f0cdd0eff2d328aa1e0832  mlx-serve-bin-macos-arm64.tar.gz' | shasum -a 256 -c && tar xzf mlx-serve-bin-macos-arm64.tar.gz (macOS on Apple silicon; tag v26.11.4 = 45df50e9adf7975bf31ee198c7440ec511c6162e)",
+  "pip": [],
+  "env": {},
+  "port": 8080,
+  "weights": [
+    {
+      "repo": "mlx-community/Inkling-2-Mini-4bit",
+      "revision": "9c0e2960609ba7cb40daf92c6f7bf8ed56e1dd62",
+      "at": "models/Inkling-2-Mini-4bit-9c0e2960",
+      "layout": "dir",
+      "files": null
+    }
+  ],
+  "config": {
+    "at": "mlx-serve-inkling.sh",
+    "text": "#!/bin/sh\n# mlx-serve 26.11.4 reads a pack only by absolute path; a relative --model is refused.\nexec mlx-serve-macos-arm64/mlx-serve --model \"$PWD/models/Inkling-2-Mini-4bit-9c0e2960\" \"$@\"\n"
+  },
+  "ctx": 131072,
+  "seqs": 1,
+  "vision": false,
+  "backend": "metal"
+}
