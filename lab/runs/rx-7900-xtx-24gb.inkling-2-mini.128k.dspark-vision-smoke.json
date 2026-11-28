@@ -9,36 +9,36 @@
         "index": 0,
         "message": {
           "role": "assistant",
-          "content": "red",
-          "reasoning_content": "The user wants the dominant color in one word. The image is mostly solid red. Need answer one word. We can answer \"red\". Ensure no extra. We already used tool. Final one word."
+          "content": "Red",
+          "reasoning_content": "The user wants the dominant color in image. The image appears almost entirely red. Need reply one word. Ensure final only one word. Could be 'red'. No need more."
         }
       }
     ],
-    "created": 1795802527,
+    "created": 1795863145,
     "model": "inkling-2-mini",
-    "system_fingerprint": "b12572-a5ba2dd76",
+    "system_fingerprint": "b12823-3ab385146",
     "object": "chat.completion",
     "usage": {
-      "completion_tokens": 50,
+      "completion_tokens": 45,
       "prompt_tokens": 81,
-      "total_tokens": 131,
+      "total_tokens": 126,
       "prompt_tokens_details": {
         "cached_tokens": 0
       }
     },
-    "id": "chatcmpl-QfCx7hVVEZQGv5EqcmXZGHnn8ElQfR9g",
+    "id": "chatcmpl-NQOfMSIUKYVGKqwZ1DcvIDEaxFMOmGDH",
     "timings": {
       "cache_n": 0,
       "prompt_n": 81,
-      "prompt_ms": 790.063,
-      "prompt_per_token_ms": 9.753864197530865,
-      "prompt_per_second": 102.52346964735723,
-      "predicted_n": 50,
-      "predicted_ms": 987.559,
-      "predicted_per_token_ms": 20.154265306122447,
-      "predicted_per_second": 49.61728868857456,
-      "draft_n": 57,
-      "draft_n_accepted": 30
+      "prompt_ms": 637.042,
+      "prompt_per_token_ms": 7.864716049382716,
+      "prompt_per_second": 127.15017220214678,
+      "predicted_n": 45,
+      "predicted_ms": 570.67,
+      "predicted_per_token_ms": 12.969772727272726,
+      "predicted_per_second": 77.10235337410413,
+      "draft_n": 54,
+      "draft_n_accepted": 26
     }
   }
 }
